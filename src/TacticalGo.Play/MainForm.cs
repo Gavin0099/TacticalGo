@@ -22,28 +22,31 @@ public sealed class MainForm : Form
     // fixed action area under the board: nothing here can cover a stone
     private readonly Button _confirm = new()
     {
-        Text = "✔ 放這裡", Width = 250, Height = 58, FlatStyle = FlatStyle.Flat,
+        Text = "✔ 放這裡", Width = 235, Height = 58, FlatStyle = FlatStyle.Flat,
         Font = new Font("Microsoft JhengHei UI", 17f, FontStyle.Bold), Margin = new Padding(8, 8, 6, 8),
     };
     private readonly Button _cancel = new()
     {
-        Text = "取消", Width = 130, Height = 58, Font = new Font("Microsoft JhengHei UI", 14f), Margin = new Padding(6, 8, 6, 8),
+        Text = "取消", Width = 100, Height = 58, Font = new Font("Microsoft JhengHei UI", 14f), Margin = new Padding(6, 8, 6, 8),
     };
     private readonly Button _modePlace = ModeBtn("放士兵");
     private readonly Button _modeSkill = ModeBtn("技能：換位");
     private readonly Button _modeSummon = ModeBtn("召喚英雄");
     private readonly Label _heroes = new() { AutoSize = true, MaximumSize = new Size(340, 0) };
+    private readonly PictureBox _portraitOne = new() { Size = new Size(44, 44), SizeMode = PictureBoxSizeMode.Zoom };
+    private readonly PictureBox _portraitTwo = new() { Size = new Size(44, 44), SizeMode = PictureBoxSizeMode.Zoom };
+    private readonly FlowLayoutPanel _heroRow = new() { AutoSize = true, WrapContents = false, Margin = Padding.Empty };
     private readonly FlowLayoutPanel _directionRow = new() { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true, Margin = Padding.Empty };
     private readonly Dictionary<PushDirection, Button> _directions = [];
     private readonly Label _skillNote = new()
     {
-        AutoSize = false, Width = 430, Height = 44, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
+        AutoSize = false, Dock = DockStyle.Fill, Height = 44, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
         Font = new Font("Microsoft JhengHei UI", 10.5f), Margin = new Padding(10, 2, 0, 0),
     };
-    // Auto-sizing two-row bar (mode row collapses when hidden). Its height is computed by the layout engine, never set by hand.
+    // Separate rows keep controls within the board column at the supported minimum window size.
     private readonly TableLayoutPanel _bar = new()
     {
-        Dock = DockStyle.Bottom, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 1, RowCount = 2,
+        Dock = DockStyle.Bottom, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 1, RowCount = 5,
         BackColor = Color.FromArgb(0xEE, 0xEA, 0xDF), Margin = Padding.Empty, Padding = Padding.Empty,
     };
     private readonly FlowLayoutPanel _modeRow = new()
@@ -53,8 +56,8 @@ public sealed class MainForm : Form
     };
     private readonly Label _barInfo = new()
     {
-        AutoSize = false, Width = 360, Height = 58, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
-        Font = new Font("Microsoft JhengHei UI", 10.5f), Margin = new Padding(10, 8, 0, 8),
+        AutoSize = false, Dock = DockStyle.Fill, Height = 34, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
+        Font = new Font("Microsoft JhengHei UI", 10.5f), Margin = new Padding(10, 0, 8, 6),
     };
 
     private readonly Label _turn = new() { AutoSize = true, MaximumSize = new Size(340, 0), Font = new Font("Microsoft JhengHei UI", 15f, FontStyle.Bold) };
@@ -109,8 +112,9 @@ public sealed class MainForm : Form
         Font = new Font("Microsoft JhengHei UI", 10f);     // set BEFORE sizing: changing the font later rescales the window
         // Never taller/wider than the screen can show, so the fixed action bar under the board is always visible.
         var work = Screen.PrimaryScreen?.WorkingArea ?? new Rectangle(0, 0, 1280, 800);
-        ClientSize = new Size(Math.Min(1140, work.Width - 40), Math.Min(860, work.Height - 90));
-        MinimumSize = new Size(Math.Min(900, work.Width - 40), Math.Min(700, work.Height - 90));
+        var sizes = WindowSizes(work);
+        ClientSize = sizes.Client;
+        MinimumSize = sizes.Minimum;
         KeyPreview = true;
 
         _board = new BoardView(play) { Dock = DockStyle.Fill };
@@ -122,17 +126,14 @@ public sealed class MainForm : Form
             Dock = DockStyle.Fill, Height = 76, FlowDirection = FlowDirection.LeftToRight, WrapContents = false,
             Padding = new Padding(4, 0, 4, 0), Margin = Padding.Empty,
         };
-        actionRow.Controls.AddRange([_confirm, _cancel, _barInfo]);
-        _modeRow.Controls.AddRange([_modePlace, _modeSummon, _modeSkill, _skillNote]);
+        actionRow.Controls.AddRange([_confirm, _cancel]);
+        _modeRow.Controls.AddRange([_modePlace, _modeSummon, _modeSkill]);
         _modeRow.WrapContents = true;
         _modeRow.AutoSize = true;
         _bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        for (var row = 0; row < 5; row++) _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         _bar.Controls.Add(_modeRow, 0, 0);
-        _bar.Controls.Add(actionRow, 0, 1);
-        _bar.RowCount = 3;
-        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _bar.Controls.Add(_skillNote, 0, 1);
         foreach (var (direction, text) in new[] { (PushDirection.Up, "↑ 上"), (PushDirection.Right, "→ 右"), (PushDirection.Down, "↓ 下"), (PushDirection.Left, "← 左") })
         {
             var button = new Button { Text = text, Width = 95, Height = 38, Margin = new Padding(6, 0, 6, 6) };
@@ -141,6 +142,8 @@ public sealed class MainForm : Form
             _directionRow.Controls.Add(button);
         }
         _bar.Controls.Add(_directionRow, 0, 2);
+        _bar.Controls.Add(actionRow, 0, 3);
+        _bar.Controls.Add(_barInfo, 0, 4);
         var host = new Panel { Dock = DockStyle.Fill };
         host.Controls.Add(_board);
         host.Controls.Add(_bar);
@@ -160,7 +163,9 @@ public sealed class MainForm : Form
         side.RowStyles.Add(new RowStyle(SizeType.Percent, 100));                          // log
 
         var header = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Margin = Padding.Empty };
-        header.Controls.AddRange([_turn, _ap, _mana, _heroes, _rules]);
+        _heroes.MaximumSize = new Size(246, 0);
+        _heroRow.Controls.AddRange([_portraitOne, _heroes, _portraitTwo]);
+        header.Controls.AddRange([_turn, _ap, _mana, _heroRow, _rules]);
 
         var levelStack = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Dock = DockStyle.Top };
         var levelButtons = new FlowLayoutPanel { AutoSize = true, MaximumSize = new Size(350, 0), FlowDirection = FlowDirection.LeftToRight, WrapContents = true };
@@ -224,9 +229,18 @@ public sealed class MainForm : Form
 
     private bool InLevel => _level is { Active: true };
 
+    // A temporarily missing/empty display during desktop changes must not produce negative form dimensions.
+    internal static (Size Client, Size Minimum) WindowSizes(Rectangle work)
+    {
+        if (work.Width <= 0 || work.Height <= 0) work = new Rectangle(0, 0, 1280, 800);
+        var width = Math.Max(640, work.Width - 40);
+        var height = Math.Max(480, work.Height - 90);
+        return (new(Math.Min(1140, width), Math.Min(860, height)), new(Math.Min(900, width), Math.Min(700, height)));
+    }
+
     private static Button ModeBtn(string text) => new()
     {
-        Text = text, Width = 160, Height = 46, Font = new Font("Microsoft JhengHei UI", 12.5f, FontStyle.Bold), Margin = new Padding(6, 0, 6, 0),
+        Text = text, Width = 145, Height = 46, Font = new Font("Microsoft JhengHei UI", 11.5f, FontStyle.Bold), Margin = new Padding(6, 0, 6, 0),
     };
 
     private static void StyleMode(Button b, bool selected, bool enabled)
@@ -345,9 +359,12 @@ public sealed class MainForm : Form
         _ap.Text = $"還能行動 {s.ApRemaining} 次  {new string('●', s.ApRemaining)}{new string('○', Math.Max(0, apMax - s.ApRemaining))}";
 
         _mana.Visible = _play.ShowMana;
-        _mana.Text = $"Mana {s.ManaOf(me)}/{s.Config.ManaCap}";
+        _mana.Text = level is null ? $"Mana：黑 {s.ManaOf(Player.One)}/{s.Config.ManaCap}　白 {s.ManaOf(Player.Two)}/{s.Config.ManaCap}" : $"Mana {s.ManaOf(me)}/{s.Config.ManaCap}";
+        _heroRow.Visible = level is null && _play.ShowMana;
         _heroes.Visible = level is null && _play.ShowMana;
         _heroes.Text = $"{_play.HeroSummary(Player.One)}\n{_play.HeroSummary(Player.Two)}";
+        _portraitOne.Image = HeroArt.Portrait(s.HeroClassOf(Player.One));
+        _portraitTwo.Image = HeroArt.Portrait(s.HeroClassOf(Player.Two));
         _rules.Text = level is null ? _play.RuleSummary + $"　ply {s.Ply}" : "";
 
         ShowCommander(_mineCommander, "我方主將（黑）", _play.Commander(Player.One));
@@ -391,12 +408,13 @@ public sealed class MainForm : Form
         var skill = _play.Skill;
         var canSwitch = !_play.Locked && !_play.GameOver;
         _modeRow.Visible = _play.HasHeroClass;   // stays visible when a stage is won (no layout jump)
+        _skillNote.Visible = _play.HasHeroClass;
         StyleMode(_modePlace, _play.Mode == PlayMode.Place, canSwitch);
         _modeSummon.Visible = level is null;
         StyleMode(_modeSummon, _play.Mode == PlayMode.Summon, canSwitch && _play.Summon.CanBegin);
         StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
         _modeSkill.Text = "技能：" + _play.SkillPresentation.Name;
-        _skillNote.Text = _play.Mode == PlayMode.Summon ? _play.Summon.Text : _play.Mode == PlayMode.Skill ? _play.SkillPresentation.Help : skill.Text;
+        _skillNote.Text = _play.GameOver ? "本局已結束，不能再落子或施放技能。" : _play.Mode == PlayMode.Summon ? _play.Summon.Text : _play.Mode == PlayMode.Skill ? _play.SkillPresentation.Help : skill.Text;
         _directionRow.Visible = _play.Mode == PlayMode.Skill && _play.IsMagicHand;
         var directions = _play.PushDirections;
         foreach (var (direction, button) in _directions)
@@ -413,23 +431,25 @@ public sealed class MainForm : Form
         if (_log.Items.Count > 0) _log.TopIndex = _log.Items.Count - 1;
         _board.Invalidate();
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing) _play.Changed -= Refresh_;
+        base.Dispose(disposing);
+    }
 }
 
 internal sealed class NewGameDialog : Form
 {
     private readonly List<(RadioButton Radio, int Level)> _levels = [];
-    private readonly RadioButton _free = new() { Text = "自由對局（兩人輪流，9×9）", Dock = DockStyle.Top, Height = 32 };
+    private readonly RadioButton _free = new() { Text = "自由對局（本機雙人，7×7）", Dock = DockStyle.Top, Height = 32 };
     private readonly ComboBox _rule = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top, Enabled = false };
+    private readonly ComboBox _mage = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top, Enabled = false };
 
     /// <summary>The chosen tutorial level number, or null for free play.</summary>
     public int? TutorialLevel => _levels.Where(l => l.Radio.Checked).Select(l => (int?)l.Level).FirstOrDefault();
 
-    public RuleConfig Config => _rule.SelectedIndex switch
-    {
-        1 => RuleConfig.TwoApBaseline,
-        2 => RuleConfig.TwoApBaseline with { ApPerTurn = 1, MaxPlies = 200 },
-        _ => new RuleConfig(),
-    };
+    public RuleConfig Config => LocalMatch.Config(_rule.SelectedIndex, _mage.SelectedIndex == 1 ? MageSkill.Seal : MageSkill.MagicHand);
 
     public NewGameDialog(bool tutorialAvailable)
     {
@@ -445,7 +465,7 @@ internal sealed class NewGameDialog : Form
             var radio = new RadioButton { Text = $"新手教學：第 {level.Number} 關 {level.Title}{hint}", Dock = DockStyle.Top, Height = 32, Enabled = tutorialAvailable };
             _levels.Add((radio, level.Number));
         }
-        ClientSize = new Size(450, 140 + 32 * (_levels.Count + 1));
+        ClientSize = new Size(470, 175 + 32 * (_levels.Count + 1));
 
         _rule.Items.AddRange([
             "每回合行動 2 次，先手第一回合 1 次（暫定預設）",
@@ -453,13 +473,16 @@ internal sealed class NewGameDialog : Form
             "每回合行動 1 次（對照）",
         ]);
         _rule.SelectedIndex = 0;
+        _mage.Items.AddRange(["法師：魔法之手（預設，可推雙方普通士兵）", "法師：封印（比較選項）"]);
+        _mage.SelectedIndex = 0;
         if (_levels.Count > 0) _levels[0].Radio.Checked = tutorialAvailable;
         _free.Checked = !tutorialAvailable;
-        _free.CheckedChanged += (_, _) => _rule.Enabled = _free.Checked;
-        _rule.Enabled = _free.Checked;
+        _free.CheckedChanged += (_, _) => _rule.Enabled = _mage.Enabled = _free.Checked;
+        _rule.Enabled = _mage.Enabled = _free.Checked;
 
         var ok = new Button { Text = "開始", DialogResult = DialogResult.OK, Dock = DockStyle.Bottom, Height = 40 };
         Controls.Add(ok);
+        Controls.Add(_mage);
         Controls.Add(_rule);
         Controls.Add(_free);
         foreach (var (radio, _) in Enumerable.Reverse(_levels)) Controls.Add(radio);   // last added docks on top

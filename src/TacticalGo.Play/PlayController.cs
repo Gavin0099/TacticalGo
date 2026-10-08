@@ -106,6 +106,7 @@ public sealed class PlayController
     public string RuleSummary { get; private set; } = "";
 
     public event Action? Changed;
+    public event Action<ActionOutcome>? ActionCommitted;
 
     public PlayController(RuleConfig config, HeroClass classOne = HeroClass.None, HeroClass classTwo = HeroClass.None)
         : this(GameSetup.NewGame(config, classOne, classTwo), "新局") { }
@@ -117,8 +118,12 @@ public sealed class PlayController
         StartLog(startLabel);
     }
 
-    public void NewGame(RuleConfig config, HeroClass classOne = HeroClass.None, HeroClass classTwo = HeroClass.None) =>
+    public void NewGame(RuleConfig config, HeroClass classOne = HeroClass.None, HeroClass classTwo = HeroClass.None)
+    {
+        OpponentPolicy = null;
+        HideMana = false;
         Restart(GameSetup.NewGame(config, classOne, classTwo), "新局");
+    }
 
     public void Restart(GameState initial, string startLabel)
     {
@@ -327,6 +332,7 @@ public sealed class PlayController
         get
         {
             if (Locked) return "這一段完成了";
+            if (GameOver) return "對局已結束；按「新局／選模式…」再玩，或「復原」回到上一步。";
             if (Mode == PlayMode.Summon) return Selected is null ? "① 點己方棋子旁的空點　② 預覽　③ 確定召喚" : CanConfirm ? "召喚預覽：還沒召喚、不消耗資源" : "不能召喚，請換一個點";
             var skill = Mode == PlayMode.Skill;
             if (skill && IsMagicHand && Selected is not null && Preview is null && SelectionResult?.IsLegal == true)
@@ -483,7 +489,7 @@ public sealed class PlayController
         Commit(_pending);
     }
 
-    // ---- hero skill (Rogue swap for now; other classes report "not supported yet") ----
+    // ---- hero skill: shared validation and actual engine previews ----
 
     /// <summary>Enter skill mode if the skill can be used; otherwise explain why not (and stay in place mode).</summary>
     public bool BeginSkill()
@@ -691,6 +697,7 @@ public sealed class PlayController
         }
         FeedbackKind = FeedbackKind.Success;
         Raise();
+        ActionCommitted?.Invoke(outcome);
     }
 
     /// <summary>Plays the scripted opponent's turn(s), if any. Returns true if it acted.</summary>

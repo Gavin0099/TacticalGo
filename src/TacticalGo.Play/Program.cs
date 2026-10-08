@@ -10,7 +10,8 @@ static class Program
     /// Verification aid: <c>--snapshot out.png [script]</c> renders the window after replaying a tiny script and exits.
     /// Script tokens separated by ';': <c>p3,4</c> select then press "放這裡", <c>s3,4</c> select only, <c>i4,7</c> inspect,
     /// <c>e</c> end turn, <c>u</c> undo, <c>n</c> next stage, <c>N</c> next level, <c>r</c> restart stage, <c>c</c> cancel,
-    /// <c>k</c> skill mode, <c>m</c> place mode. <c>--level 2</c> starts at level 2.
+    /// <c>k</c> skill mode, <c>m</c> place mode, <c>h</c> summon mode, <c>U/R/D/L</c> push direction, <c>v</c> confirm.
+    /// <c>--level 2</c> starts at level 2; <c>--free</c> opens 7x7 public class choices, <c>--classes Mage,Rogue</c> skips choices for replay.
     /// </summary>
     [STAThread]
     static void Main(string[] args)
@@ -22,8 +23,28 @@ static class Program
         var startLevel = levelArg >= 0 && levelArg + 1 < args.Length && int.TryParse(args[levelArg + 1], out var n)
             ? LevelCatalog.Levels.FirstOrDefault(l => l.Number == n) ?? LevelCatalog.Level1()
             : LevelCatalog.Level1();
-        var level = Array.IndexOf(args, "--free") >= 0 ? null : new LevelSession(play, startLevel);
-        if (level is null) play.OpponentPolicy = null;
+        var level = new LevelSession(play, startLevel);
+        if (Array.IndexOf(args, "--free") >= 0)
+        {
+            var config = LocalMatch.Config(mageSkill: Array.IndexOf(args, "--seal") >= 0 ? MageSkill.Seal : MageSkill.MagicHand);
+            HeroClass one, two;
+            var classesAt = Array.IndexOf(args, "--classes");
+            if (classesAt >= 0 && classesAt + 1 < args.Length)
+            {
+                var choices = args[classesAt + 1].Split(',');
+                if (choices.Length != 2 || !Enum.TryParse(choices[0], true, out one) || !Enum.TryParse(choices[1], true, out two)
+                    || one is not (HeroClass.Warrior or HeroClass.Mage or HeroClass.Rogue) || two is not (HeroClass.Warrior or HeroClass.Mage or HeroClass.Rogue))
+                { MessageBox.Show("--classes 需要兩個職業，例如 Warrior,Mage"); return; }
+            }
+            else
+            {
+                using var classes = new ClassPickDialog(config);
+                if (classes.ShowDialog() != DialogResult.OK) return;
+                one = classes.ClassOne; two = classes.ClassTwo;
+            }
+            level.Active = false;
+            play.NewGame(config, one, two);
+        }
         var form = new MainForm(play, level);
 
         var helpAt = Array.IndexOf(args, "--help-page");
@@ -46,7 +67,8 @@ static class Program
         {
             Replay(play, level, snap + 2 < args.Length ? args[snap + 2] : "");
             form.StartPosition = FormStartPosition.Manual;
-            form.Location = new System.Drawing.Point(40, 40);
+            form.Location = new System.Drawing.Point(-3000, 40);
+            form.ShowInTaskbar = false;
             form.Show();
             Application.DoEvents();
             form.PerformLayout();                                      // make sure a size change made before Show is laid out
@@ -70,8 +92,14 @@ static class Program
                 case 'u': play.Undo(); break;
                 case 'n': level?.NextStage(); break;
                 case 'N': level?.NextLevel(); break;
-                case 'k': play.BeginSkill(); break;       // choose "技能：換位"
+                case 'k': play.BeginSkill(); break;
                 case 'm': play.UsePlaceMode(); break;     // choose "放士兵"
+                case 'h': play.BeginSummon(); break;
+                case 'U': play.ChoosePushDirection(PushDirection.Up); break;
+                case 'R': play.ChoosePushDirection(PushDirection.Right); break;
+                case 'D': play.ChoosePushDirection(PushDirection.Down); break;
+                case 'L': play.ChoosePushDirection(PushDirection.Left); break;
+                case 'v': play.Confirm(); break;
                 case 'r': level?.RestartStage(); break;
                 case 'c': play.Cancel(); break;
                 case 'p':

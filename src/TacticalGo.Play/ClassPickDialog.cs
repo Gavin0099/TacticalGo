@@ -17,7 +17,7 @@ internal sealed class ClassPickDialog : Form
         _config = config;
         Text = "選職業・雙方公開輪流選擇";
         Font = new Font("Microsoft JhengHei UI", 11f);
-        ClientSize = new Size(610, 300);
+        ClientSize = new Size(660, 450);
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = MinimizeBox = false;
         StartPosition = FormStartPosition.CenterParent;
@@ -26,7 +26,10 @@ internal sealed class ClassPickDialog : Form
         {
             cards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / 3));
             var ability = SkillPresentation.For(hero, config).Name;
-            var card = new Button { Dock = DockStyle.Fill, Margin = new Padding(6), Text = $"{EventText.ClassName(hero)}\n\n召喚 {_config.SummonCost(hero)} Mana\n{ability}\n技能 1 行動＋{_config.SkillManaCost} Mana" };
+            var card = new Button { Dock = DockStyle.Fill, Margin = new Padding(6),
+                Image = HeroArt.Portrait(hero), TextImageRelation = TextImageRelation.ImageAboveText,
+                ImageAlign = ContentAlignment.MiddleCenter, TextAlign = ContentAlignment.MiddleCenter,
+                Text = $"{EventText.ClassName(hero)}\n\n召喚 {_config.SummonCost(hero)} Mana\n{ability}\n技能 1 行動＋{_config.SkillManaCost} Mana" };
             card.Click += (_, _) => Choose(hero);
             cards.Controls.Add(card);
         }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="TacticalGo.Play.Tests" />
+    <EmbeddedResource Include="../../assets/candidates/vis-feel-01/tokens/*.png" LogicalName="TacticalGo.Play.HeroArt.%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>

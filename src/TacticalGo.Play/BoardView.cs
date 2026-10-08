@@ -17,6 +17,11 @@ public sealed class BoardView : Control
     private static readonly Color SealColor = Color.FromArgb(0x6D, 0x4A, 0xA8);
 
     private readonly PlayController _play;
+    private readonly System.Windows.Forms.Timer _motionTimer = new() { Interval = 16 };
+    private PiecePushed? _motion;
+    private GameState? _motionState;
+    private long _motionStarted;
+    internal bool IsAnimating => _motion is not null;
 
     public event Action<Point>? PointTapped;
 
@@ -35,7 +40,39 @@ public sealed class BoardView : Control
         _play = play;
         DoubleBuffered = true;
         ResizeRedraw = true;
-        MinimumSize = new Size(420, 420);
+        MinimumSize = new Size(260, 260);
+        _play.Changed += OnStateChanged;
+        _play.ActionCommitted += OnActionCommitted;
+        _motionTimer.Tick += (_, _) => { if (Environment.TickCount64 - _motionStarted >= 180) StopMotion(); Invalidate(); };
+    }
+
+    private void OnStateChanged()
+    {
+        if (!ReferenceEquals(_motionState, _play.State) || _play.Preview is not null) StopMotion();
+        Invalidate();
+    }
+
+    private void OnActionCommitted(ActionOutcome outcome)
+    {
+        if (!Interactive || _play.GameOver || !ReferenceEquals(outcome.State, _play.State) || outcome.Events.OfType<PiecePushed>().FirstOrDefault() is not { } push) return;
+        _motion = push;
+        _motionState = _play.State;
+        _motionStarted = Environment.TickCount64;
+        _motionTimer.Start();
+        Invalidate();
+    }
+
+    private void StopMotion() { _motion = null; _motionState = null; _motionTimer.Stop(); }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _play.Changed -= OnStateChanged;
+            _play.ActionCommitted -= OnActionCommitted;
+            _motionTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 
     private int N => _play.State.Board.Size;
@@ -106,7 +143,14 @@ public sealed class BoardView : Control
         var shown = previewingSwap ? _play.Preview!.State : state;
         foreach (var p in shown.Board.AllPoints())
         {
+            if (!previewingSwap && _motion?.To == p) continue;
             if (shown.Board[p] is { } piece) DrawPiece(g, p, piece, shown, stone);
+        }
+        if (!previewingSwap && _motion is { } motion)
+        {
+            var progress = Math.Clamp((Environment.TickCount64 - _motionStarted) / 180f, 0, 1);
+            var from = Center(motion.From); var to = Center(motion.To);
+            DrawPiece(g, motion.To, motion.Piece, shown, stone, center: new(from.X + (to.X - from.X) * progress, from.Y + (to.Y - from.Y) * progress));
         }
         if (previewingSwap) DrawSwapPreview(g, state, stone);
 
@@ -153,9 +197,9 @@ public sealed class BoardView : Control
         }
     }
 
-    private void DrawPiece(Graphics g, Point p, Piece piece, GameState state, float r, int alpha = 255)
+    private void DrawPiece(Graphics g, Point p, Piece piece, GameState state, float r, int alpha = 255, PointF? center = null)
     {
-        var c = Center(p);
+        var c = center ?? Center(p);
         var fill = Color.FromArgb(alpha, piece.Owner == Player.One ? Black : White);
         var ink = Color.FromArgb(alpha, piece.Owner == Player.One ? White : Black);
         using var fillBrush = new SolidBrush(fill);
@@ -165,11 +209,22 @@ public sealed class BoardView : Control
 
         if (piece.Kind == PieceKind.Hero)
         {
-            var d = r * 1.15f;
-            PointF[] diamond = [new(c.X, c.Y - d), new(c.X + d, c.Y), new(c.X, c.Y + d), new(c.X - d, c.Y)];
-            g.FillPolygon(fillBrush, diamond);
-            g.DrawPolygon(edge, diamond);
-            DrawCentered(g, EventText.ClassGlyph(state.HeroClassOf(piece.Owner)).ToString(), font, inkBrush, c);
+            // Owner disk/rim remains black or white even when both players choose the same class.
+            var d = r * 1.06f;
+            g.FillEllipse(fillBrush, c.X - d, c.Y - d, d * 2, d * 2);
+            g.DrawEllipse(edge, c.X - d, c.Y - d, d * 2, d * 2);
+            if (HeroArt.Token(state.HeroClassOf(piece.Owner)) is { } art)
+            {
+                using var attributes = new System.Drawing.Imaging.ImageAttributes();
+                attributes.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix { Matrix33 = alpha / 255f });
+                var rect = Rectangle.Round(new RectangleF(c.X - r * .91f, c.Y - r * .91f, r * 1.82f, r * 1.82f));
+                g.DrawImage(art, rect, 0, 0, art.Width, art.Height, GraphicsUnit.Pixel, attributes);
+                // An owner-colored badge is visible independently of the illustration's colors.
+                g.FillEllipse(fillBrush, c.X + r * .54f, c.Y + r * .54f, r * .52f, r * .52f);
+                using var rim = new Pen(ink, Math.Max(1, r * .06f));
+                g.DrawEllipse(rim, c.X + r * .54f, c.Y + r * .54f, r * .52f, r * .52f);
+            }
+            else DrawCentered(g, EventText.ClassGlyph(state.HeroClassOf(piece.Owner)).ToString(), font, inkBrush, c);
             return;
         }
 
