@@ -2,6 +2,13 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 (playtest note) — "每回合下兩個子" feels fun (Owner)
+
+- Owner 在 UI-1.1 上玩過後回報：「兩個子我也覺得蠻好玩的」。
+- 證據等級：**單一樣本、設計者本人**。它只說明 2 AP 在 Owner 手上有好玩的瞬間；**不**證明不懂圍棋的玩家也覺得好玩或看得懂（仍待非圍棋玩家測試）。
+- 影響：完整規則維持 2 AP 預設，1 AP 當對照；2 AP 仍是待驗證假設，但不降級。尚待釐清「好玩在哪裡」（連續提子／先威脅再補強的組合／節奏），結果會影響第 1 關是否直接用 2 AP、以及是否需要「1 落子 + 1 技能」的方案 C。
+- 探針發現（scratchpad，單一局面，未進 repo）：1 AP 下法師封印只是緊急煞車（唯一的存活行動，但 Mana 耗盡後仍被提）；封印的價值推論上需要同回合「落子 + 封印」，因此需要每回合至少 2 個行動。第 2 關的技能選擇暫不定案。
+
 ## 2026-10-08 (newest) — beginner-friendly "英雄包圍戰" direction, revised order
 
 **產品方向**：即使完全不懂圍棋也能快速上手；對外定位「英雄包圍戰」；圍棋的氣與棋串留在底層。設計目標（尚未達成、不是結果）：30 秒理解操作、3 分鐘理解職業差異、之後仍有值得思考的策略。長期樂趣來自「對手會反應」，不是解固定棋局；三職業都能玩之後，有戰術能力的對手是下一個重要方向（本輪不做強 AI）。
