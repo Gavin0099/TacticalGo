@@ -23,6 +23,21 @@
       "bytes": 2419
     },
     {
+      "path": "README.md",
+      "sha256": "e4d2b5cc5d7aa93b73c6d8fb096e3aebce4fcfea464146f284a588a339eae5ea",
+      "bytes": 1260
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "d4b14d52ca90be950ef6b646e77362d45a66deb00a5fb2f2ba3ffea9325123ba",
+      "bytes": 5889
+    },
+    {
+      "path": "REVIEW.html",
+      "sha256": "72ec013f63e44b0f8486251d690d3c7c549518f16586508b367020bfbe7360da",
+      "bytes": 1503812
+    },
+    {
       "path": "provenance.json",
       "sha256": "6929564617e489f6ff515d4f85b36c3fc11ba0bdff2e29d7c6745853a7420530",
       "bytes": 3812
@@ -33,16 +48,6 @@
       "bytes": 293360
     },
     {
-      "path": "qa/build-review.py",
-      "sha256": "8732f4cfd26ab2228c1617b8af8ddb6450cda62533ba5f2ee5818e75e716b299",
-      "bytes": 3455
-    },
-    {
-      "path": "qa/build-storyboard.py",
-      "sha256": "8a0991644337bc2a22160f09d78907e8fd49e6c34e6e49405f76d369288a889e",
-      "bytes": 5722
-    },
-    {
       "path": "qa/CAPTURE_RESULT_7-390.png",
       "sha256": "dc266c435b0bcd78c958189c13952eed26a0d51458917fb2e37ce5bb31707994",
       "bytes": 722949
@@ -51,16 +56,6 @@
       "path": "qa/CAPTURE_RESULT_9-320.png",
       "sha256": "8211bfc07683d3258e729fb5cb65d3681d3034c75d94e556f21b967f18c486ca",
       "bytes": 657532
-    },
-    {
-      "path": "qa/check-rebuild.py",
-      "sha256": "6391b1bbf7380d03b662df50e4dd65c4b7d40c109f386869b455353736cb2ba9",
-      "bytes": 1924
-    },
-    {
-      "path": "qa/check-review.cjs",
-      "sha256": "3e3afbba3cf503bc2926a746b17aca2fbd65c7a2d56a0c84ebbcb51d0d86c6e0",
-      "bytes": 10553
     },
     {
       "path": "qa/FEEDBACK_DEMO.webm",
@@ -113,11 +108,6 @@
       "bytes": 110192
     },
     {
-      "path": "qa/package-review.py",
-      "sha256": "c964bc92cf0a840190c717f5d913331a685e585be0f35bb0d610aafcb77652eb",
-      "bytes": 2680
-    },
-    {
       "path": "qa/PUSH_PREVIEW_7-390.png",
       "sha256": "0dac2f4e0d9991888aef3922295e300195e941d38c44a7dee7a7775a89524a35",
       "bytes": 726224
@@ -138,19 +128,9 @@
       "bytes": 660165
     },
     {
-      "path": "qa/record-feedback.cjs",
-      "sha256": "2447f304d5c61e4a0b0351f16482e59d6514f85ea4367a52cf6fef697bd10031",
-      "bytes": 2741
-    },
-    {
       "path": "qa/REDUCED_MOTION_9-320.png",
       "sha256": "4065bc53ea2f5894eb45c274b20e29740c56f7d7d99cbee64b1324c6f937052a",
       "bytes": 659305
-    },
-    {
-      "path": "qa/review.json",
-      "sha256": "216548f83281305a99351a0b9c9827fc80b89d627d6238a961bc21c01e110227",
-      "bytes": 3870
     },
     {
       "path": "qa/SELECT_7-390.png",
@@ -163,19 +143,44 @@
       "bytes": 657919
     },
     {
-      "path": "README.md",
-      "sha256": "e4d2b5cc5d7aa93b73c6d8fb096e3aebce4fcfea464146f284a588a339eae5ea",
-      "bytes": 1260
+      "path": "qa/build-review.py",
+      "sha256": "8732f4cfd26ab2228c1617b8af8ddb6450cda62533ba5f2ee5818e75e716b299",
+      "bytes": 3455
     },
     {
-      "path": "REPORT.md",
-      "sha256": "d4b14d52ca90be950ef6b646e77362d45a66deb00a5fb2f2ba3ffea9325123ba",
-      "bytes": 5889
+      "path": "qa/build-storyboard.py",
+      "sha256": "8a0991644337bc2a22160f09d78907e8fd49e6c34e6e49405f76d369288a889e",
+      "bytes": 5722
     },
     {
-      "path": "REVIEW.html",
-      "sha256": "72ec013f63e44b0f8486251d690d3c7c549518f16586508b367020bfbe7360da",
-      "bytes": 1503812
+      "path": "qa/check-rebuild.py",
+      "sha256": "6391b1bbf7380d03b662df50e4dd65c4b7d40c109f386869b455353736cb2ba9",
+      "bytes": 1924
+    },
+    {
+      "path": "qa/check-review.cjs",
+      "sha256": "3e3afbba3cf503bc2926a746b17aca2fbd65c7a2d56a0c84ebbcb51d0d86c6e0",
+      "bytes": 10553
+    },
+    {
+      "path": "qa/package-review.py",
+      "sha256": "bdff4a5e5f413e88a1df92630d2bc9638e28bff4e6a0b6228e03a9cadb987992",
+      "bytes": 2813
+    },
+    {
+      "path": "qa/record-feedback.cjs",
+      "sha256": "2447f304d5c61e4a0b0351f16482e59d6514f85ea4367a52cf6fef697bd10031",
+      "bytes": 2741
+    },
+    {
+      "path": "qa/review.json",
+      "sha256": "216548f83281305a99351a0b9c9827fc80b89d627d6238a961bc21c01e110227",
+      "bytes": 3870
+    },
+    {
+      "path": "skill-draft/tacticalgo-game-feel/SKILL.md",
+      "sha256": "5651eea2f8ccaa3420157c63264042ef5e6d0ff08a198e3fc4f0862306428be2",
+      "bytes": 3377
     },
     {
       "path": "skill-draft/tacticalgo-game-feel/agents/openai.yaml",
@@ -191,11 +196,6 @@
       "path": "skill-draft/tacticalgo-game-feel/references/sources.md",
       "sha256": "af19af9e94bd490ecea3de26177fc57744b073f5a44b187da3439ba6a231a1b8",
       "bytes": 1600
-    },
-    {
-      "path": "skill-draft/tacticalgo-game-feel/SKILL.md",
-      "sha256": "5651eea2f8ccaa3420157c63264042ef5e6d0ff08a198e3fc4f0862306428be2",
-      "bytes": 3377
     },
     {
       "path": "sources/asset-provenance.json",

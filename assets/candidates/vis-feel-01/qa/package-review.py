@@ -9,7 +9,8 @@ ROOT=Path(__file__).resolve().parents[1]
 ZIP=ROOT/'TacticalGo-VIS-FEEL01-review.zip'
 MANIFEST=ROOT/'artifact-sha256.json'
 sha=lambda data:hashlib.sha256(data).hexdigest()
-files=sorted(p for p in ROOT.rglob('*') if p.is_file() and p not in (ZIP,MANIFEST) and '__pycache__' not in p.parts)
+# pathlib sorting follows host case rules; relative POSIX strings have portable order.
+files=sorted((p for p in ROOT.rglob('*') if p.is_file() and p not in (ZIP,MANIFEST) and '__pycache__' not in p.parts),key=lambda p:p.relative_to(ROOT).as_posix())
 entries=[]
 for p in files:
     rel=p.relative_to(ROOT).as_posix()
