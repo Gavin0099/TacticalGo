@@ -20,3 +20,5 @@
 - R1 Domain and bounded probe locally complete at 191347d; handoff/rules on docs/handoff e3a78fc. G0 Pending, G1 waits, no G3/UI/push/merge. <!-- memory_record_projection:active-task-summary:98009da933e66272fdb1bea63446c8dc087a950c592c4f1efd3639ab6031f777 -->
 
 - R1 review fixed five liberties and custom-5x5 classification at 00a2675; standard-9x9 cooperative replay has a prior-turn counter. 7c7abec allows both sides ordinary soldiers; 128 Domain / 47 Windows / 37 Golden, 2 focused mutants killed. Seal default; replacement HOLD; G0 Pending; no G1/G3/push/merge. <!-- memory_record_projection:active-task-summary:425e072c87be9f9adb3b10d498c2f3070c62bfce506559e5a865c7f204f8e68a -->
+
+- Owner selected Magic Hand default at fede3ce; explicit Seal baseline retained. R1 research closed, no UI integration. Domain 129 / Windows 47 / Golden 38 pass. G0 Pending; four development slices G1-G4 to complete 7x7 local play, then G5 human gate and G6 feedback fixes. No new Slice/push/merge. <!-- memory_record_projection:active-task-summary:01b31e5382dc455e584bf8dcbf1c7be743b9351f6ed31c0081291e8b7b89d67c -->

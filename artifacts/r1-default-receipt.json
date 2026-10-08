@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python -X utf8 artifacts/r1-review/default/verify-evidence.py",
+  "exit_code": 0,
+  "started_at": "2026-10-08T09:38:27Z",
+  "finished_at": "2026-10-08T09:38:27Z",
+  "runner": "r1-default-verification",
+  "linked_commit": "fede3ce3d3fb41f703b6aa8c7574c838a0a57a85",
+  "output_artifacts": [
+    "artifacts/r1-default-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

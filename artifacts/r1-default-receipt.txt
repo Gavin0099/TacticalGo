@@ -1,0 +1,2 @@
+[('default-before.trx', '0', '1'), ('default-after.trx', '3', '0'), ('domain-default.trx', '129', '0'), ('windows-default.trx', '47', '0')]
+Verified retained default-switch counters and source hashes. No UI integration or gameplay acceptance claimed.

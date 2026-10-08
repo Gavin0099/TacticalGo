@@ -143,6 +143,27 @@
 - Owner 另授權並確認「只推雙方普通士兵」。Domain 實作提交 `7c7abec` 開放己方士兵，保留歸屬、主將／英雄禁推與原費用／射程／回滾；不改封印預設、不碰 UI。128 項 Domain、47 項 Windows 通過，37 組 Golden、validator harness 5 項通過；本輪 2 個聚焦變異被抓到並還原。
 - 本輪證據見 `docs/evidence/r1-magic-hand/review-supplement.json`、`friendly-validation.json`、`friendly-mutations.json`；原 115／34／7 的歷史記錄保留。正式替換 HOLD；G0 Pending，G1／G3 不提前；下一件產品工作仍是 Owner G0 試玩。
 
+### 最新 Owner 決定與剩餘 Slice（2026-10-08）
+
+- Owner「我覺得可以換成魔法之手了」取代前兩段的歷史 HOLD：R1 Domain 預設提交 `fede3ce` 改魔法之手，封印明確設定可作比較。R1 收斂，不加規則、不重跑搜尋，沒有 UI／push／merge。
+- 下表來源是 `docs/handoff` @ `e3a78fc` 的 `docs/HANDOFF.md` §9.1–§9.4；本輪只讀取，沒有修改或整合該分支。G0 尚無 Owner 實際操作驗收，仍 Pending。
+- **G0 後列有 G1–G6 共 6 個階段；到第一個完整可玩的 7×7 本機雙人版本，還有 G1–G4 共 4 個開發 Slice。** G5 是真人 Gate，G6 是回饋修正階段，實際要拆幾次修正尚未確定。
+
+| 階段 | 交付／驗收目的 | 開工條件與限制 |
+|---|---|---|
+| G0 | Owner 實際試玩 UI-3c 第 2 關 | Pending；沒有重大操作阻礙才開 G1 |
+| G1 | 開局選職業＋最小召喚 | 已有規格，等 G0；公開輪流選職業、召喚預覽／確認／復原；不提前接戰士／法師技能 UI |
+| G2 | 戰士築壘 UI | 沿用既有 Domain；兩個空點選擇、預覽及原子確認 |
+| G3 | 法師魔法之手 UI | 目標兵＋方向＋預覽／確認；預設技能決策已解決，但 UI 未授權開工；進入前安排很小的敵兵推動／己兵推動／落子／換位比較 |
+| G4 | 7×7 本機雙人自由對戰 | 第一個完整可玩里程碑；主將起點須先定案，整合職業、召喚、技能、AP／Mana、換手與勝負，不依賴教學腳本 |
+| G5 | 真人試玩 Go／No-Go | 人類 Gate；檢驗理解、職業選擇與攻守流程，測試 PASS 不代替 |
+| G6 | 針對性修正 | 依 G5 發現決定範圍；可能拆多輪，不預先承諾固定工作量 |
+
+- R1 與 UI-3c 在不同分支。後續同步前須確認授權及基線，完成整合後重跑 Domain／Windows／Golden，不把先前 128 與 61 的 PASS 當合併成功；本輪沒有整合。
+- BOT-01、IOS-01、Visual V1／V2 是手冊列出的後續候選，不算入上述 4 個開發 Slice。這個計數到 Windows 可驗證玩法的版本為止，不是 iPhone 正式版的剩餘工期。
+- 下一件產品工作仍是 G0 試玩；本輪分析不授權 G1 或其他 Slice。
+- 本機預設切換回歸：Domain 129、Windows 47 通過，Golden 38 組、validator harness 5 項通過；指令、原始計數與雜湊見 `docs/evidence/r1-magic-hand/default-validation.json`。這些是 R1 分支結果，尚未整合 UI-3c。
+
 ### Design Decision Record
 
 - **接受：** 職業差異是產品重要賣點；三職都進第一個職業原型。
