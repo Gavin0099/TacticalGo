@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="TacticalGo.Play.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TacticalGo.Domain\TacticalGo.Domain.csproj" />
   </ItemGroup>
 

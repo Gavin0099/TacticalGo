@@ -13,6 +13,13 @@ Owner decisions, newest first. A decision here overrides any conflicting Draft t
 - 影響之後的工作：根目錄新增的 `CLAUDE.md`／`AGENTS.md` 管理區塊要求 agent 在任務開始、里程碑、範圍改變等時點輸出 `[Governance Contract]` 區塊，並規範 session 結束的 closeout；之後在此 repo 開新 session 的 agent 會載入它們（美術 agent 也一樣）。這和 Owner 先前「不擴張治理流程」的原則有張力，Owner 已明確要求完整導入；若覺得負擔太重，可以回退這個分支。
 - 未推送：此分支只在本機；是否推送、以及如何與 `feature/ui-3c` 合併，等 Owner 決定。
 
+## 2026-10-08 (slice 3c) — wire Level 2 into the UI on branch `feature/ui-3c` (Owner)
+
+- Owner 選方案 1：先完成 3c，讓第 2 關真的能玩，再整合美術分支；不做大規模 UI 重構；Gameplay 在 `feature/ui-3c`，Visual 在 `codex/cozy-tabletop-art`（獨立 worktree），Visual 暫不改正式操作元件。
+- 3c 完成標準：能從介面進入第 2 關；能選放士兵或盜賊換位；換位前有預覽、確認後才消耗 AP／Mana；可復原、重試、顯示成功；可產生 exe。完成後停止，不做第 3 關、正式美術或新職業，等 Owner 試玩。
+- 注意（Owner）：第 2 關目前驗證的是「換位能更快獲勝」，不能當作「技能有趣」的證據；真正要觀察的是玩家是否理解換位如何改變棋形、是否想在不同局面再用。
+- 美術整合之後可做「純棋子 UI」對「2.5D 微縮 UI」的並排比較（相同棋局與操作邏輯），看立體美術是幫助理解還是增加遮擋。
+
 ## 2026-10-08 (design confirmation) — soldiers + commander + one hero; pick a class at the start (Owner)
 
 - Owner 認為「普通士兵 + 主將 + 每方最多 1 個英雄，開局選一個職業」值得採用，比增加職業數量更有機會好玩。**這正是目前引擎的設計**（士兵／主將／英雄三種單位、開局選職業、英雄用 Mana 召喚、被提後本版不可重召），不需要規則改動。

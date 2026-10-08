@@ -32,7 +32,7 @@ public sealed record LevelDefinition(int Number, string Title, IReadOnlyList<Lev
 /// </summary>
 public sealed class LevelSession
 {
-    private readonly LevelDefinition _level;
+    private LevelDefinition _level;
 
     public PlayController Play { get; }
     public int StageIndex { get; private set; }
@@ -81,6 +81,25 @@ public sealed class LevelSession
 
     public void RestartStage() => StartStage(StageIndex);
 
+    /// <summary>Switch to another level and start at its first stage.</summary>
+    public void LoadLevel(LevelDefinition level)
+    {
+        _level = level;
+        StartStage(0);
+    }
+
+    private LevelDefinition? FollowingLevel => LevelCatalog.Levels.FirstOrDefault(l => l.Number == _level.Number + 1);
+
+    /// <summary>The last stage of this level is done and another level exists.</summary>
+    public bool HasNextLevel => LevelComplete && FollowingLevel is not null;
+
+    public string NextLevelLabel => FollowingLevel is { } next ? $"前往第 {next.Number} 關 ▶" : "";
+
+    public void NextLevel()
+    {
+        if (HasNextLevel) LoadLevel(FollowingLevel!);
+    }
+
     public void NextStage()
     {
         if (StageComplete && !IsLastStage) StartStage(StageIndex + 1);
@@ -97,6 +116,11 @@ public sealed class LevelSession
 
 public static class LevelCatalog
 {
+    private static IReadOnlyList<LevelDefinition>? _levels;
+
+    /// <summary>All levels in order. Built once: the UI asks for the following level on every refresh.</summary>
+    public static IReadOnlyList<LevelDefinition> Levels => _levels ??= [Level1(), Level2()];
+
     private static bool Won(GameState s) => s.Status == GameStatus.Won && s.Winner == Player.One;
 
     /// <summary>
@@ -164,10 +188,10 @@ public static class LevelCatalog
                     ? "✔ 一回合連下兩子，一次圍死！"
                     : "✔ 完成！下次可以一回合就連下兩子。"),
         ],
-        AfterLastStage: "第 1 關完成！下一關：盜賊換位（尚未製作）。可以按「重來本段」再玩，或到「新局…」自由對局。");
+        AfterLastStage: "第 1 關完成！下一關：盜賊換位——用英雄技能改變棋形。按「前往第 2 關 ▶」，或到「新局／選模式…」。");
 
     /// <summary>
-    /// Level 2 (logic and data only for now; the UI is not wired to it yet): the hero is already on the board, the player has
+    /// Level 2 (Rogue swap, reachable from the UI): the hero is already on the board, the player has
     /// the Rogue's swap. Either route wins; the swap is simply faster. The opponent never moves, so this does NOT teach
     /// attack-versus-defence, and "faster" is only a property of the positions (see LevelSearchTests), not proof of fun.
     /// </summary>
@@ -218,5 +242,5 @@ public static class LevelCatalog
                     : "✔ 完成！其實一回合就能用技能再放一子，下次試試。",
                 PlayerClass: HeroClass.Rogue),
         ],
-        AfterLastStage: "第 2 關完成！（職業自由挑戰尚未製作）");
+        AfterLastStage: "第 2 關完成！後面的關卡（職業自由挑戰）還沒做。可以「重來本段」再玩，或到「新局／選模式…」。");
 }

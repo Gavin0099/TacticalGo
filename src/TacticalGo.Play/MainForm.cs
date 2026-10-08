@@ -29,6 +29,24 @@ public sealed class MainForm : Form
     {
         Text = "取消", Width = 130, Height = 58, Font = new Font("Microsoft JhengHei UI", 14f), Margin = new Padding(6, 8, 6, 8),
     };
+    private readonly Button _modePlace = ModeBtn("放士兵");
+    private readonly Button _modeSkill = ModeBtn("技能：換位");
+    private readonly Label _skillNote = new()
+    {
+        AutoSize = false, Width = 430, Height = 44, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
+        Font = new Font("Microsoft JhengHei UI", 10.5f), Margin = new Padding(10, 2, 0, 0),
+    };
+    // Auto-sizing two-row bar (mode row collapses when hidden). Its height is computed by the layout engine, never set by hand.
+    private readonly TableLayoutPanel _bar = new()
+    {
+        Dock = DockStyle.Bottom, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 1, RowCount = 2,
+        BackColor = Color.FromArgb(0xEE, 0xEA, 0xDF), Margin = Padding.Empty, Padding = Padding.Empty,
+    };
+    private readonly FlowLayoutPanel _modeRow = new()
+    {
+        Dock = DockStyle.Fill, Height = 58, FlowDirection = FlowDirection.LeftToRight, WrapContents = false,
+        Padding = new Padding(4, 6, 4, 0), Visible = false, Margin = Padding.Empty,
+    };
     private readonly Label _barInfo = new()
     {
         AutoSize = false, Width = 360, Height = 58, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
@@ -52,6 +70,8 @@ public sealed class MainForm : Form
     };
     private readonly Button _nextStage = new() { Text = "下一段 ▶", Width = 160, Height = 40, FlatStyle = FlatStyle.Flat, BackColor = GoodGreen, ForeColor = Color.White, Font = new Font("Microsoft JhengHei UI", 12f, FontStyle.Bold) };
     private readonly Button _restartStage = new() { Text = "重來本段", Width = 120, Height = 40 };
+    private readonly Button _levelUndo = new() { Text = "復原 (Ctrl+Z)", Width = 140, Height = 40 };
+    private readonly Button _nextLevel = new() { Text = "前往下一關 ▶", Width = 190, Height = 40, FlatStyle = FlatStyle.Flat, BackColor = GoodGreen, ForeColor = Color.White, Font = new Font("Microsoft JhengHei UI", 12f, FontStyle.Bold) };
 
     private readonly Label _mineCommander = CommanderLabel();
     private readonly Label _enemyCommander = CommanderLabel();
@@ -81,7 +101,7 @@ public sealed class MainForm : Form
     {
         _play = play;
         _level = level;
-        Text = "Tactical Go — 原型 Step 2（Windows 試玩，非正式版）";
+        Text = "Tactical Go — 原型（Windows 試玩，非正式版）";
         Font = new Font("Microsoft JhengHei UI", 10f);     // set BEFORE sizing: changing the font later rescales the window
         // Never taller/wider than the screen can show, so the fixed action bar under the board is always visible.
         var work = Screen.PrimaryScreen?.WorkingArea ?? new Rectangle(0, 0, 1280, 800);
@@ -93,15 +113,21 @@ public sealed class MainForm : Form
         _board.PointTapped += p => _play.ClickPoint(p);
 
         // ---- left: board + fixed action bar ----
-        var bar = new FlowLayoutPanel
+        var actionRow = new FlowLayoutPanel
         {
-            Dock = DockStyle.Bottom, Height = 76, FlowDirection = FlowDirection.LeftToRight, WrapContents = false,
-            BackColor = Color.FromArgb(0xEE, 0xEA, 0xDF), Padding = new Padding(4, 0, 4, 0),
+            Dock = DockStyle.Fill, Height = 76, FlowDirection = FlowDirection.LeftToRight, WrapContents = false,
+            Padding = new Padding(4, 0, 4, 0), Margin = Padding.Empty,
         };
-        bar.Controls.AddRange([_confirm, _cancel, _barInfo]);
+        actionRow.Controls.AddRange([_confirm, _cancel, _barInfo]);
+        _modeRow.Controls.AddRange([_modePlace, _modeSkill, _skillNote]);
+        _bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _bar.Controls.Add(_modeRow, 0, 0);
+        _bar.Controls.Add(actionRow, 0, 1);
         var host = new Panel { Dock = DockStyle.Fill };
         host.Controls.Add(_board);
-        host.Controls.Add(bar);
+        host.Controls.Add(_bar);
 
         // ---- right: information ----
         var side = new TableLayoutPanel
@@ -121,8 +147,8 @@ public sealed class MainForm : Form
         header.Controls.AddRange([_turn, _ap, _mana, _rules]);
 
         var levelStack = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Dock = DockStyle.Top };
-        var levelButtons = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.LeftToRight, WrapContents = false };
-        levelButtons.Controls.AddRange([_nextStage, _restartStage]);
+        var levelButtons = new FlowLayoutPanel { AutoSize = true, MaximumSize = new Size(350, 0), FlowDirection = FlowDirection.LeftToRight, WrapContents = true };
+        levelButtons.Controls.AddRange([_nextStage, _nextLevel, _restartStage, _levelUndo]);
         levelStack.Controls.AddRange([_levelProgress, _stageText, _stageDone, levelButtons]);
         _levelPanel.Controls.Add(levelStack);
 
@@ -167,6 +193,10 @@ public sealed class MainForm : Form
         _undo.Click += (_, _) => _play.Undo();
         _newGame.Click += (_, _) => AskNewGame();
         _help.Click += (_, _) => { using var help = new HelpForm(_play.State.Config); help.ShowDialog(this); };
+        _modePlace.Click += (_, _) => { _play.UsePlaceMode(); _board.Focus(); };   // do not keep focus on a button
+        _modeSkill.Click += (_, _) => { _play.BeginSkill(); _board.Focus(); };
+        _levelUndo.Click += (_, _) => _play.Undo();
+        _nextLevel.Click += (_, _) => _level?.NextLevel();
         _nextStage.Click += (_, _) => _level?.NextStage();
         _restartStage.Click += (_, _) => _level?.RestartStage();
         KeyDown += OnKey;
@@ -176,6 +206,19 @@ public sealed class MainForm : Form
     }
 
     private bool InLevel => _level is { Active: true };
+
+    private static Button ModeBtn(string text) => new()
+    {
+        Text = text, Width = 160, Height = 46, Font = new Font("Microsoft JhengHei UI", 12.5f, FontStyle.Bold), Margin = new Padding(6, 0, 6, 0),
+    };
+
+    private static void StyleMode(Button b, bool selected, bool enabled)
+    {
+        b.Enabled = enabled;
+        b.FlatStyle = selected ? FlatStyle.Flat : FlatStyle.Standard;
+        b.BackColor = selected ? Accent : SystemColors.Control;
+        b.ForeColor = selected ? Color.White : enabled ? SystemColors.ControlText : SystemColors.GrayText;
+    }
 
     private static Button Btn(string text) =>
         new() { Text = text, Dock = DockStyle.Fill, Margin = new Padding(3), FlatStyle = FlatStyle.Standard };
@@ -188,19 +231,19 @@ public sealed class MainForm : Form
 
     private void OnKey(object? sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.Enter) { _play.Confirm(); e.Handled = true; }
-        else if (e.KeyCode == Keys.Escape) { _play.Cancel(); e.Handled = true; }
-        else if (e.KeyCode == Keys.Z && e.Control && !InLevel) { _play.Undo(); e.Handled = true; }
+        if (e.KeyCode == Keys.Enter) { _play.Confirm(); e.Handled = e.SuppressKeyPress = true; }   // suppress so a focused button does not also fire
+        else if (e.KeyCode == Keys.Escape) { _play.Cancel(); e.Handled = e.SuppressKeyPress = true; }
+        else if (e.KeyCode == Keys.Z && e.Control) { _play.Undo(); e.Handled = e.SuppressKeyPress = true; }
     }
 
     private void AskNewGame()
     {
         using var dialog = new NewGameDialog(_level is not null);
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        if (dialog.Tutorial && _level is not null)
+        if (dialog.TutorialLevel is { } number && _level is not null)
         {
             _level.Active = true;
-            _level.StartStage(0);
+            _level.LoadLevel(LevelCatalog.Levels.First(l => l.Number == number));
         }
         else
         {
@@ -258,12 +301,17 @@ public sealed class MainForm : Form
                 ? level.Learned + (level.LevelComplete ? "\n\n" + level.Level.AfterLastStage : "")
                 : "";
             _nextStage.Visible = level.StageComplete && !level.IsLastStage;
-            _board.OverlayText = level.StageComplete ? (level.LevelComplete ? "✔ 第 1 關完成！" : "✔ 完成！") : null;
+            _nextLevel.Visible = level.HasNextLevel;
+            _nextLevel.Text = level.NextLevelLabel;
+            _board.OverlayText = level.StageComplete ? (level.LevelComplete ? $"✔ 第 {level.Level.Number} 關完成！" : "✔ 完成！") : null;
         }
         else
         {
             _board.OverlayText = null;
+            _nextLevel.Visible = false;
         }
+        _levelUndo.Visible = level is not null;
+        _levelUndo.Enabled = _play.CanUndo;
 
         // turn / actions
         _turn.Text = level is { StageComplete: true }
@@ -293,8 +341,11 @@ public sealed class MainForm : Form
         _hint.Text = level switch
         {
             { StageComplete: true, LevelComplete: false } => "按「下一段 ▶」繼續，或「重來本段」再看一次。",
-            { StageComplete: true } => "第 1 關完成了。可以「重來本段」，或到「新局／選模式…」自由對局。",
-            not null when _play.Selected is null && _play.Inspect is null => "先點棋盤上的空格看預覽，再按下方「✔ 放這裡」。",
+            { StageComplete: true, HasNextLevel: true } => "按「前往下一關 ▶」，或「重來本段」再玩一次。",
+            { StageComplete: true } => "這一關完成了。可以「重來本段」，或到「新局／選模式…」。",
+            not null when _play.Selected is null && _play.Inspect is null && _play.Mode == PlayMode.Place && _play.Skill.State != SkillState.None
+                => "先選下方「放士兵」或「技能：換位」，再點棋盤預覽，最後按確認。",
+            not null when _play.Selected is null && _play.Inspect is null && _play.Mode == PlayMode.Place => "先點棋盤上的空格看預覽，再按下方「✔ 放這裡」。",
             _ => _play.Hint,
         };
         _feedback.Text = _play.Feedback;
@@ -308,13 +359,20 @@ public sealed class MainForm : Form
         };
 
         // fixed action bar
+        _confirm.Text = _play.ConfirmLabel;
         _confirm.Enabled = _play.CanConfirm;
         _confirm.BackColor = _play.CanConfirm ? Accent : SystemColors.Control;
         _confirm.ForeColor = _play.CanConfirm ? Color.White : SystemColors.GrayText;
-        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null;
-        _barInfo.Text = _play.Selected is { } sel
-            ? (_play.CanConfirm ? $"預覽 {EventText.At(sel)}：還沒落子" : $"{EventText.At(sel)} 不能下，請換一個點")
-            : level is { StageComplete: true } ? "這一段完成了" : "① 點棋盤上的空格　② 看預覽　③ 按「✔ 放這裡」";
+        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null || _play.Mode == PlayMode.Skill;   // in skill mode it leaves the skill
+        _barInfo.Text = _play.ActionBarInfo;
+
+        // place / skill switch (only when the current player has a hero class)
+        var skill = _play.Skill;
+        var canSwitch = !_play.Locked && !_play.GameOver;
+        _modeRow.Visible = _play.HasHeroClass;   // stays visible when a stage is won (no layout jump)
+        StyleMode(_modePlace, _play.Mode == PlayMode.Place, canSwitch);
+        StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
+        _skillNote.Text = _play.Mode == PlayMode.Skill ? "換位：和相鄰的敵方士兵交換位置" : skill.Text;
 
         _endTurn.Enabled = !_play.GameOver && !_play.Locked;
         _undo.Enabled = _play.CanUndo;
@@ -331,11 +389,12 @@ public sealed class MainForm : Form
 
 internal sealed class NewGameDialog : Form
 {
-    private readonly RadioButton _tutorial = new() { Text = "新手教學：第 1 關（建議先玩這個）", Dock = DockStyle.Top, Height = 32, Checked = true };
+    private readonly List<(RadioButton Radio, int Level)> _levels = [];
     private readonly RadioButton _free = new() { Text = "自由對局（兩人輪流，9×9）", Dock = DockStyle.Top, Height = 32 };
     private readonly ComboBox _rule = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top, Enabled = false };
 
-    public bool Tutorial => _tutorial.Checked;
+    /// <summary>The chosen tutorial level number, or null for free play.</summary>
+    public int? TutorialLevel => _levels.Where(l => l.Radio.Checked).Select(l => (int?)l.Level).FirstOrDefault();
 
     public RuleConfig Config => _rule.SelectedIndex switch
     {
@@ -350,8 +409,15 @@ internal sealed class NewGameDialog : Form
         FormBorderStyle = FormBorderStyle.FixedDialog;
         StartPosition = FormStartPosition.CenterParent;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(430, 200);
         Padding = new Padding(12);
+
+        foreach (var level in LevelCatalog.Levels)
+        {
+            var hint = level.Number == 1 ? "（建議先玩這個）" : "";
+            var radio = new RadioButton { Text = $"新手教學：第 {level.Number} 關 {level.Title}{hint}", Dock = DockStyle.Top, Height = 32, Enabled = tutorialAvailable };
+            _levels.Add((radio, level.Number));
+        }
+        ClientSize = new Size(450, 140 + 32 * (_levels.Count + 1));
 
         _rule.Items.AddRange([
             "每回合行動 2 次，先手第一回合 1 次（暫定預設）",
@@ -359,9 +425,8 @@ internal sealed class NewGameDialog : Form
             "每回合行動 1 次（對照）",
         ]);
         _rule.SelectedIndex = 0;
-        _tutorial.Enabled = tutorialAvailable;
+        if (_levels.Count > 0) _levels[0].Radio.Checked = tutorialAvailable;
         _free.Checked = !tutorialAvailable;
-        _tutorial.Checked = tutorialAvailable;
         _free.CheckedChanged += (_, _) => _rule.Enabled = _free.Checked;
         _rule.Enabled = _free.Checked;
 
@@ -369,7 +434,7 @@ internal sealed class NewGameDialog : Form
         Controls.Add(ok);
         Controls.Add(_rule);
         Controls.Add(_free);
-        Controls.Add(_tutorial);
+        foreach (var (radio, _) in Enumerable.Reverse(_levels)) Controls.Add(radio);   // last added docks on top
         AcceptButton = ok;
     }
 }

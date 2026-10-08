@@ -99,16 +99,21 @@ public sealed class BoardView : Control
 
         DrawSeals(g, state, cell);
         DrawInspectLiberties(g, cell);
+        DrawSkillTargets(g, state, stone);
 
-        foreach (var p in board.AllPoints())
+        // While a swap is previewed the pieces are drawn from the engine's previewed result, so the player sees the outcome.
+        var previewingSwap = _play.Mode == PlayMode.Skill && _play.Preview is not null;
+        var shown = previewingSwap ? _play.Preview!.State : state;
+        foreach (var p in shown.Board.AllPoints())
         {
-            if (board[p] is { } piece) DrawPiece(g, p, piece, state, stone);
+            if (shown.Board[p] is { } piece) DrawPiece(g, p, piece, shown, stone);
         }
+        if (previewingSwap) DrawSwapPreview(g, state, stone);
 
         DrawLastPlaced(g, stone);
         DrawLastCaptured(g, stone);
-        DrawCommanderDanger(g, cell);
-        DrawLibertyNumbers(g, state, cell);
+        if (!previewingSwap) DrawCommanderDanger(g, cell);
+        DrawLibertyNumbers(g, shown, cell);
         DrawRelated(g, stone);
         DrawSelection(g, state, stone);
         if (OverlayText is { } overlay) DrawBanner(g, overlay);   // tutorial messages take precedence over the generic result
@@ -148,14 +153,14 @@ public sealed class BoardView : Control
         }
     }
 
-    private void DrawPiece(Graphics g, Point p, Piece piece, GameState state, float r)
+    private void DrawPiece(Graphics g, Point p, Piece piece, GameState state, float r, int alpha = 255)
     {
         var c = Center(p);
-        var fill = piece.Owner == Player.One ? Black : White;
-        var ink = piece.Owner == Player.One ? White : Black;
+        var fill = Color.FromArgb(alpha, piece.Owner == Player.One ? Black : White);
+        var ink = Color.FromArgb(alpha, piece.Owner == Player.One ? White : Black);
         using var fillBrush = new SolidBrush(fill);
         using var inkBrush = new SolidBrush(ink);
-        using var edge = new Pen(Color.FromArgb(0x1D, 0x1B, 0x16), piece.Kind == PieceKind.Commander ? r / 6f : r / 14f);
+        using var edge = new Pen(Color.FromArgb(alpha, 0x1D, 0x1B, 0x16), piece.Kind == PieceKind.Commander ? r / 6f : r / 14f);
         using var font = new Font("Microsoft JhengHei UI", r * 1.0f, FontStyle.Bold, GraphicsUnit.Pixel);
 
         if (piece.Kind == PieceKind.Hero)
@@ -254,9 +259,12 @@ public sealed class BoardView : Control
 
         if (legal)
         {
-            var fill = state.Current == Player.One ? Black : White;
-            using var ghost = new SolidBrush(Color.FromArgb(190, fill));
-            g.FillEllipse(ghost, c.X - r, c.Y - r, r * 2, r * 2);
+            if (_play.Mode == PlayMode.Place)   // a skill preview is drawn from the previewed result instead of a ghost stone
+            {
+                var fill = state.Current == Player.One ? Black : White;
+                using var ghost = new SolidBrush(Color.FromArgb(190, fill));
+                g.FillEllipse(ghost, c.X - r, c.Y - r, r * 2, r * 2);
+            }
 
             // pieces this move would capture (taken from the previewed outcome, not recomputed here)
             using var dash = new Pen(Danger, 3f) { DashStyle = DashStyle.Dash };
@@ -277,6 +285,39 @@ public sealed class BoardView : Control
         }
 
         DrawCallout(g, c, r, color);
+    }
+
+    /// <summary>In skill mode: ring the hero and mint-ring every point the skill may target, so no hovering is needed.</summary>
+    private void DrawSkillTargets(Graphics g, GameState state, float r)
+    {
+        if (_play.Mode != PlayMode.Skill) return;
+        if (state.Board.FindHero(state.Current) is { } hero)
+        {
+            using var heroRing = new Pen(Color.FromArgb(0xE0, 0x9A, 0x00), 4f);
+            var h = Center(hero);
+            g.DrawEllipse(heroRing, h.X - r * 1.35f, h.Y - r * 1.35f, r * 2.7f, r * 2.7f);
+        }
+        using var mint = new Pen(Good, 3.5f) { DashStyle = DashStyle.Dash };
+        foreach (var t in _play.SkillTargets)
+        {
+            var c = Center(t);
+            g.DrawEllipse(mint, c.X - r * 1.3f, c.Y - r * 1.3f, r * 2.6f, r * 2.6f);
+        }
+    }
+
+    /// <summary>The previewed swap: an arrow between the two points, and the pieces that would be captured, faded.</summary>
+    private void DrawSwapPreview(Graphics g, GameState original, float r)
+    {
+        if (_play.SkillPreviewPoints.Count == 2)
+        {
+            var a = Center(_play.SkillPreviewPoints[0]);
+            var b = Center(_play.SkillPreviewPoints[1]);
+            using var cap = new AdjustableArrowCap(5, 5);
+            using var arrow = new Pen(Color.FromArgb(0xE0, 0x9A, 0x00), 4f) { DashStyle = DashStyle.Dash, CustomStartCap = cap, CustomEndCap = cap };
+            g.DrawLine(arrow, a, b);
+        }
+        foreach (var captured in _play.Preview!.Events.OfType<PiecesCaptured>().SelectMany(x => x.Pieces))
+            DrawPiece(g, captured.At, captured.Piece, original, r, 110);
     }
 
     /// <summary>Text bubble next to the selected point, so the result of a click is visible without hovering.</summary>
