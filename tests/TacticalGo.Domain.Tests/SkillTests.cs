@@ -152,7 +152,7 @@ public class WarriorBastionTests
     {
         // P2 Mage Q at (5,4) seals (3,4) (distance 2); P1 Warrior H at (2,4) then tries to bastion onto it.
         var s = Scenario(["", "", "", "", "..H..Q"], one: HeroClass.Warrior, two: HeroClass.Mage,
-            manaOne: 6, manaTwo: 6, current: Player.Two);
+            manaOne: 6, manaTwo: 6, current: Player.Two, config: new RuleConfig { MageSkill = MageSkill.Seal });
         s = Play(s, new CastSeal(P(3, 4)), new EndTurn());
         Assert.Equal(Player.One, s.Current);
         AssertRejected(s, new CastBastion(P(3, 4), P(2, 3)), IllegalReason.Sealed);
@@ -162,8 +162,9 @@ public class WarriorBastionTests
 
 public class MageSealTests
 {
+    private static readonly RuleConfig Seal = new() { MageSkill = MageSkill.Seal };
     private static GameState Mage(int mana = 6) =>
-        Scenario(["", "", "", "", "....H", "", "", "", "....O"], one: HeroClass.Mage, manaOne: mana);
+        Scenario(["", "", "", "", "....H", "", "", "", "....O"], one: HeroClass.Mage, manaOne: mana, config: Seal);
 
     [Fact]
     public void Seal_blocks_the_opponent_for_one_turn_then_expires()
@@ -193,7 +194,7 @@ public class MageSealTests
     public void Sealed_point_is_still_a_liberty_so_it_prevents_capture()
     {
         // Mage H at (0,3); o at (0,0) has liberties (1,0),(0,1). Seal (0,1), then fill (1,0): o survives on the sealed liberty.
-        var s = Scenario(["o", "", "", "H"], one: HeroClass.Mage, manaOne: 6, ap: 2);
+        var s = Scenario(["o", "", "", "H"], one: HeroClass.Mage, manaOne: 6, ap: 2, config: Seal);
         s = Play(s, new CastSeal(P(0, 1)));
         Assert.Equal(2, BoardRuleEngine.CountLiberties(s.Board, P(0, 0)));
         s = Play(s, new PlaceSoldier(P(1, 0)));
@@ -211,7 +212,7 @@ public class MageSealTests
         AssertRejected(s, new CastSeal(P(9, 9)), IllegalReason.OutOfBounds);
         AssertRejected(Mage(mana: 1), new CastSeal(P(4, 3)), IllegalReason.NotEnoughMana);
 
-        var occupied = Scenario(["", "", "", "", "...xH"], one: HeroClass.Mage, manaOne: 6);
+        var occupied = Scenario(["", "", "", "", "...xH"], one: HeroClass.Mage, manaOne: 6, config: Seal);
         AssertRejected(occupied, new CastSeal(P(3, 4)), IllegalReason.Occupied);
 
         var twice = Play(Mage(), new CastSeal(P(4, 3)));
@@ -222,7 +223,7 @@ public class MageSealTests
     public void Sealed_point_blocks_soldier_and_summon_for_the_opponent()
     {
         var s = Scenario(["", "", "", "", "....H", "", "", "....X"], one: HeroClass.Mage, two: HeroClass.Warrior,
-            manaOne: 6, manaTwo: 6);
+            manaOne: 6, manaTwo: 6, config: Seal);
         s = Play(s, new CastSeal(P(4, 5)), new EndTurn());
         AssertRejected(s, new PlaceSoldier(P(4, 5)), IllegalReason.Sealed);
         AssertRejected(s, new SummonHero(P(4, 5)), IllegalReason.Sealed);
@@ -231,7 +232,7 @@ public class MageSealTests
     [Fact]
     public void Dead_mage_cannot_cast()
     {
-        var s = Scenario(["", "", "", "", "....x"], one: HeroClass.Mage, manaOne: 6);
+        var s = Scenario(["", "", "", "", "....x"], one: HeroClass.Mage, manaOne: 6, config: Seal);
         AssertRejected(s, new CastSeal(P(4, 3)), IllegalReason.NoHeroOnBoard);
     }
 }

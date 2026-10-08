@@ -1,15 +1,15 @@
 # R1 魔法之手交付與戰術證據
 
-結果：R1 保留機制候選；已修正五口氣與可達性分類，補充現有 9×9 重播及反制，另依 Owner 授權開放推雙方普通士兵。
-原因：原 5×5 案例只屬機制展示；9×9 補充證明特定部署可產生戰術差異，也證明對手提前補強能阻止這組攻擊。
-下一步：正式技能替換仍 HOLD，封印仍預設；G0 Pending，G1、G3 不提前。
+結果：Owner 已選魔法之手作法師預設，R1 研究收斂；封印保留比較基線。
+原因：最新指示取代先前 HOLD；技能可推雙方普通士兵，但尚未證明擴充版策略價值、平衡或好玩。
+下一步：G0 實際試玩；G1、G3 不提前。預設切換目前只在本機 R1 Domain，未整合 UI 分支／exe。
 
 ## 範圍與版本
 
 - 日期：2026-10-08；授權來源是本次 Owner 的 R1-MAGIC-HAND 指示，規格記入 `docs/DECISIONS.md` 與 `docs/RULES_DRAFT.md`。
 - 分支：`codex/r1-magic-hand`，由 `chore/governance-full` @ `761af5da610cfb42aa7e370c229b9549754ae562` 建立隔離 worktree。
 - 只改 Domain、規則測試、Golden replay／validator 的新詞彙、研究探針與直接相關文件。`src/TacticalGo.Play`、Play 測試、`assets/`、`.agents/`、`docs/visual/` 均未修改。
-- 法師仍預設封印。`RuleConfig.MageSkill = MageSkill.MagicHand` 才能施放魔法之手，封印是另一個可切換基線；不改正式 UI。
+- 法師預設魔法之手，`RuleConfig.MageSkill = MageSkill.Seal` 保留封印比較基線。此次核准不開 G3，也不修改現有 UI。
 - 本機提交；沒有 push、merge 或新 PR。PR #1 的既有 `governance-drift` 成功只綁定 `761af5d`，不是 R1 CI。
 
 ## 行為契約
@@ -22,9 +22,17 @@
 若要提掉被推士兵，需要後續落子與適當包圍；不能把單次推動直接提掉該士兵當測資。
 己方被推士兵也保留原位作為氣。但己方士兵移入另一敵方棋串的最後一口氣，可以按既有流程當次提掉敵子；測資 `magic_hand_friendly_capture` 展示此行為。不能將原來「推敵兵本身不會直接死」外推為「雙方推動後都不會發生任何提子」。
 
-## 本輪雙方推動回歸
+## 最新預設切換驗證
 
-詳見 [friendly-validation.json](evidence/r1-magic-hand/friendly-validation.json) 與 [friendly-mutations.json](evidence/r1-magic-hand/friendly-mutations.json)。這是本輪實際執行，與下方原輪測試分開計數。
+依最新 Owner 決定，未指定 `MageSkill` 時使用魔法之手；指定 `Seal` 可用原封印。新預設測試在切換前失敗（實際是 Seal），切換後聚焦測試及兩組 Golden 共 3 項通過。舊封印測試改為明確設定，棋盤與行動預期保留；增加 `magic_hand_default`，原預設封印 fixture 改名 `magic_hand_explicit_seal`。
+
+[default-validation.json](evidence/r1-magic-hand/default-validation.json) 保存本輪指令、TRX 計數、來源／原始輸出雜湊：Domain **129**、Windows **47** 通過，Golden **38** 組成功；validator 接受 **38** 組、正反 harness **5** 項通過，漂移 `severity=ok`。Windows 仍是治理基線，未整合 UI-3c；不是合併後測試，也沒有魔法之手 UI。
+
+剩餘路線見 `docs/PLAN.md` 最新 Owner 決定：G0 後到完整可玩版本還有 G1–G4 四個開發 Slice；G5 真人驗收、G6 回饋修正。沒有新 Slice、搜尋、push 或 merge。
+
+## 上一輪雙方推動回歸（7c7abec，歷史驗證）
+
+詳見 [friendly-validation.json](evidence/r1-magic-hand/friendly-validation.json) 與 [friendly-mutations.json](evidence/r1-magic-hand/friendly-mutations.json)。這是雙方推動修訂當時的實際執行；其來源雜湊與預設封印都屬歷史版本，不是最新預設切換的驗證。
 
 | 檢查 | 本輪結果 | 證據範圍 |
 |---|---|---|
@@ -39,6 +47,7 @@
 新增三組手寫 Golden：`magic_hand_friendly_two_push_then_place`、`magic_hand_friendly_capture`、`magic_hand_friendly_superko`。費用、射程、技能次數與既有回滾流程沒變；原先「己方目標非法」斷言因 Owner 規格更動而移除，改用正向行為測資。舊版新增測試的失敗紀錄保留，沒有為通過測試而更動戰術起始棋形。
 
 己方推動的提子小例：`o.x.. / x.H.. / ..... / ..... / X...O`，把我兵 `(2,0)` 左推至 `(1,0)`，填掉敵兵 `(0,0)` 最後一口氣；依序發出扣資源、推動、提子事件。這是規則展示，沒有宣稱正式對局的策略優勢。
+直接落子 `(1,0)` 也能提同一敵兵，只花 1 AP、0 Mana，且保留 `(2,0)` 原兵。因此此例不能用來證明玩家值得花 2 Mana 推己兵。
 
 ```powershell
 python tools/probes/magic-hand/check-mutations.py --friendly-only
@@ -138,7 +147,7 @@ x....      xo...       xo...
 
 只檢查以上兩條手選應對後的全部 A／B／C 行動組合；共 13,284 次 `Apply` 嘗試，固定上限 20,000 次／30 秒，未延長。不是遍歷對手上一回合全部選擇，也不證明必勝、平衡或任何真人感受。JSON 含完整設定、走法、資源、棋盤、獲勝線與來源雜湊。
 
-這補上「現有 9×9 起點下存在合法可重播例子」，仍未證明對正常對手能可靠取得此局、能否形成多種有價值策略，或己方推動擴充後的平衡。正式替換仍 HOLD。
+這補上「現有 9×9 起點下存在合法可重播例子」，仍未證明對正常對手能可靠取得此局、能否形成多種有價值策略，或己方推動擴充後的平衡。當時正式替換為 HOLD；Owner 最新選擇預設魔法之手，不會使這些未驗證項目自動通過。
 反制及 A／B／C 計數只綁定當時的敵方限定版本；本輪未重跑雙方推動版本的戰術搜尋，不能宣稱上述反制已擋住擴充版所有攻擊。
 
 ## 限制與 Gate
@@ -147,6 +156,6 @@ x....      xo...       xo...
 - 合法可達性使用自訂 5×5 主將起點及配合的建盤對手；不代表從正式 9×9 開局能逼出這些盤面。
 - 非終局代表線在此對手下一回合搜尋內未出現我方主將被提；這只限該線、該深度與無技能對手，不能外推穩定防守價值。
 - 先前封印 476 局面零獨有勝局及防守面 0 局面的結果，僅引述 `docs/handoff` @ `c55a2e1` 的手冊與 probe README。本輪沒有重跑；不證明封印無用，也沒有與封印直接作本輪對比。
-- G0 仍 Pending，G1 仍等 G0，G3 UI 沒有授權，G5 沒有人類驗收。不能宣稱平衡、好玩、新手看懂、正式技能更換或發布完成。
+- G0 仍 Pending，G1 仍等 G0，G3 UI 沒有授權，G5 沒有人類驗收。只能宣稱本機 R1 Domain 預設已核准切換，不能宣稱平衡、好玩、新手看懂、UI 整合或發布完成。
 
 實作與證據完成後，可作本機程式／測資審查；若後續要設計 G3，須由 Owner 另行決定，不自動接續。

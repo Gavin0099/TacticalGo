@@ -1,4 +1,6 @@
 {
+  "name": "magic_hand_default",
+  "description": "Owner-selected default: no mageSkill override enables friendly-soldier Magic Hand, rejects Seal, and retains original target ownership/cost. Hand-authored board and expectations.",
   "config": {
     "boardSize": 5
   },
@@ -6,7 +8,7 @@
     "diagram": [
       "....O",
       ".....",
-      ".Ho..",
+      ".Hx..",
       ".....",
       "X...."
     ],
@@ -28,12 +30,11 @@
   "steps": [
     {
       "action": {
-        "type": "CastMagicHand",
-        "target": [
-          2,
-          2
-        ],
-        "direction": "Right"
+        "type": "CastSeal",
+        "at": [
+          1,
+          1
+        ]
       },
       "expect": {
         "ok": false,
@@ -48,32 +49,34 @@
     },
     {
       "action": {
-        "type": "CastSeal",
-        "at": [
-          1,
-          1
-        ]
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Down"
       },
       "expect": {
         "ok": true,
+        "cells": {
+          "2,2": ".",
+          "2,3": "x",
+          "1,2": "H"
+        },
+        "liberties": {
+          "2,3": 4
+        },
         "ap": 1,
         "mana": [
           1,
           3
         ],
-        "seals": [
-          [
-            1,
-            1
-          ]
-        ],
+        "skillUsed": true,
         "events": [
           "ResourcesSpent",
-          "SealPlaced"
+          "PiecePushed"
         ]
       }
     }
-  ],
-  "name": "magic_hand_default_is_seal",
-  "description": "Hand-authored: no config switch means Seal remains the normal-game default; Magic Hand is disabled."
+  ]
 }

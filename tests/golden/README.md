@@ -18,7 +18,9 @@ not exported from an engine, so a bug that exists in one engine cannot silently 
 ```
 
 Config keys: `boardSize`, `apPerTurn`, `firstTurnAp`, `maxPlies`, `manaCap`, `allowResummon`, `mageSkill` (`Seal` or `MagicHand`), `magicHandRange`. Anything not listed uses the Draft default
-(9×9, mana start 3 / +1 per own turn start / cap 6, skill 2 Mana, summon 2/3/2, seal and Magic Hand range 2, **Mage skill Seal**, `maxPlies` 100, `firstTurnAp` **1**).
+(9×9, mana start 3 / +1 per own turn start / cap 6, skill 2 Mana, summon 2/3/2, seal and Magic Hand range 2, **Mage skill MagicHand**, `maxPlies` 100, `firstTurnAp` **1**).
+Seal fixtures explicitly set `mageSkill: Seal`, preserving the original board/action expectations after the Owner's default change.
+`magic_hand_default` deliberately omits the override; `magic_hand_explicit_seal` preserves the former default-Seal fixture as a comparison case.
 
 Setup is either `{"newGame": true, "classes": ["None","None"]}` (standard commanders at (4,7) and (4,1), first-turn mana gain applied)
 or a mid-game scenario (mana and AP are taken literally, **no** start-of-turn mana gain):

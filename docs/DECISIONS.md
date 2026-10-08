@@ -2,6 +2,13 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — Owner 選魔法之手作法師預設，R1 收斂
+
+- Owner 最新指示「我覺得可以換成魔法之手了」取代先前「正式替換 HOLD／封印維持預設」。`RuleConfig.MageSkill` 預設改為 `MagicHand`；`Seal` 保留明確設定的比較基線。目標仍只限雙方普通士兵，主將／英雄禁推，費用、射程及原子回滾不變。
+- 此核准是技能選擇，不是平衡、好玩或已獨立審查 diff 的結論。己方推動提子小例可被直接落子替代，只證明規則正確觸發，不證明 Mana 的策略價值。
+- R1 暫時收斂，不加新規則、不補搜尋；本輪只切換隔離 R1 分支的 Domain 預設與測資，其他分支及現有 exe 尚未整合。魔法之手 UI 仍待 G3。
+- **G0 Pending；G0 實際試玩無重大操作阻礙後才開 G1；本輪不開新 Slice、不 push、不 merge。** G3 前的小型玩法比較仍待後續安排；整合 R1／UI-3c 後須重跑合併狀態的測試，不能沿用分支各自的 PASS。
+
 ## 2026-10-08 — R1 審查更正與雙方普通士兵推動（Owner）
 
 - Owner 本輪先要求修正五口氣與可達性分類，最後另授權推動己方棋子，並明確回答「只推雙方普通士兵」。此授權只取代原 R1 的敵方歸屬限制；雙方主將、英雄仍不可推。

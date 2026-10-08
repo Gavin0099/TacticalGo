@@ -3,7 +3,8 @@
   "description": "A seal blocks the opponent for their next turn only; the caster is never blocked.",
   "config": {
     "apPerTurn": 2,
-    "firstTurnAp": null
+    "firstTurnAp": null,
+    "mageSkill": "Seal"
   },
   "setup": {
     "diagram": [

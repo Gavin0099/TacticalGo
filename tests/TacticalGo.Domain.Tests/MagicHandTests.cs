@@ -181,15 +181,21 @@ public class MagicHandTests
     }
 
     [Fact]
-    public void Default_remains_seal_and_the_comparison_switch_selects_exactly_one_mage_skill()
+    public void Default_is_magic_hand_and_explicit_seal_preserves_the_comparison_baseline()
     {
         var plain = Mage(config: new RuleConfig());
-        Assert.Equal(MageSkill.Seal, plain.Config.MageSkill);
-        AssertRejected(plain, new CastMagicHand(P(2, 2), PushDirection.Right), IllegalReason.SkillNotSelected);
-        Assert.True(GameEngine.Apply(plain, new CastSeal(P(1, 1))).Success);
-        AssertRejected(Mage(), new CastSeal(P(1, 1)), IllegalReason.SkillNotSelected);
-        Assert.Empty(ActionValidator.GetLegalActions(plain).OfType<CastMagicHand>());
-        Assert.NotEmpty(ActionValidator.GetLegalActions(plain).OfType<CastSeal>());
+        Assert.Equal(MageSkill.MagicHand, plain.Config.MageSkill);
+        Assert.Equal(MageSkill.MagicHand, RuleConfig.TwoApBaseline.MageSkill);
+        Assert.True(GameEngine.Apply(plain, new CastMagicHand(P(2, 2), PushDirection.Right)).Success);
+        AssertRejected(plain, new CastSeal(P(1, 1)), IllegalReason.SkillNotSelected);
+        Assert.NotEmpty(ActionValidator.GetLegalActions(plain).OfType<CastMagicHand>());
+        Assert.Empty(ActionValidator.GetLegalActions(plain).OfType<CastSeal>());
+
+        var baseline = Mage(config: new RuleConfig { MageSkill = MageSkill.Seal });
+        AssertRejected(baseline, new CastMagicHand(P(2, 2), PushDirection.Right), IllegalReason.SkillNotSelected);
+        Assert.True(GameEngine.Apply(baseline, new CastSeal(P(1, 1))).Success);
+        Assert.Empty(ActionValidator.GetLegalActions(baseline).OfType<CastMagicHand>());
+        Assert.NotEmpty(ActionValidator.GetLegalActions(baseline).OfType<CastSeal>());
     }
 
     [Fact]
