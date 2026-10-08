@@ -1,0 +1,95 @@
+{
+  "name": "magic_hand_push_then_place",
+  "description": "Hand-authored: target retains the vacated source as its ONLY liberty; the second AP fills it and captures.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      ".oH..",
+      "x....",
+      ".....",
+      ".....",
+      "X...O"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          0
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,0": ".",
+          "0,0": "o",
+          "2,0": "H"
+        },
+        "liberties": {
+          "0,0": 1
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "skillUsed": true,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          1,
+          0
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "0,0": ".",
+          "1,0": "x"
+        },
+        "ap": 2,
+        "mana": [
+          1,
+          4
+        ],
+        "current": "Two",
+        "ply": 2,
+        "skillUsed": false,
+        "events": [
+          "ResourcesSpent",
+          "PiecePlaced",
+          "PiecesCaptured",
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    }
+  ]
+}

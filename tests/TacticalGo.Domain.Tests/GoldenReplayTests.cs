@@ -37,7 +37,15 @@ public class GoldenReplayTests
         {
             step++;
             var action = ParseAction(stepJson.GetProperty("action"));
+            var before = state;
+            var fingerprint = state.Fingerprint();
             var outcome = GameEngine.Apply(state, action);
+            Assert.Equal(fingerprint, before.Fingerprint());
+            if (!outcome.Success)
+            {
+                Assert.Same(before, outcome.State); // Includes the shared position history, absent from Fingerprint.
+                Assert.Empty(outcome.Events);
+            }
             state = outcome.State;
             Check(stepJson.GetProperty("expect"), state, outcome, $"{name} step {step} ({action})");
         }
@@ -56,6 +64,8 @@ public class GoldenReplayTests
                 "maxPlies" => config with { MaxPlies = prop.Value.GetInt32() },
                 "manaCap" => config with { ManaCap = prop.Value.GetInt32() },
                 "allowResummon" => config with { AllowResummon = prop.Value.GetBoolean() },
+                "mageSkill" => config with { MageSkill = Enum.Parse<MageSkill>(prop.Value.GetString()!) },
+                "magicHandRange" => config with { MagicHandRange = prop.Value.GetInt32() },
                 _ => throw new NotSupportedException($"Unknown config key '{prop.Name}'."),
             };
         }
@@ -88,6 +98,7 @@ public class GoldenReplayTests
         "CastBastion" => new CastBastion(At(a.GetProperty("first")), At(a.GetProperty("second"))),
         "CastSeal" => new CastSeal(At(a.GetProperty("at"))),
         "CastSwap" => new CastSwap(At(a.GetProperty("target"))),
+        "CastMagicHand" => new CastMagicHand(At(a.GetProperty("target")), Enum.Parse<PushDirection>(a.GetProperty("direction").GetString()!)),
         "EndTurn" => new EndTurn(),
         var other => throw new NotSupportedException($"Unknown action type '{other}'."),
     };
@@ -132,6 +143,24 @@ public class GoldenReplayTests
                 case "events":
                     Assert.Equal(v.EnumerateArray().Select(e => e.GetString()!),
                         outcome!.Events.Select(e => e.GetType().Name));
+                    break;
+                case "skillUsed": Assert.Equal(v.GetBoolean(), state.SkillUsedThisTurn); break;
+                case "liberties":
+                    foreach (var cell in v.EnumerateObject())
+                    {
+                        var xy = cell.Name.Split(',');
+                        Assert.Equal(cell.Value.GetInt32(), BoardRuleEngine.CountLiberties(state.Board,
+                            new Point(int.Parse(xy[0]), int.Parse(xy[1]))));
+                    }
+                    break;
+                case "groups":
+                    foreach (var cell in v.EnumerateObject())
+                    {
+                        var xy = cell.Name.Split(',');
+                        Assert.Equal(cell.Value.EnumerateArray().Select(At).OrderBy(p => p.Y).ThenBy(p => p.X),
+                            BoardRuleEngine.GetGroup(state.Board, new Point(int.Parse(xy[0]), int.Parse(xy[1])))
+                                .OrderBy(p => p.Y).ThenBy(p => p.X));
+                    }
                     break;
                 default:
                     throw new NotSupportedException($"{where}: unknown expect key '{prop.Name}'.");

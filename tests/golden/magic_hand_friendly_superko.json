@@ -1,0 +1,124 @@
+{
+  "name": "magic_hand_friendly_superko",
+  "description": "Hand-authored: pushing own soldier back after both players pass repeats the initial board; reject atomically, retaining moved owner, resources, skill flag and history.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      "..x..",
+      "..H..",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          1
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "2,1": ".",
+          "3,1": "x"
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "skillUsed": true,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "ap": 2,
+        "mana": [
+          1,
+          4
+        ],
+        "skillUsed": false,
+        "events": [
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "One",
+        "ap": 2,
+        "mana": [
+          2,
+          4
+        ],
+        "skillUsed": false,
+        "events": [
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          1
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Ko",
+        "cells": {
+          "2,1": ".",
+          "3,1": "x"
+        },
+        "current": "One",
+        "ap": 2,
+        "mana": [
+          2,
+          4
+        ],
+        "skillUsed": false,
+        "events": []
+      }
+    }
+  ]
+}

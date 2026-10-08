@@ -11,6 +11,11 @@ public enum PieceKind : byte { Soldier = 0, Commander = 1, Hero = 2 }
 
 public enum HeroClass : byte { None = 0, Warrior = 1, Mage = 2, Rogue = 3 }
 
+public enum MageSkill : byte { Seal = 0, MagicHand = 1 }
+
+/// <summary>Board coordinates: X increases rightward, Y increases downward.</summary>
+public enum PushDirection : byte { Up = 0, Right = 1, Down = 2, Left = 3 }
+
 public enum GameStatus : byte { Ongoing = 0, Won = 1, Drawn = 2 }
 
 public readonly record struct Point(int X, int Y)

@@ -1,0 +1,38 @@
+{
+  "baselineCommit": "8ae3bd55bbeb0ff56f8882d8deb084b5578fb661",
+  "ruleChange": false,
+  "tests": {
+    "command": "dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~MagicHandReplayTests|DisplayName~magic_hand_range_two_decapitation",
+    "rawArtifact": "artifacts/r1-review/review-correction.trx",
+    "sha256": "fb9af55545597bc4f9649e58166e181231ab0e5f416e9e2ae674ca91479fac22",
+    "counters": {
+      "total": "2",
+      "executed": "2",
+      "passed": "2",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    }
+  },
+  "goldenValidator": {
+    "acceptedFixtures": 34,
+    "semanticReplay": false
+  },
+  "supplement": "docs/evidence/r1-magic-hand/review-supplement.json",
+  "sourceSha256": {
+    "tests/TacticalGo.Domain.Tests/MagicHandReplayTests.cs": "020ab93439658b3df2ab80dc8f0ec85e267adf3cef6e6b6e2f8b49f75fee79e0",
+    "tests/golden/magic_hand_range_two_decapitation.json": "09e26e920fb196a2bac3c3a966342b25b86c478bc7b2a5a02bd45df5be21b7df",
+    "tools/probes/magic-hand/Program.cs": "0a334b16f47b2120403740924a61eb81b2a556d7e08c13c02e0de1c4576b72e3",
+    "tools/probes/magic-hand/ReviewSupplement.cs": "c8c7e9f4c1e25e0bc40a90482c82e2a94eaf75157c2fd8a5249f3c24c408a224"
+  }
+}

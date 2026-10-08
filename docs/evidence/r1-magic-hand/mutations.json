@@ -1,0 +1,275 @@
+{
+  "baseline": {
+    "exitCode": 0,
+    "counters": {
+      "total": "29",
+      "executed": "29",
+      "passed": "29",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "failedTests": []
+  },
+  "mutations": [
+    {
+      "name": "range_boundary",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "hero.ManhattanTo(a.Target) > s.Config.MagicHandRange",
+      "new": "hero.ManhattanTo(a.Target) >= s.Config.MagicHandRange",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "19",
+        "failed": "10",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Pushing_a_connector_rebuilds_three_separate_groups",
+        "TacticalGo.Domain.Tests.MagicHandTests.Range_applies_to_the_target_and_the_destination_may_be_farther_away",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Down, x: 2, y: 3)",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Up, x: 2, y: 1)",
+        "TacticalGo.Domain.Tests.MagicHandTests.Repeating_an_older_board_is_superko_and_rolls_back_resources_skill_and_events",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandTests.Filling_our_commanders_last_liberty_is_suicide_and_rolls_back_everything",
+        "TacticalGo.Domain.Tests.MagicHandTests.No_action_or_legal_target_is_available_after_game_over",
+        "TacticalGo.Domain.Tests.MagicHandReplayTests.Range_two_connector_tactic_is_reachable_by_a_legal_game_with_a_summoned_mage",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Right, x: 3, y: 2)"
+      ]
+    },
+    {
+      "name": "source_not_cleared",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "trial[a.Target] = null;",
+      "new": "// MUTATION: source not cleared",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "19",
+        "failed": "10",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Moving_an_enemy_away_can_add_a_commanders_liberty",
+        "TacticalGo.Domain.Tests.MagicHandTests.Push_then_place_captures_on_the_second_action_and_preserves_the_caster",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandTests.No_action_or_legal_target_is_available_after_game_over",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Up, x: 2, y: 1)",
+        "TacticalGo.Domain.Tests.MagicHandTests.Pushing_a_connector_rebuilds_three_separate_groups",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Down, x: 2, y: 3)",
+        "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Right, x: 3, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandReplayTests.Range_two_connector_tactic_is_reachable_by_a_legal_game_with_a_summoned_mage",
+        "TacticalGo.Domain.Tests.MagicHandTests.Repeating_an_older_board_is_superko_and_rolls_back_resources_skill_and_events"
+      ]
+    },
+    {
+      "name": "free_mana",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "return Finish(s, trial, NoPlacements, null, s.Config.SkillManaCost, isSkill: true, seal: null,",
+      "new": "return Finish(s, trial, NoPlacements, null, 0, isSkill: true, seal: null,",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "27",
+        "failed": "2",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Push_then_place_captures_on_the_second_action_and_preserves_the_caster",
+        "TacticalGo.Domain.Tests.MagicHandTests.One_ap_push_emits_resource_then_movement_then_turn_events"
+      ]
+    },
+    {
+      "name": "suicide_guard_removed",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "if (resolution.MoverHasDeadGroup)",
+      "new": "if (false && resolution.MoverHasDeadGroup)",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "28",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Filling_our_commanders_last_liberty_is_suicide_and_rolls_back_everything"
+      ]
+    },
+    {
+      "name": "superko_guard_removed",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "if (s.History.Contains(trial.ComputeHash()))",
+      "new": "if (false && s.History.Contains(trial.ComputeHash()))",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "28",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Repeating_an_older_board_is_superko_and_rolls_back_resources_skill_and_events"
+      ]
+    },
+    {
+      "name": "repeat_skill_allowed",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "if (s.SkillUsedThisTurn)",
+      "new": "if (false && s.SkillUsedThisTurn)",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "28",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Skill_gates_cover_mana_ap_class_and_absent_caster"
+      ]
+    },
+    {
+      "name": "left_candidate_missing",
+      "file": "src/TacticalGo.Domain/ActionValidator.cs",
+      "old": "Enum.GetValues<PushDirection>()",
+      "new": "Enum.GetValues<PushDirection>().Where(d => d != PushDirection.Left)",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "29",
+        "executed": "29",
+        "passed": "28",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandTests.Legal_action_list_and_apply_agree_for_every_target_and_direction"
+      ]
+    }
+  ],
+  "restored": {
+    "exitCode": 0,
+    "counters": {
+      "total": "29",
+      "executed": "29",
+      "passed": "29",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "failedTests": []
+  },
+  "sourceSha256": {
+    "src/TacticalGo.Domain/ActionResolver.cs": "63188b8d8991d53c8c82844ec3105023b0ccfd6cf67ddd822e07de3ab3d311f6",
+    "src/TacticalGo.Domain/ActionValidator.cs": "44e3aa82906c179e2bf46ed86e8d1b751cbbacbad02a478f41ed61038fc64e75"
+  },
+  "claimBoundary": "Only these seven mutations; not full mutation coverage or domain correctness proof."
+}

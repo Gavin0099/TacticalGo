@@ -1,0 +1,304 @@
+{
+  "parentCommit": "f45765411e3d0db9d431531b89f556e599940d74",
+  "authorization": "Owner: replace Mage default with Magic Hand; no new Slice, push or merge",
+  "change": "Default only; both sides ordinary soldiers, original costs/range/rollback retained; Seal explicit baseline",
+  "tests": [
+    {
+      "command": "dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~Default_is_magic_hand --logger trx;LogFileName=default-before.trx --results-directory artifacts/r1-review/default",
+      "expectedOutcome": "original_default_failure",
+      "rawArtifact": "artifacts/r1-review/default/default-before.trx",
+      "sha256": "a41c48dfee521f70121fce0a3317927a6661d1c0f33d162b7de06ed02c63fd40",
+      "counters": {
+        "total": "1",
+        "executed": "1",
+        "passed": "0",
+        "failed": "1",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:30:23.6803685+08:00",
+        "queuing": "2026-10-08T17:30:23.6803692+08:00",
+        "start": "2026-10-08T17:30:22.8994057+08:00",
+        "finish": "2026-10-08T17:30:23.6876604+08:00"
+      }
+    },
+    {
+      "command": "dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~Default_is_magic_hand|DisplayName~magic_hand_default|DisplayName~magic_hand_explicit_seal --logger trx;LogFileName=default-after.trx --results-directory artifacts/r1-review/default",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/default/default-after.trx",
+      "sha256": "f207f9717275b250eb66f240ae853f7d397a61b2d507f2d4f74708b1b69176db",
+      "counters": {
+        "total": "3",
+        "executed": "3",
+        "passed": "3",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:31:30.1549185+08:00",
+        "queuing": "2026-10-08T17:31:30.1549189+08:00",
+        "start": "2026-10-08T17:31:29.3505528+08:00",
+        "finish": "2026-10-08T17:31:30.1610289+08:00"
+      }
+    },
+    {
+      "command": "dotnet test TacticalGo.sln --logger trx;LogFileName=domain-default.trx --results-directory artifacts/r1-review/default",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/default/domain-default.trx",
+      "sha256": "8f165ba912d76626cd304ac9ed429f19428b2cbfd5fddc5d6f3a1f2891998da0",
+      "counters": {
+        "total": "129",
+        "executed": "129",
+        "passed": "129",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:34:26.6634276+08:00",
+        "queuing": "2026-10-08T17:34:26.6634278+08:00",
+        "start": "2026-10-08T17:34:26.1377829+08:00",
+        "finish": "2026-10-08T17:34:26.8501320+08:00"
+      }
+    },
+    {
+      "command": "dotnet test TacticalGo.Windows.sln --logger trx;LogFileName=windows-default.trx --results-directory artifacts/r1-review/default",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/default/windows-default.trx",
+      "sha256": "0d77898d9121518cacd96c983060e87ecdf74cb38a3a3177f2d94ebb8635c2f7",
+      "counters": {
+        "total": "47",
+        "executed": "47",
+        "passed": "47",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:34:31.1697499+08:00",
+        "queuing": "2026-10-08T17:34:31.1697504+08:00",
+        "start": "2026-10-08T17:34:30.2864673+08:00",
+        "finish": "2026-10-08T17:34:31.2281623+08:00"
+      }
+    }
+  ],
+  "goldenReplay": {
+    "total": 38,
+    "passed": 38,
+    "newDefaultFixture": 1,
+    "renamedSealFixture": 1
+  },
+  "sealFixtureComparison": [
+    {
+      "current": "magic_hand_explicit_seal",
+      "baseline": "magic_hand_default_is_seal",
+      "setupAndExpectationsUnchanged": true
+    },
+    {
+      "current": "seal_blocks_then_expires",
+      "baseline": "seal_blocks_then_expires",
+      "setupAndExpectationsUnchanged": true
+    },
+    {
+      "current": "seal_range_errors",
+      "baseline": "seal_range_errors",
+      "setupAndExpectationsUnchanged": true
+    }
+  ],
+  "validator": {
+    "command": "python validators/golden_fixture_validator.py .",
+    "accepted": 38,
+    "scope": "structure and vocabulary only"
+  },
+  "validatorHarness": {
+    "command": "python -m unittest discover -s tests/validators -v",
+    "passed": 5
+  },
+  "drift": {
+    "ok": true,
+    "severity": "ok",
+    "repo_root": "C:\\Users\\reiko\\.codex\\worktrees\\r1-magic-hand\\TacticalGo",
+    "baseline_yaml": "C:\\Users\\reiko\\.codex\\worktrees\\r1-magic-hand\\TacticalGo\\.governance\\baseline.yaml",
+    "baseline_version": "1.0.0",
+    "framework_version": "1.0.0",
+    "checks": {
+      "baseline_yaml_present": true,
+      "baseline_version_known": true,
+      "framework_version_current": true,
+      "source_commit_recorded": true,
+      "protected_files_present": true,
+      "protected_files_unmodified": true,
+      "protected_file_sentinel_present": true,
+      "contract_required_fields_present": true,
+      "contract_agents_base_referenced": true,
+      "contract_no_placeholders": true,
+      "contract_not_framework_copy": true,
+      "plan_required_sections_present": true,
+      "agents_sections_filled": true,
+      "memory_schema_complete": true,
+      "plan_freshness": true,
+      "plan_inventory_current": true,
+      "baseline_yaml_freshness": true,
+      "expansion_boundary": true
+    },
+    "findings": [],
+    "warnings": [],
+    "errors": [],
+    "remediation_hints": [],
+    "plan_section_inventory": [
+      "## 1. 產品目標與待驗證假設",
+      "## 2. 首個可玩版本：Tactical Go Lite",
+      "## 3. P0：先凍結可執行規則（未過不得加內容）",
+      "## 4. 開發切片與驗收 Gate",
+      "## 5. 工程與測試原則",
+      "## 6. Stop / Pivot 條件",
+      "## 7. 下一個最小行動"
+    ]
+  },
+  "sourceSha256": {
+    "artifacts/r1-review/default/verify-evidence.py": "85457eaf26d80ec90be0cccdab093b7af21cb06f39ed32e35488a0873be06cea",
+    "src/TacticalGo.Domain/ActionEvent.cs": "91a1fc2832f9b68cb268e60d34f03ed97876b5e3e75f5b71ef93fa276db8acd2",
+    "src/TacticalGo.Domain/ActionResolver.cs": "14dc12f85a6bb85cdf34185b8990fa169f239692d36f487bc9117a051dc6180f",
+    "src/TacticalGo.Domain/ActionValidator.cs": "7998aad305f76e5178f922a143769ea222e32a294d671092440a0468c58cb656",
+    "src/TacticalGo.Domain/Actions.cs": "12d133edf11cdbebd3d5aa03df028914ccd103d50ac064aeb2d8907743f5081b",
+    "src/TacticalGo.Domain/Board.cs": "b33a495353862a13c610b34a5a15cc5e6b728a0731bf7245f4c74f655873e343",
+    "src/TacticalGo.Domain/BoardRuleEngine.cs": "0ca338da619726d34036df9ca3c38e9778d002e6abb87ecc2e78d8abb07bb870",
+    "src/TacticalGo.Domain/BoardText.cs": "ce9ea8b88c39916f560527a5eff29f198b20798b04fc01858a3f51a4aeb9a80a",
+    "src/TacticalGo.Domain/GameEngine.cs": "18c283d7a46658d94f72f4df98a87fb8fbb1df0022f1418340f9a23a2a22b77e",
+    "src/TacticalGo.Domain/GameSession.cs": "0e6660ed6e0465d20c69a5ea438c6053aa8bc2c22b0d7ee04bf0450a1f2ba9b2",
+    "src/TacticalGo.Domain/GameState.cs": "41b42e0f28e483c47e1f90dae22a08421e4d8dc590b69866d54943ce709d6228",
+    "src/TacticalGo.Domain/Primitives.cs": "657e7fb5bb4ea1239625cdd2e0756a2d98191676ef2ddbbff074ae1d093b798b",
+    "src/TacticalGo.Domain/RuleConfig.cs": "092a95ef36d8f51849af313f62f15f12d6a8e9946f0f77500c0e2a988bcba70e",
+    "src/TacticalGo.Domain/TurnEngine.cs": "e76cbddaeb4161acfb69e1e2391888fdf43b940a781218653633e970ee3a22a8",
+    "tests/TacticalGo.Domain.Tests/CoreRulesTests.cs": "fd1b3363f3c872a1fa8904ec985fb528ab056f28549da8c38e03745afce24b86",
+    "tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs": "9723370a5a4cfd36f962a4efb24950af5ce4e95bb77a44d857f9bf8d338c1edc",
+    "tests/TacticalGo.Domain.Tests/MagicHandFriendlyTests.cs": "1c6374b917f14e1e2ae87f8150e2b19273a533671d372d470cd7494a712a847e",
+    "tests/TacticalGo.Domain.Tests/MagicHandGeometryTests.cs": "7b9c9ff31e7de268705a9aeb388c11bee27ae3e6b1b2f2d75b790dbde396fed8",
+    "tests/TacticalGo.Domain.Tests/MagicHandReplayTests.cs": "020ab93439658b3df2ab80dc8f0ec85e267adf3cef6e6b6e2f8b49f75fee79e0",
+    "tests/TacticalGo.Domain.Tests/MagicHandTests.cs": "cea36eb777428ad452065a78dfdc06b73fe28efc20960ae38429803984d53e09",
+    "tests/TacticalGo.Domain.Tests/SkillTests.cs": "6df58c0f1437bb3c90c90e03cf6c2047f552c93f12857315459d686fd86c8d33",
+    "tests/TacticalGo.Domain.Tests/TempoRaceTests.cs": "c3a2c31e28cdc554614fedd95619c582e14fc3e9c45ae94f5f3b87e590f52213",
+    "tests/TacticalGo.Domain.Tests/TestKit.cs": "ad21d32b2690952563abbb591974dc04f240a11a1819411b1d2e66d85be92491",
+    "tests/TacticalGo.Domain.Tests/TurnTests.cs": "c5fd6523f3ad4e1a0aff50ddfb1098acd6998484590644adf69feb9bcf1c888b",
+    "tests/TacticalGo.Play.Tests/Level2Tests.cs": "c41e4d9cc722d7b6e9117ad156e5a7b4296dbbc524e807091be5737f5f293d5c",
+    "tests/TacticalGo.Play.Tests/LevelSearch.cs": "b6394b33befb47e9b81e59160a740bfae0e8fad7f0c8e3348737e540f8416856",
+    "tests/TacticalGo.Play.Tests/LevelTests.cs": "d4b0f74e000a76a0913076ace4bc024e410ede447ece7d75db69c772b74f2a6d",
+    "tests/TacticalGo.Play.Tests/PlayControllerTests.cs": "746f7077c20420bd44fe76352299122bbd90740cb37c2037ed470489a60f63b6",
+    "tests/TacticalGo.Play.Tests/SkillControllerTests.cs": "aea6f0336aa72a7ad8348f58b23dae990676ea15ea8a2336da1bf98b436bc76e",
+    "tests/golden/bastion_captures_with_two_stones.json": "1ed24af698aa04d4788d38a0c5761917f2d9d9c9ab6fa76f2547b752d8f5f620",
+    "tests/golden/bastion_pair_suicide.json": "d2f832809b2ed577eae3f922dfbf00de49771cae5d5965cc98cbfed04da276d6",
+    "tests/golden/bastion_range_and_target_errors.json": "36131994df8e54cd1390e0170456965a5a3f74e45dea25a94b2bf817685fec8a",
+    "tests/golden/capture_basic.json": "62b9c52e08d96daa11f7e827eda79d19c9e73849fca6ad8054b1b50586bc8f00",
+    "tests/golden/capture_before_suicide.json": "8b050588cadc3bb522a1d94d975f545be46e3a7bb045108121b501d814768353",
+    "tests/golden/ko_recapture.json": "30724c340a305345a6bd61cfe619ced924276def73f9ee40d4e9edfa26913424",
+    "tests/golden/magic_hand_commander_relief.json": "82aa5db3a8ac86dc186e18797965a394fd091b945b542cdd2f56477d9a45bb72",
+    "tests/golden/magic_hand_default.json": "eb2cb6fc07cced2fe5225d47862189f7b2e75c8910a228a058ef7ffe71fffd3e",
+    "tests/golden/magic_hand_explicit_seal.json": "b8b977231ee69efafc98a6ade48b9e7fbd75e3eb1e4973cc01b8cb5d5d034851",
+    "tests/golden/magic_hand_friendly_capture.json": "bec47607a9dcc17412f8686f39777d0756a370857973e680286d1330e14d0767",
+    "tests/golden/magic_hand_friendly_superko.json": "adbfd37f6e582d7e093335634ac33bde77c9d62f4db7ad84004a70838da058fe",
+    "tests/golden/magic_hand_friendly_two_push_then_place.json": "7dead651649f31aa65bd236960a80747dba237d1b0caa5c1b3b98e54ea6b92a6",
+    "tests/golden/magic_hand_insufficient_mana.json": "a3c85e0dbdb906c3d6103e7ca3f26839a8bbc4bcf42ad8ae64f5829f76054e44",
+    "tests/golden/magic_hand_one_ap_event_order.json": "6a45e7587da59e45e5a4301883b8773e52d224c1470bf2efea152318e1bcad38",
+    "tests/golden/magic_hand_push_then_place.json": "478f85266d6e8ee5ba4a336135838e0ed95b9ef4ea0c09a3a6b8ed4683e1bf79",
+    "tests/golden/magic_hand_range_and_target_errors.json": "7cb77e0c75e7d315caf25dde4d6864732f042613cdc5b33cbf1d00d643d198f8",
+    "tests/golden/magic_hand_range_two_decapitation.json": "09e26e920fb196a2bac3c3a966342b25b86c478bc7b2a5a02bd45df5be21b7df",
+    "tests/golden/magic_hand_split_groups.json": "cdba3993b880a6114af590fab2cdaaf181abb842274fcfa2fc4f40d83bdf1a2e",
+    "tests/golden/magic_hand_suicide_rollback.json": "48d7d811a2b2e1346bd71cd32c3b4959b20ac3f1fd3b52b6b6cfa9c2b1fb995a",
+    "tests/golden/magic_hand_superko_rollback.json": "b94230e4cd4a2231963aa538214908e36ea2f94833e155cd5875b8a9040afb5d",
+    "tests/golden/magic_hand_target_and_cost.json": "1c00cd8f43e22203ef3d629a25ee9e27524e31b492ac9f821df38b15990171b5",
+    "tests/golden/mana_cap.json": "a1937d3dde6938139bb14026c78662f027848e356f306937835c0c3242c09fad",
+    "tests/golden/new_game_default_first_turn_one_ap.json": "81b001dd62f8d075642a5b5f1128d8986af961260f82f4a284beaaf16a7dbb81",
+    "tests/golden/new_game_two_ap_baseline.json": "49505f6863f55d41d9f3b080f8c1205aee47df3c996b9f086ab0098256aa91a1",
+    "tests/golden/no_resummon_by_default.json": "0722de42aaf8a4e2880b5ba8388ad150804af516fedf6d9cf32235d052d31264",
+    "tests/golden/resummon_allowed_when_enabled.json": "6f3fb1dd64082d871bc34276586cbb9d3bec92df9e29cc90d65e7e37c6349f32",
+    "tests/golden/seal_blocks_then_expires.json": "c2eaf9117a7b2bbd70a31a1d9dc37d22967845593a0192ca4d5150c0ea1a138b",
+    "tests/golden/seal_range_errors.json": "b6a49ad67fab77a81c809a2c32ed0a8a4c9521dae4dc6b0a641fa5e437ff16a8",
+    "tests/golden/suicide_rejected.json": "df1fe76cbdbc633430cd79e4b6900cba6e8a9ba08e168983bb99e7da2e4c37d0",
+    "tests/golden/summon_adjacent_to_any_friend.json": "0fec29fc7110911bf7b0b2978e8e18f6cc93f62de61aa89199b3ce99450cf481",
+    "tests/golden/summon_needs_mana.json": "d8112d8d845610d435d528714fd13d7494abf4f441618e32e82b0f5d3416442b",
+    "tests/golden/swap_back_is_ko.json": "a32f51148430731cab4a823826bee9f04070a00c13e42e01a677dc66e99d83da",
+    "tests/golden/swap_basic.json": "67f51fbd1e0add15071a2bf14b07d6a3d7b8afa6f0eae6c5db5dac37284ec887",
+    "tests/golden/swap_decapitates.json": "a5f947343e9b07f59f57b3f492f5b5ab84c597615246484c740de2110134c6e6",
+    "tests/golden/swap_suicide.json": "2afa8157a08f143446ec7b905328eb6c1e9b91257107df8d21f54802d4023a87",
+    "tests/golden/swap_target_errors.json": "3a4e5f2f597b43af7588004913a782e1c57d0636c24c3b8a5bb6a09018e67703",
+    "tests/golden/turn_limit_draw.json": "9fe907610092453049757728595ed5fa836d4aaa129727beffab4095d71afe77",
+    "tests/golden/win_by_commander_capture.json": "0dc335e3ffe7ca88ea6b100be81b43284de245695110c95318bec6eeeac0abe6",
+    "tests/validators/test_golden_fixture_validator.py": "ac103df6c1c40e96e1c3eaf40048186892949254b67b4d79815d51321c50530f",
+    "validators/golden_fixture_validator.py": "af2469b2413cdb2ed1a8a3f69b7d45ac5a8058ef1c08cd46ce0bd16e697f7a35"
+  },
+  "logs": [
+    {
+      "path": "artifacts/r1-review/default/default-after.log",
+      "sha256": "fb1355bb79d2b8913a08d6a11d2d7d09a53926d251eb10b920f26e724c48a2fc"
+    },
+    {
+      "path": "artifacts/r1-review/default/default-before.log",
+      "sha256": "02c4481956e7b50a265a89fd004cd7f8839891a6d08e90dbcdfc8c4a7cc1e333"
+    },
+    {
+      "path": "artifacts/r1-review/default/domain-default.log",
+      "sha256": "b9776339167c4c0dc1ebb27118aabbddb641d20176f0d58a71e0897dc9384d28"
+    },
+    {
+      "path": "artifacts/r1-review/default/validator-tests.log",
+      "sha256": "e9f6b12fe76c4e8fda2fff441c2ce30f1c2eba173137242b725c69590434330f"
+    },
+    {
+      "path": "artifacts/r1-review/default/validator.log",
+      "sha256": "c74d15ed509d2e6ebd031a10daf85def385c5231107c5f91cfe7ba0572ac98eb"
+    },
+    {
+      "path": "artifacts/r1-review/default/windows-default.log",
+      "sha256": "0dc3618fe551f31c34dfde17e72796a4e4d79663a3fd349881a5a3d5c5a5c870"
+    }
+  ],
+  "limitations": [
+    "R1 Domain branch only; UI-3c and existing exe unchanged",
+    "Windows 47 is not UI-3c 61 or merged-state evidence",
+    "Historical evidence source hashes refer to their earlier revisions",
+    "No new tactical/balance search; no human acceptance; G0 Pending",
+    "Raw TRX/logs retained locally under ignored artifacts/r1-review/default"
+  ]
+}

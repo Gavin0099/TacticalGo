@@ -3,7 +3,8 @@
   "description": "Seal range is Manhattan 1-2 from the Mage, on an empty unsealed point.",
   "config": {
     "apPerTurn": 2,
-    "firstTurnAp": null
+    "firstTurnAp": null,
+    "mageSkill": "Seal"
   },
   "setup": {
     "diagram": [

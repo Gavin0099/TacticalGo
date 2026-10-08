@@ -1,0 +1,401 @@
+{
+  "ruleRevision": "Owner explicitly approved soldiers of either player; commanders/heroes remain forbidden",
+  "parentCommit": "00a2675",
+  "tests": [
+    {
+      "command": "dotnet test TacticalGo.sln --logger trx;LogFileName=domain-final.trx --results-directory artifacts/r1-review",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/domain-final.trx",
+      "sha256": "0fb53663d0f30a65f7745b372eb8622dccb246ca2eee1018ddcf0eb231addf10",
+      "counters": {
+        "total": "128",
+        "executed": "128",
+        "passed": "128",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:09:29.5194228+08:00",
+        "queuing": "2026-10-08T17:09:29.5194235+08:00",
+        "start": "2026-10-08T17:09:28.6679331+08:00",
+        "finish": "2026-10-08T17:09:29.8135719+08:00"
+      }
+    },
+    {
+      "command": "dotnet test TacticalGo.Windows.sln --logger trx;LogFileName=windows-final.trx --results-directory artifacts/r1-review",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/windows-final.trx",
+      "sha256": "9ec3f570d75880cd0b0d9a37ac4f522abd20c26d4a79c154c3334f4551ef9102",
+      "counters": {
+        "total": "47",
+        "executed": "47",
+        "passed": "47",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:09:35.6609047+08:00",
+        "queuing": "2026-10-08T17:09:35.6609054+08:00",
+        "start": "2026-10-08T17:09:34.2483152+08:00",
+        "finish": "2026-10-08T17:09:35.7318991+08:00"
+      }
+    },
+    {
+      "command": "dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~MagicHandFriendlyTests --logger trx;LogFileName=friendly-before.trx --results-directory artifacts/r1-review",
+      "expectedOutcome": "failure_under_old_enemy_only_rule",
+      "rawArtifact": "artifacts/r1-review/friendly-before.trx",
+      "sha256": "ae8dae4f9db3c8c7dc9f384bab41abab237ad9391f4c5b35c4cdff04d47df99e",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "0",
+        "failed": "11",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:06:07.2130931+08:00",
+        "queuing": "2026-10-08T17:06:07.2130939+08:00",
+        "start": "2026-10-08T17:06:06.2923227+08:00",
+        "finish": "2026-10-08T17:06:07.2456855+08:00"
+      }
+    },
+    {
+      "command": "dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~MagicHandFriendlyTests --logger trx;LogFileName=friendly-after.trx --results-directory artifacts/r1-review",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/friendly-after.trx",
+      "sha256": "073e0919b014fe2858b2f09a44948a3d01033cb87de44307a0058a989a5a452a",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "11",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "times": {
+        "creation": "2026-10-08T17:06:25.1315042+08:00",
+        "queuing": "2026-10-08T17:06:25.1315047+08:00",
+        "start": "2026-10-08T17:06:24.4245512+08:00",
+        "finish": "2026-10-08T17:06:25.1587238+08:00"
+      }
+    },
+    {
+      "command": "python tools/probes/magic-hand/check-mutations.py --friendly-only (child baseline)",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/mutations/baseline.trx",
+      "sha256": "78db62c90e874a761d5ff4b8bebbe9e213fb629353e5bd93345ca966378fad7e",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "11",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      }
+    },
+    {
+      "command": "python tools/probes/magic-hand/check-mutations.py --friendly-only (child friendly_rejected_by_resolver)",
+      "expectedOutcome": "mutant_failure",
+      "rawArtifact": "artifacts/r1-review/mutations/friendly_rejected_by_resolver.trx",
+      "sha256": "ccdc086f326bcbf8a6455d7b9037d13566b9f8d86d860be1aa7fe8e3f6415b3f",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "0",
+        "failed": "11",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      }
+    },
+    {
+      "command": "python tools/probes/magic-hand/check-mutations.py --friendly-only (child friendly_omitted_from_candidates)",
+      "expectedOutcome": "mutant_failure",
+      "rawArtifact": "artifacts/r1-review/mutations/friendly_omitted_from_candidates.trx",
+      "sha256": "c489d9778349362190292a132940db303ad5d6c0f32dccb1d93b0b9582beb632",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "3",
+        "failed": "8",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      }
+    },
+    {
+      "command": "python tools/probes/magic-hand/check-mutations.py --friendly-only (child restored)",
+      "expectedOutcome": "pass",
+      "rawArtifact": "artifacts/r1-review/mutations/restored.trx",
+      "sha256": "45efaf1753b5129be89dbaabc32b1d6840be10f6fb0df2976d4a63f479a93844",
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "11",
+        "failed": "0",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      }
+    }
+  ],
+  "goldenReplay": {
+    "total": 37,
+    "passed": 37,
+    "newFriendlyFixtures": 3,
+    "startingBoardUnchanged": true
+  },
+  "validator": {
+    "command": "python validators/golden_fixture_validator.py .",
+    "accepted": 37,
+    "scope": "structure and vocabulary only"
+  },
+  "validatorHarness": {
+    "command": "python -m unittest discover -s tests/validators -v",
+    "passed": 5
+  },
+  "drift": {
+    "ok": true,
+    "severity": "ok",
+    "repo_root": "C:\\Users\\reiko\\.codex\\worktrees\\r1-magic-hand\\TacticalGo",
+    "baseline_yaml": "C:\\Users\\reiko\\.codex\\worktrees\\r1-magic-hand\\TacticalGo\\.governance\\baseline.yaml",
+    "baseline_version": "1.0.0",
+    "framework_version": "1.0.0",
+    "checks": {
+      "baseline_yaml_present": true,
+      "baseline_version_known": true,
+      "framework_version_current": true,
+      "source_commit_recorded": true,
+      "protected_files_present": true,
+      "protected_files_unmodified": true,
+      "protected_file_sentinel_present": true,
+      "contract_required_fields_present": true,
+      "contract_agents_base_referenced": true,
+      "contract_no_placeholders": true,
+      "contract_not_framework_copy": true,
+      "plan_required_sections_present": true,
+      "agents_sections_filled": true,
+      "memory_schema_complete": true,
+      "plan_freshness": true,
+      "plan_inventory_current": true,
+      "baseline_yaml_freshness": true,
+      "expansion_boundary": true
+    },
+    "findings": [],
+    "warnings": [],
+    "errors": [],
+    "remediation_hints": [],
+    "plan_section_inventory": [
+      "## 1. 產品目標與待驗證假設",
+      "## 2. 首個可玩版本：Tactical Go Lite",
+      "## 3. P0：先凍結可執行規則（未過不得加內容）",
+      "## 4. 開發切片與驗收 Gate",
+      "## 5. 工程與測試原則",
+      "## 6. Stop / Pivot 條件",
+      "## 7. 下一個最小行動"
+    ]
+  },
+  "sourceSha256": {
+    "src/TacticalGo.Domain/ActionEvent.cs": "91a1fc2832f9b68cb268e60d34f03ed97876b5e3e75f5b71ef93fa276db8acd2",
+    "src/TacticalGo.Domain/ActionResolver.cs": "14dc12f85a6bb85cdf34185b8990fa169f239692d36f487bc9117a051dc6180f",
+    "src/TacticalGo.Domain/ActionValidator.cs": "7998aad305f76e5178f922a143769ea222e32a294d671092440a0468c58cb656",
+    "src/TacticalGo.Domain/Actions.cs": "12d133edf11cdbebd3d5aa03df028914ccd103d50ac064aeb2d8907743f5081b",
+    "src/TacticalGo.Domain/Board.cs": "b33a495353862a13c610b34a5a15cc5e6b728a0731bf7245f4c74f655873e343",
+    "src/TacticalGo.Domain/BoardRuleEngine.cs": "0ca338da619726d34036df9ca3c38e9778d002e6abb87ecc2e78d8abb07bb870",
+    "src/TacticalGo.Domain/BoardText.cs": "ce9ea8b88c39916f560527a5eff29f198b20798b04fc01858a3f51a4aeb9a80a",
+    "src/TacticalGo.Domain/GameEngine.cs": "18c283d7a46658d94f72f4df98a87fb8fbb1df0022f1418340f9a23a2a22b77e",
+    "src/TacticalGo.Domain/GameSession.cs": "0e6660ed6e0465d20c69a5ea438c6053aa8bc2c22b0d7ee04bf0450a1f2ba9b2",
+    "src/TacticalGo.Domain/GameState.cs": "41b42e0f28e483c47e1f90dae22a08421e4d8dc590b69866d54943ce709d6228",
+    "src/TacticalGo.Domain/Primitives.cs": "657e7fb5bb4ea1239625cdd2e0756a2d98191676ef2ddbbff074ae1d093b798b",
+    "src/TacticalGo.Domain/RuleConfig.cs": "8d58bdf0018c4d06fd93189298f236c74d309b5daf82fd40f1abff34056a2370",
+    "src/TacticalGo.Domain/TurnEngine.cs": "e76cbddaeb4161acfb69e1e2391888fdf43b940a781218653633e970ee3a22a8",
+    "tests/TacticalGo.Domain.Tests/CoreRulesTests.cs": "fd1b3363f3c872a1fa8904ec985fb528ab056f28549da8c38e03745afce24b86",
+    "tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs": "9723370a5a4cfd36f962a4efb24950af5ce4e95bb77a44d857f9bf8d338c1edc",
+    "tests/TacticalGo.Domain.Tests/MagicHandFriendlyTests.cs": "1c6374b917f14e1e2ae87f8150e2b19273a533671d372d470cd7494a712a847e",
+    "tests/TacticalGo.Domain.Tests/MagicHandGeometryTests.cs": "7b9c9ff31e7de268705a9aeb388c11bee27ae3e6b1b2f2d75b790dbde396fed8",
+    "tests/TacticalGo.Domain.Tests/MagicHandReplayTests.cs": "020ab93439658b3df2ab80dc8f0ec85e267adf3cef6e6b6e2f8b49f75fee79e0",
+    "tests/TacticalGo.Domain.Tests/MagicHandTests.cs": "ec6e9430b9d19302f56c6808a213cb901b5b5f1e9a6d014fb4cd043eb2a9568e",
+    "tests/TacticalGo.Domain.Tests/SkillTests.cs": "1f91e2ed4aa9e033a2d91058518a01d76e8b2dde7b8dc66bf9e3639f7ad34fd3",
+    "tests/TacticalGo.Domain.Tests/TempoRaceTests.cs": "c3a2c31e28cdc554614fedd95619c582e14fc3e9c45ae94f5f3b87e590f52213",
+    "tests/TacticalGo.Domain.Tests/TestKit.cs": "ad21d32b2690952563abbb591974dc04f240a11a1819411b1d2e66d85be92491",
+    "tests/TacticalGo.Domain.Tests/TurnTests.cs": "c5fd6523f3ad4e1a0aff50ddfb1098acd6998484590644adf69feb9bcf1c888b",
+    "tests/TacticalGo.Play.Tests/Level2Tests.cs": "c41e4d9cc722d7b6e9117ad156e5a7b4296dbbc524e807091be5737f5f293d5c",
+    "tests/TacticalGo.Play.Tests/LevelSearch.cs": "b6394b33befb47e9b81e59160a740bfae0e8fad7f0c8e3348737e540f8416856",
+    "tests/TacticalGo.Play.Tests/LevelTests.cs": "d4b0f74e000a76a0913076ace4bc024e410ede447ece7d75db69c772b74f2a6d",
+    "tests/TacticalGo.Play.Tests/PlayControllerTests.cs": "746f7077c20420bd44fe76352299122bbd90740cb37c2037ed470489a60f63b6",
+    "tests/TacticalGo.Play.Tests/SkillControllerTests.cs": "aea6f0336aa72a7ad8348f58b23dae990676ea15ea8a2336da1bf98b436bc76e",
+    "tests/golden/bastion_captures_with_two_stones.json": "1ed24af698aa04d4788d38a0c5761917f2d9d9c9ab6fa76f2547b752d8f5f620",
+    "tests/golden/bastion_pair_suicide.json": "d2f832809b2ed577eae3f922dfbf00de49771cae5d5965cc98cbfed04da276d6",
+    "tests/golden/bastion_range_and_target_errors.json": "36131994df8e54cd1390e0170456965a5a3f74e45dea25a94b2bf817685fec8a",
+    "tests/golden/capture_basic.json": "62b9c52e08d96daa11f7e827eda79d19c9e73849fca6ad8054b1b50586bc8f00",
+    "tests/golden/capture_before_suicide.json": "8b050588cadc3bb522a1d94d975f545be46e3a7bb045108121b501d814768353",
+    "tests/golden/ko_recapture.json": "30724c340a305345a6bd61cfe619ced924276def73f9ee40d4e9edfa26913424",
+    "tests/golden/magic_hand_commander_relief.json": "82aa5db3a8ac86dc186e18797965a394fd091b945b542cdd2f56477d9a45bb72",
+    "tests/golden/magic_hand_default_is_seal.json": "c87bb78147ae171037d5123d90df1783bc04818c2b8e9bcc312312cd4f98a320",
+    "tests/golden/magic_hand_friendly_capture.json": "bec47607a9dcc17412f8686f39777d0756a370857973e680286d1330e14d0767",
+    "tests/golden/magic_hand_friendly_superko.json": "adbfd37f6e582d7e093335634ac33bde77c9d62f4db7ad84004a70838da058fe",
+    "tests/golden/magic_hand_friendly_two_push_then_place.json": "7dead651649f31aa65bd236960a80747dba237d1b0caa5c1b3b98e54ea6b92a6",
+    "tests/golden/magic_hand_insufficient_mana.json": "a3c85e0dbdb906c3d6103e7ca3f26839a8bbc4bcf42ad8ae64f5829f76054e44",
+    "tests/golden/magic_hand_one_ap_event_order.json": "6a45e7587da59e45e5a4301883b8773e52d224c1470bf2efea152318e1bcad38",
+    "tests/golden/magic_hand_push_then_place.json": "478f85266d6e8ee5ba4a336135838e0ed95b9ef4ea0c09a3a6b8ed4683e1bf79",
+    "tests/golden/magic_hand_range_and_target_errors.json": "7cb77e0c75e7d315caf25dde4d6864732f042613cdc5b33cbf1d00d643d198f8",
+    "tests/golden/magic_hand_range_two_decapitation.json": "09e26e920fb196a2bac3c3a966342b25b86c478bc7b2a5a02bd45df5be21b7df",
+    "tests/golden/magic_hand_split_groups.json": "cdba3993b880a6114af590fab2cdaaf181abb842274fcfa2fc4f40d83bdf1a2e",
+    "tests/golden/magic_hand_suicide_rollback.json": "48d7d811a2b2e1346bd71cd32c3b4959b20ac3f1fd3b52b6b6cfa9c2b1fb995a",
+    "tests/golden/magic_hand_superko_rollback.json": "b94230e4cd4a2231963aa538214908e36ea2f94833e155cd5875b8a9040afb5d",
+    "tests/golden/magic_hand_target_and_cost.json": "1c00cd8f43e22203ef3d629a25ee9e27524e31b492ac9f821df38b15990171b5",
+    "tests/golden/mana_cap.json": "a1937d3dde6938139bb14026c78662f027848e356f306937835c0c3242c09fad",
+    "tests/golden/new_game_default_first_turn_one_ap.json": "81b001dd62f8d075642a5b5f1128d8986af961260f82f4a284beaaf16a7dbb81",
+    "tests/golden/new_game_two_ap_baseline.json": "49505f6863f55d41d9f3b080f8c1205aee47df3c996b9f086ab0098256aa91a1",
+    "tests/golden/no_resummon_by_default.json": "0722de42aaf8a4e2880b5ba8388ad150804af516fedf6d9cf32235d052d31264",
+    "tests/golden/resummon_allowed_when_enabled.json": "6f3fb1dd64082d871bc34276586cbb9d3bec92df9e29cc90d65e7e37c6349f32",
+    "tests/golden/seal_blocks_then_expires.json": "8694db21a1442f24ea5e4703ec445d152528aff15a1860b0e61815b2e04e4de6",
+    "tests/golden/seal_range_errors.json": "17741f3c91d43205d5348f813f3a022bf814e02e765604bdad3c72e8b7913273",
+    "tests/golden/suicide_rejected.json": "df1fe76cbdbc633430cd79e4b6900cba6e8a9ba08e168983bb99e7da2e4c37d0",
+    "tests/golden/summon_adjacent_to_any_friend.json": "0fec29fc7110911bf7b0b2978e8e18f6cc93f62de61aa89199b3ce99450cf481",
+    "tests/golden/summon_needs_mana.json": "d8112d8d845610d435d528714fd13d7494abf4f441618e32e82b0f5d3416442b",
+    "tests/golden/swap_back_is_ko.json": "a32f51148430731cab4a823826bee9f04070a00c13e42e01a677dc66e99d83da",
+    "tests/golden/swap_basic.json": "67f51fbd1e0add15071a2bf14b07d6a3d7b8afa6f0eae6c5db5dac37284ec887",
+    "tests/golden/swap_decapitates.json": "a5f947343e9b07f59f57b3f492f5b5ab84c597615246484c740de2110134c6e6",
+    "tests/golden/swap_suicide.json": "2afa8157a08f143446ec7b905328eb6c1e9b91257107df8d21f54802d4023a87",
+    "tests/golden/swap_target_errors.json": "3a4e5f2f597b43af7588004913a782e1c57d0636c24c3b8a5bb6a09018e67703",
+    "tests/golden/turn_limit_draw.json": "9fe907610092453049757728595ed5fa836d4aaa129727beffab4095d71afe77",
+    "tests/golden/win_by_commander_capture.json": "0dc335e3ffe7ca88ea6b100be81b43284de245695110c95318bec6eeeac0abe6",
+    "tests/validators/test_golden_fixture_validator.py": "ac103df6c1c40e96e1c3eaf40048186892949254b67b4d79815d51321c50530f",
+    "tools/probes/magic-hand/check-mutations.py": "51e844e8b84e64f74ceb6d4c56e5fdd1a993c1e0ecb0038b28424ef703fcd71e",
+    "validators/golden_fixture_validator.py": "af2469b2413cdb2ed1a8a3f69b7d45ac5a8058ef1c08cd46ce0bd16e697f7a35",
+    "tools/probes/magic-hand/Program.cs": "8ed0852fe76e6dcacca87ca00d25ff605d595e0253d240a1fb34c98a881d9cac",
+    "tools/probes/magic-hand/ReviewSupplement.cs": "ec10095efceaa96857cb82137fd2ec802abc75d6c9522428f364bb6c89de7784",
+    "artifacts/r1-review/verify-evidence.py": "7fdb02f0825dca1ea8291e20302747a814b14fbbf648952c38a804910531d713"
+  },
+  "logs": [
+    {
+      "path": "artifacts/r1-review/golden-validator.log",
+      "sha256": "4466be7bd9a0505f40db49edc19568ca5559aad2bc10949d3411d62ae06fa18f"
+    },
+    {
+      "path": "artifacts/r1-review/validator-tests.log",
+      "sha256": "42e8e0ada853ffa57bcec62d60ffc5389d1b0f21b4086fc9c7c6209b3f6c3afd"
+    },
+    {
+      "path": "artifacts/r1-review/drift.json",
+      "sha256": "297517b552b7eb71c9109b808e91d07d98d88e718dad5e6aa77b36a2ca38eb2e"
+    },
+    {
+      "path": "artifacts/r1-review/domain-final.log",
+      "sha256": "bea38ba2a5cabc9f7fb11e5a485655219439fe68e72daf5f09af1de7c903f097"
+    },
+    {
+      "path": "artifacts/r1-review/windows-final.log",
+      "sha256": "0f42d2a257ced3d4b8c651fa251da539810b898d937819c3c4a8c86af713b9c8"
+    },
+    {
+      "path": "artifacts/r1-review/mutations.log",
+      "sha256": "82393c50b7d109a8d5d6efdb5cd6cef3ded14f81ff320b840f424cafbf57d6b8"
+    },
+    {
+      "path": "artifacts/r1-review/probe-build.log",
+      "sha256": "9bc7625d40242054800e6d5bbe77d32d2291d38aed03ed4a6a1c9515f03900d6"
+    }
+  ],
+  "mutationSummary": {
+    "attempted": 2,
+    "killed": 2,
+    "restoredPassed": 11
+  },
+  "historicalEvidence": [
+    "validation.json and mutations.json: original enemy-only run at 191347d, not current-source hashes",
+    "review-validation.json and review-supplement.json: enemy-only correction/supplement at 00a2675; not rerun after friendly expansion"
+  ],
+  "limitations": [
+    "Windows tests exclude UI-3c",
+    "No tactical or balance search after friendly expansion",
+    "No human playtest",
+    "Raw TRX/logs are retained locally under ignored artifacts/r1-review; compact hashes and counters committed"
+  ],
+  "probeBuild": {
+    "command": "dotnet build tools/probes/magic-hand -c Release",
+    "exitCode": 0,
+    "searchRerun": false
+  }
+}

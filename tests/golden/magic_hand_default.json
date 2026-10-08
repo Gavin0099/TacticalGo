@@ -1,0 +1,82 @@
+{
+  "name": "magic_hand_default",
+  "description": "Owner-selected default: no mageSkill override enables friendly-soldier Magic Hand, rejects Seal, and retains original target ownership/cost. Hand-authored board and expectations.",
+  "config": {
+    "boardSize": 5
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      ".....",
+      ".Hx..",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          1,
+          1
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "SkillNotSelected",
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "2,2": ".",
+          "2,3": "x",
+          "1,2": "H"
+        },
+        "liberties": {
+          "2,3": 4
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "skillUsed": true,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    }
+  ]
+}

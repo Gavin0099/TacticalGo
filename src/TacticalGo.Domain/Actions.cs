@@ -13,6 +13,9 @@ public sealed record CastBastion(Point First, Point Second) : GameAction;
 /// <summary>Mage 封印: opponent may not place on <see cref="At"/> during their next turn.</summary>
 public sealed record CastSeal(Point At) : GameAction;
 
+/// <summary>Mage 魔法之手: push one ordinary soldier of either player to the adjacent empty point in the chosen direction.</summary>
+public sealed record CastMagicHand(Point Target, PushDirection Direction) : GameAction;
+
 /// <summary>Rogue 換位: swap places with an adjacent enemy soldier.</summary>
 public sealed record CastSwap(Point Target) : GameAction;
 
@@ -39,6 +42,8 @@ public enum IllegalReason
     OutOfRange,
     InvalidTarget,
     DuplicateTarget,
+    SkillNotSelected,
+    InvalidDirection,
 }
 
 public sealed record ValidationResult(bool IsLegal, IllegalReason Reason, string Message)

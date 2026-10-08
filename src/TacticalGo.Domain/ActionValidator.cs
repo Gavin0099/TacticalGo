@@ -46,9 +46,20 @@ public static class ActionValidator
                         yield return new CastBastion(around[i], around[j]);
                 break;
             case HeroClass.Mage:
-                foreach (var p in board.AllPoints())
-                    if (board.IsEmpty(p) && h.ManhattanTo(p) is >= 1 && h.ManhattanTo(p) <= state.Config.SealRange)
-                        yield return new CastSeal(p);
+                if (state.Config.MageSkill == MageSkill.Seal)
+                {
+                    foreach (var p in board.AllPoints())
+                        if (board.IsEmpty(p) && h.ManhattanTo(p) is >= 1 && h.ManhattanTo(p) <= state.Config.SealRange)
+                            yield return new CastSeal(p);
+                }
+                else if (state.Config.MageSkill == MageSkill.MagicHand)
+                {
+                    foreach (var p in board.AllPoints())
+                        if (board[p] is { Kind: PieceKind.Soldier } &&
+                            h.ManhattanTo(p) <= state.Config.MagicHandRange)
+                            foreach (var direction in Enum.GetValues<PushDirection>())
+                                yield return new CastMagicHand(p, direction);
+                }
                 break;
             case HeroClass.Rogue:
                 foreach (var n in board.Neighbors(h))

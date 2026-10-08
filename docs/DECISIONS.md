@@ -2,6 +2,54 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — R1 首次整合安排於 G3 開始前（Owner）
+
+- Owner 已透過 GitHub 查核 R1 遠端 `ee86babd4b0d972c20a38a6dd8223da607ec306b` 與現行基線；此為遠端保存與文件同步，不是 R1／UI-3c 整合或 G0 通過。Domain 129、Windows 47、Golden 38 仍為先前保存的工程證據。
+- 修正首次整合時點：G2 完成、G3 UI 開始前，將 R1 Domain 整合至 Gameplay 開發基線，處理文件差異並跑 Domain／Windows／Golden 整合回歸；G3 直接呼叫 `CastMagicHand` 等真實 Domain 功能，不另寫一套模擬規則。此工作包含於既有 G3，不增加研究／治理 Slice 或新 Gate。
+- G4 完成 7×7 本機雙人自由攻守、召喚與三職技能的端到端驗證，不延到 G4 才首次整合 R1；7×7 主將起點仍待 G4 定案。G5 才是人類遊戲性驗收。
+- **G0 Pending，僅驗收操作；通過後才進 G1，G1–G4 順序不變。** R1 不再增加規則、搜尋或模擬；此處只安排未來整合工作，不代表本輪已整合、已通過測試或取得 merge 授權。文件修正沿用既有 R1 分支 push 授權，其他分支不變。
+
+## 2026-10-08 — 現行可玩版本路線與本段 push 授權（Owner）
+
+> 此條目原先把首次整合放在 G4 的敘述，已由上方「R1 首次整合安排於 G3 開始前」取代；其餘範圍與 Gate 決定保留。
+
+- Owner 接受 R1 預設切換回報：魔法之手為法師預設，封印保留設定切換與比較；規則研究已足以支撐下一階段開發，R1 不再增加規則或搜尋。此接受不代表平衡／遊戲性驗收或已獨立審查程式 diff。
+- `docs/PLAN.md` 最前面增加 Current Baseline；§2 採現行技能與 Windows 7×7 首個完整雙人版本目標，§7 採 G0 → G4。原 P0／S0–S5 與舊 R1 決定保留為歷史，不再作為 G1–G4 的新增研究門檻，也不阻擋 G0。
+- **G0 Pending**：Owner 實際操作 UI-3c 第 2 關盜賊教學，確認顯示、模式切換、換位預覽、確認／復原／重試與兩種技能＋落子順序，沒有重大操作阻礙後才開 G1；是否好玩由 G5 驗證。G1–G4 順序不變，不提前開工。
+- G3 前的小型玩法比較須固定時間與局面範圍，不因找不到完美案例擴大模擬；不新增 Gate。G4 定案 7×7 主將起點，完整整合 R1／UI-3c 後重跑合併狀態測試；分支各自的 PASS 不證明整合成功，不為此另開治理階段。
+- Owner 後續明確指示「做到一個段落先幫我推上去」：授權文件整理與直接相關檢查完成後 push `codex/r1-magic-hand`，包含先前本機 R1 提交；取代此分支的歷史不 push 限制。**未授權 merge、其他分支的 push 或新 Slice。** 上傳結果以遠端 ref 驗證另行回報，本條目不預先宣稱已上傳。
+
+## 2026-10-08 — Owner 選魔法之手作法師預設，R1 收斂
+
+- Owner 最新指示「我覺得可以換成魔法之手了」取代先前「正式替換 HOLD／封印維持預設」。`RuleConfig.MageSkill` 預設改為 `MagicHand`；`Seal` 保留明確設定的比較基線。目標仍只限雙方普通士兵，主將／英雄禁推，費用、射程及原子回滾不變。
+- 此核准是技能選擇，不是平衡、好玩或已獨立審查 diff 的結論。己方推動提子小例可被直接落子替代，只證明規則正確觸發，不證明 Mana 的策略價值。
+- R1 暫時收斂，不加新規則、不補搜尋；本輪只切換隔離 R1 分支的 Domain 預設與測資，其他分支及現有 exe 尚未整合。魔法之手 UI 仍待 G3。
+- **G0 Pending；G0 實際試玩無重大操作阻礙後才開 G1；本輪不開新 Slice、不 push、不 merge。** G3 前的小型玩法比較仍待後續安排；整合 R1／UI-3c 後須重跑合併狀態的測試，不能沿用分支各自的 PASS。
+
+## 2026-10-08 — R1 審查更正與雙方普通士兵推動（Owner）
+
+- Owner 本輪先要求修正五口氣與可達性分類，最後另授權推動己方棋子，並明確回答「只推雙方普通士兵」。此授權只取代原 R1 的敵方歸屬限制；雙方主將、英雄仍不可推。
+- 射程 ≤2、1 AP＋2 Mana、每回合最多一次技能、正交相鄰空目的地、不得出界／連鎖、自殺、positional superko 與完整回滾維持原契約。封印仍正式預設。
+- 原 `connector_range_two` 棋形保持不變，五個生存空格為 `(1,0)`、`(2,0)`、`(3,1)`、`(1,2)`、`(2,2)`。它是自訂 5×5 機制展示，不是現有 9×9 或起點未定的 7×7 可達證據。
+- 允許既有探針作一次最小 9×9 補充及上一回合反制查核；不要求必勝、不延長成平衡搜尋。敵方限定基線的原始執行記錄與後續雙方推動回歸分開保存。
+- **候選保留；正式技能替換 HOLD；G0 Pending；G1、G3 不提前；不 push、不 merge、不做 UI。** 下一件產品工作仍是 Owner 的 G0 試玩。
+
+## 2026-10-08 — R1-MAGIC-HAND 核准（本次 Owner 指示）
+
+目標歸屬限制已由上方新決定取代；此處保留原始核准紀錄。
+
+- 開啟 R1，僅 Domain、黃金測資、小型限定搜尋；從 `chore/governance-full` @ `761af5d` 建立隔離 worktree，單獨本機 commit，不 push、不 merge、不做 UI。
+- 魔法之手：法師距目標曼哈頓 ≤2，一顆敵方普通士兵推至玩家所選正交方向的相鄰空點；1 AP＋2 Mana，每回合最多一次技能。禁止推主將／英雄／己方、佔據點、出界與連鎖推動，遵守既有自殺、positional superko 及原子回滾。
+- 更正前提：移動後 A 變空，必然是 B 所在棋串的一口氣；單次推動直接使被推士兵無氣不可達。不新增處決規則；驗證推動＋落子的兩次行動。
+- 封印保留為可切換比較基線，正式預設仍是封印；火球術未獲實作授權。上一輪封印搜尋不補跑，保留 476 局面零獨有勝局與防守面未涵蓋的歷史限制。
+- 比較 A 魔法之手＋落子、B 兩次落子、C 盜賊換位＋落子，記錄局面、深度、對手策略、合法對局可達性、未涵蓋範圍；不自動增加預算，不由有利棋形宣稱平衡或好玩。
+- **G0 仍 Pending；G1 不提前；G3 UI 未授權；G5 不由 agent 通過。** 詳見 `docs/R1_MAGIC_HAND.md`。
+
+## 2026-10-08 — PR #1 的 GitHub 漂移檢查已觀測成功
+
+- 本次以 `gh pr list --state all --json number,state,headRefOid,statusCheckRollup` 讀取 live 狀態：PR #1 在 `761af5da610cfb42aa7e370c229b9549754ae562` 的 `governance-drift` 結果為 `SUCCESS`，完成於 `2026-10-08T07:06:14Z`。
+- [GitHub job](https://github.com/Gavin0099/TacticalGo/actions/runs/37741378903/job/113192626883) 補上先前「尚未在 GitHub 跑過」的限制。它僅證明該 head 的漂移檢查成功，不證明 R1 CI、runtime enforcement 或合併授權；PR #1、#2 仍 OPEN。
+
 ## 2026-10-08 (full governance adoption) — Owner asked for a complete import
 
 - Owner：「先幫我完整導入」。依框架文件（`docs/INTEGRATION_GUIDE.md` §4–5、F-7）在分支 `chore/governance-full`：

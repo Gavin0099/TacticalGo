@@ -16,3 +16,13 @@
 - Before any push of the public repo: resolve `governance/MEMORY_PROTOCOL.md` (framework working tree has an uncommitted edit that was copied) and add Apache-2.0 attribution for copied framework files.
 - Owner reviews the remaining pending items in `docs/RULES_DRAFT.md` section 8 one by one.
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
+
+- R1 Domain and bounded probe locally complete at 191347d; handoff/rules on docs/handoff e3a78fc. G0 Pending, G1 waits, no G3/UI/push/merge. <!-- memory_record_projection:active-task-summary:98009da933e66272fdb1bea63446c8dc087a950c592c4f1efd3639ab6031f777 -->
+
+- R1 review fixed five liberties and custom-5x5 classification at 00a2675; standard-9x9 cooperative replay has a prior-turn counter. 7c7abec allows both sides ordinary soldiers; 128 Domain / 47 Windows / 37 Golden, 2 focused mutants killed. Seal default; replacement HOLD; G0 Pending; no G1/G3/push/merge. <!-- memory_record_projection:active-task-summary:425e072c87be9f9adb3b10d498c2f3070c62bfce506559e5a865c7f204f8e68a -->
+
+- Owner selected Magic Hand default at fede3ce; explicit Seal baseline retained. R1 research closed, no UI integration. Domain 129 / Windows 47 / Golden 38 pass. G0 Pending; four development slices G1-G4 to complete 7x7 local play, then G5 human gate and G6 feedback fixes. No new Slice/push/merge. <!-- memory_record_projection:active-task-summary:01b31e5382dc455e584bf8dcbf1c7be743b9351f6ed31c0081291e8b7b89d67c -->
+
+- Current PLAN baseline is authoritative: Magic Hand default, 7x7 Windows G4 target, G0 rogue tutorial Pending with five manual checks, G1-G4 ordered without new research gates. Old P0/S0-S5 and R1 HOLD are historical. R1/UI-3c remain unintegrated. Owner authorized this R1 branch push after documentation checks; no merge or new Slice. <!-- memory_record_projection:active-task-summary:3333009fb9a37ff7b448509dd89ad1cc5547f1a2297446e1171f6df30c36a00a -->
+
+- Owner revised integration timing: after G2, integrate R1 Domain into Gameplay baseline and rerun Domain/Windows/Golden before G3 UI; G3 uses real CastMagicHand, G4 verifies complete 7x7 play end to end. No new Slice or Gate. G0 remains Pending; no actual integration, new rules or search. Documentation follows existing R1 push authority; no merge. <!-- memory_record_projection:active-task-summary:f7b3b25c259e14f9b57289c30c810b5f871cf157400541822635419c3d3a0d20 -->
