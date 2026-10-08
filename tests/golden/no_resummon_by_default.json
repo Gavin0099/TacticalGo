@@ -1,0 +1,53 @@
+{
+  "name": "no_resummon_by_default",
+  "description": "A hero that already fell cannot be summoned again (Draft default).",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "....X"
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "SummonHero",
+        "at": [
+          3,
+          7
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "HeroAlreadySummoned",
+        "mana": [
+          6,
+          3
+        ]
+      }
+    }
+  ]
+}

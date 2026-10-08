@@ -1,0 +1,52 @@
+{
+  "name": "swap_suicide",
+  "description": "A swap that leaves the Rogue without liberties is rejected and nothing moves.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "Hoo",
+      ".o"
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSwap",
+        "target": [
+          1,
+          0
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Suicide",
+        "cells": {
+          "0,0": "H",
+          "1,0": "o"
+        },
+        "mana": [
+          6,
+          3
+        ],
+        "ap": 2
+      }
+    }
+  ]
+}

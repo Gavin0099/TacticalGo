@@ -1,0 +1,53 @@
+{
+  "name": "capture_before_suicide",
+  "description": "A placement that has no liberty of its own but captures is legal.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      ". o x",
+      "o x .",
+      "x"
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "0,0": "x",
+          "1,0": ".",
+          "0,1": "."
+        },
+        "events": [
+          "ResourcesSpent",
+          "PiecePlaced",
+          "PiecesCaptured"
+        ]
+      }
+    }
+  ]
+}

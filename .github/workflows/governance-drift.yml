@@ -1,0 +1,29 @@
+name: Governance Drift
+
+# Manual trigger only (Owner decision 2026-10-08: avoid ineffective CI).
+# This repo adopted governance copy-based (audit-only): governance/ holds documents, NOT governance_tools/.
+# The job below only works after the framework is added as a submodule at governance/ (docs/INTEGRATION_GUIDE.md sections 4-5).
+# Until then, run the drift check locally:
+#   python <framework>/governance_tools/governance_drift_checker.py --repo . --framework-root <framework>
+on:
+  workflow_dispatch:
+
+jobs:
+  governance-drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run governance drift check
+        run: |
+          python governance/governance_tools/governance_drift_checker.py \
+            --repo . \
+            --framework-root governance \
+            --format human

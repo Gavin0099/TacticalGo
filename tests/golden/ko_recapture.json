@@ -1,0 +1,137 @@
+{
+  "name": "ko_recapture",
+  "description": "Immediate recapture of a ko is rejected; it becomes legal once the board differs.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      ". x o",
+      "x o . o",
+      ". x o"
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          2,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,1": ".",
+          "2,1": "x"
+        }
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two"
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          1,
+          1
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Ko",
+        "cells": {
+          "1,1": ".",
+          "2,1": "x"
+        },
+        "current": "Two",
+        "ap": 2
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          8,
+          8
+        ]
+      },
+      "expect": {
+        "ok": true
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          8,
+          7
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "current": "One"
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          7,
+          8
+        ]
+      },
+      "expect": {
+        "ok": true
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two"
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          1,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,1": "o",
+          "2,1": "."
+        }
+      }
+    }
+  ]
+}

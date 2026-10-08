@@ -1,0 +1,108 @@
+{
+  "name": "bastion_range_and_target_errors",
+  "description": "Bastion needs two distinct empty points orthogonally adjacent to the Warrior.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "..Hx"
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          2,
+          3
+        ],
+        "second": [
+          2,
+          3
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "DuplicateTarget"
+      }
+    },
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          2,
+          3
+        ],
+        "second": [
+          3,
+          3
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "OutOfRange"
+      }
+    },
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          2,
+          3
+        ],
+        "second": [
+          3,
+          4
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Occupied"
+      }
+    },
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          2,
+          3
+        ],
+        "second": [
+          1,
+          4
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "2,3": "x",
+          "1,4": "x"
+        },
+        "mana": [
+          4,
+          3
+        ]
+      }
+    }
+  ]
+}
