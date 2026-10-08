@@ -2,6 +2,13 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 (later) — UI first, bots paused
+
+- 暫停技能型機器人與大量背景平衡模擬；優先做可視化、可操作的棋盤，讓 Owner 親自玩三職業。
+- 順序：UI-0 草圖 → UI-1 可點擊 9×9（落子、氣數、提子）→ UI-2 三職業技能介面 → PLAY-1 本機雙人＋載入固定局面 → PLAY-2 真人驗證 → BOT-1（視需要）→ 正式美術。
+- Windows 原型用 WinForms 直接呼叫現有 C# 引擎，不重寫判定；不取代 iPhone 觸控驗收；正式版仍是 Swift/SwiftUI，用 `tests/golden` 驗證一致。
+- 不擴張治理流程，不投入正式美術、角色動畫、完整紅龍。每個階段先交付可檢查成果。
+
 ## 2026-10-08 — rules, AP, tech, governance (Owner message "TacticalGo 下一步決策")
 
 | Topic | Decision |
