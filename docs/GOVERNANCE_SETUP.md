@@ -49,7 +49,7 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
 ## Known limits (do not over-claim)
 
 - Hooks are local and advisory (a memory-workflow warning does not block a commit).
-- The drift workflow runs only manually or on pull requests touching governance files, and has not yet been observed on GitHub.
+- The drift workflow runs only manually or on pull requests touching governance files. PR #1 at `761af5d` was observed successful on GitHub on 2026-10-08: https://github.com/Gavin0099/TacticalGo/actions/runs/37741378903/job/113192626883 . This is not CI evidence for the local R1 branch.
 - `readiness` still shows three `framework_version` warnings: a submodule consumer does not write `framework.lock.json`.
 - `.governance/baseline.yaml` and `governance/.update-receipt.json` are tool-generated and contain this machine's absolute paths.
 - Governance does not prove domain correctness, runtime enforcement, memory completeness or release readiness.

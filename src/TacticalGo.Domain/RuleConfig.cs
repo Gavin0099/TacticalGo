@@ -29,6 +29,10 @@ public sealed record RuleConfig
 
     public int SealRange { get; init; } = 2;
 
+    /// <summary>R1 comparison switch; normal games retain Seal as their default.</summary>
+    public MageSkill MageSkill { get; init; } = MageSkill.Seal;
+    public int MagicHandRange { get; init; } = 2;
+
     /// <summary>Turn limit (plies, one ply = one player's turn). Reaching it without a decapitation is a draw.</summary>
     public int MaxPlies { get; init; } = 100;
 

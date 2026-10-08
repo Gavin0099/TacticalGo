@@ -2,6 +2,20 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — R1-MAGIC-HAND 核准（本次 Owner 指示）
+
+- 開啟 R1，僅 Domain、黃金測資、小型限定搜尋；從 `chore/governance-full` @ `761af5d` 建立隔離 worktree，單獨本機 commit，不 push、不 merge、不做 UI。
+- 魔法之手：法師距目標曼哈頓 ≤2，一顆敵方普通士兵推至玩家所選正交方向的相鄰空點；1 AP＋2 Mana，每回合最多一次技能。禁止推主將／英雄／己方、佔據點、出界與連鎖推動，遵守既有自殺、positional superko 及原子回滾。
+- 更正前提：移動後 A 變空，必然是 B 所在棋串的一口氣；單次推動直接使被推士兵無氣不可達。不新增處決規則；驗證推動＋落子的兩次行動。
+- 封印保留為可切換比較基線，正式預設仍是封印；火球術未獲實作授權。上一輪封印搜尋不補跑，保留 476 局面零獨有勝局與防守面未涵蓋的歷史限制。
+- 比較 A 魔法之手＋落子、B 兩次落子、C 盜賊換位＋落子，記錄局面、深度、對手策略、合法對局可達性、未涵蓋範圍；不自動增加預算，不由有利棋形宣稱平衡或好玩。
+- **G0 仍 Pending；G1 不提前；G3 UI 未授權；G5 不由 agent 通過。** 詳見 `docs/R1_MAGIC_HAND.md`。
+
+## 2026-10-08 — PR #1 的 GitHub 漂移檢查已觀測成功
+
+- 本次以 `gh pr list --state all --json number,state,headRefOid,statusCheckRollup` 讀取 live 狀態：PR #1 在 `761af5da610cfb42aa7e370c229b9549754ae562` 的 `governance-drift` 結果為 `SUCCESS`，完成於 `2026-10-08T07:06:14Z`。
+- [GitHub job](https://github.com/Gavin0099/TacticalGo/actions/runs/37741378903/job/113192626883) 補上先前「尚未在 GitHub 跑過」的限制。它僅證明該 head 的漂移檢查成功，不證明 R1 CI、runtime enforcement 或合併授權；PR #1、#2 仍 OPEN。
+
 ## 2026-10-08 (full governance adoption) — Owner asked for a complete import
 
 - Owner：「先幫我完整導入」。依框架文件（`docs/INTEGRATION_GUIDE.md` §4–5、F-7）在分支 `chore/governance-full`：

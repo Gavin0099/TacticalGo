@@ -24,3 +24,6 @@ obj/
 
 # Windows prototype publish output
 dist/
+
+# Reproducible R1 test logs/TRX; compact receipts are committed under docs/evidence.
+artifacts/r1-validation/

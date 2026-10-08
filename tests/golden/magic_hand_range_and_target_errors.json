@@ -1,0 +1,119 @@
+{
+  "name": "magic_hand_range_and_target_errors",
+  "description": "Hand-authored: enemy hero/commander and range 3 forbidden; range 2 target can move to distance 3.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      ".H.oQ",
+      ".....",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          4,
+          0
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "OutOfRange",
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          1
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Occupied",
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          1
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          1
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "3,1": ".",
+          "3,0": "o"
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    }
+  ]
+}

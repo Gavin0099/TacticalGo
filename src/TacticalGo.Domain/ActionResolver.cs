@@ -8,7 +8,8 @@ internal sealed record PreparedAction(
     bool IsSkill,
     IReadOnlyList<(Point At, PieceKind Kind)> Placed,
     (Point A, Point B)? Swapped,
-    SealEffect? Seal);
+    SealEffect? Seal,
+    (Point From, Point To, Piece Piece)? Pushed = null);
 
 /// <summary>Validate → Apply atomically (on copies) → Resolve captures → Emit events → Commit.</summary>
 internal static class ActionResolver
@@ -51,6 +52,8 @@ internal static class ActionResolver
         }
         if (plan.Swapped is { } swap)
             events.Add(new PiecesSwapped(mover, swap.A, swap.B));
+        if (plan.Pushed is { } push)
+            events.Add(new PiecePushed(mover, push.From, push.To, push.Piece));
         if (plan.Seal is { } seal)
         {
             next.Seals = [.. next.Seals, seal];
@@ -88,6 +91,7 @@ internal static class ActionResolver
             SummonHero a => PlanSummonHero(s, a),
             CastBastion a => PlanBastion(s, a),
             CastSeal a => PlanSeal(s, a),
+            CastMagicHand a => PlanMagicHand(s, a),
             CastSwap a => PlanSwap(s, a),
             _ => Fail(IllegalReason.InvalidTarget, $"Unknown action {action.GetType().Name}."),
         };
@@ -153,6 +157,8 @@ internal static class ActionResolver
     {
         var (hero, error) = RequireSkill(s, HeroClass.Mage);
         if (error is not null) return (null, error);
+        if (s.Config.MageSkill != MageSkill.Seal)
+            return Fail(IllegalReason.SkillNotSelected, "Seal is not the selected Mage skill.");
         if (!s.Board.InBounds(a.At)) return Fail(IllegalReason.OutOfBounds, $"{a.At} is off the board.");
 
         var distance = hero.ManhattanTo(a.At);
@@ -186,6 +192,43 @@ internal static class ActionResolver
         trial[hero] = victim;
         trial[a.Target] = new Piece(me, PieceKind.Hero);
         return Finish(s, trial, NoPlacements, (hero, a.Target), s.Config.SkillManaCost, isSkill: true, seal: null);
+    }
+
+    private static (PreparedAction?, ValidationResult) PlanMagicHand(GameState s, CastMagicHand a)
+    {
+        var (hero, error) = RequireSkill(s, HeroClass.Mage);
+        if (error is not null) return (null, error);
+        if (s.Config.MageSkill != MageSkill.MagicHand)
+            return Fail(IllegalReason.SkillNotSelected, "Magic Hand is not the selected Mage skill.");
+        if (!s.Board.InBounds(a.Target))
+            return Fail(IllegalReason.OutOfBounds, $"{a.Target} is off the board.");
+        if (hero.ManhattanTo(a.Target) > s.Config.MagicHandRange)
+            return Fail(IllegalReason.OutOfRange, $"{a.Target} is not within {s.Config.MagicHandRange} of the Mage at {hero}.");
+        if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim || victim.Owner == s.Current)
+            return Fail(IllegalReason.InvalidTarget, "Magic Hand target must be an enemy soldier (not a commander or hero).");
+        if (!Enum.IsDefined(a.Direction))
+            return Fail(IllegalReason.InvalidDirection, "Choose Up, Right, Down or Left.");
+
+        var destination = a.Direction switch
+        {
+            PushDirection.Up => new Point(a.Target.X, a.Target.Y - 1),
+            PushDirection.Right => new Point(a.Target.X + 1, a.Target.Y),
+            PushDirection.Down => new Point(a.Target.X, a.Target.Y + 1),
+            PushDirection.Left => new Point(a.Target.X - 1, a.Target.Y),
+            _ => throw new InvalidOperationException("Direction was validated above."),
+        };
+        if (!s.Board.InBounds(destination))
+            return Fail(IllegalReason.OutOfBounds, $"{destination} is off the board.");
+        if (!s.Board.IsEmpty(destination))
+            return Fail(IllegalReason.Occupied, $"{destination} is occupied; Magic Hand does not chain-push.");
+
+        // This is movement, not placement: a seal continues to block placement only.
+        var trial = s.Board.Clone();
+        trial[a.Target] = null;
+        trial[destination] = victim;
+        // The empty source is necessarily a liberty of the moved soldier. Other groups may change.
+        return Finish(s, trial, NoPlacements, null, s.Config.SkillManaCost, isSkill: true, seal: null,
+            pushed: (a.Target, destination, victim));
     }
 
     /// <summary>Common skill gate. Returns the caster hero's position, or the reason the skill cannot be used.</summary>
@@ -222,7 +265,8 @@ internal static class ActionResolver
         (Point A, Point B)? swapped,
         int manaCost,
         bool isSkill,
-        SealEffect? seal)
+        SealEffect? seal,
+        (Point From, Point To, Piece Piece)? pushed = null)
     {
         var resolution = BoardRuleEngine.ResolveCaptures(trial, s.Current);
         if (resolution.MoverHasDeadGroup)
@@ -230,7 +274,7 @@ internal static class ActionResolver
         if (s.History.Contains(trial.ComputeHash()))
             return Fail(IllegalReason.Ko, "That would repeat an earlier board position (ko).");
 
-        return (new PreparedAction(trial, resolution.Captured, manaCost, isSkill, placed, swapped, seal),
+        return (new PreparedAction(trial, resolution.Captured, manaCost, isSkill, placed, swapped, seal, pushed),
             ValidationResult.Ok);
     }
 

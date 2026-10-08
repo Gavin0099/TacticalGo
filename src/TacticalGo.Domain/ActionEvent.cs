@@ -9,6 +9,8 @@ public sealed record PiecePlaced(Player Player, Point At, PieceKind Kind) : Acti
 
 public sealed record PiecesSwapped(Player Player, Point A, Point B) : ActionEvent;
 
+public sealed record PiecePushed(Player Caster, Point From, Point To, Piece Piece) : ActionEvent;
+
 public sealed record SealPlaced(Player Caster, Player BlockedPlayer, Point At) : ActionEvent;
 
 public sealed record SealExpired(Point At) : ActionEvent;

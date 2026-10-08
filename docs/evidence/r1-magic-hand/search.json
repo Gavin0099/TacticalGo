@@ -1,0 +1,1512 @@
+{
+  "status": "completed",
+  "limitation": null,
+  "boardSize": 5,
+  "intendedPositions": 4,
+  "strategiesPerPosition": 3,
+  "ourMaxAtomicDepth": 2,
+  "opponentMaxAtomicDepth": 2,
+  "totalMaxAtomicDepth": 4,
+  "nodeLimit": 50000,
+  "secondsLimit": 30,
+  "applyAttempts": 6446,
+  "opponent": "None class; every legal placement and EndTurn for its next turn; no skills; no moves after terminal win",
+  "witnessSelection": "immediate commander win, then captured enemy soldiers, then own commander liberties, then ordinal action text",
+  "responseScope": "all replies to one selected witness per strategy; not minimax across all own plans",
+  "reachability": "all roots replayed from NewGame with custom 5x5 commander starts and legal cooperative moves",
+  "comparability": "identical board, AP and histories of board placements; Mage and Rogue use their existing summon costs, so root Mana differs; both can afford one skill",
+  "notCovered": [
+    "7x7 or 9x9",
+    "uncooperative setup opponent",
+    "opponent hero skills",
+    "multi-turn continuation",
+    "other hero deployments",
+    "Seal defensive search",
+    "balance",
+    "fun",
+    "G0/G1/G3/G5 acceptance"
+  ],
+  "sourceSha256": {
+    "src/TacticalGo.Domain/ActionEvent.cs": "91a1fc2832f9b68cb268e60d34f03ed97876b5e3e75f5b71ef93fa276db8acd2",
+    "src/TacticalGo.Domain/ActionResolver.cs": "63188b8d8991d53c8c82844ec3105023b0ccfd6cf67ddd822e07de3ab3d311f6",
+    "src/TacticalGo.Domain/ActionValidator.cs": "44e3aa82906c179e2bf46ed86e8d1b751cbbacbad02a478f41ed61038fc64e75",
+    "src/TacticalGo.Domain/Actions.cs": "137fd50fa127fb0fa19a7fda8ddb527cd2e7f0fff5b2cb9e6a596486ab7f7d6b",
+    "src/TacticalGo.Domain/Board.cs": "b33a495353862a13c610b34a5a15cc5e6b728a0731bf7245f4c74f655873e343",
+    "src/TacticalGo.Domain/BoardRuleEngine.cs": "0ca338da619726d34036df9ca3c38e9778d002e6abb87ecc2e78d8abb07bb870",
+    "src/TacticalGo.Domain/BoardText.cs": "ce9ea8b88c39916f560527a5eff29f198b20798b04fc01858a3f51a4aeb9a80a",
+    "src/TacticalGo.Domain/GameEngine.cs": "18c283d7a46658d94f72f4df98a87fb8fbb1df0022f1418340f9a23a2a22b77e",
+    "src/TacticalGo.Domain/GameSession.cs": "0e6660ed6e0465d20c69a5ea438c6053aa8bc2c22b0d7ee04bf0450a1f2ba9b2",
+    "src/TacticalGo.Domain/GameState.cs": "41b42e0f28e483c47e1f90dae22a08421e4d8dc590b69866d54943ce709d6228",
+    "src/TacticalGo.Domain/Primitives.cs": "657e7fb5bb4ea1239625cdd2e0756a2d98191676ef2ddbbff074ae1d093b798b",
+    "src/TacticalGo.Domain/RuleConfig.cs": "8d58bdf0018c4d06fd93189298f236c74d309b5daf82fd40f1abff34056a2370",
+    "src/TacticalGo.Domain/TurnEngine.cs": "e76cbddaeb4161acfb69e1e2391888fdf43b940a781218653633e970ee3a22a8",
+    "tools/probes/magic-hand/Program.cs": "f76996e5f44dde6e46c26b5e3219fa388d7a2d6bf778e2da08ae1268152df179"
+  },
+  "cases": [
+    {
+      "name": "connector_range_two",
+      "variants": [
+        {
+          "strategy": "A",
+          "label": "Magic Hand \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                3
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "x....\nOoo..\nx....\n.H...\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 17,
+          "immediateCommanderWins": 1,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "CastMagicHand",
+                "target": [
+                  1,
+                  1
+                ],
+                "direction": "Down"
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  1,
+                  1
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePushed",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "GameWon"
+            ],
+            "boardAfterOurTurn": "x....\n.xo..\nxo...\n.H...\n.x..X",
+            "Status": "Won",
+            "Winner": "One",
+            "capturedSoldiers": 0,
+            "commanderLiberties": 2,
+            "response": {
+              "status": "terminal_no_response",
+              "lines": 0,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "B",
+          "label": "placement \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                3
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "x....\nOoo..\nx....\n.H...\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 272,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  2,
+                  4
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  3,
+                  4
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePlaced",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "x....\nOoo..\nx....\n.H...\n.xxxX",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 0,
+            "commanderLiberties": 6,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 225,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "C",
+          "label": "Rogue swap \u002B placement",
+          "heroClass": "Rogue",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                3
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "x....\nOoo..\nx....\n.H...\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            5,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 0,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": null,
+          "best": null
+        }
+      ]
+    },
+    {
+      "name": "connector_adjacent",
+      "variants": [
+        {
+          "strategy": "A",
+          "label": "Magic Hand \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "xH...\nOoo..\nx....\n.....\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 51,
+          "immediateCommanderWins": 1,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "CastMagicHand",
+                "target": [
+                  1,
+                  1
+                ],
+                "direction": "Down"
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  1,
+                  1
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePushed",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "GameWon"
+            ],
+            "boardAfterOurTurn": "xH...\n.xo..\nxo...\n.....\n.x..X",
+            "Status": "Won",
+            "Winner": "One",
+            "capturedSoldiers": 0,
+            "commanderLiberties": 2,
+            "response": {
+              "status": "terminal_no_response",
+              "lines": 0,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "B",
+          "label": "placement \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "xH...\nOoo..\nx....\n.....\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 272,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  2,
+                  4
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  3,
+                  4
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePlaced",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "xH...\nOoo..\nx....\n.....\n.xxxX",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 0,
+            "commanderLiberties": 5,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 228,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "C",
+          "label": "Rogue swap \u002B placement",
+          "heroClass": "Rogue",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 4,
+              "Y": 4
+            },
+            "CommanderTwoStart": {
+              "X": 0,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                4
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                2
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "xH...\nOoo..\nx....\n.....\n.x..X",
+          "rootPly": 7,
+          "rootAp": 2,
+          "rootMana": [
+            5,
+            6
+          ],
+          "rootCommanderLiberties": 2,
+          "legalPlans": 1,
+          "immediateCommanderWins": 1,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "CastSwap",
+                "target": [
+                  1,
+                  1
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecesSwapped",
+              "PiecesCaptured",
+              "GameWon"
+            ],
+            "boardAfterOurTurn": "xo...\n.Ho..\nx....\n.....\n.x..X",
+            "Status": "Won",
+            "Winner": "One",
+            "capturedSoldiers": 0,
+            "commanderLiberties": 2,
+            "response": {
+              "status": "terminal_no_response",
+              "lines": 0,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "corner_soldier_capture",
+      "variants": [
+        {
+          "strategy": "A",
+          "label": "Magic Hand \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                2,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": ".oH..\nx.xO.\n.....\n...X.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            3,
+            5
+          ],
+          "rootCommanderLiberties": 4,
+          "legalPlans": 38,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 1,
+          "best": {
+            "actions": [
+              {
+                "type": "CastMagicHand",
+                "target": [
+                  1,
+                  0
+                ],
+                "direction": "Left"
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  1,
+                  0
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePushed",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": ".xH..\nx.xO.\n.....\n...X.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 1,
+            "commanderLiberties": 4,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 325,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "B",
+          "label": "placement \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                2,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": ".oH..\nx.xO.\n.....\n...X.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            3,
+            5
+          ],
+          "rootCommanderLiberties": 4,
+          "legalPlans": 342,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 1,
+          "best": {
+            "actions": [
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  1,
+                  1
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePlaced",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "x.H..\nxxxO.\n.....\n...X.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 1,
+            "commanderLiberties": 4,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 290,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "C",
+          "label": "Rogue swap \u002B placement",
+          "heroClass": "Rogue",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 1
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                0,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                2,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": ".oH..\nx.xO.\n.....\n...X.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            5
+          ],
+          "rootCommanderLiberties": 4,
+          "legalPlans": 19,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 1,
+          "best": {
+            "actions": [
+              {
+                "type": "CastSwap",
+                "target": [
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  3,
+                  0
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecesSwapped",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": ".H.x.\nx.xO.\n.....\n...X.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 1,
+            "commanderLiberties": 4,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 291,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "commander_relief",
+      "variants": [
+        {
+          "strategy": "A",
+          "label": "Magic Hand \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 0,
+              "Y": 0
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "Xo...\n.Hx..\n.....\n...O.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            3,
+            5
+          ],
+          "rootCommanderLiberties": 1,
+          "legalPlans": 20,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "CastMagicHand",
+                "target": [
+                  1,
+                  0
+                ],
+                "direction": "Right"
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  0,
+                  1
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePushed",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "X.o..\nxHx..\n.....\n...O.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 0,
+            "commanderLiberties": 5,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 362,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "B",
+          "label": "placement \u002B placement",
+          "heroClass": "Mage",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 0,
+              "Y": 0
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "Xo...\n.Hx..\n.....\n...O.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            3,
+            5
+          ],
+          "rootCommanderLiberties": 1,
+          "legalPlans": 381,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 1,
+          "best": {
+            "actions": [
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  2,
+                  0
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecePlaced",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "PiecesCaptured",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "X.x..\nxHx..\n.....\n...O.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 1,
+            "commanderLiberties": 6,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 325,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        },
+        {
+          "strategy": "C",
+          "label": "Rogue swap \u002B placement",
+          "heroClass": "Rogue",
+          "config": {
+            "BoardSize": 5,
+            "ApPerTurn": 2,
+            "FirstTurnAp": 1,
+            "AllowResummon": false,
+            "InitialMana": 3,
+            "ManaGainPerTurn": 1,
+            "ManaCap": 6,
+            "SkillManaCost": 2,
+            "SummonCostWarrior": 2,
+            "SummonCostMage": 3,
+            "SummonCostRogue": 2,
+            "SealRange": 2,
+            "MageSkill": "MagicHand",
+            "MagicHandRange": 2,
+            "MaxPlies": 100,
+            "CommanderOneStart": {
+              "X": 0,
+              "Y": 0
+            },
+            "CommanderTwoStart": {
+              "X": 3,
+              "Y": 3
+            },
+            "FirstTurnApResolved": 1
+          },
+          "replayFromNewGame": [
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                2,
+                1
+              ]
+            },
+            {
+              "type": "PlaceSoldier",
+              "at": [
+                1,
+                0
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "SummonHero",
+              "at": [
+                1,
+                1
+              ]
+            },
+            {
+              "type": "EndTurn"
+            },
+            {
+              "type": "EndTurn"
+            }
+          ],
+          "reachability": "verified_by_GameSession_Replay",
+          "initialBoard": "Xo...\n.Hx..\n.....\n...O.\n.....",
+          "rootPly": 5,
+          "rootAp": 2,
+          "rootMana": [
+            4,
+            5
+          ],
+          "rootCommanderLiberties": 1,
+          "legalPlans": 20,
+          "immediateCommanderWins": 0,
+          "maxEnemySoldiersCaptured": 0,
+          "best": {
+            "actions": [
+              {
+                "type": "CastSwap",
+                "target": [
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "PlaceSoldier",
+                "at": [
+                  2,
+                  0
+                ]
+              }
+            ],
+            "events": [
+              "ResourcesSpent",
+              "PiecesSwapped",
+              "ResourcesSpent",
+              "PiecePlaced",
+              "TurnEnded",
+              "TurnStarted"
+            ],
+            "boardAfterOurTurn": "XHx..\n.ox..\n.....\n...O.\n.....",
+            "Status": "Ongoing",
+            "Winner": null,
+            "capturedSoldiers": 0,
+            "commanderLiberties": 4,
+            "response": {
+              "status": "exhaustive_for_selected_witness_only",
+              "lines": 362,
+              "ownCommanderLosses": 0,
+              "counterexample": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

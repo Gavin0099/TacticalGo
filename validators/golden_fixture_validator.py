@@ -41,17 +41,18 @@ except ImportError:  # standalone run: minimal stand-ins with the same shape
         def validate(self, payload): ...
 
 
-ACTION_TYPES = {"PlaceSoldier", "SummonHero", "CastBastion", "CastSeal", "CastSwap", "EndTurn"}
-CONFIG_KEYS = {"boardSize", "apPerTurn", "firstTurnAp", "maxPlies", "manaCap", "allowResummon"}
-EXPECT_KEYS = {"ok", "reason", "cells", "current", "ply", "ap", "mana", "status", "winner", "seals", "events"}
+ACTION_TYPES = {"PlaceSoldier", "SummonHero", "CastBastion", "CastSeal", "CastSwap", "CastMagicHand", "EndTurn"}
+CONFIG_KEYS = {"boardSize", "apPerTurn", "firstTurnAp", "maxPlies", "manaCap", "allowResummon", "mageSkill", "magicHandRange"}
+EXPECT_KEYS = {"ok", "reason", "cells", "current", "ply", "ap", "mana", "status", "winner", "seals", "events",
+               "skillUsed", "liberties", "groups"}
 TOP_KEYS = {"name", "description", "config", "setup", "steps", "expectInitial"}
 
 
 def _enum_members(source: str, enum_name: str) -> set[str]:
-    match = re.search(r"enum\s+" + enum_name + r"\s*\{(.*?)\}", source, re.S)
+    match = re.search(r"enum\s+" + enum_name + r"(?:\s*:\s*\w+)?\s*\{(.*?)\}", source, re.S)
     if not match:
         return set()
-    return {m.strip() for m in match.group(1).replace("\n", " ").split(",") if m.strip()}
+    return {m.split("=")[0].strip() for m in match.group(1).replace("\n", " ").split(",") if m.strip()}
 
 
 def _event_names(source: str) -> set[str]:
@@ -68,18 +69,22 @@ class GoldenFixtureValidator(DomainValidator):
         golden = root / "tests" / "golden"
         actions_cs = root / "src" / "TacticalGo.Domain" / "Actions.cs"
         events_cs = root / "src" / "TacticalGo.Domain" / "ActionEvent.cs"
+        primitives_cs = root / "src" / "TacticalGo.Domain" / "Primitives.cs"
 
         violations: list[str] = []
         files = sorted(golden.glob("*.json")) if golden.is_dir() else []
         if not files:
             return ValidatorResult(ok=False, rule_ids=self.rule_ids,
                                    violations=[f"no golden fixtures found under {golden}"])
-        if not actions_cs.is_file() or not events_cs.is_file():
+        if not actions_cs.is_file() or not events_cs.is_file() or not primitives_cs.is_file():
             return ValidatorResult(ok=False, rule_ids=self.rule_ids,
                                    violations=["engine source files for the vocabulary check are missing"])
 
         reasons = _enum_members(actions_cs.read_text(encoding="utf-8-sig"), "IllegalReason") - {"None"}
         events = _event_names(events_cs.read_text(encoding="utf-8-sig"))
+        primitives = primitives_cs.read_text(encoding="utf-8-sig")
+        directions = _enum_members(primitives, "PushDirection")
+        mage_skills = _enum_members(primitives, "MageSkill")
         if not reasons or not events:
             violations.append("could not read IllegalReason / event names from the C# engine source")
 
@@ -102,6 +107,8 @@ class GoldenFixtureValidator(DomainValidator):
             for key in doc.get("config", {}):
                 if key not in CONFIG_KEYS:
                     violations.append(f"{tag}: unknown config key '{key}'")
+            if "mageSkill" in doc.get("config", {}) and doc["config"]["mageSkill"] not in mage_skills:
+                violations.append(f"{tag}: mageSkill is not defined by the engine")
 
             def check_expect(where: str, expect: dict, allow_step_keys: bool) -> None:
                 for key, value in expect.items():
@@ -128,6 +135,14 @@ class GoldenFixtureValidator(DomainValidator):
                 action_type = step.get("action", {}).get("type")
                 if action_type not in ACTION_TYPES:
                     violations.append(f"{tag} step {index}: unknown action type '{action_type}'")
+                if action_type == "CastMagicHand":
+                    action = step["action"]
+                    if action.get("direction") not in directions:
+                        violations.append(f"{tag} step {index}: Magic Hand direction is not defined by the engine")
+                    target = action.get("target")
+                    if (not isinstance(target, list) or len(target) != 2 or
+                            any(type(v) is not int for v in target)):
+                        violations.append(f"{tag} step {index}: Magic Hand target must be two integer coordinates")
                 if "expect" not in step:
                     violations.append(f"{tag} step {index}: no expectation (a step must assert something)")
                 else:

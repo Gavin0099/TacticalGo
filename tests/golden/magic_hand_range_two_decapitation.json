@@ -1,0 +1,96 @@
+{
+  "name": "magic_hand_range_two_decapitation",
+  "description": "Hand-authored: push connector from distance 2, then fill source to capture isolated commander; moved soldier survives.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "x....",
+      "Ooo..",
+      "x....",
+      ".H...",
+      ".x..X"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          1
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,1": ".",
+          "1,2": "o",
+          "0,1": "O",
+          "1,3": "H"
+        },
+        "liberties": {
+          "0,1": 1
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          1,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,1": "x",
+          "0,1": ".",
+          "1,2": "o",
+          "2,1": "o"
+        },
+        "status": "Won",
+        "winner": "One",
+        "current": "One",
+        "ap": 0,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePlaced",
+          "PiecesCaptured",
+          "GameWon"
+        ]
+      }
+    }
+  ]
+}

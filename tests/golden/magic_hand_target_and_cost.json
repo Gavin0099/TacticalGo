@@ -1,0 +1,197 @@
+{
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      ".....",
+      "..O..",
+      "xHo..",
+      "..Q..",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      2,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      true
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          1
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          3
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          0,
+          2
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          2
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          2
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "InvalidTarget",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Occupied",
+        "ap": 2,
+        "mana": [
+          2,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": true,
+        "ap": 1,
+        "mana": [
+          0,
+          3
+        ],
+        "skillUsed": true,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          2
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "SkillAlreadyUsed",
+        "ap": 1,
+        "mana": [
+          0,
+          3
+        ],
+        "skillUsed": true,
+        "events": []
+      }
+    }
+  ],
+  "name": "magic_hand_target_and_cost",
+  "description": "Hand-authored: commanders, heroes, friendly pieces and empty targets forbidden; occupied destination forbidden; exactly 2 Mana and 1 AP, once per turn."
+}

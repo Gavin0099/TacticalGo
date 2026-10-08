@@ -1,0 +1,64 @@
+{
+  "name": "magic_hand_one_ap_event_order",
+  "description": "Hand-authored: final AP pushes one enemy; movement event precedes turn end/start; skill flag resets.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      ".....",
+      ".Ho..",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 1,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "2,2": ".",
+          "3,2": "o"
+        },
+        "current": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": [
+          1,
+          4
+        ],
+        "skillUsed": false,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed",
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    }
+  ]
+}
