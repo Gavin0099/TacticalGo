@@ -1,12 +1,22 @@
 name: Governance Drift
 
-# Manual trigger only (Owner decision 2026-10-08: avoid ineffective CI).
-# This repo adopted governance copy-based (audit-only): governance/ holds documents, NOT governance_tools/.
-# The job below only works after the framework is added as a submodule at governance/ (docs/INTEGRATION_GUIDE.md sections 4-5).
-# Until then, run the drift check locally:
-#   python <framework>/governance_tools/governance_drift_checker.py --repo . --framework-root <framework>
+# The framework is a pinned submodule (additional/ai-governance-framework), so this job can run.
+# Triggers are deliberately narrow (Owner wants to avoid wasteful CI): manual, or a pull request that touches
+# governance files. It is NOT run on every push. It has not yet been observed running on GitHub; the same command
+# was run locally and reported severity=ok.
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".governance/**"
+      - "AGENTS.base.md"
+      - "AGENTS.md"
+      - "contract.yaml"
+      - "validators/**"
+      - "governance/**"
+      - "additional/ai-governance-framework"
+      - ".gitmodules"
 
 jobs:
   governance-drift:
@@ -23,7 +33,10 @@ jobs:
 
       - name: Run governance drift check
         run: |
-          python governance/governance_tools/governance_drift_checker.py \
+          python additional/ai-governance-framework/governance_tools/governance_drift_checker.py \
             --repo . \
-            --framework-root governance \
+            --framework-root additional/ai-governance-framework \
             --format human
+
+      - name: Run repo-specific validator (golden fixtures)
+        run: python validators/golden_fixture_validator.py .
