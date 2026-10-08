@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "powershell -NoProfile -File artifacts/gameplay-g1-g4/verify-final.ps1",
+  "exit_code": 0,
+  "started_at": "2026-10-08T11:10:19Z",
+  "finished_at": "2026-10-08T11:10:35Z",
+  "runner": "codex-gameplay-g1-g4",
+  "linked_commit": "0c520ccc9160b54e08738d4d890bf2fd92ac56f5",
+  "output_artifacts": [
+    "artifacts/evidence/test-results/gameplay-g1-g4.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

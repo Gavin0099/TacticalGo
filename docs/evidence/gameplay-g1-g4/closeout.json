@@ -1,0 +1,159 @@
+{
+  "schema": "tacticalgo-gameplay-closeout-v1",
+  "implementationCommit": "64ff4bbc5c2eba16575ed9c00d5f69097ff88611",
+  "validationDocumentationCommit": "0c520ccc9160b54e08738d4d890bf2fd92ac56f5",
+  "canonicalTestReceipt": "artifacts/evidence/test-results/gameplay-g1-g4.json",
+  "receiptTests": {
+    "windows": {
+      "path": "artifacts/gameplay-g1-g4/final/receipt-windows.trx",
+      "sha256": "da628c260f8c703db71fd1d93116c86c79197c7f0c45ba6c777eef67b9ba663a",
+      "counters": {
+        "total": 91,
+        "executed": 91,
+        "passed": 91,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      }
+    },
+    "domain": {
+      "path": "artifacts/gameplay-g1-g4/final/receipt-domain.trx",
+      "sha256": "f78f942789cdb4dd6b8d83f84c52bf674ba69c0c863344a2a686b70979c33a9f",
+      "counters": {
+        "total": 129,
+        "executed": 129,
+        "passed": 129,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      }
+    }
+  },
+  "memoryWorkflow": {
+    "status": "memory_workflow_required",
+    "repo_root": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo",
+    "repo_root_resolved": true,
+    "memory_files_in_diff": [
+      "memory/01_active_task.md",
+      "memory/2026-10-08.md"
+    ],
+    "changed_files": [
+      "artifacts/evidence/test-results/gameplay-g1-g4.json",
+      "artifacts/evidence/test-results/gameplay-g1-g4.txt",
+      "docs/PLAN.md",
+      "memory/01_active_task.md",
+      "memory/2026-10-08.md"
+    ],
+    "canonical_writer_required": true,
+    "memory_protocol_path": "E:/BackUp/Git_EE/TacticalGo/additional/ai-governance-framework/governance/MEMORY_PROTOCOL.md",
+    "canonical_writer_path": "E:/BackUp/Git_EE/TacticalGo/additional/ai-governance-framework/governance_tools/memory_record.py",
+    "authority_guard_path": "E:/BackUp/Git_EE/TacticalGo/additional/ai-governance-framework/governance_tools/memory_authority_guard.py",
+    "recommended_workflow": [
+      "Stop editing memory/ files directly.",
+      "Use canonical writer for session-derived memory.",
+      "Run memory authority guard after memory changes.",
+      "Do not claim memory DONE until guard result is reported."
+    ],
+    "task_classification": "governed_memory_task",
+    "guard_ran": true,
+    "guard_summary": {
+      "non_canonical_writer": 0,
+      "active_non_canonical_writer": 0,
+      "missing_canonical_memory": 0,
+      "unbound_memory": 0,
+      "test_evidence_provenance_not_found": 1,
+      "session_like_non_session_memory_type": 0,
+      "non_daily_session_shaped_memory_entry": 0,
+      "authority_override_rejected": 0,
+      "test_evidence_artifact_metadata_missing": 0,
+      "test_evidence_artifact_metadata_invalid": 0,
+      "test_evidence_exit_code_contradicts_claim": 0,
+      "test_evidence_linked_commit_mismatch": 0,
+      "test_evidence_artifact_not_durable": 0,
+      "authority_override_used_current_diff": 0,
+      "repo_state_b0_blocker_count": 0,
+      "current_diff_b0_blocker_count": 0
+    },
+    "completion_claim_allowed": true,
+    "warnings": [
+      "test_evidence_provenance_not_found"
+    ],
+    "background_warnings": [],
+    "blockers": [],
+    "mixed_scope_findings": []
+  },
+  "governanceDrift": {
+    "ok": true,
+    "severity": "ok",
+    "repo_root": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo",
+    "baseline_yaml": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\.governance\\baseline.yaml",
+    "baseline_version": "1.0.0",
+    "framework_version": "1.0.0",
+    "checks": {
+      "baseline_yaml_present": true,
+      "baseline_version_known": true,
+      "framework_version_current": true,
+      "source_commit_recorded": true,
+      "protected_files_present": true,
+      "protected_files_unmodified": true,
+      "protected_file_sentinel_present": true,
+      "contract_required_fields_present": true,
+      "contract_agents_base_referenced": true,
+      "contract_no_placeholders": true,
+      "contract_not_framework_copy": true,
+      "plan_required_sections_present": true,
+      "agents_sections_filled": true,
+      "memory_schema_complete": true,
+      "plan_freshness": true,
+      "plan_inventory_current": true,
+      "baseline_yaml_freshness": true,
+      "expansion_boundary": true
+    },
+    "findings": [],
+    "warnings": [],
+    "errors": [],
+    "remediation_hints": [],
+    "plan_section_inventory": [
+      "## 1. ���~�ؼлP�����Ұ��]",
+      "## 2. ���ӥi�������GTactical Go Lite",
+      "## 3. P0�G���ᵲ�i����W�h�]���L���o�[���e�^",
+      "## 4. �}�o�����P�禬 Gate",
+      "## 5. �u�{�P���խ�h",
+      "## 6. Stop / Pivot ����",
+      "## 7. �U�@�ӳ̤p���"
+    ]
+  },
+  "deliverySmoke": {
+    "png": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\final\\delivered-mage.png",
+    "workingDirectory": "E:\\BackUp\\Git_EE\\TacticalGo",
+    "exitCode": 0,
+    "exe": "E:\\BackUp\\Git_EE\\TacticalGo\\dist\\TacticalGo.G1-G4\\TacticalGo.Play.exe",
+    "sha256": "a5858e634ddbd0ddfa822a38d32b99fbf4a64fa846cf8b7afb4c36385082aae5"
+  },
+  "rawEvidenceArchive": "E:\\BackUp\\Git_EE\\TacticalGo\\dist\\TacticalGo.G1-G4-evidence.zip",
+  "rawEvidenceArchiveSha256": "43b8971bf3281a25afb4bfa1e7843843c6fb242d712e6b90ebd28a54464f674d",
+  "localOnly": true,
+  "G0": "Pending",
+  "G5": "Pending",
+  "note": "The one memory provenance advisory is retained from historical records. The new entry uses a durable command receipt; all metadata and binding checks report zero errors. No framework update, remote delivery or human acceptance claimed."
+}

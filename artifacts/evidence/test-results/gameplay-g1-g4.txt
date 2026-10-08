@@ -1,0 +1,27 @@
+  正在判斷要還原的專案...
+  已還原 C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\src\TacticalGo.Domain\TacticalGo.Domain.csproj (101 毫秒 內)。
+  已還原 C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\src\TacticalGo.Play\TacticalGo.Play.csproj (101 毫秒 內)。
+  3 項專案中有 1 項在最新狀態，可進行還原。
+  TacticalGo.Domain -> C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\src\TacticalGo.Domain\bin\Debug\net9.0\TacticalGo.Domain.dll
+  TacticalGo.Play -> C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\src\TacticalGo.Play\bin\Debug\net9.0-windows\TacticalGo.Play.dll
+  TacticalGo.Play.Tests -> C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\tests\TacticalGo.Play.Tests\bin\Debug\net9.0-windows\TacticalGo.Play.Tests.dll
+C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\tests\TacticalGo.Play.Tests\bin\Debug\net9.0-windows\TacticalGo.Play.Tests.dll 的測試回合 (.NETCoreApp,Version=v9.0)
+VSTest 版本 17.14.1 (x64)
+
+正在啟動測試執行，請稍候...
+總共有 1 個測試檔案與指定的模式相符。
+結果檔案: C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\artifacts\gameplay-g1-g4\final\receipt-windows.trx
+
+已通過! - 失敗:     0，通過:    91，略過:     0，總計:    91，持續時間: 5 s - TacticalGo.Play.Tests.dll (net9.0)
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  TacticalGo.Domain -> C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\src\TacticalGo.Domain\bin\Debug\net9.0\TacticalGo.Domain.dll
+  TacticalGo.Domain.Tests -> C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\tests\TacticalGo.Domain.Tests\bin\Debug\net9.0\TacticalGo.Domain.Tests.dll
+C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\tests\TacticalGo.Domain.Tests\bin\Debug\net9.0\TacticalGo.Domain.Tests.dll 的測試回合 (.NETCoreApp,Version=v9.0)
+VSTest 版本 17.14.1 (x64)
+
+正在啟動測試執行，請稍候...
+總共有 1 個測試檔案與指定的模式相符。
+結果檔案: C:\Users\reiko\.codex\worktrees\gameplay-g1-g4\TacticalGo\artifacts\gameplay-g1-g4\final\receipt-domain.trx
+
+已通過! - 失敗:     0，通過:   129，略過:     0，總計:   129，持續時間: 158 ms - TacticalGo.Domain.Tests.dll (net9.0)
