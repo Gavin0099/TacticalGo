@@ -2,6 +2,12 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 (Step 2 scope) — "✔ 放這裡" confirmation and Level 1 (Owner)
+
+- 落子改成兩個獨立步驟：點空交叉點＝預覽（不消耗行動，顯示半透明棋、合法性、可能提子）；按「✔ 放這裡」才落子；可取消或改選其他位置；**不再**用「再點同一點」確認。確認按鈕不可遮住棋盤，固定在棋盤下方的操作區（為日後 iPhone 觸控）。
+- Step 2 範圍：7×7 第 1 關，前半段每回合 1 次行動（包圍、提子、相連共用生存空格），後半段每回合 2 次行動（只教「同一回合可連續兩次落子」）。教學對手不動，因此**不宣稱教會攻守取捨**，攻守決策留到有對手回應的關卡。
+- 不做：三職業、AI 擴充、正式美術、額外關卡。保留 Domain、規則、測試與黃金測資。完成後由 Owner 實際試玩；不因工程測試通過就宣稱新手已理解或遊戲好玩。暫不 push。
+
 ## 2026-10-08 (confirmed rule model) — turn model unchanged; corrects the misread below (Owner)
 
 **確認的回合模型（與現行引擎、`docs/RULES_DRAFT.md` 一致，不需任何程式修改）**

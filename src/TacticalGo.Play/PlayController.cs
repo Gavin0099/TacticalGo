@@ -22,10 +22,13 @@ public sealed record CommanderInfo(Player Owner, Point? At, int Liberties, IRead
 /// All play-session logic that is not drawing. It owns the single official <see cref="State"/>, the undo history and the
 /// pending selection. It never evaluates a rule itself: legality comes from <see cref="ActionValidator"/>, previews and results
 /// from <see cref="GameEngine.Apply"/> (which returns a new state and leaves the old one untouched).
+///
+/// Placing is two separate steps: tapping an empty point only selects it (a preview, no action is spent);
+/// <see cref="Confirm"/> ("✔ 放這裡") is the only thing that places a stone.
 /// </summary>
 public sealed class PlayController
 {
-    private sealed record Snapshot(GameState State, int LogCount, IReadOnlyList<Point> LastPlaced);
+    private sealed record Snapshot(GameState State, int LogCount, IReadOnlyList<Point> LastPlaced, IReadOnlyList<Point> LastCaptured);
 
     private readonly Stack<Snapshot> _undo = new();
     private readonly List<string> _log = [];
@@ -43,12 +46,24 @@ public sealed class PlayController
     /// <summary>Board points that explain an illegal selection (display only), e.g. the enemy stones that leave no liberty.</summary>
     public IReadOnlyList<Point> RelatedPoints { get; private set; } = [];
     public IReadOnlyList<Point> LastPlaced { get; private set; } = [];
+    /// <summary>Points emptied by the last confirmed action, so the player can see what was just taken.</summary>
+    public IReadOnlyList<Point> LastCaptured { get; private set; } = [];
 
     /// <summary>What just happened / why the last click was refused.</summary>
     public string Feedback { get; private set; } = "";
     public FeedbackKind FeedbackKind { get; private set; }
-    public bool CanUndo => _undo.Count > 0;
-    public bool CanConfirm => Preview is not null && !GameOver;
+
+    /// <summary>
+    /// Optional scripted opponent for tutorials: whenever it is Player Two's turn this chooses their action. The result is
+    /// applied through the normal engine and is part of the same undo step as the player's action.
+    /// </summary>
+    public Func<GameState, GameAction>? OpponentPolicy { get; set; }
+
+    /// <summary>When true, placing, ending the turn and undo are ignored (inspecting pieces still works).</summary>
+    public bool Locked { get; set; }
+
+    public bool CanUndo => _undo.Count > 0 && !Locked;
+    public bool CanConfirm => Preview is not null && !GameOver && !Locked;
     public bool GameOver => State.Status != GameStatus.Ongoing;
     public string RuleSummary { get; private set; } = "";
 
@@ -57,7 +72,7 @@ public sealed class PlayController
     public PlayController(RuleConfig config, HeroClass classOne = HeroClass.None, HeroClass classTwo = HeroClass.None)
         : this(GameSetup.NewGame(config, classOne, classTwo), "新局") { }
 
-    /// <summary>Start from any position (help diagrams, fixed tactical positions later).</summary>
+    /// <summary>Start from any position (tutorial stages, help diagrams, fixed tactical positions later).</summary>
     public PlayController(GameState initial, string startLabel = "載入局面")
     {
         State = initial;
@@ -73,6 +88,8 @@ public sealed class PlayController
         _undo.Clear();
         _log.Clear();
         LastPlaced = [];
+        LastCaptured = [];
+        Locked = false;
         ClearSelection();
         StartLog(startLabel);
         Raise();
@@ -82,17 +99,17 @@ public sealed class PlayController
     {
         var c = State.Config;
         RuleSummary = c.FirstTurnAp is { } first && first != c.ApPerTurn
-            ? $"每回合 {c.ApPerTurn} AP；先手首回合 {first} AP"
-            : $"每回合 {c.ApPerTurn} AP";
+            ? $"每回合可行動 {c.ApPerTurn} 次；先手第一回合 {first} 次"
+            : $"每回合可行動 {c.ApPerTurn} 次";
         Feedback = "";
         FeedbackKind = FeedbackKind.None;
         _log.Add($"— {startLabel}：{RuleSummary}");
-        _log.Add($"— 第 {EventText.Round(State.Ply)} 輪・{EventText.Name(State.Current)}回合開始（ply {State.Ply}）AP {State.ApRemaining}");
+        _log.Add($"— 第 {EventText.Round(State.Ply)} 輪・{EventText.Name(State.Current)}回合開始（ply {State.Ply}）可行動 {State.ApRemaining} 次");
     }
 
     // ---- derived display data (all computed from the engine state) ----
 
-    /// <summary>Mana only matters once someone has a class (skills arrive in UI-2); hide it otherwise.</summary>
+    /// <summary>Mana only matters once someone has a class (skills arrive later); hide it otherwise.</summary>
     public bool ShowMana => State.HeroClassOf(Player.One) != HeroClass.None || State.HeroClassOf(Player.Two) != HeroClass.None;
 
     public int Round => EventText.Round(State.Ply);
@@ -120,15 +137,16 @@ public sealed class PlayController
         get
         {
             if (GameOver) return "對局結束。按「新局…」再玩一次，或「復原」回到上一步。";
+            if (Locked) return "這一段完成了。";
             if (Selected is not null)
                 return Preview is not null
-                    ? "已選取：再點一次同一個點，或按「確認落子」。不想下就按「取消選取」。"
+                    ? "這裡可以下。按「✔ 放這裡」落子；或點別的空格換位置；或按「取消」。"
                     : "這個點不能下：請改點別的空交叉點。";
-            return $"輪到{EventText.Name(State.Current)}（剩 {State.ApRemaining} AP）：點一個空交叉點，準備落子。點棋子可以看它的生存空格。";
+            return $"輪到{EventText.Name(State.Current)}（還能行動 {State.ApRemaining} 次）：點一個空交叉點，先預覽。點棋子可以看它的生存空格。";
         }
     }
 
-    /// <summary>Short text drawn on the board next to the selected point (no hover needed).</summary>
+    /// <summary>Short text drawn on the board next to the selected point (no hover needed). Never contains a button.</summary>
     public string? Callout
     {
         get
@@ -136,13 +154,13 @@ public sealed class PlayController
             if (Selected is null || SelectionResult is null) return null;
             if (!SelectionResult.IsLegal) return "✕ " + EventText.ShortReason(SelectionResult);
             var n = Preview!.Events.OfType<PiecesCaptured>().Sum(c => c.Pieces.Count);
-            return n > 0 ? $"再點一次落子（提 {n} 子）" : "再點一次落子";
+            return n > 0 ? $"預覽：會提 {n} 子" : "預覽（還沒落子）";
         }
     }
 
     // ---- input ----
 
-    /// <summary>Tap on a board point. Empty point = select a placement (second tap on it confirms); piece = inspect its group.</summary>
+    /// <summary>Tap on a board point. Empty point = select it for a preview (spends nothing); piece = inspect its group.</summary>
     public void ClickPoint(Point p)
     {
         if (GameOver || !State.Board.InBounds(p)) return;
@@ -151,13 +169,9 @@ public sealed class PlayController
         {
             InspectGroup(p);
         }
-        else if (Selected == p && Preview is not null)
-        {
-            Confirm();
-            return;
-        }
         else
         {
+            if (Locked) return;
             SelectPlacement(p);
         }
         Raise();
@@ -201,13 +215,13 @@ public sealed class PlayController
         RelatedPoints = [];
         Preview = GameEngine.Apply(State, action);
         var captured = Preview.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
-        Feedback = captured.Count == 0
-            ? $"已選取 {EventText.At(p)}（還沒落子）。"
-            : $"已選取 {EventText.At(p)}（還沒落子）：落子會提掉 {captured.Count} 子"
-              + (captured.Any(c => c.Piece.Kind == PieceKind.Commander) ? "，包含敵方主將，這手會獲勝！" : "（虛線圈）。");
-        FeedbackKind = captured.Any(c => c.Piece.Kind == PieceKind.Commander) ? FeedbackKind.Warning : FeedbackKind.Info;
+        var takesCommander = captured.Any(c => c.Piece.Kind == PieceKind.Commander);
+        Feedback = $"預覽 {EventText.At(p)}：還沒落子，不會用掉行動。"
+            + (captured.Count == 0 ? "" : $" 落子會提掉 {captured.Count} 子（虛線圈）" + (takesCommander ? "，包含敵方主將，這手會獲勝！" : "。"));
+        FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
     }
 
+    /// <summary>"✔ 放這裡": the only way a stone is placed.</summary>
     public void Confirm()
     {
         if (!CanConfirm || Selected is null) return;
@@ -216,14 +230,14 @@ public sealed class PlayController
 
     public void EndTurn()
     {
-        if (GameOver) return;
+        if (GameOver || Locked) return;
         Commit(new EndTurn());
     }
 
     private void Commit(GameAction action)
     {
         var mover = State.Current;
-        var snapshot = new Snapshot(State, _log.Count, LastPlaced);
+        var snapshot = new Snapshot(State, _log.Count, LastPlaced, LastCaptured);
         var outcome = GameEngine.Apply(State, action);
         if (!outcome.Success)
         {
@@ -238,23 +252,48 @@ public sealed class PlayController
         State = outcome.State;
         _log.AddRange(EventText.Describe(outcome.Events));
         LastPlaced = outcome.Events.OfType<PiecePlaced>().Select(e => e.At).ToList();
+        var captured = outcome.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
+        LastCaptured = captured.Select(c => c.At).ToList();
         ClearSelection();
 
-        var captured = outcome.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).Count();
+        var opponentActed = RunOpponent();
+
         var done = action is EndTurn
             ? $"✔ {EventText.Name(mover)}結束回合。"
-            : $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured > 0 ? $"，提掉 {captured} 子。" : "。");
-        Feedback = GameOver
-            ? ResultText
-            : done + (State.Current != mover ? $" 換{EventText.Name(State.Current)}。" : $" 還有 {State.ApRemaining} AP。");
+            : $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。");
+        if (GameOver)
+        {
+            Feedback = ResultText;
+        }
+        else
+        {
+            Feedback = done
+                + (opponentActed ? $" {EventText.Name(mover.Opponent())}沒有動作。" : "")
+                + (State.Current == mover ? $" 還能行動 {State.ApRemaining} 次。" : $" 換{EventText.Name(State.Current)}。");
+        }
         FeedbackKind = FeedbackKind.Success;
         Raise();
+    }
+
+    /// <summary>Plays the scripted opponent's turn(s), if any. Returns true if it acted.</summary>
+    private bool RunOpponent()
+    {
+        var acted = false;
+        for (var guard = 0; guard < 8 && OpponentPolicy is not null && !GameOver && State.Current == Player.Two; guard++)
+        {
+            var outcome = GameEngine.Apply(State, OpponentPolicy(State));
+            if (!outcome.Success) break;
+            State = outcome.State;
+            _log.AddRange(EventText.Describe(outcome.Events));
+            acted = true;
+        }
+        return acted;
     }
 
     public void Cancel()
     {
         ClearSelection();
-        Feedback = "已取消選取，沒有任何改變。";
+        Feedback = "已取消，沒有任何改變。";
         FeedbackKind = FeedbackKind.Info;
         Raise();
     }
@@ -262,10 +301,11 @@ public sealed class PlayController
     /// <summary>Restores the exact earlier game state (board, AP, Mana, turn, seals, ko history) and its log.</summary>
     public void Undo()
     {
-        if (_undo.Count == 0) return;
+        if (!CanUndo) return;
         var s = _undo.Pop();
         State = s.State;
         LastPlaced = s.LastPlaced;
+        LastCaptured = s.LastCaptured;
         _log.RemoveRange(s.LogCount, _log.Count - s.LogCount);
         ClearSelection();
         Feedback = "已復原上一個行動。";

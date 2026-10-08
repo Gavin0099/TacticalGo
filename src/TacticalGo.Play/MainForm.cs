@@ -6,21 +6,53 @@ namespace TacticalGo.Play;
 public sealed class MainForm : Form
 {
     private static readonly Color Accent = Color.FromArgb(0x25, 0x63, 0xEB);
+    private static readonly Color GoodGreen = Color.FromArgb(0x1E, 0x7B, 0x3E);
 
     private readonly PlayController _play;
+    private readonly LevelSession? _level;
     private readonly BoardView _board;
 
     private readonly Label _goal = new()
     {
-        Dock = DockStyle.Top, Height = 34, TextAlign = ContentAlignment.MiddleCenter,
+        Dock = DockStyle.Top, Height = 38, TextAlign = ContentAlignment.MiddleCenter,
         BackColor = Color.FromArgb(0x1F, 0x2A, 0x44), ForeColor = Color.White,
-        Font = new Font("Microsoft JhengHei UI", 12f, FontStyle.Bold),
-        Text = "目標：包圍並提吃對方的「主」就獲勝",
+        Font = new Font("Microsoft JhengHei UI", 13f, FontStyle.Bold),
     };
-    private readonly Label _turn = new() { AutoSize = true, Font = new Font("Microsoft JhengHei UI", 16f, FontStyle.Bold) };
+
+    // fixed action area under the board: nothing here can cover a stone
+    private readonly Button _confirm = new()
+    {
+        Text = "✔ 放這裡", Width = 250, Height = 58, FlatStyle = FlatStyle.Flat,
+        Font = new Font("Microsoft JhengHei UI", 17f, FontStyle.Bold), Margin = new Padding(8, 8, 6, 8),
+    };
+    private readonly Button _cancel = new()
+    {
+        Text = "取消", Width = 130, Height = 58, Font = new Font("Microsoft JhengHei UI", 14f), Margin = new Padding(6, 8, 6, 8),
+    };
+    private readonly Label _barInfo = new()
+    {
+        AutoSize = false, Width = 360, Height = 58, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
+        Font = new Font("Microsoft JhengHei UI", 10.5f), Margin = new Padding(10, 8, 0, 8),
+    };
+
+    private readonly Label _turn = new() { AutoSize = true, MaximumSize = new Size(340, 0), Font = new Font("Microsoft JhengHei UI", 15f, FontStyle.Bold) };
     private readonly Label _ap = new() { AutoSize = true, Font = new Font("Microsoft JhengHei UI", 12f) };
     private readonly Label _mana = new() { AutoSize = true, Font = new Font("Microsoft JhengHei UI", 11f) };
     private readonly Label _rules = new() { AutoSize = true, ForeColor = Color.DimGray };
+
+    private readonly Panel _levelPanel = new() { AutoSize = true, Dock = DockStyle.Top, Padding = new Padding(0, 0, 0, 6) };
+    private readonly Label _levelProgress = new()
+    {
+        AutoSize = true, MaximumSize = new Size(340, 0), Font = new Font("Microsoft JhengHei UI", 11f, FontStyle.Bold), ForeColor = Accent,
+    };
+    private readonly Label _stageText = new() { AutoSize = true, MaximumSize = new Size(340, 0), Font = new Font("Microsoft JhengHei UI", 11f) };
+    private readonly Label _stageDone = new()
+    {
+        AutoSize = true, MaximumSize = new Size(340, 0), Font = new Font("Microsoft JhengHei UI", 11.5f, FontStyle.Bold), ForeColor = GoodGreen,
+    };
+    private readonly Button _nextStage = new() { Text = "下一段 ▶", Width = 160, Height = 40, FlatStyle = FlatStyle.Flat, BackColor = GoodGreen, ForeColor = Color.White, Font = new Font("Microsoft JhengHei UI", 12f, FontStyle.Bold) };
+    private readonly Button _restartStage = new() { Text = "重來本段", Width = 120, Height = 40 };
+
     private readonly Label _mineCommander = CommanderLabel();
     private readonly Label _enemyCommander = CommanderLabel();
     private readonly Label _sharedNote = new()
@@ -34,58 +66,80 @@ public sealed class MainForm : Form
     };
     private readonly Label _feedback = new()
     {
-        AutoSize = false, Height = 60, Dock = DockStyle.Fill, Padding = new Padding(8), BorderStyle = BorderStyle.FixedSingle,
+        AutoSize = false, Dock = DockStyle.Fill, Padding = new Padding(8), BorderStyle = BorderStyle.FixedSingle,
         Font = new Font("Microsoft JhengHei UI", 10.5f),
     };
-    private readonly Button _confirm = Btn("確認落子 (Enter)");
-    private readonly Button _cancel = Btn("取消選取 (Esc)");
     private readonly Button _endTurn = Btn("結束回合");
     private readonly Button _undo = Btn("復原 (Ctrl+Z)");
-    private readonly Button _newGame = Btn("新局…");
+    private readonly Button _newGame = Btn("新局／選模式…");
     private readonly Button _help = Btn("怎麼玩？");
     private readonly ComboBox _liberties = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Fill };
     private readonly ListBox _log = new() { Dock = DockStyle.Fill, IntegralHeight = false, HorizontalScrollbar = true };
+    private readonly TableLayoutPanel _freeButtons;
 
-    public MainForm(PlayController play)
+    public MainForm(PlayController play, LevelSession? level = null)
     {
         _play = play;
-        Text = "Tactical Go — 原型 UI-1.1（Windows 試玩，非正式版）";
-        ClientSize = new Size(1100, 840);
-        MinimumSize = new Size(940, 760);
-        Font = new Font("Microsoft JhengHei UI", 10f);
+        _level = level;
+        Text = "Tactical Go — 原型 Step 2（Windows 試玩，非正式版）";
+        Font = new Font("Microsoft JhengHei UI", 10f);     // set BEFORE sizing: changing the font later rescales the window
+        // Never taller/wider than the screen can show, so the fixed action bar under the board is always visible.
+        var work = Screen.PrimaryScreen?.WorkingArea ?? new Rectangle(0, 0, 1280, 800);
+        ClientSize = new Size(Math.Min(1140, work.Width - 40), Math.Min(860, work.Height - 90));
+        MinimumSize = new Size(Math.Min(900, work.Width - 40), Math.Min(700, work.Height - 90));
         KeyPreview = true;
 
         _board = new BoardView(play) { Dock = DockStyle.Fill };
         _board.PointTapped += p => _play.ClickPoint(p);
 
+        // ---- left: board + fixed action bar ----
+        var bar = new FlowLayoutPanel
+        {
+            Dock = DockStyle.Bottom, Height = 76, FlowDirection = FlowDirection.LeftToRight, WrapContents = false,
+            BackColor = Color.FromArgb(0xEE, 0xEA, 0xDF), Padding = new Padding(4, 0, 4, 0),
+        };
+        bar.Controls.AddRange([_confirm, _cancel, _barInfo]);
+        var host = new Panel { Dock = DockStyle.Fill };
+        host.Controls.Add(_board);
+        host.Controls.Add(bar);
+
+        // ---- right: information ----
         var side = new TableLayoutPanel
         {
-            Dock = DockStyle.Right, Width = 370, Padding = new Padding(12, 8, 12, 8),
-            ColumnCount = 1, RowCount = 10,
+            Dock = DockStyle.Right, Width = 380, Padding = new Padding(12, 8, 12, 8), ColumnCount = 1, RowCount = 9,
         };
         side.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        for (var i = 0; i < 8; i++) side.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        side.RowStyles.Add(new RowStyle(SizeType.Absolute, 72)); // feedback
-        side.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // log
+        for (var i = 0; i < 5; i++) side.RowStyles.Add(new RowStyle(SizeType.AutoSize));  // header, level, commanders, hint (+ spare)
+        side.RowStyles[3] = new RowStyle(SizeType.AutoSize);
+        side.RowStyles[4] = new RowStyle(SizeType.Absolute, 74);                          // feedback
+        side.RowStyles.Add(new RowStyle(SizeType.AutoSize));                              // buttons
+        side.RowStyles.Add(new RowStyle(SizeType.AutoSize));                              // combo
+        side.RowStyles.Add(new RowStyle(SizeType.AutoSize));                              // log title
+        side.RowStyles.Add(new RowStyle(SizeType.Percent, 100));                          // log
 
         var header = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Margin = Padding.Empty };
         header.Controls.AddRange([_turn, _ap, _mana, _rules]);
+
+        var levelStack = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Dock = DockStyle.Top };
+        var levelButtons = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.LeftToRight, WrapContents = false };
+        levelButtons.Controls.AddRange([_nextStage, _restartStage]);
+        levelStack.Controls.AddRange([_levelProgress, _stageText, _stageDone, levelButtons]);
+        _levelPanel.Controls.Add(levelStack);
 
         var commanders = new TableLayoutPanel { Dock = DockStyle.Top, AutoSize = true, ColumnCount = 1, Margin = new Padding(0, 6, 0, 0) };
         commanders.Controls.Add(_mineCommander);
         commanders.Controls.Add(_enemyCommander);
         commanders.Controls.Add(_sharedNote);
 
-        var buttons = new TableLayoutPanel { Dock = DockStyle.Top, ColumnCount = 2, RowCount = 3, Height = 108, Margin = new Padding(0, 6, 0, 0) };
-        buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-        buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-        for (var i = 0; i < 3; i++) buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 33.33f));
-        buttons.Controls.Add(_confirm, 0, 0);
-        buttons.Controls.Add(_cancel, 1, 0);
-        buttons.Controls.Add(_endTurn, 0, 1);
-        buttons.Controls.Add(_undo, 1, 1);
-        buttons.Controls.Add(_newGame, 0, 2);
-        buttons.Controls.Add(_help, 1, 2);
+        _freeButtons = new TableLayoutPanel { Dock = DockStyle.Top, ColumnCount = 2, RowCount = 2, Height = 80, Margin = new Padding(0, 6, 0, 0) };
+        _freeButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        _freeButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+        _freeButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        _freeButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+        _freeButtons.Controls.Add(_endTurn, 0, 0);
+        _freeButtons.Controls.Add(_undo, 1, 0);
+        _freeButtons.Controls.Add(_newGame, 0, 1);
+        _freeButtons.Controls.Add(_help, 1, 1);
 
         _liberties.Items.AddRange(["生存空格數字：全部隱藏", "生存空格數字：只標危險棋串與主將（預設）", "生存空格數字：全部棋串"]);
         _liberties.SelectedIndex = (int)_play.Liberties;
@@ -94,18 +148,16 @@ public sealed class MainForm : Form
         var logTitle = new Label { Text = "行動紀錄", AutoSize = true, ForeColor = Color.DimGray, Margin = new Padding(0, 6, 0, 0) };
 
         side.Controls.Add(header, 0, 0);
-        side.Controls.Add(commanders, 0, 1);
-        side.Controls.Add(_hint, 0, 2);
-        side.Controls.Add(_feedback, 0, 3);
-        side.Controls.Add(buttons, 0, 4);
-        side.Controls.Add(_liberties, 0, 5);
-        side.Controls.Add(logTitle, 0, 6);
-        side.Controls.Add(_log, 0, 7);
-        // rows 8/9 intentionally unused; layout keeps the log as the elastic row
-        side.RowStyles[3] = new RowStyle(SizeType.Absolute, 72);
-        side.RowStyles[7] = new RowStyle(SizeType.Percent, 100);
+        side.Controls.Add(_levelPanel, 0, 1);
+        side.Controls.Add(commanders, 0, 2);
+        side.Controls.Add(_hint, 0, 3);
+        side.Controls.Add(_feedback, 0, 4);
+        side.Controls.Add(_freeButtons, 0, 5);
+        side.Controls.Add(_liberties, 0, 6);
+        side.Controls.Add(logTitle, 0, 7);
+        side.Controls.Add(_log, 0, 8);
 
-        Controls.Add(_board);
+        Controls.Add(host);
         Controls.Add(side);
         Controls.Add(_goal);
 
@@ -115,18 +167,22 @@ public sealed class MainForm : Form
         _undo.Click += (_, _) => _play.Undo();
         _newGame.Click += (_, _) => AskNewGame();
         _help.Click += (_, _) => { using var help = new HelpForm(_play.State.Config); help.ShowDialog(this); };
+        _nextStage.Click += (_, _) => _level?.NextStage();
+        _restartStage.Click += (_, _) => _level?.RestartStage();
         KeyDown += OnKey;
 
         _play.Changed += Refresh_;
         Refresh_();
     }
 
+    private bool InLevel => _level is { Active: true };
+
     private static Button Btn(string text) =>
         new() { Text = text, Dock = DockStyle.Fill, Margin = new Padding(3), FlatStyle = FlatStyle.Standard };
 
     private static Label CommanderLabel() => new()
     {
-        AutoSize = false, Width = 346, Height = 34, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(8, 0, 0, 0),
+        AutoSize = false, Width = 350, Height = 34, TextAlign = ContentAlignment.MiddleLeft, Padding = new Padding(8, 0, 0, 0),
         Font = new Font("Microsoft JhengHei UI", 11f, FontStyle.Bold), Margin = new Padding(0, 3, 0, 0), BorderStyle = BorderStyle.FixedSingle,
     };
 
@@ -134,13 +190,25 @@ public sealed class MainForm : Form
     {
         if (e.KeyCode == Keys.Enter) { _play.Confirm(); e.Handled = true; }
         else if (e.KeyCode == Keys.Escape) { _play.Cancel(); e.Handled = true; }
-        else if (e.KeyCode == Keys.Z && e.Control) { _play.Undo(); e.Handled = true; }
+        else if (e.KeyCode == Keys.Z && e.Control && !InLevel) { _play.Undo(); e.Handled = true; }
     }
 
     private void AskNewGame()
     {
-        using var dialog = new NewGameDialog();
-        if (dialog.ShowDialog(this) == DialogResult.OK) _play.NewGame(dialog.Config);
+        using var dialog = new NewGameDialog(_level is not null);
+        if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        if (dialog.Tutorial && _level is not null)
+        {
+            _level.Active = true;
+            _level.StartStage(0);
+        }
+        else
+        {
+            if (_level is not null) _level.Active = false;
+            _play.OpponentPolicy = null;
+            _play.Locked = false;
+            _play.NewGame(dialog.Config);
+        }
     }
 
     private static void ShowCommander(Label label, string title, CommanderInfo info)
@@ -153,13 +221,13 @@ public sealed class MainForm : Form
         }
         else if (info.InDanger)
         {
-            label.Text = $"{title}：生存空格 1　⚠ 危險！";
+            label.Text = $"{title}：⚠ 生存空格 1！";
             label.BackColor = Color.FromArgb(0xC0, 0x39, 0x2B);
             label.ForeColor = Color.White;
         }
         else if (info.Liberties == 2)
         {
-            label.Text = $"{title}：生存空格 2　（注意）";
+            label.Text = $"{title}：生存空格 2（注意）";
             label.BackColor = Color.FromArgb(0xFD, 0xE7, 0xB8);
             label.ForeColor = Color.FromArgb(0x7A, 0x4B, 0x00);
         }
@@ -175,24 +243,60 @@ public sealed class MainForm : Form
     {
         var s = _play.State;
         var me = s.Current;
+        var level = InLevel ? _level : null;
 
-        _turn.Text = _play.GameOver
-            ? _play.ResultText
-            : $"{(me == Player.One ? "●" : "○")} {_play.TurnTitle}";
-        _turn.ForeColor = _play.GameOver ? Color.FromArgb(0x1E, 0x7B, 0x3E) : SystemColors.ControlText;
+        // goal bar + level panel
+        _goal.Text = level is not null ? level.Stage.Goal : "目標：包圍並提吃對方的「主」就獲勝";
+        _levelPanel.Visible = level is not null;
+        _freeButtons.Visible = level is null;
+        _endTurn.Visible = _undo.Visible = _help.Visible = level is null;
+        if (level is not null)
+        {
+            _levelProgress.Text = level.Progress;
+            _stageText.Text = level.StageComplete ? "" : level.Stage.Instruction;
+            _stageDone.Text = level.StageComplete
+                ? level.Learned + (level.LevelComplete ? "\n\n" + level.Level.AfterLastStage : "")
+                : "";
+            _nextStage.Visible = level.StageComplete && !level.IsLastStage;
+            _board.OverlayText = level.StageComplete ? (level.LevelComplete ? "✔ 第 1 關完成！" : "✔ 完成！") : null;
+        }
+        else
+        {
+            _board.OverlayText = null;
+        }
+
+        // turn / actions
+        _turn.Text = level is { StageComplete: true }
+            ? "✔ 本段完成"
+            : _play.GameOver && level is null
+                ? _play.ResultText
+                : $"{(me == Player.One ? "●" : "○")} {_play.TurnTitle}";
+        _turn.ForeColor = _play.GameOver || level is { StageComplete: true } ? GoodGreen : SystemColors.ControlText;
 
         var apMax = s.Ply == 1 ? s.Config.FirstTurnApResolved : s.Config.ApPerTurn;
         _ap.Visible = !_play.GameOver;
-        _ap.Text = $"行動點 {new string('●', s.ApRemaining)}{new string('○', Math.Max(0, apMax - s.ApRemaining))}  （每放一子 -1）　ply {s.Ply}";
+        _ap.Text = $"還能行動 {s.ApRemaining} 次  {new string('●', s.ApRemaining)}{new string('○', Math.Max(0, apMax - s.ApRemaining))}";
 
         _mana.Visible = _play.ShowMana;
         _mana.Text = $"Mana {s.ManaOf(me)}/{s.Config.ManaCap}";
-        _rules.Text = _play.RuleSummary;
+        _rules.Text = level is null ? _play.RuleSummary + $"　ply {s.Ply}" : "";
 
-        ShowCommander(_mineCommander, $"我方主將（{EventText.Name(me)}）", _play.Commander(me));
-        ShowCommander(_enemyCommander, $"敵方主將（{EventText.Name(me.Opponent())}）", _play.Commander(me.Opponent()));
+        ShowCommander(_mineCommander, "我方主將（黑）", _play.Commander(Player.One));
+        ShowCommander(_enemyCommander, "敵方主將（白）", _play.Commander(Player.Two));
+        if (level is null)
+        {
+            // free play is two humans taking turns: label by whose turn it is
+            ShowCommander(_mineCommander, $"我方主將（{(me == Player.One ? "黑" : "白")}）", _play.Commander(me));
+            ShowCommander(_enemyCommander, $"敵方主將（{(me.Opponent() == Player.One ? "黑" : "白")}）", _play.Commander(me.Opponent()));
+        }
 
-        _hint.Text = _play.Hint;
+        _hint.Text = level switch
+        {
+            { StageComplete: true, LevelComplete: false } => "按「下一段 ▶」繼續，或「重來本段」再看一次。",
+            { StageComplete: true } => "第 1 關完成了。可以「重來本段」，或到「新局／選模式…」自由對局。",
+            not null when _play.Selected is null && _play.Inspect is null => "先點棋盤上的空格看預覽，再按下方「✔ 放這裡」。",
+            _ => _play.Hint,
+        };
         _feedback.Text = _play.Feedback;
         (_feedback.BackColor, _feedback.ForeColor) = _play.FeedbackKind switch
         {
@@ -203,13 +307,18 @@ public sealed class MainForm : Form
             _ => (SystemColors.Control, SystemColors.ControlText),
         };
 
+        // fixed action bar
         _confirm.Enabled = _play.CanConfirm;
         _confirm.BackColor = _play.CanConfirm ? Accent : SystemColors.Control;
         _confirm.ForeColor = _play.CanConfirm ? Color.White : SystemColors.GrayText;
-        _confirm.FlatStyle = _play.CanConfirm ? FlatStyle.Flat : FlatStyle.Standard;
         _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null;
-        _endTurn.Enabled = !_play.GameOver;
+        _barInfo.Text = _play.Selected is { } sel
+            ? (_play.CanConfirm ? $"預覽 {EventText.At(sel)}：還沒落子" : $"{EventText.At(sel)} 不能下，請換一個點")
+            : level is { StageComplete: true } ? "這一段完成了" : "① 點棋盤上的空格　② 看預覽　③ 按「✔ 放這裡」";
+
+        _endTurn.Enabled = !_play.GameOver && !_play.Locked;
         _undo.Enabled = _play.CanUndo;
+        _restartStage.Visible = level is not null;
 
         _log.BeginUpdate();
         _log.Items.Clear();
@@ -222,7 +331,11 @@ public sealed class MainForm : Form
 
 internal sealed class NewGameDialog : Form
 {
-    private readonly ComboBox _rule = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top };
+    private readonly RadioButton _tutorial = new() { Text = "新手教學：第 1 關（建議先玩這個）", Dock = DockStyle.Top, Height = 32, Checked = true };
+    private readonly RadioButton _free = new() { Text = "自由對局（兩人輪流，9×9）", Dock = DockStyle.Top, Height = 32 };
+    private readonly ComboBox _rule = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top, Enabled = false };
+
+    public bool Tutorial => _tutorial.Checked;
 
     public RuleConfig Config => _rule.SelectedIndex switch
     {
@@ -231,27 +344,32 @@ internal sealed class NewGameDialog : Form
         _ => new RuleConfig(),
     };
 
-    public NewGameDialog()
+    public NewGameDialog(bool tutorialAvailable)
     {
-        Text = "新局";
+        Text = "新局／選模式";
         FormBorderStyle = FormBorderStyle.FixedDialog;
         StartPosition = FormStartPosition.CenterParent;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(400, 150);
+        ClientSize = new Size(430, 200);
         Padding = new Padding(12);
 
         _rule.Items.AddRange([
-            "每回合 2 AP，先手首回合 1 AP（暫定預設）",
-            "每回合 2 AP，先手首回合也 2 AP（基線）",
-            "每回合 1 AP（對照）",
+            "每回合行動 2 次，先手第一回合 1 次（暫定預設）",
+            "每回合行動 2 次，先手第一回合也 2 次（基線）",
+            "每回合行動 1 次（對照）",
         ]);
         _rule.SelectedIndex = 0;
+        _tutorial.Enabled = tutorialAvailable;
+        _free.Checked = !tutorialAvailable;
+        _tutorial.Checked = tutorialAvailable;
+        _free.CheckedChanged += (_, _) => _rule.Enabled = _free.Checked;
+        _rule.Enabled = _free.Checked;
 
-        var ok = new Button { Text = "開始", DialogResult = DialogResult.OK, Dock = DockStyle.Bottom, Height = 36 };
-        var hint = new Label { Text = "職業與關卡之後加入；此版本雙方皆為無職業。", Dock = DockStyle.Top, Height = 40, ForeColor = Color.DimGray };
+        var ok = new Button { Text = "開始", DialogResult = DialogResult.OK, Dock = DockStyle.Bottom, Height = 40 };
         Controls.Add(ok);
-        Controls.Add(hint);
         Controls.Add(_rule);
+        Controls.Add(_free);
+        Controls.Add(_tutorial);
         AcceptButton = ok;
     }
 }

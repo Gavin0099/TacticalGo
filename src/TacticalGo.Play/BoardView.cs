@@ -25,6 +25,11 @@ public sealed class BoardView : Control
     [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public bool Interactive { get; set; } = true;
 
+    /// <summary>Large message drawn over the board (e.g. "✔ 完成！"); null for none. The game-over banner is separate.</summary>
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+    public string? OverlayText { get; set; }
+
     public BoardView(PlayController play)
     {
         _play = play;
@@ -82,9 +87,10 @@ public sealed class BoardView : Control
             g.DrawString(i.ToString(), labelFont, labelBrush, c.X - 5, c.Y - cell * 0.8f);
             g.DrawString(i.ToString(), labelFont, labelBrush, a.X - cell * 0.8f, a.Y - 8);
         }
-        if (N == 9)
+        if (N is 7 or 9)
         {
-            foreach (var (sx, sy) in new[] { (2, 2), (6, 2), (2, 6), (6, 6), (4, 4) })
+            var stars = N == 9 ? new[] { (2, 2), (6, 2), (2, 6), (6, 6), (4, 4) } : new[] { (2, 2), (4, 2), (2, 4), (4, 4) };
+            foreach (var (sx, sy) in stars)
             {
                 var c = Center(new Point(sx, sy));
                 g.FillEllipse(labelBrush, c.X - 3, c.Y - 3, 6, 6);
@@ -100,11 +106,13 @@ public sealed class BoardView : Control
         }
 
         DrawLastPlaced(g, stone);
+        DrawLastCaptured(g, stone);
         DrawCommanderDanger(g, cell);
         DrawLibertyNumbers(g, state, cell);
         DrawRelated(g, stone);
         DrawSelection(g, state, stone);
-        if (_play.GameOver) DrawGameOver(g, state);
+        if (OverlayText is { } overlay) DrawBanner(g, overlay);   // tutorial messages take precedence over the generic result
+        else if (_play.GameOver) DrawGameOver(g, state);
     }
 
     private void DrawSeals(Graphics g, GameState state, float cell)
@@ -179,6 +187,31 @@ public sealed class BoardView : Control
             var c = Center(p);
             g.DrawEllipse(pen, c.X - r * 0.28f, c.Y - r * 0.28f, r * 0.56f, r * 0.56f);
         }
+    }
+
+    /// <summary>Red cross where stones were just taken, so the player sees what disappeared.</summary>
+    private void DrawLastCaptured(Graphics g, float r)
+    {
+        using var pen = new Pen(Color.FromArgb(200, Danger), 4f);
+        foreach (var p in _play.LastCaptured)
+        {
+            if (_play.State.Board[p] is not null) continue;
+            var c = Center(p);
+            var k = r * 0.55f;
+            g.DrawLine(pen, c.X - k, c.Y - k, c.X + k, c.Y + k);
+            g.DrawLine(pen, c.X - k, c.Y + k, c.X + k, c.Y - k);
+        }
+    }
+
+    private void DrawBanner(Graphics g, string text)
+    {
+        using var shade = new SolidBrush(Color.FromArgb(170, 20, 90, 50));
+        var h = Math.Max(70f, Cell * 1.5f);
+        var band = new RectangleF(0, (Height - h) / 2f, Width, h);
+        g.FillRectangle(shade, band);
+        using var font = new Font("Microsoft JhengHei UI", Math.Max(20f, Cell * 0.55f), FontStyle.Bold, GraphicsUnit.Pixel);
+        using var brush = new SolidBrush(Color.White);
+        DrawCentered(g, text, font, brush, new PointF(Width / 2f, Height / 2f));
     }
 
     private void DrawLibertyNumbers(Graphics g, GameState state, float cell)

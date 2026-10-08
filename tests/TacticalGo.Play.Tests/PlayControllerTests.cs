@@ -14,6 +14,13 @@ public class PlayControllerTests
 
     private static PlayController Fresh(RuleConfig? config = null) => new(config ?? new RuleConfig());
 
+    /// <summary>What a player does: tap the point (preview), then press "✔ 放這裡".</summary>
+    private static void Place(PlayController play, int x, int y)
+    {
+        play.ClickPoint(P(x, y));
+        play.Confirm();
+    }
+
     [Fact]
     public void Selecting_a_point_previews_but_does_not_change_the_official_state()
     {
@@ -35,8 +42,8 @@ public class PlayControllerTests
     {
         // Black stones on (1,0) and (0,1) leave white's corner point (0,0) without any liberty: a suicide for white.
         var play = Fresh(RuleConfig.TwoApBaseline);
-        play.ClickPoint(P(1, 0)); play.ClickPoint(P(1, 0));   // black (1,0)
-        play.ClickPoint(P(0, 1)); play.ClickPoint(P(0, 1));   // black (0,1) -> turn passes to white
+        Place(play, 1, 0);   // black (1,0)
+        Place(play, 0, 1);   // black (0,1) -> turn passes to white
         var fingerprint = play.State.Fingerprint();
 
         play.ClickPoint(P(0, 0));                              // white tries the dead corner
@@ -51,14 +58,38 @@ public class PlayControllerTests
     }
 
     [Fact]
-    public void Second_tap_on_the_same_point_confirms()
+    public void Tapping_only_previews_and_only_the_place_here_button_places()
     {
         var play = Fresh();
+        var ap = play.State.ApRemaining;
         play.ClickPoint(P(2, 2));
         Assert.Null(play.State.Board[P(2, 2)]);
-        play.ClickPoint(P(2, 2));
-        Assert.NotNull(play.State.Board[P(2, 2)]);
+        Assert.Equal(ap, play.State.ApRemaining);             // previewing spends no action
+
+        play.ClickPoint(P(2, 2));                              // tapping the same point again does NOT place
+        Assert.Null(play.State.Board[P(2, 2)]);
+        Assert.NotNull(play.Preview);
+
+        play.ClickPoint(P(5, 5));                              // choosing another point just moves the preview
+        Assert.Equal(P(5, 5), play.Selected);
+        Assert.Null(play.State.Board[P(5, 5)]);
+
+        play.Confirm();                                        // "✔ 放這裡"
+        Assert.NotNull(play.State.Board[P(5, 5)]);
+        Assert.Null(play.State.Board[P(2, 2)]);
         Assert.Null(play.Selected);
+    }
+
+    [Fact]
+    public void Cancel_leaves_everything_unchanged()
+    {
+        var play = Fresh();
+        var fingerprint = play.State.Fingerprint();
+        play.ClickPoint(P(2, 2));
+        play.Cancel();
+        Assert.Null(play.Selected);
+        Assert.False(play.CanConfirm);
+        Assert.Equal(fingerprint, play.State.Fingerprint());
     }
 
     [Fact]
@@ -148,13 +179,13 @@ public class PlayControllerTests
         Assert.Equal(4, play.Commander(Player.Two).Liberties);
 
         // black fills three of white commander (4,1)'s neighbours over two turns
-        play.ClickPoint(P(3, 1)); play.ClickPoint(P(3, 1));
-        play.ClickPoint(P(5, 1)); play.ClickPoint(P(5, 1));    // black's 2 AP used -> white
+        Place(play, 3, 1);
+        Place(play, 5, 1);    // black's 2 AP used -> white
         play.EndTurn();                                        // white passes -> black
         Assert.Equal(2, play.Commander(Player.Two).Liberties);
         Assert.False(play.Commander(Player.Two).InDanger);
 
-        play.ClickPoint(P(4, 2)); play.ClickPoint(P(4, 2));
+        Place(play, 4, 2);
         var enemy = play.Commander(Player.Two);
         Assert.Equal(1, enemy.Liberties);
         Assert.True(enemy.InDanger);
@@ -169,8 +200,8 @@ public class PlayControllerTests
         Assert.Contains("點一個空交叉點", play.Hint);
 
         play.ClickPoint(P(2, 2));                              // legal selection
-        Assert.Contains("再點一次", play.Hint);
-        Assert.Equal("再點一次落子", play.Callout);
+        Assert.Contains("✔ 放這裡", play.Hint);
+        Assert.Equal("預覽（還沒落子）", play.Callout);
 
         play.Cancel();
         Assert.Null(play.Callout);
@@ -181,8 +212,8 @@ public class PlayControllerTests
     public void Refused_click_is_visibly_explained_with_callout_and_related_stones()
     {
         var play = Fresh(RuleConfig.TwoApBaseline);
-        play.ClickPoint(P(1, 0)); play.ClickPoint(P(1, 0));
-        play.ClickPoint(P(0, 1)); play.ClickPoint(P(0, 1));    // white to move
+        Place(play, 1, 0);
+        Place(play, 0, 1);    // white to move
         play.ClickPoint(P(0, 0));                              // suicide for white
 
         Assert.StartsWith("✕", play.Callout);
@@ -195,12 +226,12 @@ public class PlayControllerTests
     public void Success_feedback_confirms_the_click_and_names_the_next_state()
     {
         var play = Fresh(RuleConfig.TwoApBaseline);
-        play.ClickPoint(P(2, 2)); play.ClickPoint(P(2, 2));
+        Place(play, 2, 2);
         Assert.Equal(FeedbackKind.Success, play.FeedbackKind);
         Assert.Contains("已在 (2,2) 落子", play.Feedback);
-        Assert.Contains("還有 1 AP", play.Feedback);
+        Assert.Contains("還能行動 1 次", play.Feedback);
 
-        play.ClickPoint(P(3, 2)); play.ClickPoint(P(3, 2));
+        Place(play, 3, 2);
         Assert.Contains("換白方", play.Feedback);
     }
 
@@ -227,7 +258,7 @@ public class PlayControllerTests
         var rows = new[] { "Ox......." }.Concat(Enumerable.Repeat(".........", 8));
         var state = GameSetup.FromDiagram(new RuleConfig(), string.Join(Environment.NewLine, rows));
         var play = new PlayController(state, "測試");
-        play.ClickPoint(P(0, 1)); play.ClickPoint(P(0, 1));
+        Place(play, 0, 1);
         Assert.True(play.GameOver);
         Assert.Contains("黑方獲勝", play.ResultText);
         Assert.True(play.Commander(Player.Two).Captured);
@@ -256,7 +287,7 @@ public class PlayControllerTests
 
         var two = new PlayController(pages[3].Position!, "示意");        // 4: select first, confirm second
         two.ClickPoint(pages[3].Click!.Value);
-        Assert.Equal("再點一次落子", two.Callout);
+        Assert.Equal("預覽（還沒落子）", two.Callout);
         Assert.Null(two.State.Board[pages[3].Click!.Value]);
 
         var bad = new PlayController(pages[4].Position!, "示意");        // 5: refused placement
