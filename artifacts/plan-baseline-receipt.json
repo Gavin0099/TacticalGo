@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python -X utf8 additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework --format json",
+  "exit_code": 0,
+  "started_at": "2026-10-08T09:59:21Z",
+  "finished_at": "2026-10-08T09:59:21Z",
+  "runner": "plan-document-drift",
+  "linked_commit": "a4da3e2ac72d613b52cf0caa8ae46ea53f9b329d",
+  "output_artifacts": [
+    "artifacts/plan-baseline-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}
