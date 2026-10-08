@@ -20,6 +20,11 @@ public sealed class BoardView : Control
 
     public event Action<Point>? PointTapped;
 
+    /// <summary>False for the non-clickable diagrams in the help window.</summary>
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+    public bool Interactive { get; set; } = true;
+
     public BoardView(PlayController play)
     {
         _play = play;
@@ -48,7 +53,7 @@ public sealed class BoardView : Control
     protected override void OnMouseClick(MouseEventArgs e)
     {
         base.OnMouseClick(e);
-        if (e.Button == MouseButtons.Left && HitTest(e.Location) is { } p) PointTapped?.Invoke(p);
+        if (Interactive && e.Button == MouseButtons.Left && HitTest(e.Location) is { } p) PointTapped?.Invoke(p);
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -95,7 +100,9 @@ public sealed class BoardView : Control
         }
 
         DrawLastPlaced(g, stone);
+        DrawCommanderDanger(g, cell);
         DrawLibertyNumbers(g, state, cell);
+        DrawRelated(g, stone);
         DrawSelection(g, state, stone);
         if (_play.GameOver) DrawGameOver(g, state);
     }
@@ -215,7 +222,7 @@ public sealed class BoardView : Control
         if (legal)
         {
             var fill = state.Current == Player.One ? Black : White;
-            using var ghost = new SolidBrush(Color.FromArgb(150, fill));
+            using var ghost = new SolidBrush(Color.FromArgb(190, fill));
             g.FillEllipse(ghost, c.X - r, c.Y - r, r * 2, r * 2);
 
             // pieces this move would capture (taken from the previewed outcome, not recomputed here)
@@ -234,6 +241,90 @@ public sealed class BoardView : Control
             var k = r * 0.6f;
             g.DrawLine(pen, c.X - k, c.Y - k, c.X + k, c.Y + k);
             g.DrawLine(pen, c.X - k, c.Y + k, c.X + k, c.Y - k);
+        }
+
+        DrawCallout(g, c, r, color);
+    }
+
+    /// <summary>Text bubble next to the selected point, so the result of a click is visible without hovering.</summary>
+    private void DrawCallout(Graphics g, PointF at, float r, Color color)
+    {
+        if (_play.Callout is not { } text) return;
+        using var font = new Font("Microsoft JhengHei UI", Math.Max(13f, Cell * 0.27f), FontStyle.Bold, GraphicsUnit.Pixel);
+        var size = g.MeasureString(text, font);
+        var w = size.Width + 16;
+        var h = size.Height + 8;
+        var x = Math.Clamp(at.X - w / 2, 4, Math.Max(4, Width - w - 4));
+        var y = PickCalloutY(at, r, x, w, h);
+        var box = new RectangleF(x, y, w, h);
+        using var path = RoundedRect(box, 8);
+        using var back = new SolidBrush(color);
+        using var fore = new SolidBrush(Color.White);
+        g.FillPath(back, path);
+        g.DrawString(text, font, fore, x + 8, y + 4);
+    }
+
+    /// <summary>First vertical placement for the bubble that stays on the board and does not cover any stone.</summary>
+    private float PickCalloutY(PointF at, float r, float x, float w, float h)
+    {
+        float[] candidates = [at.Y - r * 1.6f - h, at.Y + r * 1.6f, at.Y - Cell * 1.7f - h, at.Y + Cell * 1.7f];
+        foreach (var y in candidates)
+        {
+            if (y < 4 || y + h > Height - 4) continue;
+            var box = new RectangleF(x, y, w, h);
+            var covers = _play.State.Board.AllPoints().Any(p =>
+                _play.State.Board[p] is not null &&
+                box.IntersectsWith(new RectangleF(Center(p).X - r, Center(p).Y - r, r * 2, r * 2)));
+            if (!covers) return y;
+        }
+        return candidates[0] >= 4 ? candidates[0] : candidates[1];
+    }
+
+    private static GraphicsPath RoundedRect(RectangleF r, float radius)
+    {
+        var d = radius * 2;
+        var path = new GraphicsPath();
+        path.AddArc(r.X, r.Y, d, d, 180, 90);
+        path.AddArc(r.Right - d, r.Y, d, d, 270, 90);
+        path.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
+        path.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
+        path.CloseFigure();
+        return path;
+    }
+
+    /// <summary>Circles the stones that explain a refused placement (e.g. the enemy stones that leave no liberty).</summary>
+    private void DrawRelated(Graphics g, float r)
+    {
+        using var pen = new Pen(Danger, 3f) { DashStyle = DashStyle.Dash };
+        foreach (var p in _play.RelatedPoints)
+        {
+            var c = Center(p);
+            g.DrawEllipse(pen, c.X - r * 1.25f, c.Y - r * 1.25f, r * 2.5f, r * 2.5f);
+        }
+    }
+
+    /// <summary>A commander with a single liberty is one move from capture: ring it and mark that last liberty.</summary>
+    private void DrawCommanderDanger(Graphics g, float cell)
+    {
+        using var ring = new Pen(Danger, 4f);
+        using var dot = new SolidBrush(Danger);
+        using var font = new Font("Segoe UI", Math.Max(10f, cell * 0.3f), FontStyle.Bold, GraphicsUnit.Pixel);
+        using var white = new SolidBrush(Color.White);
+        foreach (var owner in new[] { Player.One, Player.Two })
+        {
+            var info = _play.Commander(owner);
+            if (!info.InDanger) continue;
+            foreach (var p in info.Group)
+            {
+                var c = Center(p);
+                g.DrawEllipse(ring, c.X - cell * 0.5f, c.Y - cell * 0.5f, cell, cell);
+            }
+            foreach (var lib in info.LibertyPoints)
+            {
+                var c = Center(lib);
+                g.FillEllipse(dot, c.X - cell * 0.2f, c.Y - cell * 0.2f, cell * 0.4f, cell * 0.4f);
+                DrawCentered(g, "!", font, white, c);
+            }
         }
     }
 

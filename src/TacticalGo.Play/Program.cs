@@ -17,6 +17,21 @@ static class Program
         var play = new PlayController(new RuleConfig());
         var form = new MainForm(play);
 
+        var helpAt = Array.IndexOf(args, "--help-page");
+        if (helpAt >= 0 && helpAt + 2 < args.Length)
+        {
+            using var help = new HelpForm(new RuleConfig());
+            help.ShowPage(int.Parse(args[helpAt + 1]));
+            help.StartPosition = FormStartPosition.Manual;
+            help.Location = new System.Drawing.Point(40, 40);
+            help.Show();
+            Application.DoEvents();
+            using var bmp = new Bitmap(help.ClientSize.Width, help.ClientSize.Height);
+            help.DrawToBitmap(bmp, new Rectangle(System.Drawing.Point.Empty, help.ClientSize));
+            bmp.Save(args[helpAt + 2], System.Drawing.Imaging.ImageFormat.Png);
+            return;
+        }
+
         var snap = Array.IndexOf(args, "--snapshot");
         if (snap >= 0 && snap + 1 < args.Length)
         {

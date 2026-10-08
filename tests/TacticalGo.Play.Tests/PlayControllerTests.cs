@@ -41,8 +41,8 @@ public class PlayControllerTests
 
         play.ClickPoint(P(0, 0));                              // white tries the dead corner
         Assert.False(play.CanConfirm);
-        Assert.True(play.MessageIsError);
-        Assert.Contains("(0,0)", play.Message);
+        Assert.Equal(FeedbackKind.Error, play.FeedbackKind);
+        Assert.Contains("(0,0)", play.Feedback);
         Assert.False(play.SelectionResult!.IsLegal);
         Assert.Equal(IllegalReason.Suicide, play.SelectionResult.Reason);
 
@@ -91,7 +91,7 @@ public class PlayControllerTests
         play.ClickPoint(P(1, 0)); play.Confirm();
         var beforeCapture = play.State.Fingerprint();
         play.ClickPoint(P(0, 1));
-        Assert.Contains("提掉 1 子", play.Message);             // preview announces the capture before it happens
+        Assert.Contains("提掉 1 子", play.Feedback);             // preview announces the capture before it happens
         Assert.NotNull(play.State.Board[P(0, 0)]);              // ...but the official board still has the stone
         play.Confirm();
         Assert.Null(play.State.Board[P(0, 0)]);
@@ -109,7 +109,7 @@ public class PlayControllerTests
         play.ClickPoint(P(4, 7));                               // black commander, 4 liberties
         Assert.NotNull(play.Inspect);
         Assert.Equal(4, play.Inspect!.Liberties.Count);
-        Assert.Contains("4 氣", play.Message);
+        Assert.Contains("4 個生存空格", play.Feedback);
         Assert.Equal(fingerprint, play.State.Fingerprint());
     }
 
@@ -136,5 +136,131 @@ public class PlayControllerTests
         Assert.Equal(P(8, 8), view.HitTest(new System.Drawing.Point(630, 630)));
         Assert.Null(view.HitTest(new System.Drawing.Point(5, 5)));       // margin, off the board
         Assert.Null(view.HitTest(new System.Drawing.Point(690, 350)));
+    }
+
+    // ---- UI-1.1: what can I do now / did my click work / commander status ----
+
+    [Fact]
+    public void Commander_status_is_computed_from_the_live_engine_state()
+    {
+        var play = Fresh(RuleConfig.TwoApBaseline);
+        Assert.Equal(4, play.Commander(Player.One).Liberties);
+        Assert.Equal(4, play.Commander(Player.Two).Liberties);
+
+        // black fills three of white commander (4,1)'s neighbours over two turns
+        play.ClickPoint(P(3, 1)); play.ClickPoint(P(3, 1));
+        play.ClickPoint(P(5, 1)); play.ClickPoint(P(5, 1));    // black's 2 AP used -> white
+        play.EndTurn();                                        // white passes -> black
+        Assert.Equal(2, play.Commander(Player.Two).Liberties);
+        Assert.False(play.Commander(Player.Two).InDanger);
+
+        play.ClickPoint(P(4, 2)); play.ClickPoint(P(4, 2));
+        var enemy = play.Commander(Player.Two);
+        Assert.Equal(1, enemy.Liberties);
+        Assert.True(enemy.InDanger);
+        Assert.Equal([P(4, 0)], enemy.LibertyPoints.ToArray());
+    }
+
+    [Fact]
+    public void Hint_tells_the_player_what_to_do_in_every_state()
+    {
+        var play = Fresh();
+        Assert.Contains("輪到黑方", play.Hint);
+        Assert.Contains("點一個空交叉點", play.Hint);
+
+        play.ClickPoint(P(2, 2));                              // legal selection
+        Assert.Contains("再點一次", play.Hint);
+        Assert.Equal("再點一次落子", play.Callout);
+
+        play.Cancel();
+        Assert.Null(play.Callout);
+        Assert.Contains("點一個空交叉點", play.Hint);
+    }
+
+    [Fact]
+    public void Refused_click_is_visibly_explained_with_callout_and_related_stones()
+    {
+        var play = Fresh(RuleConfig.TwoApBaseline);
+        play.ClickPoint(P(1, 0)); play.ClickPoint(P(1, 0));
+        play.ClickPoint(P(0, 1)); play.ClickPoint(P(0, 1));    // white to move
+        play.ClickPoint(P(0, 0));                              // suicide for white
+
+        Assert.StartsWith("✕", play.Callout);
+        Assert.Contains("自殺", play.Callout);
+        Assert.Contains("這個點不能下", play.Hint);
+        Assert.Equal(new[] { P(1, 0), P(0, 1) }.OrderBy(p => p.X), play.RelatedPoints.OrderBy(p => p.X));
+    }
+
+    [Fact]
+    public void Success_feedback_confirms_the_click_and_names_the_next_state()
+    {
+        var play = Fresh(RuleConfig.TwoApBaseline);
+        play.ClickPoint(P(2, 2)); play.ClickPoint(P(2, 2));
+        Assert.Equal(FeedbackKind.Success, play.FeedbackKind);
+        Assert.Contains("已在 (2,2) 落子", play.Feedback);
+        Assert.Contains("還有 1 AP", play.Feedback);
+
+        play.ClickPoint(P(3, 2)); play.ClickPoint(P(3, 2));
+        Assert.Contains("換白方", play.Feedback);
+    }
+
+    [Fact]
+    public void Mana_is_hidden_until_someone_has_a_class_and_round_keeps_the_engine_ply()
+    {
+        var none = Fresh();
+        Assert.False(none.ShowMana);
+        Assert.True(new PlayController(new RuleConfig(), HeroClass.Mage, HeroClass.None).ShowMana);
+
+        var play = Fresh(RuleConfig.TwoApBaseline);
+        Assert.Equal("第 1 輪・黑方回合", play.TurnTitle);
+        play.EndTurn();
+        Assert.Equal("第 1 輪・白方回合", play.TurnTitle);        // still round 1: black and white each take one ply per round
+        Assert.Equal(2, play.State.Ply);
+        play.EndTurn();
+        Assert.Equal("第 2 輪・黑方回合", play.TurnTitle);
+        Assert.Equal(3, play.State.Ply);
+    }
+
+    [Fact]
+    public void Game_over_shows_a_clear_result_and_blocks_further_input()
+    {
+        var rows = new[] { "Ox......." }.Concat(Enumerable.Repeat(".........", 8));
+        var state = GameSetup.FromDiagram(new RuleConfig(), string.Join(Environment.NewLine, rows));
+        var play = new PlayController(state, "測試");
+        play.ClickPoint(P(0, 1)); play.ClickPoint(P(0, 1));
+        Assert.True(play.GameOver);
+        Assert.Contains("黑方獲勝", play.ResultText);
+        Assert.True(play.Commander(Player.Two).Captured);
+        var fingerprint = play.State.Fingerprint();
+        play.ClickPoint(P(5, 5));
+        Assert.Equal(fingerprint, play.State.Fingerprint());
+    }
+
+    [Fact]
+    public void Help_pages_are_real_engine_positions_with_the_promised_outcomes()
+    {
+        var pages = HelpScenarios.Pages(new RuleConfig());
+        Assert.Equal(5, pages.Count);
+
+        var win = new PlayController(pages[0].Position!, "示意");        // 1: surround the commander
+        win.ClickPoint(pages[0].Click!.Value);
+        Assert.NotNull(win.Preview);
+        Assert.Contains("包含敵方主將", win.Feedback);
+
+        var libs = new PlayController(pages[1].Position!, "示意");       // 2: liberties of a connected group
+        libs.ClickPoint(pages[1].Click!.Value);
+        Assert.Equal(2, libs.Inspect!.Group.Count);
+        Assert.Equal(5, libs.Inspect.Liberties.Count);
+
+        Assert.Null(pages[2].Position);                                  // 3: AP page has no board
+
+        var two = new PlayController(pages[3].Position!, "示意");        // 4: select first, confirm second
+        two.ClickPoint(pages[3].Click!.Value);
+        Assert.Equal("再點一次落子", two.Callout);
+        Assert.Null(two.State.Board[pages[3].Click!.Value]);
+
+        var bad = new PlayController(pages[4].Position!, "示意");        // 5: refused placement
+        bad.ClickPoint(pages[4].Click!.Value);
+        Assert.Equal(IllegalReason.Suicide, bad.SelectionResult!.Reason);
     }
 }
