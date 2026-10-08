@@ -21,3 +21,6 @@ artifacts/*.db
 bin/
 obj/
 .tmp_*/
+
+# Windows prototype publish output
+dist/
