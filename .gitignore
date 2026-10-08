@@ -24,3 +24,6 @@ obj/
 
 # Windows prototype publish output
 dist/
+
+# Local integrated-gameplay execution logs, binaries and screenshots.
+artifacts/gameplay-g1-g4/

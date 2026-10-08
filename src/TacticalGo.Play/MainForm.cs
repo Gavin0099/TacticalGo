@@ -31,6 +31,8 @@ public sealed class MainForm : Form
     };
     private readonly Button _modePlace = ModeBtn("放士兵");
     private readonly Button _modeSkill = ModeBtn("技能：換位");
+    private readonly Button _modeSummon = ModeBtn("召喚英雄");
+    private readonly Label _heroes = new() { AutoSize = true, MaximumSize = new Size(340, 0) };
     private readonly Label _skillNote = new()
     {
         AutoSize = false, Width = 430, Height = 44, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
@@ -119,7 +121,9 @@ public sealed class MainForm : Form
             Padding = new Padding(4, 0, 4, 0), Margin = Padding.Empty,
         };
         actionRow.Controls.AddRange([_confirm, _cancel, _barInfo]);
-        _modeRow.Controls.AddRange([_modePlace, _modeSkill, _skillNote]);
+        _modeRow.Controls.AddRange([_modePlace, _modeSummon, _modeSkill, _skillNote]);
+        _modeRow.WrapContents = true;
+        _modeRow.AutoSize = true;
         _bar.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -144,7 +148,7 @@ public sealed class MainForm : Form
         side.RowStyles.Add(new RowStyle(SizeType.Percent, 100));                          // log
 
         var header = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Margin = Padding.Empty };
-        header.Controls.AddRange([_turn, _ap, _mana, _rules]);
+        header.Controls.AddRange([_turn, _ap, _mana, _heroes, _rules]);
 
         var levelStack = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.TopDown, WrapContents = false, Dock = DockStyle.Top };
         var levelButtons = new FlowLayoutPanel { AutoSize = true, MaximumSize = new Size(350, 0), FlowDirection = FlowDirection.LeftToRight, WrapContents = true };
@@ -195,6 +199,7 @@ public sealed class MainForm : Form
         _help.Click += (_, _) => { using var help = new HelpForm(_play.State.Config); help.ShowDialog(this); };
         _modePlace.Click += (_, _) => { _play.UsePlaceMode(); _board.Focus(); };   // do not keep focus on a button
         _modeSkill.Click += (_, _) => { _play.BeginSkill(); _board.Focus(); };
+        _modeSummon.Click += (_, _) => { _play.BeginSummon(); _board.Focus(); };
         _levelUndo.Click += (_, _) => _play.Undo();
         _nextLevel.Click += (_, _) => _level?.NextLevel();
         _nextStage.Click += (_, _) => _level?.NextStage();
@@ -247,10 +252,12 @@ public sealed class MainForm : Form
         }
         else
         {
+            using var classes = new ClassPickDialog(dialog.Config);
+            if (classes.ShowDialog(this) != DialogResult.OK) return;
             if (_level is not null) _level.Active = false;
             _play.OpponentPolicy = null;
             _play.Locked = false;
-            _play.NewGame(dialog.Config);
+            _play.NewGame(dialog.Config, classes.ClassOne, classes.ClassTwo);
         }
     }
 
@@ -327,6 +334,8 @@ public sealed class MainForm : Form
 
         _mana.Visible = _play.ShowMana;
         _mana.Text = $"Mana {s.ManaOf(me)}/{s.Config.ManaCap}";
+        _heroes.Visible = level is null && _play.ShowMana;
+        _heroes.Text = $"{_play.HeroSummary(Player.One)}\n{_play.HeroSummary(Player.Two)}";
         _rules.Text = level is null ? _play.RuleSummary + $"　ply {s.Ply}" : "";
 
         ShowCommander(_mineCommander, "我方主將（黑）", _play.Commander(Player.One));
@@ -363,7 +372,7 @@ public sealed class MainForm : Form
         _confirm.Enabled = _play.CanConfirm;
         _confirm.BackColor = _play.CanConfirm ? Accent : SystemColors.Control;
         _confirm.ForeColor = _play.CanConfirm ? Color.White : SystemColors.GrayText;
-        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null || _play.Mode == PlayMode.Skill;   // in skill mode it leaves the skill
+        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null || _play.Mode != PlayMode.Place;
         _barInfo.Text = _play.ActionBarInfo;
 
         // place / skill switch (only when the current player has a hero class)
@@ -371,6 +380,8 @@ public sealed class MainForm : Form
         var canSwitch = !_play.Locked && !_play.GameOver;
         _modeRow.Visible = _play.HasHeroClass;   // stays visible when a stage is won (no layout jump)
         StyleMode(_modePlace, _play.Mode == PlayMode.Place, canSwitch);
+        _modeSummon.Visible = level is null;
+        StyleMode(_modeSummon, _play.Mode == PlayMode.Summon, canSwitch && _play.Summon.CanBegin);
         StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
         _skillNote.Text = _play.Mode == PlayMode.Skill ? "換位：和相鄰的敵方士兵交換位置" : skill.Text;
 

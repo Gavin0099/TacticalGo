@@ -9,7 +9,7 @@ public enum LibertyDisplay { Off, Danger, All }
 public enum FeedbackKind { None, Info, Success, Warning, Error }
 
 /// <summary>What a tap on the board means right now.</summary>
-public enum PlayMode { Place, Skill }
+public enum PlayMode { Place, Skill, Summon }
 
 public enum SkillState { None, Available, NoTargets, UsedThisTurn, NotEnoughMana, NoHero, Unsupported }
 
@@ -211,6 +211,45 @@ public sealed class PlayController
     /// <summary>The player to move has a hero class (so the place/skill switch is relevant), even after the game is over.</summary>
     public bool HasHeroClass => State.HeroClassOf(State.Current) != HeroClass.None;
 
+    public SkillStatus Summon
+    {
+        get
+        {
+            if (GameOver || !HasHeroClass) return new(SkillState.None, "未選職業，不能召喚。 ");
+            var reason = ActionValidator.Validate(State, new SummonHero(new Point(-1, -1)));
+            if (reason.Reason is IllegalReason.HeroAlreadyOnBoard or IllegalReason.HeroAlreadySummoned or
+                IllegalReason.NotEnoughMana or IllegalReason.NoActionPoints)
+                return new(SkillState.NoHero, EventText.Reason(reason));
+            return new(SkillState.Available, $"召喚{EventText.ClassName(State.HeroClassOf(State.Current))}：1 次行動＋{State.Config.SummonCost(State.HeroClassOf(State.Current))} Mana");
+        }
+    }
+
+    public bool BeginSummon()
+    {
+        if (Locked || GameOver) return false;
+        var status = Summon;
+        if (!status.CanBegin)
+        {
+            Feedback = status.Text;
+            FeedbackKind = FeedbackKind.Error;
+            Raise();
+            return false;
+        }
+        ClearSelection();
+        Mode = PlayMode.Summon;
+        Feedback = "召喚：點己方任一棋子旁的空點，先看預覽，再確認。";
+        FeedbackKind = FeedbackKind.Info;
+        Raise();
+        return true;
+    }
+
+    public string HeroSummary(Player owner)
+    {
+        var hero = State.Board.FindHero(owner);
+        var status = hero is { } at ? $"在場 {EventText.At(at)}" : State.HasSummonedHero(owner) ? "已陣亡，不能重召" : "尚未召喚";
+        return $"{EventText.Name(owner)}：{EventText.ClassName(State.HeroClassOf(owner))}・{status}";
+    }
+
     private GameState? _targetsFor;
     private IReadOnlyList<Point> _targets = [];
 
@@ -244,7 +283,7 @@ public sealed class PlayController
     }
 
     /// <summary>Label of the confirm button: it names what is about to happen.</summary>
-    public string ConfirmLabel => Mode == PlayMode.Skill ? "✔ 確定換位" : "✔ 放這裡";
+    public string ConfirmLabel => Mode == PlayMode.Summon ? "✔ 確定召喚" : Mode == PlayMode.Skill ? "✔ 確定換位" : "✔ 放這裡";
 
     /// <summary>One line for the fixed action area: what to do next / what is currently previewed.</summary>
     public string ActionBarInfo
@@ -252,6 +291,7 @@ public sealed class PlayController
         get
         {
             if (Locked) return "這一段完成了";
+            if (Mode == PlayMode.Summon) return Selected is null ? "① 點己方棋子旁的空點　② 預覽　③ 確定召喚" : CanConfirm ? "召喚預覽：還沒召喚、不消耗資源" : "不能召喚，請換一個點";
             var skill = Mode == PlayMode.Skill;
             if (Selected is { } sel)
                 return CanConfirm
@@ -272,6 +312,7 @@ public sealed class PlayController
         {
             if (GameOver) return "對局結束。按「新局…」再玩一次，或「復原」回到上一步。";
             if (Locked) return "這一段完成了。";
+            if (Mode == PlayMode.Summon) return CanConfirm ? "按「✔ 確定召喚」才花費行動與 Mana。" : "英雄必須召喚在己方棋子旁的合法空點。";
             if (Mode == PlayMode.Skill)
                 return Selected is null ? SwapHelp
                     : Preview is not null ? "這樣換位可以。按「✔ 放這裡」施放；或點別的目標；或按「取消」。"
@@ -292,7 +333,7 @@ public sealed class PlayController
             if (Selected is null || SelectionResult is null) return null;
             if (!SelectionResult.IsLegal) return "✕ " + (Mode == PlayMode.Skill ? SkillShortReason(SelectionResult) : EventText.ShortReason(SelectionResult));
             var n = Preview!.Events.OfType<PiecesCaptured>().Sum(c => c.Pieces.Count);
-            var what = Mode == PlayMode.Skill ? "換位" : "落子";
+            var what = Mode == PlayMode.Summon ? "召喚" : Mode == PlayMode.Skill ? "換位" : "落子";
             return n > 0 ? $"預覽：{what}會提 {n} 子" : $"預覽（還沒{(Mode == PlayMode.Skill ? "施放" : "落子")}）";
         }
     }
@@ -304,7 +345,12 @@ public sealed class PlayController
     {
         if (GameOver || !State.Board.InBounds(p)) return;
 
-        if (Mode == PlayMode.Skill)
+        if (Mode == PlayMode.Summon)
+        {
+            if (Locked) return;
+            SelectSummon(p);
+        }
+        else if (Mode == PlayMode.Skill)
         {
             if (Locked) return;
             SelectSwapTarget(p);
@@ -365,6 +411,24 @@ public sealed class PlayController
         Feedback = $"預覽 {EventText.At(p)}：還沒落子，不會用掉行動。"
             + (captured.Count == 0 ? "" : $" 落子會提掉 {captured.Count} 子（虛線圈）" + (takesCommander ? "，包含敵方主將，這手會獲勝！" : "。"));
         FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
+    }
+
+    private void SelectSummon(Point p)
+    {
+        ClearSelection();
+        Selected = p;
+        var action = new SummonHero(p);
+        SelectionResult = ActionValidator.Validate(State, action);
+        if (!SelectionResult.IsLegal)
+        {
+            Feedback = $"{EventText.At(p)} 不能召喚：{EventText.Reason(SelectionResult)}";
+            FeedbackKind = FeedbackKind.Error;
+            return;
+        }
+        _pending = action;
+        Preview = GameEngine.Apply(State, action);
+        Feedback = $"預覽召喚{EventText.ClassName(State.HeroClassOf(State.Current))} {EventText.At(p)}：還沒召喚；確認才扣 1 次行動＋{State.Config.SummonCost(State.HeroClassOf(State.Current))} Mana。";
+        FeedbackKind = FeedbackKind.Info;
     }
 
     /// <summary>"✔ 放這裡": the only way a stone is placed or a skill is cast.</summary>
@@ -479,6 +543,7 @@ public sealed class PlayController
         {
             TacticalGo.Domain.EndTurn => $"✔ {EventText.Name(mover)}結束回合。",
             CastSwap when wasSkill => $"✔ {EventText.Name(mover)}用盜賊換位" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
+            SummonHero a => $"✔ {EventText.Name(mover)}在 {EventText.At(a.At)}召喚{EventText.ClassName(State.HeroClassOf(mover))}。",
             _ => $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
         };
         if (GameOver)
@@ -512,7 +577,7 @@ public sealed class PlayController
 
     public void Cancel()
     {
-        var leaveSkill = Mode == PlayMode.Skill && Selected is null;
+        var leaveSkill = Mode != PlayMode.Place && Selected is null;
         if (leaveSkill) Mode = PlayMode.Place;
         ClearSelection();
         Feedback = leaveSkill ? "已離開技能，回到放士兵。" : "已取消，沒有任何改變。";
