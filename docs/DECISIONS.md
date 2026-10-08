@@ -2,7 +2,16 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — R1 首次整合安排於 G3 開始前（Owner）
+
+- Owner 已透過 GitHub 查核 R1 遠端 `ee86babd4b0d972c20a38a6dd8223da607ec306b` 與現行基線；此為遠端保存與文件同步，不是 R1／UI-3c 整合或 G0 通過。Domain 129、Windows 47、Golden 38 仍為先前保存的工程證據。
+- 修正首次整合時點：G2 完成、G3 UI 開始前，將 R1 Domain 整合至 Gameplay 開發基線，處理文件差異並跑 Domain／Windows／Golden 整合回歸；G3 直接呼叫 `CastMagicHand` 等真實 Domain 功能，不另寫一套模擬規則。此工作包含於既有 G3，不增加研究／治理 Slice 或新 Gate。
+- G4 完成 7×7 本機雙人自由攻守、召喚與三職技能的端到端驗證，不延到 G4 才首次整合 R1；7×7 主將起點仍待 G4 定案。G5 才是人類遊戲性驗收。
+- **G0 Pending，僅驗收操作；通過後才進 G1，G1–G4 順序不變。** R1 不再增加規則、搜尋或模擬；此處只安排未來整合工作，不代表本輪已整合、已通過測試或取得 merge 授權。文件修正沿用既有 R1 分支 push 授權，其他分支不變。
+
 ## 2026-10-08 — 現行可玩版本路線與本段 push 授權（Owner）
+
+> 此條目原先把首次整合放在 G4 的敘述，已由上方「R1 首次整合安排於 G3 開始前」取代；其餘範圍與 Gate 決定保留。
 
 - Owner 接受 R1 預設切換回報：魔法之手為法師預設，封印保留設定切換與比較；規則研究已足以支撐下一階段開發，R1 不再增加規則或搜尋。此接受不代表平衡／遊戲性驗收或已獨立審查程式 diff。
 - `docs/PLAN.md` 最前面增加 Current Baseline；§2 採現行技能與 Windows 7×7 首個完整雙人版本目標，§7 採 G0 → G4。原 P0／S0–S5 與舊 R1 決定保留為歷史，不再作為 G1–G4 的新增研究門檻，也不阻擋 G0。
