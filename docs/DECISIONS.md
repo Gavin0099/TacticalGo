@@ -2,6 +2,15 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — 完成 G1–G4、7×7 起點與候選素材（Owner）
+
+- Owner 要求「幫我做 G1 到 G4，做到完為止，再給我測試」，並明確回答「授權先做 G1–G4，G0 保持未驗收」。後續素材文字再次提到先過 G0 時，Owner 再確認「維持授權，完成 G1–G4 加素材，G0 未驗收」。此例外取代本次開發的 G0 前置限制，不宣稱 G0 通過。
+- 7×7 主將起點採 Owner 確認的黑 `(3,5)`、白 `(3,1)`，0 起算；透過 Windows 自由對局設定使用，C# 引擎歷史 9×9 預設與測資不改。
+- G1 公開輪流選職業／召喚，G2 築壘兩點 UI，G3 開始前將 R1 `9970bbbc` 本機整合至 Gameplay 基線，再接真實魔法之手 UI；G4 完成無教學腳本的 7×7 本機雙人流程、資源／換手／勝負與復原。這是既有四個 Slice，沒有新研究 Gate 或規則擴充。
+- Owner 授權直接使用 PR #3 已合併的 VIS-FEEL-01 六張候選 PNG：A 棋盤 Token、B 選角卡／英雄資訊；不改原圖、不移植 HTML 動畫、不重新生成素材。此授權只解除這六張素材的開發整合限制，正式發布的素材核准、權利與實機驗收仍待處理。
+- Gameplay 在隔離 `codex/gameplay-g1-g4`，本機整合提交 `36c6110`、G3 `76f2b3a`、G4 `64ff4bb`。工程結果與證據見 `docs/ui/G1_G4_README.md`、`docs/evidence/gameplay-g1-g4/validation.json`；工程完成不代表 G0、G5、平衡或好玩。
+- 沒有本 Gameplay 分支的 push／PR／main 合併授權；先交付本機試玩版。既有 R1 push 授權不擴張至此分支。G5 由 Owner 真人試玩，G6 依回饋另定範圍。
+
 ## 2026-10-08 — R1 首次整合安排於 G3 開始前（Owner）
 
 - Owner 已透過 GitHub 查核 R1 遠端 `ee86babd4b0d972c20a38a6dd8223da607ec306b` 與現行基線；此為遠端保存與文件同步，不是 R1／UI-3c 整合或 G0 通過。Domain 129、Windows 47、Golden 38 仍為先前保存的工程證據。

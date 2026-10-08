@@ -386,10 +386,10 @@ NOT CLAIMED unless separately implemented and validated:
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->
 
-- 未經本次明確授權，不 push、merge、開／改 PR、刪分支或進下一個 slice；不自行通過 G0／G5。G1 等 G0，R1 不自動授權 G3 UI。
+- 未經本次明確授權，不 push、merge、開／改 PR、刪分支或進下一個 slice；不自行通過 G0／G5。Owner 已明確授權本次完成 G1–G4 與 G3 前本機 R1 整合，G0 保持未驗收，見 `docs/DECISIONS.md` 最新條目；此例外不授權 Gameplay push／PR／main 合併或 G5 通過。
 - 不使用 `--no-verify`；hook 失敗先讀診斷與根因，不停用或繞過檢查。
 - 不改未核准的規則／技能／預設／費用／召喚限制，不把 Draft 或提案當 Accepted；不為了測試通過將 Golden 預期改成引擎輸出。
-- 不碰 `assets/`、`.agents/`、`docs/visual/` 或 Visual worktree 的美術候選；來源與授權尚未審查，不能進公開 repo。
+- 未有另外授權，不碰 `.agents/`、`docs/visual/`、Visual worktree 或其他美術候選。Owner 已授權 `assets/candidates/vis-feel-01/tokens/` 的六張 A／B PNG 作 Gameplay 開發與試玩整合；原圖不改，不移植 HTML 動畫，不生成新素材。正式發布的權利、素材核准與實機驗收仍待處理。
 - 不在有 submodule 的既有工作目錄來回切分支；用隔離 worktree。Gameplay／Domain 與 Visual 分支分工，不覆寫無關 dirty state。
 - 不將測試、弱機器人、搜尋或治理檢查宣稱為好玩、新手理解、職業平衡、runtime enforcement 或 release readiness；不自動延長限定搜尋預算。
 - 不改 `AGENTS.base.md` 或框架管理 BEGIN/END 區塊；框架版本更新走 F-7，不能把填本文件當成治理框架更新完成。

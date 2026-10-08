@@ -1,0 +1,2965 @@
+{
+  "schema": "tacticalgo-gameplay-evidence-v1",
+  "generatedUtc": "2026-10-08T11:07:00.550197+00:00",
+  "branch": "codex/gameplay-g1-g4",
+  "implementationCommit": "64ff4bbc5c2eba16575ed9c00d5f69097ff88611",
+  "uiBaseCommit": "e3a78fc181c0669fb4490f9ef2334a47e9c4800f",
+  "r1Commit": "9970bbbc36ad5e5e12d24db6749b53d659bc443b",
+  "gates": {
+    "G0": "Pending - Owner-authorized development exception; not accepted",
+    "G1": "engineering_complete",
+    "G2": "engineering_complete",
+    "G3": "engineering_complete",
+    "G4": "engineering_complete",
+    "G5": "Pending - human gameplay judgment",
+    "G6": "not_started"
+  },
+  "setup": {
+    "boardSize": 7,
+    "commanderOne": [
+      3,
+      5
+    ],
+    "commanderTwo": [
+      3,
+      1
+    ],
+    "firstTurnAp": 1,
+    "apPerTurn": 2,
+    "mageSkill": "MagicHand",
+    "sealComparisonSelectable": true,
+    "opponentPolicy": null
+  },
+  "tests": {
+    "commands": [
+      "dotnet test TacticalGo.Windows.sln --logger trx;LogFileName=final-windows.trx --results-directory artifacts/gameplay-g1-g4/final",
+      "dotnet test TacticalGo.sln --logger trx;LogFileName=final-domain.trx --results-directory artifacts/gameplay-g1-g4/final"
+    ],
+    "windows": {
+      "path": "artifacts/gameplay-g1-g4/final/final-windows.trx",
+      "sha256": "8472477a2429e89cea1af792c09b3e12e5b7ada6b0de925ae953110b4e60ca3b",
+      "counters": {
+        "total": 91,
+        "executed": 91,
+        "passed": 91,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "results": [
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Stage2_needs_both_the_skill_and_a_stone_for_a_one_round_win_in_either_order",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Skill_targets_are_the_engines_legal_swap_points_and_only_in_skill_mode",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Leaving_the_tutorial_stops_the_session_from_touching_free_play",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Push_then_place_uses_real_domain_and_can_capture_commander_on_second_action",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.Insufficient_mana_is_refused_by_engine_and_explained_in_chinese",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.The_skill_status_is_computed_once_per_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.Action_bar_stays_fully_inside_the_window_in_every_mode_of_level_two",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Real_direction_and_confirm_buttons_preview_push_and_render_without_changing_official_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Skill_is_available_when_hero_mana_and_a_target_exist",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Stage3_two_actions_in_one_turn_finish_it",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Actual_push_motion_is_presentation_only_undo_cancels_it_and_art_is_embedded",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.Occupied_or_non_adjacent_summons_cannot_be_confirmed_and_cancel_spends_nothing",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.White_player_can_summon_and_cast_own_class_without_using_black_resources(hero: Rogue)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Hint_tells_the_player_what_to_do_in_every_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.BastionControllerTests.Two_selections_preview_without_spending_then_confirm_both_atomically_and_undo",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Cancel_leaves_everything_unchanged",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Game_over_shows_a_clear_result_and_blocks_further_input",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Mana_is_hidden_until_someone_has_a_class_and_round_keeps_the_engine_ply",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Previewing_a_swap_spends_nothing_and_shows_what_it_would_do",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.An_invalid_target_is_explained_and_cannot_be_confirmed",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Tutorial_to_free_clears_script_lock_and_resources_are_visible_then_can_return_to_tutorial",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.A_swap_that_would_leave_the_hero_without_spaces_is_refused_with_a_clear_reason",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.GameplayVisualTests.Full_game_action_controls_stay_inside_viewport_with_actual_art_and_skill_previews(width: 900, height: 700)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.After_casting_the_skill_is_marked_used_this_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.ClassPickTests.Summon_button_and_confirmation_are_visible_and_drive_actual_controller",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Cancel_first_clears_the_target_then_leaves_skill_mode",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Undo_in_a_level_takes_back_a_move_together_with_the_passive_opponents_pass",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.Place_and_skill_buttons_do_not_vanish_when_a_stage_is_won",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Target_then_direction_then_confirmation_preserve_ownership_and_resources(soldier: 'o', owner: Two)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Positions_are_valid_and_the_player_is_a_Rogue_with_the_hero_on_the_board(stage: 0)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Stage1_capture_the_surrounded_stone_and_the_board_shows_what_was_taken",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Level1_has_three_stages_with_one_then_two_actions_per_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Invalid_targets_and_blocked_directions_cannot_spend_or_leave_stale_preview",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Warrior)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Stage1_a_wrong_move_does_not_complete_and_the_passive_opponent_just_passes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Confirming_the_swap_casts_it_once_and_returns_to_place_mode",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.GameplayVisualTests.Full_game_action_controls_stay_inside_viewport_with_actual_art_and_skill_previews(width: 1140, height: 760)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Positions_are_valid_and_the_player_is_a_Rogue_with_the_hero_on_the_board(stage: 1)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Rogue)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Leaving_the_tutorial_shows_mana_again",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Mage)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.The_last_level_has_no_next_level_and_loading_any_level_works",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Skill_status_reports_why_it_cannot_be_used",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Undo_mid_stage_after_a_skill_restores_state_mode_and_availability",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Suicide_selection_is_reported_with_a_reason_and_confirm_does_nothing",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.White_player_can_summon_and_cast_own_class_without_using_black_resources(hero: Mage)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Tapping_only_previews_and_only_the_place_here_button_places",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Every_stage_starts_valid_and_not_yet_complete(stage: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Commander_status_is_computed_from_the_live_engine_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Stage2_commander_looks_surrounded_but_shares_spaces_with_its_soldier",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Skill_then_stone_and_stone_then_skill_both_work_in_one_two_action_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.Undo_after_a_swap_restores_the_exact_state_and_place_mode",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Target_then_direction_then_confirmation_preserve_ownership_and_resources(soldier: 'x', owner: One)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.A_completed_stage_locks_placing_but_inspecting_still_works_and_next_stage_resets",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Restart_stage_restores_the_starting_position_exactly",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Stage1_swap_wins_in_one_action_and_is_the_only_one_round_win",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Confirm_label_and_action_bar_text_follow_the_mode_and_selection",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.New_game_applies_the_chosen_ap_rule_and_clears_history",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Switching_back_to_place_mode_drops_a_previewed_target_and_spends_nothing",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Stage2_without_the_skill_still_wins_but_needs_more_rounds",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Stage1_without_the_skill_still_wins_but_needs_more_rounds",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.BastionControllerTests.Duplicate_or_distant_second_target_is_refused_and_can_be_reselected",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Explicit_seal_baseline_remains_operable_without_push_directions",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Mage, cost: 3)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Success_feedback_confirms_the_click_and_names_the_next_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Undo_after_a_capture_brings_the_captured_stone_back",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Level2Tests.Level2_stages_complete_through_the_session_with_the_intended_routes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Rogue, cost: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Inspect_reports_group_liberties_without_changing_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.BastionControllerTests.Partial_and_complete_bastion_previews_paint_and_the_real_button_confirms",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Every_stage_starts_valid_and_not_yet_complete(stage: 1)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Undo_restores_board_ap_mana_turn_and_log_exactly",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.Enter_confirms_and_is_suppressed_so_a_focused_button_cannot_also_fire",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Finishing_level_one_offers_level_two_and_loading_it_starts_a_rogue_stage_without_mana_numbers",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Board_tap_pixels_map_to_the_nearest_intersection",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Warrior, cost: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Stage3_one_action_at_a_time_also_works_and_says_so",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Help_pages_are_real_engine_positions_with_the_promised_outcomes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LevelTests.Every_stage_starts_valid_and_not_yet_complete(stage: 0)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SkillControllerTests.BeginSkill_explains_instead_of_entering_when_unavailable",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.New_game_dialog_offers_one_radio_per_catalog_level_plus_free_play",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Refused_click_is_visibly_explained_with_callout_and_related_stones",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.ClassPickTests.Public_choices_are_sequential_can_match_and_costs_come_from_config",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.PlayControllerTests.Selecting_a_point_previews_but_does_not_change_the_official_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.Dialog_keeps_7x7_positions_with_each_comparison_and_explicit_seal",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Friendly_suicide_and_repeated_history_are_refused_without_partial_changes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.LocalMatchTests.White_player_can_summon_and_cast_own_class_without_using_black_resources(hero: Warrior)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.SummonControllerTests.New_game_clears_old_preview_and_undo_and_keeps_both_public_class_choices",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.GameplayVisualTests.Empty_display_and_small_display_dimensions_never_produce_negative_form_sizes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.UiSmokeTests.Cancel_leaves_skill_mode_even_with_no_target_selected",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Play.Tests.Slice3cTests.Swap_preview_comes_from_the_engines_result_and_the_official_state_stays_put",
+          "outcome": "Passed"
+        }
+      ]
+    },
+    "domain": {
+      "path": "artifacts/gameplay-g1-g4/final/final-domain.trx",
+      "sha256": "ac9a4dd479bd3999c20c61bd67bea786f3e715afb0ec8e5be0e3a90e81c024ab",
+      "counters": {
+        "total": 129,
+        "executed": 129,
+        "passed": 129,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "results": [
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Turn_limit_ends_in_a_draw_and_blocks_further_actions",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(target: 'X')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Filling_last_liberty_captures_immediately_and_emits_event",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Left, x: 1, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.RogueSwapTests.Swap_can_break_a_formation_and_decapitate",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_superko_rollback\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.First_turn_ap_override_only_affects_the_first_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandReplayTests.Range_two_connector_is_a_custom_five_by_five_mechanism_demo_with_five_starting_liberties",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(target: '.')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Summon_costs_class_mana_and_ap_and_places_a_hero_next_to_a_friendly_piece",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Seal_rejections",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.No_action_or_legal_target_is_available_after_game_over",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"bastion_captures_with_two_stones\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Suicide_is_illegal_and_leaves_state_untouched",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"capture_basic\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TempoRaceTests.Two_ap_with_one_ap_first_turn_flips_the_pure_race_to_player_two",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TempoRaceTests.Two_ap_pure_race_player_one_kills_on_ply_three",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Moving_a_friendly_connector_splits_its_group_but_all_parts_keep_liberties",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Up, x: 2, y: 1)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Rejected_action_never_changes_the_state_or_emits_events",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Commander_group_with_soldiers_is_captured_together",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Same_actions_replay_to_the_identical_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Board_and_direction_boundaries_are_rejected_without_mutation",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"new_game_two_ap_baseline\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_explicit_seal\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"seal_range_errors\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Mana_grows_by_one_per_own_turn_and_is_capped",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_friendly_two_push_then_place\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Seal_survives_the_casters_own_turn_end_and_does_not_block_the_caster",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Two_ap_baseline_keeps_full_ap_on_the_first_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.One_ap_push_emits_resource_then_movement_then_turn_events",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"bastion_pair_suicide\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"turn_limit_draw\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_insufficient_mana\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TempoRaceTests.One_ap_pure_race_player_one_still_wins_one_tempo_ahead",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.RogueSwapTests.Swap_target_rejections",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"suicide_rejected\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(target: 'O')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_target_and_cost\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"bastion_range_and_target_errors\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Range_applies_to_the_target_and_the_destination_may_be_farther_away",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Push_then_place_captures_on_the_second_action_and_preserves_the_caster",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"seal_blocks_then_expires\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Resummon_can_be_switched_on_for_comparison",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Fresh_game_has_symmetric_commanders_and_player_one_to_move",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Seal_blocks_the_opponent_for_one_turn_then_expires",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Dead_mage_cannot_cast",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"swap_basic\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"swap_target_errors\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Any_occupied_destination_is_rejected_without_chain_push(occupant: 'X')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Capturing_the_hero_marks_it_as_used_up",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Any_occupied_destination_is_rejected_without_chain_push(occupant: 'o')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Returning_a_friendly_soldier_to_an_older_board_is_superko_with_full_rollback",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Legal_action_list_always_contains_end_turn_and_only_legal_actions",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_default\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Any_occupied_destination_is_rejected_without_chain_push(occupant: 'Q')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Applying_an_action_never_mutates_the_input_state",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"swap_decapitates\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Bastion_cannot_place_on_a_point_the_enemy_mage_sealed",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"resummon_allowed_when_enabled\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Only_one_hero_on_board",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Sealed_point_is_still_a_liberty_so_it_prevents_capture",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MageSealTests.Sealed_point_blocks_soldier_and_summon_for_the_opponent",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Any_occupied_destination_is_rejected_without_chain_push(occupant: 'O')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Occupied_and_off_board_are_rejected_without_spending_resources",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Skill_gates_cover_mana_ap_class_and_absent_caster",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Bastion_rejections_do_not_change_anything",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_commander_relief\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Capturing_the_commander_wins_immediately_and_freezes_the_game",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Left, x: 1, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"mana_cap\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_range_two_decapitation\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Enemy_pieces_do_not_join_a_group",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.NoClassTests.No_class_player_has_no_skills_in_the_legal_list",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"summon_adjacent_to_any_friend\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Down, x: 2, y: 3)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Down, x: 2, y: 3)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandGeometryTests.Adjacent_push_leaves_the_source_as_the_targets_liberty_in_a_minimal_edge_shape",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"summon_needs_mana\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_one_ap_event_order\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_friendly_superko\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Summon_rejections",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Bastion_is_one_atomic_action_two_stones_can_capture_together",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.RogueSwapTests.Swap_that_leaves_the_rogue_without_liberties_is_suicide_and_changes_nothing",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_suicide_rollback\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"swap_suicide\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Up, x: 2, y: 1)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Left, x: 1, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Filling_our_commanders_last_liberty_is_suicide_and_rolls_back_everything",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Right, x: 3, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Moving_an_enemy_away_can_add_a_commanders_liberty",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"ko_recapture\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Summon_may_be_next_to_any_friendly_piece_not_only_the_commander",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"capture_before_suicide\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Down, x: 2, y: 3)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Only_one_skill_per_turn",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_friendly_capture\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.Enemy_adjacent_pieces_do_not_count_as_a_friendly_anchor",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.SummonTests.A_fallen_hero_cannot_be_summoned_again_by_default",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.All_four_directions_move_exactly_one_enemy_soldier(direction: Right, x: 3, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.End_turn_forfeits_remaining_ap",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Fixture_set_is_not_empty",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"swap_back_is_ko\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"win_by_commander_capture\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.RogueSwapTests.Swap_is_blocked_by_ko_when_it_would_recreate_an_earlier_position",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(target: 'H')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_split_groups\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"no_resummon_by_default\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Group_connects_commander_hero_and_soldier_and_shares_liberties",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Pushing_a_connector_rebuilds_three_separate_groups",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Draft_default_gives_player_one_a_one_ap_first_turn_and_two_afterwards",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_range_and_target_errors\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Friendly_push_can_capture_an_enemy_by_filling_its_last_liberty_with_ordered_events",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Default_is_magic_hand_and_explicit_seal_preserves_the_comparison_baseline",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Two_ap_lets_one_turn_fill_two_liberties_but_one_ap_does_not",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Any_occupied_destination_is_rejected_without_chain_push(occupant: 'x')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Ko_recapture_is_illegal_until_the_board_changes",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"magic_hand_push_then_place\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.CoreRulesTests.Placement_without_liberties_that_captures_is_legal",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Right, x: 3, y: 2)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Up, x: 2, y: 1)",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Repeating_an_older_board_is_superko_and_rolls_back_resources_skill_and_events",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(target: 'Q')",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.RogueSwapTests.Swap_exchanges_positions_and_spends_resources",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.GoldenReplayTests.Replay_matches_expected(name: \"new_game_default_first_turn_one_ap\")",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Bastion_places_two_soldiers_for_one_ap_and_two_mana",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.WarriorBastionTests.Bastion_whose_pair_is_suicide_is_rejected_whole",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.TurnTests.Turn_passes_automatically_after_two_actions_and_ap_resets",
+          "outcome": "Passed"
+        },
+        {
+          "name": "TacticalGo.Domain.Tests.MagicHandTests.Legal_action_list_and_apply_agree_for_every_target_and_direction",
+          "outcome": "Passed"
+        }
+      ]
+    },
+    "goldenReplayPassed": 38,
+    "milestones": {
+      "baseline": {
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/baseline/baseline-windows.trx",
+          "sha256": "22bbc74d7a456226a6a1b8a6e1b312652db210a5b3339d4bd4fefc20bce3d451",
+          "counters": {
+            "total": 61,
+            "executed": 61,
+            "passed": 61,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        }
+      },
+      "G1": {
+        "domain": {
+          "path": "artifacts/gameplay-g1-g4/g1/g1-domain.trx",
+          "sha256": "1e9eaf773c629b9022b110e04ad7261d861bca4f864970521276e8daa63ca322",
+          "counters": {
+            "total": 75,
+            "executed": 75,
+            "passed": 75,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/g1/g1-restored.trx",
+          "sha256": "596745ad7903e1135d66c02f499f75c9508386edbdfc53d59c6ccf6cdaf43866",
+          "counters": {
+            "total": 69,
+            "executed": 69,
+            "passed": 69,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "commit": "6c1eedceba90e7c24fe0257b89ad149f4b772d1c"
+      },
+      "G2": {
+        "domain": {
+          "path": "artifacts/gameplay-g1-g4/g2/g2-domain.trx",
+          "sha256": "ff6ff19d6bc6adcb23703007e13473544cfc45c63985874df7860a1124db3d20",
+          "counters": {
+            "total": 75,
+            "executed": 75,
+            "passed": 75,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/g2/g2-restored.trx",
+          "sha256": "8a71c86d0fd9dc65c5d962b3d4759efec13cff313efaf55c5eb0d4feec845350",
+          "counters": {
+            "total": 72,
+            "executed": 72,
+            "passed": 72,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "commit": "7840f52b69c1254cf6a9fbde6ed246fbeae436ae"
+      },
+      "integration-before-G3": {
+        "domain": {
+          "path": "artifacts/gameplay-g1-g4/integration/integrated-domain.trx",
+          "sha256": "f7d89aa95eeab5f19d8895cb9a7f4adff710f0c9644c684ccb97813fd7badf79",
+          "counters": {
+            "total": 129,
+            "executed": 129,
+            "passed": 129,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/integration/integrated-windows.trx",
+          "sha256": "eb4cf26bfa594daf770f030aeb5ae8a1000e28a64d7945cf84bba516f281b55d",
+          "counters": {
+            "total": 72,
+            "executed": 72,
+            "passed": 72,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "commit": "36c6110a641397776960a8017776594f3bf44991"
+      },
+      "G3": {
+        "domain": {
+          "path": "artifacts/gameplay-g1-g4/g3/g3-domain.trx",
+          "sha256": "29b5c2208f2ddb09c7c1c597fd875ed26f6d42cceb9c135cb0a0b661d1a62780",
+          "counters": {
+            "total": 129,
+            "executed": 129,
+            "passed": 129,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/g3/g3-restored.trx",
+          "sha256": "0426fd45a84a82dbb31a2a9fd2aba64e3acaac30a07cf97c3e008d6492e17ac8",
+          "counters": {
+            "total": 79,
+            "executed": 79,
+            "passed": 79,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "commit": "76f2b3a098a061df3848dba19c2961e9bbd856b2"
+      },
+      "G4-final": {
+        "domain": {
+          "path": "artifacts/gameplay-g1-g4/final/final-domain.trx",
+          "sha256": "ac9a4dd479bd3999c20c61bd67bea786f3e715afb0ec8e5be0e3a90e81c024ab",
+          "counters": {
+            "total": 129,
+            "executed": 129,
+            "passed": 129,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "windows": {
+          "path": "artifacts/gameplay-g1-g4/final/final-windows.trx",
+          "sha256": "8472477a2429e89cea1af792c09b3e12e5b7ada6b0de925ae953110b4e60ca3b",
+          "counters": {
+            "total": 91,
+            "executed": 91,
+            "passed": 91,
+            "failed": 0,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          }
+        },
+        "commit": "64ff4bbc5c2eba16575ed9c00d5f69097ff88611"
+      }
+    },
+    "rawHistory": [
+      {
+        "path": "artifacts/gameplay-g1-g4/baseline/baseline-windows.trx",
+        "sha256": "22bbc74d7a456226a6a1b8a6e1b312652db210a5b3339d4bd4fefc20bce3d451",
+        "counters": {
+          "total": 61,
+          "executed": 61,
+          "passed": 61,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/final/final-domain.trx",
+        "sha256": "ac9a4dd479bd3999c20c61bd67bea786f3e715afb0ec8e5be0e3a90e81c024ab",
+        "counters": {
+          "total": 129,
+          "executed": 129,
+          "passed": 129,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/final/final-windows.trx",
+        "sha256": "8472477a2429e89cea1af792c09b3e12e5b7ada6b0de925ae953110b4e60ca3b",
+        "counters": {
+          "total": 91,
+          "executed": 91,
+          "passed": 91,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g1/class_card_hardcodes_summon_cost.trx",
+        "sha256": "e2391d9cee109acd8db282d15d712cf5406a8082c897372feb61a8cf30efe9fa",
+        "counters": {
+          "total": 1,
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g1/g1-domain.trx",
+        "sha256": "1e9eaf773c629b9022b110e04ad7261d861bca4f864970521276e8daa63ca322",
+        "counters": {
+          "total": 75,
+          "executed": 75,
+          "passed": 75,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g1/g1-restored.trx",
+        "sha256": "596745ad7903e1135d66c02f499f75c9508386edbdfc53d59c6ccf6cdaf43866",
+        "counters": {
+          "total": 69,
+          "executed": 69,
+          "passed": 69,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g1/g1-windows.trx",
+        "sha256": "83607f75ec82cf431d53824ad2b9e3c5abf4d0fde9d15c12438afea0a6a16419",
+        "counters": {
+          "total": 69,
+          "executed": 69,
+          "passed": 69,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g1/summon_preview_mutates_official_state.trx",
+        "sha256": "ce38681160a19553c0d49c55b8a2a8ff4e8a07ef13d0b840396e11cf11789239",
+        "counters": {
+          "total": 6,
+          "executed": 6,
+          "passed": 3,
+          "failed": 3,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g2/bastion_ignores_second_choice.trx",
+        "sha256": "090b2189ca1078184a562023ff70b031c89cf07aa8891ae564e19f9f527bb320",
+        "counters": {
+          "total": 3,
+          "executed": 3,
+          "passed": 0,
+          "failed": 3,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g2/bastion_selection_survives_confirmation.trx",
+        "sha256": "d4e09f3359ef70d5fcd9e48b41ff83f29a2e8dec200feab7e20a686fc0e7071a",
+        "counters": {
+          "total": 3,
+          "executed": 3,
+          "passed": 1,
+          "failed": 2,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g2/g2-domain.trx",
+        "sha256": "ff6ff19d6bc6adcb23703007e13473544cfc45c63985874df7860a1124db3d20",
+        "counters": {
+          "total": 75,
+          "executed": 75,
+          "passed": 75,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g2/g2-restored.trx",
+        "sha256": "8a71c86d0fd9dc65c5d962b3d4759efec13cff313efaf55c5eb0d4feec845350",
+        "counters": {
+          "total": 72,
+          "executed": 72,
+          "passed": 72,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g2/g2-windows.trx",
+        "sha256": "8b0f5a043ca2d03498089dd1a632eb02c7a8dc32c7b3f428f574c1d35a09ee1d",
+        "counters": {
+          "total": 72,
+          "executed": 72,
+          "passed": 71,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/direction-ignored.trx",
+        "sha256": "72004f3062162b5331e7b3491a87e1cf73acb48e4b2fec0b402e93c2a10edaf2",
+        "counters": {
+          "total": 2,
+          "executed": 2,
+          "passed": 0,
+          "failed": 2,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/g3-corrected.trx",
+        "sha256": "da0f6557bbe015899c0625fb610c3b51e92c6b8449234917fb169e5bc1994849",
+        "counters": {
+          "total": 79,
+          "executed": 79,
+          "passed": 79,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/g3-domain.trx",
+        "sha256": "29b5c2208f2ddb09c7c1c597fd875ed26f6d42cceb9c135cb0a0b661d1a62780",
+        "counters": {
+          "total": 129,
+          "executed": 129,
+          "passed": 129,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/g3-restored.trx",
+        "sha256": "0426fd45a84a82dbb31a2a9fd2aba64e3acaac30a07cf97c3e008d6492e17ac8",
+        "counters": {
+          "total": 79,
+          "executed": 79,
+          "passed": 79,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/g3-windows.trx",
+        "sha256": "2779707c1d3878472dc36a7b6a8367c04037b6a44aa642c320165240d756c435",
+        "counters": {
+          "total": 79,
+          "executed": 79,
+          "passed": 78,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g3/stale-push-selection.trx",
+        "sha256": "0c6dfd00a2ea53d8ba7300d51002741bbcb7e28ef51731f254e74325d9b8cbcc",
+        "counters": {
+          "total": 1,
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/g4-domain.trx",
+        "sha256": "c7a1fee51c0bb7aad34fc7872ef1fa609cf1b597c8f9dfaadd07b255b1885a6c",
+        "counters": {
+          "total": 129,
+          "executed": 129,
+          "passed": 129,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/g4-first.trx",
+        "sha256": "84995e7d303eb092f9d1aeb9f0730fd701c2a03e117ac274640aae81c4ff6754",
+        "counters": {
+          "total": 85,
+          "executed": 85,
+          "passed": 84,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/g4-layout.trx",
+        "sha256": "c4146f3b1a5c1dc894b59885bbc1d5dc436c9c9c389e2881516fef62e3ec3446",
+        "counters": {
+          "total": 88,
+          "executed": 88,
+          "passed": 88,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/g4-portraits.trx",
+        "sha256": "8f704819212fc8122889e5e54c33b04e9cb51f694501607be45b8b7f787eb138",
+        "counters": {
+          "total": 3,
+          "executed": 3,
+          "passed": 3,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/g4-restored.trx",
+        "sha256": "7636e81986de236ee7cf5fa86fb75a8fd87d7532b59179f8e68d4eafa66fc95d",
+        "counters": {
+          "total": 91,
+          "executed": 91,
+          "passed": 91,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/hide-portraits-again.trx",
+        "sha256": "e17a8cfd32e2c13b1091f15c9f455066e2be7e1e1bb617b3e00906a56c98d8d4",
+        "counters": {
+          "total": 2,
+          "executed": 2,
+          "passed": 0,
+          "failed": 2,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/tutorial-policy-retained.trx",
+        "sha256": "102beeebac9c2945c8bbe203688466efe152bfb15245135b7cbe2be0b6f4fa22",
+        "counters": {
+          "total": 1,
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/wrong-commander-start.trx",
+        "sha256": "5b2c6f6c7e043a4aafd8c64c1e2ad02d81cf79e0fd72ef0864b4c1b23be8a684",
+        "counters": {
+          "total": 3,
+          "executed": 3,
+          "passed": 0,
+          "failed": 3,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/integration/integrated-domain.trx",
+        "sha256": "f7d89aa95eeab5f19d8895cb9a7f4adff710f0c9644c684ccb97813fd7badf79",
+        "counters": {
+          "total": 129,
+          "executed": 129,
+          "passed": 129,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/integration/integrated-windows.trx",
+        "sha256": "eb4cf26bfa594daf770f030aeb5ae8a1000e28a64d7945cf84bba516f281b55d",
+        "counters": {
+          "total": 72,
+          "executed": 72,
+          "passed": 72,
+          "failed": 0,
+          "error": 0,
+          "timeout": 0,
+          "aborted": 0,
+          "inconclusive": 0,
+          "passedButRunAborted": 0,
+          "notRunnable": 0,
+          "notExecuted": 0,
+          "disconnected": 0,
+          "warning": 0,
+          "completed": 0,
+          "inProgress": 0,
+          "pending": 0
+        }
+      }
+    ]
+  },
+  "validator": {
+    "command": "python validators/golden_fixture_validator.py .",
+    "fixtures": 38,
+    "pass": true,
+    "harnessCommand": "python -m unittest discover -s tests/validators -v",
+    "harnessPassed": 5,
+    "log": "ok=True\nChecked 38 golden fixtures against 20 engine illegal reasons and 11 event types; structure and vocabulary only, no replay.\n",
+    "harnessLog": "test_hand_authored_fixture_is_accepted (test_golden_fixture_validator.GoldenValidatorTests.test_hand_authored_fixture_is_accepted) ... ok\ntest_missing_target_is_rejected (test_golden_fixture_validator.GoldenValidatorTests.test_missing_target_is_rejected) ... ok\ntest_wrong_direction_is_rejected (test_golden_fixture_validator.GoldenValidatorTests.test_wrong_direction_is_rejected) ... ok\ntest_wrong_event_is_rejected (test_golden_fixture_validator.GoldenValidatorTests.test_wrong_event_is_rejected) ... ok\ntest_wrong_skill_is_rejected (test_golden_fixture_validator.GoldenValidatorTests.test_wrong_skill_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.053s\n\nOK\n"
+  },
+  "focusedMutations": {
+    "killed": 9,
+    "total": 9,
+    "sourceRestored": true,
+    "restoredFullRun": "tests.milestones.G4-final",
+    "results": [
+      {
+        "stage": "g1",
+        "spec": {
+          "name": "summon_preview_mutates_official_state",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "Preview = GameEngine.Apply(State, action);\n        Feedback = $\"預覽召喚",
+          "after": "Preview = GameEngine.Apply(State, action);\n        State = Preview.State;\n        Feedback = $\"預覽召喚",
+          "filter": "FullyQualifiedName~SummonControllerTests"
+        },
+        "execution": {
+          "name": "summon_preview_mutates_official_state",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~SummonControllerTests",
+            "--logger",
+            "trx;LogFileName=summon_preview_mutates_official_state.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g1"
+          ],
+          "counters": {
+            "total": "6",
+            "executed": "6",
+            "passed": "3",
+            "failed": "3",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "7052d9149b074a5a20a955b45d5c6cf727a56aebf3c8c92a748e029e72e1223e"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g1/summon_preview_mutates_official_state.trx",
+          "sha256": "ce38681160a19553c0d49c55b8a2a8ff4e8a07ef13d0b840396e11cf11789239",
+          "counters": {
+            "total": 6,
+            "executed": 6,
+            "passed": 3,
+            "failed": 3,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.New_game_clears_old_preview_and_undo_and_keeps_both_public_class_choices",
+              "outcome": "Passed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.Insufficient_mana_is_refused_by_engine_and_explained_in_chinese",
+              "outcome": "Passed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Rogue, cost: 2)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Mage, cost: 3)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.Summon_preview_confirmation_and_undo_use_selected_class_and_exact_resources(hero: Warrior, cost: 2)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.SummonControllerTests.Occupied_or_non_adjacent_summons_cannot_be_confirmed_and_cancel_spends_nothing",
+              "outcome": "Passed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g1",
+        "spec": {
+          "name": "class_card_hardcodes_summon_cost",
+          "path": "src/TacticalGo.Play/ClassPickDialog.cs",
+          "before": "{_config.SummonCost(hero)}",
+          "after": "{3}",
+          "filter": "FullyQualifiedName~Public_choices_are_sequential"
+        },
+        "execution": {
+          "name": "class_card_hardcodes_summon_cost",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Public_choices_are_sequential",
+            "--logger",
+            "trx;LogFileName=class_card_hardcodes_summon_cost.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g1"
+          ],
+          "counters": {
+            "total": "1",
+            "executed": "1",
+            "passed": "0",
+            "failed": "1",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "d3ccc019c465f5dddb7f3012f06a676790c955eaf3a4ca5b5139e44ce9a48188"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g1/class_card_hardcodes_summon_cost.trx",
+          "sha256": "e2391d9cee109acd8db282d15d712cf5406a8082c897372feb61a8cf30efe9fa",
+          "counters": {
+            "total": 1,
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.ClassPickTests.Public_choices_are_sequential_can_match_and_costs_come_from_config",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g2",
+        "spec": {
+          "name": "bastion_ignores_second_choice",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "new CastBastion(_bastionFirst.Value, p)",
+          "after": "new CastBastion(_bastionFirst.Value, _bastionFirst.Value)",
+          "filter": "FullyQualifiedName~BastionControllerTests"
+        },
+        "execution": {
+          "name": "bastion_ignores_second_choice",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~BastionControllerTests",
+            "--logger",
+            "trx;LogFileName=bastion_ignores_second_choice.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g2"
+          ],
+          "counters": {
+            "total": "3",
+            "executed": "3",
+            "passed": "0",
+            "failed": "3",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "66a17e3042e0cd2054c57d9606a2386e7a299d14e249856b61ad5d66453bf3ef"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g2/bastion_ignores_second_choice.trx",
+          "sha256": "090b2189ca1078184a562023ff70b031c89cf07aa8891ae564e19f9f527bb320",
+          "counters": {
+            "total": 3,
+            "executed": 3,
+            "passed": 0,
+            "failed": 3,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Two_selections_preview_without_spending_then_confirm_both_atomically_and_undo",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Partial_and_complete_bastion_previews_paint_and_the_real_button_confirms",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Duplicate_or_distant_second_target_is_refused_and_can_be_reselected",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g2",
+        "spec": {
+          "name": "bastion_selection_survives_confirmation",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "_bastionFirst = null;",
+          "after": "// mutant: retain first target",
+          "filter": "FullyQualifiedName~BastionControllerTests"
+        },
+        "execution": {
+          "name": "bastion_selection_survives_confirmation",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~BastionControllerTests",
+            "--logger",
+            "trx;LogFileName=bastion_selection_survives_confirmation.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g2"
+          ],
+          "counters": {
+            "total": "3",
+            "executed": "3",
+            "passed": "1",
+            "failed": "2",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "66a17e3042e0cd2054c57d9606a2386e7a299d14e249856b61ad5d66453bf3ef"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g2/bastion_selection_survives_confirmation.trx",
+          "sha256": "d4e09f3359ef70d5fcd9e48b41ff83f29a2e8dec200feab7e20a686fc0e7071a",
+          "counters": {
+            "total": 3,
+            "executed": 3,
+            "passed": 1,
+            "failed": 2,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Duplicate_or_distant_second_target_is_refused_and_can_be_reselected",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Partial_and_complete_bastion_previews_paint_and_the_real_button_confirms",
+              "outcome": "Passed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.BastionControllerTests.Two_selections_preview_without_spending_then_confirm_both_atomically_and_undo",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g3",
+        "spec": {
+          "name": "direction-ignored",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "SelectMageAction(new CastMagicHand(target, direction), target);",
+          "after": "SelectMageAction(new CastMagicHand(target, PushDirection.Right), target);",
+          "filter": "FullyQualifiedName~Target_then_direction"
+        },
+        "execution": {
+          "name": "direction-ignored",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Target_then_direction",
+            "--logger",
+            "trx;LogFileName=direction-ignored.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g3"
+          ],
+          "counters": {
+            "total": "2",
+            "executed": "2",
+            "passed": "0",
+            "failed": "2",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "613e9d8dc832461d43546c4feb9f6bb18fff7978612ef96ac1035c6588b57ca4"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g3/direction-ignored.trx",
+          "sha256": "72004f3062162b5331e7b3491a87e1cf73acb48e4b2fec0b402e93c2a10edaf2",
+          "counters": {
+            "total": 2,
+            "executed": 2,
+            "passed": 0,
+            "failed": 2,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Target_then_direction_then_confirmation_preserve_ownership_and_resources(soldier: 'o', owner: Two)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Target_then_direction_then_confirmation_preserve_ownership_and_resources(soldier: 'x', owner: One)",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g3",
+        "spec": {
+          "name": "stale-push-selection",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "private void SelectPushTarget(Point p)\n    {\n        ClearSelection();",
+          "after": "private void SelectPushTarget(Point p)\n    {\n        // mutation: retain pending preview",
+          "filter": "FullyQualifiedName~Invalid_targets_and_blocked"
+        },
+        "execution": {
+          "name": "stale-push-selection",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Invalid_targets_and_blocked",
+            "--logger",
+            "trx;LogFileName=stale-push-selection.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g3"
+          ],
+          "counters": {
+            "total": "1",
+            "executed": "1",
+            "passed": "0",
+            "failed": "1",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "613e9d8dc832461d43546c4feb9f6bb18fff7978612ef96ac1035c6588b57ca4"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g3/stale-push-selection.trx",
+          "sha256": "0c6dfd00a2ea53d8ba7300d51002741bbcb7e28ef51731f254e74325d9b8cbcc",
+          "counters": {
+            "total": 1,
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.MagicHandControllerTests.Invalid_targets_and_blocked_directions_cannot_spend_or_leave_stale_preview",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g4",
+        "spec": {
+          "name": "wrong-commander-start",
+          "path": "src/TacticalGo.Play/LocalMatch.cs",
+          "before": "CommanderTwoStart = new(3, 1)",
+          "after": "CommanderTwoStart = new(0, 1)",
+          "filter": "FullyQualifiedName~Approved_opening"
+        },
+        "execution": {
+          "name": "wrong-commander-start",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Approved_opening",
+            "--logger",
+            "trx;LogFileName=wrong-commander-start.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g4"
+          ],
+          "counters": {
+            "total": "3",
+            "executed": "3",
+            "passed": "0",
+            "failed": "3",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "3fae850c01a0062911cc997015eebd89e3c7a4ea764674230e94d27eb7040395"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g4/wrong-commander-start.trx",
+          "sha256": "5b2c6f6c7e043a4aafd8c64c1e2ad02d81cf79e0fd72ef0864b4c1b23be8a684",
+          "counters": {
+            "total": 3,
+            "executed": 3,
+            "passed": 0,
+            "failed": 3,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Warrior)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Mage)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.LocalMatchTests.Approved_opening_two_human_summons_skill_and_capture_replay(hero: Rogue)",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g4",
+        "spec": {
+          "name": "tutorial-policy-retained",
+          "path": "src/TacticalGo.Play/PlayController.cs",
+          "before": "        OpponentPolicy = null;",
+          "after": "        // mutation: retain tutorial opponent",
+          "filter": "FullyQualifiedName~Tutorial_to_free"
+        },
+        "execution": {
+          "name": "tutorial-policy-retained",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Tutorial_to_free",
+            "--logger",
+            "trx;LogFileName=tutorial-policy-retained.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g4"
+          ],
+          "counters": {
+            "total": "1",
+            "executed": "1",
+            "passed": "0",
+            "failed": "1",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "1da9b8d21fc464e6fcfb42217d732ca29bd6eeb5846b9c3d81ad5d448f04b421"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g4/tutorial-policy-retained.trx",
+          "sha256": "102beeebac9c2945c8bbe203688466efe152bfb15245135b7cbe2be0b6f4fa22",
+          "counters": {
+            "total": 1,
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.LocalMatchTests.Tutorial_to_free_clears_script_lock_and_resources_are_visible_then_can_return_to_tutorial",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      },
+      {
+        "stage": "g4",
+        "spec": {
+          "name": "hide-portraits-again",
+          "path": "src/TacticalGo.Play/MainForm.cs",
+          "before": "_heroRow.Visible = level is null && _play.ShowMana;",
+          "after": "_heroRow.Visible = false;",
+          "filter": "FullyQualifiedName~Full_game_action_controls"
+        },
+        "execution": {
+          "name": "hide-portraits-again",
+          "command": [
+            "dotnet",
+            "test",
+            "tests/TacticalGo.Play.Tests",
+            "--filter",
+            "FullyQualifiedName~Full_game_action_controls",
+            "--logger",
+            "trx;LogFileName=hide-portraits-again.trx",
+            "--results-directory",
+            "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\artifacts\\gameplay-g1-g4\\g4"
+          ],
+          "counters": {
+            "total": "2",
+            "executed": "2",
+            "passed": "0",
+            "failed": "2",
+            "error": "0",
+            "timeout": "0",
+            "aborted": "0",
+            "inconclusive": "0",
+            "passedButRunAborted": "0",
+            "notRunnable": "0",
+            "notExecuted": "0",
+            "disconnected": "0",
+            "warning": "0",
+            "completed": "0",
+            "inProgress": "0",
+            "pending": "0"
+          },
+          "killed": true,
+          "originalSha256": "da63f0104eb96d597e2d807920eeb1c18a7cd5a203b568b784b6505c27a68a8b"
+        },
+        "raw": {
+          "path": "artifacts/gameplay-g1-g4/g4/hide-portraits-again.trx",
+          "sha256": "e17a8cfd32e2c13b1091f15c9f455066e2be7e1e1bb617b3e00906a56c98d8d4",
+          "counters": {
+            "total": 2,
+            "executed": 2,
+            "passed": 0,
+            "failed": 2,
+            "error": 0,
+            "timeout": 0,
+            "aborted": 0,
+            "inconclusive": 0,
+            "passedButRunAborted": 0,
+            "notRunnable": 0,
+            "notExecuted": 0,
+            "disconnected": 0,
+            "warning": 0,
+            "completed": 0,
+            "inProgress": 0,
+            "pending": 0
+          },
+          "results": [
+            {
+              "name": "TacticalGo.Play.Tests.GameplayVisualTests.Full_game_action_controls_stay_inside_viewport_with_actual_art_and_skill_previews(width: 900, height: 700)",
+              "outcome": "Failed"
+            },
+            {
+              "name": "TacticalGo.Play.Tests.GameplayVisualTests.Full_game_action_controls_stay_inside_viewport_with_actual_art_and_skill_previews(width: 1140, height: 760)",
+              "outcome": "Failed"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "visualQa": {
+    "clientSizes": [
+      [
+        900,
+        700
+      ],
+      [
+        1140,
+        760
+      ]
+    ],
+    "method": "Real WinForms STA/offscreen layout assertions and bitmap rendering; representative images visually inspected",
+    "files": [
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/class-cards-white-choice.png",
+        "sha256": "9f5638bc3f3b85eb0d40b0571ba3e0a288eda06ea6e946befad29e57e04c30d2"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/class-cards.png",
+        "sha256": "1b84a23b84b6fcabbbd00088a824dec57cedea832e96adc4e9377c402b81d785"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Mage-1140x760-preview.png",
+        "sha256": "58631eda21d90400f709c8f3c1eb404d092a7be06888b347f3764e1b87fa0df4"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Mage-900x700-preview.png",
+        "sha256": "cf39d337923d5b16755b2d3ab45faffc7bc6bf6d1409abb7388488ece7f96e8e"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Rogue-1140x760-preview.png",
+        "sha256": "c9aa3f54f6a4039966ef74e52de1f74453d28ee1656b74a20a3665c01be65ff6"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Rogue-900x700-preview.png",
+        "sha256": "c2e067fd9f936dff89d6cba68b3eedd2d8ddf0951dafe22bda7d98fdcda0cfd3"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Warrior-1140x760-preview.png",
+        "sha256": "badde07f42b982891d7b783c363a08d969ff999e4c347a2f5963c7a5e99e00a7"
+      },
+      {
+        "path": "artifacts/gameplay-g1-g4/g4/screenshots/Warrior-900x700-preview.png",
+        "sha256": "05d9160628c64f3a3a6d2e61787d9682382b77070edd54666f1229269b843830"
+      }
+    ]
+  },
+  "publish": {
+    "command": "./tools/publish-play.ps1",
+    "runtime": "win-x64, framework-dependent .NET 9 Windows Desktop",
+    "observedInstalledRuntime": "Microsoft.WindowsDesktop.App 9.0.7",
+    "files": [
+      {
+        "file": "Start-7x7.cmd",
+        "bytes": 63,
+        "sha256": "6ac9b0a6da41aa6204d498fd819e7a2146f09fe3dec5c762af7c8423e277cb3a"
+      },
+      {
+        "file": "Start-Tutorial-2.cmd",
+        "bytes": 66,
+        "sha256": "5355f74a655aa1a79e2820c3da05676017cc2757e6b65efb93f628c5365474eb"
+      },
+      {
+        "file": "TacticalGo.Domain.dll",
+        "bytes": 83968,
+        "sha256": "7e0361bf48fc3417c084511caeb0c360a2d04f23156a68de86009aca113f3a39"
+      },
+      {
+        "file": "TacticalGo.Domain.pdb",
+        "bytes": 27000,
+        "sha256": "18d0895c7aadc9b0b1924404312aa7fe93c1a57adf9de5656b5ffc0fe15fd2a4"
+      },
+      {
+        "file": "TacticalGo.Play.deps.json",
+        "bytes": 897,
+        "sha256": "b0d76ae1436ba9ea969cd045636eaded64b5c3b90a81e5e894fc5a926d86ce4c"
+      },
+      {
+        "file": "TacticalGo.Play.dll",
+        "bytes": 1219584,
+        "sha256": "9933c9e9ad9c2ccabdbcc2a097db683978eda6217ce61fb3d04e9256c2d5e758"
+      },
+      {
+        "file": "TacticalGo.Play.exe",
+        "bytes": 155136,
+        "sha256": "7dd9a702b9b7c1eaf136c626fe1ed8f8a8b018414f896d61613b465391f2bc65"
+      },
+      {
+        "file": "TacticalGo.Play.pdb",
+        "bytes": 37088,
+        "sha256": "d56651640977d3232fe4c4c5a673317975a773b1964446cb6cb8c4cd626ad98d"
+      },
+      {
+        "file": "TacticalGo.Play.runtimeconfig.json",
+        "bytes": 516,
+        "sha256": "05917b409d59af31bc8d3021bc06302a0c21c7d05b449603d6cc9f0301a2b66c"
+      }
+    ],
+    "actualExecutableSmoke": [
+      {
+        "sha256": "a5858e634ddbd0ddfa822a38d32b99fbf4a64fa846cf8b7afb4c36385082aae5",
+        "script": "h;p3,4;h;p4,1;p3,3;k;s3,3;L",
+        "case": "mage",
+        "exitCode": 0,
+        "classes": "Mage,Rogue",
+        "png": "artifacts/gameplay-g1-g4/g4/published/mage.png"
+      },
+      {
+        "sha256": "d8fc5bf2d65b12be28d72a775e0b24032308f18c6f47750252563c501e84ad46",
+        "script": "h;p3,4;h;p4,1;p3,3;k;s2,4;s4,4",
+        "case": "warrior",
+        "exitCode": 0,
+        "classes": "Warrior,Rogue",
+        "png": "artifacts/gameplay-g1-g4/g4/published/warrior.png"
+      },
+      {
+        "sha256": "2164b4a02187d12ca8c8081787605365751c176e41eae2e213efa391df0aa034",
+        "script": "h;p3,4;h;p4,1;p3,3;k;s3,3",
+        "case": "rogue",
+        "exitCode": 0,
+        "classes": "Rogue,Rogue",
+        "png": "artifacts/gameplay-g1-g4/g4/published/rogue.png"
+      },
+      {
+        "sha256": "9dbc1f9b151d77ac748c4fea2f2324925e9c1807c015c6a33cbf0da950802c0a",
+        "script": "h;p3,4;h;p4,1;p3,3;k;s3,3;L;v;p2,1;p0,6;p0,5;p3,0;p3,2;p0,4;p0,3;p4,0;p4,2;p0,2;p0,1;p5,1",
+        "case": "winner",
+        "exitCode": 0,
+        "classes": "Mage,Rogue",
+        "png": "artifacts/gameplay-g1-g4/g4/published/winner.png"
+      },
+      {
+        "sha256": "5376a8e8b3b0babbf02bd0d5b68c3c9de78b7f3360ae3851683058daa8ac5968",
+        "script": "h;p3,4;h;p4,1;p3,3;k;s3,3;L;v;p2,1;p0,6;p0,5;p3,0;p3,2;p0,4;p0,3;p4,0;p4,2;p0,2;p0,1;p5,1;u",
+        "case": "undo-winner",
+        "exitCode": 0,
+        "classes": "Mage,Rogue",
+        "png": "artifacts/gameplay-g1-g4/g4/published/undo-winner.png"
+      }
+    ],
+    "deliveryFolder": "E:\\BackUp\\Git_EE\\TacticalGo\\dist\\TacticalGo.G1-G4",
+    "zip": "E:/BackUp/Git_EE/TacticalGo/dist/TacticalGo.G1-G4.zip",
+    "zipSha256": "5b594703a31445018b67b69310c655520ea771f417dcbdf12b4f7cab447330da",
+    "rawEvidenceBundle": "E:/BackUp/Git_EE/TacticalGo/dist/TacticalGo.G1-G4-evidence.zip"
+  },
+  "assets": {
+    "pr": 3,
+    "mergedCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+    "method": "six byte-identical PNGs embedded as resources",
+    "entries": [
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/A-mage-v01.png",
+        "bytes": 43771,
+        "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      },
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/A-rogue-v02.png",
+        "bytes": 48314,
+        "sha256": "3b54a6ae6ce8c9276259398c23b796dc27fb7b1c373eb03d5a7dd7f60e1c9c1b",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      },
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/A-warrior-v01.png",
+        "bytes": 19466,
+        "sha256": "66bffd664cc6935be140a523bbe071e65ff79d8c3fb3638bd13d860e5fc1e599",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      },
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/B-mage-v02.png",
+        "bytes": 310830,
+        "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      },
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/B-rogue-v02.png",
+        "bytes": 315372,
+        "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      },
+      {
+        "path": "assets/candidates/vis-feel-01/tokens/B-warrior-v02.png",
+        "bytes": 370686,
+        "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+        "sourceCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+        "productionAvailability": false,
+        "rights": "pending_confirmation"
+      }
+    ],
+    "productionReleaseApproved": false,
+    "htmlAnimationImported": false
+  },
+  "governance": {
+    "driftCommand": "python additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework --format json",
+    "drift": {
+      "ok": true,
+      "severity": "ok",
+      "repo_root": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo",
+      "baseline_yaml": "C:\\Users\\reiko\\.codex\\worktrees\\gameplay-g1-g4\\TacticalGo\\.governance\\baseline.yaml",
+      "baseline_version": "1.0.0",
+      "framework_version": "1.0.0",
+      "checks": {
+        "baseline_yaml_present": true,
+        "baseline_version_known": true,
+        "framework_version_current": true,
+        "source_commit_recorded": true,
+        "protected_files_present": true,
+        "protected_files_unmodified": true,
+        "protected_file_sentinel_present": true,
+        "contract_required_fields_present": true,
+        "contract_agents_base_referenced": true,
+        "contract_no_placeholders": true,
+        "contract_not_framework_copy": true,
+        "plan_required_sections_present": true,
+        "agents_sections_filled": true,
+        "memory_schema_complete": true,
+        "plan_freshness": true,
+        "plan_inventory_current": true,
+        "baseline_yaml_freshness": true,
+        "expansion_boundary": true
+      },
+      "findings": [],
+      "warnings": [],
+      "errors": [],
+      "remediation_hints": [],
+      "plan_section_inventory": [
+        "## 1. ���~�ؼлP�����Ұ��]",
+        "## 2. ���ӥi�������GTactical Go Lite",
+        "## 3. P0�G���ᵲ�i����W�h�]���L���o�[���e�^",
+        "## 4. �}�o�����P�禬 Gate",
+        "## 5. �u�{�P���խ�h",
+        "## 6. Stop / Pivot ����",
+        "## 7. �U�@�ӳ̤p���"
+      ]
+    },
+    "frameworkUpdateClaim": false
+  },
+  "workingSourceSha256": {
+    "src/TacticalGo.Domain/ActionEvent.cs": "cff314129bd2849583eccc3fd4cfac6d4f82902999acd525e7c7adcd94a2ebb9",
+    "src/TacticalGo.Domain/ActionResolver.cs": "257b11e6daaeb81879b1bf7e2b56b91f064b9cadc1ef728913664ec77f1363a4",
+    "src/TacticalGo.Domain/ActionValidator.cs": "2178b01106d2a39e78729d94477e1b99b7e7f4f4ccf63facef55d5c1b0aae4eb",
+    "src/TacticalGo.Domain/Actions.cs": "e4bb38f013bf80c6e4f60bb3443f53af23be8579372113367f02af2cea3c1c5d",
+    "src/TacticalGo.Domain/Board.cs": "b33a495353862a13c610b34a5a15cc5e6b728a0731bf7245f4c74f655873e343",
+    "src/TacticalGo.Domain/BoardRuleEngine.cs": "0ca338da619726d34036df9ca3c38e9778d002e6abb87ecc2e78d8abb07bb870",
+    "src/TacticalGo.Domain/BoardText.cs": "ce9ea8b88c39916f560527a5eff29f198b20798b04fc01858a3f51a4aeb9a80a",
+    "src/TacticalGo.Domain/GameEngine.cs": "18c283d7a46658d94f72f4df98a87fb8fbb1df0022f1418340f9a23a2a22b77e",
+    "src/TacticalGo.Domain/GameSession.cs": "0e6660ed6e0465d20c69a5ea438c6053aa8bc2c22b0d7ee04bf0450a1f2ba9b2",
+    "src/TacticalGo.Domain/GameState.cs": "41b42e0f28e483c47e1f90dae22a08421e4d8dc590b69866d54943ce709d6228",
+    "src/TacticalGo.Domain/Primitives.cs": "8c0866e60286d3f1e74728fe281ad7eb8820e7117aacb28527b4214acba867bd",
+    "src/TacticalGo.Domain/RuleConfig.cs": "1f9f326ef5f0d6bb94fbc5d6af99a3b14d63d5244c8fb5b47ba43b655f9b1170",
+    "src/TacticalGo.Domain/TacticalGo.Domain.csproj": "4d29c3a189c0733e1a32b231953bc515877a4a26f81b22bca995551a432b2c61",
+    "src/TacticalGo.Domain/TurnEngine.cs": "e76cbddaeb4161acfb69e1e2391888fdf43b940a781218653633e970ee3a22a8",
+    "src/TacticalGo.Play/BoardView.cs": "95cf26d05e50ee2eab13cec22efcdc1139ad326dfd96cbf84206021c9d786b69",
+    "src/TacticalGo.Play/ClassPickDialog.cs": "c1d7b7006998befc8325abb269910f31b6a135d3146dec0e5b37c6a96355e7b3",
+    "src/TacticalGo.Play/EventText.cs": "ba428607a10c5dc932a12205d9c90bec54bbbec66474f3ea7a9e74432aeffac2",
+    "src/TacticalGo.Play/HelpForm.cs": "c898560d7deb1cebf429767352428cb97d635e5719a4e2da2746519ea1cd7316",
+    "src/TacticalGo.Play/HelpScenarios.cs": "a6cd38cb31b29b16abc06c1376f2501a9bba70bde347dab318968d649fb86288",
+    "src/TacticalGo.Play/HeroArt.cs": "f49aaf7bc55222967beed75500e684cceddcb4a1b6e102ee9f347afcf7c09402",
+    "src/TacticalGo.Play/Level.cs": "d3ecf3bc41f7a7ffe01a724708516c8f3c2d872cd2538c7def40c11ca5f76298",
+    "src/TacticalGo.Play/LocalMatch.cs": "3fae850c01a0062911cc997015eebd89e3c7a4ea764674230e94d27eb7040395",
+    "src/TacticalGo.Play/MainForm.cs": "1ca760c990add3d631e426c518e988b4e9f061f566efc88cf08020ae311d304c",
+    "src/TacticalGo.Play/PlayController.cs": "d5111c95d9df1788e6c925c2e89f685bdbc990c53536d03b77a52d9be63c407b",
+    "src/TacticalGo.Play/Program.cs": "80ba029c9f636d1256ea198397276529770a67fd815d8fa6f21b2ce29890e0e5",
+    "src/TacticalGo.Play/SkillPresentation.cs": "d940599d9f9502e209caa52a133ed48e42fef7c97f1bcd3e6f9db9856ee1da29",
+    "src/TacticalGo.Play/TacticalGo.Play.csproj": "e060ca96ef2fb66a8c865cebbb3e1ffb8d13a7d1174693eb807bdc8da3314969",
+    "src/TacticalGo.Sim/Bots.cs": "0c2acb01e5fa554a7aae00d2c74570643f08d4527b9f3c64d55eeb881db8e486",
+    "src/TacticalGo.Sim/Program.cs": "91964946ac15081e55c93d12cdcbe6b6072613b9ae1d7dd81bd23d35961581c8",
+    "src/TacticalGo.Sim/Runner.cs": "fcc4e9c7b43bf61a692a7467cd75e5215aa9bb903e44da0cccc91ac9654c783f",
+    "src/TacticalGo.Sim/TacticalGo.Sim.csproj": "82c524da665fe7a800f869cad04cccb6bd76d9e5c9151dd163868a53af84a1c5",
+    "tests/TacticalGo.Domain.Tests/CoreRulesTests.cs": "fd1b3363f3c872a1fa8904ec985fb528ab056f28549da8c38e03745afce24b86",
+    "tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs": "98bc25306f7735cdb817edc183839a62341b93850771996c59685f41a3871777",
+    "tests/TacticalGo.Domain.Tests/MagicHandFriendlyTests.cs": "694882a80a24ba9afa7fb7fcb5172aff14e55da385df2e24140712021f30a691",
+    "tests/TacticalGo.Domain.Tests/MagicHandGeometryTests.cs": "08eede1821b5b822425e865e6f1f01b61b56c1ab69f86d6594821116a5f83c87",
+    "tests/TacticalGo.Domain.Tests/MagicHandReplayTests.cs": "95948357ef3feb05c24ccfd22fc9d261b44c811b3c70fcfde2f48b2682fb4a43",
+    "tests/TacticalGo.Domain.Tests/MagicHandTests.cs": "d619e08b3a66b0656f72bed4cd038c606a03395559eab28ccb6c0c8abcb960fc",
+    "tests/TacticalGo.Domain.Tests/SkillTests.cs": "384ec9f0ba36b6b7566d408b1b17b4b0a3bed93a3f8c7830b0d303d7b2665a74",
+    "tests/TacticalGo.Domain.Tests/TacticalGo.Domain.Tests.csproj": "f6aae6c9485450ff94f7656edd4061038fbd75d396fc405717582dfa8a5f0feb",
+    "tests/TacticalGo.Domain.Tests/TempoRaceTests.cs": "c3a2c31e28cdc554614fedd95619c582e14fc3e9c45ae94f5f3b87e590f52213",
+    "tests/TacticalGo.Domain.Tests/TestKit.cs": "ad21d32b2690952563abbb591974dc04f240a11a1819411b1d2e66d85be92491",
+    "tests/TacticalGo.Domain.Tests/TurnTests.cs": "c5fd6523f3ad4e1a0aff50ddfb1098acd6998484590644adf69feb9bcf1c888b",
+    "tests/TacticalGo.Play.Tests/BastionControllerTests.cs": "c334f9b68aebe8fa9e95bd97a0dfc3b9ef75feb1b573fe8898cd82429574ab38",
+    "tests/TacticalGo.Play.Tests/ClassPickTests.cs": "39011eb7f5d491e9e16cf7a6873c91a3346077356002e8bcc84c7d085dceecd9",
+    "tests/TacticalGo.Play.Tests/GameplayVisualTests.cs": "9efe230145dc68596791e71d84686f7cccbacfd0ebd33b7f9db5dfdab3b0f16e",
+    "tests/TacticalGo.Play.Tests/Level2Tests.cs": "c41e4d9cc722d7b6e9117ad156e5a7b4296dbbc524e807091be5737f5f293d5c",
+    "tests/TacticalGo.Play.Tests/LevelSearch.cs": "b6394b33befb47e9b81e59160a740bfae0e8fad7f0c8e3348737e540f8416856",
+    "tests/TacticalGo.Play.Tests/LevelTests.cs": "d4b0f74e000a76a0913076ace4bc024e410ede447ece7d75db69c772b74f2a6d",
+    "tests/TacticalGo.Play.Tests/LocalMatchTests.cs": "11d2bcf1286a92aef9f319e245835d862f53d6c4ad56f7e8c62785965adfd300",
+    "tests/TacticalGo.Play.Tests/MagicHandControllerTests.cs": "45e2acd00573ba8b7b299b65e6046296f62bdd4ced2a619bab951c78c3dac1e1",
+    "tests/TacticalGo.Play.Tests/PlayControllerTests.cs": "746f7077c20420bd44fe76352299122bbd90740cb37c2037ed470489a60f63b6",
+    "tests/TacticalGo.Play.Tests/SkillControllerTests.cs": "39d5831cefce533344398c0caa4b1f03ddb8b1a2a3cd131b6e81474a493d23ff",
+    "tests/TacticalGo.Play.Tests/Slice3cTests.cs": "15b476674b3fbe02d5f63e71f8d272bf481bd028158b1b4448ec6f6f2c481ce7",
+    "tests/TacticalGo.Play.Tests/SummonControllerTests.cs": "3b920f27167cf2b3c4a9b9363429f8aedcf4d04eb30e9ba846a087e27bae9aa9",
+    "tests/TacticalGo.Play.Tests/TacticalGo.Play.Tests.csproj": "a0ab63c2cb32306d4036d92de97bc448845139ee97c5629846894469356d76f4",
+    "tests/TacticalGo.Play.Tests/UiSmokeTests.cs": "9ea1ffb9113f41e0589f469da4b68edb7c18da49c987b2f617552731a57ebe19",
+    "tests/golden/README.md": "f96acdf177b86760e30a090d01ad8015c627ddb425a20f212e0bad7983f33b0e",
+    "tests/golden/bastion_captures_with_two_stones.json": "1ed24af698aa04d4788d38a0c5761917f2d9d9c9ab6fa76f2547b752d8f5f620",
+    "tests/golden/bastion_pair_suicide.json": "d2f832809b2ed577eae3f922dfbf00de49771cae5d5965cc98cbfed04da276d6",
+    "tests/golden/bastion_range_and_target_errors.json": "36131994df8e54cd1390e0170456965a5a3f74e45dea25a94b2bf817685fec8a",
+    "tests/golden/capture_basic.json": "62b9c52e08d96daa11f7e827eda79d19c9e73849fca6ad8054b1b50586bc8f00",
+    "tests/golden/capture_before_suicide.json": "8b050588cadc3bb522a1d94d975f545be46e3a7bb045108121b501d814768353",
+    "tests/golden/ko_recapture.json": "30724c340a305345a6bd61cfe619ced924276def73f9ee40d4e9edfa26913424",
+    "tests/golden/magic_hand_commander_relief.json": "82aa5db3a8ac86dc186e18797965a394fd091b945b542cdd2f56477d9a45bb72",
+    "tests/golden/magic_hand_default.json": "eb2cb6fc07cced2fe5225d47862189f7b2e75c8910a228a058ef7ffe71fffd3e",
+    "tests/golden/magic_hand_explicit_seal.json": "b8b977231ee69efafc98a6ade48b9e7fbd75e3eb1e4973cc01b8cb5d5d034851",
+    "tests/golden/magic_hand_friendly_capture.json": "bec47607a9dcc17412f8686f39777d0756a370857973e680286d1330e14d0767",
+    "tests/golden/magic_hand_friendly_superko.json": "adbfd37f6e582d7e093335634ac33bde77c9d62f4db7ad84004a70838da058fe",
+    "tests/golden/magic_hand_friendly_two_push_then_place.json": "7dead651649f31aa65bd236960a80747dba237d1b0caa5c1b3b98e54ea6b92a6",
+    "tests/golden/magic_hand_insufficient_mana.json": "a3c85e0dbdb906c3d6103e7ca3f26839a8bbc4bcf42ad8ae64f5829f76054e44",
+    "tests/golden/magic_hand_one_ap_event_order.json": "6a45e7587da59e45e5a4301883b8773e52d224c1470bf2efea152318e1bcad38",
+    "tests/golden/magic_hand_push_then_place.json": "478f85266d6e8ee5ba4a336135838e0ed95b9ef4ea0c09a3a6b8ed4683e1bf79",
+    "tests/golden/magic_hand_range_and_target_errors.json": "7cb77e0c75e7d315caf25dde4d6864732f042613cdc5b33cbf1d00d643d198f8",
+    "tests/golden/magic_hand_range_two_decapitation.json": "5cd7cf8602202cf6fec207ff322e27215a342d3245fa1e1ee115774d162b4d16",
+    "tests/golden/magic_hand_split_groups.json": "cdba3993b880a6114af590fab2cdaaf181abb842274fcfa2fc4f40d83bdf1a2e",
+    "tests/golden/magic_hand_suicide_rollback.json": "48d7d811a2b2e1346bd71cd32c3b4959b20ac3f1fd3b52b6b6cfa9c2b1fb995a",
+    "tests/golden/magic_hand_superko_rollback.json": "b94230e4cd4a2231963aa538214908e36ea2f94833e155cd5875b8a9040afb5d",
+    "tests/golden/magic_hand_target_and_cost.json": "1c00cd8f43e22203ef3d629a25ee9e27524e31b492ac9f821df38b15990171b5",
+    "tests/golden/mana_cap.json": "a1937d3dde6938139bb14026c78662f027848e356f306937835c0c3242c09fad",
+    "tests/golden/new_game_default_first_turn_one_ap.json": "81b001dd62f8d075642a5b5f1128d8986af961260f82f4a284beaaf16a7dbb81",
+    "tests/golden/new_game_two_ap_baseline.json": "49505f6863f55d41d9f3b080f8c1205aee47df3c996b9f086ab0098256aa91a1",
+    "tests/golden/no_resummon_by_default.json": "0722de42aaf8a4e2880b5ba8388ad150804af516fedf6d9cf32235d052d31264",
+    "tests/golden/resummon_allowed_when_enabled.json": "6f3fb1dd64082d871bc34276586cbb9d3bec92df9e29cc90d65e7e37c6349f32",
+    "tests/golden/seal_blocks_then_expires.json": "c2eaf9117a7b2bbd70a31a1d9dc37d22967845593a0192ca4d5150c0ea1a138b",
+    "tests/golden/seal_range_errors.json": "b6a49ad67fab77a81c809a2c32ed0a8a4c9521dae4dc6b0a641fa5e437ff16a8",
+    "tests/golden/suicide_rejected.json": "df1fe76cbdbc633430cd79e4b6900cba6e8a9ba08e168983bb99e7da2e4c37d0",
+    "tests/golden/summon_adjacent_to_any_friend.json": "0fec29fc7110911bf7b0b2978e8e18f6cc93f62de61aa89199b3ce99450cf481",
+    "tests/golden/summon_needs_mana.json": "d8112d8d845610d435d528714fd13d7494abf4f441618e32e82b0f5d3416442b",
+    "tests/golden/swap_back_is_ko.json": "a32f51148430731cab4a823826bee9f04070a00c13e42e01a677dc66e99d83da",
+    "tests/golden/swap_basic.json": "67f51fbd1e0add15071a2bf14b07d6a3d7b8afa6f0eae6c5db5dac37284ec887",
+    "tests/golden/swap_decapitates.json": "a5f947343e9b07f59f57b3f492f5b5ab84c597615246484c740de2110134c6e6",
+    "tests/golden/swap_suicide.json": "2afa8157a08f143446ec7b905328eb6c1e9b91257107df8d21f54802d4023a87",
+    "tests/golden/swap_target_errors.json": "3a4e5f2f597b43af7588004913a782e1c57d0636c24c3b8a5bb6a09018e67703",
+    "tests/golden/turn_limit_draw.json": "9fe907610092453049757728595ed5fa836d4aaa129727beffab4095d71afe77",
+    "tests/golden/win_by_commander_capture.json": "0dc335e3ffe7ca88ea6b100be81b43284de245695110c95318bec6eeeac0abe6",
+    "tests/validators/test_golden_fixture_validator.py": "de0ad60f937e5c22c9ecb1555e0f3dd12bdd6caff8c1ae2320bca0b5babab307",
+    "tools/publish-play.ps1": "34590fda46d327436af35771a0f36a9eb3a17bc7f2bbaadfd4d92b85d7cf8f72"
+  },
+  "deliveryState": {
+    "implementationCommitted": true,
+    "gameplayPushed": false,
+    "pullRequestCreated": false,
+    "mainMerged": false,
+    "localR1Integrated": true
+  },
+  "corrections": [
+    {
+      "run": "g2/g2-windows.trx",
+      "cause": "previous tutorial wording regression; restored bright-target guidance"
+    },
+    {
+      "run": "g3/g3-windows.trx",
+      "cause": "test erroneously called an in-range friendly soldier invalid; corrected assertion against both-side specification, board unchanged"
+    },
+    {
+      "run": "g4/g4-first.trx",
+      "cause": "empty display working area generated negative MinimumSize; added explicit fallback and regression"
+    },
+    {
+      "cause": "hero row effective Visible state hid portraits; corrected parent visibility and added actual-image assertions"
+    }
+  ],
+  "limits": [
+    "No G0/G5 human acceptance or balance/fun claim",
+    "Three 7x7 wins are cooperative functional replays, not adversarial strategy proof",
+    "No new tactical search or rule expansion",
+    "No other DPI/device/release validation",
+    "Self-contained publishing not tested",
+    "Raw TRX/logs/screenshots retained locally in ignored artifacts and the evidence ZIP; compact receipt is committed",
+    "Six assets remain development candidates; rights/production approval pending"
+  ]
+}
