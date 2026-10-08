@@ -116,7 +116,10 @@ public sealed class LevelSession
 
 public static class LevelCatalog
 {
-    public static IReadOnlyList<LevelDefinition> Levels => [Level1(), Level2()];
+    private static IReadOnlyList<LevelDefinition>? _levels;
+
+    /// <summary>All levels in order. Built once: the UI asks for the following level on every refresh.</summary>
+    public static IReadOnlyList<LevelDefinition> Levels => _levels ??= [Level1(), Level2()];
 
     private static bool Won(GameState s) => s.Status == GameStatus.Won && s.Winner == Player.One;
 
@@ -188,7 +191,7 @@ public static class LevelCatalog
         AfterLastStage: "第 1 關完成！下一關：盜賊換位——用英雄技能改變棋形。按「前往第 2 關 ▶」，或到「新局／選模式…」。");
 
     /// <summary>
-    /// Level 2 (logic and data only for now; the UI is not wired to it yet): the hero is already on the board, the player has
+    /// Level 2 (Rogue swap, reachable from the UI): the hero is already on the board, the player has
     /// the Rogue's swap. Either route wins; the swap is simply faster. The opponent never moves, so this does NOT teach
     /// attack-versus-defence, and "faster" is only a property of the positions (see LevelSearchTests), not proof of fun.
     /// </summary>

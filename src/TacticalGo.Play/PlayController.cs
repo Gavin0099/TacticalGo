@@ -165,7 +165,7 @@ public sealed class PlayController
     /// rejected for class/hero/once-per-turn/Mana reasons BEFORE the target is looked at, so those reasons surface first;
     /// if none apply, the legal action list says whether any target exists.
     /// </summary>
-    public SkillStatus Skill
+    private SkillStatus SkillUncached
     {
         get
         {
@@ -187,6 +187,29 @@ public sealed class PlayController
                 : new SkillStatus(SkillState.NoTargets, "技能：目前沒有合法的換位目標（點相鄰的敵方士兵可以看原因）");
         }
     }
+
+    private GameState? _skillFor;
+    private SkillStatus? _skill;
+
+    /// <summary>
+    /// <see cref="SkillUncached"/> cached per state: it enumerates every legal action, and the UI reads it several times
+    /// per refresh. States are immutable, so the reference is a sufficient cache key.
+    /// </summary>
+    public SkillStatus Skill
+    {
+        get
+        {
+            if (!ReferenceEquals(_skillFor, State))
+            {
+                _skill = SkillUncached;
+                _skillFor = State;
+            }
+            return _skill!;
+        }
+    }
+
+    /// <summary>The player to move has a hero class (so the place/skill switch is relevant), even after the game is over.</summary>
+    public bool HasHeroClass => State.HeroClassOf(State.Current) != HeroClass.None;
 
     private GameState? _targetsFor;
     private IReadOnlyList<Point> _targets = [];

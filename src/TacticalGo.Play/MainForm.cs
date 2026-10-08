@@ -101,7 +101,7 @@ public sealed class MainForm : Form
     {
         _play = play;
         _level = level;
-        Text = "Tactical Go — 原型 Step 2（Windows 試玩，非正式版）";
+        Text = "Tactical Go — 原型（Windows 試玩，非正式版）";
         Font = new Font("Microsoft JhengHei UI", 10f);     // set BEFORE sizing: changing the font later rescales the window
         // Never taller/wider than the screen can show, so the fixed action bar under the board is always visible.
         var work = Screen.PrimaryScreen?.WorkingArea ?? new Rectangle(0, 0, 1280, 800);
@@ -193,8 +193,8 @@ public sealed class MainForm : Form
         _undo.Click += (_, _) => _play.Undo();
         _newGame.Click += (_, _) => AskNewGame();
         _help.Click += (_, _) => { using var help = new HelpForm(_play.State.Config); help.ShowDialog(this); };
-        _modePlace.Click += (_, _) => _play.UsePlaceMode();
-        _modeSkill.Click += (_, _) => _play.BeginSkill();
+        _modePlace.Click += (_, _) => { _play.UsePlaceMode(); _board.Focus(); };   // do not keep focus on a button
+        _modeSkill.Click += (_, _) => { _play.BeginSkill(); _board.Focus(); };
         _levelUndo.Click += (_, _) => _play.Undo();
         _nextLevel.Click += (_, _) => _level?.NextLevel();
         _nextStage.Click += (_, _) => _level?.NextStage();
@@ -231,9 +231,9 @@ public sealed class MainForm : Form
 
     private void OnKey(object? sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.Enter) { _play.Confirm(); e.Handled = true; }
-        else if (e.KeyCode == Keys.Escape) { _play.Cancel(); e.Handled = true; }
-        else if (e.KeyCode == Keys.Z && e.Control) { _play.Undo(); e.Handled = true; }
+        if (e.KeyCode == Keys.Enter) { _play.Confirm(); e.Handled = e.SuppressKeyPress = true; }   // suppress so a focused button does not also fire
+        else if (e.KeyCode == Keys.Escape) { _play.Cancel(); e.Handled = e.SuppressKeyPress = true; }
+        else if (e.KeyCode == Keys.Z && e.Control) { _play.Undo(); e.Handled = e.SuppressKeyPress = true; }
     }
 
     private void AskNewGame()
@@ -363,13 +363,13 @@ public sealed class MainForm : Form
         _confirm.Enabled = _play.CanConfirm;
         _confirm.BackColor = _play.CanConfirm ? Accent : SystemColors.Control;
         _confirm.ForeColor = _play.CanConfirm ? Color.White : SystemColors.GrayText;
-        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null;
+        _cancel.Enabled = _play.Selected is not null || _play.Inspect is not null || _play.Mode == PlayMode.Skill;   // in skill mode it leaves the skill
         _barInfo.Text = _play.ActionBarInfo;
 
         // place / skill switch (only when the current player has a hero class)
         var skill = _play.Skill;
         var canSwitch = !_play.Locked && !_play.GameOver;
-        _modeRow.Visible = skill.State != SkillState.None;
+        _modeRow.Visible = _play.HasHeroClass;   // stays visible when a stage is won (no layout jump)
         StyleMode(_modePlace, _play.Mode == PlayMode.Place, canSwitch);
         StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
         _skillNote.Text = _play.Mode == PlayMode.Skill ? "換位：和相鄰的敵方士兵交換位置" : skill.Text;
@@ -389,13 +389,12 @@ public sealed class MainForm : Form
 
 internal sealed class NewGameDialog : Form
 {
-    private readonly RadioButton _tutorial1 = new() { Text = "新手教學：第 1 關 包圍（建議先玩這個）", Dock = DockStyle.Top, Height = 32, Checked = true };
-    private readonly RadioButton _tutorial2 = new() { Text = "新手教學：第 2 關 盜賊換位（英雄技能）", Dock = DockStyle.Top, Height = 32 };
+    private readonly List<(RadioButton Radio, int Level)> _levels = [];
     private readonly RadioButton _free = new() { Text = "自由對局（兩人輪流，9×9）", Dock = DockStyle.Top, Height = 32 };
     private readonly ComboBox _rule = new() { DropDownStyle = ComboBoxStyle.DropDownList, Dock = DockStyle.Top, Enabled = false };
 
-    /// <summary>1 or 2 when a tutorial level was chosen, otherwise null (free play).</summary>
-    public int? TutorialLevel => _tutorial1.Checked ? 1 : _tutorial2.Checked ? 2 : null;
+    /// <summary>The chosen tutorial level number, or null for free play.</summary>
+    public int? TutorialLevel => _levels.Where(l => l.Radio.Checked).Select(l => (int?)l.Level).FirstOrDefault();
 
     public RuleConfig Config => _rule.SelectedIndex switch
     {
@@ -410,8 +409,15 @@ internal sealed class NewGameDialog : Form
         FormBorderStyle = FormBorderStyle.FixedDialog;
         StartPosition = FormStartPosition.CenterParent;
         MaximizeBox = MinimizeBox = false;
-        ClientSize = new Size(450, 236);
         Padding = new Padding(12);
+
+        foreach (var level in LevelCatalog.Levels)
+        {
+            var hint = level.Number == 1 ? "（建議先玩這個）" : "";
+            var radio = new RadioButton { Text = $"新手教學：第 {level.Number} 關 {level.Title}{hint}", Dock = DockStyle.Top, Height = 32, Enabled = tutorialAvailable };
+            _levels.Add((radio, level.Number));
+        }
+        ClientSize = new Size(450, 140 + 32 * (_levels.Count + 1));
 
         _rule.Items.AddRange([
             "每回合行動 2 次，先手第一回合 1 次（暫定預設）",
@@ -419,8 +425,7 @@ internal sealed class NewGameDialog : Form
             "每回合行動 1 次（對照）",
         ]);
         _rule.SelectedIndex = 0;
-        _tutorial1.Enabled = _tutorial2.Enabled = tutorialAvailable;
-        _tutorial1.Checked = tutorialAvailable;
+        if (_levels.Count > 0) _levels[0].Radio.Checked = tutorialAvailable;
         _free.Checked = !tutorialAvailable;
         _free.CheckedChanged += (_, _) => _rule.Enabled = _free.Checked;
         _rule.Enabled = _free.Checked;
@@ -429,8 +434,7 @@ internal sealed class NewGameDialog : Form
         Controls.Add(ok);
         Controls.Add(_rule);
         Controls.Add(_free);
-        Controls.Add(_tutorial2);
-        Controls.Add(_tutorial1);
+        foreach (var (radio, _) in Enumerable.Reverse(_levels)) Controls.Add(radio);   // last added docks on top
         AcceptButton = ok;
     }
 }

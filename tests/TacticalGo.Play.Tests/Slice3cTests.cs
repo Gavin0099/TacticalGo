@@ -113,7 +113,7 @@ public class Slice3cTests
     public void The_last_level_has_no_next_level_and_loading_any_level_works()
     {
         var s = Start(LevelCatalog.Level2(), 1);
-        s.Play.BeginSkill(); s.Play.ClickPoint(P(3, 2)); s.Play.Confirm();   // swap alone: the swap is illegal here (suicide) unless the stone is first
+        s.Play.BeginSkill(); s.Play.ClickPoint(P(3, 2)); s.Play.Confirm();   // swap first is legal in this position but does not win on its own
         Assert.False(s.StageComplete);
 
         var t = Start(LevelCatalog.Level2(), 1);
@@ -129,28 +129,27 @@ public class Slice3cTests
     }
 
     [Fact]
-    public void Undo_in_a_level_takes_back_a_swap_including_the_passive_opponents_pass()
+    public void Undo_in_a_level_takes_back_a_move_together_with_the_passive_opponents_pass()
     {
-        var s = Start(LevelCatalog.Level2(), 1);               // two actions per turn; swap first is refused, so place first
+        var s = Start(LevelCatalog.Level1());                  // stage 1: one action per turn, a wrong move does not finish it
         var start = s.Play.State.Fingerprint();
-        Place(s, 4, 1);
-        s.Play.BeginSkill();
-        s.Play.ClickPoint(P(3, 2));
-        s.Play.Confirm();
-        Assert.True(s.StageComplete);
+        var startLog = s.Play.Log.Count;
 
-        s.Play.Locked = false;                                  // the UI only offers undo while the stage is not locked; simulate the mid-stage case
-        s.Play.Undo();
-        Assert.Equal(PlayMode.Place, s.Play.Mode);
-        Assert.NotEqual(start, s.Play.State.Fingerprint());     // one step back: the stone is still placed
-        s.Play.Undo();
+        Place(s, 0, 0);
+        Assert.False(s.StageComplete);
+        Assert.Equal(Player.One, s.Play.State.Current);        // the scripted opponent passed, so it is the player's turn again
+        Assert.True(s.Play.Log.Count > startLog + 1);
+        Assert.True(s.Play.CanUndo);
+
+        s.Play.Undo();                                         // one undo reverts the move AND the opponent's pass
         Assert.Equal(start, s.Play.State.Fingerprint());
+        Assert.Equal(startLog, s.Play.Log.Count);
+        Assert.False(s.Play.CanUndo);
     }
 
     [Fact]
     public void Undo_mid_stage_after_a_skill_restores_state_mode_and_availability()
     {
-        var s = Start(LevelCatalog.Level2(), 0);                // one action per turn: the swap wins at once, so test via a free controller too
         var free = new PlayController(LevelCatalog.Level2().Stages[1].CreateState(), "測試");
         var before = free.State.Fingerprint();
         free.ClickPoint(P(4, 1)); free.Confirm();
@@ -164,6 +163,5 @@ public class Slice3cTests
         Assert.Equal(SkillState.Available, free.Skill.State);   // skill is available again after undoing the cast
         free.Undo();
         Assert.Equal(before, free.State.Fingerprint());
-        Assert.NotNull(s);
     }
 }
