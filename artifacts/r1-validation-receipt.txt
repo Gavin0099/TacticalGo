@@ -1,0 +1,2 @@
+[('dotnet test TacticalGo.sln (base 761af5d)', '75'), ('dotnet test TacticalGo.Windows.sln (base 761af5d)', '47'), ('dotnet test tests/TacticalGo.Domain.Tests --filter FullyQualifiedName~MagicHandGeometryTests (before skill implementation)', '1'), ('dotnet test TacticalGo.sln', '115'), ('dotnet test TacticalGo.Windows.sln', '47'), ('dotnet test TacticalGo.sln (docs/handoff c55a2e1)', '75'), ('dotnet test TacticalGo.Windows.sln (docs/handoff c55a2e1)', '61')]
+Validated retained test results and current source hashes; tests were not rerun by this receipt command.

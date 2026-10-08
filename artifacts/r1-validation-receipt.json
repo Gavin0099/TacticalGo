@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python -X utf8 -c \"import json,hashlib; from pathlib import Path; d=json.loads(Path(\\\"docs/evidence/r1-magic-hand/validation.json\\\").read_text(encoding=\\\"utf-8\\\")); assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in d[\\\"sourceSha256\\\"].items()); assert all(hashlib.sha256(Path(t[\\\"rawArtifact\\\"]).read_bytes()).hexdigest()==t[\\\"sha256\\\"] for t in d[\\\"tests\\\"]); print([(t[\\\"command\\\"],t[\\\"counters\\\"][\\\"passed\\\"]) for t in d[\\\"tests\\\"]]); print(\\\"Validated retained test results and current source hashes; tests were not rerun by this receipt command.\\\")\"",
+  "exit_code": 0,
+  "started_at": "2026-10-08T08:42:25Z",
+  "finished_at": "2026-10-08T08:42:25Z",
+  "runner": "r1-evidence-verification",
+  "linked_commit": "191347d49a3dcecaab7b0ed4c99f386930ad4808",
+  "output_artifacts": [
+    "artifacts/r1-validation-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

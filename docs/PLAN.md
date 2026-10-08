@@ -126,6 +126,14 @@
 
 **先只執行 S0 → S1，不做 UI 美術與紅龍。** 用文字／簡單格盤跑至少三組職業對戰情境，確認各職的能力確實能改變攻防選擇，再決定是否值得投入手機畫面。所有新規則先標示 Draft，Owner 試玩後才能 Accepted。
 
+### R1-MAGIC-HAND：2026-10-08 Owner 核准範圍與本機里程碑
+
+- 本次 Owner 明確核准 Domain、黃金測資與限定搜尋；分支 `codex/r1-magic-hand` 從 `chore/governance-full` @ `761af5d` 建立，實作提交 `191347d`。規格與幾何更正見 `docs/DECISIONS.md`、`docs/RULES_DRAFT.md`。
+- 本機工程驗證完成：Domain 115、Windows 47 項通過，Golden 34 組重播，validator 正反 harness 5 項通過，7 個聚焦變異被抓到並還原；本機漂移 `severity=ok`。完整計數／指令在 `docs/evidence/r1-magic-hand/validation.json` 與 `mutations.json`。
+- 固定 4 個手選 5×5 棋形，比較魔法之手＋落子、兩次落子、盜賊換位＋落子；所有起點有合法 `NewGame` 重播。射程兩格拆串例有當回合斬首差異，也有盜賊更快／三者都能提兵的反例；不外推平衡或好玩。深度、對手策略、預算及限制在 `docs/R1_MAGIC_HAND.md` 與 `search.json`。
+- 交接文件另在 `docs/handoff` 提交 `e3a78fc`：四個 `AGENTS.md` 區塊填入既有規則，修正待決／幾何前提；該分支另行實測 Domain 75、Windows 61，與 R1 分開計數。
+- **封印仍是正式預設；不補跑上一輪封印防守搜尋；G0 Pending、G1 等 G0、G3 UI 未授權、G5 待人類驗證。** 沒有 push、merge 或新 PR，下一步只作本機審閱；不自動開始其他 slice。
+
 ---
 
 ### Design Decision Record

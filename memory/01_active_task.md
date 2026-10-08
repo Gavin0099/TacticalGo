@@ -16,3 +16,5 @@
 - Before any push of the public repo: resolve `governance/MEMORY_PROTOCOL.md` (framework working tree has an uncommitted edit that was copied) and add Apache-2.0 attribution for copied framework files.
 - Owner reviews the remaining pending items in `docs/RULES_DRAFT.md` section 8 one by one.
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
+
+- R1 Domain and bounded probe locally complete at 191347d; handoff/rules on docs/handoff e3a78fc. G0 Pending, G1 waits, no G3/UI/push/merge. <!-- memory_record_projection:active-task-summary:98009da933e66272fdb1bea63446c8dc087a950c592c4f1efd3639ab6031f777 -->
