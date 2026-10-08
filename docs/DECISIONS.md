@@ -2,6 +2,13 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — Gameplay 推送供家用電腦試玩（Owner）
+
+- Owner 明確要求「幫我推上去 我要在家裡電腦測試」：授權 push 已完成的 `codex/gameplay-g1-g4`，包含 G1–G4、R1 本機整合、六張候選素材與工程證據；取代下方此分支只留本機的限制。
+- 此次只補遠端試玩說明與授權記錄，不改遊戲程式或規則；Domain 129、Windows 91、Golden 38 沿用既有整合執行回執，不宣稱本輪重跑。
+- 家用電腦從此分支建置，指令見 `docs/ui/G1_G4_README.md`；ignored `dist/` 的 exe／ZIP 不隨 Git push 上傳。推送是否成功與遠端 HEAD 另以 Git ref 核對回報，本條目不預先宣稱已上傳。
+- 未授權 PR 或 main 合併；G0、G5 保持未驗收，素材仍為開發／試玩候選。
+
 ## 2026-10-08 — 完成 G1–G4、7×7 起點與候選素材（Owner）
 
 - Owner 要求「幫我做 G1 到 G4，做到完為止，再給我測試」，並明確回答「授權先做 G1–G4，G0 保持未驗收」。後續素材文字再次提到先過 G0 時，Owner 再確認「維持授權，完成 G1–G4 加素材，G0 未驗收」。此例外取代本次開發的 G0 前置限制，不宣稱 G0 通過。

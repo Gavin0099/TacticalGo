@@ -1,6 +1,6 @@
 # TacticalGo 交接手冊（給 Codex）
 
-> **現行狀態覆蓋（2026-10-08）**：本 Gameplay 分支已完成 G1–G4 與 R1 整合，7×7 起點黑 `(3,5)`／白 `(3,1)`，含三職候選圖片；G0 保持未驗收是 Owner 明確授權的開發例外。操作與最新工程證據見 [G1–G4 試玩說明](ui/G1_G4_README.md)、[validation.json](evidence/gameplay-g1-g4/validation.json)；權威見 PLAN Current Baseline、DECISIONS 最新條目。以下保留原交接快照與歷史數字，不再代表目前功能、素材禁止範圍或 G1 開工授權。G5 未驗收；本 Gameplay 分支未 push、未合併 main。
+> **現行狀態覆蓋（2026-10-08）**：本 Gameplay 分支已完成 G1–G4 與 R1 整合，7×7 起點黑 `(3,5)`／白 `(3,1)`，含三職候選圖片；G0 保持未驗收是 Owner 明確授權的開發例外。操作與最新工程證據見 [G1–G4 試玩說明](ui/G1_G4_README.md)、[validation.json](evidence/gameplay-g1-g4/validation.json)；權威見 PLAN Current Baseline、DECISIONS 最新條目。以下保留原交接快照與歷史數字，不再代表目前功能、素材禁止範圍或 G1 開工授權。Owner 最新授權 push 本 Gameplay 分支供家用電腦試玩，實際遠端狀態以 Git ref 核對；G0／G5 未驗收，PR／main 合併未授權。
 
 > 撰寫日期：2026-10-08（Owner：Gavin0099）。原始快照為 `docs/handoff` @ `c55a2e1`，本次續接已更正 R1 授權與幾何假設。數字請區分原始快照、本次重驗與歷史探針；過時時以當前授權、Git 與實測為準。
 > 本次實測回執：[handoff-2026-10-08.json](evidence/handoff-2026-10-08.json)。R1 在隔離的 `codex/r1-magic-hand`，不是本 UI／文件分支的程式。

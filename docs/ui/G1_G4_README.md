@@ -9,6 +9,21 @@ G1–G4 的工程功能已完成，G0 操作驗收與 G5 遊戲性驗收仍待 O
 
 `Start-Tutorial-2.cmd` 進盜賊教學，供補做 G0。直接開 exe 則維持新手教學入口。
 
+## 家用電腦從 GitHub 建置
+
+在 Windows 安裝 .NET 9 SDK 後，以 PowerShell 在打算放專案的目錄執行。使用新的資料夾，避免切換既有工作的分支：
+
+```powershell
+git clone --branch codex/gameplay-g1-g4 --single-branch https://github.com/Gavin0099/TacticalGo.git TacticalGo-playtest
+cd TacticalGo-playtest
+dotnet publish .\src\TacticalGo.Play\TacticalGo.Play.csproj -c Release -r win-x64 --self-contained false -o .\dist\TacticalGo.Play
+.\dist\TacticalGo.Play\TacticalGo.Play.exe --free
+```
+
+SDK 供建置使用；程式仍需 .NET 9 Windows Desktop Runtime（Windows SDK 安裝包含該 Runtime）。`--free` 直接進入選角與 7×7 雙人模式；改成 `--level 2` 可測盜賊教學。
+
+Git 分支保存原始碼、嵌入的角色 PNG 與工程證據，ignored `dist/` 的 exe／ZIP 不會隨 push 上傳。僅建置與試玩不需要初始化治理 submodule；若要執行治理檢查，再使用 `git submodule update --init --recursive`。
+
 ## 試玩順序
 
 1. 黑、白公開輪流點人物卡選職業；可以同職業。取消選角不會替換原對局。

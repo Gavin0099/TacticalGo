@@ -12,7 +12,7 @@
 | 當前 Gate | Owner 明確授權先完成 G1–G4，G0 仍 Pending；此例外不代表 G0 通過。G1–G4 工程完成、本機交付；G5 真人遊戲性驗收仍未完成，G6 待回饋 |
 | 整合時點 | G2 完成、G3 開始前，將 R1 Domain 整合至 Gameplay 開發基線，處理文件差異並跑整合回歸；G3 直接呼叫真實 `CastMagicHand` 等 Domain 功能。此工作包含於既有 G3，不新增 Slice 或 Gate；G4 完成整局端到端驗證 |
 | 素材 | 已使用 PR #3 的 A 棋盤 Token／B 人物卡及資訊圖；六張原 PNG 嵌入程式。僅開發／試玩候選，正式發布的權利、核准與實機驗收未完成 |
-| 工作邊界 | R1 收斂，不增加規則、搜尋、AI 或新 Slice；已授權 G1–G4 與 G3 前本機整合。Gameplay 尚未 push、未開 PR、未合併 main；G0／G5 不由 Agent 通過 |
+| 工作邊界 | R1 收斂，不增加規則、搜尋、AI 或新 Slice；已授權 G1–G4 與 G3 前本機整合。Owner 最新授權 push `codex/gameplay-g1-g4` 供家用電腦試玩，實際遠端 HEAD 以 Git ref 核對；未授權 PR／main 合併，G0／G5 不由 Agent 通過 |
 
 本輪整合後實測 Domain 129、Windows 91 項通過，其中 38 組 Golden 實際重播；validator 正反 harness 5 項、9 個指定 UI／整合變異均通過，原程式還原後全套重驗。實際發佈 exe 的三職預覽、勝負與復原共 5 次冒煙成功，見 `docs/evidence/gameplay-g1-g4/validation.json`。過去 R1 的 129／47、UI-3c 的 61 仍保留為各分支歷史證據，不作本次整合或人類驗收證據。
 
@@ -174,7 +174,7 @@
 
 - G3 前整合後為 Domain 129／Windows 72；G3 完成為 129／79，G4 最終為 129／91，Golden 38 組實際重播。原始 TRX 與各 Slice 回歸摘要見本輪 validation；本機整合不代表 main 或 GitHub PR 已合併。
 - BOT-01、IOS-01、Visual V1／V2 是手冊列出的後續候選，不算入上述 4 個開發 Slice。這個計數到 Windows 可驗證玩法的版本為止，不是 iPhone 正式版的剩餘工期。
-- 下一件產品工作是 Owner 實際試玩本版並補 G0；G5 的 GO／REVISE／NO-GO 仍由人類判定。Gameplay 保留本機提交，R1 歷史 push 授權不擴張為 Gameplay 上傳授權。
+- 下一件產品工作是 Owner 實際試玩本版並補 G0；G5 的 GO／REVISE／NO-GO 仍由人類判定。Owner 最新指示已授權 Gameplay 分支 push 供家用電腦試玩；PR／main 合併仍未授權。
 - R1 歷史預設切換回歸見 `docs/evidence/r1-magic-hand/default-validation.json`；本輪整合結果另在 `docs/evidence/gameplay-g1-g4/validation.json`，不改寫原始數字。
 
 ### R1-MAGIC-HAND：歷史初版核准與本機里程碑（2026-10-08）

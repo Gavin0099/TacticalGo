@@ -386,7 +386,7 @@ NOT CLAIMED unless separately implemented and validated:
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->
 
-- 未經本次明確授權，不 push、merge、開／改 PR、刪分支或進下一個 slice；不自行通過 G0／G5。Owner 已明確授權本次完成 G1–G4 與 G3 前本機 R1 整合，G0 保持未驗收，見 `docs/DECISIONS.md` 最新條目；此例外不授權 Gameplay push／PR／main 合併或 G5 通過。
+- 未經本次明確授權，不 push、merge、開／改 PR、刪分支或進下一個 slice；不自行通過 G0／G5。Owner 已明確授權完成 G1–G4、G3 前本機 R1 整合，及 push `codex/gameplay-g1-g4` 供家用電腦試玩，見 `docs/DECISIONS.md` 最新條目；G0／G5 保持未驗收，PR／main 合併仍未授權。
 - 不使用 `--no-verify`；hook 失敗先讀診斷與根因，不停用或繞過檢查。
 - 不改未核准的規則／技能／預設／費用／召喚限制，不把 Draft 或提案當 Accepted；不為了測試通過將 Golden 預期改成引擎輸出。
 - 未有另外授權，不碰 `.agents/`、`docs/visual/`、Visual worktree 或其他美術候選。Owner 已授權 `assets/candidates/vis-feel-01/tokens/` 的六張 A／B PNG 作 Gameplay 開發與試玩整合；原圖不改，不移植 HTML 動畫，不生成新素材。正式發布的權利、素材核准與實機驗收仍待處理。
