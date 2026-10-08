@@ -2,6 +2,14 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — 現行可玩版本路線與本段 push 授權（Owner）
+
+- Owner 接受 R1 預設切換回報：魔法之手為法師預設，封印保留設定切換與比較；規則研究已足以支撐下一階段開發，R1 不再增加規則或搜尋。此接受不代表平衡／遊戲性驗收或已獨立審查程式 diff。
+- `docs/PLAN.md` 最前面增加 Current Baseline；§2 採現行技能與 Windows 7×7 首個完整雙人版本目標，§7 採 G0 → G4。原 P0／S0–S5 與舊 R1 決定保留為歷史，不再作為 G1–G4 的新增研究門檻，也不阻擋 G0。
+- **G0 Pending**：Owner 實際操作 UI-3c 第 2 關盜賊教學，確認顯示、模式切換、換位預覽、確認／復原／重試與兩種技能＋落子順序，沒有重大操作阻礙後才開 G1；是否好玩由 G5 驗證。G1–G4 順序不變，不提前開工。
+- G3 前的小型玩法比較須固定時間與局面範圍，不因找不到完美案例擴大模擬；不新增 Gate。G4 定案 7×7 主將起點，完整整合 R1／UI-3c 後重跑合併狀態測試；分支各自的 PASS 不證明整合成功，不為此另開治理階段。
+- Owner 後續明確指示「做到一個段落先幫我推上去」：授權文件整理與直接相關檢查完成後 push `codex/r1-magic-hand`，包含先前本機 R1 提交；取代此分支的歷史不 push 限制。**未授權 merge、其他分支的 push 或新 Slice。** 上傳結果以遠端 ref 驗證另行回報，本條目不預先宣稱已上傳。
+
 ## 2026-10-08 — Owner 選魔法之手作法師預設，R1 收斂
 
 - Owner 最新指示「我覺得可以換成魔法之手了」取代先前「正式替換 HOLD／封印維持預設」。`RuleConfig.MageSkill` 預設改為 `MagicHand`；`Seal` 保留明確設定的比較基線。目標仍只限雙方普通士兵，主將／英雄禁推，費用、射程及原子回滾不變。
