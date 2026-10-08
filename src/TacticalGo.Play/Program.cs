@@ -9,7 +9,8 @@ static class Program
     /// Normal start: opens the game window.
     /// Verification aid: <c>--snapshot out.png [script]</c> renders the window after replaying a tiny script and exits.
     /// Script tokens separated by ';': <c>p3,4</c> select then press "放這裡", <c>s3,4</c> select only, <c>i4,7</c> inspect,
-    /// <c>e</c> end turn, <c>u</c> undo, <c>n</c> next stage, <c>r</c> restart stage, <c>c</c> cancel.
+    /// <c>e</c> end turn, <c>u</c> undo, <c>n</c> next stage, <c>N</c> next level, <c>r</c> restart stage, <c>c</c> cancel,
+    /// <c>k</c> skill mode, <c>m</c> place mode. <c>--level 2</c> starts at level 2.
     /// </summary>
     [STAThread]
     static void Main(string[] args)
@@ -17,7 +18,11 @@ static class Program
         ApplicationConfiguration.Initialize();
         var play = new PlayController(new RuleConfig());
         // The tutorial is the default start for new players; "--free" opens plain free play.
-        var level = Array.IndexOf(args, "--free") >= 0 ? null : new LevelSession(play, LevelCatalog.Level1());
+        var levelArg = Array.IndexOf(args, "--level");
+        var startLevel = levelArg >= 0 && levelArg + 1 < args.Length && int.TryParse(args[levelArg + 1], out var n)
+            ? LevelCatalog.Levels.FirstOrDefault(l => l.Number == n) ?? LevelCatalog.Level1()
+            : LevelCatalog.Level1();
+        var level = Array.IndexOf(args, "--free") >= 0 ? null : new LevelSession(play, startLevel);
         if (level is null) play.OpponentPolicy = null;
         var form = new MainForm(play, level);
 
@@ -44,6 +49,8 @@ static class Program
             form.Location = new System.Drawing.Point(40, 40);
             form.Show();
             Application.DoEvents();
+            form.PerformLayout();                                      // make sure a size change made before Show is laid out
+            Application.DoEvents();
             using var bmp = new Bitmap(form.Width, form.Height);       // whole window, including the title bar
             form.DrawToBitmap(bmp, new Rectangle(0, 0, form.Width, form.Height));
             bmp.Save(args[snap + 1], System.Drawing.Imaging.ImageFormat.Png);
@@ -62,6 +69,9 @@ static class Program
                 case 'e': play.EndTurn(); break;
                 case 'u': play.Undo(); break;
                 case 'n': level?.NextStage(); break;
+                case 'N': level?.NextLevel(); break;
+                case 'k': play.BeginSkill(); break;       // choose "技能：換位"
+                case 'm': play.UsePlaceMode(); break;     // choose "放士兵"
                 case 'r': level?.RestartStage(); break;
                 case 'c': play.Cancel(); break;
                 case 'p':

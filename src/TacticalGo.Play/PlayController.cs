@@ -188,6 +188,58 @@ public sealed class PlayController
         }
     }
 
+    private GameState? _targetsFor;
+    private IReadOnlyList<Point> _targets = [];
+
+    /// <summary>
+    /// Points the player may tap right now in skill mode (taken from the engine's legal action list), so the board can
+    /// highlight them. Empty outside skill mode.
+    /// </summary>
+    public IReadOnlyList<Point> SkillTargets
+    {
+        get
+        {
+            if (Mode != PlayMode.Skill) return [];
+            if (!ReferenceEquals(_targetsFor, State))
+            {
+                _targets = ActionValidator.GetLegalActions(State).OfType<CastSwap>().Select(a => a.Target).ToList();
+                _targetsFor = State;
+            }
+            return _targets;
+        }
+    }
+
+    /// <summary>Back to placing stones (leaves skill mode and drops any selected target).</summary>
+    public void UsePlaceMode()
+    {
+        if (Mode == PlayMode.Place) return;
+        Mode = PlayMode.Place;
+        ClearSelection();
+        Feedback = "回到放士兵：點棋盤上的空格預覽。";
+        FeedbackKind = FeedbackKind.Info;
+        Raise();
+    }
+
+    /// <summary>Label of the confirm button: it names what is about to happen.</summary>
+    public string ConfirmLabel => Mode == PlayMode.Skill ? "✔ 確定換位" : "✔ 放這裡";
+
+    /// <summary>One line for the fixed action area: what to do next / what is currently previewed.</summary>
+    public string ActionBarInfo
+    {
+        get
+        {
+            if (Locked) return "這一段完成了";
+            var skill = Mode == PlayMode.Skill;
+            if (Selected is { } sel)
+                return CanConfirm
+                    ? (skill ? $"預覽換位 {EventText.At(sel)}：還沒施放" : $"預覽 {EventText.At(sel)}：還沒落子")
+                    : $"{EventText.At(sel)} 不能{(skill ? "換位" : "下")}，請換一個點";
+            return skill
+                ? "① 點亮起的目標　② 看預覽　③ 按「✔ 確定換位」"
+                : "① 點棋盤上的空格　② 看預覽　③ 按「✔ 放這裡」";
+        }
+    }
+
     private const string SwapHelp = "換位：選一顆與盜賊上下左右相鄰的敵方士兵（不能是主將或英雄）。";
 
     /// <summary>The single most useful sentence for "what can I do right now?".</summary>
@@ -346,8 +398,8 @@ public sealed class PlayController
         SkillPreviewPoints = hero is { } from ? [from, p] : [p];
         var captured = Preview.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
         var takesCommander = captured.Any(c => c.Piece.Kind == PieceKind.Commander);
-        Feedback = $"換位預覽 {(hero is { } a ? EventText.At(a) : "")} ⇄ {EventText.At(p)}：還沒施放，不會用掉行動或能量。"
-            + (captured.Count == 0 ? "" : $" 換位後會提掉 {captured.Count} 子（虛線圈）" + (takesCommander ? "，包含敵方主將，這手會獲勝！" : "。"));
+        Feedback = $"換位預覽 {(hero is { } a ? EventText.At(a) : "")} ⇄ {EventText.At(p)}：還沒施放。"
+            + (captured.Count == 0 ? "" : $" 會提掉 {captured.Count} 子" + (takesCommander ? "，含敵方主將，這手會獲勝！" : "。"));
         FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
     }
 
