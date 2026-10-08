@@ -136,6 +136,13 @@
 
 ---
 
+### R1 審查修正與己方推動擴充（2026-10-08）
+
+- 證據修正獨立提交 `00a2675`：`connector_range_two` 五口氣座標固定斷言，原棋形未改；自訂 5×5 分類為機制展示，非正式 9×9／未定起點的 7×7 可達證據。
+- 既有探針完成一次最小補充：現有 9×9 主將起點下有合法推連接兵＋落子案例；對手上一回合佔兩個目的地可反制。只有兩個手選應對，13,284 次嘗試／固定 20,000 次、30 秒上限；不延長搜尋，不外推必勝或平衡。此搜尋是敵方限定基線，未重跑擴充版。
+- Owner 另授權並確認「只推雙方普通士兵」。Domain 實作提交 `7c7abec` 開放己方士兵，保留歸屬、主將／英雄禁推與原費用／射程／回滾；不改封印預設、不碰 UI。128 項 Domain、47 項 Windows 通過，37 組 Golden、validator harness 5 項通過；本輪 2 個聚焦變異被抓到並還原。
+- 本輪證據見 `docs/evidence/r1-magic-hand/review-supplement.json`、`friendly-validation.json`、`friendly-mutations.json`；原 115／34／7 的歷史記錄保留。正式替換 HOLD；G0 Pending，G1／G3 不提前；下一件產品工作仍是 Owner G0 試玩。
+
 ### Design Decision Record
 
 - **接受：** 職業差異是產品重要賣點；三職都進第一個職業原型。

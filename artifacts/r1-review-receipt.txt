@@ -1,0 +1,2 @@
+[('domain-final.trx', '128', '0'), ('windows-final.trx', '47', '0'), ('friendly-before.trx', '0', '11'), ('friendly-after.trx', '11', '0'), ('baseline.trx', '11', '0'), ('friendly_rejected_by_resolver.trx', '0', '11'), ('friendly_omitted_from_candidates.trx', '3', '8'), ('restored.trx', '11', '0')]
+Current source hashes and retained TRX/logs verified. No test rerun, balance claim or human acceptance.

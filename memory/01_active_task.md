@@ -18,3 +18,5 @@
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
 
 - R1 Domain and bounded probe locally complete at 191347d; handoff/rules on docs/handoff e3a78fc. G0 Pending, G1 waits, no G3/UI/push/merge. <!-- memory_record_projection:active-task-summary:98009da933e66272fdb1bea63446c8dc087a950c592c4f1efd3639ab6031f777 -->
+
+- R1 review fixed five liberties and custom-5x5 classification at 00a2675; standard-9x9 cooperative replay has a prior-turn counter. 7c7abec allows both sides ordinary soldiers; 128 Domain / 47 Windows / 37 Golden, 2 focused mutants killed. Seal default; replacement HOLD; G0 Pending; no G1/G3/push/merge. <!-- memory_record_projection:active-task-summary:425e072c87be9f9adb3b10d498c2f3070c62bfce506559e5a865c7f204f8e68a -->
