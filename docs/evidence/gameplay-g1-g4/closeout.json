@@ -155,5 +155,31 @@
   "localOnly": true,
   "G0": "Pending",
   "G5": "Pending",
-  "note": "The one memory provenance advisory is retained from historical records. The new entry uses a durable command receipt; all metadata and binding checks report zero errors. No framework update, remote delivery or human acceptance claimed."
+  "note": "The one memory provenance advisory is retained from historical records. The new entry uses a durable command receipt; all metadata and binding checks report zero errors. No framework update, remote delivery or human acceptance claimed.",
+  "preCommitHookObservation": {
+    "commit": "974b5fe",
+    "warningCodes": [
+      "mixed_scope_memory_binding",
+      "test_evidence_provenance_not_found"
+    ],
+    "completionClaimAllowed": true,
+    "blocked": false,
+    "mixedScopeFindings": [
+      {
+        "code": "mixed_scope_memory_binding",
+        "enforcement": "report_only",
+        "scope_ref": "974b5fe1ce77bee7c62a872e44ee0d9b5726a1a6",
+        "bound_commits": [
+          "0c520ccc9160b54e08738d4d890bf2fd92ac56f5"
+        ],
+        "disallowed_paths": [
+          "artifacts/evidence/test-results/gameplay-g1-g4.txt",
+          "docs/PLAN.md",
+          "docs/evidence/gameplay-g1-g4/closeout.json"
+        ],
+        "reason": "canonical memory in this scope binds an earlier local commit while the same scope also changes non-closeout paths"
+      }
+    ],
+    "scopeDisposition": "Report-only companion path classification advisory retained; no framework enforcement change or hidden waiver. Product code and tests are unchanged."
+  }
 }
