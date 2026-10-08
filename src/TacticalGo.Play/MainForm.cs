@@ -383,7 +383,8 @@ public sealed class MainForm : Form
         _modeSummon.Visible = level is null;
         StyleMode(_modeSummon, _play.Mode == PlayMode.Summon, canSwitch && _play.Summon.CanBegin);
         StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
-        _skillNote.Text = _play.Mode == PlayMode.Skill ? "換位：和相鄰的敵方士兵交換位置" : skill.Text;
+        _modeSkill.Text = "技能：" + _play.SkillPresentation.Name;
+        _skillNote.Text = _play.Mode == PlayMode.Summon ? _play.Summon.Text : _play.Mode == PlayMode.Skill ? _play.SkillPresentation.Help : skill.Text;
 
         _endTurn.Enabled = !_play.GameOver && !_play.Locked;
         _undo.Enabled = _play.CanUndo;

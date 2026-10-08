@@ -90,7 +90,7 @@ public class SkillControllerTests
         Assert.Equal([P(3, 3), P(3, 2)], play.SkillPreviewPoints.ToArray());
         Assert.Contains("含敵方主將", play.Feedback);            // the engine preview says this swap takes the commander
         Assert.Contains("會提 1 子", play.Callout);
-        Assert.Contains("✔ 放這裡", play.Hint);
+        Assert.Contains("✔ 確定換位", play.Hint);
     }
 
     [Fact]

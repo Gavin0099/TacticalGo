@@ -51,6 +51,10 @@ public sealed class PlayController
     private readonly Stack<Snapshot> _undo = new();
     private readonly List<string> _log = [];
     private GameAction? _pending;
+    private Point? _bastionFirst;
+    public GameAction? PreviewAction => _pending;
+    public Point? BastionFirst => _bastionFirst;
+    public SkillPresentation SkillPresentation => SkillPresentation.For(State);
 
     public GameState State { get; private set; }
     public IReadOnlyList<string> Log => _log;
@@ -172,19 +176,20 @@ public sealed class PlayController
             var me = State.Current;
             var heroClass = State.HeroClassOf(me);
             if (GameOver || heroClass == HeroClass.None) return new SkillStatus(SkillState.None, "");
-            if (heroClass != HeroClass.Rogue)
+            if (heroClass is not (HeroClass.Rogue or HeroClass.Warrior))
                 return new SkillStatus(SkillState.Unsupported, $"技能：{EventText.ClassName(heroClass)}的技能介面還沒做");
 
-            switch (ActionValidator.Validate(State, new CastSwap(new Point(-1, -1))).Reason)
+            GameAction probe = heroClass == HeroClass.Warrior ? new CastBastion(new Point(-1, -1), new Point(-2, -2)) : new CastSwap(new Point(-1, -1));
+            switch (ActionValidator.Validate(State, probe).Reason)
             {
                 case IllegalReason.NoHeroOnBoard: return new SkillStatus(SkillState.NoHero, "技能：英雄不在場上");
                 case IllegalReason.SkillAlreadyUsed: return new SkillStatus(SkillState.UsedThisTurn, "技能：本回合已經用過了");
                 case IllegalReason.NotEnoughMana: return new SkillStatus(SkillState.NotEnoughMana, "技能：能量不足");
                 case IllegalReason.NoActionPoints: return new SkillStatus(SkillState.None, "");
             }
-            return ActionValidator.GetLegalActions(State).Any(a => a is CastSwap)
-                ? new SkillStatus(SkillState.Available, "技能：換位（可用）")
-                : new SkillStatus(SkillState.NoTargets, "技能：目前沒有合法的換位目標（點相鄰的敵方士兵可以看原因）");
+            return LegalSkills.Count > 0
+                ? new SkillStatus(SkillState.Available, $"技能：{SkillPresentation.Name}（可用）")
+                : new SkillStatus(SkillState.NoTargets, $"技能：目前沒有合法的{SkillPresentation.Name}目標（點目標可以看原因）");
         }
     }
 
@@ -252,6 +257,20 @@ public sealed class PlayController
 
     private GameState? _targetsFor;
     private IReadOnlyList<Point> _targets = [];
+    private GameState? _legalSkillsFor;
+    private IReadOnlyList<GameAction> _legalSkills = [];
+    private IReadOnlyList<GameAction> LegalSkills
+    {
+        get
+        {
+            if (!ReferenceEquals(_legalSkillsFor, State))
+            {
+                _legalSkills = ActionValidator.GetLegalActions(State).Where(a => a is CastSwap or CastBastion).ToList();
+                _legalSkillsFor = State;
+            }
+            return _legalSkills;
+        }
+    }
 
     /// <summary>
     /// Points the player may tap right now in skill mode (taken from the engine's legal action list), so the board can
@@ -262,6 +281,9 @@ public sealed class PlayController
         get
         {
             if (Mode != PlayMode.Skill) return [];
+            if (State.HeroClassOf(State.Current) == HeroClass.Warrior)
+                return LegalSkills.OfType<CastBastion>().Where(a => _bastionFirst is null || a.First == _bastionFirst || a.Second == _bastionFirst)
+                    .SelectMany(a => new[] { a.First, a.Second }).Where(p => p != _bastionFirst).Distinct().ToList();
             if (!ReferenceEquals(_targetsFor, State))
             {
                 _targets = ActionValidator.GetLegalActions(State).OfType<CastSwap>().Select(a => a.Target).ToList();
@@ -283,7 +305,7 @@ public sealed class PlayController
     }
 
     /// <summary>Label of the confirm button: it names what is about to happen.</summary>
-    public string ConfirmLabel => Mode == PlayMode.Summon ? "✔ 確定召喚" : Mode == PlayMode.Skill ? "✔ 確定換位" : "✔ 放這裡";
+    public string ConfirmLabel => Mode == PlayMode.Summon ? "✔ 確定召喚" : Mode == PlayMode.Skill ? SkillPresentation.ConfirmLabel : "✔ 放這裡";
 
     /// <summary>One line for the fixed action area: what to do next / what is currently previewed.</summary>
     public string ActionBarInfo
@@ -293,17 +315,17 @@ public sealed class PlayController
             if (Locked) return "這一段完成了";
             if (Mode == PlayMode.Summon) return Selected is null ? "① 點己方棋子旁的空點　② 預覽　③ 確定召喚" : CanConfirm ? "召喚預覽：還沒召喚、不消耗資源" : "不能召喚，請換一個點";
             var skill = Mode == PlayMode.Skill;
+            if (skill && _bastionFirst is { } first && Preview is null && SelectionResult?.IsLegal == true)
+                return $"第一點 {EventText.At(first)} 已選；請選第二個空點";
             if (Selected is { } sel)
                 return CanConfirm
-                    ? (skill ? $"預覽換位 {EventText.At(sel)}：還沒施放" : $"預覽 {EventText.At(sel)}：還沒落子")
+                    ? (skill ? $"預覽{SkillPresentation.Name} {EventText.At(sel)}：還沒施放" : $"預覽 {EventText.At(sel)}：還沒落子")
                     : $"{EventText.At(sel)} 不能{(skill ? "換位" : "下")}，請換一個點";
             return skill
-                ? "① 點亮起的目標　② 看預覽　③ 按「✔ 確定換位」"
+                ? $"① 點亮起的目標　② 看預覽　③ 按「{ConfirmLabel}」"
                 : "① 點棋盤上的空格　② 看預覽　③ 按「✔ 放這裡」";
         }
     }
-
-    private const string SwapHelp = "換位：選一顆與盜賊上下左右相鄰的敵方士兵（不能是主將或英雄）。";
 
     /// <summary>The single most useful sentence for "what can I do right now?".</summary>
     public string Hint
@@ -314,9 +336,9 @@ public sealed class PlayController
             if (Locked) return "這一段完成了。";
             if (Mode == PlayMode.Summon) return CanConfirm ? "按「✔ 確定召喚」才花費行動與 Mana。" : "英雄必須召喚在己方棋子旁的合法空點。";
             if (Mode == PlayMode.Skill)
-                return Selected is null ? SwapHelp
-                    : Preview is not null ? "這樣換位可以。按「✔ 放這裡」施放；或點別的目標；或按「取消」。"
-                    : "這個目標不能換位：請改選別的敵方士兵。";
+                return Selected is null || Preview is null && SelectionResult?.IsLegal == true ? SkillPresentation.Help
+                    : Preview is not null ? $"這樣{SkillPresentation.Name}可以。按「{ConfirmLabel}」施放；或點別的目標；或按「取消」。"
+                    : $"這個目標不能{SkillPresentation.Name}：請改選其他目標。";
             if (Selected is not null)
                 return Preview is not null
                     ? "這裡可以下。按「✔ 放這裡」落子；或點別的空格換位置；或按「取消」。"
@@ -331,9 +353,10 @@ public sealed class PlayController
         get
         {
             if (Selected is null || SelectionResult is null) return null;
-            if (!SelectionResult.IsLegal) return "✕ " + (Mode == PlayMode.Skill ? SkillShortReason(SelectionResult) : EventText.ShortReason(SelectionResult));
+            if (Mode == PlayMode.Skill && SelectionResult.IsLegal && Preview is null) return "已選第一點，請選第二點";
+            if (!SelectionResult.IsLegal) return "✕ " + (Mode == PlayMode.Skill && State.HeroClassOf(State.Current) == HeroClass.Rogue ? SkillShortReason(SelectionResult) : EventText.ShortReason(SelectionResult));
             var n = Preview!.Events.OfType<PiecesCaptured>().Sum(c => c.Pieces.Count);
-            var what = Mode == PlayMode.Summon ? "召喚" : Mode == PlayMode.Skill ? "換位" : "落子";
+            var what = Mode == PlayMode.Summon ? "召喚" : Mode == PlayMode.Skill ? SkillPresentation.Name : "落子";
             return n > 0 ? $"預覽：{what}會提 {n} 子" : $"預覽（還沒{(Mode == PlayMode.Skill ? "施放" : "落子")}）";
         }
     }
@@ -353,7 +376,8 @@ public sealed class PlayController
         else if (Mode == PlayMode.Skill)
         {
             if (Locked) return;
-            SelectSwapTarget(p);
+            if (State.HeroClassOf(State.Current) == HeroClass.Warrior) SelectBastion(p);
+            else SelectSwapTarget(p);
         }
         else if (State.Board[p] is not null)
         {
@@ -455,7 +479,7 @@ public sealed class PlayController
 
         ClearSelection();
         Mode = PlayMode.Skill;
-        Feedback = status.CanUse ? SwapHelp : SwapHelp + " 目前沒有合法的目標；點相鄰的敵方士兵可以看為什麼不行。";
+        Feedback = status.CanUse ? SkillPresentation.Help : SkillPresentation.Help + " 目前沒有合法的目標；點目標可以看原因。";
         FeedbackKind = status.CanUse ? FeedbackKind.Info : FeedbackKind.Warning;
         Raise();
         return true;
@@ -488,6 +512,44 @@ public sealed class PlayController
         Feedback = $"換位預覽 {(hero is { } a ? EventText.At(a) : "")} ⇄ {EventText.At(p)}：還沒施放。"
             + (captured.Count == 0 ? "" : $" 會提掉 {captured.Count} 子" + (takesCommander ? "，含敵方主將，這手會獲勝！" : "。"));
         FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
+    }
+
+    private void SelectBastion(Point p)
+    {
+        Inspect = null;
+        Selected = p;
+        _pending = null;
+        Preview = null;
+        if (_bastionFirst is null)
+        {
+            if (!SkillTargets.Contains(p))
+            {
+                SelectionResult = ValidationResult.Fail(IllegalReason.InvalidTarget, "第一點沒有可配對的合法築壘空點。");
+                Feedback = "不能築壘：請選亮起的戰士相鄰空點。";
+                FeedbackKind = FeedbackKind.Error;
+                return;
+            }
+            _bastionFirst = p;
+            SkillPreviewPoints = [p];
+            SelectionResult = ValidationResult.Ok;
+            Feedback = $"第一點 {EventText.At(p)} 已選，還沒放子；請選第二個不同空點。";
+            FeedbackKind = FeedbackKind.Info;
+            return;
+        }
+        var action = new CastBastion(_bastionFirst.Value, p);
+        SelectionResult = ActionValidator.Validate(State, action);
+        SkillPreviewPoints = [_bastionFirst.Value, p];
+        if (!SelectionResult.IsLegal)
+        {
+            Feedback = "不能築壘：" + EventText.Reason(SelectionResult);
+            FeedbackKind = FeedbackKind.Error;
+            return;
+        }
+        _pending = action;
+        Preview = GameEngine.Apply(State, action);
+        var captured = Preview.Events.OfType<PiecesCaptured>().Sum(e => e.Pieces.Count);
+        Feedback = $"築壘預覽：兩個空點一起放士兵，還沒施放；會提掉 {captured} 子。";
+        FeedbackKind = FeedbackKind.Info;
     }
 
     private static string SkillReason(ValidationResult r) => r.Reason switch
@@ -543,6 +605,7 @@ public sealed class PlayController
         {
             TacticalGo.Domain.EndTurn => $"✔ {EventText.Name(mover)}結束回合。",
             CastSwap when wasSkill => $"✔ {EventText.Name(mover)}用盜賊換位" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
+            CastBastion => $"✔ {EventText.Name(mover)}築壘：放置兩顆士兵，提掉 {captured.Count} 子。",
             SummonHero a => $"✔ {EventText.Name(mover)}在 {EventText.At(a.At)}召喚{EventText.ClassName(State.HeroClassOf(mover))}。",
             _ => $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
         };
@@ -604,6 +667,7 @@ public sealed class PlayController
     private void ClearSelection()
     {
         _pending = null;
+        _bastionFirst = null;
         SkillPreviewPoints = [];
         Selected = null;
         SelectionResult = null;

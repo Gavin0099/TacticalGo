@@ -102,7 +102,7 @@ public sealed class BoardView : Control
         DrawSkillTargets(g, state, stone);
 
         // While a swap is previewed the pieces are drawn from the engine's previewed result, so the player sees the outcome.
-        var previewingSwap = _play.Mode == PlayMode.Skill && _play.Preview is not null;
+        var previewingSwap = _play.Mode != PlayMode.Place && _play.Preview is not null;
         var shown = previewingSwap ? _play.Preview!.State : state;
         foreach (var p in shown.Board.AllPoints())
         {
@@ -254,6 +254,13 @@ public sealed class BoardView : Control
     {
         if (_play.Selected is not { } p) return;
         var c = Center(p);
+        if (_play.BastionFirst == p && _play.Preview is null && _play.SelectionResult?.IsLegal == true)
+        {
+            using var firstRing = new Pen(Accent, 3f);
+            g.DrawEllipse(firstRing, c.X - r * 1.1f, c.Y - r * 1.1f, r * 2.2f, r * 2.2f);
+            DrawCallout(g, c, r, Accent);
+            return;
+        }
         var legal = _play.Preview is not null;
         var color = legal ? Accent : Danger;
 
@@ -308,7 +315,7 @@ public sealed class BoardView : Control
     /// <summary>The previewed swap: an arrow between the two points, and the pieces that would be captured, faded.</summary>
     private void DrawSwapPreview(Graphics g, GameState original, float r)
     {
-        if (_play.SkillPreviewPoints.Count == 2)
+        if (_play.PreviewAction is CastSwap && _play.SkillPreviewPoints.Count == 2)
         {
             var a = Center(_play.SkillPreviewPoints[0]);
             var b = Center(_play.SkillPreviewPoints[1]);
