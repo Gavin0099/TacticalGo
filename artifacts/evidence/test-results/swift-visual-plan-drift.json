@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python -m governance_tools.governance_drift_checker --repo . --framework-root additional/ai-governance-framework --format json",
+  "exit_code": 0,
+  "started_at": "2026-10-08T16:10:02Z",
+  "finished_at": "2026-10-08T16:10:03Z",
+  "runner": "governance_tools.test_evidence_receipt_writer",
+  "linked_commit": "6f761743fca79022c9d071dc53997b09ed84951e",
+  "output_artifacts": [
+    "artifacts/evidence/test-results/swift-visual-plan-drift.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}
