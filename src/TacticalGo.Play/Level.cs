@@ -11,13 +11,15 @@ public sealed record LevelStage(
     string[] Diagram,
     int ActionsPerTurn,
     Func<GameState, bool> IsComplete,
-    Func<GameState, string> Learned)
+    Func<GameState, string> Learned,
+    HeroClass PlayerClass = HeroClass.None,
+    int Mana = 3)
 {
     public GameState CreateState()
     {
         var config = new RuleConfig { BoardSize = Diagram.Length, ApPerTurn = ActionsPerTurn, FirstTurnAp = null, MaxPlies = 60 };
         return GameSetup.FromDiagram(config, string.Join(Environment.NewLine, Diagram),
-            HeroClass.None, HeroClass.None, Player.One, ap: ActionsPerTurn);
+            PlayerClass, HeroClass.None, Player.One, manaOne: Mana, ap: ActionsPerTurn);
     }
 }
 
@@ -37,8 +39,21 @@ public sealed class LevelSession
     public bool StageComplete { get; private set; }
     public string Learned { get; private set; } = "";
 
-    /// <summary>False while the player is in free play: the session then ignores the controller entirely.</summary>
-    public bool Active { get; set; } = true;
+    private bool _active = true;
+
+    /// <summary>
+    /// False while the player is in free play: the session then ignores the controller entirely (and Mana numbers are shown
+    /// again). While active, Mana numbers are hidden; skills are presented as available / not available instead.
+    /// </summary>
+    public bool Active
+    {
+        get => _active;
+        set
+        {
+            _active = value;
+            Play.HideMana = value;
+        }
+    }
 
     public LevelSession(PlayController play, LevelDefinition level)
     {
@@ -150,4 +165,58 @@ public static class LevelCatalog
                     : "✔ 完成！下次可以一回合就連下兩子。"),
         ],
         AfterLastStage: "第 1 關完成！下一關：盜賊換位（尚未製作）。可以按「重來本段」再玩，或到「新局…」自由對局。");
+
+    /// <summary>
+    /// Level 2 (logic and data only for now; the UI is not wired to it yet): the hero is already on the board, the player has
+    /// the Rogue's swap. Either route wins; the swap is simply faster. The opponent never moves, so this does NOT teach
+    /// attack-versus-defence, and "faster" is only a property of the positions (see LevelSearchTests), not proof of fun.
+    /// </summary>
+    public static LevelDefinition Level2() => new(
+        Number: 2,
+        Title: "換位",
+        Stages:
+        [
+            new LevelStage(
+                Title: "盜賊換位破陣",
+                Goal: "目標：包圍並提吃白色的「主」（用技能更快）",
+                Instruction: "白主將被三顆白兵擋在後面，普通圍法要放很多子。試試「技能：換位」：和相鄰的白兵交換位置。",
+                Diagram:
+                [
+                    "...x...",
+                    "..xOx..",
+                    "..ooo..",
+                    "...H...",
+                    ".......",
+                    ".......",
+                    "...X...",
+                ],
+                ActionsPerTurn: 1,
+                IsComplete: Won,
+                Learned: s => s.Ply == 1
+                    ? "✔ 換位！盜賊和白兵交換位置，一步就破了陣。"
+                    : "✔ 完成！其實用「換位」一步就能破陣，下次試試。",
+                PlayerClass: HeroClass.Rogue),
+
+            new LevelStage(
+                Title: "技能加落子",
+                Goal: "目標：這回合用技能再放一子，包圍白主將",
+                Instruction: "這一段每回合可以行動 2 次。技能和放子各算 1 次，這個局面兩種順序都行得通。",
+                Diagram:
+                [
+                    "...x...",
+                    "..xO...",
+                    "..oo...",
+                    "...H...",
+                    ".......",
+                    ".......",
+                    "...X...",
+                ],
+                ActionsPerTurn: 2,
+                IsComplete: Won,
+                Learned: s => s.Ply == 1
+                    ? "✔ 換位＋放子，同一回合完成！"
+                    : "✔ 完成！其實一回合就能用技能再放一子，下次試試。",
+                PlayerClass: HeroClass.Rogue),
+        ],
+        AfterLastStage: "第 2 關完成！（職業自由挑戰尚未製作）");
 }

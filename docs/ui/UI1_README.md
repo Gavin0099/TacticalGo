@@ -13,6 +13,11 @@ dotnet publish src/TacticalGo.Play -c Release -r win-x64 --self-contained false 
 
 可執行檔：`dist/TacticalGo.Play/TacticalGo.Play.exe`（framework-dependent，需 .NET 9 Desktop Runtime；`dist/` 不進 git）。
 
+## Slice 3a/3b：盜賊換位邏輯與第 2 關資料（尚未接到介面）
+
+- `PlayController` 已有技能模式（`BeginSkill()`、`Skill` 狀態、`Mode`、`SkillPreviewPoints`），`LevelCatalog.Level2()` 已有兩段資料。**介面還沒接線，所以 exe 裡看不到第 2 關**；接線（下方操作區的「放士兵／技能」按鈕、技能目標預覽）是下一個 slice，且會碰到視覺檔案，需與美術分支協調。
+- 驗證在 `tests/TacticalGo.Play.Tests`：`SkillControllerTests`（控制器邏輯）、`Level2Tests` + `LevelSearch`（局面性質：段 1 換位 1 回合 vs 普通 4 回合；段 2 技能＋放子 1 回合、兩種順序皆可 vs 普通 2 回合）。
+
 ## Step 2：第 1 關新手教學（7×7）與「✔ 放這裡」
 
 > 範圍：只教**放子、提子、相連棋子共用生存空格、同一回合可行動兩次**。教學關的對手**不會動**（每回合直接結束回合），所以這一關**沒有教攻守取捨**，也不能據此說新手已理解。工程測試通過也不等於新手看得懂。

@@ -8,6 +8,24 @@ public enum LibertyDisplay { Off, Danger, All }
 /// <summary>How the feedback line should look.</summary>
 public enum FeedbackKind { None, Info, Success, Warning, Error }
 
+/// <summary>What a tap on the board means right now.</summary>
+public enum PlayMode { Place, Skill }
+
+public enum SkillState { None, Available, NoTargets, UsedThisTurn, NotEnoughMana, NoHero, Unsupported }
+
+/// <summary>Whether the current player's hero skill can be started, and a plain-language line saying why/why not.</summary>
+public sealed record SkillStatus(SkillState State, string Text)
+{
+    /// <summary>A legal skill action exists right now.</summary>
+    public bool CanUse => State == SkillState.Available;
+
+    /// <summary>
+    /// The player may enter skill mode: either a legal target exists, or none does but they can still tap candidates
+    /// and be told WHY (e.g. the swap would leave the Rogue without spaces).
+    /// </summary>
+    public bool CanBegin => State is SkillState.Available or SkillState.NoTargets;
+}
+
 /// <summary>What the player is looking at after tapping one of the pieces.</summary>
 public sealed record InspectInfo(IReadOnlyList<Point> Group, IReadOnlyCollection<Point> Liberties, Player Owner);
 
@@ -32,6 +50,7 @@ public sealed class PlayController
 
     private readonly Stack<Snapshot> _undo = new();
     private readonly List<string> _log = [];
+    private GameAction? _pending;
 
     public GameState State { get; private set; }
     public IReadOnlyList<string> Log => _log;
@@ -62,6 +81,15 @@ public sealed class PlayController
     /// <summary>When true, placing, ending the turn and undo are ignored (inspecting pieces still works).</summary>
     public bool Locked { get; set; }
 
+    /// <summary>Place = taps select stones / inspect pieces. Skill = taps choose the target of the hero skill.</summary>
+    public PlayMode Mode { get; private set; } = PlayMode.Place;
+
+    /// <summary>Tutorials hide Mana numbers (they show <see cref="Skill"/> availability instead).</summary>
+    public bool HideMana { get; set; }
+
+    /// <summary>The two board points a previewed skill would affect (display only), e.g. both ends of a swap.</summary>
+    public IReadOnlyList<Point> SkillPreviewPoints { get; private set; } = [];
+
     public bool CanUndo => _undo.Count > 0 && !Locked;
     public bool CanConfirm => Preview is not null && !GameOver && !Locked;
     public bool GameOver => State.Status != GameStatus.Ongoing;
@@ -90,6 +118,7 @@ public sealed class PlayController
         LastPlaced = [];
         LastCaptured = [];
         Locked = false;
+        Mode = PlayMode.Place;
         ClearSelection();
         StartLog(startLabel);
         Raise();
@@ -110,7 +139,7 @@ public sealed class PlayController
     // ---- derived display data (all computed from the engine state) ----
 
     /// <summary>Mana only matters once someone has a class (skills arrive later); hide it otherwise.</summary>
-    public bool ShowMana => State.HeroClassOf(Player.One) != HeroClass.None || State.HeroClassOf(Player.Two) != HeroClass.None;
+    public bool ShowMana => !HideMana && (State.HeroClassOf(Player.One) != HeroClass.None || State.HeroClassOf(Player.Two) != HeroClass.None);
 
     public int Round => EventText.Round(State.Ply);
 
@@ -131,6 +160,36 @@ public sealed class PlayController
         return new CommanderInfo(owner, at, libs.Count, libs, group);
     }
 
+    /// <summary>
+    /// Availability of the current player's hero skill. Derived from the engine: a probe action with an impossible target is
+    /// rejected for class/hero/once-per-turn/Mana reasons BEFORE the target is looked at, so those reasons surface first;
+    /// if none apply, the legal action list says whether any target exists.
+    /// </summary>
+    public SkillStatus Skill
+    {
+        get
+        {
+            var me = State.Current;
+            var heroClass = State.HeroClassOf(me);
+            if (GameOver || heroClass == HeroClass.None) return new SkillStatus(SkillState.None, "");
+            if (heroClass != HeroClass.Rogue)
+                return new SkillStatus(SkillState.Unsupported, $"技能：{EventText.ClassName(heroClass)}的技能介面還沒做");
+
+            switch (ActionValidator.Validate(State, new CastSwap(new Point(-1, -1))).Reason)
+            {
+                case IllegalReason.NoHeroOnBoard: return new SkillStatus(SkillState.NoHero, "技能：英雄不在場上");
+                case IllegalReason.SkillAlreadyUsed: return new SkillStatus(SkillState.UsedThisTurn, "技能：本回合已經用過了");
+                case IllegalReason.NotEnoughMana: return new SkillStatus(SkillState.NotEnoughMana, "技能：能量不足");
+                case IllegalReason.NoActionPoints: return new SkillStatus(SkillState.None, "");
+            }
+            return ActionValidator.GetLegalActions(State).Any(a => a is CastSwap)
+                ? new SkillStatus(SkillState.Available, "技能：換位（可用）")
+                : new SkillStatus(SkillState.NoTargets, "技能：目前沒有合法的換位目標（點相鄰的敵方士兵可以看原因）");
+        }
+    }
+
+    private const string SwapHelp = "換位：選一顆與盜賊上下左右相鄰的敵方士兵（不能是主將或英雄）。";
+
     /// <summary>The single most useful sentence for "what can I do right now?".</summary>
     public string Hint
     {
@@ -138,6 +197,10 @@ public sealed class PlayController
         {
             if (GameOver) return "對局結束。按「新局…」再玩一次，或「復原」回到上一步。";
             if (Locked) return "這一段完成了。";
+            if (Mode == PlayMode.Skill)
+                return Selected is null ? SwapHelp
+                    : Preview is not null ? "這樣換位可以。按「✔ 放這裡」施放；或點別的目標；或按「取消」。"
+                    : "這個目標不能換位：請改選別的敵方士兵。";
             if (Selected is not null)
                 return Preview is not null
                     ? "這裡可以下。按「✔ 放這裡」落子；或點別的空格換位置；或按「取消」。"
@@ -152,9 +215,10 @@ public sealed class PlayController
         get
         {
             if (Selected is null || SelectionResult is null) return null;
-            if (!SelectionResult.IsLegal) return "✕ " + EventText.ShortReason(SelectionResult);
+            if (!SelectionResult.IsLegal) return "✕ " + (Mode == PlayMode.Skill ? SkillShortReason(SelectionResult) : EventText.ShortReason(SelectionResult));
             var n = Preview!.Events.OfType<PiecesCaptured>().Sum(c => c.Pieces.Count);
-            return n > 0 ? $"預覽：會提 {n} 子" : "預覽（還沒落子）";
+            var what = Mode == PlayMode.Skill ? "換位" : "落子";
+            return n > 0 ? $"預覽：{what}會提 {n} 子" : $"預覽（還沒{(Mode == PlayMode.Skill ? "施放" : "落子")}）";
         }
     }
 
@@ -165,7 +229,12 @@ public sealed class PlayController
     {
         if (GameOver || !State.Board.InBounds(p)) return;
 
-        if (State.Board[p] is not null)
+        if (Mode == PlayMode.Skill)
+        {
+            if (Locked) return;
+            SelectSwapTarget(p);
+        }
+        else if (State.Board[p] is not null)
         {
             InspectGroup(p);
         }
@@ -200,6 +269,7 @@ public sealed class PlayController
         Inspect = null;
         Selected = p;
         var action = new PlaceSoldier(p);
+        _pending = null;
         SelectionResult = ActionValidator.Validate(State, action);
         if (!SelectionResult.IsLegal)
         {
@@ -213,6 +283,7 @@ public sealed class PlayController
         }
 
         RelatedPoints = [];
+        _pending = action;
         Preview = GameEngine.Apply(State, action);
         var captured = Preview.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
         var takesCommander = captured.Any(c => c.Piece.Kind == PieceKind.Commander);
@@ -221,12 +292,80 @@ public sealed class PlayController
         FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
     }
 
-    /// <summary>"✔ 放這裡": the only way a stone is placed.</summary>
+    /// <summary>"✔ 放這裡": the only way a stone is placed or a skill is cast.</summary>
     public void Confirm()
     {
-        if (!CanConfirm || Selected is null) return;
-        Commit(new PlaceSoldier(Selected.Value));
+        if (!CanConfirm || _pending is null) return;
+        Commit(_pending);
     }
+
+    // ---- hero skill (Rogue swap for now; other classes report "not supported yet") ----
+
+    /// <summary>Enter skill mode if the skill can be used; otherwise explain why not (and stay in place mode).</summary>
+    public bool BeginSkill()
+    {
+        if (GameOver || Locked) return false;
+        var status = Skill;
+        if (!status.CanBegin)
+        {
+            Feedback = status.State == SkillState.None ? "你沒有可用的英雄技能。" : status.Text.Replace("技能：", "還不能用技能：");
+            FeedbackKind = FeedbackKind.Error;
+            Raise();
+            return false;
+        }
+
+        ClearSelection();
+        Mode = PlayMode.Skill;
+        Feedback = status.CanUse ? SwapHelp : SwapHelp + " 目前沒有合法的目標；點相鄰的敵方士兵可以看為什麼不行。";
+        FeedbackKind = status.CanUse ? FeedbackKind.Info : FeedbackKind.Warning;
+        Raise();
+        return true;
+    }
+
+    private void SelectSwapTarget(Point p)
+    {
+        Inspect = null;
+        Selected = p;
+        var hero = State.Board.FindHero(State.Current);
+        var action = new CastSwap(p);
+        _pending = null;
+        SkillPreviewPoints = [];
+        SelectionResult = ActionValidator.Validate(State, action);
+        if (!SelectionResult.IsLegal)
+        {
+            Preview = null;
+            RelatedPoints = hero is { } h ? [h] : [];
+            Feedback = $"{EventText.At(p)} 不能換位：{SkillReason(SelectionResult)}";
+            FeedbackKind = FeedbackKind.Error;
+            return;
+        }
+
+        RelatedPoints = [];
+        _pending = action;
+        Preview = GameEngine.Apply(State, action);
+        SkillPreviewPoints = hero is { } from ? [from, p] : [p];
+        var captured = Preview.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
+        var takesCommander = captured.Any(c => c.Piece.Kind == PieceKind.Commander);
+        Feedback = $"換位預覽 {(hero is { } a ? EventText.At(a) : "")} ⇄ {EventText.At(p)}：還沒施放，不會用掉行動或能量。"
+            + (captured.Count == 0 ? "" : $" 換位後會提掉 {captured.Count} 子（虛線圈）" + (takesCommander ? "，包含敵方主將，這手會獲勝！" : "。"));
+        FeedbackKind = takesCommander ? FeedbackKind.Warning : FeedbackKind.Info;
+    }
+
+    private static string SkillReason(ValidationResult r) => r.Reason switch
+    {
+        IllegalReason.InvalidTarget or IllegalReason.OutOfRange => "目標要是和盜賊上下左右相鄰的敵方士兵（不能是空格、己方棋子、主將或英雄）。",
+        IllegalReason.Suicide => "換位後盜賊自己會沒有生存空格（自殺），而且提不掉對方的子。",
+        IllegalReason.Ko => "打劫：換位會讓盤面回到之前出現過的樣子。",
+        _ => EventText.Reason(r),
+    };
+
+    private static string SkillShortReason(ValidationResult r) => r.Reason switch
+    {
+        IllegalReason.InvalidTarget or IllegalReason.OutOfRange => "要選相鄰的敵方士兵",
+        IllegalReason.Suicide => "換位後會自殺",
+        IllegalReason.Ko => "打劫：不能重複盤面",
+        _ => "不能換位",
+    };
 
     public void EndTurn()
     {
@@ -238,6 +377,7 @@ public sealed class PlayController
     {
         var mover = State.Current;
         var snapshot = new Snapshot(State, _log.Count, LastPlaced, LastCaptured);
+        var wasSkill = Mode == PlayMode.Skill;
         var outcome = GameEngine.Apply(State, action);
         if (!outcome.Success)
         {
@@ -251,16 +391,21 @@ public sealed class PlayController
         _undo.Push(snapshot);
         State = outcome.State;
         _log.AddRange(EventText.Describe(outcome.Events));
-        LastPlaced = outcome.Events.OfType<PiecePlaced>().Select(e => e.At).ToList();
+        LastPlaced = outcome.Events.OfType<PiecePlaced>().Select(e => e.At)
+            .Concat(outcome.Events.OfType<PiecesSwapped>().SelectMany(e => new[] { e.A, e.B })).ToList();
         var captured = outcome.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
         LastCaptured = captured.Select(c => c.At).ToList();
+        Mode = PlayMode.Place;
         ClearSelection();
 
         var opponentActed = RunOpponent();
 
-        var done = action is EndTurn
-            ? $"✔ {EventText.Name(mover)}結束回合。"
-            : $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。");
+        var done = action switch
+        {
+            TacticalGo.Domain.EndTurn => $"✔ {EventText.Name(mover)}結束回合。",
+            CastSwap when wasSkill => $"✔ {EventText.Name(mover)}用盜賊換位" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
+            _ => $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
+        };
         if (GameOver)
         {
             Feedback = ResultText;
@@ -292,8 +437,10 @@ public sealed class PlayController
 
     public void Cancel()
     {
+        var leaveSkill = Mode == PlayMode.Skill && Selected is null;
+        if (leaveSkill) Mode = PlayMode.Place;
         ClearSelection();
-        Feedback = "已取消，沒有任何改變。";
+        Feedback = leaveSkill ? "已離開技能，回到放士兵。" : "已取消，沒有任何改變。";
         FeedbackKind = FeedbackKind.Info;
         Raise();
     }
@@ -307,6 +454,7 @@ public sealed class PlayController
         LastPlaced = s.LastPlaced;
         LastCaptured = s.LastCaptured;
         _log.RemoveRange(s.LogCount, _log.Count - s.LogCount);
+        Mode = PlayMode.Place;
         ClearSelection();
         Feedback = "已復原上一個行動。";
         FeedbackKind = FeedbackKind.Info;
@@ -315,6 +463,8 @@ public sealed class PlayController
 
     private void ClearSelection()
     {
+        _pending = null;
+        SkillPreviewPoints = [];
         Selected = null;
         SelectionResult = null;
         Preview = null;
