@@ -1,6 +1,7 @@
 # TacticalGo 交接手冊（給 Codex）
 
-> 撰寫日期：2026-10-08（Owner：Gavin0099）。本文件描述 **當天的實際狀態**；任何數字都附出處，過時時請以 `git log`、`docs/DECISIONS.md` 與實測為準。
+> 撰寫日期：2026-10-08（Owner：Gavin0099）。原始快照為 `docs/handoff` @ `c55a2e1`，本次續接已更正 R1 授權與幾何假設。數字請區分原始快照、本次重驗與歷史探針；過時時以當前授權、Git 與實測為準。
+> 本次實測回執：[handoff-2026-10-08.json](evidence/handoff-2026-10-08.json)。R1 在隔離的 `codex/r1-magic-hand`，不是本 UI／文件分支的程式。
 > 先讀本文件的 §0、§1、§6，再讀 `AGENTS.md`（含框架管理區塊）、`docs/DECISIONS.md`（由上而下，最新在最上面）、`docs/RULES_DRAFT.md`。
 
 ---
@@ -20,7 +21,7 @@
 1. `git worktree list`、`git log --oneline -12`、讀 `docs/DECISIONS.md` 最上面的 5 個條目。
 2. 在乾淨 clone（`--recurse-submodules`）或既有 worktree 跑 §5 的建置與測試，確認：Domain **75** 項、Windows（含 UI 冒煙）**61** 項（在 `feature/ui-3c` 分支）。
 3. 跑 `dist/TacticalGo.Play/TacticalGo.Play.exe`（若不存在，見 §5 發佈指令），玩第 1、2 關各一次。
-4. 讀 §6「硬規則」與 §9「待辦」，然後**先問 Owner 要做哪個 slice**，不要自己挑。
+4. 讀 §6「硬規則」與 §9「待辦」；未有授權時先問 Owner，已明確核准的同一 slice 直接遵守範圍續接。本次 R1 已核准，不需再問是否開啟。
 
 ### 絕對不要做的事（完整清單見 §6）
 - **不要改規則／預設值／技能效果／費用**，除非 Owner 明確核准。規則的權威來源是 `docs/RULES_DRAFT.md` + Domain + 黃金測資，三者一起改。
@@ -49,7 +50,7 @@
 | 項目 | 狀態 |
 |---|---|
 | `main` | `f42f3ba`：引擎、第 1 關、授權說明 |
-| `chore/governance-full` | `761af5d`：治理完整導入。**PR #1 → main，OPEN，可合併，CI `governance-drift` 已在 GitHub 成功** |
+| `chore/governance-full` | `761af5d`：治理完整導入。**PR #1 → main，OPEN，等待 Owner 合併授權；CI `governance-drift` 已在 GitHub 成功** |
 | `feature/ui-3c` | `a4ca293`：第 2 關介面＋審查修正，含治理分支的 merge。**PR #2 → `chore/governance-full`（疊在 #1 上），OPEN** |
 | `docs/handoff` | 本手冊所在的本機分支（未 push） |
 | `codex/cozy-tabletop-art` | Visual worktree：`C:/Users/reiko/.codex/worktrees/cozy-tabletop-art/TacticalGo`，停在 `d1a8352`，只有未追蹤的 `.agents/`、`assets/`、`docs/visual/`，**未 commit、未 push** |
@@ -67,6 +68,14 @@
 | 漂移檢查 | `severity=ok`（本機、乾淨 clone、GitHub CI 皆已驗證） | 見 §5.4 |
 | readiness | `ready=True`（乾淨 clone 的 `hooks_ready=False` 是預期，hooks 每個 clone 要自己裝） | 見 §5.4 |
 | 黃金測資驗證器 | 23 組通過；故意弄壞的副本會被抓到 | `python validators/golden_fixture_validator.py .` |
+
+### 2.3a 本次續接重驗（與 R1 分支分開）
+
+- 於本分支 `c55a2e1` 重跑 Domain **75**、Windows **61** 項，均通過；TRX counters 與雜湊保存在本次回執。
+- `AGENTS.md` 四個範本 `N/A` 已補成既有規則：風險等級、必測路徑、升級條件、禁止行為；來源是 §6／§10 與既有治理分類，沒有變更框架管理區塊。
+- R1 分支為 Domain **115**、Windows **47**、Golden **34**（原 23＋新 11）通過，聚焦變異 **7** 個均被抓到。限定搜尋 **4** 個 5×5 局面、每局 A/B/C 比較、最大 4 個原子行動深度，完整記錄合法重播與限制；本分支的測試不會重播那些新增 fixtures。
+- 本分支填完四區塊後的漂移檢查為 `severity=ok`，命令、框架 pin、結果保存在回執；使用主 checkout 的已初始化框架，不把此讀取檢查當 F-7 更新。
+- 舊 AP 探針、Seal 搜尋、readiness、hooks runtime 與人類 Gate 本次未重驗；不要把原始快照全部當成此次實測。
 
 ### 2.4 驗證狀態（人類面）— **全部 Pending**
 - **G0**（Owner 實際操作第 2 關）：**Pending**，Owner 尚未回報。不得自行標通過。
@@ -98,10 +107,13 @@
 ### 3.3 尚待審／尚未定案
 見 `docs/RULES_DRAFT.md` §8（主將起點、超級打劫、自殺判定、回合上限、封印只擋放置等 13 項）。**Owner 要逐項核准，不要整批視為通過。**
 
-### 3.4 提案中、**未核准**的規則變更（請勿實作，除非 Owner 說開工）
-- **火球術**（消滅一顆敵方士兵）：Owner 問過，我給了分析與選項；未決定。
-- **魔法之手 Magic Hand**（法師把射程 ≤2 的一顆敵方**士兵**推向相鄰空點）：Owner 目前傾向用它取代封印，並建議 `R1-MAGIC-HAND` 小 slice（只改 Domain＋黃金測資＋RULES_DRAFT，`RuleConfig` 加「法師技能」選擇、預設維持封印）。**等 Owner 核准範圍與兩個規則問題**（見 §9.3）。
-- 規則缺口先問：推進「沒有任何生存空格」的點，依現有結算順序敵兵**會被提掉**；Owner 尚未說保留或禁止。
+### 3.4 R1 已核准；火球術仍未核准
+- **火球術**（消滅一顆敵方士兵）仍只有分析與選項，未獲實作授權。
+- **R1-MAGIC-HAND 已由本次 Owner 指示核准**：只做 Domain、黃金測資、限定搜尋，不碰 UI。法師在場，曼哈頓距離 ≤2，一顆敵方普通士兵推往玩家所選的正交相鄰空點；1 AP＋2 Mana，每回合最多一次技能。禁止主將／英雄／己方、佔據點、出界與連鎖；遵守自殺、positional superko 與原子回滾。
+- **更正原文的不可達假設**：A 推到相鄰空點 B 後，A 變空，必然是 B 的一口氣；不能把單次推動立即造成被推士兵零氣當案例，不新增特殊處決。特定棋形可用第二 AP 落子完成提子。
+- 封印保留可切換基線，R1 不改正式預設；不補跑上一輪封印防守搜尋，保留 476 局面零獨有勝局與防守未涵蓋的歷史限制。
+- R1 實作提交為 `191347d49a3dcecaab7b0ed4c99f386930ad4808`，分支 `codex/r1-magic-hand`，從 `chore/governance-full` @ `761af5d` 開。報告路徑是該分支的 `docs/R1_MAGIC_HAND.md`，證據在 `docs/evidence/r1-magic-hand/`。本機可用 `git show codex/r1-magic-hand:docs/R1_MAGIC_HAND.md` 查閱，尚未 push。
+- G0 仍 Pending、G1 不提前、G3 UI 未授權；R1 只完成工程與限定棋形驗證，不宣稱平衡、好玩或新手理解。
 
 ---
 
@@ -305,11 +317,11 @@ G0（Owner 實際試玩 3c，**Pending**）→ **G1** 開局選職業＋最小�
 - **注意**：召喚英雄**不代表能立刻用技能**（盜賊要與敵方士兵相鄰才能換位，且召喚與施法都要行動與 Mana）；不要承諾開局召喚後馬上能體驗換位。
 - 分支基線：從 `feature/ui-3c` @ `a4ca293` 開 `feature/g1-class-select`（用 worktree）。完成只 commit，**不 push、不 merge、不進 G2**。
 
-### 9.3 等 Owner 回覆的問題
+### 9.3 待決與本次已關閉項目
 1. G0 試玩結果（沒有重大阻擋，才開 G1）。
-2. **R1-MAGIC-HAND** 要不要開？範圍：只改 Domain＋黃金測資＋`RULES_DRAFT`；新增 `CastMagicHand(目標, 方向)`（法師在場、本回合未用技能、能量足夠、射程 ≤2、目標是敵方士兵、目的地是相鄰空點且在棋盤內；用現有原子流程結算；新增「棋子被推動」事件）；`RuleConfig` 加法師技能選擇（預設維持封印）；分支建議 `rule/r1-magic-hand` 從 `chore/governance-full` 開。
-3. 「推進死點會提掉敵兵」保留還是禁止？
-4. 封印的防守面要不要補跑 10 分鐘搜尋（修掉篩選缺陷）？
+2. R1 已核准並完成本機實作；目前等待 Owner 審閱 `codex/r1-magic-hand` 的工程與戰術證據，不是等待是否開 R1。
+3. 「單次推進死點提掉被推敵兵」前提已更正，沒有待決處決規則；見 §3.4。
+4. 封印防守補搜已由 Owner 決定**先不跑**；保留歷史限制，不自動重開。
 5. PR #1、#2 的合併時機。
 6. 專案授權、`assets/` 的來源與授權審查由誰處理。
 7. 取得 Mac 的方式（暫定：手動觸發的 macOS CI；Swift Package 存在後再建 workflow）。

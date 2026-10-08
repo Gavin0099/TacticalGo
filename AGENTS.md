@@ -360,68 +360,39 @@ NOT CLAIMED unless separately implemented and validated:
 ## Repo-Specific Risk Levels
 <!-- governance:key=risk_levels -->
 
-<!-- Define what makes a change HIGH / MEDIUM / LOW risk in this repo.
-Example:
-- HIGH: any change to auth, payment, or data migration paths
-- MEDIUM: adding a new API endpoint or external dependency
-- LOW: documentation, config comments, test-only changes
+以下整理既有 `governance/AGENT.md`、`docs/PLAN.md` §5 與 `docs/HANDOFF.md` §6 的規則，不擴張授權。
 
-Prompt yourself:
-- What changes in this repo can corrupt state, break compatibility, or cause production downtime?
-- What changes are review-heavy but still reversible?
-- What changes are safe enough to keep in a fast path?
--->
-
-N/A
+- **HIGH / L2**：`src/TacticalGo.Domain/` 的棋串、氣、提子、自殺、superko、原子回滾、AP／Mana、技能／召喚、主將死亡與勝負；`RuleConfig` 的正式預設與黃金測資契約。規則、費用或效果變更須有 Owner 明確核准。
+- **MEDIUM / L1**：`src/TacticalGo.Play/` 的確認／取消／復原、模式切換、技能預覽、教學對手／關卡流程與 UI 操作。若改 Domain 規則或破壞 UI／Domain 邊界，升為 L2。
+- **LOW / L0**：行為不變的文件、註解與排版；不含規則／預設／授權／Gate 變更。疑似行為改動時依基線向上分類。
 
 ## Must-Test Paths
 <!-- governance:key=must_test_paths -->
 
-<!-- List modules or code paths that require tests before merge.
-Example:
-- src/auth/       any change here needs integration tests
-- src/migrations/ schema changes need a rollback test
-
-Prompt yourself:
-- Which files or directories would you never want changed without a test?
-- Which paths are easy to break with static changes alone?
-- Which user-visible or hardware-facing flows need explicit coverage?
--->
-
-N/A
+- `src/TacticalGo.Domain/`、`tests/golden/`：`dotnet test TacticalGo.sln`，包含實際 Golden replay；非法行動須驗證完整狀態回滾、無資源消耗與無事件。預期值依規格、Owner 驗收或手寫棋形，不從引擎輸出倒填。
+- `src/TacticalGo.Play/`、`tests/TacticalGo.Play.Tests/`：`dotnet test TacticalGo.Windows.sln`；UI 改動依交接手冊收工清單，驗證確認／取消／復原、操作區完整可見，並發佈／啟動及離屏渲染檢查。控制器與規則引擎共用合法性，不在 UI 重寫規則。
+- `validators/golden_fixture_validator.py`、Golden 格式／詞彙：執行 validator 與正反測資 harness；結構接受不等於棋形重播正確，兩者分開回報。
+- 新增 critical-path／回歸測試須以聚焦變異確認敏感度；測試數量或覆蓋率不替代行為證據。
+- 每個 slice 收工前依 `docs/HANDOFF.md` §10 跑 Domain、Windows 相關全套及治理漂移檢查；期待 `severity=ok`，回報命令、實際計數與限制。若碰 `memory/`，另遵守上方 canonical writer 與 memory-workflow 規則。
 
 ## L1 → L2 Escalation Triggers
 <!-- governance:key=escalation_triggers -->
 
-<!-- When does this repo's work need the full L2 evidence checklist?
-Example:
-- Changing shared database schema
-- Modifying public API contracts
-- Any change touching >3 modules simultaneously
-
-Prompt yourself:
-- What kinds of changes cross system boundaries?
-- What changes would require a reviewer to ask for stronger evidence than normal?
-- What changes become risky mainly because they are broad, not because they touch one file?
--->
-
-N/A
+- 改動提子、自殺、superko、資源、技能／召喚、原子回滾或勝負，屬 core domain，必須 L2；先有可審查規格、失敗路徑與驗證計畫。
+- 規則缺口、預設／效果／費用變更、下一個 slice、依賴／.NET 版本或授權／資產來源決策超出既有核准時，先向 Owner 提出；已明確核准的同一範圍不重複詢問。
+- Domain 接觸 UI／OS／I/O／時間，或 UI 自行決定合法性／提子／勝負，觸及架構紅線，停止該變更。
+- 無法隔離與其他 worktree 的既有變更，或 G0／G5 需要人類試玩判定時，不以自動測試或搜尋代替 Owner。
 
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->
 
-<!-- Add restrictions beyond the framework baseline.
-Example:
-- Do not write directly to the production database from tests
-- Do not commit .env files even if .gitignored
-
-Prompt yourself:
-- What are the easy-to-make mistakes that are specific to this repo?
-- Are there tool, environment, hardware, or deployment actions that should never happen casually?
-- What "cleanup" or "shortcut" behaviors have already caused pain here?
--->
-
-N/A
+- 未經本次明確授權，不 push、merge、開／改 PR、刪分支或進下一個 slice；不自行通過 G0／G5。G1 等 G0，R1 不自動授權 G3 UI。
+- 不使用 `--no-verify`；hook 失敗先讀診斷與根因，不停用或繞過檢查。
+- 不改未核准的規則／技能／預設／費用／召喚限制，不把 Draft 或提案當 Accepted；不為了測試通過將 Golden 預期改成引擎輸出。
+- 不碰 `assets/`、`.agents/`、`docs/visual/` 或 Visual worktree 的美術候選；來源與授權尚未審查，不能進公開 repo。
+- 不在有 submodule 的既有工作目錄來回切分支；用隔離 worktree。Gameplay／Domain 與 Visual 分支分工，不覆寫無關 dirty state。
+- 不將測試、弱機器人、搜尋或治理檢查宣稱為好玩、新手理解、職業平衡、runtime enforcement 或 release readiness；不自動延長限定搜尋預算。
+- 不改 `AGENTS.base.md` 或框架管理 BEGIN/END 區塊；框架版本更新走 F-7，不能把填本文件當成治理框架更新完成。
 
 <!-- AI Governance Framework: agent-contract BEGIN -->
 <!-- AI Governance Framework: agent-contract v1.0 -->
