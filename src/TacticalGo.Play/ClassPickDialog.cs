@@ -25,7 +25,7 @@ internal sealed class ClassPickDialog : Form
         foreach (var hero in new[] { HeroClass.Warrior, HeroClass.Mage, HeroClass.Rogue })
         {
             cards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / 3));
-            var ability = hero switch { HeroClass.Warrior => "築壘：增加兩兵", HeroClass.Mage => "法師技能", _ => "換位：交換位置" };
+            var ability = SkillPresentation.For(hero, config).Name;
             var card = new Button { Dock = DockStyle.Fill, Margin = new Padding(6), Text = $"{EventText.ClassName(hero)}\n\n召喚 {_config.SummonCost(hero)} Mana\n{ability}\n技能 1 行動＋{_config.SkillManaCost} Mana" };
             card.Click += (_, _) => Choose(hero);
             cards.Controls.Add(card);

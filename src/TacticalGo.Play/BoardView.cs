@@ -97,7 +97,7 @@ public sealed class BoardView : Control
             }
         }
 
-        DrawSeals(g, state, cell);
+        DrawSeals(g, _play.Preview?.State ?? state, cell);
         DrawInspectLiberties(g, cell);
         DrawSkillTargets(g, state, stone);
 
@@ -254,7 +254,7 @@ public sealed class BoardView : Control
     {
         if (_play.Selected is not { } p) return;
         var c = Center(p);
-        if (_play.BastionFirst == p && _play.Preview is null && _play.SelectionResult?.IsLegal == true)
+        if (_play.Mode == PlayMode.Skill && _play.Preview is null && _play.SelectionResult?.IsLegal == true)
         {
             using var firstRing = new Pen(Accent, 3f);
             g.DrawEllipse(firstRing, c.X - r * 1.1f, c.Y - r * 1.1f, r * 2.2f, r * 2.2f);
@@ -315,12 +315,13 @@ public sealed class BoardView : Control
     /// <summary>The previewed swap: an arrow between the two points, and the pieces that would be captured, faded.</summary>
     private void DrawSwapPreview(Graphics g, GameState original, float r)
     {
-        if (_play.PreviewAction is CastSwap && _play.SkillPreviewPoints.Count == 2)
+        if (_play.PreviewAction is CastSwap or CastMagicHand && _play.SkillPreviewPoints.Count == 2)
         {
             var a = Center(_play.SkillPreviewPoints[0]);
             var b = Center(_play.SkillPreviewPoints[1]);
             using var cap = new AdjustableArrowCap(5, 5);
-            using var arrow = new Pen(Color.FromArgb(0xE0, 0x9A, 0x00), 4f) { DashStyle = DashStyle.Dash, CustomStartCap = cap, CustomEndCap = cap };
+            using var arrow = new Pen(Color.FromArgb(0xE0, 0x9A, 0x00), 4f) { DashStyle = DashStyle.Dash, CustomEndCap = cap };
+            if (_play.PreviewAction is CastSwap) arrow.CustomStartCap = cap;
             g.DrawLine(arrow, a, b);
         }
         foreach (var captured in _play.Preview!.Events.OfType<PiecesCaptured>().SelectMany(x => x.Pieces))

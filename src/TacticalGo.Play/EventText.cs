@@ -54,6 +54,8 @@ public static class EventText
         IllegalReason.OutOfRange => "超出技能範圍。",
         IllegalReason.InvalidTarget => "這不是合法的技能目標。",
         IllegalReason.DuplicateTarget => "兩個目標不能是同一點。",
+        IllegalReason.SkillNotSelected => "此法師技能未選用。",
+        IllegalReason.InvalidDirection => "請選上下左右其中一個方向。",
         _ => result.Message,
     };
 
@@ -65,6 +67,10 @@ public static class EventText
         IllegalReason.Occupied => "已有棋子",
         IllegalReason.Sealed => "被封印",
         IllegalReason.OutOfBounds => "棋盤外",
+        IllegalReason.InvalidTarget => "不是合法的技能目標",
+        IllegalReason.OutOfRange => "超出技能範圍",
+        IllegalReason.DuplicateTarget => "兩點不能相同",
+        IllegalReason.InvalidDirection => "請選上下左右",
         _ => "不能下",
     };
 
@@ -79,6 +85,9 @@ public static class EventText
                     break;
                 case PiecesSwapped s:
                     yield return $"{Name(s.Player)} 換位：{At(s.A)} ⇄ {At(s.B)}";
+                    break;
+                case PiecePushed p:
+                    yield return $"{Name(p.Caster)} 魔法之手：推動{Name(p.Piece.Owner)}士兵 {At(p.From)} → {At(p.To)}";
                     break;
                 case SealPlaced s:
                     yield return $"{Name(s.Caster)} 封印 {At(s.At)}（{Name(s.BlockedPlayer)}下一回合不能放置）";

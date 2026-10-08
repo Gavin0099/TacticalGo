@@ -55,6 +55,12 @@ public sealed class PlayController
     public GameAction? PreviewAction => _pending;
     public Point? BastionFirst => _bastionFirst;
     public SkillPresentation SkillPresentation => SkillPresentation.For(State);
+    public bool IsMagicHand => State.HeroClassOf(State.Current) == HeroClass.Mage && State.Config.MageSkill == MageSkill.MagicHand;
+    public PushDirection? SelectedDirection => _pending is CastMagicHand push ? push.Direction : null;
+    public IReadOnlyList<(PushDirection Direction, ValidationResult Result)> PushDirections =>
+        Mode == PlayMode.Skill && IsMagicHand && Selected is { } target
+            ? Enum.GetValues<PushDirection>().Select(d => (d, ActionValidator.Validate(State, new CastMagicHand(target, d)))).ToList()
+            : [];
 
     public GameState State { get; private set; }
     public IReadOnlyList<string> Log => _log;
@@ -176,10 +182,16 @@ public sealed class PlayController
             var me = State.Current;
             var heroClass = State.HeroClassOf(me);
             if (GameOver || heroClass == HeroClass.None) return new SkillStatus(SkillState.None, "");
-            if (heroClass is not (HeroClass.Rogue or HeroClass.Warrior))
+            if (heroClass is not (HeroClass.Rogue or HeroClass.Warrior or HeroClass.Mage))
                 return new SkillStatus(SkillState.Unsupported, $"技能：{EventText.ClassName(heroClass)}的技能介面還沒做");
 
-            GameAction probe = heroClass == HeroClass.Warrior ? new CastBastion(new Point(-1, -1), new Point(-2, -2)) : new CastSwap(new Point(-1, -1));
+            GameAction probe = heroClass switch
+            {
+                HeroClass.Warrior => new CastBastion(new Point(-1, -1), new Point(-2, -2)),
+                HeroClass.Mage when IsMagicHand => new CastMagicHand(new Point(-1, -1), PushDirection.Up),
+                HeroClass.Mage => new CastSeal(new Point(-1, -1)),
+                _ => new CastSwap(new Point(-1, -1)),
+            };
             switch (ActionValidator.Validate(State, probe).Reason)
             {
                 case IllegalReason.NoHeroOnBoard: return new SkillStatus(SkillState.NoHero, "技能：英雄不在場上");
@@ -265,7 +277,7 @@ public sealed class PlayController
         {
             if (!ReferenceEquals(_legalSkillsFor, State))
             {
-                _legalSkills = ActionValidator.GetLegalActions(State).Where(a => a is CastSwap or CastBastion).ToList();
+                _legalSkills = ActionValidator.GetLegalActions(State).Where(a => a is CastSwap or CastBastion or CastMagicHand or CastSeal).ToList();
                 _legalSkillsFor = State;
             }
             return _legalSkills;
@@ -281,6 +293,8 @@ public sealed class PlayController
         get
         {
             if (Mode != PlayMode.Skill) return [];
+            if (State.HeroClassOf(State.Current) == HeroClass.Mage)
+                return LegalSkills.Select(a => a is CastMagicHand push ? push.Target : ((CastSeal)a).At).Distinct().ToList();
             if (State.HeroClassOf(State.Current) == HeroClass.Warrior)
                 return LegalSkills.OfType<CastBastion>().Where(a => _bastionFirst is null || a.First == _bastionFirst || a.Second == _bastionFirst)
                     .SelectMany(a => new[] { a.First, a.Second }).Where(p => p != _bastionFirst).Distinct().ToList();
@@ -315,12 +329,14 @@ public sealed class PlayController
             if (Locked) return "這一段完成了";
             if (Mode == PlayMode.Summon) return Selected is null ? "① 點己方棋子旁的空點　② 預覽　③ 確定召喚" : CanConfirm ? "召喚預覽：還沒召喚、不消耗資源" : "不能召喚，請換一個點";
             var skill = Mode == PlayMode.Skill;
+            if (skill && IsMagicHand && Selected is not null && Preview is null && SelectionResult?.IsLegal == true)
+                return "目標已選，請按下方亮起的推動方向；還沒施放";
             if (skill && _bastionFirst is { } first && Preview is null && SelectionResult?.IsLegal == true)
                 return $"第一點 {EventText.At(first)} 已選；請選第二個空點";
             if (Selected is { } sel)
                 return CanConfirm
                     ? (skill ? $"預覽{SkillPresentation.Name} {EventText.At(sel)}：還沒施放" : $"預覽 {EventText.At(sel)}：還沒落子")
-                    : $"{EventText.At(sel)} 不能{(skill ? "換位" : "下")}，請換一個點";
+                    : $"{EventText.At(sel)} 不能{(skill ? SkillPresentation.Name : "下")}，請換一個點";
             return skill
                 ? $"① 點亮起的目標　② 看預覽　③ 按「{ConfirmLabel}」"
                 : "① 點棋盤上的空格　② 看預覽　③ 按「✔ 放這裡」";
@@ -353,7 +369,7 @@ public sealed class PlayController
         get
         {
             if (Selected is null || SelectionResult is null) return null;
-            if (Mode == PlayMode.Skill && SelectionResult.IsLegal && Preview is null) return "已選第一點，請選第二點";
+            if (Mode == PlayMode.Skill && SelectionResult.IsLegal && Preview is null) return IsMagicHand ? "目標已選，請選方向" : "已選第一點，請選第二點";
             if (!SelectionResult.IsLegal) return "✕ " + (Mode == PlayMode.Skill && State.HeroClassOf(State.Current) == HeroClass.Rogue ? SkillShortReason(SelectionResult) : EventText.ShortReason(SelectionResult));
             var n = Preview!.Events.OfType<PiecesCaptured>().Sum(c => c.Pieces.Count);
             var what = Mode == PlayMode.Summon ? "召喚" : Mode == PlayMode.Skill ? SkillPresentation.Name : "落子";
@@ -377,6 +393,11 @@ public sealed class PlayController
         {
             if (Locked) return;
             if (State.HeroClassOf(State.Current) == HeroClass.Warrior) SelectBastion(p);
+            else if (State.HeroClassOf(State.Current) == HeroClass.Mage)
+            {
+                if (IsMagicHand) SelectPushTarget(p);
+                else SelectMageAction(new CastSeal(p), p);
+            }
             else SelectSwapTarget(p);
         }
         else if (State.Board[p] is not null)
@@ -552,6 +573,52 @@ public sealed class PlayController
         FeedbackKind = FeedbackKind.Info;
     }
 
+    private void SelectPushTarget(Point p)
+    {
+        ClearSelection();
+        Selected = p;
+        var directions = PushDirections;
+        SelectionResult = directions.Any(d => d.Result.IsLegal) ? ValidationResult.Ok : directions.First().Result;
+        Feedback = SelectionResult.IsLegal
+            ? $"目標 {EventText.At(p)} 已選，請選推動方向；還沒施放、不消耗資源。"
+            : "不能推動：" + EventText.Reason(SelectionResult);
+        FeedbackKind = SelectionResult.IsLegal ? FeedbackKind.Info : FeedbackKind.Error;
+    }
+
+    public void ChoosePushDirection(PushDirection direction)
+    {
+        if (Locked || GameOver || Mode != PlayMode.Skill || !IsMagicHand || Selected is not { } target) return;
+        SelectMageAction(new CastMagicHand(target, direction), target);
+        Raise();
+    }
+
+    private void SelectMageAction(GameAction action, Point p)
+    {
+        Inspect = null;
+        Selected = p;
+        _pending = null;
+        Preview = null;
+        SkillPreviewPoints = [];
+        RelatedPoints = [];
+        SelectionResult = ActionValidator.Validate(State, action);
+        if (!SelectionResult.IsLegal)
+        {
+            Feedback = $"不能{SkillPresentation.Name}：{EventText.Reason(SelectionResult)}";
+            FeedbackKind = FeedbackKind.Error;
+            return;
+        }
+        _pending = action;
+        Preview = GameEngine.Apply(State, action);
+        if (Preview.Events.OfType<PiecePushed>().FirstOrDefault() is { } pushed)
+            SkillPreviewPoints = [pushed.From, pushed.To];
+        else SkillPreviewPoints = [p];
+        var captures = Preview.Events.OfType<PiecesCaptured>().SelectMany(e => e.Pieces).ToList();
+        Feedback = $"{SkillPresentation.Name}預覽：還沒施放，會提掉 {captures.Count} 子。"
+            + (Preview.State.Status == GameStatus.Won ? "包含敵方主將，這手會獲勝！" : "")
+            + (Preview.Events.OfType<PiecePushed>().FirstOrDefault() is { } move ? $" {EventText.Name(move.Piece.Owner)}士兵 {EventText.At(move.From)} → {EventText.At(move.To)}。" : "");
+        FeedbackKind = Preview.State.Status == GameStatus.Won ? FeedbackKind.Warning : FeedbackKind.Info;
+    }
+
     private static string SkillReason(ValidationResult r) => r.Reason switch
     {
         IllegalReason.InvalidTarget or IllegalReason.OutOfRange => "目標要是和盜賊上下左右相鄰的敵方士兵（不能是空格、己方棋子、主將或英雄）。",
@@ -593,7 +660,8 @@ public sealed class PlayController
         State = outcome.State;
         _log.AddRange(EventText.Describe(outcome.Events));
         LastPlaced = outcome.Events.OfType<PiecePlaced>().Select(e => e.At)
-            .Concat(outcome.Events.OfType<PiecesSwapped>().SelectMany(e => new[] { e.A, e.B })).ToList();
+            .Concat(outcome.Events.OfType<PiecesSwapped>().SelectMany(e => new[] { e.A, e.B }))
+            .Concat(outcome.Events.OfType<PiecePushed>().Select(e => e.To)).ToList();
         var captured = outcome.Events.OfType<PiecesCaptured>().SelectMany(c => c.Pieces).ToList();
         LastCaptured = captured.Select(c => c.At).ToList();
         Mode = PlayMode.Place;
@@ -606,6 +674,8 @@ public sealed class PlayController
             TacticalGo.Domain.EndTurn => $"✔ {EventText.Name(mover)}結束回合。",
             CastSwap when wasSkill => $"✔ {EventText.Name(mover)}用盜賊換位" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
             CastBastion => $"✔ {EventText.Name(mover)}築壘：放置兩顆士兵，提掉 {captured.Count} 子。",
+            CastMagicHand => $"✔ {EventText.Name(mover)}施放魔法之手，提掉 {captured.Count} 子。",
+            CastSeal => $"✔ {EventText.Name(mover)}施放封印。",
             SummonHero a => $"✔ {EventText.Name(mover)}在 {EventText.At(a.At)}召喚{EventText.ClassName(State.HeroClassOf(mover))}。",
             _ => $"✔ {EventText.Name(mover)}已在 {EventText.At(LastPlaced.FirstOrDefault())} 落子" + (captured.Count > 0 ? $"，提掉 {captured.Count} 子！" : "。"),
         };

@@ -33,6 +33,8 @@ public sealed class MainForm : Form
     private readonly Button _modeSkill = ModeBtn("技能：換位");
     private readonly Button _modeSummon = ModeBtn("召喚英雄");
     private readonly Label _heroes = new() { AutoSize = true, MaximumSize = new Size(340, 0) };
+    private readonly FlowLayoutPanel _directionRow = new() { Dock = DockStyle.Fill, AutoSize = true, WrapContents = true, Margin = Padding.Empty };
+    private readonly Dictionary<PushDirection, Button> _directions = [];
     private readonly Label _skillNote = new()
     {
         AutoSize = false, Width = 430, Height = 44, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray,
@@ -129,6 +131,16 @@ public sealed class MainForm : Form
         _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         _bar.Controls.Add(_modeRow, 0, 0);
         _bar.Controls.Add(actionRow, 0, 1);
+        _bar.RowCount = 3;
+        _bar.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        foreach (var (direction, text) in new[] { (PushDirection.Up, "↑ 上"), (PushDirection.Right, "→ 右"), (PushDirection.Down, "↓ 下"), (PushDirection.Left, "← 左") })
+        {
+            var button = new Button { Text = text, Width = 95, Height = 38, Margin = new Padding(6, 0, 6, 6) };
+            button.Click += (_, _) => { _play.ChoosePushDirection(direction); _board.Focus(); };
+            _directions.Add(direction, button);
+            _directionRow.Controls.Add(button);
+        }
+        _bar.Controls.Add(_directionRow, 0, 2);
         var host = new Panel { Dock = DockStyle.Fill };
         host.Controls.Add(_board);
         host.Controls.Add(_bar);
@@ -385,6 +397,10 @@ public sealed class MainForm : Form
         StyleMode(_modeSkill, _play.Mode == PlayMode.Skill, canSwitch && skill.CanBegin);
         _modeSkill.Text = "技能：" + _play.SkillPresentation.Name;
         _skillNote.Text = _play.Mode == PlayMode.Summon ? _play.Summon.Text : _play.Mode == PlayMode.Skill ? _play.SkillPresentation.Help : skill.Text;
+        _directionRow.Visible = _play.Mode == PlayMode.Skill && _play.IsMagicHand;
+        var directions = _play.PushDirections;
+        foreach (var (direction, button) in _directions)
+            StyleMode(button, _play.SelectedDirection == direction, canSwitch && directions.Any(d => d.Direction == direction && d.Result.IsLegal));
 
         _endTurn.Enabled = !_play.GameOver && !_play.Locked;
         _undo.Enabled = _play.CanUndo;

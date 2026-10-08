@@ -54,7 +54,7 @@ public class SkillControllerTests
     {
         Assert.Equal(SkillState.NotEnoughMana, Custom(SwapBoard, mana: 1).Skill.State);
         Assert.Equal(SkillState.None, new PlayController(new RuleConfig()).Skill.State);                // no class
-        Assert.Equal(SkillState.Unsupported, Custom(SwapBoard, HeroClass.Mage).Skill.State);            // not built yet
+        Assert.Equal(SkillState.Available, Custom(SwapBoard, HeroClass.Mage).Skill.State);             // Mage UI now uses real R1 Domain
 
         var noHero = Custom(["...x...", "..xOx..", "..ooo..", ".......", ".......", ".......", "...X..."]);
         Assert.Equal(SkillState.NoHero, noHero.Skill.State);
