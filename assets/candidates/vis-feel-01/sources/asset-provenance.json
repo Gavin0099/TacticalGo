@@ -1,0 +1,190 @@
+{
+  "schema": "tacticalgo-visual-adjustment-v1",
+  "date": "2026-10-08",
+  "owner_direction": "skip pilot; directly adjust rogue readability and skin brightness",
+  "branch": "codex/cozy-tabletop-art",
+  "approval": "pending_owner",
+  "availability": {
+    "candidate_review": true,
+    "production": false
+  },
+  "rights": "pending_confirmation",
+  "human_recognition": "not_run; skipped_by_owner",
+  "physical_iphone": "not_run; skipped_by_owner",
+  "assets": [
+    {
+      "id": "B-warrior-v02",
+      "source": {
+        "path": "originals/B-warrior-v02.png",
+        "sha256": "ef9708d37dfd2eb1ac30bc1cba0c57166d1e2d34c388c7ae19c54b7008ffff4d",
+        "width": 1254,
+        "height": 1254,
+        "rgba_sha256": "12afe8d46caf7e44c2fd0eef91843cc5a4c89d5b20ef6e80271da8f542f54ad6",
+        "method": "image_gen.imagegen_identity_preserve",
+        "prompt": "prompts/B-warrior-v02.txt",
+        "prompt_sha256": "449d277a271b4c988fa65a2e647ce90094e4a431fdfec5eb97db0874611e48e2",
+        "reference": {
+          "path": "references/B-warrior-v01.png",
+          "sha256": "27a287bf4d58435b5ff02e8649d12c7bea1fe8f8dd8783e3d0f0568a83ef888e"
+        },
+        "tool_output_artifact_id": "exec-7f70f8e8-1663-43bd-b38f-c4c3d6da4411.png",
+        "model": "not_exposed_by_tool"
+      },
+      "preview": {
+        "path": "tokens/B-warrior-v02.png",
+        "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+        "width": 512,
+        "height": 512,
+        "transformation": "nonzero_alpha_bbox; fit_inside_464; transparent512; bottom_padding24; no_paint",
+        "alpha_bbox": {
+          "left": 41,
+          "top": 54,
+          "width": 1185,
+          "height": 1152
+        }
+      },
+      "approval": "pending_owner",
+      "availability": {
+        "candidate_review": true,
+        "production": false
+      },
+      "rights": "pending_confirmation",
+      "identity_review": "visual continuity; fine lines/materials may differ in generative edit, not pixel-identical outside skin"
+    },
+    {
+      "id": "B-mage-v02",
+      "source": {
+        "path": "originals/B-mage-v02.png",
+        "sha256": "d034c2acba9a021f653645328e8ab3800a9875cf74f3e2a3503d8f3ae4868dfe",
+        "width": 1254,
+        "height": 1254,
+        "rgba_sha256": "9962b20336815fbeb71d3be54054812f7a098821785b9047fcb1534ffa269563",
+        "method": "image_gen.imagegen_identity_preserve",
+        "prompt": "prompts/B-mage-v02.txt",
+        "prompt_sha256": "a17dee076e8d7b336d9f25606aec9d064eac29edf78228c92e343dee9632e97f",
+        "reference": {
+          "path": "references/B-mage-v01.png",
+          "sha256": "0d7d07bed48ec5c5976870fe7b969373334ade7b0fe7fa528a03e6b89445eceb"
+        },
+        "tool_output_artifact_id": "exec-3a3c3acb-cc60-4b27-b0b5-36526b269fc9.png",
+        "model": "not_exposed_by_tool"
+      },
+      "preview": {
+        "path": "tokens/B-mage-v02.png",
+        "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+        "width": 512,
+        "height": 512,
+        "transformation": "nonzero_alpha_bbox; fit_inside_464; transparent512; bottom_padding24; no_paint",
+        "alpha_bbox": {
+          "left": 85,
+          "top": 30,
+          "width": 1149,
+          "height": 1192
+        }
+      },
+      "approval": "pending_owner",
+      "availability": {
+        "candidate_review": true,
+        "production": false
+      },
+      "rights": "pending_confirmation",
+      "identity_review": "visual continuity; fine lines/materials may differ in generative edit, not pixel-identical outside skin"
+    },
+    {
+      "id": "B-rogue-v02",
+      "source": {
+        "path": "originals/B-rogue-v02.png",
+        "sha256": "1045970dfe16d05ebf22e8b1265e0dc2a3923c876e1438b536b218acbe54220a",
+        "width": 1254,
+        "height": 1254,
+        "rgba_sha256": "029e29254a2a1d72bb3cf768cb1fcb1540a97ad821808bae327ade170355db07",
+        "method": "image_gen.imagegen_identity_preserve",
+        "prompt": "prompts/B-rogue-v02.txt",
+        "prompt_sha256": "684bc76b1a56876b809b9ceaf073701e19d987bd7c2dea372362cb0685b1b28a",
+        "reference": {
+          "path": "references/B-rogue-v01.png",
+          "sha256": "14c921ff15bd09644943df20c75fefa3e55c8aed8bd044d9a041bcee78edc2be"
+        },
+        "tool_output_artifact_id": "exec-45adc0b8-f62f-43f8-950e-6696cfce26a0.png",
+        "model": "not_exposed_by_tool"
+      },
+      "preview": {
+        "path": "tokens/B-rogue-v02.png",
+        "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+        "width": 512,
+        "height": 512,
+        "transformation": "nonzero_alpha_bbox; fit_inside_464; transparent512; bottom_padding24; no_paint",
+        "alpha_bbox": {
+          "left": 0,
+          "top": 70,
+          "width": 1182,
+          "height": 1184
+        }
+      },
+      "approval": "pending_owner",
+      "availability": {
+        "candidate_review": true,
+        "production": false
+      },
+      "rights": "pending_confirmation",
+      "identity_review": "visual continuity; fine lines/materials may differ in generative edit, not pixel-identical outside skin"
+    },
+    {
+      "id": "A-rogue-v02",
+      "source": {
+        "path": "originals/A-rogue-v02.png",
+        "sha256": "292e4c83a696927a56eef9c7608718c3d2368b3648566470448848f9c677a12f",
+        "width": 512,
+        "height": 512,
+        "rgba_sha256": "fec72a6067730950eec7fab11839d3e85f36652fb3907b8e3a57db0a9f2a4420",
+        "method": "existing_native_vector_revision",
+        "vector": "symbols/A-rogue-v02.svg",
+        "vector_sha256": "053ed2372821b6b7ec6c20044ca127451fe9973029b766cf9c9d89bffd615456",
+        "reference": {
+          "path": "references/A-rogue-v01.svg",
+          "sha256": "0f2a0cf0641cb1c6facc601c219d867645a582b3f9213a66c2061082003dc678"
+        }
+      },
+      "preview": {
+        "path": "tokens/A-rogue-v02.png",
+        "sha256": "3b54a6ae6ce8c9276259398c23b796dc27fb7b1c373eb03d5a7dd7f60e1c9c1b",
+        "width": 512,
+        "height": 512,
+        "transformation": "nonzero_alpha_bbox; fit_inside_464; transparent512; bottom_padding24; no_paint",
+        "alpha_bbox": {
+          "left": 30,
+          "top": 44,
+          "width": 402,
+          "height": 392
+        }
+      },
+      "approval": "pending_owner",
+      "availability": {
+        "candidate_review": true,
+        "production": false
+      },
+      "rights": "pending_confirmation"
+    }
+  ],
+  "reused": [
+    {
+      "id": "A-warrior-v01",
+      "path": "tokens/A-warrior-v01.png",
+      "sha256": "66bffd664cc6935be140a523bbe071e65ff79d8c3fb3638bd13d860e5fc1e599"
+    },
+    {
+      "id": "A-mage-v01",
+      "path": "tokens/A-mage-v01.png",
+      "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd"
+    }
+  ],
+  "prior_files_sha256": {
+    "TacticalGo-VIS021-pilot.zip": "6cd29f16cc005c8e86f36143fdb126a370e3d7bcd265bc1a798de6f1ad5d214e",
+    "provenance.json": "c23d60d4ff195fb872fc59dfc922f8c1b529ba49bd81861a5f62429d04e9116e",
+    "artifact-sha256.json": "ce1d9f8d51365bddc1241c8bc13b19c9bf091fac55cd7e40b0a9dfeaa1b78229",
+    "web/index.html": "29d7a10e92b2b203a9112583cc2d743891f8e13b25b8b7d249a6533347adfab8",
+    "web/player.js": "bc768965d3c68a653dbe6c3f85849118d8ecb581b8f37dea5ab833e89dcd1c85",
+    "web/player.css": "92b9dca89bf32140cb0cc5cba3433b5a5fda60181abcdb8fc59acdeb2927336e",
+    "web/review.html": "34e98f6f4e4091b3122efef67648af14de3a7c95646d95b877963aa809484718"
+  }
+}

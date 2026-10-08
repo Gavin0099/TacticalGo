@@ -1,0 +1,141 @@
+{
+  "status": "pass",
+  "scope": "offline_visual_comparison_tool",
+  "checks": [
+    {
+      "name": "offline boot: all six assets embedded; no HTTP dependency",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 selection warrior: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 selection mage: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 selection rogue: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 magic-hand preview and cancellation preserve all pieces and resources",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 magic-hand confirmation: one orthogonal move; same faction; caster and commanders stable",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 capture fixture and preview: black stone has exactly the marked final empty neighbor",
+      "status": "pass"
+    },
+    {
+      "name": "7-390 capture result: final white placement, black stone removal, effects below information",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 selection warrior: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 selection mage: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 selection rogue: same state, stable hit area, bounded motion",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 magic-hand preview and cancellation preserve all pieces and resources",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 magic-hand confirmation: one orthogonal move; same faction; caster and commanders stable",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 capture fixture and preview: black stone has exactly the marked final empty neighbor",
+      "status": "pass"
+    },
+    {
+      "name": "9-320 capture result: final white placement, black stone removal, effects below information",
+      "status": "pass"
+    },
+    {
+      "name": "reset during active motion leaves no stale effects or resource deductions",
+      "status": "pass"
+    },
+    {
+      "name": "manual reduced motion: confirmed results immediate, no animation required",
+      "status": "pass"
+    },
+    {
+      "name": "system reduced motion wins even with manual checkbox off",
+      "status": "pass"
+    },
+    {
+      "name": "keyboard selection button action works",
+      "status": "pass"
+    },
+    {
+      "name": "mobile viewport 390: no horizontal overflow; protected marker hit testing",
+      "status": "pass"
+    },
+    {
+      "name": "mobile viewport 320: no horizontal overflow; protected marker hit testing",
+      "status": "pass"
+    }
+  ],
+  "desktopMeasurements": [
+    {
+      "n": 7,
+      "frame": 390,
+      "pitch": 51.333333333333336,
+      "token": 38.71875
+    },
+    {
+      "n": 9,
+      "frame": 320,
+      "pitch": 29.75,
+      "token": 22.421875
+    }
+  ],
+  "measurements": [
+    {
+      "n": 7,
+      "viewport": 390,
+      "phone": 390,
+      "pitch": 51.666666666666664,
+      "token": 38.953125
+    },
+    {
+      "n": 9,
+      "viewport": 320,
+      "phone": 320,
+      "pitch": 30,
+      "token": 22.625
+    }
+  ],
+  "screenshots": [
+    "SELECT_7-390.png",
+    "PUSH_PREVIEW_7-390.png",
+    "PUSH_RESULT_7-390.png",
+    "CAPTURE_RESULT_7-390.png",
+    "SELECT_9-320.png",
+    "PUSH_PREVIEW_9-320.png",
+    "PUSH_RESULT_9-320.png",
+    "CAPTURE_RESULT_9-320.png",
+    "REDUCED_MOTION_9-320.png",
+    "GRAYSCALE_9-320.png",
+    "MOBILE_7_390.png",
+    "MOBILE_9_320.png"
+  ],
+  "page_errors": [],
+  "network_http_requests": [],
+  "human_recognition": "not_run",
+  "physical_iphone": "not_run",
+  "domain_integration": "not_run",
+  "formal_game_ui_integration": "not_run",
+  "mage_default_authority": "owner_selected_magic_hand"
+}

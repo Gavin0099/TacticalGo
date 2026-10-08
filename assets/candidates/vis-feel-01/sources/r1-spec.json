@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08",
+  "repository": "TacticalGo",
+  "branch": "codex/r1-magic-hand",
+  "observed_head": "f45765411e3d0db9d431531b89f556e599940d74",
+  "docs_dirty": true,
+  "authority": "Owner selected Magic Hand as Mage default",
+  "method": "read_only effective local files; file hashes bind dirty documents, not HEAD-only claim",
+  "files": [
+    {
+      "path": "docs/R1_MAGIC_HAND.md",
+      "sha256": "c2159780b8386346c4ddb84ef4d3153fd1d5d5eedfda4b040670488dcd4f45d4"
+    },
+    {
+      "path": "docs/RULES_DRAFT.md",
+      "sha256": "19cef109f73e4a586fd49c2d2981095c52f734b3f3b0a0db138a8f2d8e45db70"
+    },
+    {
+      "path": "src/TacticalGo.Domain/ActionResolver.cs",
+      "sha256": "14dc12f85a6bb85cdf34185b8990fa169f239692d36f487bc9117a051dc6180f"
+    }
+  ],
+  "contract": "ordinary soldiers of either player; Manhattan range <=2; one orthogonal step into empty point; retain faction; Mage remains; no commander/hero or chain push; 1 AP + 2 Mana; max once per turn",
+  "demo": "fixed enemy-soldier downward push; not Domain integration"
+}

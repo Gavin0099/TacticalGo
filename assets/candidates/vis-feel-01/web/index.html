@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TacticalGo · VIS-FEEL-01</title><link rel="stylesheet" href="feel.css"></head>
+<body>
+<header><div class="eyebrow">TACTICALGO / VIS-FEEL-01</div><h1>一眼看清，一手有感。</h1><p class="intro">A 職業棋子 ＋ B 人物卡。左右採用同一局面與操作，只比較回饋是否需要動態。</p><span class="status">候選比較 · 尚未整合遊戲</span></header>
+<main>
+<div class="controls">
+ <label>棋盤與畫面<select id="profile"><option value="7-390">7 × 7 / 390 px</option><option value="9-320">9 × 9 / 320 px</option></select></label>
+ <label>我方職業<select id="role"><option value="mage">法師</option><option value="warrior">戰士</option><option value="rogue">盜賊</option></select></label>
+ <label class="check"><input id="reduce" type="checkbox"> 減少動態</label>
+ <label class="check"><input id="gray" type="checkbox"> 灰階比較</label>
+ <button id="reset">重設局面</button>
+</div>
+<nav class="scenes" aria-label="比較互動"><button data-scene="select" aria-pressed="true">01 選取英雄</button><button data-scene="skill" aria-pressed="false">02 魔法之手</button><button data-scene="capture" aria-pressed="false">03 成功提子</button></nav>
+<p id="instruction" class="instruction"></p>
+<div class="legend"><span><b class="legend-crown">♛</b> 主將</span><span><b class="legend-danger">!</b> 危險提示</span><span><b class="legend-liberty">⊕</b> 氣／空點</span><span><b class="legend-target">◇</b> 技能目標</span><span>白方圓底座 · 黑方六角底座</span></div>
+<div id="panels"></div>
+<p id="motion-note" class="quiet"></p>
+<section class="review-notes"><h2>這輪請看三件事</h2><ol><li>選中後是否立即知道正在控制哪位英雄？</li><li>預覽與確認是否分得清楚，推動後是否能看清原位變空與新位置？</li><li>提子時是否看得出哪顆子被移除，且主將、氣與交叉點持續清楚？</li></ol><p>法師視覺預設魔法之手，展示 R1 的普通士兵推動。所有結果來自固定比較局面，不能當作規則引擎、G0／G1、正式技能替換、真人或 iPhone 實機驗收。</p></section>
+</main>
+<script src="feel.js"></script></body></html>

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "style_version": "cozy-tabletop-v0.1",
+  "status": "candidate_reference_set",
+  "owner_direction_feedback": "positive; exact master acceptance pending",
+  "references": [
+    {
+      "asset_id": "tg-warrior-01",
+      "version": "v01",
+      "path": "warrior-v01.png",
+      "file_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322",
+      "pixel_sha256": "e9d95dcd62ab37a8fc7a076176ffaa1bbf6d236b5aaff30da74f98addbb15ee3",
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "status": "pending",
+        "claim": "No commercial-rights acceptance established"
+      }
+    },
+    {
+      "asset_id": "tg-mage-01",
+      "version": "v01",
+      "path": "mage-v01.png",
+      "file_sha256": "fa6dca952fe6029550e53cb9c04ef7ae6eb33249c69331fec772ddeb4594bacd",
+      "pixel_sha256": "0b76d640a0480772735698f2e4b5858210e1f7f9b65ad9cad0c3aa27c726fa20",
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "status": "pending",
+        "claim": "No commercial-rights acceptance established"
+      }
+    },
+    {
+      "asset_id": "tg-rogue-01",
+      "version": "v01",
+      "path": "rogue-v01.png",
+      "file_sha256": "64f795e866d6a13ec39b60252cef941274829c5e4912e1a1610c080ca6e5e814",
+      "pixel_sha256": "bfa67fa9e960067100e58611bc88275b719c91a2442ab15b83900b1f1e7c19f7",
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "status": "pending",
+        "claim": "No commercial-rights acceptance established"
+      }
+    }
+  ]
+}

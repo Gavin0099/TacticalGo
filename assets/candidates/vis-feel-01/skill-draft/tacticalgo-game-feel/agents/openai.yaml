@@ -1,0 +1,4 @@
+interface:
+  display_name: "TacticalGo Game Feel"
+  short_description: "TacticalGo 棋盤辨識、選取與技能回饋比較及動態呈現規範"
+  default_prompt: "使用 $tacticalgo-game-feel，以現有素材製作 TacticalGo 靜態與動態回饋比較，保護棋盤資訊並列出未驗證的 Gate。"
