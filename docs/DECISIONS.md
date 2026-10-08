@@ -2,6 +2,13 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-09 — 保存 2.5D／動畫與 Swift Slice 計畫（Owner）
+
+- Owner 要求「開始做 2.5D 和動畫部分，幫我切 Slice 出來」，後續詢問 Swift 時點。本輪明確選擇「把 2.5D／動畫／Swift Slice 計畫寫入文件並提交推送」。本次執行範圍是文件及必要 canonical memory，推送 `codex/gameplay-g1-g4`。
+- 計畫採 V1 與 SW1 可同期、SW1 → SW2、V1＋SW2 → V2 → A1–A5；先在 Swift 建立純規則與基本玩法，再於 SwiftUI 正式整合 2.5D 和動畫。Windows 保留為試玩與 C# 參考基線。
+- 範圍、相依順序及驗收條件的單一計畫來源是 `docs/PLAN.md` §7.1；全部 Slice 尚未實作。視覺方向需 Owner 確認，Swift／iOS 執行需 macOS／Xcode，實機與分發驗證另列。
+- 取代「先把正式動畫完整做在 Windows，再開始 Swift」的前一版聊天排序；保留既有美術及分鏡草案、規則與費用。G0／G5 不代填通過，不因保存計畫而取得 PR／main 合併、素材正式發布或 TestFlight 上傳授權。
+
 ## 2026-10-08 — Gameplay 推送供家用電腦試玩（Owner）
 
 - Owner 明確要求「幫我推上去 我要在家裡電腦測試」：授權 push 已完成的 `codex/gameplay-g1-g4`，包含 G1–G4、R1 本機整合、六張候選素材與工程證據；取代下方此分支只留本機的限制。
@@ -190,7 +197,7 @@ Owner decisions, newest first. A decision here overrides any conflicting Draft t
 | 首回合也 +1 Mana | 暫時接受，雙方對稱；觀察技能是否太早爆發 |
 | 英雄被提後重新召喚 | 第一版禁止（`AllowResummon=false`），讓英雄死亡有代價 |
 | 英雄召喚位置 | 改為與**任一己方棋子**上下左右相鄰的合法空點（不再限主將兩格內） |
-| 其他 `【補】` 項目 | 不整批核准，保持待審（見 RULES_DRAFT §8） |
+| 其他 `【補】` 項目 | 不整批核准，保持待審（見 RULES_DRAFT §7.1） |
 | AP | 先手第一回合 1 AP 為暫定預設，後續 2 AP；2 AP 原始版本留作比較基線。啟發式模擬不是最終平衡驗收 |
 | 技術 | 維持 Swift/SwiftUI；C# 引擎保留為參考與交叉驗證來源；S2 前建立 Swift Package，用共同測資（`tests/golden`）驗證兩版一致 |
 | CI | 先用手動觸發的 macOS CI（公開 repo 的標準 GitHub-hosted runner 免費，Owner 已核對官方文件），不急著買 Mac、不建大量 UI 測試 |
