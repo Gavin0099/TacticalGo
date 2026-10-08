@@ -5,6 +5,7 @@ From repository root:
 ```powershell
 dotnet run -c Release --project tools/probes/magic-hand -- docs/evidence/r1-magic-hand/search.json
 python tools/probes/magic-hand/check-mutations.py
+dotnet run -c Release --project tools/probes/magic-hand -- --review-supplement docs/evidence/r1-magic-hand/review-supplement.json
 ```
 
 The probe is outside both solution files. It uses the real Domain engine, no new packages and no UI.
@@ -29,3 +30,12 @@ opponent skill search, random sampling, player test, balance claim or G3/UI acce
 The mutation script temporarily changes seven focused source conditions, runs real tests, and restores exact original bytes
 in `finally`. A runner/build failure is not accepted as a killed mutant. Test logs/TRX remain in `artifacts/r1-validation/mutations`;
 the committed report contains changes, counters and failing test names. It never edits golden expectations.
+
+The review supplement audits the five initial liberties of `connector_range_two` without changing its board.
+It classifies that custom 5×5 root as a mechanism demonstration, unreachable under the immobile standard commanders.
+The separate 9×9 experiment uses the existing default commander starts, one cooperative setup, and exactly two selected
+previous-turn opponent choices (pass; block both push destinations). It enumerates A/B/C immediate plans after each choice.
+Its independent fixed cap is 20,000 Apply attempts / 30 seconds; no retry, budget extension, exhaustive opponent search,
+balance inference or UI work. The committed review result is from the enemy-only baseline, before friendly push expansion.
+Historical `search.json` counters/hashes are preserved with a review annotation. Re-running writes new evidence for the
+current code and must use a different output path to preserve those historical runs.

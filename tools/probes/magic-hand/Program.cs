@@ -4,6 +4,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using TacticalGo.Domain;
 
+if (args.Length == 2 && args[0] == "--review-supplement")
+{
+    ReviewSupplement.Run(args[1]);
+    return;
+}
+
 // Fixed, deliberately small experiment. No random generator, background loop or automatic budget extension.
 const int NodeLimit = 50_000;
 const int SecondsLimit = 30;
@@ -62,7 +68,11 @@ try
             variants.Add(new {
                 strategy, label = strategy switch { "A" => "Magic Hand + placement", "B" => "placement + placement", _ => "Rogue swap + placement" },
                 heroClass, config, replayFromNewGame = definition.Replay.Select(ActionDto),
-                reachability = "verified_by_GameSession_Replay", initialBoard = root.Board.ToString(),
+                reachability = "custom_5x5_replay_only_not_standard_9x9_reachable", initialBoard = root.Board.ToString(),
+                evidenceClassification = "mechanism_demonstration",
+                rootEnemyCommanderLiberties = BoardRuleEngine.CountLiberties(root.Board, definition.Two),
+                rootEnemyCommanderLibertyPoints = BoardRuleEngine.GetLiberties(root.Board,
+                    BoardRuleEngine.GetGroup(root.Board, definition.Two)).OrderBy(p => p.Y).ThenBy(p => p.X),
                 rootPly = root.Ply, rootAp = root.ApRemaining,
                 rootMana = new[] { root.ManaOf(Player.One), root.ManaOf(Player.Two) },
                 rootCommanderLiberties = CommanderLiberties(root), legalPlans = plans.Count,

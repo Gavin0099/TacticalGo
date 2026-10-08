@@ -48,7 +48,7 @@
       "variants": [
         {
           "strategy": "A",
-          "label": "Magic Hand \u002B placement",
+          "label": "Magic Hand + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -182,7 +182,7 @@
         },
         {
           "strategy": "B",
-          "label": "placement \u002B placement",
+          "label": "placement + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -315,7 +315,7 @@
         },
         {
           "strategy": "C",
-          "label": "Rogue swap \u002B placement",
+          "label": "Rogue swap + placement",
           "heroClass": "Rogue",
           "config": {
             "BoardSize": 5,
@@ -417,7 +417,7 @@
       "variants": [
         {
           "strategy": "A",
-          "label": "Magic Hand \u002B placement",
+          "label": "Magic Hand + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -551,7 +551,7 @@
         },
         {
           "strategy": "B",
-          "label": "placement \u002B placement",
+          "label": "placement + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -684,7 +684,7 @@
         },
         {
           "strategy": "C",
-          "label": "Rogue swap \u002B placement",
+          "label": "Rogue swap + placement",
           "heroClass": "Rogue",
           "config": {
             "BoardSize": 5,
@@ -813,7 +813,7 @@
       "variants": [
         {
           "strategy": "A",
-          "label": "Magic Hand \u002B placement",
+          "label": "Magic Hand + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -931,7 +931,7 @@
         },
         {
           "strategy": "B",
-          "label": "placement \u002B placement",
+          "label": "placement + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -1048,7 +1048,7 @@
         },
         {
           "strategy": "C",
-          "label": "Rogue swap \u002B placement",
+          "label": "Rogue swap + placement",
           "heroClass": "Rogue",
           "config": {
             "BoardSize": 5,
@@ -1170,7 +1170,7 @@
       "variants": [
         {
           "strategy": "A",
-          "label": "Magic Hand \u002B placement",
+          "label": "Magic Hand + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -1283,7 +1283,7 @@
         },
         {
           "strategy": "B",
-          "label": "placement \u002B placement",
+          "label": "placement + placement",
           "heroClass": "Mage",
           "config": {
             "BoardSize": 5,
@@ -1396,7 +1396,7 @@
         },
         {
           "strategy": "C",
-          "label": "Rogue swap \u002B placement",
+          "label": "Rogue swap + placement",
           "heroClass": "Rogue",
           "config": {
             "BoardSize": 5,
@@ -1508,5 +1508,39 @@
         }
       ]
     }
-  ]
+  ],
+  "reviewAnnotation": {
+    "date": "2026-10-08",
+    "originalRunSourceCommit": "191347d49a3dcecaab7b0ed4c99f386930ad4808",
+    "originalCountersAndSourceHashesPreserved": true,
+    "classification": "mechanism_demonstration_custom_5x5_only",
+    "standard9x9Reachability": "not_reachable_with_immobile_commanders_at_standard_starts",
+    "sevenBySevenReachability": "not_established_commander_starts_undecided",
+    "connector_range_two": {
+      "initialEnemyCommanderLibertyCount": 5,
+      "libertyPoints": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "verifiedBy": "review-supplement.json and MagicHandReplayTests"
+    }
+  }
 }
