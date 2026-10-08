@@ -40,5 +40,5 @@ for role,title,captions in rows:
     for phase,caption in enumerate(captions):html+='<figure>'+svg(role,phase)+'<figcaption>'+caption+'</figcaption></figure>'
     html+='</div></section>'
 html+='<p class="note">確認後才演出。魔法之手推普通士兵一格、保留歸屬；法師不動。築壘放兩顆普通士兵；盜賊與相鄰敵兵交換。減少動態直接显示終態與文字，命中區不跟裝飾位移。</p><p><a href="https://supercell.com/en/games/clashroyale/">官方視覺參考</a> · 完整說明見 ANIMATION_DIRECTION.md。這些局部棋盤不作正式規則或完整對戰驗收。</p></main></html>'
-(ROOT/'ANIMATION_STORYBOARD.html').write_text(html,encoding='utf-8')
+(ROOT/'ANIMATION_STORYBOARD.html').write_bytes(html.encode('utf-8'))
 print('ANIMATION_STORYBOARD.html: three classes, four phases, embedded existing assets')

@@ -9,4 +9,6 @@
 - `skill-draft/tacticalgo-game-feel/SKILL.md`：可重用流程草稿，尚未安裝。
 - `sources/`、`provenance.json`、`artifact-sha256.json`：來源與雜湊。
 
+重建 HTML 使用固定 UTF-8／LF，不因作業系統換行而改變位元。`python qa/check-rebuild.py` 在隔離複本比對 LF／CRLF 源碼重建結果與已發布 Manifest，不改動本包。
+
 這是視覺比較工具，不是可玩的 TacticalGo 或規則驗證器。沿用本地候選素材，正式素材仍待 Owner 核准與權利確認。Owner 已接受本輪比較工具和動畫設計草案，授權經 PR code review 通過後合併保存；Skill 暫不安裝，完整 2.5D 人物動畫暫不啟動。沒有修改遊戲程式；G0 Pending，G1 不提前。

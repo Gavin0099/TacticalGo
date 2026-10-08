@@ -34,12 +34,12 @@
     },
     {
       "path": "qa/build-review.py",
-      "sha256": "278d6d39c31f7aeaab96672c8ca7335fff93651a87779ce887ef14fe9ff3194d",
-      "bytes": 3369
+      "sha256": "8732f4cfd26ab2228c1617b8af8ddb6450cda62533ba5f2ee5818e75e716b299",
+      "bytes": 3455
     },
     {
       "path": "qa/build-storyboard.py",
-      "sha256": "7a017eab8a7c7c4dd6edf5002f31e6dc15e012644852b94730be97e506833d1d",
+      "sha256": "8a0991644337bc2a22160f09d78907e8fd49e6c34e6e49405f76d369288a889e",
       "bytes": 5722
     },
     {
@@ -51,6 +51,11 @@
       "path": "qa/CAPTURE_RESULT_9-320.png",
       "sha256": "8211bfc07683d3258e729fb5cb65d3681d3034c75d94e556f21b967f18c486ca",
       "bytes": 657532
+    },
+    {
+      "path": "qa/check-rebuild.py",
+      "sha256": "6391b1bbf7380d03b662df50e4dd65c4b7d40c109f386869b455353736cb2ba9",
+      "bytes": 1924
     },
     {
       "path": "qa/check-review.cjs",
@@ -109,8 +114,8 @@
     },
     {
       "path": "qa/package-review.py",
-      "sha256": "bca69c564acad258308efdfeac2a2028a6c42865c54af5b50d208301ca39f3f6",
-      "bytes": 2678
+      "sha256": "c964bc92cf0a840190c717f5d913331a685e585be0f35bb0d610aafcb77652eb",
+      "bytes": 2680
     },
     {
       "path": "qa/PUSH_PREVIEW_7-390.png",
@@ -159,8 +164,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "1aded4e5595275e2d5bf7dd46eef579e9bbc5cb2daf3bbdbf148fae181e26f59",
-      "bytes": 1057
+      "sha256": "e4d2b5cc5d7aa93b73c6d8fb096e3aebce4fcfea464146f284a588a339eae5ea",
+      "bytes": 1260
     },
     {
       "path": "REPORT.md",
@@ -169,8 +174,8 @@
     },
     {
       "path": "REVIEW.html",
-      "sha256": "00fa38ddde248ff8585e759975f6c3e2381c7dc677d7468fd163c0450fcd47f9",
-      "bytes": 1503903
+      "sha256": "72ec013f63e44b0f8486251d690d3c7c549518f16586508b367020bfbe7360da",
+      "bytes": 1503812
     },
     {
       "path": "skill-draft/tacticalgo-game-feel/agents/openai.yaml",

@@ -39,7 +39,7 @@ def main():
                       'human_recognition': 'not_run', 'physical_iphone': 'not_run',
                       'skill_installation': 'not_installed_draft', 'git_delivery': 'not_committed_or_pushed',
                       'git_delivery_observation': 'initial_generation_snapshot; subsequent delivery is recorded in the visual checkpoint and PR'}
-        (ROOT / 'provenance.json').write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        (ROOT / 'provenance.json').write_bytes((json.dumps(provenance, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
     assets = {}
     for name in NAMES:
         form, role, _ = name.split('-')
@@ -49,7 +49,8 @@ def main():
     js = (ROOT / 'web' / 'feel.js').read_text(encoding='utf-8')
     html = html.replace('<link rel="stylesheet" href="feel.css">', '<style>' + css + '</style>')
     html = html.replace('<script src="feel.js"></script>', '<script>window.FEEL_ASSETS=' + json.dumps(assets) + ';\n' + js + '\n</script>')
-    (ROOT / 'REVIEW.html').write_text(html, encoding='utf-8')
+    # Write exact UTF-8/LF bytes on every OS; text-mode output translates on Windows.
+    (ROOT / 'REVIEW.html').write_bytes(html.encode('utf-8'))
     print(json.dumps({'review': 'REVIEW.html', 'embedded_assets': len(assets), 'bytes': len(html.encode('utf-8'))}))
 
 if __name__ == '__main__':

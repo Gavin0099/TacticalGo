@@ -29,7 +29,7 @@ for asset in provenance['assets']:
     assert sha((ROOT/asset['path']).read_bytes())==asset['sha256']
     if parent.exists():
         assert sha((parent/asset['source_path']).read_bytes())==asset['sha256']
-MANIFEST.write_text(json.dumps({'schema':'sha256-manifest-v1','self_excluded':'artifact-sha256.json','files':entries},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+MANIFEST.write_bytes((json.dumps({'schema':'sha256-manifest-v1','self_excluded':'artifact-sha256.json','files':entries},ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
 with zipfile.ZipFile(ZIP,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
     for p in files+[MANIFEST]:archive.write(p,p.relative_to(ROOT).as_posix())
 with zipfile.ZipFile(ZIP) as archive:
