@@ -3,10 +3,14 @@ from pathlib import Path
 import hashlib
 import json
 import subprocess
+import sys
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[3]
-RESULTS = ROOT / "artifacts/r1-validation/mutations"
+if sys.argv[1:] not in ([], ["--friendly-only"]):
+    raise SystemExit("Usage: check-mutations.py [--friendly-only]")
+FRIENDLY = sys.argv[1:] == ["--friendly-only"]
+RESULTS = ROOT / ("artifacts/r1-review/mutations" if FRIENDLY else "artifacts/r1-validation/mutations")
 RESULTS.mkdir(parents=True, exist_ok=True)
 NS = {"t": "http://microsoft.com/schemas/VisualStudio/TeamTest/2010"}
 
@@ -14,7 +18,8 @@ NS = {"t": "http://microsoft.com/schemas/VisualStudio/TeamTest/2010"}
 def run(name):
     trx = RESULTS / (name + ".trx")
     result = subprocess.run(["dotnet", "test", "tests/TacticalGo.Domain.Tests", "--filter",
-        "FullyQualifiedName~MagicHand", "--logger", f"trx;LogFileName={trx.name}",
+        "FullyQualifiedName~MagicHandFriendlyTests" if FRIENDLY else "FullyQualifiedName~MagicHand",
+        "--logger", f"trx;LogFileName={trx.name}",
         "--results-directory", str(RESULTS)], cwd=ROOT, capture_output=True, timeout=30)
     (RESULTS / (name + ".log")).write_bytes(result.stdout + result.stderr)
     if not trx.exists():
@@ -42,6 +47,15 @@ mutations = [
     ("left_candidate_missing", "src/TacticalGo.Domain/ActionValidator.cs",
         "Enum.GetValues<PushDirection>()", "Enum.GetValues<PushDirection>().Where(d => d != PushDirection.Left)"),
 ]
+if FRIENDLY:
+    mutations = [
+        ("friendly_rejected_by_resolver", resolver,
+            'if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim)',
+            'if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim || victim.Owner == s.Current)'),
+        ("friendly_omitted_from_candidates", "src/TacticalGo.Domain/ActionValidator.cs",
+            'if (board[p] is { Kind: PieceKind.Soldier } &&',
+            'if (board[p] is { Kind: PieceKind.Soldier } victim && victim.Owner != me &&'),
+    ]
 baseline = run("baseline")
 if baseline["exitCode"] or int(baseline["counters"]["failed"]):
     raise RuntimeError("Focused baseline must pass before mutation")
@@ -50,6 +64,8 @@ for name, relative, old, new in mutations:
     path = ROOT / relative
     original = path.read_bytes()
     content = original.decode("utf-8")
+    if "\r\n" in content:
+        old, new = old.replace("\n", "\r\n"), new.replace("\n", "\r\n")
     if content.count(old) != 1:
         raise RuntimeError(f"{name}: mutation anchor must occur exactly once")
     try:
@@ -66,8 +82,8 @@ for name, relative, old, new in mutations:
 restored = run("restored")
 report = dict(baseline=baseline, mutations=records, restored=restored,
     sourceSha256={p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in {r["file"] for r in records}},
-    claimBoundary="Only these seven mutations; not full mutation coverage or domain correctness proof.")
-report_path = ROOT / "docs/evidence/r1-magic-hand/mutations.json"
+    claimBoundary=f"Only these {len(mutations)} mutations; not full mutation coverage or domain correctness proof.")
+report_path = ROOT / ("docs/evidence/r1-magic-hand/friendly-mutations.json" if FRIENDLY else "docs/evidence/r1-magic-hand/mutations.json")
 report_path.parent.mkdir(parents=True, exist_ok=True)
 report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 if not all(r["killed"] for r in records) or restored["exitCode"] or int(restored["counters"]["failed"]):

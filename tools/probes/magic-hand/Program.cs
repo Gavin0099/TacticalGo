@@ -13,7 +13,7 @@ if (args.Length == 2 && args[0] == "--review-supplement")
 // Fixed, deliberately small experiment. No random generator, background loop or automatic budget extension.
 const int NodeLimit = 50_000;
 const int SecondsLimit = 30;
-var output = args.Length == 1 ? args[0] : "docs/evidence/r1-magic-hand/search.json";
+var output = args.Length == 1 ? args[0] : "artifacts/r1-review/search-current.json";
 var clock = Stopwatch.StartNew();
 var nodes = 0;
 var cases = new List<object>();

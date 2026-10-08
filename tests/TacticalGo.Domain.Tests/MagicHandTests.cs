@@ -120,11 +120,10 @@ public class MagicHandTests
     [Theory]
     [InlineData('O')]
     [InlineData('Q')]
-    [InlineData('x')]
     [InlineData('X')]
     [InlineData('H')]
     [InlineData('.')]
-    public void Only_an_enemy_ordinary_soldier_is_a_target(char target)
+    public void Only_ordinary_soldiers_are_targets_commanders_heroes_and_empty_points_are_rejected(char target)
     {
         // Own Hero is tested at range 0, otherwise the existing caster remains at (1,2).
         var s = target == 'H' ? Mage() : Mage($"....O\n.....\n.H{target}..\n.....\nX....");

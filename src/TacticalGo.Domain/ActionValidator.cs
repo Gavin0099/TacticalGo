@@ -55,7 +55,7 @@ public static class ActionValidator
                 else if (state.Config.MageSkill == MageSkill.MagicHand)
                 {
                     foreach (var p in board.AllPoints())
-                        if (board[p] is { Kind: PieceKind.Soldier } victim && victim.Owner != me &&
+                        if (board[p] is { Kind: PieceKind.Soldier } &&
                             h.ManhattanTo(p) <= state.Config.MagicHandRange)
                             foreach (var direction in Enum.GetValues<PushDirection>())
                                 yield return new CastMagicHand(p, direction);

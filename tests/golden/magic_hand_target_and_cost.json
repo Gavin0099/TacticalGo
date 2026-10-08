@@ -71,26 +71,6 @@
       "action": {
         "type": "CastMagicHand",
         "target": [
-          0,
-          2
-        ],
-        "direction": "Up"
-      },
-      "expect": {
-        "ok": false,
-        "reason": "InvalidTarget",
-        "ap": 2,
-        "mana": [
-          2,
-          3
-        ],
-        "events": []
-      }
-    },
-    {
-      "action": {
-        "type": "CastMagicHand",
-        "target": [
           1,
           2
         ],
@@ -193,5 +173,5 @@
     }
   ],
   "name": "magic_hand_target_and_cost",
-  "description": "Hand-authored: commanders, heroes, friendly pieces and empty targets forbidden; occupied destination forbidden; exactly 2 Mana and 1 AP, once per turn."
+  "description": "Hand-authored: commanders, heroes and empty targets forbidden; occupied destination forbidden; exactly 2 Mana and 1 AP, once per turn. Friendly-soldier rejection was superseded by Owner authorization; positive friendly cases are separate fixtures."
 }

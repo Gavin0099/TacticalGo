@@ -36,6 +36,7 @@ A hero standing in the diagram counts as already summoned.
 
 `{"type":"PlaceSoldier","at":[x,y]}` · `SummonHero` (`at`) · `CastBastion` (`first`,`second`) · `CastSeal` (`at`) · `CastSwap` (`target`) · `EndTurn`.
 R1: `{"type":"CastMagicHand","target":[x,y],"direction":"Up"}`; direction is `Up`, `Right`, `Down`, or `Left` (Y increases down).
+The current Owner-approved target is an ordinary soldier of either player; ownership is retained. Commanders/heroes remain forbidden.
 Coordinates are `[x, y]`, x to the right, y downward.
 
 ## Expectations (every key optional; absent = not checked)
@@ -53,7 +54,9 @@ The `magic_hand_*.json` files were hand-authored from the Owner's R1 specificati
 and explicit board-coordinate reasoning. They cover the second-action capture, split groups, commander relief,
 suicide, older-board superko, target/cost restrictions, event order and the unchanged Seal default.
 `magic_hand_range_two_decapitation` is also reached by an actual legal `NewGame` replay in `MagicHandReplayTests`;
-other diagram fixtures are isolated rule tests, not reachability claims.
+it is a custom 5×5 mechanism demonstration, not standard 9×9 reachability. Other diagram fixtures are isolated rule tests.
+The three `magic_hand_friendly_*.json` fixtures cover Player Two moving its own soldier and filling the source,
+once-per-turn across friendly/enemy targets, same-action enemy capture by a friendly push, and friendly positional-superko rollback.
 
 Illegal reasons: `GameOver NoActionPoints OutOfBounds Occupied Sealed Suicide Ko NotEnoughMana NoHeroClass HeroAlreadyOnBoard
 NotAdjacentToFriend HeroAlreadySummoned WrongClass NoHeroOnBoard SkillAlreadyUsed OutOfRange InvalidTarget DuplicateTarget

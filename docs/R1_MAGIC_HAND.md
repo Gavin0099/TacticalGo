@@ -1,6 +1,6 @@
 # R1 魔法之手交付與戰術證據
 
-結果：R1 保留機制候選；已修正五口氣與可達性分類，補充現有 9×9 起點下的合法重播及上一回合反制。
+結果：R1 保留機制候選；已修正五口氣與可達性分類，補充現有 9×9 重播及反制，另依 Owner 授權開放推雙方普通士兵。
 原因：原 5×5 案例只屬機制展示；9×9 補充證明特定部署可產生戰術差異，也證明對手提前補強能阻止這組攻擊。
 下一步：正式技能替換仍 HOLD，封印仍預設；G0 Pending，G1、G3 不提前。
 
@@ -14,12 +14,35 @@
 
 ## 行為契約
 
-法師在場，且本回合未施法，可用 1 AP＋2 Mana，將曼哈頓距離 ≤2 的一顆敵方普通士兵推往玩家指定的正交相鄰空點。
-拒絕主將、英雄、己方、空目標、佔據目的地、出界、無效方向、連鎖推動、資源不足、自殺及重複歷史盤面。
+法師在場，且本回合未施法，可用 1 AP＋2 Mana，將曼哈頓距離 ≤2 的一顆**雙方普通士兵**推往玩家指定的正交相鄰空點，保留歸屬。Owner 本輪另授權己方推動，並確認只含普通士兵。
+拒絕雙方主將、英雄、空目標、佔據目的地、出界、無效方向、連鎖推動、資源不足、自殺及重複歷史盤面。
 拒絕時回傳原狀態物件，沒有資源消耗、技能旗標變更或事件。成功時法師不移動，原位清空，發出 `PiecePushed`。
 
 幾何性質不需要新增處決規則：A → 相鄰空點 B 後，A 必然是 B 所在敵方棋串的一口氣。最小測試在技能實作前已執行。
 若要提掉被推士兵，需要後續落子與適當包圍；不能把單次推動直接提掉該士兵當測資。
+己方被推士兵也保留原位作為氣。但己方士兵移入另一敵方棋串的最後一口氣，可以按既有流程當次提掉敵子；測資 `magic_hand_friendly_capture` 展示此行為。不能將原來「推敵兵本身不會直接死」外推為「雙方推動後都不會發生任何提子」。
+
+## 本輪雙方推動回歸
+
+詳見 [friendly-validation.json](evidence/r1-magic-hand/friendly-validation.json) 與 [friendly-mutations.json](evidence/r1-magic-hand/friendly-mutations.json)。這是本輪實際執行，與下方原輪測試分開計數。
+
+| 檢查 | 本輪結果 | 證據範圍 |
+|---|---|---|
+| Domain 完整回歸 | 128 通過、0 失敗／略過 | 包含原規則與 37 組 Golden |
+| Windows 回歸 | 47 通過、0 失敗／略過 | 治理基線 UI；仍未整合 UI-3c |
+| 五口氣修正聚焦重播 | 2 通過 | 固定起始座標斷言及原 Golden 棋形；沒有改棋盤 |
+| 新增己方推動測試 | 舊版 11 失敗 → 實作後 11 通過 | 雙方四方向、目標歸屬、拆串、提子事件、superko 回滾 |
+| Golden validator／正反 harness | 37 組接受／5 通過 | 真正重播由 Domain 測試執行；validator 是詞彙／結構驗證 |
+| 本輪聚焦變異 | 2 個被抓到、原碼還原後 11 通過 | 恢復敵方限定時 11 失敗；候選漏己方時 8 失敗 |
+| 漂移 | `severity=ok` | 本機檢查；不等於 runtime enforcement |
+
+新增三組手寫 Golden：`magic_hand_friendly_two_push_then_place`、`magic_hand_friendly_capture`、`magic_hand_friendly_superko`。費用、射程、技能次數與既有回滾流程沒變；原先「己方目標非法」斷言因 Owner 規格更動而移除，改用正向行為測資。舊版新增測試的失敗紀錄保留，沒有為通過測試而更動戰術起始棋形。
+
+己方推動的提子小例：`o.x.. / x.H.. / ..... / ..... / X...O`，把我兵 `(2,0)` 左推至 `(1,0)`，填掉敵兵 `(0,0)` 最後一口氣；依序發出扣資源、推動、提子事件。這是規則展示，沒有宣稱正式對局的策略優勢。
+
+```powershell
+python tools/probes/magic-hand/check-mutations.py --friendly-only
+```
 
 ## 驗證
 
@@ -49,7 +72,7 @@ python -m unittest discover -s tests/validators -v
 python validators/golden_fixture_validator.py .
 python tools/probes/magic-hand/check-mutations.py
 python -X utf8 additional/ai-governance-framework/governance_tools/governance_drift_checker.py --repo . --framework-root additional/ai-governance-framework --format human
-dotnet run -c Release --project tools/probes/magic-hand -- docs/evidence/r1-magic-hand/search.json
+dotnet run -c Release --project tools/probes/magic-hand -- artifacts/r1-review/search-current.json
 ```
 
 ## 限定搜尋：可區分的棋形與可替代的對照
@@ -116,6 +139,7 @@ x....      xo...       xo...
 只檢查以上兩條手選應對後的全部 A／B／C 行動組合；共 13,284 次 `Apply` 嘗試，固定上限 20,000 次／30 秒，未延長。不是遍歷對手上一回合全部選擇，也不證明必勝、平衡或任何真人感受。JSON 含完整設定、走法、資源、棋盤、獲勝線與來源雜湊。
 
 這補上「現有 9×9 起點下存在合法可重播例子」，仍未證明對正常對手能可靠取得此局、能否形成多種有價值策略，或己方推動擴充後的平衡。正式替換仍 HOLD。
+反制及 A／B／C 計數只綁定當時的敵方限定版本；本輪未重跑雙方推動版本的戰術搜尋，不能宣稱上述反制已擋住擴充版所有攻擊。
 
 ## 限制與 Gate
 

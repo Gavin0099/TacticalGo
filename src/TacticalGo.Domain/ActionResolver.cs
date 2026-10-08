@@ -204,8 +204,8 @@ internal static class ActionResolver
             return Fail(IllegalReason.OutOfBounds, $"{a.Target} is off the board.");
         if (hero.ManhattanTo(a.Target) > s.Config.MagicHandRange)
             return Fail(IllegalReason.OutOfRange, $"{a.Target} is not within {s.Config.MagicHandRange} of the Mage at {hero}.");
-        if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim || victim.Owner == s.Current)
-            return Fail(IllegalReason.InvalidTarget, "Magic Hand target must be an enemy soldier (not a commander or hero).");
+        if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim)
+            return Fail(IllegalReason.InvalidTarget, "Magic Hand target must be an ordinary soldier of either player (not a commander or hero).");
         if (!Enum.IsDefined(a.Direction))
             return Fail(IllegalReason.InvalidDirection, "Choose Up, Right, Down or Left.");
 

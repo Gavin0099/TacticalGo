@@ -3,9 +3,10 @@
 From repository root:
 
 ```powershell
-dotnet run -c Release --project tools/probes/magic-hand -- docs/evidence/r1-magic-hand/search.json
+dotnet run -c Release --project tools/probes/magic-hand -- artifacts/r1-review/search-current.json
 python tools/probes/magic-hand/check-mutations.py
-dotnet run -c Release --project tools/probes/magic-hand -- --review-supplement docs/evidence/r1-magic-hand/review-supplement.json
+python tools/probes/magic-hand/check-mutations.py --friendly-only
+dotnet run -c Release --project tools/probes/magic-hand -- --review-supplement artifacts/r1-review/supplement-current.json
 ```
 
 The probe is outside both solution files. It uses the real Domain engine, no new packages and no UI.
@@ -39,3 +40,8 @@ Its independent fixed cap is 20,000 Apply attempts / 30 seconds; no retry, budge
 balance inference or UI work. The committed review result is from the enemy-only baseline, before friendly push expansion.
 Historical `search.json` counters/hashes are preserved with a review annotation. Re-running writes new evidence for the
 current code and must use a different output path to preserve those historical runs.
+
+`--friendly-only` runs exactly two additional mutants (restore the old friendly rejection; omit friendly action candidates)
+against `MagicHandFriendlyTests`. It preserves the old seven-mutant report and writes `friendly-mutations.json`, with logs
+in `artifacts/r1-review/mutations`. Current Magic Hand targets soldiers of either player; historical search counts describe
+the former enemy-only rule. No tactical search was repeated for the expanded rule.

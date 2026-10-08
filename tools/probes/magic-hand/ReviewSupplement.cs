@@ -98,7 +98,7 @@ internal static class ReviewSupplement
             .Order(StringComparer.Ordinal).ToDictionary(p => p.Replace('\\','/'),
                 p => Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(p))).ToLowerInvariant());
         var report = new { status, limitation, nodeLimit = NodeLimit, secondsLimit = SecondsLimit,
-            applyAttempts = nodes, rules = "enemy_only_Magic_Hand_at_review_baseline_8ae3bd5",
+            applyAttempts = nodes, rules = "See sourceSha256 for exact target rules; use a new output path when rerunning a later version.",
             customAudit = new { caseName = "connector_range_two", initialBoard = custom.Board.ToString(),
                 enemyCommander = new Point(0,1), libertyCount = liberties.Length, libertyPoints = liberties,
                 classification = "mechanism_demonstration_custom_5x5_only",

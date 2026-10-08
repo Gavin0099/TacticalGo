@@ -1,0 +1,128 @@
+{
+  "baseline": {
+    "exitCode": 0,
+    "counters": {
+      "total": "11",
+      "executed": "11",
+      "passed": "11",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "failedTests": []
+  },
+  "mutations": [
+    {
+      "name": "friendly_rejected_by_resolver",
+      "file": "src/TacticalGo.Domain/ActionResolver.cs",
+      "old": "if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim)",
+      "new": "if (s.Board[a.Target] is not { Kind: PieceKind.Soldier } victim || victim.Owner == s.Current)",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "0",
+        "failed": "11",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Moving_a_friendly_connector_splits_its_group_but_all_parts_keep_liberties",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Up, x: 2, y: 1)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Friendly_push_can_capture_an_enemy_by_filling_its_last_liberty_with_ordered_events",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Returning_a_friendly_soldier_to_an_older_board_is_superko_with_full_rollback",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Right, x: 3, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Down, x: 2, y: 3)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Right, x: 3, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Down, x: 2, y: 3)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Up, x: 2, y: 1)"
+      ]
+    },
+    {
+      "name": "friendly_omitted_from_candidates",
+      "file": "src/TacticalGo.Domain/ActionValidator.cs",
+      "old": "if (board[p] is { Kind: PieceKind.Soldier } &&",
+      "new": "if (board[p] is { Kind: PieceKind.Soldier } victim && victim.Owner != me &&",
+      "killed": true,
+      "exitCode": 1,
+      "counters": {
+        "total": "11",
+        "executed": "11",
+        "passed": "3",
+        "failed": "8",
+        "error": "0",
+        "timeout": "0",
+        "aborted": "0",
+        "inconclusive": "0",
+        "passedButRunAborted": "0",
+        "notRunnable": "0",
+        "notExecuted": "0",
+        "disconnected": "0",
+        "warning": "0",
+        "completed": "0",
+        "inProgress": "0",
+        "pending": "0"
+      },
+      "failedTests": [
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Down, x: 2, y: 3)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Right, x: 3, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Up, x: 2, y: 1)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Left, x: 1, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: Two, direction: Right, x: 3, y: 2)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Up, x: 2, y: 1)",
+        "TacticalGo.Domain.Tests.MagicHandFriendlyTests.Either_player_can_push_its_own_soldier_in_all_directions_with_unchanged_costs(player: One, direction: Down, x: 2, y: 3)"
+      ]
+    }
+  ],
+  "restored": {
+    "exitCode": 0,
+    "counters": {
+      "total": "11",
+      "executed": "11",
+      "passed": "11",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "failedTests": []
+  },
+  "sourceSha256": {
+    "src/TacticalGo.Domain/ActionValidator.cs": "7998aad305f76e5178f922a143769ea222e32a294d671092440a0468c58cb656",
+    "src/TacticalGo.Domain/ActionResolver.cs": "14dc12f85a6bb85cdf34185b8990fa169f239692d36f487bc9117a051dc6180f"
+  },
+  "claimBoundary": "Only these 2 mutations; not full mutation coverage or domain correctness proof."
+}

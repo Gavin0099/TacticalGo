@@ -2,7 +2,17 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 — R1 審查更正與雙方普通士兵推動（Owner）
+
+- Owner 本輪先要求修正五口氣與可達性分類，最後另授權推動己方棋子，並明確回答「只推雙方普通士兵」。此授權只取代原 R1 的敵方歸屬限制；雙方主將、英雄仍不可推。
+- 射程 ≤2、1 AP＋2 Mana、每回合最多一次技能、正交相鄰空目的地、不得出界／連鎖、自殺、positional superko 與完整回滾維持原契約。封印仍正式預設。
+- 原 `connector_range_two` 棋形保持不變，五個生存空格為 `(1,0)`、`(2,0)`、`(3,1)`、`(1,2)`、`(2,2)`。它是自訂 5×5 機制展示，不是現有 9×9 或起點未定的 7×7 可達證據。
+- 允許既有探針作一次最小 9×9 補充及上一回合反制查核；不要求必勝、不延長成平衡搜尋。敵方限定基線的原始執行記錄與後續雙方推動回歸分開保存。
+- **候選保留；正式技能替換 HOLD；G0 Pending；G1、G3 不提前；不 push、不 merge、不做 UI。** 下一件產品工作仍是 Owner 的 G0 試玩。
+
 ## 2026-10-08 — R1-MAGIC-HAND 核准（本次 Owner 指示）
+
+目標歸屬限制已由上方新決定取代；此處保留原始核准紀錄。
 
 - 開啟 R1，僅 Domain、黃金測資、小型限定搜尋；從 `chore/governance-full` @ `761af5d` 建立隔離 worktree，單獨本機 commit，不 push、不 merge、不做 UI。
 - 魔法之手：法師距目標曼哈頓 ≤2，一顆敵方普通士兵推至玩家所選正交方向的相鄰空點；1 AP＋2 Mana，每回合最多一次技能。禁止推主將／英雄／己方、佔據點、出界與連鎖推動，遵守既有自殺、positional superko 及原子回滾。
