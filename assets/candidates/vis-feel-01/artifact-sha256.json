@@ -1,0 +1,256 @@
+{
+  "schema": "sha256-manifest-v1",
+  "self_excluded": "artifact-sha256.json",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "21fe54fa903f73cf798269e407489f4457edd54ec7de63eac6ac9de89814fbb4",
+      "bytes": 107
+    },
+    {
+      "path": "ANIMATION_DIRECTION.md",
+      "sha256": "baa48b0649c0c462e265b22ff41b2674af2a65cd02427010f99b5c39efbd6ca7",
+      "bytes": 4759
+    },
+    {
+      "path": "ANIMATION_STORYBOARD.html",
+      "sha256": "bf029840411f389dc3301715065c3941ef7221f23eb2110c6c2b3dd903313aac",
+      "bytes": 613088
+    },
+    {
+      "path": "PLAN.md",
+      "sha256": "b4a4ff6bd254bab4060a925737476ef48ed914d9f303ab993f2f10c348af65e3",
+      "bytes": 2419
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "6929564617e489f6ff515d4f85b36c3fc11ba0bdff2e29d7c6745853a7420530",
+      "bytes": 3812
+    },
+    {
+      "path": "qa/ANIMATION_STORYBOARD.png",
+      "sha256": "6d2477d3d8b312c4b38b0ee5a19fe64453f64da8040fe21a0c4dd9fae2f5c875",
+      "bytes": 293360
+    },
+    {
+      "path": "qa/build-review.py",
+      "sha256": "278d6d39c31f7aeaab96672c8ca7335fff93651a87779ce887ef14fe9ff3194d",
+      "bytes": 3369
+    },
+    {
+      "path": "qa/build-storyboard.py",
+      "sha256": "7a017eab8a7c7c4dd6edf5002f31e6dc15e012644852b94730be97e506833d1d",
+      "bytes": 5722
+    },
+    {
+      "path": "qa/CAPTURE_RESULT_7-390.png",
+      "sha256": "dc266c435b0bcd78c958189c13952eed26a0d51458917fb2e37ce5bb31707994",
+      "bytes": 722949
+    },
+    {
+      "path": "qa/CAPTURE_RESULT_9-320.png",
+      "sha256": "8211bfc07683d3258e729fb5cb65d3681d3034c75d94e556f21b967f18c486ca",
+      "bytes": 657532
+    },
+    {
+      "path": "qa/check-review.cjs",
+      "sha256": "3e3afbba3cf503bc2926a746b17aca2fbd65c7a2d56a0c84ebbcb51d0d86c6e0",
+      "bytes": 10553
+    },
+    {
+      "path": "qa/FEEDBACK_DEMO.webm",
+      "sha256": "59ce93a5edc173abd7fdddb5a031176b939ee9933697a17ed06454ca24ec8c21",
+      "bytes": 657156
+    },
+    {
+      "path": "qa/GRAYSCALE_9-320.png",
+      "sha256": "d6fbc1d538405d0c9c3071c8d5497132662d637d741c8e5f999e549a0716d8b9",
+      "bytes": 624010
+    },
+    {
+      "path": "qa/MIDPOINT_capture_7-390.png",
+      "sha256": "960b24e0a19a1a366f88b5dc1b31a990635c6b11ec8499fca73cefd4e3f316a9",
+      "bytes": 262824
+    },
+    {
+      "path": "qa/MIDPOINT_capture_9-320.png",
+      "sha256": "9abefc2b92a7b91a63b9999940281f5ea965f1266a69c97d197c960237bfed0e",
+      "bytes": 305013
+    },
+    {
+      "path": "qa/MIDPOINT_select_7-390.png",
+      "sha256": "f5c954ef691e5d9b7001faa1e7bc0cefc80aa274e8191fc6a6ff96a3219e3d38",
+      "bytes": 280751
+    },
+    {
+      "path": "qa/MIDPOINT_select_9-320.png",
+      "sha256": "950187e2268f0930910be2ef5c3a6f146ca38cd3f38174f91c278f446d8dc95d",
+      "bytes": 320245
+    },
+    {
+      "path": "qa/MIDPOINT_skill_7-390.png",
+      "sha256": "d83fda4ee59a73006de727363e00c10115a8be40c636887126c94310f7da8fea",
+      "bytes": 264623
+    },
+    {
+      "path": "qa/MIDPOINT_skill_9-320.png",
+      "sha256": "f58eb6a4a18a1849a0795d0b15ce7f19f1b7ac5e4a5e808d645c8e889689b060",
+      "bytes": 306390
+    },
+    {
+      "path": "qa/MOBILE_7_390.png",
+      "sha256": "2390518dfe54305fd8865b2c10174c79ad5aa7890ef524e95418744da4b8812b",
+      "bytes": 149412
+    },
+    {
+      "path": "qa/MOBILE_9_320.png",
+      "sha256": "38ea1cf4b1e1875ec93df6f56d86a152567700d7ffffefe7503e31177347ddbd",
+      "bytes": 110192
+    },
+    {
+      "path": "qa/package-review.py",
+      "sha256": "bca69c564acad258308efdfeac2a2028a6c42865c54af5b50d208301ca39f3f6",
+      "bytes": 2678
+    },
+    {
+      "path": "qa/PUSH_PREVIEW_7-390.png",
+      "sha256": "0dac2f4e0d9991888aef3922295e300195e941d38c44a7dee7a7775a89524a35",
+      "bytes": 726224
+    },
+    {
+      "path": "qa/PUSH_PREVIEW_9-320.png",
+      "sha256": "b799bcf2ce8037dec49a6f162ecae50c007b9019ad2baa60563e09ebf656ce06",
+      "bytes": 660732
+    },
+    {
+      "path": "qa/PUSH_RESULT_7-390.png",
+      "sha256": "18dc88fb9f11f0f18018fc425f7fd7ad720003b7dcc22aebeeeab78589b623cf",
+      "bytes": 725707
+    },
+    {
+      "path": "qa/PUSH_RESULT_9-320.png",
+      "sha256": "a1213b11182164217066a078e87b3dddb5588c4bc6679d9a3021ef9931b4c7ef",
+      "bytes": 660165
+    },
+    {
+      "path": "qa/record-feedback.cjs",
+      "sha256": "2447f304d5c61e4a0b0351f16482e59d6514f85ea4367a52cf6fef697bd10031",
+      "bytes": 2741
+    },
+    {
+      "path": "qa/REDUCED_MOTION_9-320.png",
+      "sha256": "4065bc53ea2f5894eb45c274b20e29740c56f7d7d99cbee64b1324c6f937052a",
+      "bytes": 659305
+    },
+    {
+      "path": "qa/review.json",
+      "sha256": "216548f83281305a99351a0b9c9827fc80b89d627d6238a961bc21c01e110227",
+      "bytes": 3870
+    },
+    {
+      "path": "qa/SELECT_7-390.png",
+      "sha256": "0034c59ffb7431452a06bbb46a57df33d1a62b0acb2bf2f00c27f4d589d52284",
+      "bytes": 723042
+    },
+    {
+      "path": "qa/SELECT_9-320.png",
+      "sha256": "43c8a1be13a37150fdf719b783fad1979cc07f0f1398c7c508823ff6cb202c13",
+      "bytes": 657919
+    },
+    {
+      "path": "README.md",
+      "sha256": "1aded4e5595275e2d5bf7dd46eef579e9bbc5cb2daf3bbdbf148fae181e26f59",
+      "bytes": 1057
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "d4b14d52ca90be950ef6b646e77362d45a66deb00a5fb2f2ba3ffea9325123ba",
+      "bytes": 5889
+    },
+    {
+      "path": "REVIEW.html",
+      "sha256": "00fa38ddde248ff8585e759975f6c3e2381c7dc677d7468fd163c0450fcd47f9",
+      "bytes": 1503903
+    },
+    {
+      "path": "skill-draft/tacticalgo-game-feel/agents/openai.yaml",
+      "sha256": "5ff9a5abc27d683371b8425ed1ada2b642fbc45ae83d4cd7dd7e45f720c8c3d0",
+      "bytes": 310
+    },
+    {
+      "path": "skill-draft/tacticalgo-game-feel/references/motion.md",
+      "sha256": "9698c2a7063d115fdca90eab26d6f088fbc464f2e500d04c4a190679f90071cd",
+      "bytes": 2666
+    },
+    {
+      "path": "skill-draft/tacticalgo-game-feel/references/sources.md",
+      "sha256": "af19af9e94bd490ecea3de26177fc57744b073f5a44b187da3439ba6a231a1b8",
+      "bytes": 1600
+    },
+    {
+      "path": "skill-draft/tacticalgo-game-feel/SKILL.md",
+      "sha256": "5651eea2f8ccaa3420157c63264042ef5e6d0ff08a198e3fc4f0862306428be2",
+      "bytes": 3377
+    },
+    {
+      "path": "sources/asset-provenance.json",
+      "sha256": "ba3971d43cb39bd5c11c5cdfb2a40396ded91125c170e2417ff61e31aaa85394",
+      "bytes": 7478
+    },
+    {
+      "path": "sources/public-skills.json",
+      "sha256": "94ba2cd9f4f4657dd98953c2eeb13c5f480133f854376f4cf0c84283feea1143",
+      "bytes": 1417
+    },
+    {
+      "path": "sources/r1-spec.json",
+      "sha256": "9e0f41a7197d5b046cc0e0060a59caf6d51899758da841e3d3b657f3178cc949",
+      "bytes": 1079
+    },
+    {
+      "path": "tokens/A-mage-v01.png",
+      "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd",
+      "bytes": 43771
+    },
+    {
+      "path": "tokens/A-rogue-v02.png",
+      "sha256": "3b54a6ae6ce8c9276259398c23b796dc27fb7b1c373eb03d5a7dd7f60e1c9c1b",
+      "bytes": 48314
+    },
+    {
+      "path": "tokens/A-warrior-v01.png",
+      "sha256": "66bffd664cc6935be140a523bbe071e65ff79d8c3fb3638bd13d860e5fc1e599",
+      "bytes": 19466
+    },
+    {
+      "path": "tokens/B-mage-v02.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+      "bytes": 310830
+    },
+    {
+      "path": "tokens/B-rogue-v02.png",
+      "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+      "bytes": 315372
+    },
+    {
+      "path": "tokens/B-warrior-v02.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+      "bytes": 370686
+    },
+    {
+      "path": "web/feel.css",
+      "sha256": "837a7de53d729c63cbf63c416e5f7e1320ccb9849ca97d47fe18f86e0036de77",
+      "bytes": 7546
+    },
+    {
+      "path": "web/feel.js",
+      "sha256": "7f2da03764394cf83152deaebe26e5e68f8c18c254887376d1fdaac74c4bf570",
+      "bytes": 15783
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "b437d36fb03b7dc98c58a9cff0ed24fe1de48c9534ebc2cb6bc4c6c7c926de5d",
+      "bytes": 2351
+    }
+  ]
+}

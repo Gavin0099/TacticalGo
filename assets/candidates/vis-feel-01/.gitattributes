@@ -1,0 +1,2 @@
+# Keep review evidence byte-exact so manifest hashes survive every checkout.
+** -text whitespace=cr-at-eol

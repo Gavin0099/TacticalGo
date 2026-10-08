@@ -1,0 +1,4 @@
+interface:
+  display_name: "TacticalGo Character Style"
+  short_description: "Create consistent cute fantasy tactics heroes"
+  default_prompt: "Use $tacticalgo-character-style to create a new TacticalGo hero matching the fixed party references."

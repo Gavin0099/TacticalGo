@@ -1,0 +1,29 @@
+[
+  {
+    "name": "game-ui-frontend",
+    "repository": "openai/plugins",
+    "commit": "0722921d5542fc593105c27bd52630babd8b8c2a",
+    "url": "https://raw.githubusercontent.com/openai/plugins/0722921d5542fc593105c27bd52630babd8b8c2a/plugins/game-studio/skills/game-ui-frontend/SKILL.md",
+    "sha256_utf8": "cd017fe0761207dcfd801f236490896cbf1cd6627ee267c801a19c7c780b7a01",
+    "date": "2026-10-08",
+    "method": "read_only; adapted methods, no installation"
+  },
+  {
+    "name": "game-playtest",
+    "repository": "openai/plugins",
+    "commit": "0722921d5542fc593105c27bd52630babd8b8c2a",
+    "url": "https://raw.githubusercontent.com/openai/plugins/0722921d5542fc593105c27bd52630babd8b8c2a/plugins/game-studio/skills/game-playtest/SKILL.md",
+    "sha256_utf8": "413f2453c602678962fab62446144f2929fcd5b9239f209c7889cc592d2b5be8",
+    "date": "2026-10-08",
+    "method": "read_only; adapted methods, no installation"
+  },
+  {
+    "name": "sprite-pipeline",
+    "repository": "openai/plugins",
+    "commit": "0722921d5542fc593105c27bd52630babd8b8c2a",
+    "url": "https://raw.githubusercontent.com/openai/plugins/0722921d5542fc593105c27bd52630babd8b8c2a/plugins/game-studio/skills/sprite-pipeline/SKILL.md",
+    "sha256_utf8": "eaaca5ef3faef575164e0775394980318b5561ba54fe7552dbe41971717cc7fc",
+    "date": "2026-10-08",
+    "method": "read_only; adapted methods, no installation"
+  }
+]
