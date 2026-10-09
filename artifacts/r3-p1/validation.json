@@ -1,0 +1,101 @@
+{
+  "milestone": "GAMEPLAY-R3/R3-P1",
+  "scope": "diagnostic evidence and local snapshot only; production unchanged",
+  "human_playtest": {
+    "completed": 0,
+    "total": 5,
+    "status": "pending Owner"
+  },
+  "production_source_matches_prior_131_tested_sources": true,
+  "production_tests_not_rerun_reason": "no production source or fixture changes",
+  "prior_package_tests": 131,
+  "prior_native_phone": 5,
+  "prior_native_ipad": 4,
+  "original_golden_fixtures": 38,
+  "matches": [
+    {
+      "name": "standard-original",
+      "status": "Drawn",
+      "winner": null,
+      "plies": 100,
+      "pure_pass_turns": 61,
+      "longest_pure_pass_streak": 58,
+      "action_counts": {
+        "summonHero": 2,
+        "placeSoldier": 66,
+        "castBastion": 1,
+        "castMagicHand": 2,
+        "endTurn": 67
+      },
+      "budget_exhausted_turns": 0,
+      "terminal_events": [
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 100)",
+        "TacticalGoCore.ActionEvent.gameDrawn(\"Turn limit reached (100 plies).\")"
+      ]
+    },
+    {
+      "name": "standard-candidate",
+      "status": "Drawn",
+      "winner": null,
+      "plies": 100,
+      "pure_pass_turns": 65,
+      "longest_pure_pass_streak": 57,
+      "action_counts": {
+        "summonHero": 2,
+        "placeSoldier": 49,
+        "castBastion": 8,
+        "castMagicHand": 6,
+        "endTurn": 69
+      },
+      "budget_exhausted_turns": 0,
+      "terminal_events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 2), to: TacticalGoCore.Point(x: 2, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 100)",
+        "TacticalGoCore.ActionEvent.gameDrawn(\"Turn limit reached (100 plies).\")"
+      ]
+    },
+    {
+      "name": "easy-candidate",
+      "status": "Won",
+      "winner": 0,
+      "plies": 17,
+      "pure_pass_turns": 0,
+      "longest_pure_pass_streak": 0,
+      "action_counts": {
+        "summonHero": 2,
+        "placeSoldier": 23,
+        "castBastion": 5,
+        "castMagicHand": 3
+      },
+      "budget_exhausted_turns": 0,
+      "terminal_events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 0), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 1, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 2, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 1, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.hero))])",
+        "TacticalGoCore.ActionEvent.gameWon(TacticalGoCore.Player.one)"
+      ]
+    }
+  ],
+  "independently_replayed_actions": 305,
+  "skill_balance": "not_claimed",
+  "late_bot_pass_issue": "reproduced; not fixed",
+  "implementation_snapshot_commit": "5a08cd82e2ed362b0c13fbba79525fec477d0f60",
+  "branch": "codex/gameplay-r3-p1",
+  "push_pr_merge_release": false,
+  "staged_whitespace": "known original vendor CRLF and two existing UI warnings retained; not claimed full PASS",
+  "evidence_refs": [
+    "REPORT.md",
+    "PLAYTEST.md",
+    "formal-original-source.json",
+    "warrior-ply3.json",
+    "warrior-ply31.json",
+    "mage-ply42.json",
+    "candidate-pass-audit.json",
+    "pass-witness40.json",
+    "pass-witness55.json",
+    "replay-original.log",
+    "replay-candidate.log",
+    "replay-easy.log"
+  ]
+}

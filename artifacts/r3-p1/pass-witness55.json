@@ -1,0 +1,316 @@
+{
+  "formalSource" : "artifacts\/r3-p1\/standard-candidate.json",
+  "ply" : 55,
+  "rows" : [
+    {
+      "action" : {
+        "at" : [
+          0,
+          4
+        ],
+        "kind" : "placeSoldier"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 4
+    },
+    {
+      "action" : {
+        "at" : [
+          1,
+          5
+        ],
+        "kind" : "placeSoldier"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 4
+    },
+    {
+      "action" : {
+        "at" : [
+          6,
+          5
+        ],
+        "kind" : "placeSoldier"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 4
+    },
+    {
+      "action" : {
+        "at" : [
+          0,
+          6
+        ],
+        "kind" : "placeSoldier"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 4
+    },
+    {
+      "action" : {
+        "at" : [
+          5,
+          6
+        ],
+        "kind" : "placeSoldier"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxxxx",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 4
+    },
+    {
+      "action" : {
+        "a" : [
+          0,
+          4
+        ],
+        "b" : [
+          1,
+          5
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          0,
+          4
+        ],
+        "b" : [
+          6,
+          5
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          0,
+          4
+        ],
+        "b" : [
+          0,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          0,
+          4
+        ],
+        "b" : [
+          5,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxxxx",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          1,
+          5
+        ],
+        "b" : [
+          6,
+          5
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          1,
+          5
+        ],
+        "b" : [
+          0,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          1,
+          5
+        ],
+        "b" : [
+          5,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxxxx",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          6,
+          5
+        ],
+        "b" : [
+          0,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          6,
+          5
+        ],
+        "b" : [
+          5,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxxxx",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "a" : [
+          0,
+          6
+        ],
+        "b" : [
+          5,
+          6
+        ],
+        "kind" : "castBastion"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxxxx",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 3
+    },
+    {
+      "action" : {
+        "kind" : "endTurn"
+      },
+      "boardAfter" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+      "enemyOneActionWinAfterEndTurn" : [
+
+      ],
+      "enemyUpToTwoActionsWinAfterEndTurn" : [
+
+      ],
+      "ownCommanderLiberties" : 5
+    }
+  ],
+  "scope" : "First action followed by voluntary endTurn; exhaustive enemy up-to-two legal actions, first win witness only; does not exclude a better two-action own plan",
+  "sourceSteps" : 86
+}

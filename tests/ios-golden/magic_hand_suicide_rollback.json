@@ -1,0 +1,87 @@
+{
+  "name": "magic_hand_suicide_rollback",
+  "description": "Hand-authored: destination fills our commanders last liberty. Reject whole action; no expenditure or events.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "X...O",
+      "oo...",
+      ".....",
+      ".H...",
+      "....."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          1
+        ],
+        "direction": "Up"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Suicide",
+        "cells": {
+          "1,0": ".",
+          "1,1": "o"
+        },
+        "liberties": {
+          "0,0": 1
+        },
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "skillUsed": false,
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          1,
+          1
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,1": ".",
+          "2,1": "o"
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    }
+  ]
+}

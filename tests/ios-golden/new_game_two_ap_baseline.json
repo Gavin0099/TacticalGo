@@ -1,0 +1,53 @@
+{
+  "name": "new_game_two_ap_baseline",
+  "description": "The original 2 AP rule: player one's first turn also has 2 AP.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "newGame": true,
+    "classes": [
+      "None",
+      "None"
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          8
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "current": "One",
+        "ap": 1
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          1,
+          8
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "ply": 2,
+        "ap": 2
+      }
+    }
+  ],
+  "expectInitial": {
+    "ap": 2,
+    "mana": [
+      4,
+      3
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "swap_basic",
+  "description": "Rogue swaps with an adjacent enemy soldier for 1 AP + 2 Mana.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "..Ho"
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSwap",
+        "target": [
+          3,
+          3
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "3,3": "H",
+          "2,3": "o"
+        },
+        "mana": [
+          4,
+          3
+        ],
+        "ap": 1,
+        "events": [
+          "ResourcesSpent",
+          "PiecesSwapped"
+        ]
+      }
+    }
+  ]
+}

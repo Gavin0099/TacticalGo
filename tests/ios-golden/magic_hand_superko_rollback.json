@@ -1,0 +1,142 @@
+{
+  "name": "magic_hand_superko_rollback",
+  "description": "Hand-authored: push right, both sides pass, pushing left would restore the initial board even across turns.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      "..o..",
+      "..H..",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          1
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": true,
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "ply": 2,
+        "mana": [
+          1,
+          4
+        ],
+        "events": [
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "One",
+        "ply": 3,
+        "mana": [
+          2,
+          4
+        ],
+        "events": [
+          "TurnEnded",
+          "TurnStarted"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          1
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Ko",
+        "cells": {
+          "2,1": ".",
+          "3,1": "o"
+        },
+        "ap": 2,
+        "mana": [
+          2,
+          4
+        ],
+        "skillUsed": false,
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          3,
+          1
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "3,1": ".",
+          "3,2": "o"
+        },
+        "ap": 1,
+        "mana": [
+          0,
+          4
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "status": "candidate; Owner and physical-device gates pending",
+  "assets": [
+    {
+      "file": "warrior.usdz",
+      "sourceFile": "assets/candidates/ios-3d-v09/resources/final/blender/warrior-rig.usdz",
+      "sha256": "41b7061ce7b6f8d301964c328b0d677850cfc4f7108628daa5e4d99f6c58684a",
+      "kind": "original 11-joint cape/sleeve candidate; v09 modeled crest/book/clasp/pouch"
+    },
+    {
+      "file": "mage.usdz",
+      "sourceFile": "assets/candidates/ios-3d-v09/resources/final/blender/mage-rig.usdz",
+      "sha256": "8fbd9d8ffb97174662f921f9033becd81acccaa3a73e5ceabb484a13b4051fa1",
+      "kind": "original 11-joint cape/sleeve candidate; v09 modeled crest/book/clasp/pouch"
+    },
+    {
+      "file": "rogue.usdz",
+      "sourceFile": "assets/candidates/ios-3d-v09/resources/final/blender/rogue-rig.usdz",
+      "sha256": "79844f0c4f5b248c68992153a549aa2e49fc1e4ed9b27856aed7b360fc665f4f",
+      "kind": "original 11-joint cape/sleeve candidate; v09 modeled crest/book/clasp/pouch"
+    },
+    {
+      "file": "bluesoldier.usdz",
+      "sourceFile": "assets/candidates/ios-units-v02/resources/usd/bluesoldier.usdz",
+      "sha256": "1692c4aa446650eb954b31c2fd22fc8ce6208f90471ebfca1d8da4d08b9756d7",
+      "kind": "original static miniature"
+    },
+    {
+      "file": "bluecommander.usdz",
+      "sourceFile": "assets/candidates/ios-units-v02/resources/usd/bluecommander.usdz",
+      "sha256": "9975ddfd0c94dc89850aeee22ed6cb2b562ce85c30bf240977ac9555f1b919d2",
+      "kind": "original static miniature"
+    },
+    {
+      "file": "redsoldier.usdz",
+      "sourceFile": "assets/candidates/ios-units-v02/resources/usd/redsoldier.usdz",
+      "sha256": "c137091e11d4d9cf0057cbe27dd2f86ac8530d94591014a8bc8d7d2a66b9dea7",
+      "kind": "original static miniature"
+    },
+    {
+      "file": "redcommander.usdz",
+      "sourceFile": "assets/candidates/ios-units-v02/resources/usd/redcommander.usdz",
+      "sha256": "5b2ee5acd51e9f663f2cbbcb760dbf064df62efd47c334ce6ae436af72092426",
+      "kind": "original static miniature"
+    },
+    {
+      "file": "magic-halo.usdz",
+      "sourceFile": "assets/candidates/ios-effects-v02/magic-halo.usdz",
+      "sha256": "2715eeb91ecb02f8391fb5f262ce6888d775982bb7bffe9b1680d8d1a85d1f57",
+      "kind": "preauthored transparent emissive sphere"
+    }
+  ]
+}

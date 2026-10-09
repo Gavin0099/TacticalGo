@@ -1,0 +1,5568 @@
+{
+  "source": "artifacts/ios/product-playability formal full traces frozen in artifacts/bot-p0/baseline.json",
+  "traces": [
+    {
+      "id": "easy",
+      "setup": {
+        "boardSize": 7,
+        "classOne": "Warrior",
+        "classTwo": "Mage",
+        "defaultRules": true,
+        "difficulty": "easy"
+      },
+      "turns": [
+        {
+          "ply": 1,
+          "player": 0,
+          "boardBefore": ".......\n...O...\n.......\n.......\n.......\n...X...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  5
+                ],
+                "kind": "summonHero"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n...O...\n.......\n.......\n.......\n..HX...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 4,
+              "plyAfter": 2
+            }
+          ]
+        },
+        {
+          "ply": 2,
+          "player": 1,
+          "boardBefore": ".......\n...O...\n.......\n.......\n.......\n..HX...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  2
+                ],
+                "kind": "summonHero"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n...O...\n...Q...\n.......\n.......\n..HX...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 1,
+              "plyAfter": 2
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n...O...\n...Q...\n.......\n.......\n..HXo..\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 1,
+              "plyAfter": 3
+            }
+          ]
+        },
+        {
+          "ply": 3,
+          "player": 0,
+          "boardBefore": ".......\n...O...\n...Q...\n.......\n.......\n..HXo..\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n...Ox..\n...Q...\n.......\n.......\n..HXo..\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 1,
+              "plyAfter": 3
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n..xOx..\n...Q...\n.......\n.......\n..HXo..\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 2,
+              "plyAfter": 4
+            }
+          ]
+        },
+        {
+          "ply": 4,
+          "player": 1,
+          "boardBefore": ".......\n..xOx..\n...Q...\n.......\n.......\n..HXo..\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n..xOx..\n...Q...\n...o...\n.......\n..HXo..\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 2,
+              "plyAfter": 4
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n..xOx..\n...Q...\n...o...\n.......\n.oHXo..\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 2,
+              "plyAfter": 5
+            }
+          ]
+        },
+        {
+          "ply": 5,
+          "player": 0,
+          "boardBefore": ".......\n..xOx..\n...Q...\n...o...\n.......\n.oHXo..\n.......",
+          "actions": [
+            {
+              "action": {
+                "a": [
+                  2,
+                  4
+                ],
+                "b": [
+                  2,
+                  6
+                ],
+                "kind": "castBastion"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n..xOx..\n...Q...\n...o...\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 2,
+              "plyAfter": 5
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n..xOx..\n...Q...\n..xo...\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 3,
+              "plyAfter": 6
+            }
+          ]
+        },
+        {
+          "ply": 6,
+          "player": 1,
+          "boardBefore": ".......\n..xOx..\n...Q...\n..xo...\n..x....\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n..xOx..\n...Q...\n.oxo...\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 3,
+              "plyAfter": 6
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n..xOx..\n..oQ...\n.oxo...\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 3,
+              "plyAfter": 7
+            }
+          ]
+        },
+        {
+          "ply": 7,
+          "player": 0,
+          "boardBefore": ".......\n..xOx..\n..oQ...\n.oxo...\n..x....\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n..xOx..\n..oQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 3,
+              "plyAfter": 7
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n..xOx..\n.xoQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 4,
+              "plyAfter": 8
+            }
+          ]
+        },
+        {
+          "ply": 8,
+          "player": 1,
+          "boardBefore": ".......\n..xOx..\n.xoQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n..xOx..\noxoQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 4,
+              "plyAfter": 8
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n.oxOx..\no.oQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 4,
+              "plyAfter": 9
+            }
+          ]
+        },
+        {
+          "ply": 9,
+          "player": 0,
+          "boardBefore": ".......\n.oxOx..\no.oQ...\n.oxox..\n..x....\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n.oxOx..\no.oQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 4,
+              "plyAfter": 9
+            },
+            {
+              "action": {
+                "at": [
+                  3,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "...x...\n.oxOx..\no.oQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 5,
+              "plyAfter": 10
+            }
+          ]
+        },
+        {
+          "ply": 10,
+          "player": 1,
+          "boardBefore": "...x...\n.oxOx..\no.oQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "...x...\n.oxOx..\noooQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 5,
+              "plyAfter": 10
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 5,
+              "plyAfter": 11
+            }
+          ]
+        },
+        {
+          "ply": 11,
+          "player": 0,
+          "boardBefore": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xx...\n.oHXo..\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxx..\n.oHXo..\n..x....",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 5,
+              "plyAfter": 11
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxx..\n.oHXox.\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 6,
+              "plyAfter": 12
+            }
+          ]
+        },
+        {
+          "ply": 12,
+          "player": 1,
+          "boardBefore": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxx..\n.oHXox.\n..x....",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHXox.\n..x....",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 6,
+              "plyAfter": 12
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHXox.\n..x..o.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 13
+            }
+          ]
+        },
+        {
+          "ply": 13,
+          "player": 0,
+          "boardBefore": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHXox.\n..x..o.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..ox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 13
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 14
+            }
+          ]
+        },
+        {
+          "ply": 14,
+          "player": 1,
+          "boardBefore": ".xox...\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Ox..\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 14
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 15
+            }
+          ]
+        },
+        {
+          "ply": 15,
+          "player": 0,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQ...\n.oxox..\n..xxxo.\n.oHX.x.\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQ...\n.oxox..\n..xxxox\n.oHX.x.\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 15
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n..xxxox\n.oHX.x.\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 16
+            }
+          ]
+        },
+        {
+          "ply": 16,
+          "player": 1,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n..xxxox\n.oHX.x.\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n..xxxox\n.oHX.xo\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 16
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n..xxxox\n.oHXo.o\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 17
+            }
+          ]
+        },
+        {
+          "ply": 17,
+          "player": 0,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n..xxxox\n.oHXo.o\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n.xxxxox\n.oHXo.o\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 17
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n.xxxxox\n.oHX.xo\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 18
+            }
+          ]
+        },
+        {
+          "ply": 18,
+          "player": 1,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxox..\n.xxxxox\n.oHX.xo\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHX.xo\n..x.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 18
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHXo.o\n..x.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 19
+            }
+          ]
+        },
+        {
+          "ply": 19,
+          "player": 0,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHXo.o\n..x.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 19
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 20
+            }
+          ]
+        },
+        {
+          "ply": 20,
+          "player": 1,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\n.oHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 20
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 21
+            }
+          ]
+        },
+        {
+          "ply": 21,
+          "player": 0,
+          "boardBefore": ".xo.o..\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".xo.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 21
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".xo.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 22
+            }
+          ]
+        },
+        {
+          "ply": 22,
+          "player": 1,
+          "boardBefore": ".xo.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.o.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 22
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.o.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 23
+            }
+          ]
+        },
+        {
+          "ply": 23,
+          "player": 0,
+          "boardBefore": "o.o.ox.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.ox.x.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 23
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.ox.x.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 24
+            }
+          ]
+        },
+        {
+          "ply": 24,
+          "player": 1,
+          "boardBefore": "o.ox.x.\n.o.Oxo.\noooQx..\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.ox.x.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 24
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.ox.x.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 25
+            }
+          ]
+        },
+        {
+          "ply": 25,
+          "player": 0,
+          "boardBefore": "o.ox.x.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 25
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 26
+            }
+          ]
+        },
+        {
+          "ply": 26,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxo\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 26
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxo\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 27
+            }
+          ]
+        },
+        {
+          "ply": 27,
+          "player": 0,
+          "boardBefore": "o.oxxxo\n.o.Oxo.\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\n.oxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 27
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 28
+            }
+          ]
+        },
+        {
+          "ply": 28,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\n.oxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\n.xxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 28
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 29
+            }
+          ]
+        },
+        {
+          "ply": 29,
+          "player": 0,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\n.xxxxox\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\nxxxxxox\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 29
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\nxxxxxox\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 30
+            }
+          ]
+        },
+        {
+          "ply": 30,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxo.\nxxxxxox\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 30
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 31
+            }
+          ]
+        },
+        {
+          "ply": 31,
+          "player": 0,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxox\nooxoxoo\nxxxxxo.\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 31
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxox\nooxoxoo\nxxxxxo.\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 32
+            }
+          ]
+        },
+        {
+          "ply": 32,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxox\nooxoxoo\nxxxxxo.\nooHX.xo\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxo\n.o.Oxo.\noooQxo.\nooxoxoo\nxxxxxo.\nooHX.xo\n.xx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 32
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxo\n.o.Oxo.\noooQxo.\nooxoxoo\nxxxxxo.\nooHXo.o\n.xx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 33
+            }
+          ]
+        },
+        {
+          "ply": 33,
+          "player": 0,
+          "boardBefore": "o.oxxxo\n.o.Oxo.\noooQxo.\nooxoxoo\nxxxxxo.\nooHXo.o\n.xx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxo\n.o.Oxo.\noooQxo.\nooxoxoo\nxxxxxo.\n..HXo.o\nxxx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 33
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\n..HXo.o\nxxx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 34
+            }
+          ]
+        },
+        {
+          "ply": 34,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\n..HXo.o\nxxx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\n..HXo.o\nxxxo.o.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 34
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxxo.o.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 35
+            }
+          ]
+        },
+        {
+          "ply": 35,
+          "player": 0,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxxo.o.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xo.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 35
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xo.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 36
+            }
+          ]
+        },
+        {
+          "ply": 36,
+          "player": 1,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xo.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 36
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 37
+            }
+          ]
+        },
+        {
+          "ply": 37,
+          "player": 0,
+          "boardBefore": "o.oxxx.\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 37
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 38
+            }
+          ]
+        },
+        {
+          "ply": 38,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.o.Oxox\noooQxo.\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\no.HX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 38
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 39
+            }
+          ]
+        },
+        {
+          "ply": 39,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\no.HXo.o\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\n.xHXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 39
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 40
+            }
+          ]
+        },
+        {
+          "ply": 40,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.o.Oxox\noooQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "direction": "Up",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOxox\noo.Qxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 40
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxox\noo.Qxoo\nooxoxoo\nxxxxxo.\n.xHXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 41
+            }
+          ]
+        },
+        {
+          "ply": 41,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxox\noo.Qxoo\nooxoxoo\nxxxxxo.\n.xHXo.o\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOxox\nooxQxoo\nooxoxoo\nxxxxxo.\n.xHXo.o\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 41
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxox\nooxQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 42
+            }
+          ]
+        },
+        {
+          "ply": 42,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxox\nooxQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxox\nooxQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 43
+            }
+          ]
+        },
+        {
+          "ply": 43,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxox\nooxQxoo\nooxoxoo\nxxxxxo.\n.xHX.xo\nxxx.xoo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxox..\nxxxxx.x\n.xHX.x.\nxxx.x..",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 43
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxox.x\nxxxxx.x\n.xHX.x.\nxxx.x..",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 44
+            }
+          ]
+        },
+        {
+          "ply": 44,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOx.x\nooxQx..\nooxox.x\nxxxxx.x\n.xHX.x.\nxxx.x..",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  3
+                ],
+                "direction": "Right",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxo.xx\nxxxxx.x\n.xHX.x.\nxxx.x..",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 44
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxo.xx\nxxxxx.x\n.xHX.x.\nxxx.x.o",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 45
+            }
+          ]
+        },
+        {
+          "ply": 45,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOx.x\nooxQx..\nooxo.xx\nxxxxx.x\n.xHX.x.\nxxx.x.o",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxo.xx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 45
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQx..\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 46
+            }
+          ]
+        },
+        {
+          "ply": 46,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOx.x\nooxQx..\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "direction": "Right",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQ.x.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 3,
+              "plyAfter": 46
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQ.x.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 3,
+              "plyAfter": 47
+            }
+          ]
+        },
+        {
+          "ply": 47,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOx.x\nooxQ.x.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOx.x\nooxQxx.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 3,
+              "plyAfter": 47
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxx.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 48
+            }
+          ]
+        },
+        {
+          "ply": 48,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxx.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxx.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 49
+            }
+          ]
+        },
+        {
+          "ply": 49,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxx.\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 49
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 50
+            }
+          ]
+        },
+        {
+          "ply": 50,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 51
+            }
+          ]
+        },
+        {
+          "ply": 51,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\n.xHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\nxxHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 51
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\nxxHX.x.\nxxx.xxo",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 52
+            }
+          ]
+        },
+        {
+          "ply": 52,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\nxxHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\nxxHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 53
+            }
+          ]
+        },
+        {
+          "ply": 53,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxx.x\nxxHX.x.\nxxx.xxo",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.x.\nxxx.xxo",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 53
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 54
+            }
+          ]
+        },
+        {
+          "ply": 54,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 55
+            }
+          ]
+        },
+        {
+          "ply": 55,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 56
+            }
+          ]
+        },
+        {
+          "ply": 56,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 57
+            }
+          ]
+        },
+        {
+          "ply": 57,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 58
+            }
+          ]
+        },
+        {
+          "ply": 58,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 59
+            }
+          ]
+        },
+        {
+          "ply": 59,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 60
+            }
+          ]
+        },
+        {
+          "ply": 60,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 61
+            }
+          ]
+        },
+        {
+          "ply": 61,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 62
+            }
+          ]
+        },
+        {
+          "ply": 62,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 63
+            }
+          ]
+        },
+        {
+          "ply": 63,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 64
+            }
+          ]
+        },
+        {
+          "ply": 64,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 65
+            }
+          ]
+        },
+        {
+          "ply": 65,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 66
+            }
+          ]
+        },
+        {
+          "ply": 66,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 67
+            }
+          ]
+        },
+        {
+          "ply": 67,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 68
+            }
+          ]
+        },
+        {
+          "ply": 68,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 69
+            }
+          ]
+        },
+        {
+          "ply": 69,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 70
+            }
+          ]
+        },
+        {
+          "ply": 70,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 71
+            }
+          ]
+        },
+        {
+          "ply": 71,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 72
+            }
+          ]
+        },
+        {
+          "ply": 72,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 73
+            }
+          ]
+        },
+        {
+          "ply": 73,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 74
+            }
+          ]
+        },
+        {
+          "ply": 74,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 75
+            }
+          ]
+        },
+        {
+          "ply": 75,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 76
+            }
+          ]
+        },
+        {
+          "ply": 76,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 77
+            }
+          ]
+        },
+        {
+          "ply": 77,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 78
+            }
+          ]
+        },
+        {
+          "ply": 78,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 79
+            }
+          ]
+        },
+        {
+          "ply": 79,
+          "player": 0,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 80
+            }
+          ]
+        },
+        {
+          "ply": 80,
+          "player": 1,
+          "boardBefore": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": "o.oxxxx\n.ooOxxx\nooxQxxx\nooxoxxx\nxxxxxxx\nxxHX.xx\nxxx.xx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 81
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "standard",
+      "setup": {
+        "boardSize": 7,
+        "classOne": "Warrior",
+        "classTwo": "Mage",
+        "defaultRules": true,
+        "difficulty": "standard"
+      },
+      "turns": [
+        {
+          "ply": 1,
+          "player": 0,
+          "boardBefore": ".......\n...O...\n.......\n.......\n.......\n...X...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  4
+                ],
+                "kind": "summonHero"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n...O...\n.......\n.......\n...H...\n...X...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 4,
+              "plyAfter": 2
+            }
+          ]
+        },
+        {
+          "ply": 2,
+          "player": 1,
+          "boardBefore": ".......\n...O...\n.......\n.......\n...H...\n...X...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n...O...\n...o...\n.......\n...H...\n...X...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 4,
+              "plyAfter": 2
+            },
+            {
+              "action": {
+                "at": [
+                  3,
+                  3
+                ],
+                "kind": "summonHero"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n...O...\n...o...\n...Q...\n...H...\n...X...\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 1,
+              "plyAfter": 3
+            }
+          ]
+        },
+        {
+          "ply": 3,
+          "player": 0,
+          "boardBefore": ".......\n...O...\n...o...\n...Q...\n...H...\n...X...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n.x.O...\n...o...\n...Q...\n...H...\n...X...\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 1,
+              "plyAfter": 3
+            },
+            {
+              "action": {
+                "a": [
+                  4,
+                  4
+                ],
+                "b": [
+                  2,
+                  4
+                ],
+                "kind": "castBastion"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n.x.O...\n...o...\n...Q...\n..xHx..\n...X...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 1,
+              "manaTwoAfter": 2,
+              "plyAfter": 4
+            }
+          ]
+        },
+        {
+          "ply": 4,
+          "player": 1,
+          "boardBefore": ".......\n.x.O...\n...o...\n...Q...\n..xHx..\n...X...\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n.x.O...\n...o...\n...Q...\n..xHx..\n.o.X...\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 1,
+              "manaTwoAfter": 2,
+              "plyAfter": 4
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n.x.O...\n...o...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 2,
+              "plyAfter": 5
+            }
+          ]
+        },
+        {
+          "ply": 5,
+          "player": 0,
+          "boardBefore": ".......\n.x.O...\n...o...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".......\n.x.Ox..\n...o...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 2,
+              "plyAfter": 5
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".......\n.x.Ox..\n..xo...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 3,
+              "plyAfter": 6
+            }
+          ]
+        },
+        {
+          "ply": 6,
+          "player": 1,
+          "boardBefore": ".......\n.x.Ox..\n..xo...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "...o...\n.x.Ox..\n..xo...\n...Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 2,
+              "manaTwoAfter": 3,
+              "plyAfter": 6
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "...o...\n.x.Ox..\n..xo...\n.o.Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 3,
+              "plyAfter": 7
+            }
+          ]
+        },
+        {
+          "ply": 7,
+          "player": 0,
+          "boardBefore": "...o...\n.x.Ox..\n..xo...\n.o.Q...\n..xHx..\n.o.X.o.\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.x.Ox..\n..xo...\n.o.Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 3,
+              "plyAfter": 7
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.x.Ox..\n..xox..\n.o.Q...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 4,
+              "plyAfter": 8
+            }
+          ]
+        },
+        {
+          "ply": 8,
+          "player": 1,
+          "boardBefore": "..xo...\n.x.Ox..\n..xox..\n.o.Q...\n..xHx..\n.o.X.o.\n.......",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.x.Ox..\n..xox..\n.ooQ...\n..xHx..\n.o.X.o.\n.......",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 3,
+              "manaTwoAfter": 4,
+              "plyAfter": 8
+            },
+            {
+              "action": {
+                "at": [
+                  3,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.x.Ox..\n..xox..\n.ooQ...\n..xHx..\n.o.X.o.\n...o...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 4,
+              "plyAfter": 9
+            }
+          ]
+        },
+        {
+          "ply": 9,
+          "player": 0,
+          "boardBefore": "..xo...\n.x.Ox..\n..xox..\n.ooQ...\n..xHx..\n.o.X.o.\n...o...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.x.Ox..\n..xox..\n.ooQx..\n..xHx..\n.o.X.o.\n...o...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 4,
+              "plyAfter": 9
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.x.Ox..\n..xox..\n.ooQx..\n..xHx..\n.o.X.o.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 5,
+              "plyAfter": 10
+            }
+          ]
+        },
+        {
+          "ply": 10,
+          "player": 1,
+          "boardBefore": "..xo...\n.x.Ox..\n..xox..\n.ooQx..\n..xHx..\n.o.X.o.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.xoOx..\n..xox..\n.ooQx..\n..xHx..\n.o.X.o.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 4,
+              "manaTwoAfter": 5,
+              "plyAfter": 10
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.xoOx..\n..xox..\n.ooQx..\n.oxHx..\n.o.X.o.\n..xo...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 5,
+              "plyAfter": 11
+            }
+          ]
+        },
+        {
+          "ply": 11,
+          "player": 0,
+          "boardBefore": "..xo...\n.xoOx..\n..xox..\n.ooQx..\n.oxHx..\n.o.X.o.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\n.ooQx..\n.oxHx..\n.o.X.o.\n..xo...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 5,
+              "plyAfter": 11
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxHx..\n.o.X.o.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 6,
+              "plyAfter": 12
+            }
+          ]
+        },
+        {
+          "ply": 12,
+          "player": 1,
+          "boardBefore": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxHx..\n.o.X.o.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  4
+                ],
+                "direction": "Right",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxH.x.\n.o.X.o.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 5,
+              "manaTwoAfter": 4,
+              "plyAfter": 12
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxH.x.\n.o.Xoo.\n..xo...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 13
+            }
+          ]
+        },
+        {
+          "ply": 13,
+          "player": 0,
+          "boardBefore": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxH.x.\n.o.Xoo.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxHxx.\n.o.Xoo.\n..xo...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 13
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 14
+            }
+          ]
+        },
+        {
+          "ply": 14,
+          "player": 1,
+          "boardBefore": "..xo...\n.xoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.o...\n.xoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..xo...",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 14
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.o...\noxoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..xo...",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 15
+            }
+          ]
+        },
+        {
+          "ply": 15,
+          "player": 0,
+          "boardBefore": ".o.o...\noxoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..xo...",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.o...\noxoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoo.\n..x.x..",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 15
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.o...\noxoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoox\n..x.x..",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 16
+            }
+          ]
+        },
+        {
+          "ply": 16,
+          "player": 1,
+          "boardBefore": ".o.o...\noxoOx..\n.xxox..\nxooQx..\n.oxHxx.\nxo.Xoox\n..x.x..",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.o...\no.oOx..\no..ox..\nxooQx..\n.oxHxx.\nxo.Xoox\n..x.x..",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 16
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.o...\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxo.Xoox\n..x.x..",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 17
+            }
+          ]
+        },
+        {
+          "ply": 17,
+          "player": 0,
+          "boardBefore": ".o.o...\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxo.Xoox\n..x.x..",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxo.Xoox\n..x.x..",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 17
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxo.X..x\n..x.xx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 18
+            }
+          ]
+        },
+        {
+          "ply": 18,
+          "player": 1,
+          "boardBefore": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxo.X..x\n..x.xx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxooX..x\n..x.xx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 18
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxooX..x\n.ox.xx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 19
+            }
+          ]
+        },
+        {
+          "ply": 19,
+          "player": 0,
+          "boardBefore": ".o.o.x.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxooX..x\n.ox.xx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\no.oOx..\no..ox..\n.ooQx..\nooxHxx.\nxooX..x\n.ox.xx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 19
+            },
+            {
+              "action": {
+                "at": [
+                  1,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\no.oOx..\nox.ox..\n.ooQx..\nooxHxx.\nxooX..x\n.ox.xx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 20
+            }
+          ]
+        },
+        {
+          "ply": 20,
+          "player": 1,
+          "boardBefore": ".o.oxx.\no.oOx..\nox.ox..\n.ooQx..\nooxHxx.\nxooX..x\n.ox.xx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  3,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\no.oOx..\nox.ox..\n.ooQx..\nooxHxx.\nxooX..x\n.o.oxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 20
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  4
+                ],
+                "direction": "Down",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\no.oOx..\nox.ox..\n.ooQx..\nooxH.x.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 21
+            }
+          ]
+        },
+        {
+          "ply": 21,
+          "player": 0,
+          "boardBefore": ".o.oxx.\no.oOx..\nox.ox..\n.ooQx..\nooxH.x.\nxooXx.x\n.o.oxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.ox..\n.ooQx..\nooxH.x.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 21
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  4
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.ox..\n.ooQx..\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 22
+            }
+          ]
+        },
+        {
+          "ply": 22,
+          "player": 1,
+          "boardBefore": ".o.oxx.\no.oOx.x\nox.ox..\n.ooQx..\nooxHxx.\nxooXx.x\n.o.oxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.oxo.\n.ooQx..\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 22
+            },
+            {
+              "action": {
+                "at": [
+                  5,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.oxo.\n.ooQxo.\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 23
+            }
+          ]
+        },
+        {
+          "ply": 23,
+          "player": 0,
+          "boardBefore": ".o.oxx.\no.oOx.x\nox.oxo.\n.ooQxo.\nooxHxx.\nxooXx.x\n.o.oxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.oxox\n.ooQxo.\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 23
+            },
+            {
+              "action": {
+                "at": [
+                  6,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\no.oOx.x\nox.oxox\n.ooQxox\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 24
+            }
+          ]
+        },
+        {
+          "ply": 24,
+          "player": 1,
+          "boardBefore": ".o.oxx.\no.oOx.x\nox.oxox\n.ooQxox\nooxHxx.\nxooXx.x\n.o.oxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\noooOx.x\nox.oxox\n.ooQxox\nooxHxx.\nxooXx.x\n.o.oxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 24
+            },
+            {
+              "action": {
+                "at": [
+                  2,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\noooOx.x\nox.oxox\n.ooQxox\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 25
+            }
+          ]
+        },
+        {
+          "ply": 25,
+          "player": 0,
+          "boardBefore": ".o.oxx.\noooOx.x\nox.oxox\n.ooQxox\nooxHxx.\nxooXx.x\n.oooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  1
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.ox.x\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 25
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.ox.x\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 26
+            }
+          ]
+        },
+        {
+          "ply": 26,
+          "player": 1,
+          "boardBefore": ".o.oxx.\noooOxxx\nox.ox.x\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "direction": "Right",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.o.xx\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 26
+            },
+            {
+              "action": {
+                "at": [
+                  4,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.ooxx\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 27
+            }
+          ]
+        },
+        {
+          "ply": 27,
+          "player": 0,
+          "boardBefore": ".o.oxx.\noooOxxx\nox.ooxx\n.ooQx.x\nooxHxx.\nxooXx.x\n.oooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  5,
+                  3
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.ooxx\n.ooQxxx\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 27
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\noooOxxx\nox.ooxx\n.ooQxxx\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 28
+            }
+          ]
+        },
+        {
+          "ply": 28,
+          "player": 1,
+          "boardBefore": ".o.oxx.\noooOxxx\nox.ooxx\n.ooQxxx\nooxHxx.\nxooXx.x\n.oooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxx.\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\nxooXx.x\n.oooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 28
+            },
+            {
+              "action": {
+                "at": [
+                  0,
+                  6
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxx.\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced",
+                "PiecesCaptured",
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 29
+            }
+          ]
+        },
+        {
+          "ply": 29,
+          "player": 0,
+          "boardBefore": ".o.oxx.\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  6,
+                  0
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxxx\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 29
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 30
+            }
+          ]
+        },
+        {
+          "ply": 30,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\no.oooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "direction": "Left",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 30
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 31
+            }
+          ]
+        },
+        {
+          "ply": 31,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 32
+            }
+          ]
+        },
+        {
+          "ply": 32,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 33
+            }
+          ]
+        },
+        {
+          "ply": 33,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 34
+            }
+          ]
+        },
+        {
+          "ply": 34,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\n.ooQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  1,
+                  3
+                ],
+                "direction": "Left",
+                "kind": "castMagicHand"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePushed"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 34
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 4,
+              "plyAfter": 35
+            }
+          ]
+        },
+        {
+          "ply": 35,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 36
+            }
+          ]
+        },
+        {
+          "ply": 36,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 5,
+              "plyAfter": 37
+            }
+          ]
+        },
+        {
+          "ply": 37,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 38
+            }
+          ]
+        },
+        {
+          "ply": 38,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\n.ooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  0,
+                  5
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 38
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 39
+            }
+          ]
+        },
+        {
+          "ply": 39,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 40
+            }
+          ]
+        },
+        {
+          "ply": 40,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noo.ooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "at": [
+                  2,
+                  2
+                ],
+                "kind": "placeSoldier"
+              },
+              "apAfter": 1,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "ResourcesSpent",
+                "PiecePlaced"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 40
+            },
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 41
+            }
+          ]
+        },
+        {
+          "ply": 41,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 42
+            }
+          ]
+        },
+        {
+          "ply": 42,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 43
+            }
+          ]
+        },
+        {
+          "ply": 43,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 44
+            }
+          ]
+        },
+        {
+          "ply": 44,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 45
+            }
+          ]
+        },
+        {
+          "ply": 45,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 46
+            }
+          ]
+        },
+        {
+          "ply": 46,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 47
+            }
+          ]
+        },
+        {
+          "ply": 47,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 48
+            }
+          ]
+        },
+        {
+          "ply": 48,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 49
+            }
+          ]
+        },
+        {
+          "ply": 49,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 50
+            }
+          ]
+        },
+        {
+          "ply": 50,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 51
+            }
+          ]
+        },
+        {
+          "ply": 51,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 52
+            }
+          ]
+        },
+        {
+          "ply": 52,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 53
+            }
+          ]
+        },
+        {
+          "ply": 53,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 54
+            }
+          ]
+        },
+        {
+          "ply": 54,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 55
+            }
+          ]
+        },
+        {
+          "ply": 55,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 56
+            }
+          ]
+        },
+        {
+          "ply": 56,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 57
+            }
+          ]
+        },
+        {
+          "ply": 57,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 58
+            }
+          ]
+        },
+        {
+          "ply": 58,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 59
+            }
+          ]
+        },
+        {
+          "ply": 59,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 60
+            }
+          ]
+        },
+        {
+          "ply": 60,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 61
+            }
+          ]
+        },
+        {
+          "ply": 61,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 62
+            }
+          ]
+        },
+        {
+          "ply": 62,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 63
+            }
+          ]
+        },
+        {
+          "ply": 63,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 64
+            }
+          ]
+        },
+        {
+          "ply": 64,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 65
+            }
+          ]
+        },
+        {
+          "ply": 65,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 66
+            }
+          ]
+        },
+        {
+          "ply": 66,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 67
+            }
+          ]
+        },
+        {
+          "ply": 67,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 68
+            }
+          ]
+        },
+        {
+          "ply": 68,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 69
+            }
+          ]
+        },
+        {
+          "ply": 69,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 70
+            }
+          ]
+        },
+        {
+          "ply": 70,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 71
+            }
+          ]
+        },
+        {
+          "ply": 71,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 72
+            }
+          ]
+        },
+        {
+          "ply": 72,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 73
+            }
+          ]
+        },
+        {
+          "ply": 73,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 74
+            }
+          ]
+        },
+        {
+          "ply": 74,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 75
+            }
+          ]
+        },
+        {
+          "ply": 75,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 76
+            }
+          ]
+        },
+        {
+          "ply": 76,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 77
+            }
+          ]
+        },
+        {
+          "ply": 77,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 78
+            }
+          ]
+        },
+        {
+          "ply": 78,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 79
+            }
+          ]
+        },
+        {
+          "ply": 79,
+          "player": 0,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 1,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 80
+            }
+          ]
+        },
+        {
+          "ply": 80,
+          "player": 1,
+          "boardBefore": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+          "actions": [
+            {
+              "action": {
+                "kind": "endTurn"
+              },
+              "apAfter": 2,
+              "boardAfter": ".o.oxxx\noooOxxx\noooooxx\no.oQxxx\nooxHxx.\noooXx.x\nooooxx.",
+              "currentAfter": 0,
+              "events": [
+                "TurnEnded",
+                "TurnStarted"
+              ],
+              "manaOneAfter": 6,
+              "manaTwoAfter": 6,
+              "plyAfter": 81
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

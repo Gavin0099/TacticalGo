@@ -1,0 +1,53 @@
+{
+  "name": "summon_needs_mana",
+  "description": "Mage summon costs 3 Mana.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "....X"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      2,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "SummonHero",
+        "at": [
+          4,
+          6
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "NotEnoughMana",
+        "mana": [
+          2,
+          3
+        ]
+      }
+    }
+  ]
+}

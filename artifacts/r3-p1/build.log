@@ -1,0 +1,9 @@
+Building for production...
+[0/6] Write sources
+[3/6] Write swift-version--58304C5D6DBC2206.txt
+[5/7] Compiling TacticalGoCore BoardProjection.swift
+[6/8] Compiling TacticalGoBot BotPlanner.swift
+[7/9] Compiling R3P1Probe main.swift
+[7/9] Write Objects.LinkFileList
+[8/9] Linking R3P1Probe
+Build complete! (9.83s)

@@ -1,0 +1,55 @@
+{
+  "candidate": "AUDIO-02 B dynamic integration",
+  "owner_authorization": "2026-10-09: 先幫我把音樂整合進去; supersedes integration HOLD, does not approve musical quality or commercial release",
+  "source_worktree": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b",
+  "assets": [
+    {
+      "source": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b/01-normal-loop.wav",
+      "destination": "b-normal.wav",
+      "sha256": "ab565b9d891242a589859c4001d1c65634edafb5a718ea7d6365e7872945bc1e",
+      "frames": 3386880,
+      "rate": 44100,
+      "channels": 2,
+      "bits": 16
+    },
+    {
+      "source": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b/02-focus-additive-layer.wav",
+      "destination": "b-focus.wav",
+      "sha256": "4b8d1d2470ef2741fb8539c48d6edc9ee2f00c2711a66493ee1e07344831d1c3",
+      "frames": 3386880,
+      "rate": 44100,
+      "channels": 2,
+      "bits": 16
+    },
+    {
+      "source": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b/03-danger-additive-layer.wav",
+      "destination": "b-danger.wav",
+      "sha256": "1b64d323ae1aa6fd218693d2c68fd18adc18034c380fbec5ba11a5358fbe1c49",
+      "frames": 3386880,
+      "rate": 44100,
+      "channels": 2,
+      "bits": 16
+    },
+    {
+      "source": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b/04-victory.wav",
+      "destination": "b-victory.wav",
+      "sha256": "f973b34fc6e4dc57d331dc3f9210884672a42e8dd5d9295d4e32d7b4dc50dff3",
+      "frames": 264600,
+      "rate": 44100,
+      "channels": 2,
+      "bits": 16
+    },
+    {
+      "source": "/Users/pc49-58/.codex/worktrees/audio-02-theme-candidates/TacticalGo/audio/AUDIO-02/dynamic-b/05-defeat.wav",
+      "destination": "b-defeat.wav",
+      "sha256": "b21ffc611f95e91b1b98ca1a8774f1194573a062a2ecda57f6c9ca5580eb7b46",
+      "frames": 264600,
+      "rate": 44100,
+      "channels": 2,
+      "bits": 16
+    }
+  ],
+  "menu_A": "not integrated; still a candidate",
+  "rights_quality": "Owner listening and commercial review pending; no publication",
+  "source_spec": "source-manifest.json"
+}

@@ -1,0 +1,86 @@
+{
+  "name": "magic_hand_split_groups",
+  "description": "Hand-authored: horizontal three-stone chain splits into three singleton groups, each with four liberties.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "..H.O",
+      ".....",
+      ".ooo.",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Down"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "2,2": ".",
+          "2,3": "o",
+          "1,2": "o",
+          "3,2": "o"
+        },
+        "groups": {
+          "1,2": [
+            [
+              1,
+              2
+            ]
+          ],
+          "3,2": [
+            [
+              3,
+              2
+            ]
+          ],
+          "2,3": [
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        "liberties": {
+          "1,2": 4,
+          "3,2": 4,
+          "2,3": 4
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed"
+        ]
+      }
+    }
+  ]
+}

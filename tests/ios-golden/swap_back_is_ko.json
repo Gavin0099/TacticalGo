@@ -1,0 +1,79 @@
+{
+  "name": "swap_back_is_ko",
+  "description": "Swapping back would recreate an earlier board and is rejected as ko.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "..Ho"
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSwap",
+        "target": [
+          3,
+          3
+        ]
+      },
+      "expect": {
+        "ok": true
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two"
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "One"
+      }
+    },
+    {
+      "action": {
+        "type": "CastSwap",
+        "target": [
+          2,
+          3
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Ko",
+        "cells": {
+          "3,3": "H",
+          "2,3": "o"
+        }
+      }
+    }
+  ]
+}

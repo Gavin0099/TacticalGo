@@ -1,0 +1,7 @@
+[
+  {"id":"goal","title":"保護主將，包圍對手","goal":"白方主將只剩最後一個空點。封住它，看看勝負。","instruction":"點亮起的 D3，再按確認。","explanation":"白方主將沒有氣，被提走。黑方獲勝！自己的主將也必須保護好。","diagram":["...x...","..xOx..",".......",".......",".......","...X...","......."],"recommended":{"x":3,"y":2},"inspect":null,"opening":false,"targetSeconds":20},
+  {"id":"place","title":"放下一顆士兵","goal":"士兵放在交叉點，不是格子裡。先選位置，再確認。","instruction":"黑方先手。點 C6 試試；其他合法交叉點也可以。","explanation":"確認後才落子。黑方首回合只有一次行動，現在換白方，之後每回合兩次。","diagram":[],"recommended":{"x":2,"y":5},"inspect":null,"opening":true,"targetSeconds":40},
+  {"id":"breathing","title":"讓棋子呼吸","goal":"先點 C4 或 D4 看共享的氣，再連上一顆己兵。","instruction":"綠色菱形是氣：上下左右的空點。先觀察，再在 E4 預覽。","explanation":"相連的己方棋子共享氣，斜角不算相連。你可以看棋群的空點，思考下一步。","diagram":[".......","...O...",".......","..xx...",".......","...X...","......."],"recommended":{"x":4,"y":3},"inspect":{"x":2,"y":3},"opening":false,"targetSeconds":60},
+  {"id":"capture","title":"封住最後一口氣","goal":"白方士兵只剩 D4 這口氣。先看預覽，再確認提子。","instruction":"先點白兵 D3 看它的氣，再點 D4。","explanation":"敵方棋群沒有氣時，整串被提走。這次提的是士兵，還沒有分出勝負。","diagram":["...O...","...x...","..xox..",".......",".......","...X...","......."],"recommended":{"x":3,"y":3},"inspect":{"x":3,"y":2},"opening":false,"targetSeconds":60},
+  {"id":"rescue","title":"拯救自己的主將","goal":"黑方主將只剩一口氣。連出新的空間，保住主將。","instruction":"點黑主將 D5 查看危險，再在 D4 試著救援。","explanation":"主將與己兵相連，也共享氣。從一口氣變成三口氣，這次解圍成功；仍要留意對手下一步。","diagram":[".......","...O...",".......",".......","..oXo..","...o...","......."],"recommended":{"x":3,"y":3},"inspect":{"x":3,"y":4},"opening":false,"targetSeconds":60}
+]

@@ -1,0 +1,57 @@
+{
+  "name": "bastion_pair_suicide",
+  "description": "Two bastion stones that leave the group without liberties are rejected whole.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "H . o",
+      ". o",
+      "o"
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          1,
+          0
+        ],
+        "second": [
+          0,
+          1
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Suicide",
+        "cells": {
+          "1,0": ".",
+          "0,1": "."
+        },
+        "mana": [
+          6,
+          3
+        ],
+        "ap": 2
+      }
+    }
+  ]
+}

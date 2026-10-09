@@ -1,0 +1,67 @@
+{
+  "name": "win_by_commander_capture",
+  "description": "Capturing the enemy commander wins at once; further actions are rejected.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "O x",
+      "."
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "status": "Won",
+        "winner": "One",
+        "cells": {
+          "0,0": "."
+        },
+        "events": [
+          "ResourcesSpent",
+          "PiecePlaced",
+          "PiecesCaptured",
+          "GameWon"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          5,
+          5
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "GameOver",
+        "status": "Won"
+      }
+    }
+  ]
+}

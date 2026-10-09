@@ -1,6 +1,6 @@
 # Golden replay fixtures
 
-Language-neutral rule fixtures. Every implementation of the rules (C# reference engine today, Swift package later)
+Language-neutral rule fixtures. Every implementation of the rules (C# reference engine and Swift package)
 must replay each file and match every expectation. Expected values were reasoned by hand from `docs/RULES_DRAFT.md`,
 not exported from an engine, so a bug that exists in one engine cannot silently become "expected".
 
@@ -46,3 +46,7 @@ also proves the state did not change.
 
 Illegal reasons: `GameOver NoActionPoints OutOfBounds Occupied Sealed Suicide Ko NotEnoughMana NoHeroClass HeroAlreadyOnBoard
 NotAdjacentToFriend HeroAlreadySummoned WrongClass NoHeroOnBoard SkillAlreadyUsed OutOfRange InvalidTarget DuplicateTarget`.
+
+## Swift port and full equivalence
+
+From the repo root, run `swift run --package-path swift/TacticalGoCore tacticalgo-golden tests/golden`. Optional second argument saves a full transcript. The C# exporter in `tests/TacticalGo.Golden.Export` writes the same shape; `scripts/compare-golden.py` compares full board/state, errors and ordered event payloads. Exported transcripts are characterization/equivalence evidence, not independent expected values. `seven_board_capture_and_rollback.json` adds explicit 7×7 failure/boundary/capture/win coverage; the existing fixtures retain 9×9 coverage. Swift tests separately verify complete undo on both sizes, including superko history.

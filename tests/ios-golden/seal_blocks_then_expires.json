@@ -1,0 +1,155 @@
+{
+  "name": "seal_blocks_then_expires",
+  "description": "A seal blocks the opponent for their next turn only; the caster is never blocked.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null,
+    "mageSkill": "Seal"
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "....H",
+      "",
+      "",
+      "",
+      "....O"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          4,
+          2
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "seals": [
+          [
+            4,
+            2
+          ]
+        ],
+        "mana": [
+          4,
+          3
+        ],
+        "ap": 1,
+        "events": [
+          "ResourcesSpent",
+          "SealPlaced"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "seals": [
+          [
+            4,
+            2
+          ]
+        ],
+        "mana": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          4,
+          2
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Sealed",
+        "cells": {
+          "4,2": "."
+        }
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "ok": true
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "One",
+        "seals": [],
+        "mana": [
+          5,
+          4
+        ],
+        "events": [
+          "TurnEnded",
+          "SealExpired",
+          "TurnStarted"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two"
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          4,
+          2
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "4,2": "o"
+        }
+      }
+    }
+  ]
+}

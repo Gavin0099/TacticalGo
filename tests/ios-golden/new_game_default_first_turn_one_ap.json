@@ -1,0 +1,65 @@
+{
+  "name": "new_game_default_first_turn_one_ap",
+  "description": "Draft default: player one's first turn has 1 AP, then everyone has 2.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": 1
+  },
+  "setup": {
+    "newGame": true,
+    "classes": [
+      "None",
+      "None"
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          8
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": [
+          5,
+          4
+        ]
+      }
+    }
+  ],
+  "expectInitial": {
+    "cells": {
+      "4,7": "X",
+      "4,1": "O"
+    },
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "status": "Ongoing"
+  }
+}

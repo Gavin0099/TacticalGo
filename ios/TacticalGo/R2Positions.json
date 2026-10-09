@@ -1,0 +1,276 @@
+[
+  {
+    "id": "warrior-rear-frontier",
+    "heroClass": "Warrior",
+    "purpose": "英雄四鄰已滿，但原棋串連到前線",
+    "diagram": "ooO.oo.\no...oo.\n..x..o.\n.xxx...\n.xHx...\n.xxx...\n..X....",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        1,
+        2
+      ],
+      "b": [
+        3,
+        2
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "None",
+        "winner": null
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "None",
+        "winner": null
+      }
+    }
+  },
+  {
+    "id": "warrior-disconnected",
+    "heroClass": "Warrior",
+    "purpose": "遠方己方棋群沒有連到英雄",
+    "diagram": "..O....\n.......\n...xx..\n.......\n.xHx...\n.xxx...\n..X....",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        3,
+        1
+      ],
+      "b": [
+        4,
+        1
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "OutOfRange",
+        "winner": null
+      }
+    }
+  },
+  {
+    "id": "warrior-no-new-bridge",
+    "heroClass": "Warrior",
+    "purpose": "第一子能接上遠方棋群，第二子仍不得借新連線",
+    "diagram": "..O....\n.......\n...xx..\n.......\n.xHx...\n.xxx...\n..X....",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        3,
+        3
+      ],
+      "b": [
+        4,
+        3
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "OutOfRange",
+        "winner": null
+      }
+    }
+  },
+  {
+    "id": "warrior-remote-commander-threat",
+    "heroClass": "Warrior",
+    "purpose": "連線前線能直接提主將；對手可先補關鍵氣",
+    "diagram": ".xOx...\n.......\n..x....\n..x....\n.xHx...\n.xxx...\n..X....",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        2,
+        1
+      ],
+      "b": [
+        3,
+        2
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "None",
+        "winner": "One"
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "None",
+        "winner": "One"
+      }
+    }
+  },
+  {
+    "id": "warrior-two-liberty-tempo",
+    "heroClass": "Warrior",
+    "purpose": "兩個遠方氣可用一個技能同時填完，普通落子需兩個AP",
+    "diagram": "...x...\n...O...\n..xxx..\n..xxx..\n..xHx..\n..xxx..\n...X...",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        2,
+        1
+      ],
+      "b": [
+        4,
+        1
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "None",
+        "winner": "One"
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "None",
+        "winner": "One"
+      }
+    }
+  },
+  {
+    "id": "warrior-one-liberty",
+    "heroClass": "Warrior",
+    "purpose": "英雄孤立且只有一氣，不能保證技能一定可用",
+    "diagram": "..O....\n.......\n...o...\n..oHo..\n.......\n.......\n...X...",
+    "focus": {
+      "kind": "bastion",
+      "a": [
+        3,
+        4
+      ],
+      "b": [
+        3,
+        5
+      ]
+    },
+    "expected": {
+      "A": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "B": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "C": {
+        "reason": "OutOfRange",
+        "winner": null
+      },
+      "D": {
+        "reason": "OutOfRange",
+        "winner": null
+      }
+    }
+  },
+  {
+    "id": "mage-dense-front",
+    "heroClass": "Mage",
+    "purpose": "射程內每顆士兵四鄰皆占據，只有異色交換能動棋",
+    "diagram": "...O...\n.xxxoo.\n.xxooo.\nxxxHooo\n.xxxoo.\n.xxxoo.\n...X...",
+    "focus": {
+      "kind": "magicHand",
+      "target": [
+        3,
+        2
+      ],
+      "direction": "Left"
+    },
+    "expected": {
+      "A": {
+        "reason": "Occupied",
+        "winner": null
+      },
+      "B": {
+        "reason": "Occupied",
+        "winner": null
+      },
+      "C": {
+        "reason": "None",
+        "winner": null
+      },
+      "D": {
+        "reason": "None",
+        "winner": null
+      }
+    }
+  },
+  {
+    "id": "mage-remote-cut-win",
+    "heroClass": "Mage",
+    "purpose": "距離二的異色交換可切斷主將棋串，盜賊在同位置碰不到敵兵",
+    "diagram": ".......\n...xx..\n.HxoOx.\n...ox..\n.......\n.......\n..X....",
+    "focus": {
+      "kind": "magicHand",
+      "target": [
+        3,
+        2
+      ],
+      "direction": "Up"
+    },
+    "expected": {
+      "A": {
+        "reason": "Occupied",
+        "winner": null
+      },
+      "B": {
+        "reason": "Occupied",
+        "winner": null
+      },
+      "C": {
+        "reason": "None",
+        "winner": "One"
+      },
+      "D": {
+        "reason": "None",
+        "winner": "One"
+      }
+    }
+  }
+]

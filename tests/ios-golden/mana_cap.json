@@ -1,0 +1,68 @@
+{
+  "name": "mana_cap",
+  "description": "Mana gains +1 at each of your own turn starts and stops at the cap.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null,
+    "manaCap": 5
+  },
+  "setup": {
+    "newGame": true,
+    "classes": [
+      "None",
+      "None"
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "mana": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "mana": [
+          5,
+          4
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "mana": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "mana": [
+          5,
+          5
+        ],
+        "ply": 5,
+        "current": "One"
+      }
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "original-a0",
+  "projection": "v1-oblique",
+  "heroes": {
+    "warrior": {
+      "portrait": {
+        "name": "warrior",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.5,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      },
+      "token": {
+        "name": "token-warrior",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.663265306122449,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      }
+    },
+    "mage": {
+      "portrait": {
+        "name": "mage",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.5,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      },
+      "token": {
+        "name": "token-mage",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.663265306122449,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      }
+    },
+    "rogue": {
+      "portrait": {
+        "name": "rogue",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.5,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      },
+      "token": {
+        "name": "token-rogue",
+        "pixelWidth": 512,
+        "pixelHeight": 512,
+        "anchorX": 0.5,
+        "anchorY": 0.663265306122449,
+        "widthInRadii": 2.45,
+        "requiresAlpha": true
+      }
+    }
+  }
+}
