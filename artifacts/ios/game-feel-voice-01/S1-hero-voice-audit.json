@@ -1,0 +1,598 @@
+{
+  "actualOwner" : "PlayableGameView.store.audio",
+  "bgmAuditOnly" : true,
+  "checks" : [
+    {
+      "check" : "preview_Warrior_false_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-warrior-summon_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Warrior_false_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-warrior-summon_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Warrior_true_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-warrior-skill_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Warrior_true_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-warrior-skill_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Mage_false_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-mage-summon_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Mage_false_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-mage-summon_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Mage_true_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-mage-skill_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Mage_true_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-mage-skill_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Rogue_false_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-rogue-summon_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Rogue_false_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-rogue-summon_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Rogue_true_one",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-rogue-skill_one",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "preview_Rogue_true_two",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_preview_silent",
+      "pass" : true
+    },
+    {
+      "check" : "voice-rogue-skill_two",
+      "pass" : true
+    },
+    {
+      "check" : "voice_finishes_no_queue",
+      "pass" : true
+    },
+    {
+      "check" : "sfx_zero_keeps_voice",
+      "pass" : true
+    },
+    {
+      "check" : "music_zero_keeps_voice",
+      "pass" : true
+    },
+    {
+      "check" : "voice_disabled_stops_voice_only",
+      "pass" : true
+    },
+    {
+      "check" : "voice_disabled_summon_silent",
+      "pass" : true
+    },
+    {
+      "check" : "ordinary_second_AP_does_not_restart_or_cut_voice",
+      "pass" : true
+    },
+    {
+      "check" : "undo_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "restart_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "leave_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "background_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "interruption_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "mute_voice_no_late_replay",
+      "pass" : true
+    },
+    {
+      "check" : "invalid_no_voice_or_spend",
+      "pass" : true
+    },
+    {
+      "check" : "prototype_bgm_starts_on_actual_owner",
+      "pass" : true
+    },
+    {
+      "check" : "voice_ducks_actual_bgm",
+      "pass" : true
+    },
+    {
+      "check" : "voice_duck_restores",
+      "pass" : true
+    },
+    {
+      "check" : "six_retained_voices_only",
+      "pass" : true
+    }
+  ],
+  "quality" : "Prototype TTS; no human hearing or final actor approval",
+  "receiptStates" : [
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Warrior",
+      "observedVoice" : [
+        {
+          "key" : "voice-warrior-summon",
+          "playing" : "true",
+          "uptime" : "10676.829833583333",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Warrior",
+      "observedVoice" : [
+        {
+          "key" : "voice-warrior-summon",
+          "playing" : "true",
+          "uptime" : "10678.259177583333",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Warrior",
+      "observedVoice" : [
+        {
+          "key" : "voice-warrior-skill",
+          "playing" : "true",
+          "uptime" : "10679.64583375",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : true
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Warrior",
+      "observedVoice" : [
+        {
+          "key" : "voice-warrior-skill",
+          "playing" : "true",
+          "uptime" : "10681.06446375",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : true
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 1,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Mage",
+      "observedVoice" : [
+        {
+          "key" : "voice-mage-summon",
+          "playing" : "true",
+          "uptime" : "10682.472458625001",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 1,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Mage",
+      "observedVoice" : [
+        {
+          "key" : "voice-mage-summon",
+          "playing" : "true",
+          "uptime" : "10683.869811958333",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Mage",
+      "observedVoice" : [
+        {
+          "key" : "voice-mage-skill",
+          "playing" : "true",
+          "uptime" : "10685.267092625001",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : true
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Mage",
+      "observedVoice" : [
+        {
+          "key" : "voice-mage-skill",
+          "playing" : "true",
+          "uptime" : "10686.685978333335",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : true
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Rogue",
+      "observedVoice" : [
+        {
+          "key" : "voice-rogue-summon",
+          "playing" : "true",
+          "uptime" : "10688.072404458335",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Rogue",
+      "observedVoice" : [
+        {
+          "key" : "voice-rogue-summon",
+          "playing" : "true",
+          "uptime" : "10689.448517166667",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : false
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Rogue",
+      "observedVoice" : [
+        {
+          "key" : "voice-rogue-skill",
+          "playing" : "true",
+          "uptime" : "10690.867056875",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "one",
+      "skill" : true
+    },
+    {
+      "afterAP" : 1,
+      "afterMana" : 2,
+      "beforeAP" : 2,
+      "beforeMana" : 4,
+      "hero" : "Rogue",
+      "observedVoice" : [
+        {
+          "key" : "voice-rogue-skill",
+          "playing" : "true",
+          "uptime" : "10692.2537635",
+          "volume" : "0.75"
+        }
+      ],
+      "owner" : "two",
+      "skill" : true
+    }
+  ],
+  "status" : "PASS",
+  "voiceObservations" : [
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10676.829833583333",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10678.259177583333",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-skill",
+      "playing" : "true",
+      "uptime" : "10679.64583375",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-skill",
+      "playing" : "true",
+      "uptime" : "10681.06446375",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-summon",
+      "playing" : "true",
+      "uptime" : "10682.472458625001",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-summon",
+      "playing" : "true",
+      "uptime" : "10683.869811958333",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-skill",
+      "playing" : "true",
+      "uptime" : "10685.267092625001",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-skill",
+      "playing" : "true",
+      "uptime" : "10686.685978333335",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-rogue-summon",
+      "playing" : "true",
+      "uptime" : "10688.072404458335",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-rogue-summon",
+      "playing" : "true",
+      "uptime" : "10689.448517166667",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-rogue-skill",
+      "playing" : "true",
+      "uptime" : "10690.867056875",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-rogue-skill",
+      "playing" : "true",
+      "uptime" : "10692.2537635",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-summon",
+      "playing" : "true",
+      "uptime" : "10693.672434833334",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-summon",
+      "playing" : "true",
+      "uptime" : "10693.864390125",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10694.525832166668",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10695.880449875001",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10697.267050416667",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10698.685774375",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10700.029753875",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-warrior-summon",
+      "playing" : "true",
+      "uptime" : "10701.395051833333",
+      "volume" : "0.75"
+    },
+    {
+      "key" : "voice-mage-summon",
+      "playing" : "true",
+      "uptime" : "10703.048442291667",
+      "volume" : "0.75"
+    }
+  ]
+}

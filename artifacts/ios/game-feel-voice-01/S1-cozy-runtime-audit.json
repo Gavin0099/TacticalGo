@@ -1,0 +1,102 @@
+{
+  "checks" : [
+    {
+      "check" : "preview_unchanged_resources_and_source",
+      "pass" : true
+    },
+    {
+      "check" : "preview_no_success_cues",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_no_pending_success",
+      "pass" : true
+    },
+    {
+      "check" : "rapid_confirmation_commits_once",
+      "pass" : true
+    },
+    {
+      "check" : "success_real_owner_mage_place_capture_victory",
+      "pass" : true
+    },
+    {
+      "check" : "settled_domain_result",
+      "pass" : true
+    },
+    {
+      "check" : "music_hold_sfx_active",
+      "pass" : true
+    },
+    {
+      "check" : "no_capture_no_capture_or_victory_sound",
+      "pass" : true
+    },
+    {
+      "check" : "invalid_no_spend_no_receipt_no_sound",
+      "pass" : true
+    },
+    {
+      "check" : "undo_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "undo_full_core_history",
+      "pass" : true
+    },
+    {
+      "check" : "cancel_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "background_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "restart_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "leave_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "interruption_no_late_sound_or_visual",
+      "pass" : true
+    },
+    {
+      "check" : "sfx_zero_suppresses_cues",
+      "pass" : true
+    }
+  ],
+  "claimBoundary" : "Actual retained AVAudioPlayer.play return, not speaker\/headphone audibility or measured acoustic latency",
+  "cueObservations" : [
+    {
+      "key" : "mage",
+      "playing" : "true",
+      "uptime" : "10660.871983250001",
+      "volume" : "0.65"
+    },
+    {
+      "key" : "place",
+      "playing" : "true",
+      "uptime" : "10661.170633208334",
+      "volume" : "0.65"
+    },
+    {
+      "key" : "capture",
+      "playing" : "true",
+      "uptime" : "10661.287921875",
+      "volume" : "0.65"
+    },
+    {
+      "key" : "victory",
+      "playing" : "true",
+      "uptime" : "10661.458904416668",
+      "volume" : "0.65"
+    }
+  ],
+  "owner" : "PlayableGameView.store.audio",
+  "receiptUptime" : 10660.861733291667,
+  "status" : "PASS"
+}

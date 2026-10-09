@@ -63,6 +63,14 @@ import XCTest
         XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: 30), .completed)
         shot(app, "cozy-real-owner-audit")
     }
+    func testHeroVoiceActualOwnerSixEventsSettingsAndCancellation() {
+        let app = app(["--cozy-demo", "--voice-audit", "--voice-bgm-audit"])
+        let status = app.staticTexts["voiceAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout: 10))
+        let done = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label BEGINSWITH 'PASS'"), object: status)
+        XCTAssertEqual(XCTWaiter.wait(for: [done], timeout: 90), .completed)
+        shot(app, "VO-01-actual-owner-six-events-and-settings")
+    }
     private func tapTutorial(_ app: XCUIApplication, _ x: Int, _ y: Int) {
         let arena = app.otherElements["onboardArena"]
         XCTAssertTrue(arena.waitForExistence(timeout: 10))

@@ -54,7 +54,11 @@ import TacticalGoRecords
     }
     var session: GameSession
     var playback: BoardPlayback?
+    #if DEBUG
+    let audio = CombatAudio(musicIntegrationAllowed: ProcessInfo.processInfo.arguments.contains("--voice-bgm-audit"))
+    #else
     let audio = CombatAudio(musicIntegrationAllowed: false)
+    #endif
     var isPresenting = false
     @ObservationIgnored private var presentationTask: Task<Void, Never>?
     @ObservationIgnored private var audioTask: Task<Void, Never>?
@@ -65,9 +69,9 @@ import TacticalGoRecords
     #if DEBUG
     private(set) var audioCueHistory: [String] = []
     #endif
-    func cancelAudioFeedback() {
+    func cancelAudioFeedback(preserveVoice: Bool = false) {
         audioGeneration &+= 1; audioTask?.cancel(); audioTask = nil
-        audio.cancelEffects()
+        audio.cancelEffects(preserveVoice: preserveVoice)
     }
     func setMatchAudioActive(_ active: Bool) {
         if active && !audioMatchActive { audio.resetBattle() }
@@ -76,10 +80,10 @@ import TacticalGoRecords
         if !active { cancelPresentation() }
         audio.setMatchActive(active)
     }
-    func cancelPresentation() {
+    func cancelPresentation(preserveVoice: Bool = false) {
         presentationTask?.cancel(); presentationTask = nil
         isPresenting = false; playback = nil
-        cancelAudioFeedback()
+        cancelAudioFeedback(preserveVoice: preserveVoice)
     }
     func setSceneAudioActive(_ active: Bool) {
         audioSceneActive = active
@@ -95,7 +99,7 @@ import TacticalGoRecords
         // A normal end-turn has no sound and must not silence an already
         // committed skill's pending landing/capture cues.
         guard !plan.cues.isEmpty else { return }
-        cancelAudioFeedback()
+        cancelAudioFeedback(preserveVoice: true)
         guard outcome.success, audioMatchActive, audioSceneActive else { return }
         audio.updateState(outcome.state)
         let skill: Bool
@@ -118,6 +122,7 @@ import TacticalGoRecords
             audio.play(key)
         }
         let generation = audioGeneration
+        if let voice = HeroVoiceCue.make(before: before, action: action, outcome: outcome) { audio.playVoice(voice) }
         audioTask = Task { [weak self] in
             for cue in plan.cues where cue.start > 0 {
                 do { try await Task.sleep(for: .seconds(max(0, start + cue.start - ProcessInfo.processInfo.systemUptime))) } catch { return }
@@ -255,7 +260,7 @@ import TacticalGoRecords
     }
     func select(_ p: Point) {
         guard !isComputerTurn, !isPresenting else { return }
-        if playback != nil { cancelPresentation() }
+        if playback != nil { cancelPresentation(preserveVoice: true) }
         audio.play("selection")
         if mode == .skill && (state.heroClass(of: state.current) == .warrior ||
             (state.heroClass(of: state.current) == .mage && state.config.experimentalFriendlyRedeploy && mageOperation == .redeploy)) {
@@ -280,7 +285,7 @@ import TacticalGoRecords
                 activeRecord = record; saveRecord()
             }
             audio.updateState(o.state)
-            cancelPresentation()
+            cancelPresentation(preserveVoice: true)
             let receipt = BoardPlayback(before: before, action: action, outcome: o)
             playback = receipt
             presentAudio(before: before, action: action, outcome: o, receipt: receipt)

@@ -16,3 +16,7 @@
 - Before any push of the public repo: resolve `governance/MEMORY_PROTOCOL.md` (framework working tree has an uncommitted edit that was copied) and add Apache-2.0 attribution for copied framework files.
 - Owner reviews the remaining pending items in `docs/RULES_DRAFT.md` section 8 one by one.
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
+
+- Cozy-02/ANIM-01/AUDIO-01 engineering candidate installed separately on iPhone and iPad; phone physical gesture automation and human art/hearing remain HOLD/BLOCK; no commit/push/merge, BGM HOLD. <!-- memory_record_projection:active-task-summary:43596922f2a2dc9c0b72d42df61dac93cb332ec399b1cbfc83c8805173fd5ba9 -->
+
+- GAME-FEEL-10H-v2 on codex/game-feel-voice-01; S0 committed, S1 voice engineering PASS; continue S2/S3/S6/S7, no merge/TestFlight/release. <!-- memory_record_projection:active-task-summary:8fe4c6325d5229659deae83aa0825a4924cf1bce44a946cbbedfe8ec3c9b3c57 -->

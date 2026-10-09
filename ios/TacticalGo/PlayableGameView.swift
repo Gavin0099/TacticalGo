@@ -63,6 +63,8 @@ struct PlayableGameView: View {
     @State private var visuals = GameVisualAssets.original
     @State private var cozyAuditStatus = "RUNNING"
     @State private var cozyAuditStarted = false
+    @State private var voiceAuditStarted = false
+    @State private var voiceAuditStatus = "RUNNING"
     @State private var requestedWidth: CGFloat?
     @State private var cozyReduced = false
     @State private var cozyAssets = try? CozyAssets.load()
@@ -141,6 +143,9 @@ struct PlayableGameView: View {
         }
         .overlay(alignment: .top) {
             #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--voice-audit") {
+                Text(voiceAuditStatus).accessibilityIdentifier("voiceAudit").padding(4).background(Cozy.card)
+            }
             if ProcessInfo.processInfo.arguments.contains("--cozy-audit") {
                 Text(cozyAuditStatus).accessibilityIdentifier("cozyAudit").padding(4).background(Cozy.card)
             }
@@ -200,9 +205,13 @@ struct PlayableGameView: View {
     }
     private func startCozyAuditIfActive() {
         #if DEBUG
-        guard scenePhase == .active, !cozyAuditStarted, ProcessInfo.processInfo.arguments.contains("--cozy-audit") else { return }
-        cozyAuditStarted = true
-        Task { cozyAuditStatus = await CozyAudit.run(store: store) }
+        guard scenePhase == .active else { return }
+        if !voiceAuditStarted, ProcessInfo.processInfo.arguments.contains("--voice-audit") {
+            voiceAuditStarted = true; Task { voiceAuditStatus = await HeroVoiceAudit.run(store: store) }
+        }
+        if !cozyAuditStarted, ProcessInfo.processInfo.arguments.contains("--cozy-audit") {
+            cozyAuditStarted = true; Task { cozyAuditStatus = await CozyAudit.run(store: store) }
+        }
         #endif
     }
     private func lobby(size: CGSize) -> some View {
@@ -629,6 +638,11 @@ private struct CombatSoundSettings: View {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
                     Text("\(Int(audio.sfxVolume * 100))%")
                 }
+                Section("英雄語音") {
+                    Toggle("英文英雄語音", isOn: $audio.voiceEnabled).accessibilityIdentifier("voiceEnabled")
+                    Slider(value: $audio.voiceVolume, in: 0...1).accessibilityIdentifier("voiceVolume")
+                    Text("\(Int(audio.voiceVolume * 100))% · VO-01 原型，正式聲線待驗收")
+                }
                 Section("音樂音量") {
                     Toggle("背景音樂", isOn: $audio.musicEnabled).disabled(!audio.musicIntegrationAllowed).accessibilityIdentifier("musicEnabled")
                     if !audio.musicIntegrationAllowed { Text("本候選音樂整合暫停；音效可獨立播放。").font(.caption) }
@@ -637,7 +651,7 @@ private struct CombatSoundSettings: View {
                     Text("\(Int(audio.musicVolume * 100))%")
                 }
                 Section {
-                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂與音效可分別調整。")
+                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂、音效與英雄語音可分別調整。")
                 }
             }.navigationTitle("聲音設定")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() }.accessibilityIdentifier("audioSettingsDone") } }

@@ -10,6 +10,18 @@ import TacticalGoMotion
     var musicEnabled: Bool {
         didSet { defaults.set(musicEnabled, forKey: "combatAudio.musicEnabled"); reconcileMusic() }
     }
+    var voiceEnabled: Bool {
+        didSet { defaults.set(voiceEnabled, forKey: "combatAudio.voiceEnabled"); if !voiceEnabled { cancelVoice() } }
+    }
+    var voiceVolume: Double {
+        didSet {
+            let value = Self.clamp(voiceVolume)
+            if value != voiceVolume { voiceVolume = value }
+            defaults.set(value, forKey: "combatAudio.voiceVolume")
+            voices.values.forEach { $0.volume = Float(value) }
+            if value == 0 { cancelVoice() }
+        }
+    }
     var muted: Bool {
         didSet { defaults.set(muted, forKey: "combatAudio.muted"); if muted { cancelEffects() }; reconcileMusic() }
     }
@@ -19,7 +31,7 @@ import TacticalGoMotion
             if value != sfxVolume { sfxVolume = value }
             defaults.set(value, forKey: "combatAudio.sfxVolume")
             effects.values.forEach { $0.volume = Float(value) }
-            if value == 0 { cancelEffects() }
+            if value == 0 { cancelSFX() }
         }
     }
     var musicVolume: Double {
@@ -51,6 +63,10 @@ import TacticalGoMotion
     // become false before AVFoundation delivers its queued finishedPlaying
     // callback; dropping that player at the next cue caused a native crash.
     @ObservationIgnored private var effects: [String: AVAudioPlayer] = [:]
+    @ObservationIgnored private var voices: [String: AVAudioPlayer] = [:]
+    private static let voiceKeys: Set<String> = ["voice-warrior-summon", "voice-warrior-skill", "voice-mage-summon", "voice-mage-skill", "voice-rogue-summon", "voice-rogue-skill"]
+    private(set) var voiceObservations: [[String: String]] = []
+    @ObservationIgnored private var voiceDuckUntil = 0.0
     @ObservationIgnored private var lastSelectionTime = -Double.infinity
     @ObservationIgnored nonisolated(unsafe) private var interruptionObserver: (any NSObjectProtocol)?
     private static let effectKeys: Set<String> = ["selection", "place", "capture", "summon", "mage", "warrior", "rogue", "danger", "victory", "defeat", "draw"]
@@ -60,6 +76,8 @@ import TacticalGoMotion
         musicEnabled = defaults.object(forKey: "combatAudio.musicEnabled") as? Bool ?? false
         self.defaults = defaults
         self.bundle = bundle
+        voiceEnabled = defaults.object(forKey: "combatAudio.voiceEnabled") as? Bool ?? true
+        voiceVolume = Self.clamp(defaults.object(forKey: "combatAudio.voiceVolume") as? Double ?? 0.75)
         muted = defaults.bool(forKey: "combatAudio.muted")
         sfxVolume = Self.clamp(defaults.object(forKey: "combatAudio.sfxVolume") as? Double ?? 0.65)
         musicVolume = Self.clamp(defaults.object(forKey: "combatAudio.musicVolume") as? Double ?? 0.30)
@@ -91,7 +109,7 @@ import TacticalGoMotion
 
     func setMatchActive(_ active: Bool) {
         matchActive = active
-        if active { prepareEffects() }
+        if active { prepareEffects(); prepareVoices() }
         if !active {
             cancelEffects()
             resetBattle()
@@ -104,7 +122,7 @@ import TacticalGoMotion
         sceneActive = active
         if returningToForeground { interrupted = false }
         if !active { cancelEffects() }
-        if active { prepareEffects() }
+        if active { prepareEffects(); prepareVoices() }
         reconcileMusic()
     }
 
@@ -143,12 +161,38 @@ import TacticalGoMotion
         if !played { lastError = "音效無法播放：\(key)" }
     }
 
-    func cancelEffects() {
-        effects.values.forEach { $0.stop() }
-        endings.values.forEach { $0.stop() }
-        mix.cancelDuck()
+    private func prepareVoices() {
+        guard matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
+        for key in Self.voiceKeys.sorted() where voices[key] == nil { voices[key] = makeVoicePlayer(key) }
+    }
+    func playVoice(_ cue: HeroVoiceCue) {
+        guard matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
+        prepareVoices()
+        guard let player = voices[cue.key] else { return }
+        // One hero line globally, retained per key; no voice layering or queued replay.
+        voices.values.forEach { $0.stop() }
+        player.currentTime = 0; player.volume = Float(voiceVolume)
+        let played = player.play()
+        voiceObservations.append(["key": cue.key, "uptime": String(now), "playing": String(played), "volume": String(player.volume)])
+        if voiceObservations.count > 100 { voiceObservations.removeFirst() }
+        if played {
+            voiceDuckUntil = now + player.duration
+            mix.duck(through: voiceDuckUntil, at: now); startMixTask()
+        } else { lastError = "英雄語音無法播放：\(cue.key)" }
+    }
+    private func cancelSFX() {
+        effects.values.forEach { $0.stop() }; lastSelectionTime = -Double.infinity
+    }
+    func cancelVoice() {
+        voices.values.forEach { $0.stop() }; voiceDuckUntil = 0
+        mix.cancelDuck(); updateMix()
+    }
+    func cancelEffects(preserveVoice: Bool = false) {
+        cancelSFX(); endings.values.forEach { $0.stop() }
+        if !preserveVoice { cancelVoice() }
+        else if voiceDuckUntil > now { mix.duck(through: voiceDuckUntil, at: now) }
+        else { mix.cancelDuck() }
         updateMix()
-        lastSelectionTime = -Double.infinity
     }
 
     func resetBattle() {
@@ -194,6 +238,9 @@ import TacticalGoMotion
         music.forEach { $0.pause(); $0.currentTime = time }
         reconcileMusic()
     }
+    var activeVoiceCount: Int { voices.values.filter { $0.isPlaying }.count }
+    var cachedVoiceCount: Int { voices.count }
+    func voiceDurationForAudit(_ key: String) -> Double { voices[key]?.duration ?? 0 }
     var cachedEffectCount: Int { effects.count }
     var activeEffectCount: Int { effects.values.filter { $0.isPlaying }.count }
     #endif
@@ -285,6 +332,14 @@ import TacticalGoMotion
             lastError = "無法讀取音訊素材 \(name)：\(error.localizedDescription)"
             return nil
         }
+    }
+
+    private func makeVoicePlayer(_ key: String) -> AVAudioPlayer? {
+        guard Self.voiceKeys.contains(key), let url = bundle.url(forResource: key, withExtension: "wav", subdirectory: "Audio/Voice") else {
+            lastError = "找不到英雄語音：\(key)"; return nil
+        }
+        do { let player = try AVAudioPlayer(contentsOf: url); player.prepareToPlay(); return player }
+        catch { lastError = "無法讀取英雄語音：\(key)"; return nil }
     }
 
     private static func clamp(_ value: Double) -> Double { value.isFinite ? min(1, max(0, value)) : 0 }

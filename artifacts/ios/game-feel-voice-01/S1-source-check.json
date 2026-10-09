@@ -1,0 +1,44 @@
+[
+  {
+    "key": "voice-warrior-summon",
+    "sha_match": true,
+    "duration": 0.9984580498866213,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  },
+  {
+    "key": "voice-warrior-skill",
+    "sha_match": true,
+    "duration": 0.8010884353741496,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  },
+  {
+    "key": "voice-mage-summon",
+    "sha_match": true,
+    "duration": 1.0319274376417233,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  },
+  {
+    "key": "voice-mage-skill",
+    "sha_match": true,
+    "duration": 0.6385487528344671,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  },
+  {
+    "key": "voice-rogue-summon",
+    "sha_match": true,
+    "duration": 0.615328798185941,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  },
+  {
+    "key": "voice-rogue-skill",
+    "sha_match": true,
+    "duration": 0.8243083900226758,
+    "clipped_samples": 0,
+    "independent_process_same_SHA": true
+  }
+]

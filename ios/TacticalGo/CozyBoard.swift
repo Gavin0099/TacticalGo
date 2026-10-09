@@ -47,7 +47,7 @@ struct CozyBoard: View {
                 recordGeometry(Anim01Geometry(width: size.width, height: size.height, boardSize: presentation.state.board.size), available: size)
             }
         }
-        
+
     }
     private func recordGeometry(_ fit: Anim01Geometry, available: CGSize) {
         #if DEBUG
