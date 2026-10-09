@@ -6,6 +6,10 @@ import TacticalGoMotion
 
 /// Presentation only. The store decides whether a Domain event succeeded and when each cue fires.
 @MainActor @Observable final class CombatAudio {
+    let musicIntegrationAllowed: Bool
+    var musicEnabled: Bool {
+        didSet { defaults.set(musicEnabled, forKey: "combatAudio.musicEnabled"); reconcileMusic() }
+    }
     var muted: Bool {
         didSet { defaults.set(muted, forKey: "combatAudio.muted"); if muted { cancelEffects() }; reconcileMusic() }
     }
@@ -51,7 +55,9 @@ import TacticalGoMotion
     @ObservationIgnored nonisolated(unsafe) private var interruptionObserver: (any NSObjectProtocol)?
     private static let effectKeys: Set<String> = ["selection", "place", "capture", "summon", "mage", "warrior", "rogue", "danger", "victory", "defeat", "draw"]
 
-    init(defaults: UserDefaults = .standard, bundle: Bundle = .main) {
+    init(defaults: UserDefaults = .standard, bundle: Bundle = .main, musicIntegrationAllowed: Bool = true) {
+        self.musicIntegrationAllowed = musicIntegrationAllowed
+        musicEnabled = defaults.object(forKey: "combatAudio.musicEnabled") as? Bool ?? false
         self.defaults = defaults
         self.bundle = bundle
         muted = defaults.bool(forKey: "combatAudio.muted")
@@ -85,6 +91,7 @@ import TacticalGoMotion
 
     func setMatchActive(_ active: Bool) {
         matchActive = active
+        if active { prepareEffects() }
         if !active {
             cancelEffects()
             resetBattle()
@@ -97,10 +104,22 @@ import TacticalGoMotion
         sceneActive = active
         if returningToForeground { interrupted = false }
         if !active { cancelEffects() }
+        if active { prepareEffects() }
         reconcileMusic()
     }
 
+    /// Decode the same retained voices on entry, so first-use I/O does not
+    /// block an 80 ms visual charge while its sound is being constructed.
+    private func prepareEffects() {
+        guard matchActive, sceneActive, !interrupted, !muted, sfxVolume > 0,
+              activateSession() else { return }
+        for key in Self.effectKeys.sorted() where effects[key] == nil {
+            effects[key] = makePlayer(key)
+        }
+    }
+
     /// This starts one cue immediately; no timers, game rules or outcome inference live here.
+    private(set) var playbackObservations: [[String: String]] = []
     func play(_ key: String) {
         if ["victory", "defeat", "draw"].contains(key) { finishBattle(key) }
         guard Self.effectKeys.contains(key), matchActive, sceneActive, !interrupted, !muted, sfxVolume > 0 else { return }
@@ -118,7 +137,10 @@ import TacticalGoMotion
            let other = effects.first(where: { $0.key != key && $0.value.isPlaying })?.value { other.stop() }
         player.stop(); player.currentTime = 0
         player.volume = Float(sfxVolume)
-        if !player.play() { lastError = "音效無法播放：\(key)" }
+        let played = player.play()
+        playbackObservations.append(["key": key, "uptime": String(now), "playing": String(played), "volume": String(player.volume)])
+        if playbackObservations.count > 100 { playbackObservations.removeFirst() }
+        if !played { lastError = "音效無法播放：\(key)" }
     }
 
     func cancelEffects() {
@@ -151,7 +173,7 @@ import TacticalGoMotion
     private func finishBattle(_ key: String) {
         guard matchActive, sceneActive, !interrupted, !mix.ended else { return }
         mix.finish(at: now); startMixTask()
-        guard !muted, musicVolume > 0, key != "draw", activateSession() else { return }
+        guard musicIntegrationAllowed, musicEnabled, !muted, musicVolume > 0, key != "draw", activateSession() else { return }
         if endings[key] == nil { endings[key] = makePlayer("b-" + key) }
         if let player = endings[key] {
             player.currentTime = 0; player.volume = Float(musicVolume)
@@ -198,7 +220,7 @@ import TacticalGoMotion
         }
     }
     private func reconcileMusic() {
-        guard matchActive, sceneActive, !interrupted, !muted, musicVolume > 0,
+        guard musicIntegrationAllowed, musicEnabled, matchActive, sceneActive, !interrupted, !muted, musicVolume > 0,
               !mix.ended || mix.loopGain(at: now) > 0 else {
             mixTask?.cancel(); mixTask = nil
             if let phase = music.first?.currentTime {

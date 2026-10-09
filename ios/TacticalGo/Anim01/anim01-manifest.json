@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "id": "anim-01-magic-hand-v01",
+  "approval": "candidate",
+  "productionApproved": false,
+  "rights": "pending_confirmation",
+  "projection": "v1-oblique",
+  "soldiers": {
+    "black": {
+      "file": "anim01-soldier-black.png",
+      "pixelWidth": 1382,
+      "pixelHeight": 1382,
+      "anchorX": 0.5,
+      "anchorY": 0.8266570188133141,
+      "widthInLocalD": 0.7714513556618819,
+      "hasBakedBase": false,
+      "hasBakedShadow": false,
+      "sourceSha256": "04f41c4816b80b0605cccd43d872111e14acacd5bd05b2630090d667e544e276",
+      "sha256": "81eaa98bd3d254a87135daecc85db5741b0ac81d733a56e729a846a53201807d",
+      "sourceAnchor": [
+        0.5,
+        0.86
+      ],
+      "sourceOffsetPixels": [
+        64,
+        64
+      ]
+    },
+    "white": {
+      "file": "anim01-soldier-white.png",
+      "pixelWidth": 1382,
+      "pixelHeight": 1382,
+      "anchorX": 0.5,
+      "anchorY": 0.8266570188133141,
+      "widthInLocalD": 0.7714513556618819,
+      "hasBakedBase": false,
+      "hasBakedShadow": false,
+      "sourceSha256": "198b7342f42a2c54debbd6230a48ba407a41733b9743003610e01053ada5ba38",
+      "sha256": "a13da615b970da280bfe9757f229a1cdd09bff2926964a289e3e9f546bd188d1",
+      "sourceAnchor": [
+        0.5,
+        0.86
+      ],
+      "sourceOffsetPixels": [
+        64,
+        64
+      ]
+    }
+  },
+  "fx": {
+    "cast": {
+      "files": [
+        "anim01-fx-cast-000.png",
+        "anim01-fx-cast-001.png",
+        "anim01-fx-cast-002.png",
+        "anim01-fx-cast-003.png"
+      ],
+      "frameMs": 20,
+      "durationMs": 80,
+      "pixelWidth": 256,
+      "pixelHeight": 256,
+      "anchorX": 0.5,
+      "anchorY": 0.7,
+      "widthInLocalD": 1.05,
+      "atlas": {
+        "file": "anim01-fx-cast-atlas.png",
+        "columns": 4,
+        "rows": 1,
+        "cellWidth": 256,
+        "cellHeight": 256
+      },
+      "frames": [
+        {
+          "file": "anim01-fx-cast-000.png",
+          "startMs": 0,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-cast-001.png",
+          "startMs": 20,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-cast-002.png",
+          "startMs": 40,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-cast-003.png",
+          "startMs": 60,
+          "durationMs": 20
+        }
+      ],
+      "layer": "above_units_below_tactical_hints"
+    },
+    "push": {
+      "files": [
+        "anim01-fx-push-000.png",
+        "anim01-fx-push-001.png",
+        "anim01-fx-push-002.png",
+        "anim01-fx-push-003.png",
+        "anim01-fx-push-004.png",
+        "anim01-fx-push-005.png",
+        "anim01-fx-push-006.png",
+        "anim01-fx-push-007.png",
+        "anim01-fx-push-008.png",
+        "anim01-fx-push-009.png",
+        "anim01-fx-push-010.png"
+      ],
+      "frameMs": 20,
+      "durationMs": 220,
+      "pixelWidth": 256,
+      "pixelHeight": 256,
+      "anchorX": 0.5,
+      "anchorY": 0.7,
+      "widthInLocalD": 1.05,
+      "atlas": {
+        "file": "anim01-fx-push-atlas.png",
+        "columns": 5,
+        "rows": 3,
+        "cellWidth": 256,
+        "cellHeight": 256
+      },
+      "frames": [
+        {
+          "file": "anim01-fx-push-000.png",
+          "startMs": 0,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-001.png",
+          "startMs": 20,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-002.png",
+          "startMs": 40,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-003.png",
+          "startMs": 60,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-004.png",
+          "startMs": 80,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-005.png",
+          "startMs": 100,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-006.png",
+          "startMs": 120,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-007.png",
+          "startMs": 140,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-008.png",
+          "startMs": 160,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-009.png",
+          "startMs": 180,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-push-010.png",
+          "startMs": 200,
+          "durationMs": 20
+        }
+      ],
+      "layer": "above_units_below_tactical_hints"
+    },
+    "landing": {
+      "files": [
+        "anim01-fx-landing-000.png",
+        "anim01-fx-landing-001.png",
+        "anim01-fx-landing-002.png",
+        "anim01-fx-landing-003.png",
+        "anim01-fx-landing-004.png"
+      ],
+      "frameMs": 20,
+      "durationMs": 100,
+      "pixelWidth": 256,
+      "pixelHeight": 256,
+      "anchorX": 0.5,
+      "anchorY": 0.7,
+      "widthInLocalD": 1.05,
+      "atlas": {
+        "file": "anim01-fx-landing-atlas.png",
+        "columns": 5,
+        "rows": 1,
+        "cellWidth": 256,
+        "cellHeight": 256
+      },
+      "frames": [
+        {
+          "file": "anim01-fx-landing-000.png",
+          "startMs": 0,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-landing-001.png",
+          "startMs": 20,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-landing-002.png",
+          "startMs": 40,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-landing-003.png",
+          "startMs": 60,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-landing-004.png",
+          "startMs": 80,
+          "durationMs": 20
+        }
+      ],
+      "layer": "above_units_below_tactical_hints"
+    },
+    "capture": {
+      "files": [
+        "anim01-fx-capture-000.png",
+        "anim01-fx-capture-001.png",
+        "anim01-fx-capture-002.png",
+        "anim01-fx-capture-003.png",
+        "anim01-fx-capture-004.png",
+        "anim01-fx-capture-005.png",
+        "anim01-fx-capture-006.png",
+        "anim01-fx-capture-007.png",
+        "anim01-fx-capture-008.png"
+      ],
+      "frameMs": 20,
+      "durationMs": 180,
+      "pixelWidth": 256,
+      "pixelHeight": 256,
+      "anchorX": 0.5,
+      "anchorY": 0.7,
+      "widthInLocalD": 1.05,
+      "atlas": {
+        "file": "anim01-fx-capture-atlas.png",
+        "columns": 5,
+        "rows": 2,
+        "cellWidth": 256,
+        "cellHeight": 256
+      },
+      "frames": [
+        {
+          "file": "anim01-fx-capture-000.png",
+          "startMs": 0,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-001.png",
+          "startMs": 20,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-002.png",
+          "startMs": 40,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-003.png",
+          "startMs": 60,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-004.png",
+          "startMs": 80,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-005.png",
+          "startMs": 100,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-006.png",
+          "startMs": 120,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-007.png",
+          "startMs": 140,
+          "durationMs": 20
+        },
+        {
+          "file": "anim01-fx-capture-008.png",
+          "startMs": 160,
+          "durationMs": 20
+        }
+      ],
+      "layer": "above_units_below_tactical_hints"
+    }
+  },
+  "tokenMage": {
+    "file": "anim01-token-mage.png",
+    "pixelWidth": 512,
+    "pixelHeight": 512,
+    "anchorX": 0.5,
+    "anchorY": 0.663265306122449,
+    "widthInRadii": 2.45,
+    "hasBakedBase": false,
+    "sourceSha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd",
+    "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd"
+  },
+  "portraitMage": {
+    "file": "anim01-portrait-mage.png",
+    "pixelWidth": 512,
+    "pixelHeight": 512,
+    "anchorX": 0.5,
+    "anchorY": 0.8203125,
+    "widthInLocalD": 0.7,
+    "clipY": 0.05859375,
+    "clipHeight": 0.76171875,
+    "hasBakedBase": false,
+    "sourceSha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+    "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+  },
+  "motion": {
+    "displacement": "event from/to projection, smoothstep from80to300ms",
+    "soldierRotationDegrees": 0,
+    "soldierScale": "1 during prepare/push; ground-anchored settleY .94\u21921 during300\u2013400ms",
+    "reducedMotion": "Immediate formal state plus static destination outline; no motion, scaling, loop, or capture reappearance",
+    "settleScaleYKeyframes": [
+      {
+        "ms": 300,
+        "value": 0.94
+      },
+      {
+        "ms": 400,
+        "value": 1
+      }
+    ]
+  },
+  "timingMs": {
+    "prepareStart": 0,
+    "pushStart": 80,
+    "landingStart": 300,
+    "settleEnd": 400,
+    "captureStart": 400,
+    "captureEnd": 580
+  },
+  "sfxCues": [
+    {
+      "event": "confirmedMagicHand",
+      "sound": "mage",
+      "ms": 0
+    },
+    {
+      "event": "piecePushedLanding",
+      "sound": "place",
+      "ms": 300
+    },
+    {
+      "event": "piecesCaptured",
+      "sound": "capture",
+      "ms": 400
+    },
+    {
+      "event": "gameWon",
+      "sound": "victory",
+      "ms": 580
+    }
+  ],
+  "editableSource": "../source/design.json + scripts/anim01-visual-build.py + source/anim01-fx-*.svg"
+}

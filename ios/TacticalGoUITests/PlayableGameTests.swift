@@ -1,6 +1,68 @@
 import XCTest
 
 @MainActor final class PlayableGameTests: XCTestCase {
+    private func cozyConfirm(_ app: XCUIApplication) {
+        for _ in 0..<5 { if app.buttons["playConfirm"].isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        app.buttons["playConfirm"].tap()
+    }
+    func testCozyUnconstrainedNativeDevicePushCaptureAndUndo() {
+        let app = app(["--cozy-demo"])
+        let arena = app.otherElements["playArena"]
+        XCTAssertTrue(arena.waitForExistence(timeout: 10))
+        XCTAssertEqual(arena.frame.width / arena.frame.height, 1024/1152.0, accuracy: 0.02)
+        shot(app, "cozy-native-device-before")
+        tap(app, 4, 3)
+        for _ in 0..<5 { if app.buttons["push-Up"].isHittable { break }; app.swipeUp() }
+        app.buttons["push-Up"].tap(); cozyConfirm(app)
+        XCTAssertTrue(app.staticTexts["黑方獲勝"].waitForExistence(timeout: 10))
+        shot(app, "cozy-native-device-captured")
+        app.buttons["undoOrCancel"].tap()
+        XCTAssertTrue(app.staticTexts["2 AP"].exists)
+        XCTAssertTrue(app.staticTexts["能量 4/6 · 4 氣"].exists)
+        shot(app, "cozy-native-device-undo")
+    }
+    func testCozy390RealPushCapturePreviewUndoAndBackground() {
+        let app = app(["--cozy-demo", "--cozy-390"])
+        let before = app.staticTexts.matching(identifier: "blueResources").allElementsBoundByIndex.map(\.label).joined(separator: " ")
+        XCTAssertFalse(before.isEmpty)
+        shot(app, "cozy-390-7-before")
+        tap(app, 4, 3)
+        for _ in 0..<4 { if app.buttons["push-Up"].isHittable { break }; app.swipeUp() }
+        app.buttons["push-Up"].tap()
+        XCTAssertEqual(app.staticTexts.matching(identifier: "blueResources").allElementsBoundByIndex.map(\.label).joined(separator: " "), before)
+        shot(app, "cozy-390-7-preview")
+        cozyConfirm(app)
+        XCTAssertTrue(app.staticTexts["黑方獲勝"].waitForExistence(timeout: 5))
+        shot(app, "cozy-390-7-captured")
+        app.buttons["undoOrCancel"].tap()
+        XCTAssertEqual(app.staticTexts.matching(identifier: "blueResources").allElementsBoundByIndex.map(\.label).joined(separator: " "), before)
+        XCUIDevice.shared.press(.home); app.activate()
+        XCTAssertEqual(app.staticTexts.matching(identifier: "blueResources").allElementsBoundByIndex.map(\.label).joined(separator: " "), before)
+    }
+    func testCozy320NineDenseAndReducedResult() {
+        let dense = app(["--cozy-demo", "--cozy-nine", "--cozy-320", "--cozy-dense"])
+        let arena = dense.otherElements["playArena"]
+        XCTAssertTrue(arena.waitForExistence(timeout: 10))
+        XCTAssertEqual(arena.frame.width / arena.frame.height, 1024/1152.0, accuracy: 0.02)
+        shot(dense, "cozy-320-9-dense")
+        dense.terminate()
+        let reduced = app(["--cozy-demo", "--cozy-nine", "--cozy-320", "--cozy-reduced"])
+        tap(reduced, 4, 3, size: 9)
+        for _ in 0..<4 { if reduced.buttons["push-Up"].isHittable { break }; reduced.swipeUp() }
+        reduced.buttons["push-Up"].tap(); cozyConfirm(reduced)
+        XCTAssertTrue(reduced.staticTexts["黑方獲勝"].waitForExistence(timeout: 5))
+        reduced.swipeDown(); shot(reduced, "cozy-320-9-reduced-captured")
+    }
+    func testCozyActualVisibleAudioOwnerCancellationAudit() {
+        let app = app(["--cozy-demo", "--cozy-audit", "--cozy-390"])
+        let result = app.staticTexts["cozyAudit"]
+        XCTAssertTrue(result.waitForExistence(timeout: 10))
+        XCTAssertTrue(result.waitForExistence(timeout: 10))
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label BEGINSWITH 'PASS'"), object: result)
+        XCTAssertEqual(XCTWaiter.wait(for: [expectation], timeout: 30), .completed)
+        shot(app, "cozy-real-owner-audit")
+    }
     private func tapTutorial(_ app: XCUIApplication, _ x: Int, _ y: Int) {
         let arena = app.otherElements["onboardArena"]
         XCTAssertTrue(arena.waitForExistence(timeout: 10))

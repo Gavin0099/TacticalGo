@@ -406,3 +406,7 @@ Owner 以實際候選技能趣味及完整對局為下一里程碑。不擴充�
 成果在本地 codex/onboard-01 隔離分支，沒有上傳、合併或發布。工程測試與模擬器操作不能證明零經驗玩家已在五分鐘內理解。
 
 Specification: docs/onboarding/ONBOARD_01.md. Evidence: artifacts/onboard-01/REPORT.md and validation.json.
+
+### 2026-10-10 Cozy-02 整合候選里程碑
+
+Owner 核准的 Cozy-02＋V1.1 B＋B2-B＋原 B-v02 已接入隔離分支 codex/cozy-02-integration，法師 ANIM-01／既有 AUDIO-01 僅呈現成功事件，不變更 Core、Bot、技能或資源。Swift151／0、Golden38組99步、390原生模擬器5／0、SE320內容約束1／0、iPad真機2／0。iPhone真正前景播放器audit17／17；Xcode手機手勢測試因啟動worker失敗仍BLOCK。雙裝置Wi-Fi候選0.7.0（702）安裝成功，最後重開iPadLocked／手機失聯，不當成目前都可啟動。聲畫片為原生錄影＋明示後製音效；美術、人耳聽感及BGM正式整合HOLD。未提交／上傳／合併／發布；此為工程里程碑，非Owner驗收完成。詳 docs/ios/COZY_02_INTEGRATION_PLAN.md 及 artifacts/ios/cozy-02-integration/REPORT.md。

@@ -1,0 +1,49 @@
+{
+  "native-390-final": {
+    "title": "Test - TacticalGo",
+    "result": "Passed",
+    "totalTestCount": 4,
+    "passedTests": 4,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "startTime": 1791566693.944,
+    "finishTime": 1791566754.107
+  },
+  "native-se-r1": {
+    "title": "Test - TacticalGo",
+    "result": "Passed",
+    "totalTestCount": 1,
+    "passedTests": 1,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "startTime": 1791566460.993,
+    "finishTime": 1791566534.929
+  },
+  "native-ipad": {
+    "title": "Test - TacticalGo",
+    "result": "Passed",
+    "totalTestCount": 2,
+    "passedTests": 2,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "startTime": 1791566969.884,
+    "finishTime": 1791567019.769
+  },
+  "native-phone-r2": {
+    "title": "Test - TacticalGo",
+    "result": "Failed",
+    "totalTestCount": 2,
+    "passedTests": 0,
+    "failedTests": 2,
+    "skippedTests": 0,
+    "startTime": 1791567261.466,
+    "finishTime": 1791567271.341
+  },
+  "native-390-delivery": {
+    "result": "Passed",
+    "totalTestCount": 5,
+    "passedTests": 5,
+    "failedTests": 0,
+    "skippedTests": 0
+  }
+}

@@ -1,0 +1,383 @@
+[0/1] Planning build
+Building for debugging...
+[0/14] Write sources
+[2/14] Write swift-version--58304C5D6DBC2206.txt
+[4/6] Compiling TacticalGoMotion Anim01MagicHand.swift
+[5/6] Emitting module TacticalGoMotion
+[6/8] Emitting module TacticalGoMotionTests
+[7/8] Compiling TacticalGoMotionTests Anim01Tests.swift
+[7/9] Write Objects.LinkFileList
+[8/9] Linking TacticalGoCorePackageTests
+Build complete! (19.79s)
+Test Suite 'All tests' started at 2026-10-10 01:28:03.629.
+Test Suite 'TacticalGoCorePackageTests.xctest' started at 2026-10-10 01:28:03.660.
+Test Suite 'Anim01GeometryTests' started at 2026-10-10 01:28:03.660.
+Test Case '-[TacticalGoVisualsTests.Anim01GeometryTests testFittedBoardAspectPitchAndBoundsAtBothReviewSizes]' started.
+Test Case '-[TacticalGoVisualsTests.Anim01GeometryTests testFittedBoardAspectPitchAndBoundsAtBothReviewSizes]' passed (0.045 seconds).
+Test Suite 'Anim01GeometryTests' passed at 2026-10-10 01:28:03.718.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.045 (0.058) seconds
+Test Suite 'Anim01Tests' started at 2026-10-10 01:28:03.718.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testAllDirectionsBothFactionSoldiersUseActualPushedPayload]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testAllDirectionsBothFactionSoldiersUseActualPushedPayload]' passed (0.126 seconds).
+Test Case '-[TacticalGoMotionTests.Anim01Tests testLastAPUsesPrecommitCasterEvenAfterAutomaticTurn]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testLastAPUsesPrecommitCasterEvenAfterAutomaticTurn]' passed (0.004 seconds).
+Test Case '-[TacticalGoMotionTests.Anim01Tests testPausedLastFrameDisplaysCommittedResultWithoutCaptureGhost]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testPausedLastFrameDisplaysCommittedResultWithoutCaptureGhost]' passed (0.005 seconds).
+Test Case '-[TacticalGoMotionTests.Anim01Tests testRejectedActionsHaveNoPresentationOrResourceChange]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testRejectedActionsHaveNoPresentationOrResourceChange]' passed (0.005 seconds).
+Test Case '-[TacticalGoMotionTests.Anim01Tests testReviewedTimingAndReducedMotionNeverMutateFinalState]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testReviewedTimingAndReducedMotionNeverMutateFinalState]' passed (0.016 seconds).
+Test Case '-[TacticalGoMotionTests.Anim01Tests testSharedRealCaptureFixturesPreserveOwnerResourcesAndUndo]' started.
+Test Case '-[TacticalGoMotionTests.Anim01Tests testSharedRealCaptureFixturesPreserveOwnerResourcesAndUndo]' passed (0.024 seconds).
+Test Suite 'Anim01Tests' passed at 2026-10-10 01:28:03.900.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.180 (0.182) seconds
+Test Suite 'BattleMusicTests' started at 2026-10-10 01:28:03.900.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testDuckAttackHoldReleaseAndCancel]' started.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testDuckAttackHoldReleaseAndCancel]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testEscalationRampAndDeescalationStability]' started.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testEscalationRampAndDeescalationStability]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testInterruptedRampDoesNotJump]' started.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testInterruptedRampDoesNotJump]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testTerminalDoesNotReviveOrRestartFade]' started.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testTerminalDoesNotReviveOrRestartFade]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testThreatUsesEitherCommanderActualLiberties]' started.
+Test Case '-[TacticalGoMotionTests.BattleMusicTests testThreatUsesEitherCommanderActualLiberties]' passed (0.011 seconds).
+Test Suite 'BattleMusicTests' passed at 2026-10-10 01:28:03.922.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.018 (0.022) seconds
+Test Suite 'BotPlannerTests' started at 2026-10-10 01:28:03.922.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testCancellationDuringSearchReturnsNoCommittablePlan]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testCancellationDuringSearchReturnsNoCommittablePlan]' passed (0.141 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testCommanderOneLibertyIsRescuedInsteadOfRemoteAttack]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testCommanderOneLibertyIsRescuedInsteadOfRemoteAttack]' passed (6.280 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDenseFullManaMakesUsefulMoveRatherThanRepeatedPurePass]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDenseFullManaMakesUsefulMoveRatherThanRepeatedPurePass]' passed (7.428 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDeterminismCancellationTerminalAndTinyBudget]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDeterminismCancellationTerminalAndTinyBudget]' passed (4.274 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDirectCommanderCaptureOutranksSummon]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testDirectCommanderCaptureOutranksSummon]' passed (0.044 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyActuallyOmitsOpponentSearch]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyActuallyOmitsOpponentSearch]' passed (2.920 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyCancellationAndTinyBudgetRemainSafe]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyCancellationAndTinyBudgetRemainSafe]' passed (0.045 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyCloseCandidateChoiceIsDeterministicAndSafeInOpening]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyCloseCandidateChoiceIsDeterministicAndSafeInOpening]' passed (0.761 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyFormalOneAndTwoAPTurnsAreCompleteLegalAndDeterministic]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyFormalOneAndTwoAPTurnsAreCompleteLegalAndDeterministic]' passed (3.685 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyMageStillUsesSkillThenPlacementForTwoActionWin]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyMageStillUsesSkillThenPlacementForTwoActionWin]' passed (0.095 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyRescuesOneLibertyCommander]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyRescuesOneLibertyCommander]' passed (0.469 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyWarriorAndRogueUseWinningFirstSkills]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testEasyWarriorAndRogueUseWinningFirstSkills]' passed (0.178 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testExplicitStandardPreservesDefaultPlan]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testExplicitStandardPreservesDefaultPlan]' passed (5.165 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testIncompleteReplyNeverReceivesSafeComparisonScore]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testIncompleteReplyNeverReceivesSafeComparisonScore]' passed (0.050 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testMagicHandThenPlacementFindsTwoActionDecapitation]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testMagicHandThenPlacementFindsTwoActionDecapitation]' passed (0.087 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testRogueSwapCapturesEnemyGroupAndKeepsHeroSafe]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testRogueSwapCapturesEnemyGroupAndKeepsHeroSafe]' passed (0.057 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testSkillOnceResourcesAndDomainRejectsUnsafeActionAreRespected]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testSkillOnceResourcesAndDomainRejectsUnsafeActionAreRespected]' passed (1.900 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testSummonsUsefulHeroAtOpeningInsteadOfRandomRemoteStone]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testSummonsUsefulHeroAtOpeningInsteadOfRandomRemoteStone]' passed (0.510 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testTwoActionTacticSurvivesNarrowOrdinaryBeam]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testTwoActionTacticSurvivesNarrowOrdinaryBeam]' passed (0.037 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testTwoOrdinaryActionsCaptureCommander]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testTwoOrdinaryActionsCaptureCommander]' passed (0.029 seconds).
+Test Case '-[TacticalGoBotTests.BotPlannerTests testWarriorUsesBastionToCaptureTwoLibertyCommanderWithOneAP]' started.
+Test Case '-[TacticalGoBotTests.BotPlannerTests testWarriorUsesBastionToCaptureTwoLibertyCommanderWithOneAP]' passed (0.027 seconds).
+Test Suite 'BotPlannerTests' passed at 2026-10-10 01:28:38.112.
+	 Executed 21 tests, with 0 failures (0 unexpected) in 34.181 (34.190) seconds
+Test Suite 'CandidateRecordTests' started at 2026-10-10 01:28:38.112.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateCopyPreservesAllStepsAndMetadataWithNewIdentityBothSizes]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateCopyPreservesAllStepsAndMetadataWithNewIdentityBothSizes]' passed (0.014 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateCopyValidatesSourceReceiptsEventsAndActorBeforeCopying]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateCopyValidatesSourceReceiptsEventsAndActorBeforeCopying]' passed (0.008 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateRedeployOfficialReplayUndoAPManaOnceAndRealSuperko]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateRedeployOfficialReplayUndoAPManaOnceAndRealSuperko]' passed (0.014 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateRulesExplicitlyEnableRedeployWithoutExchange]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testCandidateRulesExplicitlyEnableRedeployWithoutExchange]' passed (0.000 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testMalformedRedeployWireAndTamperedCandidateReceiptRejected]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testMalformedRedeployWireAndTamperedCandidateReceiptRejected]' passed (0.018 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testOriginalRulesRejectRedeployAndCannotImportCandidateReceipts]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testOriginalRulesRejectRedeployAndCannotImportCandidateReceipts]' passed (0.003 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testR2ExchangeSourceRejectsCandidateConversionWithoutRewriting]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testR2ExchangeSourceRejectsCandidateConversionWithoutRewriting]' passed (0.004 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testRepeatedCandidateCopyThrowsAlreadyCandidate]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testRepeatedCandidateCopyThrowsAlreadyCandidate]' passed (0.002 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testSavingCandidateLeavesOriginalDiskBytesUntouchedAndReloadsBoth]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testSavingCandidateLeavesOriginalDiskBytesUntouchedAndReloadsBoth]' passed (0.012 seconds).
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testStableV1RedeployWireAndOldActionsNeedNoMigration]' started.
+Test Case '-[TacticalGoRecordsTests.CandidateRecordTests testStableV1RedeployWireAndOldActionsNeedNoMigration]' passed (0.002 seconds).
+Test Suite 'CandidateRecordTests' passed at 2026-10-10 01:28:38.190.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.077 (0.078) seconds
+Test Suite 'CombatFeedbackTests' started at 2026-10-10 01:28:38.190.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testCandidateRedeployUsesSuccessfulMovementCueAndRejectsWithoutSound]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testCandidateRedeployUsesSuccessfulMovementCueAndRejectsWithoutSound]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testDangerPlaysOnlyWhenCommanderEntersOneLiberty]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testDangerPlaysOnlyWhenCommanderEntersOneLiberty]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testIllegalAndInsufficientManaProduceNoSuccessSounds]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testIllegalAndInsufficientManaProduceNoSuccessSounds]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testMagicHandCommanderCaptureAndResourcesFromReviewedPosition]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testMagicHandCommanderCaptureAndResourcesFromReviewedPosition]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNonCapturePushNeverPlaysCaptureOrVictoryAndReducedMotionKeepsSound]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNonCapturePushNeverPlaysCaptureOrVictoryAndReducedMotionKeepsSound]' passed (0.000 seconds).
+Test Suite 'CombatFeedbackTests' passed at 2026-10-10 01:28:38.195.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'CoreTests' started at 2026-10-10 01:28:38.195.
+Test Case '-[TacticalGoCoreTests.CoreTests testCaptureEventPayloadAndImmediateWin]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testCaptureEventPayloadAndImmediateWin]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testMalformedSetupFailsExplicitly]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testMalformedSetupFailsExplicitly]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testProjectionRoundTripsAndRejectsOutsideBoard]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testProjectionRoundTripsAndRejectsOutsideBoard]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testSealPayloadUndoAndLiberties]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testSealPayloadUndoAndLiberties]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testSevenAndNineBoardsUndoAndReplay]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testSevenAndNineBoardsUndoAndReplay]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testSharedGoldenFixtures]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testSharedGoldenFixtures]' passed (0.025 seconds).
+Test Case '-[TacticalGoCoreTests.CoreTests testSkillGateFailureDoesNotSpendOrEmit]' started.
+Test Case '-[TacticalGoCoreTests.CoreTests testSkillGateFailureDoesNotSpendOrEmit]' passed (0.000 seconds).
+Test Suite 'CoreTests' passed at 2026-10-10 01:28:38.223.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.027 (0.028) seconds
+Test Suite 'GroundedLegPoseTests' started at 2026-10-10 01:28:38.223.
+Test Case '-[TacticalGoMotionTests.GroundedLegPoseTests testForwardKinematicsKeepsPlantedAnkleAndFlatFoot]' started.
+Test Case '-[TacticalGoMotionTests.GroundedLegPoseTests testForwardKinematicsKeepsPlantedAnkleAndFlatFoot]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.GroundedLegPoseTests testRestAndRejectedNonFiniteOrExcessiveParametersStayBounded]' started.
+Test Case '-[TacticalGoMotionTests.GroundedLegPoseTests testRestAndRejectedNonFiniteOrExcessiveParametersStayBounded]' passed (0.000 seconds).
+Test Suite 'GroundedLegPoseTests' passed at 2026-10-10 01:28:38.223.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'IdlePoseTests' started at 2026-10-10 01:28:38.223.
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testHandAuthoredQuarterPhaseAndExactRestSeams]' started.
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testHandAuthoredQuarterPhaseAndExactRestSeams]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testIndependentForwardKinematicsKeepsFootFlatThroughWholeCycle]' started.
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testIndependentForwardKinematicsKeepsFootFlatThroughWholeCycle]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testNonFiniteOutOfRangeAndNoHeroRemainAtRest]' started.
+Test Case '-[TacticalGoMotionTests.IdlePoseTests testNonFiniteOutOfRangeAndNoHeroRemainAtRest]' passed (0.000 seconds).
+Test Suite 'IdlePoseTests' passed at 2026-10-10 01:28:38.225.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'MagicHandTests' started at 2026-10-10 01:28:38.225.
+Test Case '-[TacticalGoCoreTests.MagicHandTests testFriendlyAndEnemyPushPreserveOwnershipAndUndoCompleteState]' started.
+Test Case '-[TacticalGoCoreTests.MagicHandTests testFriendlyAndEnemyPushPreserveOwnershipAndUndoCompleteState]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.MagicHandTests testIllegalDirectionAndOccupiedDestinationDoNotMutateOrSpend]' started.
+Test Case '-[TacticalGoCoreTests.MagicHandTests testIllegalDirectionAndOccupiedDestinationDoNotMutateOrSpend]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.MagicHandTests testReviewedWindowsGameplayFixtures]' started.
+Test Case '-[TacticalGoCoreTests.MagicHandTests testReviewedWindowsGameplayFixtures]' passed (0.028 seconds).
+Test Suite 'MagicHandTests' passed at 2026-10-10 01:28:38.254.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.029 (0.029) seconds
+Test Suite 'MatchExampleTests' started at 2026-10-10 01:28:38.254.
+Test Case '-[TacticalGoMotionTests.MatchExampleTests testRogueSwapThenOppositeTeamWinsWithSurvivingHero]' started.
+Test Case '-[TacticalGoMotionTests.MatchExampleTests testRogueSwapThenOppositeTeamWinsWithSurvivingHero]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.MatchExampleTests testWarriorMageFromOpeningThroughSealExpiryAndTwoPieceVictory]' started.
+Test Case '-[TacticalGoMotionTests.MatchExampleTests testWarriorMageFromOpeningThroughSealExpiryAndTwoPieceVictory]' passed (0.004 seconds).
+Test Suite 'MatchExampleTests' passed at 2026-10-10 01:28:38.260.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+Test Suite 'MotionPlanTests' started at 2026-10-10 01:28:38.260.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testAllReviewPositionsAreLegalAndMatchIndependentStoryBeats]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testAllReviewPositionsAreLegalAndMatchIndependentStoryBeats]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testBastionHasOneWindupAndTwoSynchronizedDrops]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testBastionHasOneWindupAndTwoSynchronizedDrops]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCapeFollowThroughHasDelayedPeakAndSettlesWithoutInwardSwing]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCapeFollowThroughHasDelayedPeakAndSettlesWithoutInwardSwing]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCaptureAndWinFollowLandingWithoutInventingPieces]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCaptureAndWinFollowLandingWithoutInventingPieces]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCommanderCaptureAtTurnLimitStillShowsVictory]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCommanderCaptureAtTurnLimitStillShowsVictory]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCurveEndpointsAndOutOfRangeValuesSettleExactly]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testCurveEndpointsAndOutOfRangeValuesSettleExactly]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testDrawWaitsForTheFinalPlacementAndRejectsFurtherPlayback]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testDrawWaitsForTheFinalPlacementAndRejectsFurtherPlayback]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testExplicitLastTurnDrawHasNoNewPlayerPulse]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testExplicitLastTurnDrawHasNoNewPlayerPulse]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testIllegalActionAndReducedMotionNeverProducePlayback]' started.
+Test Case '-[TacticalGoMotionTests.MotionPlanTests testIllegalActionAndReducedMotionNeverProducePlayback]' passed (0.000 seconds).
+Test Suite 'MotionPlanTests' passed at 2026-10-10 01:28:38.265.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'OnboardingTests' started at 2026-10-10 01:28:38.265.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testBreathingRequiresObservationAndAcceptsAlternateConnection]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testBreathingRequiresObservationAndAcceptsAlternateConnection]' passed (0.007 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCapturePreviewHasExactPayloadAndNoSpendUntilCommit]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCapturePreviewHasExactPayloadAndNoSpendUntilCommit]' passed (0.003 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCornerEdgeAndDiagonalAreCoreQueries]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCornerEdgeAndDiagonalAreCoreQueries]' passed (0.000 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCorruptVersionForgedCompletionAndIllegalHistoryRejectWithoutOverwrite]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testCorruptVersionForgedCompletionAndIllegalHistoryRejectWithoutOverwrite]' passed (0.003 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testEntireCurriculumRestoresMidLessonAndFinalCompletion]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testEntireCurriculumRestoresMidLessonAndFinalCompletion]' passed (0.004 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testEveryFixtureIsOriginalAndEveryExistingGroupHasAir]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testEveryFixtureIsOriginalAndEveryExistingGroupHasAir]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testFormalOpeningAndAlternateLegalPointUsesFirstTurnContract]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testFormalOpeningAndAlternateLegalPointUsesFirstTurnContract]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testGoalActuallyCapturesCommanderAndWins]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testGoalActuallyCapturesCommanderAndWins]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testHandReviewedSharedSixLibertiesThenEight]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testHandReviewedSharedSixLibertiesThenEight]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testIllegalActionDoesNotSpendEmitOrWriteJournal]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testIllegalActionDoesNotSpendEmitOrWriteJournal]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testRepositoryCannotOverwriteFormalRecordAndReplaysProgress]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testRepositoryCannotOverwriteFormalRecordAndReplaysProgress]' passed (0.004 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testRescueLastLibertyBecomesThreeWithoutChangingWinRules]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testRescueLastLibertyBecomesThreeWithoutChangingWinRules]' passed (0.001 seconds).
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testUndoRestoresResourcesHistoryAndCompletionThenReapplySameResult]' started.
+Test Case '-[TacticalGoOnboardingTests.OnboardingTests testUndoRestoresResourcesHistoryAndCompletionThenReapplySameResult]' passed (0.001 seconds).
+Test Suite 'OnboardingTests' passed at 2026-10-10 01:28:38.293.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.027 (0.028) seconds
+Test Suite 'PassHistoryTests' started at 2026-10-10 01:28:38.294.
+Test Case '-[TacticalGoBotTests.PassHistoryTests testDangerousSealedPositionStillPassesRatherThanSacrificingCommander]' started.
+Test Case '-[TacticalGoBotTests.PassHistoryTests testDangerousSealedPositionStillPassesRatherThanSacrificingCommander]' passed (0.305 seconds).
+Test Case '-[TacticalGoBotTests.PassHistoryTests testLegalRootValuesAreRecordedAndSafeMidgameProgressIsNotBlanketBanned]' started.
+Test Case '-[TacticalGoBotTests.PassHistoryTests testLegalRootValuesAreRecordedAndSafeMidgameProgressIsNotBlanketBanned]' passed (1.561 seconds).
+Test Case '-[TacticalGoBotTests.PassHistoryTests testMidAndLateGamePlansAreDeterministicLegalAndPreserveCommanderAndHero]' started.
+Test Case '-[TacticalGoBotTests.PassHistoryTests testMidAndLateGamePlansAreDeterministicLegalAndPreserveCommanderAndHero]' passed (17.110 seconds).
+Test Suite 'PassHistoryTests' passed at 2026-10-10 01:28:57.269.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 18.975 (18.976) seconds
+Test Suite 'R2Tests' started at 2026-10-10 01:28:57.269.
+Test Case '-[TacticalGoCoreTests.R2Tests testCandidateGatesAndWarriorSealedOrDuplicateTarget]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testCandidateGatesAndWarriorSealedOrDuplicateTarget]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testDefaultsRetainOriginalRulesAndSeparateSwitches]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testDefaultsRetainOriginalRulesAndSeparateSwitches]' passed (0.008 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMageDestinationIdentityAndDirectionBoundariesRejectWithoutEffects]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMageDestinationIdentityAndDirectionBoundariesRejectWithoutEffects]' passed (0.002 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMageEmptyPushAndSealedMovementRetainOldBehavior]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMageEmptyPushAndSealedMovementRetainOldBehavior]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMageExchangeEitherTargetOwnerBothSizesAndAllDirections]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMageExchangeEitherTargetOwnerBothSizesAndAllDirections]' passed (0.018 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMageRemoteCutCaptureWinEventsAndRogueDifference]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMageRemoteCutCaptureWinEventsAndRogueDifference]' passed (0.020 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMageSuicideAndExactSuperkoDoNotMutateOrSpend]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMageSuicideAndExactSuperkoDoNotMutateOrSpend]' passed (0.002 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testMixedWarriorThenEnemyMageResponseSeparatesBAndD]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testMixedWarriorThenEnemyMageResponseSeparatesBAndD]' passed (0.007 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorCandidateSuicideAndKoAreAtomicRejections]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorCandidateSuicideAndKoAreAtomicRejections]' passed (0.007 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorEventsResourcesOriginalStateAndUndoOnSevenAndNine]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorEventsResourcesOriginalStateAndUndoOnSevenAndNine]' passed (0.016 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorPreCastFrontierDoesNotExtendViaFirstStoneOrDisconnectedGroup]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorPreCastFrontierDoesNotExtendViaFirstStoneOrDisconnectedGroup]' passed (0.093 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorRemoteThreatCanBePreemptedByOneOrdinaryPlacement]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorRemoteThreatCanBePreemptedByOneOrdinaryPlacement]' passed (0.204 seconds).
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorTwoRemoteLibertiesTakeOneSkillButTwoOrdinaryPlacements]' started.
+Test Case '-[TacticalGoCoreTests.R2Tests testWarriorTwoRemoteLibertiesTakeOneSkillButTwoOrdinaryPlacements]' passed (0.012 seconds).
+Test Suite 'R2Tests' passed at 2026-10-10 01:28:57.662.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.389 (0.393) seconds
+Test Suite 'R3PlayableTests' started at 2026-10-10 01:28:57.662.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testCandidateLastAPHandsOffThroughStandardSession]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testCandidateLastAPHandsOffThroughStandardSession]' passed (0.010 seconds).
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testDefaultRejectsNewActionAndCandidateEnumerationKeepsAllOriginalActions]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testDefaultRejectsNewActionAndCandidateEnumerationKeepsAllOriginalActions]' passed (2.943 seconds).
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testEnumerationGateCannotExposeIllegalSkills]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testEnumerationGateCannotExposeIllegalSkills]' passed (0.125 seconds).
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testOriginalMagicHandRemainsAndBothMageActionsShareOneSkill]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testOriginalMagicHandRemainsAndBothMageActionsShareOneSkill]' passed (0.019 seconds).
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testPersistedActionDelegatesExactStateEventsAndAtomicRejections]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testPersistedActionDelegatesExactStateEventsAndAtomicRejections]' passed (0.017 seconds).
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testUndoAndTurnReturnRestoreExactKoHistoryForRedeployment]' started.
+Test Case '-[TacticalGoCoreTests.R3PlayableTests testUndoAndTurnReturnRestoreExactKoHistoryForRedeployment]' passed (0.001 seconds).
+Test Suite 'R3PlayableTests' passed at 2026-10-10 01:29:00.779.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 3.115 (3.117) seconds
+Test Suite 'R3Tests' started at 2026-10-10 01:29:00.779.
+Test Case '-[TacticalGoCoreTests.R3Tests testDefaultsDisabledAndStandardEnumerationUnchanged]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testDefaultsDisabledAndStandardEnumerationUnchanged]' passed (2.031 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testDenseBothColorsBothBoardSizesIdentityResourcesAndEventContract]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testDenseBothColorsBothBoardSizesIdentityResourcesAndEventContract]' passed (0.023 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testExactKoRejectsCompleteStateAndPreviewDoesNotPolluteHistory]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testExactKoRejectsCompleteStateAndPreviewDoesNotPolluteHistory]' passed (0.018 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testFullBoardHasNoCandidateDestinationNotAReachableGameplayFixture]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testFullBoardHasNoCandidateDestinationNotAReachableGameplayFixture]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testOwnerScreenshotWarriorG5G7RequiresConnectedRangeAndCapturesG6]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testOwnerScreenshotWarriorG5G7RequiresConnectedRangeAndCapturesG6]' passed (0.004 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testPreCastBoundaryAllowsSourceOnlyNeighborAndSplitsStillHaveLiberties]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testPreCastBoundaryAllowsSourceOnlyNeighborAndSplitsStillHaveLiberties]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testPreExistingDeadFriendlyGroupStillRejectedBySharedSettlement]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testPreExistingDeadFriendlyGroupStillRejectedBySharedSettlement]' passed (0.000 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testRemoteCommanderCaptureEventOrderAndOnePlacementDefense]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testRemoteCommanderCaptureEventOrderAndOnePlacementDefense]' passed (0.154 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testSealsLimitPlacementNotCandidateMovementAndLastApHandsOff]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testSealsLimitPlacementNotCandidateMovementAndLastApHandsOff]' passed (0.006 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testSharedGatesAllRejectionsAreAtomic]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testSharedGatesAllRejectionsAreAtomic]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testSourceIdentityRangeConnectionAndDestinationBoundaries]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testSourceIdentityRangeConnectionAndDestinationBoundaries]' passed (0.001 seconds).
+Test Case '-[TacticalGoCoreTests.R3Tests testSourceWithdrawalCanGiveEnemyLibertySoNoSequentialCapture]' started.
+Test Case '-[TacticalGoCoreTests.R3Tests testSourceWithdrawalCanGiveEnemyLibertySoNoSequentialCapture]' passed (0.001 seconds).
+Test Suite 'R3Tests' passed at 2026-10-10 01:29:03.023.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 2.242 (2.244) seconds
+Test Suite 'RecordTests' started at 2026-10-10 01:29:03.023.
+Test Case '-[TacticalGoRecordsTests.RecordTests testCommanderCaptureTerminalEventsAndPostGameRejection]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testCommanderCaptureTerminalEventsAndPostGameRejection]' passed (0.007 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testDiskRestartAndCorruptFilesPreserved]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testDiskRestartAndCorruptFilesPreserved]' passed (0.005 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testEventPayloadMismatchRejectedEvenWithSameBoard]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testEventPayloadMismatchRejectedEvenWithSameBoard]' passed (0.002 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testFailedWriteLeavesPreviousSaveIntact]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testFailedWriteLeavesPreviousSaveIntact]' passed (0.004 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testReplayDoesNotChangeLiveSessionOrRules]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testReplayDoesNotChangeLiveSessionOrRules]' passed (0.003 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testSevenNineRoundTripAndUndoPreserveFullState]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testSevenNineRoundTripAndUndoPreserveFullState]' passed (0.005 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testSkillReceiptResourceAndHistoryRoundTrip]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testSkillReceiptResourceAndHistoryRoundTrip]' passed (0.006 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testUndoTruncationCannotResurrectComputerMove]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testUndoTruncationCannotResurrectComputerMove]' passed (0.002 seconds).
+Test Case '-[TacticalGoRecordsTests.RecordTests testUnknownVersionInvalidActionAndReceiptRejected]' started.
+Test Case '-[TacticalGoRecordsTests.RecordTests testUnknownVersionInvalidActionAndReceiptRejected]' passed (0.001 seconds).
+Test Suite 'RecordTests' passed at 2026-10-10 01:29:03.060.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.035 (0.037) seconds
+Test Suite 'TutorialTests' started at 2026-10-10 01:29:03.060.
+Test Case '-[TacticalGoContentTests.TutorialTests testAlternateMagicHandRescueConnectsThreatenedRegionWithThreeLiberties]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testAlternateMagicHandRescueConnectsThreatenedRegionWithThreeLiberties]' passed (0.015 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testCannotWaitForAnotherPlayerTurnThenPass]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testCannotWaitForAnotherPlayerTurnThenPass]' passed (0.026 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testConnectedRescueWithoutAnySkillStillFails]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testConnectedRescueWithoutAnySkillStillFails]' passed (0.014 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testDelayedSecondActionDoesNotPassTwoActionTurn]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testDelayedSecondActionDoesNotPassTwoActionTurn]' passed (0.013 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testEveryBranchIndependentlyRunsCoreAndMatchesObservableGoal]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testEveryBranchIndependentlyRunsCoreAndMatchesObservableGoal]' passed (0.193 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testExactTeachingInvariantsAreCoreQueries]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testExactTeachingInvariantsAreCoreQueries]' passed (0.021 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testInstructionsAndOptionalCanonicalHelpAreSeparate]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testInstructionsAndOptionalCanonicalHelpAreSeparate]' passed (0.012 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testLegalSkillAndRemotePlacementRejectWrongGroupOutcome]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testLegalSkillAndRemotePlacementRejectWrongGroupOutcome]' passed (0.029 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testMageAlternateSplitHasDifferentPushCaptureAndDistinctCoreGroups]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testMageAlternateSplitHasDifferentPushCaptureAndDistinctCoreGroups]' passed (0.015 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testMalformedSourceFailsRatherThanLoadingAnUnreachableDiagram]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testMalformedSourceFailsRatherThanLoadingAnUnreachableDiagram]' passed (0.011 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testOccupiedAndOutOfBoundsRejectionCannotAdvanceProgress]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testOccupiedAndOutOfBoundsRejectionCannotAdvanceProgress]' passed (0.026 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testRogueFinishNeedsTwoActionsAndCoreCommanderCapture]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testRogueFinishNeedsTwoActionsAndCoreCommanderCapture]' passed (0.017 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testSixOfficialSourcesReplayAndKeepBothCommandersAlive]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testSixOfficialSourcesReplayAndKeepBothCommandersAlive]' passed (0.043 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testSkillConsumesOneAPManaAndCannotBeRepeatedSameTurn]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testSkillConsumesOneAPManaAndCannotBeRepeatedSameTurn]' passed (0.037 seconds).
+Test Case '-[TacticalGoContentTests.TutorialTests testWarriorRescueCounterReallyCapturesHeroThroughCore]' started.
+Test Case '-[TacticalGoContentTests.TutorialTests testWarriorRescueCounterReallyCapturesHeroThroughCore]' passed (0.022 seconds).
+Test Suite 'TutorialTests' passed at 2026-10-10 01:29:03.559.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 0.494 (0.499) seconds
+Test Suite 'VisualPackTests' started at 2026-10-10 01:29:03.559.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testConflictingMetadataForSameResourceIsRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testConflictingMetadataForSameResourceIsRejected]' passed (0.002 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testInvalidSizesAnchorsAndPathNamesAreRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testInvalidSizesAnchorsAndPathNamesAreRejected]' passed (0.001 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testManifestRoundTripWithBoardAndSeparateFactionSprites]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testManifestRoundTripWithBoardAndSeparateFactionSprites]' passed (0.002 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testOriginalTokenAnchorRetainsExistingOffset]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testOriginalTokenAnchorRetainsExistingOffset]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testRectangularCanvasAnchorUsesHeightAndPreservesAspectRatio]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testRectangularCanvasAnchorUsesHeightAndPreservesAspectRatio]' passed (0.001 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testUnknownSchemaProjectionAndIncompleteClassesAreRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testUnknownSchemaProjectionAndIncompleteClassesAreRejected]' passed (0.001 seconds).
+Test Suite 'VisualPackTests' passed at 2026-10-10 01:29:03.567.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'TacticalGoCorePackageTests.xctest' passed at 2026-10-10 01:29:03.567.
+	 Executed 151 tests, with 0 failures (0 unexpected) in 59.857 (59.907) seconds
+Test Suite 'All tests' passed at 2026-10-10 01:29:03.567.
+	 Executed 151 tests, with 0 failures (0 unexpected) in 59.857 (59.938) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.003 seconds.

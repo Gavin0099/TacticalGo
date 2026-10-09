@@ -5,6 +5,8 @@ import TacticalGoMotion
 /// A committed action receipt for presentation. New previews never create receipts.
 struct BoardPlayback: Sendable {
     let id = UUID()
+    let startedAt = Date()
+    let startedUptime = ProcessInfo.processInfo.systemUptime
     let before: GameState
     let action: GameAction
     let outcome: ActionOutcome

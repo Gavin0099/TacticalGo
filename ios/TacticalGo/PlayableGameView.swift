@@ -1,5 +1,6 @@
 import SwiftUI
 import TacticalGoCore
+import TacticalGoMotion
 import TacticalGoBot
 import TacticalGoRecords
 
@@ -60,6 +61,11 @@ enum PracticeLesson: String, CaseIterable, Identifiable {
 struct PlayableGameView: View {
     @State private var store = GameStore()
     @State private var visuals = GameVisualAssets.original
+    @State private var cozyAuditStatus = "RUNNING"
+    @State private var cozyAuditStarted = false
+    @State private var requestedWidth: CGFloat?
+    @State private var cozyReduced = false
+    @State private var cozyAssets = try? CozyAssets.load()
     @State private var visualFixture = false
     @State private var inMatch = false
     @State private var one: HeroClass = .warrior
@@ -93,11 +99,11 @@ struct PlayableGameView: View {
     private var complete: Bool { lesson?.isComplete(store.state) == true }
     var body: some View {
         GeometryReader { geo in
-            Group { if inMatch { match(size: geo.size) } else { lobby(size: geo.size) } }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Group { if inMatch { match(size: CGSize(width: requestedWidth ?? geo.size.width, height: geo.size.height)) } else { lobby(size: geo.size) } }
+                .frame(width: requestedWidth).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .background(LinearGradient(colors: [Color(red: 0.12, green: 0.18, blue: 0.21), Color(red: 0.20, green: 0.28, blue: 0.28)], startPoint: .top, endPoint: .bottom).ignoresSafeArea())
-        .foregroundStyle(.white).preferredColorScheme(.dark)
+        .background(LinearGradient(colors: [Cozy.bg, Cozy.selected], startPoint: .top, endPoint: .bottom).ignoresSafeArea())
+        .foregroundStyle(Cozy.ink).preferredColorScheme(.light)
         .sheet(isPresented: $showRules) { rules }
         .fullScreenCover(isPresented: $showOnboarding) { OnboardingView { showOnboarding = false } }
         .sheet(isPresented: $showGrid) { accessibleGrid }
@@ -106,9 +112,11 @@ struct PlayableGameView: View {
             Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
+        .onChange(of: reduceMotion) { _, _ in store.cancelPresentation() }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
         .onChange(of: scenePhase) { _, phase in
             store.setSceneAudioActive(phase == .active)
+            if phase == .active { startCozyAuditIfActive() }
             if phase == .active && inMatch { store.scheduleComputerTurn() }
             else { store.cancelBotWork() }
         }
@@ -133,6 +141,9 @@ struct PlayableGameView: View {
         }
         .overlay(alignment: .top) {
             #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--cozy-audit") {
+                Text(cozyAuditStatus).accessibilityIdentifier("cozyAudit").padding(4).background(Cozy.card)
+            }
             if ProcessInfo.processInfo.arguments.contains("--integrated-audio-audit") {
                 Text(audioAuditStatus).accessibilityIdentifier("integratedAudioAudit").padding().background(Color.ink)
             }
@@ -159,6 +170,23 @@ struct PlayableGameView: View {
                 visuals = .connectionFixture(invalid: args.contains("--visual-pack-invalid-fixture"))
             }
             if let i = args.firstIndex(of: "--practice"), args.indices.contains(i + 1), let value = PracticeLesson.allCases.first(where: { $0.rawValue == args[i + 1] }) { startPractice(value) }
+            requestedWidth = args.contains("--cozy-320") ? 320 : args.contains("--cozy-390") ? 390 : nil
+            cozyReduced = args.contains("--cozy-reduced")
+            if args.contains("--cozy-demo") {
+                store.leaveMatch(); store.size = args.contains("--cozy-nine") ? 9 : 7
+                store.session = GameSession(try! TacticalGoMotion.Anim01Fixture.state(size: store.size, capture: !args.contains("--cozy-no-capture")))
+                one = .mage; two = .warrior; store.mode = .skill; inMatch = true
+                store.setMatchAudioActive(true)
+            }
+            if args.contains("--cozy-dense") {
+                let url = Bundle.main.url(forResource: "scenes", withExtension: "json", subdirectory: "Cozy")!
+                let scenes = try! JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [[String: Any]]
+                let scene = scenes.first { ($0["size"] as? Int) == store.size && ($0["phase"] as? String) == "dense" }!
+                func hero(_ key: String) -> HeroClass { ["mage": .mage, "warrior": .warrior, "rogue": .rogue][scene[key] as! String]! }
+                store.session = GameSession(try! GameSetup.fromDiagram(config: .board(size: store.size), diagram: scene["diagram"] as! String,
+                    classOne: hero("hero"), classTwo: hero("enemyHero"), manaOne: scene["mana"] as! Int, manaTwo: scene["enemyMana"] as! Int,
+                    ap: scene["ap"] as! Int, ply: scene["ply"] as! Int))
+            }
             if args.contains("--play-nine") { boardSize = 9; startMatch() }
             if args.contains("--play-win") { startMatch(); store.loadWinningTurn() }
             if args.contains("--play-draw") { startMatch(); store.loadLastTurn() }
@@ -167,7 +195,15 @@ struct PlayableGameView: View {
                 lesson = nil; inMatch = true
             }
             #endif
+            startCozyAuditIfActive()
         }
+    }
+    private func startCozyAuditIfActive() {
+        #if DEBUG
+        guard scenePhase == .active, !cozyAuditStarted, ProcessInfo.processInfo.arguments.contains("--cozy-audit") else { return }
+        cozyAuditStarted = true
+        Task { cozyAuditStatus = await CozyAudit.run(store: store) }
+        #endif
     }
     private func lobby(size: CGSize) -> some View {
         let tablet = size.width >= 600
@@ -177,7 +213,7 @@ struct PlayableGameView: View {
                 lobbyTitle
                 if let record = store.resumableRecord {
                     Button { resumeRecord(record) } label: { Label("續玩上局", systemImage: "play.circle").frame(maxWidth:.infinity,minHeight:40) }
-                        .buttonStyle(.bordered).accessibilityIdentifier("resumeMatch")
+                        .buttonStyle(CozyButton()).accessibilityIdentifier("resumeMatch")
                 }
                 Button("存局與棋譜") { store.refreshRecords(); showRecords = true }.accessibilityIdentifier("recordLibrary")
                 if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
@@ -185,7 +221,7 @@ struct PlayableGameView: View {
                     HStack(alignment: .top, spacing: 30) {
                         VStack(spacing: 18) { lobbySettings; boardSizePicker }
                             .padding(20).frame(width: 320)
-                            .background(.white.opacity(0.05), in: RoundedRectangle(cornerRadius: 22))
+                            .background(Cozy.ink.opacity(0.05), in: RoundedRectangle(cornerRadius: 22))
                         VStack(spacing: 18) { heroChoices(portraitHeight: 180); chosenSkill; matchClasses }
                     }
                 } else {
@@ -202,8 +238,8 @@ struct PlayableGameView: View {
     }
     private var lobbyTitle: some View {
                 VStack(spacing: 5) {
-                    Text("TACTICAL GO").font(.system(size: 29, weight: .black, design: .rounded)).foregroundStyle(Color.gold)
-                    Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(.white.opacity(0.75))
+                    Text("TACTICAL GO").font(.system(size: 29, weight: .black, design: .rounded)).foregroundStyle(Cozy.muted)
+                    Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(Cozy.ink.opacity(0.75))
                 }.padding(.top, 14)
     }
     private var lobbySettings: some View {
@@ -222,14 +258,14 @@ struct PlayableGameView: View {
                         Text("標準").tag(BotDifficulty.standard)
                     }.pickerStyle(.segmented).accessibilityIdentifier("botDifficulty")
                     Text(store.botDifficulty == .easy ? "適合先熟悉三職技能與主將攻守。" : "會預判你的反擊，適合挑戰。")
-                        .font(.system(size: 12)).foregroundStyle(.white.opacity(0.65))
+                        .font(.system(size: 12)).foregroundStyle(Cozy.ink.opacity(0.65))
                 }
                 Picker("技能規則", selection: $selectedRules) {
                     Text("原版").tag(RecordRules.original)
                     Text("候選技能").tag(RecordRules.redeployment)
                 }.pickerStyle(.segmented).accessibilityIdentifier("matchRules")
                 Text(selectedRules == .redeployment ? "戰士沿棋群築壘；法師可調度己兵。費用與每回合限制相同。" : "原版技能；你也可以保留原局，建立候選續玩副本。")
-                    .font(.caption).foregroundStyle(.white.opacity(0.65))
+                    .font(.caption).foregroundStyle(Cozy.ink.opacity(0.65))
                 Picker("選擇哪一方", selection: $choosing) {
                     Text(singlePlayer ? (humanSide == .one ? "你 · 黑方 ●" : "電腦 · 黑方 ●") : "黑方 ●").tag(Player.one)
                     Text(singlePlayer ? (humanSide == .two ? "你 · 白方 ○" : "電腦 · 白方 ○") : "白方 ○").tag(Player.two)
@@ -248,8 +284,8 @@ struct PlayableGameView: View {
                                 Text(h.title).font(.system(size: 17, weight: .bold))
                                 Text(h.skillTitle).font(.system(size: 12, weight: .semibold)).lineLimit(1)
                             }.frame(maxWidth: .infinity).padding(.vertical, 12)
-                                .background(selected ? Color.gold.opacity(0.19) : .white.opacity(0.05), in: RoundedRectangle(cornerRadius: 18))
-                                .overlay(RoundedRectangle(cornerRadius: 18).stroke(selected ? Color.gold : .white.opacity(0.15), lineWidth: selected ? 2 : 1))
+                                .background(selected ? Color.gold.opacity(0.19) : Cozy.ink.opacity(0.05), in: RoundedRectangle(cornerRadius: 18))
+                                .overlay(RoundedRectangle(cornerRadius: 18).stroke(selected ? Color.gold : Cozy.ink.opacity(0.15), lineWidth: selected ? 2 : 1))
                         }.buttonStyle(.plain).accessibilityIdentifier("choose-" + h.art)
                             .accessibilityLabel(h.title + "，" + h.skillTitle).accessibilityAddTraits(selected ? [.isSelected] : [])
                     }
@@ -259,12 +295,12 @@ struct PlayableGameView: View {
                 let choice = choosing == .one ? one : two
                 VStack(spacing: 6) {
                     Text(choice.skillHelp).font(.system(size: 14))
-                    Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(Color.gold)
+                    Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(Cozy.muted)
                 }.frame(minHeight: 45)
     }
     private var matchClasses: some View {
                 HStack {
-                    Text("黑方 · \(one.title)").foregroundStyle(Color.gold)
+                    Text("黑方 · \(one.title)").foregroundStyle(Cozy.muted)
                     Spacer(); Text("VS").font(.caption.bold()).foregroundStyle(.secondary); Spacer()
                     Text("白方 · \(two.title)").foregroundStyle(.white)
                 }.font(.system(size: 14, weight: .bold)).accessibilityIdentifier("matchClasses")
@@ -277,9 +313,9 @@ struct PlayableGameView: View {
                 Button { showOnboarding = true } label: {
                     Label("新手教學 · 不需要懂圍棋", systemImage: "hand.tap")
                         .frame(maxWidth: .infinity, minHeight: 44)
-                }.buttonStyle(.bordered).accessibilityIdentifier("startOnboarding")
+                }.buttonStyle(CozyButton()).accessibilityIdentifier("startOnboarding")
                 Button(action: startMatch) { Label(singlePlayer ? "開始電腦對戰" : "開始本機雙人對戰", systemImage: "play.fill").frame(maxWidth: .infinity).frame(minHeight: 46) }
-                    .buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink).font(.system(size: 16, weight: .bold)).accessibilityIdentifier("startMatch")
+                    .buttonStyle(CozyButton(confirm: true)).font(.system(size: 16, weight: .bold)).accessibilityIdentifier("startMatch")
                 HStack {
                     Menu {
                         ForEach(PracticeLesson.allCases) { value in Button(value.rawValue) { startPractice(value) } }
@@ -291,19 +327,20 @@ struct PlayableGameView: View {
     }
     private var lobbyFooter: some View {
                 Text(singlePlayer ? "單人 7×7：你執\(humanSide == .one ? "黑" : "白")方，電腦執\(humanSide == .one ? "白" : "黑")方。\n黑方首回合 1 AP，之後每回合 2 AP。" : "兩人共用這台裝置，黑方先手。\n首回合 1 AP，之後每回合 2 AP。")
-                    .multilineTextAlignment(.center).font(.system(size: 12)).foregroundStyle(.white.opacity(0.55))
+                    .multilineTextAlignment(.center).font(.system(size: 12)).foregroundStyle(Cozy.ink.opacity(0.55))
     }
     private func match(size: CGSize) -> some View {
         let tablet = size.width >= 600
         let wide = size.width >= 900 && size.width > size.height
-        let width = min(size.width - (tablet ? 48 : 24), wide ? 1220 : tablet ? 736 : 626)
-        let height = min(tablet ? width * 0.90 : size.width * 0.92, max(170, size.height - (tablet ? 470 : (presentedResult == nil && !complete ? 410 : 456)) - (store.computer == nil ? 0 : 28) - (store.recordRules == .redeployment ? 22 : 0) - (hero == .mage && store.mode == .skill && store.state.config.experimentalFriendlyRedeploy ? 40 : 0)))
+        let width = min(size.width - (tablet ? 48 : 8), wide ? 1220 : tablet ? 736 : 626)
+        let height = width * 1152 / 1024
+        return ScrollView {
         return VStack(spacing: tablet ? 14 : 6) {
             matchHeader
             if wide {
                 HStack(alignment: .center, spacing: 24) {
-                    let boardWidth = min(width - 344, max(240, (size.height - 110) / 0.90))
-                    board.frame(width: boardWidth, height: boardWidth * 0.90)
+                    let boardWidth = min(width - 344, max(240, (size.height - 110) / 1.125))
+                    board.frame(width: boardWidth, height: boardWidth * 1.125)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     ScrollView {
                         VStack(spacing: 16) {
@@ -312,30 +349,30 @@ struct PlayableGameView: View {
                             actionPanel(tablet: true, sidebar: true)
                         }.padding(18)
                     }.frame(width: 320)
-                        .background(.white.opacity(0.045), in: RoundedRectangle(cornerRadius: 22))
+                        .background(Cozy.ink.opacity(0.045), in: RoundedRectangle(cornerRadius: 22))
 
                 }
             } else {
                 HStack(spacing: 8) { playerStrip(.one); playerStrip(.two) }
                 botStatus; matchBanners
-                board.frame(width: tablet ? min(width, height / 0.90) : width, height: height)
+                board.frame(width: tablet ? min(width, height / 1.125) : width, height: height)
                     .frame(maxWidth: .infinity)
                 actionPanel(tablet: tablet, sidebar: false)
             }
         }.font(.system(size: tablet ? 16 : 14))
-            .padding(.horizontal, tablet ? 24 : 12).padding(.vertical, tablet ? 16 : 6)
+            .padding(.horizontal, tablet ? 24 : 4).padding(.vertical, tablet ? 16 : 6)
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
-
+        }.defaultScrollAnchor(.top)
     }
     private var matchHeader: some View {
             HStack {
                 Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 38, height: 36) }.accessibilityLabel("返回選角")
                 VStack(alignment: .leading, spacing: 2) {
                     Text(turnTitle).font(.system(size: 22, weight: .heavy, design: .rounded))
-                        .foregroundStyle(displayedPlayer == .one ? Color.gold : Color.white)
+                        .foregroundStyle(Cozy.ink)
                         .accessibilityIdentifier("currentTurn")
                     Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
-                        .font(.system(size: 11)).foregroundStyle(.white.opacity(0.65))
+                        .font(.system(size: 11)).foregroundStyle(Cozy.ink.opacity(0.65))
                 }
                 Spacer()
                 Menu {
@@ -371,12 +408,12 @@ struct PlayableGameView: View {
                         .font(.system(size: 12, weight: .semibold))
                     if store.isBotActing {
                         Text(store.botMotionStartedAt == nil ? "準備" : "落定")
-                            .font(.system(size: 11)).foregroundStyle(Color.gold)
+                            .font(.system(size: 11)).foregroundStyle(Cozy.muted)
                             .accessibilityIdentifier("botActionStatus")
                             .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
                     }
                     Spacer()
-                    Text(store.botDifficulty == .easy ? "簡單" : "標準").font(.system(size: 11)).foregroundStyle(Color.gold)
+                    Text(store.botDifficulty == .easy ? "簡單" : "標準").font(.system(size: 11)).foregroundStyle(Cozy.muted)
                 }.frame(height: 22).accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                     .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
             }
@@ -384,9 +421,9 @@ struct PlayableGameView: View {
     @ViewBuilder private var matchBanners: some View {
             if store.recordRules == .redeployment {
                 Text("候選技能 · 沿棋群築壘／法師調度己兵")
-                    .font(.caption).foregroundStyle(Color.gold).accessibilityIdentifier("candidateRulesBanner")
+                    .font(.caption).foregroundStyle(Cozy.muted).accessibilityIdentifier("candidateRulesBanner")
             }
-            if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(Color.gold).accessibilityIdentifier("r2Banner") }
+            if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(Cozy.muted).accessibilityIdentifier("r2Banner") }
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
             if let title = presentedResult {
                 HStack { Image(systemName: "crown.fill"); Text(title).font(.system(size: 16, weight: .bold)); Spacer(); Button("再玩一局", action: startMatch) }
@@ -404,13 +441,13 @@ struct PlayableGameView: View {
                     Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: tablet ? 72 : 48, height: tablet ? 72 : 48)
                     VStack(alignment: .leading, spacing: 3) {
                         Text(hero.title + " · " + hero.skillTitle).font(.system(size: tablet ? 18 : 14, weight: .bold)).lineLimit(1)
-                        Text(modeHelp).font(.system(size: tablet ? 15 : 12)).foregroundStyle(.white.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
+                        Text(modeHelp).font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 0)
-                }.frame(minHeight: 50)
+                }.frame(minHeight: 50).padding(8).background(Cozy.card, in: RoundedRectangle(cornerRadius: 12)).shadow(color: Cozy.ink.opacity(0.10), radius: 1, y: 2)
             }
             Text(complete ? "已完成目標；可以復原重試或回到選角。" : store.message)
-                .font(.system(size: tablet ? 15 : 12)).foregroundStyle(Color.gold).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading)
+                .font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.muted).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading)
                 .accessibilityIdentifier("playMessage")
                 .accessibilityValue(store.isBotActing ? "\(store.botActionIndex)/\(store.botActionCount) \(store.botMotionStartedAt == nil ? "準備" : "落定")" : "")
             if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy {
@@ -423,7 +460,7 @@ struct PlayableGameView: View {
                     ForEach(PushDirection.allCases, id: \.self) { direction in
                         Button { store.chooseDirection(direction) } label: {
                             Label(direction.title, systemImage: direction.symbol).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
-                        }.buttonStyle(.bordered).tint(store.pushDirection == direction ? .gold : .white)
+                        }.buttonStyle(CozyButton(selected: store.pushDirection == direction))
                             .disabled(store.isComputerTurn || !store.availableDirections.contains(direction)).accessibilityIdentifier("push-" + direction.rawValue)
                     }
                 }
@@ -432,32 +469,32 @@ struct PlayableGameView: View {
                     ForEach(GameStore.Mode.allCases, id: \.self) { mode in
                         Button { store.changeMode(mode) } label: {
                             Text(mode == .skill ? hero.skillTitle : mode.rawValue).font(.system(size: tablet ? 16 : 13, weight: .bold)).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
-                        }.buttonStyle(.bordered).tint(store.mode == mode ? .gold : .white)
+                        }.buttonStyle(CozyButton(selected: store.mode == mode))
                             .disabled(store.state.status != .ongoing || store.isComputerTurn).accessibilityIdentifier("mode-" + String(describing: mode))
                     }
                 }
             }
             if sidebar {
                 Button(action: store.confirm) { Text("確認行動").bold().frame(maxWidth: .infinity, minHeight: 48) }
-                    .buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink)
-                    .disabled(store.isComputerTurn || store.preview?.success != true).accessibilityIdentifier("playConfirm")
+                    .buttonStyle(CozyButton(confirm: true))
+                    .disabled(store.isPresenting || store.isComputerTurn || store.preview?.success != true).accessibilityIdentifier("playConfirm")
                 HStack(spacing: 10) {
                     Button { if store.selected.isEmpty { store.undo() } else { store.cancelSelection() } } label: {
                         Text(store.selected.isEmpty ? "復原" : "取消").frame(maxWidth: .infinity, minHeight: 46)
-                    }.buttonStyle(.bordered).disabled(store.selected.isEmpty && !store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
+                    }.buttonStyle(CozyButton()).disabled(store.selected.isEmpty && !store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
                     Button(action: store.endTurn) { Text("結束回合").frame(maxWidth: .infinity, minHeight: 46) }
-                        .buttonStyle(.bordered).disabled(store.state.status != .ongoing || store.isComputerTurn || lesson != nil).accessibilityIdentifier("playEndTurn")
+                        .buttonStyle(CozyButton()).disabled(store.isPresenting || store.state.status != .ongoing || store.isComputerTurn || lesson != nil).accessibilityIdentifier("playEndTurn")
                 }
             } else {
             HStack(spacing: 8) {
                 Button { if store.selected.isEmpty { store.undo() } else { store.cancelSelection() } } label: {
                     Text(store.selected.isEmpty ? "復原" : "取消").frame(minWidth: 48, minHeight: tablet ? 48 : 40)
-                }.buttonStyle(.bordered).disabled(store.selected.isEmpty && !store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
+                }.buttonStyle(CozyButton()).disabled(store.selected.isEmpty && !store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
                 Button(action: store.confirm) { Text("確認").bold().frame(maxWidth: .infinity, minHeight: tablet ? 48 : 40) }
-                    .buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink)
-                    .disabled(store.isComputerTurn || store.preview?.success != true).accessibilityIdentifier("playConfirm")
-                Button(action: store.endTurn) { Text("結束回合").frame(minHeight: tablet ? 48 : 40) }.buttonStyle(.bordered)
-                    .disabled(store.state.status != .ongoing || store.isComputerTurn || lesson != nil).accessibilityIdentifier("playEndTurn")
+                    .buttonStyle(CozyButton(confirm: true))
+                    .disabled(store.isPresenting || store.isComputerTurn || store.preview?.success != true).accessibilityIdentifier("playConfirm")
+                Button(action: store.endTurn) { Text("結束回合").frame(minHeight: tablet ? 48 : 40) }.buttonStyle(CozyButton())
+                    .disabled(store.isPresenting || store.state.status != .ongoing || store.isComputerTurn || lesson != nil).accessibilityIdentifier("playEndTurn")
             }
             }
         }
@@ -471,29 +508,33 @@ struct PlayableGameView: View {
                 Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).fontWeight(.bold)
                 Spacer(minLength: 0)
                 Text(state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束")
-                    .font(.system(size: 10, weight: .bold)).foregroundStyle(active ? Color.gold : .white.opacity(0.5))
+                    .font(.system(size: 10, weight: .bold)).foregroundStyle(active ? Cozy.ink : Cozy.muted)
             }
             HStack(spacing: 4) {
                 if store.computer != nil {
                     Text(player == store.computer ? "電腦" : "你")
-                        .font(.system(size: 9, weight: .bold)).foregroundStyle(Color.gold)
+                        .font(.system(size: 9, weight: .bold)).foregroundStyle(Cozy.muted)
                 }
                 Text("能量 \(state.mana(of: player))/\(state.config.manaCap) · \(liberties) 氣")
-                    .font(.system(size: 11)).foregroundStyle(liberties <= 1 ? Color.redTeam : .white.opacity(0.65))
+                    .font(.system(size: 11)).foregroundStyle(liberties <= 1 ? Color.redTeam : Cozy.ink.opacity(0.65))
                 Spacer(minLength: 0)
                 if active { Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP").font(.system(size: 11, weight: .bold)) }
             }
         }.font(.system(size: 12)).padding(8)
-            .background(active ? Color.white.opacity(0.10) : .white.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(active ? Color.gold : .clear, lineWidth: 1))
+            .background(active ? Cozy.ink.opacity(0.10) : Cozy.ink.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(active ? Cozy.ink : Cozy.muted.opacity(0.2), lineWidth: active ? 1.5 : 0.5))
             .accessibilityIdentifier(player == .one ? "blueResources" : "redResources")
     }
     private var board: some View {
         let data = BoardPresentation(state: store.state, selected: store.selected, legal: store.legalTargets, preview: store.preview)
         return ZStack(alignment: .topTrailing) {
-            SwiftBoard(visuals: visuals, presentation: data, computerAction: store.botAction,
-                motion: store.isBotActing && store.botMotionStartedAt != nil ? store.playback : nil,
-                motionStartedAt: store.botMotionStartedAt, reducedMotion: reduceMotion, select: store.select)
+            Group {
+                if let cozyAssets {
+                    CozyBoard(presentation: data, assets: cozyAssets, playback: store.playback,
+                              botPlayback: store.isBotActing ? store.playback : nil, botStartedAt: store.botMotionStartedAt,
+                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, select: store.select)
+                } else { Text("Cozy 素材校驗失敗；請重新安裝候選。").foregroundStyle(Cozy.danger) }
+            }
                 .accessibilityElement(children: .ignore).accessibilityIdentifier("playArena")
                 .accessibilityLabel("\(store.size)乘\(store.size)棋盤")
                 .accessibilityValue(store.selected.map(coordinate).joined(separator: ","))
@@ -589,6 +630,8 @@ private struct CombatSoundSettings: View {
                     Text("\(Int(audio.sfxVolume * 100))%")
                 }
                 Section("音樂音量") {
+                    Toggle("背景音樂", isOn: $audio.musicEnabled).disabled(!audio.musicIntegrationAllowed).accessibilityIdentifier("musicEnabled")
+                    if !audio.musicIntegrationAllowed { Text("本候選音樂整合暫停；音效可獨立播放。").font(.caption) }
                     Text("對戰曲：Hearthside Council").font(.caption)
                     Slider(value: $audio.musicVolume, in: 0...1).accessibilityIdentifier("musicVolume")
                     Text("\(Int(audio.musicVolume * 100))%")

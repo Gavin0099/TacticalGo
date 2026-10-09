@@ -279,7 +279,7 @@ struct SwiftBoard: View {
     }
 }
 /// Small A0 presentation adapter for committed Bot events; no game rules or new art.
-private struct BotBoardFrame {
+struct BotBoardFrame {
     struct Sprite: Identifiable {
         let id: Int
         let piece: Piece

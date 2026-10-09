@@ -54,7 +54,9 @@ import TacticalGoRecords
     }
     var session: GameSession
     var playback: BoardPlayback?
-    let audio = CombatAudio()
+    let audio = CombatAudio(musicIntegrationAllowed: false)
+    var isPresenting = false
+    @ObservationIgnored private var presentationTask: Task<Void, Never>?
     @ObservationIgnored private var audioTask: Task<Void, Never>?
     @ObservationIgnored private var audioGeneration: UInt64 = 0
     private var audioMatchActive = false
@@ -71,16 +73,24 @@ import TacticalGoRecords
         if active && !audioMatchActive { audio.resetBattle() }
         audio.updateState(state)
         audioMatchActive = active
-        if !active { cancelAudioFeedback() }
+        if !active { cancelPresentation() }
         audio.setMatchActive(active)
+    }
+    func cancelPresentation() {
+        presentationTask?.cancel(); presentationTask = nil
+        isPresenting = false; playback = nil
+        cancelAudioFeedback()
     }
     func setSceneAudioActive(_ active: Bool) {
         audioSceneActive = active
-        if !active { cancelAudioFeedback() }
+        if !active { cancelPresentation() }
         audio.setSceneActive(active)
     }
-    func presentAudio(before: GameState, action: GameAction, outcome: ActionOutcome) {
-        let plan = CombatFeedbackPlan.make(before: before, action: action, outcome: outcome)
+    func presentAudio(before: GameState, action: GameAction, outcome: ActionOutcome, receipt: BoardPlayback? = nil) {
+        let start = receipt?.startedUptime ?? ProcessInfo.processInfo.systemUptime
+        let plan = Anim01MagicHand.make(before: before, action: action, outcome: outcome) != nil
+            ? CombatFeedbackPlan.anim01(before: before, action: action, outcome: outcome)
+            : CombatFeedbackPlan.make(before: before, action: action, outcome: outcome)
         audioDuration = plan.duration
         // A normal end-turn has no sound and must not silence an already
         // committed skill's pending landing/capture cues.
@@ -98,18 +108,25 @@ import TacticalGoRecords
                 .map { $0.start + ($0.key == "capture" ? 0.48 : $0.key == "mage" ? 0.62 : 0.55) }.max() ?? plan.duration
             audio.duckSkill(duration: duration)
         }
+        // Start the successful action's immediate cue before yielding to the
+        // first full SwiftUI render. Later cues keep the shared receipt clock.
+        for cue in plan.cues where cue.start == 0 {
+            let key = cue.key == "victory" && computer != nil && outcome.state.winner == computer ? "defeat" : cue.key
+            #if DEBUG
+            audioCueHistory.append(key)
+            #endif
+            audio.play(key)
+        }
         let generation = audioGeneration
         audioTask = Task { [weak self] in
-            var elapsed = 0.0
-            for cue in plan.cues {
-                do { try await Task.sleep(for: .seconds(max(0, cue.start - elapsed))) } catch { return }
+            for cue in plan.cues where cue.start > 0 {
+                do { try await Task.sleep(for: .seconds(max(0, start + cue.start - ProcessInfo.processInfo.systemUptime))) } catch { return }
                 guard let self, self.audioGeneration == generation, !Task.isCancelled else { return }
                 let key = cue.key == "victory" && self.computer != nil && outcome.state.winner == self.computer ? "defeat" : cue.key
                 #if DEBUG
                 self.audioCueHistory.append(key)
                 #endif
                 self.audio.play(key)
-                elapsed = cue.start
             }
         }
     }
@@ -223,7 +240,7 @@ import TacticalGoRecords
         #endif
         records = RecordRepository(directory: directory)
         session = GameSession(Self.scenario(size: 7, review: .normal))
-        audio.onInterruption = { [weak self] in self?.cancelAudioFeedback() }
+        audio.onInterruption = { [weak self] in self?.cancelPresentation() }
         refreshRecords()
     }
     func load(_ review: Review? = nil, size: Int? = nil) {
@@ -237,7 +254,8 @@ import TacticalGoRecords
         message = self.review == .danger ? "主將棋串只剩 1 個生存空格。" : "點棋盤預覽，再按確認。"
     }
     func select(_ p: Point) {
-        guard !isComputerTurn else { return }
+        guard !isComputerTurn, !isPresenting else { return }
+        if playback != nil { cancelPresentation() }
         audio.play("selection")
         if mode == .skill && (state.heroClass(of: state.current) == .warrior ||
             (state.heroClass(of: state.current) == .mage && state.config.experimentalFriendlyRedeploy && mageOperation == .redeploy)) {
@@ -246,9 +264,9 @@ import TacticalGoRecords
         if let preview { message = preview.success ? "預覽不扣資源；確認後才生效。" : Self.reason(preview.reason) }
         else { message = state.heroClass(of: state.current) == .mage ? (mageOperation == .redeploy ? "調度己兵：再選原棋群旁空點。" : "魔法之手：選擇推動方向。") : (state.config.bastionScope == .connectedGroup ? "築壘：再選原棋串旁另一個空點。" : "築壘：再選另一個相鄰空點。") }
     }
-    func changeMode(_ value: Mode) { guard !isComputerTurn else { return }; mode = value; selected = []; pushDirection = nil; message = "選擇目標後再確認。" }
+    func changeMode(_ value: Mode) { guard !isComputerTurn, !isPresenting else { return }; cancelPresentation(); mode = value; selected = []; pushDirection = nil; message = "選擇目標後再確認。" }
     func confirm() {
-        guard !isComputerTurn, let action = selectedAction else { return }
+        guard !isComputerTurn, !isPresenting, let action = selectedAction else { return }
         commit(action)
         scheduleComputerTurn()
     }
@@ -262,13 +280,23 @@ import TacticalGoRecords
                 activeRecord = record; saveRecord()
             }
             audio.updateState(o.state)
-            presentAudio(before: before, action: action, outcome: o)
-            playback = BoardPlayback(before: before, action: action, outcome: o)
+            cancelPresentation()
+            let receipt = BoardPlayback(before: before, action: action, outcome: o)
+            playback = receipt
+            presentAudio(before: before, action: action, outcome: o, receipt: receipt)
+            if let clip = Anim01MagicHand.make(before: before, action: action, outcome: o) {
+                isPresenting = true
+                presentationTask = Task { [weak self] in
+                    do { try await Task.sleep(for: .seconds(max(0, receipt.startedUptime + clip.duration - ProcessInfo.processInfo.systemUptime))) } catch { return }
+                    guard let self, self.playback?.id == receipt.id else { return }
+                    self.isPresenting = false
+                }
+            }
             selected = []; pushDirection = nil
             if before.current != state.current { mode = .soldier }
             let actor = (state.current == .one ? "黑方" : "白方") + state.heroClass(of: state.current).title
             message = terminalMessage ?? (before.current != state.current ? "已換手，輪到" + actor + "，\(state.apRemaining) AP。" : actor + "還能行動 \(state.apRemaining) 次。")
-        } else { message = Self.reason(o.reason) }
+        } else { cancelPresentation(); message = Self.reason(o.reason) }
     }
     func undo() {
         guard canUndoHumanDecision else { return }
@@ -290,14 +318,14 @@ import TacticalGoRecords
         } else { scheduleComputerTurn() }
     }
     func endTurn() {
-        guard !isComputerTurn else { return }
+        guard !isComputerTurn, !isPresenting else { return }
         commit(.endTurn)
         mode = .soldier
         scheduleComputerTurn()
     }
     /// Also called when leaving or backgrounding. Cancellation alone is not the commit guard.
     func cancelBotWork() {
-        cancelAudioFeedback()
+        cancelPresentation()
         botGeneration &+= 1
         botWorker?.cancel(); botDelivery?.cancel()
         if isBotActing {
@@ -532,7 +560,8 @@ import TacticalGoRecords
         return try! GameSetup.fromDiagram(config: config, diagram: rows.map { String($0) }.joined(separator: "\n"),
             classOne: .mage, classTwo: .rogue, manaOne: 4, manaTwo: 3, ap: 2)
     }
-    func cancelSelection() { selected = []; pushDirection = nil; message = "已取消預覽，沒有扣除資源。" }
+    func cancelSelection() {
+        cancelPresentation(); selected = []; pushDirection = nil; message = "已取消預覽，沒有扣除資源。" }
     func chooseDirection(_ direction: PushDirection) {
         guard !isComputerTurn else { return }
         pushDirection = direction
