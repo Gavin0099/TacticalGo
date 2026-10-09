@@ -1,0 +1,19 @@
+Exported 137 reference snapshots (initial + each step).
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--58304C5D6DBC2206.txt
+[2/8] Compiling TacticalGoCore GameEngine.swift
+[3/8] Emitting module TacticalGoCore
+[4/8] Compiling TacticalGoCore Model.swift
+[5/8] Compiling TacticalGoCore BoardProjection.swift
+[6/10] Compiling TacticalGoGolden GoldenReplay.swift
+[7/10] Emitting module TacticalGoGolden
+[8/12] Compiling GoldenRunner main.swift
+[9/12] Emitting module GoldenRunner
+[9/12] Write Objects.LinkFileList
+[10/12] Linking tacticalgo-golden
+[11/12] Applying tacticalgo-golden
+Build of product 'tacticalgo-golden' complete! (6.95s)
+PASS: 38 shared Golden fixtures, 99 steps (state, rejection and ordered events)
+PASS: 137 C#/Swift snapshots match, including full board, resources, flags, errors and ordered event payloads
+Reference revision: 54deef97e0fb7157b0025a7282fc2c0a448d4fb9
