@@ -1,0 +1,17 @@
+ply 1: 2-summon:5,2 0.002s
+ply 2: 2-summon:2,3 / 1-place:5,1 0.008s
+ply 3: 1-place:2,2 / 1-place:3,3 0.012s
+ply 4: 1-place:6,2 / 1-place:4,2 0.011s
+ply 5: 3-bastion:4,3: 6,3 / 1-place:2,4 0.014s
+ply 6: 1-place:5,4 / 4-push:4,3:Right 0.014s
+ply 7: 3-bastion:4,3: 6,4 / 1-place:0,3 0.016s
+ply 8: 1-place:1,2 / 1-place:1,1 0.016s
+ply 9: 3-bastion:3,2: 4,5 / 1-place:1,0 0.026s
+ply 10: 1-place:5,5 / 1-place:2,1 0.020s
+ply 11: 1-place:5,6 / 1-place:3,1 0.025s
+ply 12: 1-place:3,5 / 1-place:4,1 0.023s
+ply 13: 3-bastion:3,0: 6,5 / 1-place:1,4 0.036s
+ply 14: 4-push:2,4:Down / 1-place:6,1 0.019s
+ply 15: 1-place:2,4 / 1-place:0,1 0.031s
+ply 16: 4-push:1,4:Up / 1-place:1,5 0.015s
+ply 17: 3-bastion:1,4: 2,0 / 1-place:0,2 0.026s

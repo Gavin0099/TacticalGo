@@ -1,0 +1,971 @@
+{
+  "formalSource" : "artifacts\/r3-p1\/formal-original-source.json",
+  "notClaimed" : [
+    "human enjoyment",
+    "best play",
+    "balanced",
+    "two-action opponent proof"
+  ],
+  "sourcePly" : 31,
+  "sourceSteps" : 59,
+  "variants" : [
+    {
+      "initial" : {
+        "ap" : 2,
+        "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\n.xoX.xo\nxxxxx..",
+        "current" : 0,
+        "manaOne" : 6,
+        "manaTwo" : 6,
+        "ownCommanderLiberties" : 4,
+        "ownHeroLiberties" : 4,
+        "ply" : 31,
+        "status" : "Ongoing"
+      },
+      "legalSkills" : 0,
+      "options" : [
+
+      ],
+      "plans" : [
+        {
+          "actions" : [
+            {
+              "at" : [
+                0,
+                3
+              ],
+              "kind" : "placeSoldier"
+            },
+            {
+              "at" : [
+                6,
+                4
+              ],
+              "kind" : "placeSoldier"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "1-place:3,0\/1-place:6,6 own=82",
+            "easy-relaxed gap=98, max=120"
+          ],
+          "difficulty" : "easy",
+          "ownTurnComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "1-place:3,0\/1-place:6,6 own=82",
+            "1-place:6,6\/1-place:3,0 own=82",
+            "1-place:6,5\/1-place:6,6 own=58",
+            "1-place:6,6\/1-place:6,5 own=58",
+            "1-place:6,6\/9-end own=54",
+            "1-place:3,0\/1-place:6,5 own=49",
+            "1-place:6,5\/1-place:3,0 own=49",
+            "1-place:3,0\/9-end own=31",
+            "1-place:6,5\/9-end own=21",
+            "9-end own=-57"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 5，完整己方候選 13",
+            "pass己方分數 -57，最佳非pass己方分數 266；反擊分數另列"
+          ],
+          "reasons" : [
+            "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+            "提掉敵方棋子 1 枚",
+            "完整回合 2 次行動；攻守分數 168",
+            "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHx.x\n.xoX.xo\nxxxxx..",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 4,
+            "ownHeroLiberties" : 4,
+            "ply" : 32,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "1-place:6,6 own=54",
+            "1-place:3,0 own=31",
+            "1-place:6,5 own=21",
+            "9-end own=3",
+            "1-place:5,0 own=-36",
+            "1-place:5,4 own=-48"
+          ],
+          "score" : 168
+        },
+        {
+          "actions" : [
+            {
+              "at" : [
+                6,
+                6
+              ],
+              "kind" : "placeSoldier"
+            },
+            {
+              "at" : [
+                6,
+                4
+              ],
+              "kind" : "placeSoldier"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266 reply=118 combined=216",
+            "1-place:3,0\/1-place:4,6 own=168 reply=-110 combined=75",
+            "1-place:6,5\/1-place:4,6 own=149 reply=-103 combined=65",
+            "1-place:5,0\/1-place:4,6 own=101 reply=-5160 combined=-1652",
+            "1-place:3,0\/1-place:6,6 own=82 reply=-20323 combined=-6719",
+            "1-place:6,6\/1-place:3,0 own=82 reply=-20323 combined=-6719",
+            "1-place:5,4\/1-place:4,6 own=80 reply=-5172 combined=-1670",
+            "1-place:6,5\/1-place:6,6 own=58 reply=-224 combined=-36"
+          ],
+          "difficulty" : "standard",
+          "ownTurnComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "1-place:5,0\/1-place:4,6 own=101",
+            "1-place:3,0\/1-place:6,6 own=82",
+            "1-place:6,6\/1-place:3,0 own=82",
+            "1-place:5,4\/1-place:4,6 own=80",
+            "1-place:6,5\/1-place:6,6 own=58",
+            "1-place:6,6\/1-place:6,5 own=58",
+            "1-place:6,6\/9-end own=54",
+            "1-place:3,0\/1-place:6,5 own=49",
+            "1-place:6,5\/1-place:3,0 own=49",
+            "1-place:3,0\/9-end own=31",
+            "1-place:6,5\/9-end own=21",
+            "1-place:5,0\/1-place:6,6 own=15",
+            "1-place:6,6\/1-place:5,0 own=15",
+            "1-place:5,4\/1-place:6,6 own=3",
+            "1-place:6,6\/1-place:5,4 own=3",
+            "1-place:5,4\/1-place:6,5 own=-12",
+            "1-place:6,5\/1-place:5,4 own=-12",
+            "1-place:5,0\/1-place:6,5 own=-18",
+            "1-place:6,5\/1-place:5,0 own=-18",
+            "1-place:5,0\/9-end own=-36",
+            "1-place:5,4\/9-end own=-48",
+            "9-end own=-57",
+            "1-place:3,0\/1-place:5,0 own=-5008",
+            "1-place:5,0\/1-place:3,0 own=-5008",
+            "1-place:3,0\/1-place:5,4 own=-5020",
+            "1-place:5,4\/1-place:3,0 own=-5020",
+            "1-place:5,0\/1-place:5,4 own=-5087",
+            "1-place:5,4\/1-place:5,0 own=-5087"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 5，完整己方候選 31",
+            "pass己方分數 -57，最佳非pass己方分數 266；反擊分數另列"
+          ],
+          "reasons" : [
+            "提掉敵方棋子 2 枚",
+            "完整回合 2 次行動；攻守分數 216",
+            "有限對手反應分數 118"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHx.x\n.xoX.x.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 5,
+            "ownHeroLiberties" : 5,
+            "ply" : 32,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "1-place:6,6 own=54",
+            "1-place:3,0 own=31",
+            "1-place:6,5 own=21",
+            "9-end own=3",
+            "1-place:5,0 own=-36",
+            "1-place:5,4 own=-48"
+          ],
+          "score" : 216
+        }
+      ],
+      "variant" : "original"
+    },
+    {
+      "initial" : {
+        "ap" : 2,
+        "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\n.xoX.xo\nxxxxx..",
+        "current" : 0,
+        "manaOne" : 6,
+        "manaTwo" : 6,
+        "ownCommanderLiberties" : 4,
+        "ownHeroLiberties" : 4,
+        "ply" : 31,
+        "status" : "Ongoing"
+      },
+      "legalSkills" : 6,
+      "options" : [
+        {
+          "action" : {
+            "a" : [
+              0,
+              3
+            ],
+            "b" : [
+              0,
+              5
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 3), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 5), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\nxxoX.xo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  5
+                ],
+                [
+                  0,
+                  3
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\nxxoX.xo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\nxxoX.xo\nxxxxx..",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "a" : [
+              0,
+              3
+            ],
+            "b" : [
+              4,
+              5
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 3), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 5), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  3
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoXxxo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  4,
+                  5
+                ],
+                [
+                  0,
+                  3
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoXxxo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoXxxo\nxxxxx..",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "a" : [
+              0,
+              3
+            ],
+            "b" : [
+              5,
+              6
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 3), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 5, y: 6), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  3
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoX.xo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  5,
+                  6
+                ],
+                [
+                  0,
+                  3
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoX.xo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHxo.\n.xoX.xo\nxxxxxx.",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 3,
+            "ownHeroLiberties" : 3,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "a" : [
+              0,
+              5
+            ],
+            "b" : [
+              4,
+              5
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 5), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 5), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoXxxo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  4,
+                  5
+                ],
+                [
+                  0,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoXxxo\nxxxxx..",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 2,
+                "ownHeroLiberties" : 2,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoXxxo\nxxxxx..",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "a" : [
+              0,
+              5
+            ],
+            "b" : [
+              5,
+              6
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 0, y: 5), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 5, y: 6), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  0,
+                  5
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoX.xo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  5,
+                  6
+                ],
+                [
+                  0,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoX.xo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\nxxoX.xo\nxxxxxx.",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 3,
+            "ownHeroLiberties" : 3,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "a" : [
+              4,
+              5
+            ],
+            "b" : [
+              5,
+              6
+            ],
+            "kind" : "castBastion"
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 5), TacticalGoCore.PieceKind.soldier)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 5, y: 6), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "ordinaryTwoOrders" : [
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\n.xoXxxo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            },
+            {
+              "bothLegal" : true,
+              "errors" : [
+                "None",
+                "None"
+              ],
+              "points" : [
+                [
+                  5,
+                  6
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "result" : {
+                "ap" : 2,
+                "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\n.xoXxxo\nxxxxxx.",
+                "current" : 1,
+                "manaOne" : 6,
+                "manaTwo" : 6,
+                "ownCommanderLiberties" : 3,
+                "ownHeroLiberties" : 3,
+                "ply" : 32,
+                "status" : "Ongoing"
+              }
+            }
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHxo.\n.xoXxxo\nxxxxxx.",
+            "current" : 0,
+            "manaOne" : 4,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 3,
+            "ownHeroLiberties" : 3,
+            "ply" : 31,
+            "status" : "Ongoing"
+          }
+        }
+      ],
+      "plans" : [
+        {
+          "actions" : [
+            {
+              "at" : [
+                0,
+                3
+              ],
+              "kind" : "placeSoldier"
+            },
+            {
+              "at" : [
+                6,
+                4
+              ],
+              "kind" : "placeSoldier"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "3-bastion:3,0: 6,5\/1-place:4,6 own=163",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "easy-relaxed gap=98, max=120"
+          ],
+          "difficulty" : "easy",
+          "ownTurnComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "3-bastion:3,0: 6,5\/1-place:4,6 own=163",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "1-place:3,0\/1-place:6,6 own=82",
+            "1-place:6,6\/1-place:3,0 own=82",
+            "1-place:6,5\/3-bastion:3,0: 6,6 own=72",
+            "1-place:6,6\/3-bastion:3,0: 6,5 own=72",
+            "3-bastion:3,0: 6,5\/1-place:6,6 own=72",
+            "1-place:6,5\/1-place:6,6 own=58",
+            "1-place:6,6\/1-place:6,5 own=58",
+            "1-place:3,0\/1-place:6,5 own=49",
+            "1-place:6,5\/1-place:3,0 own=49",
+            "3-bastion:3,0: 6,5\/9-end own=35",
+            "1-place:3,0\/9-end own=31",
+            "3-bastion:3,0: 6,5\/1-place:5,4 own=-4998"
+          ],
+          "passDiagnostics" : [
+
+          ],
+          "reasons" : [
+            "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+            "提掉敵方棋子 1 枚",
+            "完整回合 2 次行動；攻守分數 168",
+            "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\nxxoxxxo\nxxoHx.x\n.xoX.xo\nxxxxx..",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 4,
+            "ownHeroLiberties" : 4,
+            "ply" : 32,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "1-place:6,6 own=54",
+            "3-bastion:3,0: 6,5 own=35",
+            "1-place:3,0 own=31",
+            "1-place:6,5 own=21",
+            "9-end own=3",
+            "3-bastion:5,4: 6,5 own=-26",
+            "3-bastion:5,0: 6,5 own=-32",
+            "1-place:5,0 own=-36",
+            "1-place:5,4 own=-48",
+            "3-bastion:3,0: 5,0 own=-5022",
+            "3-bastion:3,0: 5,4 own=-5034",
+            "3-bastion:5,0: 5,4 own=-5101"
+          ],
+          "score" : 168
+        },
+        {
+          "actions" : [
+            {
+              "at" : [
+                6,
+                6
+              ],
+              "kind" : "placeSoldier"
+            },
+            {
+              "at" : [
+                6,
+                4
+              ],
+              "kind" : "placeSoldier"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266 reply=89 combined=207",
+            "1-place:3,0\/1-place:4,6 own=168 reply=-110 combined=75",
+            "3-bastion:3,0: 6,5\/1-place:4,6 own=163 reply=-1 combined=108",
+            "1-place:6,5\/1-place:4,6 own=149 reply=-103 combined=65",
+            "3-bastion:3,0: 5,0\/1-place:4,6 own=115 reply=-20156 combined=-6642",
+            "3-bastion:5,4: 6,5\/1-place:4,6 own=102 reply=-5143 combined=-1646",
+            "1-place:5,0\/1-place:4,6 own=101 reply=-5160 combined=-1652",
+            "3-bastion:5,0: 6,5\/1-place:4,6 own=96 reply=-5149 combined=-1652"
+          ],
+          "difficulty" : "standard",
+          "ownTurnComparisons" : [
+            "1-place:6,6\/1-place:4,6 own=266",
+            "1-place:3,0\/1-place:4,6 own=168",
+            "3-bastion:3,0: 6,5\/1-place:4,6 own=163",
+            "1-place:6,5\/1-place:4,6 own=149",
+            "3-bastion:3,0: 5,0\/1-place:4,6 own=115",
+            "3-bastion:5,4: 6,5\/1-place:4,6 own=102",
+            "1-place:5,0\/1-place:4,6 own=101",
+            "3-bastion:5,0: 6,5\/1-place:4,6 own=96",
+            "1-place:3,0\/1-place:6,6 own=82",
+            "1-place:6,6\/1-place:3,0 own=82",
+            "1-place:5,4\/1-place:4,6 own=80",
+            "1-place:6,5\/3-bastion:3,0: 6,6 own=72",
+            "1-place:6,6\/3-bastion:3,0: 6,5 own=72",
+            "3-bastion:3,0: 6,5\/1-place:6,6 own=72",
+            "1-place:6,5\/1-place:6,6 own=58",
+            "1-place:6,6\/1-place:6,5 own=58",
+            "1-place:6,6\/9-end own=54",
+            "1-place:3,0\/1-place:6,5 own=49",
+            "1-place:6,5\/1-place:3,0 own=49",
+            "3-bastion:3,0: 6,5\/9-end own=35",
+            "1-place:3,0\/9-end own=31",
+            "1-place:6,6\/3-bastion:3,0: 5,0 own=29",
+            "3-bastion:3,0: 5,0\/1-place:6,6 own=29",
+            "1-place:6,5\/9-end own=21",
+            "1-place:6,6\/3-bastion:3,0: 5,4 own=17",
+            "1-place:5,0\/1-place:6,6 own=15",
+            "1-place:6,6\/1-place:5,0 own=15",
+            "1-place:6,5\/3-bastion:5,4: 6,6 own=11",
+            "1-place:6,6\/3-bastion:5,4: 6,5 own=11",
+            "3-bastion:5,4: 6,5\/1-place:6,6 own=11",
+            "1-place:6,5\/3-bastion:5,0: 6,6 own=5",
+            "1-place:6,6\/3-bastion:5,0: 6,5 own=5",
+            "3-bastion:5,0: 6,5\/1-place:6,6 own=5",
+            "1-place:5,4\/1-place:6,6 own=3",
+            "1-place:5,4\/1-place:6,5 own=-12",
+            "1-place:6,5\/1-place:5,4 own=-12",
+            "1-place:5,0\/1-place:6,5 own=-18",
+            "1-place:6,5\/1-place:5,0 own=-18",
+            "3-bastion:5,4: 6,5\/9-end own=-26",
+            "3-bastion:5,0: 6,5\/9-end own=-32",
+            "1-place:5,0\/9-end own=-36",
+            "1-place:5,4\/9-end own=-48",
+            "9-end own=-57",
+            "1-place:3,0\/3-bastion:5,4: 6,5 own=-4998",
+            "1-place:5,4\/3-bastion:3,0: 6,5 own=-4998",
+            "1-place:6,5\/3-bastion:3,0: 5,4 own=-4998",
+            "3-bastion:3,0: 6,5\/1-place:5,4 own=-4998",
+            "3-bastion:5,4: 6,5\/1-place:3,0 own=-4998",
+            "1-place:3,0\/3-bastion:5,0: 6,5 own=-5004",
+            "1-place:5,0\/3-bastion:3,0: 6,5 own=-5004",
+            "3-bastion:3,0: 5,0\/1-place:6,5 own=-5004",
+            "3-bastion:3,0: 6,5\/1-place:5,0 own=-5004",
+            "3-bastion:5,0: 6,5\/1-place:3,0 own=-5004",
+            "1-place:3,0\/1-place:5,0 own=-5008",
+            "1-place:5,0\/1-place:3,0 own=-5008",
+            "1-place:3,0\/1-place:5,4 own=-5020",
+            "1-place:5,4\/1-place:3,0 own=-5020",
+            "3-bastion:3,0: 5,0\/9-end own=-5022",
+            "1-place:5,0\/3-bastion:5,4: 6,5 own=-5065",
+            "1-place:5,4\/3-bastion:5,0: 6,5 own=-5065",
+            "3-bastion:5,0: 6,5\/1-place:5,4 own=-5065",
+            "3-bastion:5,4: 6,5\/1-place:5,0 own=-5065",
+            "1-place:5,0\/1-place:5,4 own=-5087",
+            "1-place:5,4\/1-place:5,0 own=-5087",
+            "1-place:3,0\/3-bastion:5,0: 5,4 own=-20073",
+            "1-place:5,0\/3-bastion:3,0: 5,4 own=-20073",
+            "1-place:5,4\/3-bastion:3,0: 5,0 own=-20073",
+            "3-bastion:3,0: 5,0\/1-place:5,4 own=-20073"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 11，完整己方候選 68",
+            "pass己方分數 -57，最佳非pass己方分數 266；反擊分數另列"
+          ],
+          "reasons" : [
+            "提掉敵方棋子 2 枚",
+            "完整回合 2 次行動；攻守分數 207",
+            "有限對手反應分數 89"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oo.o.o\no.oOxo.\nxooQxoo\n.xoxxxo\nxxoHx.x\n.xoX.x.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 5,
+            "ownHeroLiberties" : 5,
+            "ply" : 32,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "1-place:6,6 own=54",
+            "3-bastion:3,0: 6,5 own=35",
+            "1-place:3,0 own=31",
+            "1-place:6,5 own=21",
+            "9-end own=3",
+            "3-bastion:5,4: 6,5 own=-26",
+            "3-bastion:5,0: 6,5 own=-32",
+            "1-place:5,0 own=-36",
+            "1-place:5,4 own=-48",
+            "3-bastion:3,0: 5,0 own=-5022",
+            "3-bastion:3,0: 5,4 own=-5034",
+            "3-bastion:5,0: 5,4 own=-5101"
+          ],
+          "score" : 207
+        }
+      ],
+      "variant" : "candidate"
+    }
+  ]
+}

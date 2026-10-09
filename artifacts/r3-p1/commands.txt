@@ -1,0 +1,13 @@
+swift build --package-path artifacts/r3-p1/probe -c release --jobs 4
+artifacts/r3-p1/probe/.build/release/R3P1Probe artifacts/r3-p1/standard-original.json warrior mage standard original
+artifacts/r3-p1/probe/.build/release/R3P1Probe --replay artifacts/r3-p1/standard-original.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe artifacts/r3-p1/standard-candidate.json warrior mage standard candidate
+artifacts/r3-p1/probe/.build/release/R3P1Probe --replay artifacts/r3-p1/standard-candidate.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe artifacts/r3-p1/easy-candidate.json warrior mage easy candidate
+artifacts/r3-p1/probe/.build/release/R3P1Probe --replay artifacts/r3-p1/easy-candidate.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --p1-probes artifacts/r3-p1/formal-original-source.json 3 artifacts/r3-p1/warrior-ply3.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --p1-probes artifacts/r3-p1/formal-original-source.json 31 artifacts/r3-p1/warrior-ply31.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --p1-probes artifacts/r3-p1/formal-original-source.json 42 artifacts/r3-p1/mage-ply42.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --pass-audit artifacts/r3-p1/standard-candidate.json artifacts/r3-p1/candidate-pass-audit.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --p1-pass-witness artifacts/r3-p1/standard-candidate.json 40 artifacts/r3-p1/pass-witness40.json
+artifacts/r3-p1/probe/.build/release/R3P1Probe --p1-pass-witness artifacts/r3-p1/standard-candidate.json 55 artifacts/r3-p1/pass-witness55.json

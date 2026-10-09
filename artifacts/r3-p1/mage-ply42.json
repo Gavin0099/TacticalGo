@@ -1,0 +1,704 @@
+{
+  "formalSource" : "artifacts\/r3-p1\/formal-original-source.json",
+  "notClaimed" : [
+    "human enjoyment",
+    "best play",
+    "balanced",
+    "two-action opponent proof"
+  ],
+  "sourcePly" : 42,
+  "sourceSteps" : 77,
+  "variants" : [
+    {
+      "initial" : {
+        "ap" : 2,
+        "board" : ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+        "current" : 1,
+        "manaOne" : 6,
+        "manaTwo" : 6,
+        "ownCommanderLiberties" : 2,
+        "ownHeroLiberties" : 2,
+        "ply" : 42,
+        "status" : "Ongoing"
+      },
+      "legalSkills" : 0,
+      "options" : [
+
+      ],
+      "plans" : [
+        {
+          "actions" : [
+            {
+              "kind" : "endTurn"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "9-end own=-183",
+            "1-place:1,6\/9-end own=-20162",
+            "1-place:0,0\/9-end own=-20165"
+          ],
+          "difficulty" : "easy",
+          "ownTurnComparisons" : [
+            "9-end own=-183",
+            "1-place:1,6\/9-end own=-20162",
+            "1-place:0,0\/9-end own=-20165"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 2，完整己方候選 3",
+            "pass己方分數 -183，最佳非pass己方分數 -20162；反擊分數另列"
+          ],
+          "reasons" : [
+            "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+            "主將生存空格 2 → 2",
+            "完整回合 0 次行動；攻守分數 -183",
+            "能量已滿，有限候選比較後仍選擇結束回合",
+            "已評估非pass首手 2，完整己方候選 3",
+            "pass己方分數 -183，最佳非pass己方分數 -20162；反擊分數另列"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 0,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 43,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "9-end own=-123",
+            "1-place:1,6 own=-20162",
+            "1-place:0,0 own=-20165"
+          ],
+          "score" : -183
+        },
+        {
+          "actions" : [
+            {
+              "kind" : "endTurn"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "9-end own=-183 reply=-123 combined=-163",
+            "1-place:1,6\/9-end own=-20162 reply=-1000000 combined=-1000000",
+            "1-place:0,0\/9-end own=-20165 reply=-1000000 combined=-1000000"
+          ],
+          "difficulty" : "standard",
+          "ownTurnComparisons" : [
+            "9-end own=-183",
+            "1-place:1,6\/9-end own=-20162",
+            "1-place:0,0\/9-end own=-20165"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 2，完整己方候選 3",
+            "pass己方分數 -183，最佳非pass己方分數 -20162；反擊分數另列"
+          ],
+          "reasons" : [
+            "主將生存空格 2 → 2",
+            "完整回合 0 次行動；攻守分數 -163",
+            "有限對手反應分數 -123",
+            "能量已滿，有限候選比較後仍選擇結束回合",
+            "已評估非pass首手 2，完整己方候選 3",
+            "pass己方分數 -183，最佳非pass己方分數 -20162；反擊分數另列"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 0,
+            "manaOne" : 6,
+            "manaTwo" : 6,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 43,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "9-end own=-123",
+            "1-place:1,6 own=-20162",
+            "1-place:0,0 own=-20165"
+          ],
+          "score" : -163
+        }
+      ],
+      "variant" : "original"
+    },
+    {
+      "initial" : {
+        "ap" : 2,
+        "board" : ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+        "current" : 1,
+        "manaOne" : 6,
+        "manaTwo" : 6,
+        "ownCommanderLiberties" : 2,
+        "ownHeroLiberties" : 2,
+        "ply" : 42,
+        "status" : "Ongoing"
+      },
+      "legalSkills" : 12,
+      "options" : [
+        {
+          "action" : {
+            "from" : [
+              3,
+              0
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+            {
+              "at" : [
+                3,
+                0
+              ],
+              "kind" : "placeSoldier"
+            }
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 3, y: 0), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooo.ooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 1,
+            "ownHeroLiberties" : 1,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              3,
+              0
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 3, y: 0), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oo.ooo\noooOxoo\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              1
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 1), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooooooo\noo.Oxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              1
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 1), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oooooo\noo.Oxoo\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              1,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 1, y: 2), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooooooo\noooOxo.\no.oQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              1,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 1, y: 2), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oooooo\noooOxoo\no.oQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 2), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooooooo\noooOxo.\noo.Qxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 2), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oooooo\noooOxoo\noo.Qxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              5,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 5, y: 2), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooooooo\noooOxo.\noooQx.o\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              5,
+              2
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 5, y: 2), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oooooo\noooOxoo\noooQx.o\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              3
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              0,
+              0
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 3), to: TacticalGoCore.Point(x: 0, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : "ooooooo\noooOxo.\noooQxoo\nox.xxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        },
+        {
+          "action" : {
+            "from" : [
+              2,
+              3
+            ],
+            "kind" : "castFriendlyRedeploy",
+            "to" : [
+              6,
+              1
+            ]
+          },
+          "enemyOneActionWinsAfterOptionalEndTurn" : [
+
+          ],
+          "eventsPayloads" : [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+            "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 2, y: 3), to: TacticalGoCore.Point(x: 6, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+          ],
+          "result" : {
+            "ap" : 1,
+            "board" : ".oooooo\noooOxoo\noooQxoo\nox.xxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 1,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 42,
+            "status" : "Ongoing"
+          }
+        }
+      ],
+      "plans" : [
+        {
+          "actions" : [
+            {
+              "from" : [
+                2,
+                1
+              ],
+              "kind" : "castFriendlyRedeploy",
+              "to" : [
+                6,
+                1
+              ]
+            },
+            {
+              "kind" : "endTurn"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "7-redeploy:1,2:1,6\/9-end own=-143",
+            "7-redeploy:1,2:0,0\/9-end own=-146",
+            "9-end own=-183",
+            "7-redeploy:2,2:1,6\/9-end own=-225"
+          ],
+          "difficulty" : "easy",
+          "ownTurnComparisons" : [
+            "7-redeploy:1,2:1,6\/9-end own=-143",
+            "7-redeploy:1,2:0,0\/9-end own=-146",
+            "9-end own=-183",
+            "7-redeploy:2,2:1,6\/9-end own=-225",
+            "7-redeploy:1,2:1,6\/1-place:1,2 own=-20176",
+            "7-redeploy:2,2:1,6\/1-place:2,2 own=-20176",
+            "7-redeploy:1,2:0,0\/1-place:1,2 own=-20179",
+            "7-redeploy:1,2:0,0\/1-place:1,6 own=-20185",
+            "7-redeploy:1,2:1,6\/1-place:0,0 own=-20185",
+            "7-redeploy:2,2:1,6\/1-place:0,0 own=-20267"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 14，完整己方候選 10",
+            "pass己方分數 -183，最佳非pass己方分數 -143；反擊分數另列"
+          ],
+          "reasons" : [
+            "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+            "主將生存空格 2 → 2",
+            "使用職業技能重組棋形",
+            "Mana 6 → 4",
+            "完整回合 1 次行動；攻守分數 -143"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oooooo\noo.Oxoo\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 0,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 43,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "9-end own=-123",
+            "7-redeploy:1,2:1,6 own=-143",
+            "7-redeploy:1,2:0,0 own=-146",
+            "7-redeploy:2,2:1,6 own=-225",
+            "7-redeploy:2,2:0,0 own=-228",
+            "7-redeploy:0,3:1,6 own=-379",
+            "7-redeploy:2,5:0,0 own=-5203",
+            "7-redeploy:2,1:1,6 own=-5218",
+            "7-redeploy:2,5:1,6 own=-5218",
+            "7-redeploy:2,1:0,0 own=-5221",
+            "7-redeploy:3,2:1,6 own=-5310",
+            "7-redeploy:3,2:0,0 own=-5313",
+            "1-place:1,6 own=-20162",
+            "1-place:0,0 own=-20165",
+            "7-redeploy:0,3:0,0 own=-20203"
+          ],
+          "score" : -143
+        },
+        {
+          "actions" : [
+            {
+              "from" : [
+                2,
+                1
+              ],
+              "kind" : "castFriendlyRedeploy",
+              "to" : [
+                6,
+                1
+              ]
+            },
+            {
+              "kind" : "endTurn"
+            }
+          ],
+          "budgetExhausted" : false,
+          "candidateComparisons" : [
+            "7-redeploy:1,2:1,6\/9-end own=-143 reply=-143 combined=-143",
+            "7-redeploy:1,2:0,0\/9-end own=-146 reply=-146 combined=-146",
+            "9-end own=-183 reply=-123 combined=-163",
+            "7-redeploy:2,2:1,6\/9-end own=-225 reply=-1000000 combined=-1000000",
+            "7-redeploy:2,2:0,0\/9-end own=-228 reply=-1000000 combined=-1000000",
+            "7-redeploy:0,3:1,6\/9-end own=-379 reply=-1000000 combined=-1000000",
+            "7-redeploy:2,5:0,0\/9-end own=-5203 reply=-1000000 combined=-1000000",
+            "7-redeploy:2,1:1,6\/9-end own=-5218 reply=-1000000 combined=-1000000"
+          ],
+          "difficulty" : "standard",
+          "ownTurnComparisons" : [
+            "7-redeploy:1,2:1,6\/9-end own=-143",
+            "7-redeploy:1,2:0,0\/9-end own=-146",
+            "9-end own=-183",
+            "7-redeploy:2,2:1,6\/9-end own=-225",
+            "7-redeploy:2,2:0,0\/9-end own=-228",
+            "7-redeploy:0,3:1,6\/9-end own=-379",
+            "7-redeploy:2,5:0,0\/9-end own=-5203",
+            "7-redeploy:2,1:1,6\/9-end own=-5218",
+            "7-redeploy:2,5:1,6\/9-end own=-5218",
+            "7-redeploy:2,1:0,0\/9-end own=-5221",
+            "7-redeploy:0,3:1,6\/1-place:0,3 own=-20176",
+            "7-redeploy:1,2:1,6\/1-place:1,2 own=-20176",
+            "7-redeploy:2,1:1,6\/1-place:2,1 own=-20176",
+            "7-redeploy:2,2:1,6\/1-place:2,2 own=-20176",
+            "7-redeploy:2,5:1,6\/1-place:2,5 own=-20176",
+            "7-redeploy:1,2:0,0\/1-place:1,2 own=-20179",
+            "7-redeploy:2,1:0,0\/1-place:2,1 own=-20179",
+            "7-redeploy:2,2:0,0\/1-place:2,2 own=-20179",
+            "7-redeploy:2,5:0,0\/1-place:2,5 own=-20179",
+            "7-redeploy:1,2:0,0\/1-place:1,6 own=-20185",
+            "7-redeploy:1,2:1,6\/1-place:0,0 own=-20185",
+            "7-redeploy:2,1:0,0\/1-place:1,6 own=-20260",
+            "7-redeploy:2,1:1,6\/1-place:0,0 own=-20260",
+            "7-redeploy:2,5:0,0\/1-place:1,6 own=-20260",
+            "7-redeploy:2,5:1,6\/1-place:0,0 own=-20260",
+            "7-redeploy:2,2:0,0\/1-place:1,6 own=-20267",
+            "7-redeploy:2,2:1,6\/1-place:0,0 own=-20267",
+            "7-redeploy:0,3:1,6\/1-place:0,0 own=-20421"
+          ],
+          "passDiagnostics" : [
+            "已評估非pass首手 14，完整己方候選 28",
+            "pass己方分數 -183，最佳非pass己方分數 -143；反擊分數另列"
+          ],
+          "reasons" : [
+            "主將生存空格 2 → 2",
+            "使用職業技能重組棋形",
+            "Mana 6 → 4",
+            "完整回合 1 次行動；攻守分數 -143",
+            "有限對手反應分數 -143"
+          ],
+          "result" : {
+            "ap" : 2,
+            "board" : ".oooooo\noo.Oxoo\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current" : 0,
+            "manaOne" : 6,
+            "manaTwo" : 4,
+            "ownCommanderLiberties" : 2,
+            "ownHeroLiberties" : 2,
+            "ply" : 43,
+            "status" : "Ongoing"
+          },
+          "rootActionComparisons" : [
+            "9-end own=-123",
+            "7-redeploy:1,2:1,6 own=-143",
+            "7-redeploy:1,2:0,0 own=-146",
+            "7-redeploy:2,2:1,6 own=-225",
+            "7-redeploy:2,2:0,0 own=-228",
+            "7-redeploy:0,3:1,6 own=-379",
+            "7-redeploy:2,5:0,0 own=-5203",
+            "7-redeploy:2,1:1,6 own=-5218",
+            "7-redeploy:2,5:1,6 own=-5218",
+            "7-redeploy:2,1:0,0 own=-5221",
+            "7-redeploy:3,2:1,6 own=-5310",
+            "7-redeploy:3,2:0,0 own=-5313",
+            "1-place:1,6 own=-20162",
+            "1-place:0,0 own=-20165",
+            "7-redeploy:0,3:0,0 own=-20203"
+          ],
+          "score" : -143
+        }
+      ],
+      "variant" : "candidate"
+    }
+  ]
+}

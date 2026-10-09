@@ -1,0 +1,100 @@
+ply 1: 2-summon:4,3 0.069s
+ply 2: 1-place:4,2 / 2-summon:2,3 0.078s
+ply 3: 1-place:2,2 / 3-bastion:3,3: 4,4 0.086s
+ply 4: 1-place:1,2 / 1-place:3,2 0.110s
+ply 5: 1-place:1,1 / 1-place:2,4 0.125s
+ply 6: 1-place:2,1 / 1-place:4,5 0.123s
+ply 7: 1-place:0,3 / 1-place:1,4 0.153s
+ply 8: 1-place:2,2 / 1-place:5,2 0.136s
+ply 9: 1-place:3,4 / 1-place:4,1 0.191s
+ply 10: 1-place:6,3 / 4-push:3,4:Right 0.165s
+ply 11: 1-place:3,4 / 1-place:5,5 0.189s
+ply 12: 1-place:0,2 / 1-place:0,4 0.185s
+ply 13: 1-place:6,2 / 1-place:6,4 0.191s
+ply 14: 1-place:6,1 / 1-place:6,3 0.173s
+ply 15: 1-place:5,1 / 1-place:6,2 0.189s
+ply 16: 1-place:1,5 / 1-place:6,3 0.168s
+ply 17: 1-place:4,6 / 1-place:6,2 0.190s
+ply 18: 1-place:1,0 / 1-place:6,3 0.162s
+ply 19: 1-place:3,1 / 1-place:6,2 0.172s
+ply 20: 1-place:0,1 / 1-place:6,3 0.150s
+ply 21: 1-place:6,0 / 1-place:6,2 0.178s
+ply 22: 1-place:2,5 / 1-place:5,0 0.152s
+ply 23: 1-place:0,5 / 1-place:0,3 0.157s
+ply 24: 1-place:0,6 / 1-place:0,4 0.140s
+ply 25: 1-place:1,6 / 1-place:0,5 0.150s
+ply 26: 1-place:2,6 / 1-place:0,6 0.133s
+ply 27: 1-place:6,1 / 1-place:6,3 0.137s
+ply 28: 1-place:3,0 / 1-place:3,6 0.132s
+ply 29: 1-place:4,0 / 1-place:2,0 0.111s
+ply 30: 1-place:5,6 / 1-place:4,5 0.115s
+ply 31: 1-place:6,6 / 1-place:4,6 0.102s
+ply 32: 1-place:3,0 / 1-place:2,0 0.093s
+ply 33: 1-place:5,4 / 9-end 0.101s
+ply 34: 1-place:0,3 / 1-place:0,5 0.070s
+ply 35: 1-place:5,0 / 9-end 0.073s
+ply 36: 4-push:1,2:Left / 9-end 0.055s
+ply 37: 9-end 0.044s
+ply 38: 9-end 0.056s
+ply 39: 9-end 0.044s
+ply 40: 1-place:1,2 / 9-end 0.056s
+ply 41: 9-end 0.027s
+ply 42: 9-end 0.013s
+ply 43: 9-end 0.027s
+ply 44: 9-end 0.013s
+ply 45: 9-end 0.027s
+ply 46: 9-end 0.013s
+ply 47: 9-end 0.027s
+ply 48: 9-end 0.013s
+ply 49: 9-end 0.027s
+ply 50: 9-end 0.013s
+ply 51: 9-end 0.027s
+ply 52: 9-end 0.013s
+ply 53: 9-end 0.027s
+ply 54: 9-end 0.013s
+ply 55: 9-end 0.027s
+ply 56: 9-end 0.013s
+ply 57: 9-end 0.027s
+ply 58: 9-end 0.013s
+ply 59: 9-end 0.027s
+ply 60: 9-end 0.013s
+ply 61: 9-end 0.027s
+ply 62: 9-end 0.013s
+ply 63: 9-end 0.027s
+ply 64: 9-end 0.013s
+ply 65: 9-end 0.027s
+ply 66: 9-end 0.013s
+ply 67: 9-end 0.026s
+ply 68: 9-end 0.013s
+ply 69: 9-end 0.026s
+ply 70: 9-end 0.013s
+ply 71: 9-end 0.027s
+ply 72: 9-end 0.013s
+ply 73: 9-end 0.027s
+ply 74: 9-end 0.013s
+ply 75: 9-end 0.027s
+ply 76: 9-end 0.019s
+ply 77: 9-end 0.027s
+ply 78: 9-end 0.013s
+ply 79: 9-end 0.027s
+ply 80: 9-end 0.013s
+ply 81: 9-end 0.026s
+ply 82: 9-end 0.013s
+ply 83: 9-end 0.027s
+ply 84: 9-end 0.013s
+ply 85: 9-end 0.027s
+ply 86: 9-end 0.013s
+ply 87: 9-end 0.027s
+ply 88: 9-end 0.013s
+ply 89: 9-end 0.027s
+ply 90: 9-end 0.013s
+ply 91: 9-end 0.027s
+ply 92: 9-end 0.013s
+ply 93: 9-end 0.027s
+ply 94: 9-end 0.013s
+ply 95: 9-end 0.027s
+ply 96: 9-end 0.013s
+ply 97: 9-end 0.027s
+ply 98: 9-end 0.013s
+ply 99: 1-place:4,5 / 9-end 0.025s
+ply 100: 1-place:0,0 / 9-end 0.003s
