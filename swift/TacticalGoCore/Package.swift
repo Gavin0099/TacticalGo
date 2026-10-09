@@ -5,6 +5,7 @@ let package = Package(
     name: "TacticalGoCore",
     products: [
         .library(name: "TacticalGoCore", targets: ["TacticalGoCore"]),
+        .library(name: "TacticalGoOnboarding", targets: ["TacticalGoOnboarding"]),
         .library(name: "TacticalGoRecords", targets: ["TacticalGoRecords"]),
         .library(name: "TacticalGoBot", targets: ["TacticalGoBot"]),
         .library(name: "TacticalGoContent", targets: ["TacticalGoContent"]),
@@ -18,6 +19,8 @@ let package = Package(
     ],
     targets: [
         .target(name: "TacticalGoCore"),
+        .target(name: "TacticalGoOnboarding", dependencies: ["TacticalGoCore"], resources: [.copy("Fixtures")]),
+        .testTarget(name: "TacticalGoOnboardingTests", dependencies: ["TacticalGoOnboarding", "TacticalGoCore"]),
         .target(name: "TacticalGoRecords", dependencies: ["TacticalGoCore"]),
         .testTarget(name: "TacticalGoRecordsTests", dependencies: ["TacticalGoRecords", "TacticalGoCore"]),
         .target(name: "TacticalGoBot", dependencies: ["TacticalGoCore"]),

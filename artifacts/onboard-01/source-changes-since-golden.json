@@ -1,0 +1,7 @@
+[
+  "swift/TacticalGoCore/Sources/TacticalGoOnboarding/Onboarding.swift",
+  "swift/TacticalGoCore/Tests/TacticalGoOnboardingTests/OnboardingTests.swift",
+  "ios/TacticalGo/PlayableGameView.swift",
+  "ios/TacticalGo/OnboardingView.swift",
+  "ios/TacticalGoUITests/PlayableGameTests.swift"
+]

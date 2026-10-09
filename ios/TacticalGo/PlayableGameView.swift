@@ -71,6 +71,7 @@ struct PlayableGameView: View {
     @State private var showBotLog = false
     @State private var showSoundSettings = false
     @State private var showRecords = false
+    @State private var showOnboarding = false
     @State private var showR2 = false
     @State private var selectedRules: RecordRules = .original
     #if DEBUG
@@ -98,9 +99,11 @@ struct PlayableGameView: View {
         .background(LinearGradient(colors: [Color(red: 0.12, green: 0.18, blue: 0.21), Color(red: 0.20, green: 0.28, blue: 0.28)], startPoint: .top, endPoint: .bottom).ignoresSafeArea())
         .foregroundStyle(.white).preferredColorScheme(.dark)
         .sheet(isPresented: $showRules) { rules }
+        .fullScreenCover(isPresented: $showOnboarding) { OnboardingView { showOnboarding = false } }
         .sheet(isPresented: $showGrid) { accessibleGrid }
-        .confirmationDialog("離開目前對戰？", isPresented: $confirmExit, titleVisibility: .visible) {
-            Button("返回選角", role: .destructive) { store.leaveMatch(); inMatch = false; lesson = nil }
+        .alert("離開目前對戰？", isPresented: $confirmExit) {
+            Button("返回選角", role: .destructive) { store.leaveMatch(); inMatch = false; lesson = nil }.accessibilityIdentifier("exitMatchConfirmed")
+            Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
@@ -140,6 +143,7 @@ struct PlayableGameView: View {
             store.setMatchAudioActive(inMatch)
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
+            if args.contains("--onboard") { showOnboarding = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
             if args.contains("--bot-delayed") { store.botDelayNanoseconds = 2_500_000_000 }
             // Leave enough time to open the native menu on a small/loaded simulator.
@@ -270,6 +274,10 @@ struct PlayableGameView: View {
     }
     private var startControls: some View {
         VStack(spacing: 18) {
+                Button { showOnboarding = true } label: {
+                    Label("新手教學 · 不需要懂圍棋", systemImage: "hand.tap")
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }.buttonStyle(.bordered).accessibilityIdentifier("startOnboarding")
                 Button(action: startMatch) { Label(singlePlayer ? "開始電腦對戰" : "開始本機雙人對戰", systemImage: "play.fill").frame(maxWidth: .infinity).frame(minHeight: 46) }
                     .buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink).font(.system(size: 16, weight: .bold)).accessibilityIdentifier("startMatch")
                 HStack {
@@ -593,5 +601,3 @@ private struct CombatSoundSettings: View {
         }
     }
 }
-
-

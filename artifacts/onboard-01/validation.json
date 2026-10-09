@@ -1,0 +1,100 @@
+{
+  "slice": "ONBOARD-01/TUT-0/TUT-1",
+  "branch": "codex/onboard-01",
+  "tut_0_engineering": "PASS",
+  "tut_1_engineering": "PASS",
+  "onboard_01_product": "HOLD",
+  "swift_package": {
+    "tests": 144,
+    "failures": 0,
+    "new_onboarding_tests": 13,
+    "log": "package-delivery.log"
+  },
+  "golden": {
+    "fixtures": 38,
+    "steps": 99,
+    "snapshots": 137,
+    "result": "PASS",
+    "reference_revision": "54deef97e0fb7157b0025a7282fc2c0a448d4fb9",
+    "log": "golden.log",
+    "core_golden_sources_unchanged_since_run": true
+  },
+  "native": {
+    "iphone_se3_ios18": {
+      "tests": 3,
+      "failures": 0,
+      "log": "phone-onboard.log",
+      "xcresult": "phone-onboard.xcresult"
+    },
+    "ipad_mini_ios18": {
+      "tests": 3,
+      "failures": 0,
+      "log": "pad-onboard.log",
+      "xcresult": "pad-onboard.xcresult"
+    }
+  },
+  "release": {
+    "build": "PASS",
+    "strict_codesign": "PASS",
+    "bundle": "com.tacticalgo.prototype",
+    "binary_sha256": "48115818e83d1571a5bc584ba94ca9556723dd170e06d35c2522105403a48d70",
+    "manifest": "release-manifest.json"
+  },
+  "devices": {
+    "ipad": {
+      "transport": "localNetwork",
+      "install": "success",
+      "launch": "failed",
+      "private_receipts_not_committed": true,
+      "physical_tutorial_operations": "NOT_RUN",
+      "launch_reason": "Locked"
+    },
+    "iphone": {
+      "state": "unavailable",
+      "current_candidate_install": "NOT_DONE"
+    }
+  },
+  "media": {
+    "se": "se-onboard.mp4",
+    "ipad": "ipad-onboard.mp4",
+    "origin": "actual_simulator_screen_recording",
+    "sound_recording": false,
+    "human_tutorial_time_measurement": false
+  },
+  "save_isolation": {
+    "onboarding_directory": "TacticalGo/Onboarding",
+    "formal_match_unchanged": "PASS_PACKAGE_BYTES_AND_NATIVE_RESUME",
+    "preview_cancel_undo_background_restart": "PASS",
+    "corrupt_journal_preserved": "PASS"
+  },
+  "visual_review": [
+    "phone-capture-preview.png",
+    "pad-shared-liberties.png"
+  ],
+  "source_manifest": "final-source-manifest.json",
+  "resource_integrity": "resource-integrity.json",
+  "not_started": [
+    "TUT-2",
+    "TUT-3",
+    "TUT-4"
+  ],
+  "human_gate": {
+    "novices_tested": 0,
+    "target_sample": 5,
+    "five_minute_goal": "UNVERIFIED",
+    "records": "NOT_RUN"
+  },
+  "not_claimed": [
+    "human_understanding",
+    "full_ONBOARD_01_acceptance",
+    "R3_balance_acceptance",
+    "Bot_stagnation_fixed",
+    "formal_candidate_skills",
+    "physical_tutorial_operation_acceptance",
+    "asset_commercial_clearance"
+  ],
+  "push": false,
+  "merge": false,
+  "publication": false,
+  "pull_request_created": false
+}

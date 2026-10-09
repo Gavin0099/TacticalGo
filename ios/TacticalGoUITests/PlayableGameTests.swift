@@ -1,6 +1,117 @@
 import XCTest
 
 @MainActor final class PlayableGameTests: XCTestCase {
+    private func tapTutorial(_ app: XCUIApplication, _ x: Int, _ y: Int) {
+        let arena = app.otherElements["onboardArena"]
+        XCTAssertTrue(arena.waitForExistence(timeout: 10))
+        let row = Double(y) / 6, inset = 0.13 - 0.06 * Double(y) / 6
+        arena.coordinate(withNormalizedOffset: CGVector(dx: inset + (1 - inset * 2) * Double(x) / 6, dy: 0.18 + 0.65 * row)).tap()
+    }
+    private func tutorialNext(_ app: XCUIApplication) {
+        for _ in 0..<3 { if app.buttons["onboardNext"].isHittable { break }; app.swipeUp() }
+        app.buttons["onboardNext"].tap()
+        app.swipeDown()
+    }
+    func testOnboardingFiveLessonsRealPreviewLibertiesCaptureAndRescue() {
+        let app = app(["--onboard"])
+        XCTAssertTrue(app.staticTexts["onboardTitle"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "保護主將，包圍對手")
+        let before = app.staticTexts["onboardResources"].label
+        tapTutorial(app, 3, 2)
+        XCTAssertTrue(app.staticTexts["onboardFeedback"].label.contains("主將"))
+        XCTAssertEqual(app.staticTexts["onboardResources"].label, before)
+        app.buttons["onboardCancel"].tap()
+        XCTAssertFalse(app.buttons["onboardConfirm"].isEnabled)
+        tapTutorial(app, 3, 2); app.buttons["onboardConfirm"].tap()
+        XCTAssertTrue(app.staticTexts["onboardFeedback"].label.contains("黑方獲勝"))
+        shot(app, "onboard-1-real-commander-win")
+        app.buttons["onboardUndo"].tap()
+        XCTAssertEqual(app.staticTexts["onboardResources"].label, before)
+        tapTutorial(app, 3, 2); app.buttons["onboardConfirm"].tap(); tutorialNext(app)
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "放下一顆士兵")
+        XCTAssertTrue(app.staticTexts["onboardResources"].label.contains("黑方 · 1 AP"))
+        tapTutorial(app, 2, 5); app.buttons["onboardConfirm"].tap()
+        XCTAssertTrue(app.staticTexts["onboardResources"].label.contains("白方 · 2 AP")); tutorialNext(app)
+        tapTutorial(app, 4, 3); XCTAssertFalse(app.buttons["onboardConfirm"].isEnabled)
+        tapTutorial(app, 2, 3)
+        XCTAssertEqual(app.staticTexts["onboardInspection"].label, "黑方 · 棋群 2 子 · 6 氣")
+        shot(app, "onboard-3-shared-six-liberties")
+        tapTutorial(app, 4, 3); app.buttons["onboardConfirm"].tap()
+        XCTAssertEqual(app.staticTexts["onboardInspection"].label, "黑方 · 棋群 3 子 · 8 氣"); tutorialNext(app)
+        tapTutorial(app, 3, 2)
+        XCTAssertEqual(app.staticTexts["onboardInspection"].label, "白方 · 棋群 1 子 · 1 氣")
+        tapTutorial(app, 3, 3)
+        XCTAssertTrue(app.staticTexts["onboardFeedback"].label.contains("將提白方 1 顆"))
+        XCTAssertTrue(app.staticTexts["onboardInspection"].label.hasPrefix("目前（預覽前）"))
+        shot(app, "onboard-4-before-capture-no-spend")
+        app.buttons["onboardConfirm"].tap()
+        XCTAssertTrue(app.staticTexts["onboardFeedback"].label.contains("還沒有分出勝負")); tutorialNext(app)
+        XCTAssertTrue(app.staticTexts["onboardDanger"].label.contains("黑方主將只剩 1 氣"))
+        tapTutorial(app, 3, 4)
+        XCTAssertEqual(app.staticTexts["onboardInspection"].label, "黑方 · 棋群 1 子 · 1 氣")
+        tapTutorial(app, 3, 3); app.buttons["onboardConfirm"].tap()
+        XCTAssertFalse(app.staticTexts["onboardDanger"].exists)
+        XCTAssertEqual(app.staticTexts["onboardInspection"].label, "黑方 · 棋群 2 子 · 3 氣")
+        shot(app, "onboard-5-real-commander-rescue"); tutorialNext(app)
+        XCTAssertTrue(app.buttons["onboardFinish"].exists)
+        app.buttons["onboardFinish"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 10))
+    }
+    func testOnboardingJournalRelaunchBackgroundAndLargeTargets() {
+        let app = app(["--onboard"])
+        XCTAssertTrue(app.buttons["onboardPoints"].waitForExistence(timeout: 10))
+        app.buttons["onboardPoints"].tap()
+        let point = app.buttons["onboardPoint-3-2"]
+        XCTAssertTrue(point.waitForExistence(timeout: 5))
+        XCTAssertGreaterThanOrEqual(point.frame.height, 44); XCTAssertGreaterThanOrEqual(point.frame.width, 44)
+        point.tap()
+        let before = app.staticTexts["onboardResources"].label
+        XCUIDevice.shared.press(.home); app.activate()
+        XCTAssertFalse(app.buttons["onboardConfirm"].isEnabled)
+        XCTAssertEqual(app.staticTexts["onboardResources"].label, before)
+        tapTutorial(app, 3, 2); app.buttons["onboardConfirm"].tap(); tutorialNext(app)
+        app.terminate(); app.launch()
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "放下一顆士兵")
+        app.buttons["onboardExit"].tap()
+        for _ in 0..<4 { if app.buttons["startOnboarding"].isHittable { break }; app.swipeUp() }
+        app.buttons["startOnboarding"].tap()
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "放下一顆士兵")
+        shot(app, "onboard-resume-independent-journal")
+        app.buttons["onboardRestart"].tap()
+        XCTAssertTrue(app.buttons["保留進度"].waitForExistence(timeout: 5))
+        app.buttons["保留進度"].tap()
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "放下一顆士兵")
+        app.buttons["onboardRestart"].tap()
+        XCTAssertTrue(app.buttons["onboardRestartConfirmed"].waitForExistence(timeout: 5))
+        app.buttons["onboardRestartConfirmed"].tap()
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "保護主將，包圍對手")
+        app.terminate(); app.launch()
+        XCTAssertEqual(app.staticTexts["onboardTitle"].label, "保護主將，包圍對手")
+    }
+    func testOnboardingDoesNotChangeOriginalSavedMatch() {
+        let app = app()
+        for _ in 0..<4 { if app.buttons["startMatch"].isHittable { break }; app.swipeUp() }
+        app.buttons["startMatch"].tap()
+        tap(app, 2, 5); app.buttons["playConfirm"].tap()
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, "輪到白方法師")
+        app.buttons["返回選角"].tap()
+        XCTAssertTrue(app.buttons["留在對戰"].waitForExistence(timeout: 5))
+        app.buttons["留在對戰"].tap()
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, "輪到白方法師")
+        app.buttons["返回選角"].tap()
+        XCTAssertTrue(app.buttons["exitMatchConfirmed"].waitForExistence(timeout: 5))
+        app.buttons["exitMatchConfirmed"].tap()
+        for _ in 0..<4 { if app.buttons["startOnboarding"].isHittable { break }; app.swipeUp() }
+        app.buttons["startOnboarding"].tap()
+        tapTutorial(app, 3, 2); app.buttons["onboardConfirm"].tap()
+        app.buttons["onboardExit"].tap()
+        app.swipeDown()
+        XCTAssertTrue(app.buttons["resumeMatch"].waitForExistence(timeout: 5))
+        app.buttons["resumeMatch"].tap()
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, "輪到白方法師")
+        XCTAssertTrue(app.staticTexts["2 AP"].exists)
+        shot(app, "onboard-original-match-retained")
+    }
     private func app(_ args: [String] = []) -> XCUIApplication {
         continueAfterFailure = false
         let app = XCUIApplication(); app.launchArguments = args + ["--record-isolation", UUID().uuidString]; app.launch(); return app
