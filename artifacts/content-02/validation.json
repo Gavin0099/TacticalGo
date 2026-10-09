@@ -1,0 +1,91 @@
+{
+  "baseline": "cdab133cd469dd185fd8ca3f47fea2e217cfb139",
+  "branch": "codex/content-02",
+  "engineering": "PASS",
+  "product_experience": "HOLD",
+  "rules": "original; existing TutorialCatalog/TutorialSession unchanged",
+  "ordinary_bot": false,
+  "candidate_r3_enabled": false,
+  "package_tests": {
+    "passed": 150,
+    "failed": 0,
+    "evidence": "package-tests.log"
+  },
+  "golden": {
+    "fixtures": 38,
+    "steps": 99,
+    "snapshots": 137,
+    "csharp_reference_revision": "54deef97e0fb7157b0025a7282fc2c0a448d4fb9",
+    "status": "PASS",
+    "evidence": "parity.log"
+  },
+  "native_build": {
+    "status": "PASS",
+    "local_log": "build-candidate.log"
+  },
+  "native_tests": {
+    "SE": {
+      "passed": 4,
+      "failed": 0,
+      "platform": "iOS Simulator",
+      "model": "iPhone SE (3rd generation)",
+      "summary": "SE-summary.json",
+      "log": "SE-candidate.log",
+      "raw_xcresult": "SE-candidate.xcresult (local only)",
+      "clip_duration_seconds": 45.093003
+    },
+    "iPad": {
+      "passed": 4,
+      "failed": 0,
+      "platform": "iOS Simulator",
+      "model": "iPad mini (6th generation)",
+      "summary": "iPad-summary.json",
+      "log": "iPad-candidate.log",
+      "raw_xcresult": "iPad-candidate.xcresult (local only)",
+      "clip_duration_seconds": 45.049215
+    }
+  },
+  "media": {
+    "source": "actual iOS Simulator screen recordings and XCTest attachments",
+    "clips": "45-second excerpts, scaled to 900px height; no audio or added effects",
+    "full_recordings": "SE-candidate.mp4 and iPad-candidate.mp4 retained locally, excluded from git",
+    "screenshots": "11 selected final-candidate attachments"
+  },
+  "unverified": [
+    "physical iPhone/iPad touch operation",
+    "human skill transfer to free matches",
+    "fun and balance"
+  ],
+  "sha256": {
+    "ios/TacticalGo/ChallengesView.swift": "c4db56caaf56c351871823a99e3bd15b88e5858e86893025a7298de25d0a5594",
+    "ios/TacticalGo/PlayableGameView.swift": "c6a26e6e884a18a87834d03e4cab03defa29d79f147ce35b772346656ef9fad8",
+    "ios/TacticalGoUITests/PlayableGameTests.swift": "39e8174fd990797a01ab92455c4accfcd799a6d23dc57574d6be4c4ac7c6cf5f",
+    "ios/TacticalGo.xcodeproj/project.pbxproj": "1095bb0e17303eac4fd03d7418fe26495a76fcf4f11436fcb9a0c58427f55fa1",
+    "swift/TacticalGoCore/Package.swift": "dec395546e58b7dd1eeb94a2468ea3e350dde22359d8d982539d7ac3cf830d85",
+    "swift/TacticalGoCore/Sources/TacticalGoContent/ChallengeController.swift": "825063139fbbd5b5655585b8b1e3a5a37cefd6bd0707859a5564329d475dd69e",
+    "swift/TacticalGoCore/Tests/TacticalGoContentTests/ChallengeControllerTests.swift": "531795521ec294ae2ad68e1bda01597b19e57a6badd3820eaf16f455d0c45292",
+    "artifacts/content-02/package-tests.log": "aa29bc3cc5c885bd518511a8f7d1cb07d8abb3cc09d7261e678942e28015fccb",
+    "artifacts/content-02/parity.log": "a70eecddf8cfd94ef5480c7b25e3981aa95ca16a69f39479a2c7327af8f9d6a7",
+    "artifacts/content-02/parity/csharp.json": "9e41aaa31cc612a16e68e6f2270edb4ad382bf4af94280796c9eff4d670965da",
+    "artifacts/content-02/parity/swift.json": "ab5edac20592d89ac19736aa09efc0e5423484a01606f6190b70855257c2800e",
+    "artifacts/content-02/golden.log": "85f07d2e3c39627fcf8f3e063bc81d4cf16a59ebbfa00441ef7a6c69bfca5b25",
+    "artifacts/content-02/SE-candidate.log": "a7637b8cb880b5eaca1c65592cae706f69139d0bf2331b659ddfc8a40abd987e",
+    "artifacts/content-02/iPad-candidate.log": "c1eb786381f0085daf5764314cc96647248819a38ccfb5be431c25d9e22caca8",
+    "artifacts/content-02/SE-summary.json": "6b70f8f676442915d98a295abb19d267bf3f0948782fb55781ff5ac34278e809",
+    "artifacts/content-02/iPad-summary.json": "53942b5069afd3574fff867512f7db50742c2bd4b421833fff63825444c302ff",
+    "artifacts/content-02/REPORT.md": "49ca0cbcaf98fb81c8a000b9c3250b0201fb786d76b48adcb7de9814261f4115",
+    "artifacts/content-02/screenshots/SE-challenge-failed-lock-no-opponent.png": "ff0c1cd6eeaab595a41af960a6bd911af5fb37f9d5b1febb12a144b9cb14d036",
+    "artifacts/content-02/screenshots/SE-challenge-mage-split-core-preview.png": "b30fffcf9b6820e9141791ea05279e25bc873352bc01de57f59b246b3fee74ca",
+    "artifacts/content-02/screenshots/SE-challenge-original-match-still-retained.png": "732594a21a97a1aecab8c269b9b78ef4cf8ea1a01430234728f5fe3fdc7df561",
+    "artifacts/content-02/screenshots/SE-challenge-rogue-finish-completed-lock.png": "f014f48803a444c6713a31483a26426a922fcfb2be22d5269b2aa25c6dd744d0",
+    "artifacts/content-02/screenshots/SE-challenge-warrior-rescue-core-preview.png": "c179d4cda8d9721543ffcc4ffaa029d795a249ca38b1a8263b141c5c22492a1d",
+    "artifacts/content-02/screenshots/iPad-challenge-failed-lock-no-opponent.png": "8b37fdb35ae39bdf3d6ff39623c82bc3ca237948f0ba18cfa0901ef9cdd0651e",
+    "artifacts/content-02/screenshots/iPad-challenge-iPad-landscape-preview.png": "f8450f7373c883f7baedde1806b36a682781083c5653563cb1b5b2964e903886",
+    "artifacts/content-02/screenshots/iPad-challenge-mage-split-core-preview.png": "19f449d8c9542ad9a19dc278687d1186bc856442f83a19eb386d3a52da20fb1c",
+    "artifacts/content-02/screenshots/iPad-challenge-original-match-still-retained.png": "0ba993ad4793797245d5d680e0a026135486ca24511362326197e120a5c1ef75",
+    "artifacts/content-02/screenshots/iPad-challenge-rogue-finish-completed-lock.png": "83a47fefad756b063a7f72c6f7e9dffd75a6f36c50cbc51d8e27c462b5f4ca79",
+    "artifacts/content-02/screenshots/iPad-challenge-warrior-rescue-core-preview.png": "5f75a0e01a7b6e5c861abdf485c092a710f2c3b9c69a16f2617fea13d0426c84",
+    "artifacts/content-02/SE-demo.mp4": "611db1ff4ac412c6d34539c945be722f975737dcef33ccd1254df70be3c718f0",
+    "artifacts/content-02/iPad-demo.mp4": "1b08d72a42390d4c1a508a764145b218710af494921012a8507475cfd6bf0bfd"
+  }
+}

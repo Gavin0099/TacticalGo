@@ -1,0 +1,4999 @@
+[
+  {
+    "fixture": "bastion_captures_with_two_stones.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "H.x......\n.ox......\n.x.......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_captures_with_two_stones.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "Hxx......\nx.x......\n.x.......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          0
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          0,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              1,
+              1
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "bastion_captures_with_two_stones.json",
+    "step": 2,
+    "ok": false,
+    "reason": "SkillAlreadyUsed",
+    "diagram": "Hxx......\nx.x......\n.x.......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_pair_suicide.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "H.o......\n.o.......\no........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_pair_suicide.json",
+    "step": 1,
+    "ok": false,
+    "reason": "Suicide",
+    "diagram": "H.o......\n.o.......\no........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_range_and_target_errors.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n..Hx.....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_range_and_target_errors.json",
+    "step": 1,
+    "ok": false,
+    "reason": "DuplicateTarget",
+    "diagram": ".........\n.........\n.........\n.........\n..Hx.....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_range_and_target_errors.json",
+    "step": 2,
+    "ok": false,
+    "reason": "OutOfRange",
+    "diagram": ".........\n.........\n.........\n.........\n..Hx.....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_range_and_target_errors.json",
+    "step": 3,
+    "ok": false,
+    "reason": "Occupied",
+    "diagram": ".........\n.........\n.........\n.........\n..Hx.....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "bastion_range_and_target_errors.json",
+    "step": 4,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..x......\n.xHx.....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          2,
+          3
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          4
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "capture_basic.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "xo.......\n.........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "capture_basic.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "xox......\n.........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          2,
+          0
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "capture_basic.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "x.x......\n.x.......\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      3,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              1,
+              0
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      },
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "capture_before_suicide.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".ox......\nox.......\nx........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "capture_before_suicide.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "x.x......\n.x.......\nx........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          0,
+          0
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              1,
+              0
+            ],
+            "owner": "Two",
+            "kind": 0
+          },
+          {
+            "at": [
+              0,
+              1
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nxo.o.....\n.xo......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          2,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              1,
+              1
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      3,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 3,
+    "ok": false,
+    "reason": "Ko",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      3,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 4,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n.........\n........o",
+    "current": "Two",
+    "ply": 2,
+    "ap": 1,
+    "mana": [
+      3,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          8,
+          8
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 5,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n........o\n........o",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          8,
+          7
+        ],
+        "kind": 0
+      },
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 6,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n........o\n.......xo",
+    "current": "One",
+    "ply": 3,
+    "ap": 1,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          7,
+          8
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 7,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nx.xo.....\n.xo......\n.........\n.........\n.........\n.........\n........o\n.......xo",
+    "current": "Two",
+    "ply": 4,
+    "ap": 2,
+    "mana": [
+      4,
+      5
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 3
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 4,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "ko_recapture.json",
+    "step": 8,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xo......\nxo.o.....\n.xo......\n.........\n.........\n.........\n.........\n........o\n.......xo",
+    "current": "Two",
+    "ply": 4,
+    "ap": 1,
+    "mana": [
+      4,
+      5
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          1,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "Two",
+        "pieces": [
+          {
+            "at": [
+              2,
+              1
+            ],
+            "owner": "One",
+            "kind": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_commander_relief.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "Xo...\n.H...\n.....\n.....\n....O",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_commander_relief.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "X.o..\n.H...\n.....\n.....\n....O",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          1,
+          0
+        ],
+        "to": [
+          2,
+          0
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_default.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.Hx..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_default.json",
+    "step": 1,
+    "ok": false,
+    "reason": "SkillNotSelected",
+    "diagram": "....O\n.....\n.Hx..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_default.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.H...\n..x..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          2,
+          3
+        ],
+        "owner": "One",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_explicit_seal.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_explicit_seal.json",
+    "step": 1,
+    "ok": false,
+    "reason": "SkillNotSelected",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_explicit_seal.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          1,
+          1
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "SealPlaced",
+        "caster": "One",
+        "blocked": "Two",
+        "at": [
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_capture.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o.x..\nx.H..\n.....\n.....\nX...O",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_friendly_capture.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".x...\nx.H..\n.....\n.....\nX...O",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          0
+        ],
+        "to": [
+          1,
+          0
+        ],
+        "owner": "One",
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_superko.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n..x..\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_friendly_superko.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...x.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          1
+        ],
+        "to": [
+          3,
+          1
+        ],
+        "owner": "One",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_superko.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...x.\n..H..\n.....\nX....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      1,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_superko.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...x.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      2,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 2
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_superko.json",
+    "step": 4,
+    "ok": false,
+    "reason": "Ko",
+    "diagram": "....O\n...x.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      2,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_friendly_two_push_then_place.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....X\n..x..\n.Qo..\n.....\nO....",
+    "current": "Two",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "Mage"
+    ],
+    "summoned": [
+      false,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_friendly_two_push_then_place.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....X\n..x..\n.Q...\n..o..\nO....",
+    "current": "Two",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      1
+    ],
+    "classes": [
+      "None",
+      "Mage"
+    ],
+    "summoned": [
+      false,
+      true
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "Two",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          2,
+          3
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_friendly_two_push_then_place.json",
+    "step": 2,
+    "ok": false,
+    "reason": "SkillAlreadyUsed",
+    "diagram": "....X\n..x..\n.Q...\n..o..\nO....",
+    "current": "Two",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      1
+    ],
+    "classes": [
+      "None",
+      "Mage"
+    ],
+    "summoned": [
+      false,
+      true
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_friendly_two_push_then_place.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....X\n..x..\n.Qo..\n..o..\nO....",
+    "current": "One",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      1
+    ],
+    "classes": [
+      "None",
+      "Mage"
+    ],
+    "summoned": [
+      false,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          2,
+          2
+        ],
+        "kind": 0
+      },
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_insufficient_mana.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_insufficient_mana.json",
+    "step": 1,
+    "ok": false,
+    "reason": "NotEnoughMana",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_one_ap_event_order.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.Ho..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_one_ap_event_order.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n.H.o.\n.....\nX....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      1,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          3,
+          2
+        ],
+        "owner": "Two",
+        "kind": 0
+      },
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_push_then_place.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".oH..\nx....\n.....\n.....\nX...O",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_push_then_place.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o.H..\nx....\n.....\n.....\nX...O",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          1,
+          0
+        ],
+        "to": [
+          0,
+          0
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_push_then_place.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".xH..\nx....\n.....\n.....\nX...O",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      1,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          0
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "owner": "Two",
+            "kind": 0
+          }
+        ]
+      },
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_range_and_target_errors.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.H.oQ\n.....\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_range_and_target_errors.json",
+    "step": 1,
+    "ok": false,
+    "reason": "OutOfRange",
+    "diagram": "....O\n.H.oQ\n.....\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_range_and_target_errors.json",
+    "step": 2,
+    "ok": false,
+    "reason": "Occupied",
+    "diagram": "....O\n.H.oQ\n.....\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_range_and_target_errors.json",
+    "step": 3,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": "....O\n.H.oQ\n.....\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_range_and_target_errors.json",
+    "step": 4,
+    "ok": true,
+    "reason": "None",
+    "diagram": "...oO\n.H..Q\n.....\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          3,
+          1
+        ],
+        "to": [
+          3,
+          0
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_range_two_decapitation.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "x....\nOoo..\nx....\n.H...\n.x..X",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_range_two_decapitation.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "x....\nO.o..\nxo...\n.H...\n.x..X",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          1,
+          1
+        ],
+        "to": [
+          1,
+          2
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_range_two_decapitation.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "x....\n.xo..\nxo...\n.H...\n.x..X",
+    "current": "One",
+    "ply": 1,
+    "ap": 0,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Won",
+    "winner": "One",
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              0,
+              1
+            ],
+            "owner": "Two",
+            "kind": 1
+          }
+        ]
+      },
+      {
+        "type": "GameWon",
+        "winner": "One"
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_split_groups.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "..H.O\n.....\n.ooo.\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_split_groups.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "..H.O\n.....\n.o.o.\n..o..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          2,
+          3
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_suicide_rollback.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "X...O\noo...\n.....\n.H...\n.....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_suicide_rollback.json",
+    "step": 1,
+    "ok": false,
+    "reason": "Suicide",
+    "diagram": "X...O\noo...\n.....\n.H...\n.....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_suicide_rollback.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "X...O\no.o..\n.....\n.H...\n.....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          1,
+          1
+        ],
+        "to": [
+          2,
+          1
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n..o..\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...o.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      1,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          1
+        ],
+        "to": [
+          3,
+          1
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...o.\n..H..\n.....\nX....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      1,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n...o.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      2,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 2
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 4,
+    "ok": false,
+    "reason": "Ko",
+    "diagram": "....O\n...o.\n..H..\n.....\nX....",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      2,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_superko_rollback.json",
+    "step": 5,
+    "ok": true,
+    "reason": "None",
+    "diagram": "....O\n.....\n..Ho.\n.....\nX....",
+    "current": "One",
+    "ply": 3,
+    "ap": 1,
+    "mana": [
+      0,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          3,
+          1
+        ],
+        "to": [
+          3,
+          2
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 1,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 2,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 3,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 4,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 5,
+    "ok": false,
+    "reason": "Occupied",
+    "diagram": ".....\n..O..\nxHo..\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 6,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".....\n..O..\nxH.o.\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      0,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePushed",
+        "caster": "One",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          3,
+          2
+        ],
+        "owner": "Two",
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "magic_hand_target_and_cost.json",
+    "step": 7,
+    "ok": false,
+    "reason": "SkillAlreadyUsed",
+    "diagram": ".....\n..O..\nxH.o.\n..Q..\nX....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      0,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      true
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "mana_cap.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "mana_cap.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "mana_cap.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      5,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "mana_cap.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "Two",
+    "ply": 4,
+    "ap": 2,
+    "mana": [
+      5,
+      5
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 3
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 4,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "mana_cap.json",
+    "step": 4,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 5,
+    "ap": 2,
+    "mana": [
+      5,
+      5
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 4
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 5,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "new_game_default_first_turn_one_ap.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "new_game_default_first_turn_one_ap.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\nx........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          0,
+          8
+        ],
+        "kind": 0
+      },
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "new_game_default_first_turn_one_ap.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\nx........",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      5,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "new_game_two_ap_baseline.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "new_game_two_ap_baseline.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\nx........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          0,
+          8
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "new_game_two_ap_baseline.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\nxx.......",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          1,
+          8
+        ],
+        "kind": 0
+      },
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "no_resummon_by_default.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "no_resummon_by_default.json",
+    "step": 1,
+    "ok": false,
+    "reason": "HeroAlreadySummoned",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "resummon_allowed_when_enabled.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "resummon_allowed_when_enabled.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n...HX....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          3,
+          7
+        ],
+        "kind": 2
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          2
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "SealPlaced",
+        "caster": "One",
+        "blocked": "Two",
+        "at": [
+          4,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          2
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 3,
+    "ok": false,
+    "reason": "Sealed",
+    "diagram": ".........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          2
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": []
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 4,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "Two",
+    "ply": 2,
+    "ap": 1,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          2
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          0,
+          0
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 5,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      5,
+      4
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "SealExpired",
+        "at": [
+          4,
+          2
+        ]
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 6,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o........\n.........\n.........\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "Two",
+    "ply": 4,
+    "ap": 2,
+    "mana": [
+      5,
+      5
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 3
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 4,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "seal_blocks_then_expires.json",
+    "step": 7,
+    "ok": true,
+    "reason": "None",
+    "diagram": "o........\n.........\n....o....\n.........\n....H....\n.........\n.........\n.........\n....O....",
+    "current": "Two",
+    "ply": 4,
+    "ap": 1,
+    "mana": [
+      5,
+      5
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "Two",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "Two",
+        "at": [
+          4,
+          2
+        ],
+        "kind": 0
+      }
+    ]
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 1,
+    "ok": false,
+    "reason": "OutOfRange",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 2,
+    "ok": false,
+    "reason": "OutOfRange",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 3,
+    "ok": false,
+    "reason": "Occupied",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 4,
+    "ok": false,
+    "reason": "OutOfBounds",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 5,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          3
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "SealPlaced",
+        "caster": "One",
+        "blocked": "Two",
+        "at": [
+          4,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "seal_range_errors.json",
+    "step": 6,
+    "ok": false,
+    "reason": "SkillAlreadyUsed",
+    "diagram": ".........\n.........\n.........\n.........\n...xH....\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [
+      {
+        "at": [
+          4,
+          3
+        ],
+        "caster": "One",
+        "blocked": "Two"
+      }
+    ],
+    "events": []
+  },
+  {
+    "fixture": "suicide_rejected.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".o.......\no........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "suicide_rejected.json",
+    "step": 1,
+    "ok": false,
+    "reason": "Suicide",
+    "diagram": ".o.......\no........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "summon_adjacent_to_any_friend.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n....x....\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "summon_adjacent_to_any_friend.json",
+    "step": 1,
+    "ok": false,
+    "reason": "NotAdjacentToFriend",
+    "diagram": ".........\n.........\n.........\n....x....\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "summon_adjacent_to_any_friend.json",
+    "step": 2,
+    "ok": false,
+    "reason": "NotAdjacentToFriend",
+    "diagram": ".........\n.........\n.........\n....x....\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "summon_adjacent_to_any_friend.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n....H....\n....x....\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          4,
+          2
+        ],
+        "kind": 2
+      }
+    ]
+  },
+  {
+    "fixture": "summon_needs_mana.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "summon_needs_mana.json",
+    "step": 1,
+    "ok": false,
+    "reason": "NotEnoughMana",
+    "diagram": ".........\n.........\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      2,
+      3
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_back_is_ko.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..Ho.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_back_is_ko.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..oH.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecesSwapped",
+        "player": "One",
+        "a": [
+          2,
+          3
+        ],
+        "b": [
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "swap_back_is_ko.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..oH.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "swap_back_is_ko.json",
+    "step": 3,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..oH.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      5,
+      4
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "TurnStarted",
+        "player": "One",
+        "ply": 3,
+        "ap": 2,
+        "mana": 5
+      }
+    ]
+  },
+  {
+    "fixture": "swap_back_is_ko.json",
+    "step": 4,
+    "ok": false,
+    "reason": "Ko",
+    "diagram": ".........\n.........\n.........\n..oH.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 3,
+    "ap": 2,
+    "mana": [
+      5,
+      4
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_basic.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..Ho.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_basic.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..oH.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecesSwapped",
+        "player": "One",
+        "a": [
+          2,
+          3
+        ],
+        "b": [
+          3,
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "swap_decapitates.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "OoH......\nx........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_decapitates.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".Ho......\nx........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": true,
+    "status": "Won",
+    "winner": "One",
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 2
+      },
+      {
+        "type": "PiecesSwapped",
+        "player": "One",
+        "a": [
+          2,
+          0
+        ],
+        "b": [
+          1,
+          0
+        ]
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "owner": "Two",
+            "kind": 1
+          }
+        ]
+      },
+      {
+        "type": "GameWon",
+        "winner": "One"
+      }
+    ]
+  },
+  {
+    "fixture": "swap_suicide.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "Hoo......\n.o.......\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_suicide.json",
+    "step": 1,
+    "ok": false,
+    "reason": "Suicide",
+    "diagram": "Hoo......\n.o.......\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_target_errors.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n.........\n.........\n..HO.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_target_errors.json",
+    "step": 1,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".........\n.........\n.........\n..HO.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_target_errors.json",
+    "step": 2,
+    "ok": false,
+    "reason": "InvalidTarget",
+    "diagram": ".........\n.........\n.........\n..HO.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "swap_target_errors.json",
+    "step": 3,
+    "ok": false,
+    "reason": "OutOfRange",
+    "diagram": ".........\n.........\n.........\n..HO.....\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      6,
+      3
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "summoned": [
+      true,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "turn_limit_draw.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      4,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "turn_limit_draw.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "One",
+        "ply": 1
+      },
+      {
+        "type": "TurnStarted",
+        "player": "Two",
+        "ply": 2,
+        "ap": 2,
+        "mana": 4
+      }
+    ]
+  },
+  {
+    "fixture": "turn_limit_draw.json",
+    "step": 2,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Drawn",
+    "winner": null,
+    "seals": [],
+    "events": [
+      {
+        "type": "TurnEnded",
+        "player": "Two",
+        "ply": 2
+      },
+      {
+        "type": "GameDrawn",
+        "reason": "Turn limit reached (2 plies)."
+      }
+    ]
+  },
+  {
+    "fixture": "turn_limit_draw.json",
+    "step": 3,
+    "ok": false,
+    "reason": "GameOver",
+    "diagram": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+    "current": "Two",
+    "ply": 2,
+    "ap": 2,
+    "mana": [
+      4,
+      4
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Drawn",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "win_by_commander_capture.json",
+    "step": 0,
+    "ok": true,
+    "reason": "None",
+    "diagram": "Ox.......\n.........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 2,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Ongoing",
+    "winner": null,
+    "seals": [],
+    "events": []
+  },
+  {
+    "fixture": "win_by_commander_capture.json",
+    "step": 1,
+    "ok": true,
+    "reason": "None",
+    "diagram": ".x.......\nx........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Won",
+    "winner": "One",
+    "seals": [],
+    "events": [
+      {
+        "type": "ResourcesSpent",
+        "player": "One",
+        "ap": 1,
+        "mana": 0
+      },
+      {
+        "type": "PiecePlaced",
+        "player": "One",
+        "at": [
+          0,
+          1
+        ],
+        "kind": 0
+      },
+      {
+        "type": "PiecesCaptured",
+        "player": "One",
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "owner": "Two",
+            "kind": 1
+          }
+        ]
+      },
+      {
+        "type": "GameWon",
+        "winner": "One"
+      }
+    ]
+  },
+  {
+    "fixture": "win_by_commander_capture.json",
+    "step": 2,
+    "ok": false,
+    "reason": "GameOver",
+    "diagram": ".x.......\nx........\n.........\n.........\n.........\n.........\n.........\n.........\n.........",
+    "current": "One",
+    "ply": 1,
+    "ap": 1,
+    "mana": [
+      3,
+      3
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "summoned": [
+      false,
+      false
+    ],
+    "skill": false,
+    "status": "Won",
+    "winner": "One",
+    "seals": [],
+    "events": []
+  }
+]
