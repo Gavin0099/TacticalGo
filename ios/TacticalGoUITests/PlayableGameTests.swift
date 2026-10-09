@@ -71,6 +71,136 @@ import XCTest
         XCTAssertEqual(XCTWaiter.wait(for: [done], timeout: 90), .completed)
         shot(app, "VO-01-actual-owner-six-events-and-settings")
     }
+    func testThreeHeroSummonsAreRealNativeActionsWithVoiceAndUndo() {
+        for hero in ["warrior", "mage", "rogue"] {
+            let game = app(["--summon-demo", "--hero", hero, "--voice-review"])
+            XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout: 10))
+            shot(game,"SUMMON-" + hero + "-before")
+            tap(game,3,4)
+            XCTAssertTrue(game.staticTexts["2 AP"].exists)
+            shot(game,"SUMMON-" + hero + "-preview-original-board")
+            cozyConfirm(game)
+            let voice = game.staticTexts["heroStage"]
+            let spoken = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", "voice-" + hero + "-summon"),object: voice)
+            XCTAssertEqual(XCTWaiter.wait(for: [spoken],timeout: 5), .completed)
+            XCTAssertTrue(game.staticTexts["1 AP"].exists)
+            shot(game,"SUMMON-" + hero + "-settled")
+            game.buttons["undoOrCancel"].tap()
+            XCTAssertTrue(game.staticTexts["2 AP"].exists)
+            game.terminate()
+        }
+    }
+    func testMagicHandBothOwnersBothTargetsPreviewCancelConfirmAndUndo() {
+        for white in [false,true] {
+            for enemy in [false,true] {
+                var flags = ["--cozy-demo","--cozy-no-capture","--voice-review"]
+                if white { flags.append("--white-caster") }
+                if enemy { flags.append("--enemy-target") }
+                let game = app(flags)
+                XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout: 10))
+                tap(game,4,3)
+                for _ in 0..<5 { if game.buttons["push-Up"].isHittable { break }; game.swipeUp() }
+                game.buttons["push-Up"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                shot(game,"MAGIC-\(white)-\(enemy)-preview-source-and-empty-destination")
+                game.buttons["undoOrCancel"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                XCTAssertNotEqual(game.staticTexts["heroStage"].label,"voice-mage-skill")
+                game.swipeDown(); tap(game,4,3)
+                for _ in 0..<5 { if game.buttons["push-Up"].isHittable { break }; game.swipeUp() }
+                game.buttons["push-Up"].tap(); cozyConfirm(game)
+                XCTAssertTrue(game.staticTexts["1 AP"].exists)
+                XCTAssertEqual(game.staticTexts["heroStage"].label,"voice-mage-skill")
+                shot(game,"MAGIC-\(white)-\(enemy)-committed-landed")
+                game.buttons["undoOrCancel"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                XCUIDevice.shared.press(.home); game.activate()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.terminate()
+            }
+        }
+    }
+    func testWarriorAndRogueNativeSkillsBothOwnersCancelAndUndo() {
+        for hero in ["warrior","rogue"] {
+            for white in [false,true] {
+                var flags = ["--hero-skill-demo","--hero",hero,"--voice-review"]
+                if white { flags.append("--white-caster") }
+                let game = app(flags)
+                XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout: 10))
+                if hero == "warrior" { tap(game,2,3) }
+                tap(game,4,3)
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                shot(game,"SKILL-\(hero)-\(white)-preview")
+                game.buttons["undoOrCancel"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.swipeDown()
+                if hero == "warrior" { tap(game,2,3) }
+                tap(game,4,3); cozyConfirm(game)
+                XCTAssertTrue(game.staticTexts["1 AP"].exists)
+                XCTAssertEqual(game.staticTexts["heroStage"].label,"voice-" + hero + "-skill")
+                shot(game,"SKILL-\(hero)-\(white)-settled")
+                game.buttons["undoOrCancel"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.terminate()
+            }
+        }
+    }
+    func testGameFeelCommittedFrameTimingCaptureAndReducedAudioAudit() {
+        let game = app(["--cozy-demo","--game-feel-audit"])
+        let status = game.staticTexts["gameFeelAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout: 10))
+        let done = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label BEGINSWITH 'PASS'"),object: status)
+        XCTAssertEqual(XCTWaiter.wait(for: [done],timeout: 30), .completed)
+        shot(game,"GAME-FEEL-real-receipt-frame-audit")
+    }
+    func testGameFeelNativeSixLineRecordingWalkthrough() {
+        for hero in ["warrior","mage","rogue"] {
+            let summon = app(["--summon-demo","--hero",hero,"--audio-trace","--demo-audio-defaults"])
+            XCTAssertTrue(summon.staticTexts["2 AP"].waitForExistence(timeout: 10))
+            tap(summon,3,4); cozyConfirm(summon)
+            XCTAssertTrue(summon.staticTexts["1 AP"].exists)
+            shot(summon,"FILM-\(hero)-summon")
+            let hold = XCTNSPredicateExpectation(predicate: NSPredicate { _,_ in false },object: nil)
+            _ = XCTWaiter.wait(for:[hold],timeout: 2)
+            summon.terminate()
+            let skill = app(hero == "mage" ? ["--cozy-demo","--cozy-no-capture","--audio-trace","--demo-audio-defaults"] : ["--hero-skill-demo","--hero",hero,"--audio-trace","--demo-audio-defaults"])
+            XCTAssertTrue(skill.staticTexts["2 AP"].waitForExistence(timeout: 10))
+            if hero == "warrior" { tap(skill,2,3) }
+            tap(skill,4,3)
+            if hero == "mage" {
+                for _ in 0..<5 { if skill.buttons["push-Up"].isHittable { break }; skill.swipeUp() }
+                skill.buttons["push-Up"].tap()
+            }
+            cozyConfirm(skill); XCTAssertTrue(skill.staticTexts["1 AP"].exists)
+            shot(skill,"FILM-\(hero)-skill")
+            let holdSkill = XCTNSPredicateExpectation(predicate: NSPredicate { _,_ in false },object: nil)
+            _ = XCTWaiter.wait(for:[holdSkill],timeout: 2)
+            skill.terminate()
+        }
+        let capture = app(["--cozy-demo","--audio-trace","--demo-audio-defaults"])
+        tap(capture,4,3)
+        for _ in 0..<5 { if capture.buttons["push-Up"].isHittable { break }; capture.swipeUp() }
+        capture.buttons["push-Up"].tap(); cozyConfirm(capture)
+        XCTAssertTrue(capture.staticTexts["黑方獲勝"].waitForExistence(timeout: 10))
+        shot(capture,"FILM-conditional-capture-victory")
+        let hold = XCTNSPredicateExpectation(predicate: NSPredicate { _,_ in false },object: nil)
+        _ = XCTWaiter.wait(for:[hold],timeout: 3)
+    }
+    func testGameFeelNativeOrdinaryDropCaptureRecording() {
+        let game = app(["--play-win","--audio-trace","--demo-audio-defaults"])
+        XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout: 10))
+        tap(game,3,3)
+        XCTAssertFalse(game.staticTexts["黑方獲勝"].exists)
+        XCTAssertTrue(game.staticTexts["2 AP"].exists)
+        cozyConfirm(game)
+        XCTAssertTrue(game.staticTexts["黑方獲勝"].waitForExistence(timeout: 10))
+        shot(game,"FILM-ordinary-drop-commander-capture")
+        let hold = XCTNSPredicateExpectation(predicate: NSPredicate { _,_ in false },object: nil)
+        _ = XCTWaiter.wait(for:[hold],timeout: 3)
+        game.buttons["undoOrCancel"].tap()
+        XCTAssertFalse(game.staticTexts["黑方獲勝"].exists)
+        XCTAssertTrue(game.staticTexts["2 AP"].exists)
+    }
     private func tapTutorial(_ app: XCUIApplication, _ x: Int, _ y: Int) {
         let arena = app.otherElements["onboardArena"]
         XCTAssertTrue(arena.waitForExistence(timeout: 10))
@@ -184,7 +314,10 @@ import XCTest
     }
     private func app(_ args: [String] = []) -> XCUIApplication {
         continueAfterFailure = false
-        let app = XCUIApplication(); app.launchArguments = args + ["--record-isolation", UUID().uuidString]; app.launch(); return app
+        let app = XCUIApplication(); app.launchArguments = args + ["--record-isolation", UUID().uuidString]
+        if ProcessInfo.processInfo.environment["TACTICALGO_ATTACH_RUNNING"] == "1" { app.activate() }
+        else { app.launch() }
+        return app
     }
     private func tap(_ app: XCUIApplication, _ x: Int, _ y: Int, size: Int = 7) {
         let arena = app.otherElements["playArena"]
@@ -414,7 +547,8 @@ import XCTest
         XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 10))
         let boardFrame = app.otherElements["playArena"].frame
         let confirmFrame = app.buttons["playConfirm"].frame
-        XCTAssertGreaterThan(boardFrame.width, 550)
+        XCTAssertGreaterThan(boardFrame.width, 500)
+        XCTAssertGreaterThan(boardFrame.width * 0.74 / 8, 44, "Even a 9×9 tablet row retains a comfortable point spacing")
         XCTAssertGreaterThan(boardFrame.height, 450)
         XCTAssertGreaterThanOrEqual(confirmFrame.minX, boardFrame.maxX, "Actions belong beside the board")
         XCTAssertTrue(app.buttons["playEndTurn"].isHittable)
@@ -473,6 +607,7 @@ import XCTest
         shot(app, "iPad-native-nine-landscape")
         app.buttons["對戰選單"].tap(); app.buttons["聲音設定"].tap()
         XCTAssertTrue(app.switches["audioMute"].waitForExistence(timeout: 10))
+        for _ in 0..<4 { if app.sliders["musicVolume"].isHittable { break }; app.swipeUp() }
         XCTAssertTrue(app.sliders["musicVolume"].isHittable)
         shot(app, "iPad-native-sound-sheet")
         app.buttons["audioSettingsDone"].tap()
@@ -496,12 +631,25 @@ import XCTest
         let changed = toggle.value as? String
         XCTAssertNotEqual(original, changed)
         app.sliders["sfxVolume"].adjust(toNormalizedSliderPosition: 0.35)
+        for _ in 0..<4 { if app.sliders["musicVolume"].isHittable { break }; app.swipeUp() }
         app.sliders["musicVolume"].adjust(toNormalizedSliderPosition: 0.20)
+        app.swipeDown()
+        let voice = app.switches["voiceEnabled"]
+        let originalVoice = voice.value as? String
+        voice.coordinate(withNormalizedOffset: CGVector(dx: 0.92,dy: 0.5)).tap()
+        let changedVoice = voice.value as? String
+        XCTAssertNotEqual(originalVoice,changedVoice)
+        app.sliders["voiceVolume"].adjust(toNormalizedSliderPosition: 0.40)
+        let changedVoiceVolume = app.sliders["voiceVolume"].value as? String
         shot(app, "BOT-03a-integrated-sound-settings")
         app.buttons["audioSettingsDone"].tap()
         app.terminate(); app.launch()
         app.buttons["對戰選單"].tap(); app.buttons["聲音設定"].tap()
         XCTAssertEqual(app.switches["audioMute"].value as? String, changed)
+        XCTAssertEqual(app.switches["voiceEnabled"].value as? String,changedVoice)
+        XCTAssertEqual(app.sliders["voiceVolume"].value as? String,changedVoiceVolume)
+        app.switches["voiceEnabled"].coordinate(withNormalizedOffset: CGVector(dx: 0.92,dy: 0.5)).tap()
+        app.swipeDown()
         app.switches["audioMute"].coordinate(withNormalizedOffset: CGVector(dx: 0.92, dy: 0.5)).tap()
         app.buttons["audioSettingsDone"].tap()
     }

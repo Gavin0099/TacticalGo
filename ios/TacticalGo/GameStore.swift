@@ -60,6 +60,7 @@ import TacticalGoRecords
     let audio = CombatAudio(musicIntegrationAllowed: false)
     #endif
     var isPresenting = false
+    var presentationReducedMotion = false
     @ObservationIgnored private var presentationTask: Task<Void, Never>?
     @ObservationIgnored private var audioTask: Task<Void, Never>?
     @ObservationIgnored private var audioGeneration: UInt64 = 0
@@ -289,12 +290,25 @@ import TacticalGoRecords
             let receipt = BoardPlayback(before: before, action: action, outcome: o)
             playback = receipt
             presentAudio(before: before, action: action, outcome: o, receipt: receipt)
-            if let clip = Anim01MagicHand.make(before: before, action: action, outcome: o) {
+            #if DEBUG
+            GameFeelReceiptAudit.record(receipt, reduced: presentationReducedMotion)
+            #endif
+            let visualDuration: Double
+            if presentationReducedMotion { visualDuration = 0 }
+            else if let clip = Anim01MagicHand.make(before: before, action: action, outcome: o) { visualDuration = clip.duration }
+            else {
+                switch action {
+                case .summonHero, .placeSoldier, .castBastion, .castSwap: visualDuration = MotionPlan.make(before: before, action: action, outcome: o).duration
+                default: visualDuration = 0
+                }
+            }
+            if visualDuration > 0 {
                 isPresenting = true
                 presentationTask = Task { [weak self] in
-                    do { try await Task.sleep(for: .seconds(max(0, receipt.startedUptime + clip.duration - ProcessInfo.processInfo.systemUptime))) } catch { return }
+                    do { try await Task.sleep(for: .seconds(max(0, receipt.startedUptime + visualDuration - ProcessInfo.processInfo.systemUptime))) } catch { return }
                     guard let self, self.playback?.id == receipt.id else { return }
                     self.isPresenting = false
+                    self.scheduleComputerTurn()
                 }
             }
             selected = []; pushDirection = nil
@@ -376,7 +390,7 @@ import TacticalGoRecords
         try await Task.sleep(nanoseconds: max(botStepNanoseconds, UInt64(minimumDuration * 1_000_000_000)))
     }
     func scheduleComputerTurn() {
-        guard isComputerTurn, !isBotThinking, !isBotActing else { return }
+        guard isComputerTurn, !isPresenting, !isBotThinking, !isBotActing else { return }
         let snapshot = state, generation = botGeneration, actor = state.current
         let delay = botDelayNanoseconds, deliverLate = deliverCancelledBotResult
         let difficulty = botDifficulty

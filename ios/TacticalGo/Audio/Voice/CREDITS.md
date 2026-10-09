@@ -1,4 +1,4 @@
-# Hero Voice prototype VO-01 v2
+# Hero Voice prototype VO-01 v3
 
 These six fixed lines were synthesized offline, with anonymous consistent model speaker indices per hero. They are TTS prototypes, not approved final character acting. Original TacticalGo dialogue is in manifest.json. Outputs were trimmed and peak-scaled; model SHA, config SHA, generator SHA and output SHA are retained.
 
@@ -8,4 +8,4 @@ Voice model: rhasspy/piper-voices/en/en_US/libritts/high, repository declares MI
 
 Training data: LibriTTS by Heiga Zen, Viet Dang, Rob Clark, Yu Zhang, Ron J. Weiss, Ye Jia, Zhifeng Chen and Yonghui Wu (2019), derived from LibriSpeech/LibriVox. OpenSLR SLR60 lists CC BY 4.0: https://www.openslr.org/60/ . Attribution and license link: https://creativecommons.org/licenses/by/4.0/ . To retain a conservative reuse boundary, distribute these generated candidate files with this attribution under CC BY 4.0; this is not an assertion that the dataset license automatically governs all possible generated outputs. No endorsement by the dataset authors or speakers is implied.
 
-The provisional macOS System Voice clips used for early local playback tests have been replaced and excluded from the pushed branch history. macOS Tahoe SLA section 2F prohibits public-sharing redistribution of System Voices: https://www.apple.com/legal/sla/docs/macOSTahoe.pdf . Historical local test results verify event wiring only; final asset playback will be rerun after replacement. Formal release quality and complete rights review remain Pending.
+The provisional macOS System Voice clips used for early local playback tests have been replaced and excluded from the pushed branch history. macOS Tahoe SLA section 2F prohibits public-sharing redistribution of System Voices: https://www.apple.com/legal/sla/docs/macOSTahoe.pdf . Historical local test results verify event wiring only; V3 final asset playback passed the actual native owner audit and seven real native gesture receipts; physical-device listening remains Pending. Formal release quality and complete rights review remain Pending.

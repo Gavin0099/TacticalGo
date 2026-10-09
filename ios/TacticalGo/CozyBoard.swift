@@ -15,17 +15,20 @@ struct CozyBoard: View {
     let checkpoint: Double?
     let select: (Point) -> Void
     private var receipt: BoardPlayback? {
-        guard let playback, playback.outcome.state == presentation.state,
-              Anim01MagicHand.make(before: playback.before, action: playback.action, outcome: playback.outcome) != nil else { return nil }
-        return playback
+        guard let playback, playback.outcome.success, playback.outcome.state == presentation.state else { return nil }
+        switch playback.action {
+        case .summonHero, .placeSoldier, .castBastion, .castSwap: return playback
+        default: return Anim01MagicHand.make(before: playback.before, action: playback.action, outcome: playback.outcome) != nil ? playback : nil
+        }
     }
     var body: some View {
         GeometryReader { geometry in
             let fit = Anim01Geometry(width: geometry.size.width, height: geometry.size.height, boardSize: presentation.state.board.size)
             TimelineView(.animation(minimumInterval: 1 / 60, paused: !animating || (receipt == nil && botPlayback == nil) || checkpoint != nil || reducedMotion)) { context in
                 let elapsed = checkpoint ?? (receipt.map { item in
-                    let clip = Anim01MagicHand.make(before: item.before, action: item.action, outcome: item.outcome)!
-                    return clip.displayTime(elapsed: context.date.timeIntervalSince(item.startedAt), animating: animating, reducedMotion: reducedMotion)
+                    let duration = Anim01MagicHand.make(before: item.before, action: item.action, outcome: item.outcome)?.duration
+                        ?? MotionPlan.make(before: item.before, action: item.action, outcome: item.outcome).duration
+                    return animating && !reducedMotion ? max(0, context.date.timeIntervalSince(item.startedAt)) : duration
                 } ?? 0)
                 #if DEBUG
                 let _ = CozyTrace.record(receipt: receipt, elapsed: elapsed, reduced: reducedMotion)
@@ -72,7 +75,10 @@ struct CozyBoard: View {
     private func point(_ p: Point, size: CGSize) -> CGPoint { presentation.center(p, size) }
     @ViewBuilder private func layers(size: CGSize, pitch: CGFloat, receipt: BoardPlayback?, elapsed: Double, now: Date) -> some View {
         let clip = receipt.flatMap { Anim01MagicHand.make(before: $0.before, action: $0.action, outcome: $0.outcome) }
-        let generic = receipt == nil ? BotBoardFrame.make(botPlayback, startedAt: botStartedAt, now: now, reducedMotion: reducedMotion) : BotBoardFrame()
+        let generic: BotBoardFrame = {
+            if let receipt, clip == nil { return BotBoardFrame.committed(receipt, elapsed: elapsed, pitch: Double(pitch), reducedMotion: reducedMotion) }
+            return receipt == nil ? BotBoardFrame.make(botPlayback, startedAt: botStartedAt, now: now, reducedMotion: reducedMotion) : BotBoardFrame()
+        }()
         let preview = presentation.preview.flatMap { result -> (from: Point, to: Point)? in
             guard result.success else { return nil }
             for event in result.events { if case .piecePushed(_, let from, let to, _) = event { return (from, to) } }
@@ -102,6 +108,48 @@ struct CozyBoard: View {
                     .position(x: a.x + (b.x - a.x) * sprite.progress,
                               y: a.y + (b.y - a.y) * sprite.progress + sprite.lift)
                     .zIndex(180 + Double(sprite.to.y))
+            }
+            if let receipt, case .summonHero = receipt.action, !reducedMotion {
+                let plan = MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
+                if elapsed < plan.duration {
+                    ForEach(plan.cues.indices, id: \.self) { i in
+                        if case .drop(.hero) = plan.cues[i].kind, let at = plan.cues[i].points.first {
+                            let t = min(1, max(0, elapsed / 0.46))
+                            Circle().stroke(Cozy.gold.opacity(1 - t), lineWidth: 2)
+                                .frame(width: pitch * 0.82, height: pitch * 0.82)
+                                .scaleEffect(0.6 + 0.4 * t).position(point(at, size: size)).zIndex(185)
+                            Circle().stroke(Cozy.card.opacity(1 - t), style: StrokeStyle(lineWidth: 1, dash: [3,2]))
+                                .frame(width: pitch * 0.63, height: pitch * 0.63)
+                                .rotationEffect(.degrees(t * 50)).position(point(at, size: size)).zIndex(185)
+                        }
+                    }
+                }
+            }
+            if let receipt, !reducedMotion {
+                let plan = MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
+                ForEach(plan.cues.indices, id: \.self) { i in
+                    let cue = plan.cues[i]
+                    let t = min(1, max(0, (elapsed - cue.start) / cue.duration))
+                    if elapsed >= cue.start, elapsed < cue.start + cue.duration {
+                        if case .bastion = cue.kind, let hero = cue.points.first {
+                            Image(systemName: "shield.fill").font(.system(size: pitch * 0.33, weight: .bold))
+                                .foregroundStyle(Cozy.gold.opacity(1 - t)).offset(y: -pitch * 0.14 * t)
+                                .position(point(hero, size: size)).zIndex(190)
+                        }
+                        if case .swap = cue.kind {
+                            ForEach(cue.points, id: \.self) { p in
+                                Circle().stroke(Cozy.deepMage.opacity(1-t), style: StrokeStyle(lineWidth: 2,dash: [3,3]))
+                                    .frame(width: pitch * 0.76, height: pitch * 0.76).position(point(p,size: size)).zIndex(185)
+                            }
+                        }
+                        if case .capture(let piece) = cue.kind, piece.kind == .commander {
+                            ForEach(cue.points, id: \.self) { p in
+                                Circle().stroke(Color(red: 0.81, green: 0.40, blue: 0.35).opacity(1-t),lineWidth: 2.5)
+                                    .frame(width: pitch * 0.82,height: pitch * 0.82).position(point(p,size: size)).zIndex(191)
+                            }
+                        }
+                    }
+                }
             }
             if let clip, showingAnimation {
                 let a = point(clip.from, size: size), b = point(clip.to, size: size)

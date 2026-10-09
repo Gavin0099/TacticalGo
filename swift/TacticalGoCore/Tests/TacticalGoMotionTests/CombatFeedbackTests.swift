@@ -71,4 +71,21 @@ final class CombatFeedbackTests: XCTestCase {
         XCTAssertTrue(CombatFeedbackPlan.make(before: state, action: illegal, outcome: GameEngine.apply(state, illegal)).cues.isEmpty)
     }
 
+    func testNativeContactTimingsFollowReviewedMotionContract() throws {
+        let warrior = try GameSetup.fromDiagram(config: .board(size: 7),diagram: "...O...\n.......\n.......\n...H...\n.......\n...X...\n.......",classOne: .warrior,manaOne: 4,ap: 2)
+        let bastion = GameAction.castBastion(Point(2,3),Point(4,3))
+        XCTAssertEqual(CombatFeedbackPlan.make(before: warrior,action: bastion,outcome: GameEngine.apply(warrior,bastion)).cues,
+                       [.init("warrior",at: 0),.init("place",at: 0.39)])
+        let rogue = try GameSetup.fromDiagram(config: .board(size: 7),diagram: "...O...\n.......\n.......\n...Ho..\n.......\n...X...\n.......",classOne: .rogue,manaOne: 4,ap: 2)
+        let swap = GameAction.castSwap(Point(4,3))
+        XCTAssertEqual(CombatFeedbackPlan.make(before: rogue,action: swap,outcome: GameEngine.apply(rogue,swap)).cues,
+                       [.init("rogue",at: 0),.init("place",at: 0.42)])
+        let surrounded = try GameSetup.fromDiagram(config: .board(size: 7),diagram: ".......\n...x...\n..xO...\n...x...\n.......\n...X...\n.......",classOne: .warrior,ap: 2)
+        let drop = GameAction.placeSoldier(Point(4,2)), result = GameEngine.apply(surrounded,drop)
+        XCTAssertTrue(result.success); XCTAssertEqual(result.state.winner,.one)
+        let cues = CombatFeedbackPlan.make(before: surrounded,action: drop,outcome: result).cues
+        XCTAssertEqual(cues.filter { $0.key == "place" || $0.key == "capture" },[.init("place",at: 0.21),.init("capture",at: 0.30)])
+        XCTAssertEqual(CombatFeedbackPlan.make(before: surrounded,action: drop,outcome: result,reducedMotion: true).cues,cues)
+    }
+
 }

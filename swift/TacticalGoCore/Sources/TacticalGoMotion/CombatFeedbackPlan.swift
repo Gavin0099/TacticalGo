@@ -26,18 +26,18 @@ public struct CombatFeedbackPlan: Equatable, Sendable {
             }
         case .castBastion:
             if outcome.events.contains(where: { if case .piecePlaced = $0 { return true }; return false }) {
-                cues.append(.init("warrior", at: 0)); landing = 0.25; capture = 0.48; duration = 0.76
+                cues.append(.init("warrior", at: 0)); landing = 0.39; capture = 0.48; duration = 0.76
             }
         case .castSwap:
             if outcome.events.contains(where: { if case .piecesSwapped = $0 { return true }; return false }) {
-                cues.append(.init("rogue", at: 0)); landing = 0.32; capture = 0.42; duration = 0.7
+                cues.append(.init("rogue", at: 0)); landing = 0.42; capture = 0.42; duration = 0.7
             }
         case .castSeal:
             if outcome.events.contains(where: { if case .sealPlaced = $0 { return true }; return false }) {
                 cues.append(.init("mage", at: 0)); capture = 0.6; duration = 0.88
             }
         case .summonHero: landing = 0; capture = 0.46; duration = 0.74
-        case .placeSoldier: break
+        case .placeSoldier: landing = 0.21; capture = 0.30
         case .endTurn: duration = 0
         }
         var landed = false, captured = false

@@ -158,9 +158,22 @@ import TacticalGoMotion
         let played = player.play()
         playbackObservations.append(["key": key, "uptime": String(now), "playing": String(played), "volume": String(player.volume)])
         if playbackObservations.count > 100 { playbackObservations.removeFirst() }
+        recordAudioForAudit(key: key, kind: "sfx", playing: played, volume: player.volume)
         if !played { lastError = "音效無法播放：\(key)" }
     }
 
+    /// DEBUG only, bounded actual-owner timing for silent native capture + labelled postmix.
+    private func recordAudioForAudit(key: String, kind: String, playing: Bool, volume: Float) {
+        #if DEBUG
+        guard ProcessInfo.processInfo.arguments.contains("--audio-trace"),
+              let d = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first else { return }
+        let url = d.appendingPathComponent("game-feel-audio-trace.json")
+        var rows = (try? JSONSerialization.jsonObject(with: Data(contentsOf: url))) as? [[String: Any]] ?? []
+        rows.append(["key":key,"kind":kind,"playing":playing,"volume":volume,"uptime":now])
+        if rows.count > 500 { rows.removeFirst(rows.count - 500) }
+        try? JSONSerialization.data(withJSONObject: rows,options: [.prettyPrinted,.sortedKeys]).write(to:url,options:.atomic)
+        #endif
+    }
     private func prepareVoices() {
         guard matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
         for key in Self.voiceKeys.sorted() where voices[key] == nil { voices[key] = makeVoicePlayer(key) }
@@ -170,20 +183,24 @@ import TacticalGoMotion
         prepareVoices()
         guard let player = voices[cue.key] else { return }
         // One hero line globally, retained per key; no voice layering or queued replay.
+        recordAudioForAudit(key: "all",kind: "stop-voice",playing: false,volume: 0)
         voices.values.forEach { $0.stop() }
         player.currentTime = 0; player.volume = Float(voiceVolume)
         let played = player.play()
         voiceObservations.append(["key": cue.key, "uptime": String(now), "playing": String(played), "volume": String(player.volume)])
         if voiceObservations.count > 100 { voiceObservations.removeFirst() }
+        recordAudioForAudit(key: cue.key, kind: "voice", playing: played, volume: player.volume)
         if played {
             voiceDuckUntil = now + player.duration
             mix.duck(through: voiceDuckUntil, at: now); startMixTask()
         } else { lastError = "英雄語音無法播放：\(cue.key)" }
     }
     private func cancelSFX() {
+        recordAudioForAudit(key: "all",kind: "stop-sfx",playing: false,volume: 0)
         effects.values.forEach { $0.stop() }; lastSelectionTime = -Double.infinity
     }
     func cancelVoice() {
+        recordAudioForAudit(key: "all",kind: "stop-voice",playing: false,volume: 0)
         voices.values.forEach { $0.stop() }; voiceDuckUntil = 0
         mix.cancelDuck(); updateMix()
     }

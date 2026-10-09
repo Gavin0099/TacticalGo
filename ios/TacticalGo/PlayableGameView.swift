@@ -67,6 +67,8 @@ struct PlayableGameView: View {
     @State private var voiceAuditStatus = "RUNNING"
     @State private var requestedWidth: CGFloat?
     @State private var cozyReduced = false
+    @State private var gameFeelAuditStarted = false
+    @State private var gameFeelAuditStatus = "準備測試"
     @State private var cozyAssets = try? CozyAssets.load()
     @State private var visualFixture = false
     @State private var inMatch = false
@@ -114,7 +116,7 @@ struct PlayableGameView: View {
             Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
-        .onChange(of: reduceMotion) { _, _ in store.cancelPresentation() }
+        .onChange(of: reduceMotion) { _, value in store.cancelPresentation(); store.presentationReducedMotion = value || cozyReduced }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
         .onChange(of: scenePhase) { _, phase in
             store.setSceneAudioActive(phase == .active)
@@ -143,6 +145,12 @@ struct PlayableGameView: View {
         }
         .overlay(alignment: .top) {
             #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--game-feel-audit") {
+                Text(gameFeelAuditStatus).accessibilityIdentifier("gameFeelAudit").font(.caption2).background(Cozy.card)
+            }
+            if ProcessInfo.processInfo.arguments.contains("--voice-review") {
+                Text(store.audio.voiceObservations.last?["key"] ?? "尚未觸發語音").font(.system(size: 9)).accessibilityIdentifier("heroStage").padding(2).background(Cozy.card.opacity(0.85)).allowsHitTesting(false)
+            }
             if ProcessInfo.processInfo.arguments.contains("--voice-audit") {
                 Text(voiceAuditStatus).accessibilityIdentifier("voiceAudit").padding(4).background(Cozy.card)
             }
@@ -155,10 +163,14 @@ struct PlayableGameView: View {
             #endif
         }
         .onAppear {
+            store.presentationReducedMotion = reduceMotion || cozyReduced
             store.setSceneAudioActive(scenePhase == .active)
             store.setMatchAudioActive(inMatch)
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
+            if args.contains("--demo-audio-defaults") {
+                store.audio.muted = false; store.audio.voiceEnabled = true; store.audio.voiceVolume = 0.75; store.audio.sfxVolume = 0.65; store.audio.musicEnabled = false
+            }
             if args.contains("--onboard") { showOnboarding = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
             if args.contains("--bot-delayed") { store.botDelayNanoseconds = 2_500_000_000 }
@@ -177,9 +189,34 @@ struct PlayableGameView: View {
             if let i = args.firstIndex(of: "--practice"), args.indices.contains(i + 1), let value = PracticeLesson.allCases.first(where: { $0.rawValue == args[i + 1] }) { startPractice(value) }
             requestedWidth = args.contains("--cozy-320") ? 320 : args.contains("--cozy-390") ? 390 : nil
             cozyReduced = args.contains("--cozy-reduced")
+            store.presentationReducedMotion = reduceMotion || cozyReduced
+            if args.contains("--summon-demo") {
+                let selectedHero = args.firstIndex(of: "--hero").flatMap { index in
+                    args.indices.contains(index + 1) ? ["warrior": HeroClass.warrior, "mage": .mage, "rogue": .rogue][args[index+1]] : nil
+                } ?? .mage
+                let owner: Player = args.contains("--white-caster") ? .two : .one
+                let size = args.contains("--cozy-nine") ? 9 : 7
+                var diagram = Array(repeating: String(repeating: ".", count: size), count: size)
+                diagram[0] = "...O" + String(repeating: ".", count: size - 4)
+                diagram[5] = "...X" + String(repeating: ".", count: size - 4)
+                store.leaveMatch(); store.size = size
+                store.session = GameSession(try! GameSetup.fromDiagram(config: .board(size: size), diagram: diagram.joined(separator: "\n"), classOne: selectedHero, classTwo: selectedHero, current: owner, manaOne: 4, manaTwo: 4, ap: 2))
+                store.mode = .summon; inMatch = true; store.setMatchAudioActive(true)
+            }
+            if args.contains("--hero-skill-demo") {
+                let hero: HeroClass = args.contains("rogue") ? .rogue : .warrior
+                let owner: Player = args.contains("--white-caster") ? .two : .one
+                let symbol = owner == .one ? "H" : "Q", enemy = owner == .one ? "o" : "x"
+                let diagram = "...O...\n.......\n.......\n..." + symbol + (hero == .rogue ? enemy : ".") + "..\n.......\n...X...\n......."
+                store.leaveMatch(); store.size = 7
+                store.session = GameSession(try! GameSetup.fromDiagram(config: .board(size: 7), diagram: diagram,classOne: hero,classTwo: hero,current: owner,manaOne: 4,manaTwo: 4,ap: 2))
+                store.mode = .skill; inMatch = true; store.setMatchAudioActive(true)
+            }
             if args.contains("--cozy-demo") {
                 store.leaveMatch(); store.size = args.contains("--cozy-nine") ? 9 : 7
-                store.session = GameSession(try! TacticalGoMotion.Anim01Fixture.state(size: store.size, capture: !args.contains("--cozy-no-capture")))
+                let caster: Player = args.contains("--white-caster") ? .two : .one
+                let pushedOwner = args.contains("--enemy-target") ? caster.opponent : caster
+                store.session = GameSession(try! TacticalGoMotion.Anim01Fixture.state(size: store.size, caster: caster, pushedOwner: pushedOwner, capture: !args.contains("--cozy-no-capture") && pushedOwner == caster))
                 one = .mage; two = .warrior; store.mode = .skill; inMatch = true
                 store.setMatchAudioActive(true)
             }
@@ -206,6 +243,9 @@ struct PlayableGameView: View {
     private func startCozyAuditIfActive() {
         #if DEBUG
         guard scenePhase == .active else { return }
+        if !gameFeelAuditStarted, ProcessInfo.processInfo.arguments.contains("--game-feel-audit") {
+            gameFeelAuditStarted = true; Task { gameFeelAuditStatus = await GameFeelFrameAudit.run(store: store) }
+        }
         if !voiceAuditStarted, ProcessInfo.processInfo.arguments.contains("--voice-audit") {
             voiceAuditStarted = true; Task { voiceAuditStatus = await HeroVoiceAudit.run(store: store) }
         }
@@ -342,7 +382,10 @@ struct PlayableGameView: View {
         let tablet = size.width >= 600
         let wide = size.width >= 900 && size.width > size.height
         let width = min(size.width - (tablet ? 48 : 8), wide ? 1220 : tablet ? 736 : 626)
-        let height = width * 1152 / 1024
+        let compactTablet = tablet && !wide && size.height < 1200
+        let extra = (store.state.status == .ongoing ? 0.0 : 52.0)
+            + (store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy ? 38.0 : 0.0)
+        let portraitWidth = tablet && !wide ? min(width,max(320,(size.height - (compactTablet ? 470 : 550) - extra) / 1.125)) : width
         return ScrollView {
         return VStack(spacing: tablet ? 14 : 6) {
             matchHeader
@@ -364,9 +407,9 @@ struct PlayableGameView: View {
             } else {
                 HStack(spacing: 8) { playerStrip(.one); playerStrip(.two) }
                 botStatus; matchBanners
-                board.frame(width: tablet ? min(width, height / 1.125) : width, height: height)
+                board.frame(width: portraitWidth, height: portraitWidth * 1.125)
                     .frame(maxWidth: .infinity)
-                actionPanel(tablet: tablet, sidebar: false)
+                actionPanel(tablet: tablet && !compactTablet, sidebar: false)
             }
         }.font(.system(size: tablet ? 16 : 14))
             .padding(.horizontal, tablet ? 24 : 4).padding(.vertical, tablet ? 16 : 6)
@@ -449,7 +492,7 @@ struct PlayableGameView: View {
                 HStack(spacing: 9) {
                     Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: tablet ? 72 : 48, height: tablet ? 72 : 48)
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(hero.title + " · " + hero.skillTitle).font(.system(size: tablet ? 18 : 14, weight: .bold)).lineLimit(1)
+                        Text(hero.title + " · " + (store.mode == .skill ? hero.skillTitle : store.mode.rawValue)).font(.system(size: tablet ? 18 : 14, weight: .bold)).lineLimit(1)
                         Text(modeHelp).font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 0)

@@ -1,6 +1,7 @@
 import SwiftUI
 import SpriteKit
 import TacticalGoCore
+import TacticalGoMotion
 import TacticalGoVisuals
 
 extension Color {
@@ -292,6 +293,47 @@ struct BotBoardFrame {
     }
     var hidden: Set<Point> = []
     var sprites: [Sprite] = []
+    /// Reuses the existing sprite data and MotionPlan timing for committed native actions.
+    static func committed(_ receipt: BoardPlayback, elapsed: Double, pitch: Double, reducedMotion: Bool) -> BotBoardFrame {
+        let plan = MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
+        guard !reducedMotion, receipt.outcome.success, elapsed < plan.duration else { return BotBoardFrame() }
+        func fraction(_ start: Double, _ duration: Double) -> Double { min(1, max(0, (elapsed - start) / duration)) }
+        var result = BotBoardFrame(), animated: Set<Point> = []
+        let captures = plan.cues.filter { if case .capture = $0.kind { return true }; return false }
+        func opacity(_ at: Point) -> Double {
+            guard let cue = captures.first(where: { $0.points.contains(at) }) else { return 1 }
+            return 1 - fraction(cue.start, cue.duration)
+        }
+        for cue in plan.cues {
+            switch cue.kind {
+            case .drop(let kind):
+                for p in cue.points {
+                    let t = fraction(cue.start,cue.duration)
+                    result.hidden.insert(p); animated.insert(p)
+                    result.sprites.append(Sprite(id: result.sprites.count, piece: Piece(receipt.before.current,kind), from: p,to: p,progress: 1,
+                        lift: -pitch * 0.18 * MotionCurves.dropHeight(t),scale: kind == .hero ? 0.62 + 0.38 * MotionCurves.ease(min(1,t / 0.70)) : 1,
+                        opacity: (kind == .hero ? min(1,t / 0.35) : 1) * opacity(p)))
+                }
+            case .swap:
+                guard cue.points.count == 2 else { continue }
+                for i in 0..<2 {
+                    let from = cue.points[i], to = cue.points[1-i]
+                    guard let piece = receipt.before.board[from] else { continue }
+                    let t = fraction(cue.start,cue.duration)
+                    result.hidden.insert(from); result.hidden.insert(to); animated.insert(to)
+                    result.sprites.append(Sprite(id: result.sprites.count,piece: piece,from: from,to: to,
+                        progress: MotionCurves.swapProgress(t),lift: -pitch * 0.12 * sin(t * .pi),scale: 1,opacity: opacity(to)))
+                }
+            case .capture(let piece):
+                for p in cue.points where !animated.contains(p) {
+                    let t = fraction(cue.start,cue.duration); result.hidden.insert(p)
+                    result.sprites.append(Sprite(id: result.sprites.count,piece: piece,from: p,to: p,progress: 1,lift: -pitch * 0.12 * t,scale: 1 - 0.45 * t,opacity: 1 - t))
+                }
+            default: break
+            }
+        }
+        return result
+    }
     static func make(_ receipt: BoardPlayback?, startedAt: Date?, now: Date, reducedMotion: Bool) -> BotBoardFrame {
         guard !reducedMotion, let receipt, let startedAt else { return BotBoardFrame() }
         let elapsed = max(0, now.timeIntervalSince(startedAt))
