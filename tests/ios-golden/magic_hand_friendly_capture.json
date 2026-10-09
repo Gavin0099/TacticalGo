@@ -1,0 +1,71 @@
+{
+  "name": "magic_hand_friendly_capture",
+  "description": "Hand-authored: friendly soldier from (2,0) fills enemy (0,0) last liberty at (1,0), capturing the enemy in the same action. The moved friendly soldier survives; no special execution rule.",
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "MagicHand"
+  },
+  "setup": {
+    "diagram": [
+      "o.x..",
+      "x.H..",
+      ".....",
+      ".....",
+      "X...O"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          0
+        ],
+        "direction": "Left"
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "0,0": ".",
+          "2,0": ".",
+          "1,0": "x",
+          "2,1": "H"
+        },
+        "liberties": {
+          "1,0": 3
+        },
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "skillUsed": true,
+        "events": [
+          "ResourcesSpent",
+          "PiecePushed",
+          "PiecesCaptured"
+        ]
+      }
+    }
+  ],
+  "expectInitial": {
+    "liberties": {
+      "0,0": 1
+    }
+  }
+}

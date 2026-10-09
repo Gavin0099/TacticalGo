@@ -1,0 +1,56 @@
+{
+  "name": "resummon_allowed_when_enabled",
+  "description": "Same position as above with AllowResummon switched on.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null,
+    "allowResummon": true
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "....X"
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "SummonHero",
+        "at": [
+          3,
+          7
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "3,7": "H"
+        },
+        "mana": [
+          4,
+          3
+        ]
+      }
+    }
+  ]
+}

@@ -1,65 +1,67 @@
-# 下一個 Gate：iOS A0 試玩與操作驗收
+# TacticalGo iOS A0 可玩候選
 
-## 當前 Gate：BOT-01 玩家試玩（2026-10-09）
+Owner 2026-10-09 已玩過 Windows，要求直接做 iOS。正常啟動為 SwiftUI 選角／新對戰；不載入或展示未通過 Identity Gate 的 3D 人物。
 
-Owner 已試玩並核准基本 Swift 電腦對戰，早期「沒有可玩介面／Bot 暫停」表為歷史。此輪試玩入口：iOS 選角 → 電腦對戰 → 選雙方職業 → 開始；玩家黑方先手1AP，電腦白方正常2AP。只支援7×7單人，本機雙人7／9保留。
+- 雙方獨立選戰士、法師、盜賊，7×7／9×9 本機輪流對戰。
+- 原始 B-v02 PNG 用於選角與人物資訊；原始 A Token 用於木質 2.5D 棋盤。三張 B 卡與三張 A Token 保持來源檔位元一致。
+- 士兵落子、鄰接任一友軍召喚英雄、戰士築壘、法師魔法之手（可推任一方士兵）、盜賊換位。
+- 預覽呈現操作後盤面與將被提走的棋子；確認才扣 AP／能量。魔法之手先選士兵，再選方向。
+- 取消、完整復原、提早結束回合、自動換手、主將氣數、勝利／100 回合和局、重開。
+- 棋盤上方常駐「輪到黑方／白方＋職業」，資訊卡明示行動中／等待；預覽不換人，確認、自動換手、結束回合與復原才依實際狀態更新。
+- 雙方統一稱黑方／白方，與士兵色一致；主將與英雄用黑白底座及黑／白字牌識別，雙方同職也不依賴角色圖的顏色。
+- 小螢幕棋盤高度保留操作區；棋盤 HUD 採固定可讀字級避免系統超大字溢出，規則與格點清單維持可滾動的系統字級。
+- 四個可操作練習：提子、築壘、魔法之手、換位。練習完成以實際規則狀態判斷；可復原重試。
+- 棋盤右上格點清單提供可讀座標與棋子名稱，支援 VoiceOver／小尺寸精確選格；真機 VoiceOver 人工操作仍待檢查。
 
-固定戰術與原生證據見 artifacts/bot-01/REPORT.md；請觀察能否理解電腦攻守、召喚／技能是否有意義、密集盤面是否拖沓，以及是否想再玩一局。弱電腦胜率／自動合法終局不代替G5／職業平衡。BOT-02職業深化、BOT-03難度效能尚未授權，本輪不擴展。
+`TacticalGoCore` 是不依賴 SwiftUI／UIKit 的純 Swift Package。Magic Hand 的移植基準為 Windows `codex/gameplay-g1-g4` @ `54deef97e0fb7157b0025a7282fc2c0a448d4fb9`，不是本機 main 的舊版 Seal 引擎。沒有合併、更改 C# production Domain 或宣稱 Windows main 已同步。
 
-iPad 仍待 Owner 連接；安裝、真機效能、Owner試玩與模擬器驗證分開報告。
+## 開啟與驗證
 
-## 当前程式交付 — IOS-V2-ASSET-01
+在 Xcode 開啟 `ios/TacticalGo.xcodeproj`，scheme `TacticalGo`，選 iPhone Simulator 或已配對 iPhone。部署最低 iOS 17，直向 iPhone。
 
-Owner授权iOS Agent继续程式；SW1／SW2已有实际可玩与Golden證據，跳过重做，直接整理V2接線。静態V1不再扩展。原生整包metadata／图片／anchor接線與fail fallback完成，規格docs/ios/V2_ASSET_CONTRACT.md，當片驗證artifacts/ios/v2-asset-interface-v01/REPORT.md。接入新素材仍需Owner確認具體版本；接線通過不代表V1品質或新美術通過。後續依已提交事件接A1–A5，第二技能不實作；iPad未連接保持待辦。
+```sh
+swift test --package-path swift/TacticalGoCore
+# SDK 9 required; use installed dotnet or point to an existing isolated SDK.
+TACTICALGO_DOTNET=/tmp/tacticalgo-dotnet/dotnet python3 scripts/verify-ios-parity.py
+# Historical main Seal fixtures remain unchanged and use the explicit baseline:
+swift run --package-path swift/TacticalGoCore tacticalgo-golden tests/golden /tmp/legacy-swift.json --legacy-seal
+xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
+  -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO \
+  -only-testing:TacticalGoUITests/PlayableGameTests test
+```
 
-## 最新交付檢查：V1 A0 資訊層級與尺寸
+基準 exporter 只在暫存目錄讀取指定 Git revision 的 C# source；先逐檔檢查 fixtures 與該 revision 相同，再比較完整状态、錯誤與有序事件 payload。測試預期來自既有手寫 Golden，不由 C# output 自動產生。等價測試不能證明原玩法設計正確或平衡。
 
-V1静态稿先核對目前行動方、AP／Mana、原始人物卡、普通技能成本、合法預覽／确认取消与主將最後一氣；390與320同看，並补7／9盤面。另一Agent的正式棋盤美術后續接入，当前SVG板面是布局占位。UI既有可玩版与SW1不重跑，第二技能／R2候選独立。证据 `artifacts/ios/v1-a0-ui/VALIDATION.md`；规格 `docs/ios/V1_A0_UI_SPEC.md`。Owner未視覺核准以前不把静态稿叫成原生整合或真機驗收；iPad安裝等Owner連接。
+本輪可检查交付、截圖、Xcode result bundles、真機安裝與驗證邊界見 `artifacts/ios/playable-a0-v01/REPORT.md`。
 
-## 最新試玩後檢查：R2 規則候選
+## 保留的研究入口
 
-Owner 已完成一輪 iOS 對戰並指出密集盤面技能失效；這是玩法回饋，不代表 G5 樂趣與平衡通過。已核准固定局面 A／B／C／D 比較，原版手機與 UI 不變。R2 初輪結果支持戰士繼續真人審查，法師異色交換保留安全遠程破陣／盜賊空間風險。有限比較不替代整局反制測試；下一次 Owner 規則判斷以前，不改正式預設。證據與可讀棋形見 `artifacts/r2/REPORT.md`、`docs/r2/POSITIONS.md`。
+舊 RealityKit／SpriteKit／SwiftUI 比較及 3D 模型回放只在 Debug 加 `--review-controls` 時進入。相關幾何、模型、原畫與歷史驗證保留研究用途；本輪不新增 Mesh、骨架、全身、拆層 Sprite 或角色動畫。Release 不提供該入口。
 
-## 最新 Gate：iOS A0 可玩候選（2026-10-09）
+新流程的 Debug 測試入口：`--practice <包圍與提子|戰士築壘|法師魔法之手|盜賊換位>`、`--play-nine`、`--play-win`、`--play-draw`。正常對戰從規則初始狀態開始；Debug 勝負位置不能替代完整對戰驗證。
 
-Owner 已玩過 Windows，要求先做 iOS；不再等待 Windows G0 才進行移植。下一個檢查點為 iPhone 上的選角、新對戰、召喚／三職技能／提子、完整復原、7×7／9×9 觸控與勝負操作。技術測試與安裝不替代 Owner 的操作驗收；G5 遊戲性仍獨立。舊 3D Identity Gate 不通過，A0 原畫保留。見 `artifacts/ios/playable-a0-v01/REPORT.md`；以下為舊 Gate 歷史。
+已有 BOT-01 基本 7×7 電腦對手；已有簡單／標準、黑白執色、候選 BGM／音效與可見電腦逐步落子；尚未提供網路多人、背景存局／恢復與整套正式動畫。本輪是本機可玩候選；沒有 App Store／TestFlight 發布，也不將候選素材升格為正式發布素材。
 
-2026-10-09：V1／SW1 已開工，下一個技術 Gate 為 iPhone 正確點選與渲染比較，詳見 `docs/ios/SLICES.md`。Swift 原型可在模擬器檢查三畫面與 7×7／9×9；正式視覺與真機仍未核准。下方玩家策略 Gate 保留為 SW2b 之後的真人驗證；舊 Windows UI 先行順序已被本次決策取代。
+## V2素材接線
 
-# 保留的玩家驗證：職業會不會改變棋盤策略？
+素材規格見 `../docs/ios/V2_ASSET_CONTRACT.md`，原A0六張圖片metadata見 `../docs/ios/visual-pack-original-a0.json`。正常App仍選原圖；候選檔案不会自動載入或視為Owner核准。Debug `--visual-pack-fixture`只重用原圖，`--visual-pack-invalid-fixture`驗證整包拒絕與fallback。独立 `TacticalGoVisuals`不依賴Apple或規則核心，metadata pass/fail測試随Swift Package執行。
 
-> 狀態：Draft（2026-10-08）。這是進入完整 UI 之前的 Gate；自動化測試全過**不能**取代它。
+## BOT-01 單人試玩
 
-## 要回答的問題
+選角頁選「電腦對戰」，選黑／白方、簡單／標準，以及你與電腦的職業，開始7×7對戰。電腦規劃在背景執行；思考時可復原、重開或返回。單人復原回到上一個人類決策，包含撤回電腦回覆。原本本機雙人7／9與四個練習保留。
 
-玩家會不會「因為選了不同職業，而採用不同的棋盤策略」？
-如果戰士、法師、盜賊在同一個局面的最佳操作幾乎沒有差別，就先修改能力，而不是增加技能（PLAN §6 Stop 條件 1）。
+程式在獨立 `codex/bot-01` worktree，不能在 main Xcode工程中假定已經存在。詳細API／CLI見 `../docs/ios/BOT_01.md`；測試、實際對局、真機安裝狀態與限制見 `../artifacts/bot-01/REPORT.md`。目前是有限搜尋候選，密集局面可能多次跳過回合，不宣稱已具備強AI或人類驗收。
 
-## 已有 / 還沒有
+Debug可用 `--play-bot` 直接開正式初始單人局，選單的「電腦決策紀錄」查看行動、理由与背景耗時；Release無調試入口。`--bot-delayed --bot-late-result`只供測試不合作的晚到結果，不代表正式思考速度。
 
-| 項目 | 狀態 |
-|---|---|
-| 規則引擎、三招技能、跨語言黃金測資 | 有（`dotnet test`：75 項） |
-| 啟發式機器人探針 | 有，但**不會用技能策略**（築壘不會築防線、封印只靠評分）→ 不能拿來調數值。**暫停**，等真人玩過再決定要不要做技能型機器人 |
-| 可讓真人玩的介面 | **沒有**。2026-10-08 決定順序：UI 草圖 → Windows 可操作棋盤（WinForms，呼叫 C# 引擎）→ 真人試玩 → 改職業技能 → 機器人 → 正式美術。UI-0 草圖見 `docs/ui/UI0_layout.html` |
-| 代表性戰術局面 | **沒有**。需要 3–4 個固定中盤局面（見下），由 Owner 審 |
-| 試玩紀錄表 | **沒有**。每局記：選的職業與理由、關鍵決策、是否想換職業重玩、看不懂的規則 |
 
-## 建議的固定局面主題（棋盤待設計）
+## Owner追加：電腦下棋必須看得見
 
-1. **主將只剩 2 氣**：對手還有 2 AP。誰能活？戰士築壘補氣？法師封住對手要填的氣？盜賊換位反殺？
-2. **雙方中盤互有打吃**：先手 1 AP 的補償是否讓局面有來回，而不是一邊倒。
-3. **英雄是否冒險前出**：召喚位置現在要鄰接己方棋子，英雄部署的位置本身是否構成決策。
-4. **看似穩固的棋形**：盜賊換位能破陣嗎？對手能否預防？（檢驗職業之間要有反制，而不是強弱排序）
+2026-10-09 Owner試玩反馈「電腦要有下棋的動作，不然看不出來」。BOT-01增加最小A0演出接線，不新增素材或重做動畫框架。完整計畫先驗證，之後每一步先指示目標／座標／第N步，再commit并播放原圖落下／推動／換位／提子，兩步間保留停頓。預設每步準備0.9秒、落定0.9秒；減少動態保留靜態提示與順序。正式技能效果不改。
 
-## 通過 / 停止判準（由 Owner 依實際行為判定，不是機器人數字）
+演出中的玩家輸入鎖定到最後落定，復原／重開／離開仍可中止；每一次await後重新核對generation/電腦方/完整state。第一步已提交後undo仍撤回到上一人類決策；背景最後落定時恢復玩家文案與完成計數，避免舊task再提交。只讀Bot Agent已review，實際原生與錄影以artifacts/bot-01/REPORT.md最新結果為準。
 
-- 通過傾向：同一局面出現兩種以上合理且職業相關的解法；玩家能說出為何選這職業；輸了想換職業再戰。
-- Stop/Pivot：最佳解與職業無關；職業排序（兩個支配、一個墊底）；大量時間花在記例外規則；玩家看懂了卻不想再試。
-
-## 這個 Gate 之前**不做**
-
-卷軸、神器、紅龍完整系統、大量美術、13×13、正式 SwiftUI 介面。
+Debug `--bot-step-review`在每phase等候「下一演出階段」測試按鈕，供穩定讀取AP／截圖；不改Bot選擇或規則，Release不含此按鈕。`--bot-mage-motion-review`由手寫反色固定局面讓真Planner選推動＋落子斬首，僅驗演出，不冒稱正式開局對戰。
 
 
 ## 2026-10-09 — 現行可玩 iOS 與 Owner 追加範圍（取代前述 G0 Pending／SwiftUI 未開始的歷史狀態）

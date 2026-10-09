@@ -1,0 +1,85 @@
+{
+  "name": "bastion_captures_with_two_stones",
+  "description": "Warrior bastion: two soldiers for 1 AP + 2 Mana, resolved together.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "H . x",
+      ". o x",
+      ". x"
+    ],
+    "classes": [
+      "Warrior",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          1,
+          0
+        ],
+        "second": [
+          0,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "cells": {
+          "1,0": "x",
+          "0,1": "x",
+          "1,1": "."
+        },
+        "mana": [
+          4,
+          3
+        ],
+        "ap": 1,
+        "current": "One",
+        "events": [
+          "ResourcesSpent",
+          "PiecePlaced",
+          "PiecePlaced",
+          "PiecesCaptured"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "CastBastion",
+        "first": [
+          2,
+          3
+        ],
+        "second": [
+          3,
+          4
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "SkillAlreadyUsed",
+        "mana": [
+          4,
+          3
+        ]
+      }
+    }
+  ]
+}

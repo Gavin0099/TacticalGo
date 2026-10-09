@@ -1,0 +1,117 @@
+{
+  "name": "seal_range_errors",
+  "description": "Seal range is Manhattan 1-2 from the Mage, on an empty unsealed point.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null,
+    "mageSkill": "Seal"
+  },
+  "setup": {
+    "diagram": [
+      "",
+      "",
+      "",
+      "",
+      "...xH"
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          4,
+          1
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "OutOfRange"
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          4,
+          4
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "OutOfRange"
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          3,
+          4
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Occupied"
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          9,
+          9
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "OutOfBounds"
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          4,
+          3
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "seals": [
+          [
+            4,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          4,
+          2
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "SkillAlreadyUsed"
+      }
+    }
+  ]
+}

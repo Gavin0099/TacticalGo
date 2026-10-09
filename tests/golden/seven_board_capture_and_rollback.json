@@ -1,0 +1,12 @@
+{
+  "name": "seven_board_capture_and_rollback",
+  "description": "7x7 from RULES_DRAFT section 3: occupied rejection is atomic; filling an enemy commander's last liberty wins immediately before auto turn-end.",
+  "config": { "boardSize": 7 },
+  "setup": { "diagram": ["xO.....", ".x.....", "X......"], "classes": ["None", "None"], "current": "One", "mana": [3,3], "ap": 2, "heroSummoned": [false,false] },
+  "steps": [
+    { "action": { "type": "PlaceSoldier", "at": [1,0] }, "expect": { "ok": false, "reason": "Occupied", "ap": 2, "mana": [3,3], "cells": { "1,0": "O" }, "events": [] } },
+    { "action": { "type": "PlaceSoldier", "at": [7,0] }, "expect": { "ok": false, "reason": "OutOfBounds", "ap": 2, "events": [] } },
+    { "action": { "type": "PlaceSoldier", "at": [2,0] }, "expect": { "ok": true, "cells": { "1,0": ".", "2,0": "x" }, "ap": 1, "current": "One", "status": "Won", "winner": "One", "events": ["ResourcesSpent", "PiecePlaced", "PiecesCaptured", "GameWon"] } },
+    { "action": { "type": "EndTurn" }, "expect": { "ok": false, "reason": "GameOver", "ap": 1, "status": "Won", "winner": "One", "events": [] } }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "suicide_rejected",
+  "description": "A placement with no liberties that captures nothing is illegal and changes nothing.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      ". o",
+      "o"
+    ],
+    "classes": [
+      "None",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          0
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "Suicide",
+        "cells": {
+          "0,0": "."
+        },
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "current": "One",
+        "events": []
+      }
+    }
+  ]
+}

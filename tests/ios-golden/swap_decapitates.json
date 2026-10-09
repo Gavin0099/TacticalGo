@@ -1,0 +1,49 @@
+{
+  "name": "swap_decapitates",
+  "description": "Swapping the Rogue into the commander's ring captures the commander.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null
+  },
+  "setup": {
+    "diagram": [
+      "O o H",
+      "x"
+    ],
+    "classes": [
+      "Rogue",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      6,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      false,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastSwap",
+        "target": [
+          1,
+          0
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "status": "Won",
+        "winner": "One",
+        "cells": {
+          "0,0": ".",
+          "1,0": "H",
+          "2,0": "o"
+        }
+      }
+    }
+  ]
+}

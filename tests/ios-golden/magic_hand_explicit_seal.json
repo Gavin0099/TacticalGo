@@ -1,0 +1,80 @@
+{
+  "config": {
+    "boardSize": 5,
+    "mageSkill": "Seal"
+  },
+  "setup": {
+    "diagram": [
+      "....O",
+      ".....",
+      ".Ho..",
+      ".....",
+      "X...."
+    ],
+    "classes": [
+      "Mage",
+      "None"
+    ],
+    "current": "One",
+    "mana": [
+      3,
+      3
+    ],
+    "ap": 2,
+    "heroSummoned": [
+      true,
+      false
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "CastMagicHand",
+        "target": [
+          2,
+          2
+        ],
+        "direction": "Right"
+      },
+      "expect": {
+        "ok": false,
+        "reason": "SkillNotSelected",
+        "ap": 2,
+        "mana": [
+          3,
+          3
+        ],
+        "events": []
+      }
+    },
+    {
+      "action": {
+        "type": "CastSeal",
+        "at": [
+          1,
+          1
+        ]
+      },
+      "expect": {
+        "ok": true,
+        "ap": 1,
+        "mana": [
+          1,
+          3
+        ],
+        "seals": [
+          [
+            1,
+            1
+          ]
+        ],
+        "events": [
+          "ResourcesSpent",
+          "SealPlaced"
+        ]
+      }
+    }
+  ],
+  "name": "magic_hand_explicit_seal",
+  "description": "Owner changed the default to Magic Hand; explicit Seal remains a comparison baseline. Original action expectations and board are unchanged."
+}

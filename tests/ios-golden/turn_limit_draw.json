@@ -1,0 +1,55 @@
+{
+  "name": "turn_limit_draw",
+  "description": "Reaching MaxPlies without a decapitation ends in a draw.",
+  "config": {
+    "apPerTurn": 2,
+    "firstTurnAp": null,
+    "maxPlies": 2
+  },
+  "setup": {
+    "newGame": true,
+    "classes": [
+      "None",
+      "None"
+    ]
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "current": "Two",
+        "ply": 2
+      }
+    },
+    {
+      "action": {
+        "type": "EndTurn"
+      },
+      "expect": {
+        "ok": true,
+        "status": "Drawn",
+        "winner": null,
+        "events": [
+          "TurnEnded",
+          "GameDrawn"
+        ]
+      }
+    },
+    {
+      "action": {
+        "type": "PlaceSoldier",
+        "at": [
+          0,
+          8
+        ]
+      },
+      "expect": {
+        "ok": false,
+        "reason": "GameOver"
+      }
+    }
+  ]
+}
