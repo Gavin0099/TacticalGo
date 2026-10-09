@@ -16,3 +16,5 @@
 - Before any push of the public repo: resolve `governance/MEMORY_PROTOCOL.md` (framework working tree has an uncommitted edit that was copied) and add Apache-2.0 attribution for copied framework files.
 - Owner reviews the remaining pending items in `docs/RULES_DRAFT.md` section 8 one by one.
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
+
+- BOT-P1 分層診斷完成，行為修正 HOLD，待獨立 Draft PR 審查。CONTENT-02 在另一工作分支。 <!-- memory_record_projection:active-task-summary:af87eef099b5c6d567f81e9973d2d3b0eeeae2cb232bf4fb36801b96f4493644 -->

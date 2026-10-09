@@ -1,0 +1,497 @@
+{
+  "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+  "completeOwnTurns" : 32,
+  "ply" : 40,
+  "replyApplyChecks" : 231,
+  "rows" : [
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.castMagicHand(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.PushDirection.up)"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castMagicHand(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.PushDirection.up)",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castMagicHand(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.PushDirection.up)",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castMagicHand(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.PushDirection.up)",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 1, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nx.oQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 2))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 2), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxo.Qxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 2))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 0, y: 0))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : "oooxxxx\noo.Oxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 1))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "board" : "oooxxxx\noooOxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 1,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castFriendlyRedeploy(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 2, y: 1))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noooOxxx\nxooQxxx\nxx.xxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 2, y: 3))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 0))"
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    }
+  ],
+  "scope" : "All legal own turns of up to two actions, including voluntary endTurn; for every turn all enemy up-to-two-action replies until first win witness. No heuristic pruning. No witness is only absence of a next-turn commander capture, not proof of safety or strategic quality.",
+  "source" : "artifacts\/r3-p1\/standard-candidate.json",
+  "withoutEnemyNextTurnWinWitness" : 1
+}
