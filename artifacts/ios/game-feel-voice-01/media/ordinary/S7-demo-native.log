@@ -1,0 +1,80 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testGameFeelNativeOrdinaryDropCaptureRecording" -resultBundlePath /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/media/ordinary/S7-demo-native.xcresult
+
+2026-10-10 02:36:56.628 xcodebuild[32298:344346] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/media/ordinary/S7-demo-native.xcresult
+
+2026-10-10 02:36:56.634 xcodebuild[32298:344346] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 02:36:57.832 xcodebuild[32298:344346] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 02:36:59.114989+0800 TacticalGoUITests-Runner[32319:344561] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 02:36:59.611.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 02:36:59.612.
+Test Suite 'PlayableGameTests' started at 2026-10-10 02:36:59.612.
+Test Case '-[TacticalGoUITests.PlayableGameTests testGameFeelNativeOrdinaryDropCaptureRecording]' started.
+    t =     0.00s Start Test at 2026-10-10 02:36:59.613
+    t =     0.02s Set Up
+    t =     0.02s Open com.tacticalgo.prototype
+    t =     0.02s     Launch com.tacticalgo.prototype
+2026-10-10 02:36:59.888 xcodebuild[32298:344346] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 02:36:59.888 xcodebuild[32298:344346] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.69s         Setting up automation session
+    t =     1.43s         Wait for com.tacticalgo.prototype to idle
+    t =     3.57s Waiting 10.0s for "2 AP" StaticText to exist
+    t =     4.63s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =     4.63s         Checking existence of `"2 AP" StaticText`
+    t =     4.75s Waiting 10.0s for "playArena" Other to exist
+    t =     5.80s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.80s         Checking existence of `"playArena" Other`
+    t =     5.86s Tap "playArena" Other[0.50, 0.51]
+    t =     5.86s     Wait for com.tacticalgo.prototype to idle
+    t =     5.86s     Find the "playArena" Other
+    t =     5.89s     Check for interrupting elements affecting "playArena" Other
+    t =     5.92s     Synthesize event
+    t =     5.92s         Find the "playArena" Other
+    t =     5.95s         Find the "playArena" Other
+    t =     5.99s         Find the "playArena" Other
+    t =     6.30s     Wait for com.tacticalgo.prototype to idle
+    t =     6.30s Checking existence of `"黑方獲勝" StaticText`
+    t =     6.34s Checking existence of `"2 AP" StaticText`
+    t =     6.37s Find the "playConfirm" Button
+    t =     6.41s Find the "playConfirm" Button
+    t =     6.44s Tap "playConfirm" Button
+    t =     6.44s     Wait for com.tacticalgo.prototype to idle
+    t =     6.45s     Find the "playConfirm" Button
+    t =     6.48s     Check for interrupting elements affecting "playConfirm" Button
+    t =     6.50s     Synthesize event
+    t =     6.79s     Wait for com.tacticalgo.prototype to idle
+    t =     6.79s Waiting 10.0s for "黑方獲勝" StaticText to exist
+    t =     7.84s     Checking `Expect predicate `existsNoRetry == 1` for object "黑方獲勝" StaticText`
+    t =     7.84s         Checking existence of `"黑方獲勝" StaticText`
+    t =     7.98s Added attachment named 'FILM-ordinary-drop-commander-capture'
+    t =    10.99s Tap "undoOrCancel" Button
+    t =    10.99s     Wait for com.tacticalgo.prototype to idle
+    t =    11.00s     Find the "undoOrCancel" Button
+    t =    11.05s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    11.07s     Synthesize event
+    t =    11.37s     Wait for com.tacticalgo.prototype to idle
+    t =    11.37s Checking existence of `"黑方獲勝" StaticText`
+    t =    11.41s Checking existence of `"2 AP" StaticText`
+    t =    11.45s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testGameFeelNativeOrdinaryDropCaptureRecording]' passed (11.670 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 02:37:11.284.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.670 (11.672) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 02:37:11.285.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.670 (11.673) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 02:37:11.286.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.670 (11.674) seconds
+2026-10-10 02:37:11.635 xcodebuild[32298:344346] [MT] IDETestOperationsObserverDebug: 13.801 elapsed -- Testing started completed.
+2026-10-10 02:37:11.635 xcodebuild[32298:344346] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 02:37:11.635 xcodebuild[32298:344346] [MT] IDETestOperationsObserverDebug: 13.801 sec, +13.801 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/media/ordinary/S7-demo-native.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

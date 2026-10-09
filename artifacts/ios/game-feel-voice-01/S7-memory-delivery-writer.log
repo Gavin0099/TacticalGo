@@ -1,0 +1,16 @@
+[memory_record] advisory: test_evidence claims success without an existing artifacts/ path; the memory authority guard will flag this entry as test_evidence_provenance_not_found. Wrap the validation command in governance_tools.test_evidence_receipt_writer and cite the receipt path inside --test-evidence.
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/2026-10-10.md (surface identity=a1bb7527a87cb8b184eb6c4b6c2204606907729f9360f30b5572051b14549498)
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/01_active_task.md (surface identity=a1bb7527a87cb8b184eb6c4b6c2204606907729f9360f30b5572051b14549498)
+- memory_type: session-derived
+  record_format_version: 1.0
+  writer: governance_tools.memory_record
+  what_changed: S7 source push verified: origin/codex/game-feel-voice-01=c9f86c6, main remains cdab133. Native 23.1s seven-action hero film and ordinary commander-capture film carry explicit event-timed POSTMIX label; V3 six auditions and sources/sha retained. Current Voice64 audit, phone focused2/0 and source/role invariant checks PASS.
+  commit: c9f86c6
+  commit_hash: c9f86c6
+  session_id: cli-20261010-024030
+  memory_binding: bound
+  test_evidence: DELIVERY.json; S6-native-phone-v3-focused.log2/0; S6-v3-hero-voice-audit.json64/64; media/S7-demo-native.log1/0; media/ordinary/S7-demo-native.log1/0; S7-push-source.log; S7-remote-source.txt main unchanged. Package156/0 Golden38/99 Release PASS.
+  next_step: Owner review isolated Hero Voice candidate, auditions, native Simulator film and REPORT. Physical V3 foreground/headphone/speaker hearing Pending due device lock; formal BGM/art/release rights Pending. Stop new slices; no merge/release.
+  plan_reconciliation: updated
+  record_identity: a1bb7527a87cb8b184eb6c4b6c2204606907729f9360f30b5572051b14549498
+

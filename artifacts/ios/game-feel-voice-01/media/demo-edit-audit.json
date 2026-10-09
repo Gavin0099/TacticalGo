@@ -1,0 +1,882 @@
+{
+  "audio": "event-timed postmix; AVAudioPlayer actual start and volume; not recorded system audio",
+  "timingBoundary": "capture-ready acknowledgement used as zero; no hardware audiovisual synchronization claim",
+  "clips": [
+    {
+      "title": "Warrior / summon",
+      "receipt": "52DF96FB-5229-4656-8131-FFA1AB58F57B",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12735.40377825,
+        12738.70377825
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12736.235163083335,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "summon",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12736.672324458334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-warrior-summon",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12736.682952125,
+          "volume": 0.75
+        }
+      ],
+      "mixPeak": 0.5621856603793276
+    },
+    {
+      "title": "Warrior / Hold the line",
+      "receipt": "400DF578-DFC1-4D17-A362-F587F3310883",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12745.38971925,
+        12748.68971925
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12746.196728625,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "warrior",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12746.655332958335,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-warrior-skill",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12746.676742375,
+          "volume": 0.75
+        },
+        {
+          "key": "place",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12747.050203333334,
+          "volume": 0.6499999761581421
+        }
+      ],
+      "mixPeak": 0.5430602954584174
+    },
+    {
+      "title": "Mage / summon",
+      "receipt": "1AC3339B-5EC2-4796-B30D-5E579578D26C",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          1,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12753.803760291667,
+        12757.103760291666
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12754.649855708334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "summon",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12755.065668083334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-mage-summon",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12755.076391,
+          "volume": 0.75
+        }
+      ],
+      "mixPeak": 0.5467895433794183
+    },
+    {
+      "title": "Mage / Off you go",
+      "receipt": "522A554E-A765-45B2-82B2-4AFA34A67C82",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12762.754066875,
+        12766.054066875
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12763.181124291668,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "mage",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12764.012962041668,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-mage-skill",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12764.023917916667,
+          "volume": 0.75
+        },
+        {
+          "key": "place",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12764.333201333335,
+          "volume": 0.6499999761581421
+        }
+      ],
+      "mixPeak": 0.5928542975088931
+    },
+    {
+      "title": "Rogue / summon",
+      "receipt": "772C239C-6F80-4F67-BBC5-E30B2FE5151A",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12771.054198166667,
+        12774.354198166666
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12771.902594666668,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "summon",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12772.318490708334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-rogue-summon",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12772.339863125,
+          "volume": 0.75
+        }
+      ],
+      "mixPeak": 0.6202270414069062
+    },
+    {
+      "title": "Rogue / Lets switch",
+      "receipt": "228CAF4A-8A89-4D08-9207-FCDC4D1126AB",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "windowUptime": [
+        12779.488406375001,
+        12782.788406375
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12780.311513833334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "rogue",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12780.748632,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-rogue-skill",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12780.759324666667,
+          "volume": 0.75
+        },
+        {
+          "key": "place",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12781.175525166667,
+          "volume": 0.6499999761581421
+        }
+      ],
+      "mixPeak": 0.5477172741229879
+    },
+    {
+      "title": "Mage / capture + victory",
+      "receipt": "C9D81391-2FF2-4F60-8DD7-EEB50A7FFF58",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "windowUptime": [
+        12787.370098791667,
+        12790.670098791667
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12787.801318083335,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "mage",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12788.633080166668,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "voice-mage-skill",
+          "kind": "voice",
+          "playing": true,
+          "uptime": 12788.643839208335,
+          "volume": 0.75
+        },
+        {
+          "key": "place",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12788.942582541667,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "capture",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12789.038573666667,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "victory",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 12789.230533166667,
+          "volume": 0.6499999761581421
+        }
+      ],
+      "mixPeak": 0.5928741307252494
+    }
+  ]
+}

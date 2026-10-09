@@ -1,0 +1,434 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=9838EAA7-25BA-40F6-BCEA-42BD3871A2BE" "-only-testing:TacticalGoUITests/PlayableGameTests/testTabletNativePortraitLandscapeAndSelectionSurviveRotation" "-only-testing:TacticalGoUITests/PlayableGameTests/testTabletLandscapeLobbyStartsMatch" "-only-testing:TacticalGoUITests/PlayableGameTests/testTabletNineBoardLandscapeTouchAndSoundSettings" "-only-testing:TacticalGoUITests/PlayableGameTests/testHeroVoiceActualOwnerSixEventsSettingsAndCancellation" -resultBundlePath artifacts/ios/game-feel-voice-01/S6-native-ipad-corrected.xcresult
+
+2026-10-10 02:26:45.562 xcodebuild[30723:315994] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/S6-native-ipad-corrected.xcresult
+
+2026-10-10 02:26:45.570 xcodebuild[30723:315994] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:9838EAA7-25BA-40F6-BCEA-42BD3871A2BE, OS:18.0, name:TacticalGo iPad mini layout }
+{ platform:iOS Simulator, arch:x86_64, id:9838EAA7-25BA-40F6-BCEA-42BD3871A2BE, OS:18.0, name:TacticalGo iPad mini layout }
+2026-10-10 02:26:46.770 xcodebuild[30723:315994] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 02:26:47.140 xcodebuild[30723:315994] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 02:26:48.160555+0800 TacticalGoUITests-Runner[30738:316271] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 02:26:48.614.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 02:26:48.615.
+Test Suite 'PlayableGameTests' started at 2026-10-10 02:26:48.615.
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroVoiceActualOwnerSixEventsSettingsAndCancellation]' started.
+    t =     0.00s Start Test at 2026-10-10 02:26:48.615
+    t =     0.02s Set Up
+    t =     0.02s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+2026-10-10 02:26:48.889 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 02:26:48.889 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.68s         Setting up automation session
+    t =     1.25s         Wait for com.tacticalgo.prototype to idle
+    t =     2.70s Waiting 10.0s for "voiceAudit" StaticText to exist
+    t =     3.76s     Checking `Expect predicate `existsNoRetry == 1` for object "voiceAudit" StaticText`
+    t =     3.76s         Checking existence of `"voiceAudit" StaticText`
+    t =     4.92s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     4.92s     Find the "voiceAudit" StaticText
+    t =     4.98s     Capturing element debug description
+    t =     5.02s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     5.09s         Find: Descendants matching type StaticText
+    t =     5.09s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     5.10s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     5.15s         Find: Descendants matching type StaticText
+    t =     5.15s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     5.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     5.87s     Find the "voiceAudit" StaticText
+    t =     5.91s     Capturing element debug description
+    t =     5.96s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     6.01s         Find: Descendants matching type StaticText
+    t =     6.02s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     6.02s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     6.07s         Find: Descendants matching type StaticText
+    t =     6.07s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     6.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     6.87s     Find the "voiceAudit" StaticText
+    t =     6.90s     Capturing element debug description
+    t =     6.93s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     6.98s         Find: Descendants matching type StaticText
+    t =     6.98s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     6.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     7.04s         Find: Descendants matching type StaticText
+    t =     7.04s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     7.92s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     7.92s     Find the "voiceAudit" StaticText
+    t =     7.96s     Capturing element debug description
+    t =     7.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     8.05s         Find: Descendants matching type StaticText
+    t =     8.05s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     8.05s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     8.11s         Find: Descendants matching type StaticText
+    t =     8.11s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     8.90s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     8.90s     Find the "voiceAudit" StaticText
+    t =     9.00s     Capturing element debug description
+    t =     9.03s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     9.09s         Find: Descendants matching type StaticText
+    t =     9.09s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     9.09s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     9.15s         Find: Descendants matching type StaticText
+    t =     9.15s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =     9.93s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     9.93s     Find the "voiceAudit" StaticText
+    t =     9.97s     Capturing element debug description
+    t =    10.00s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    10.05s         Find: Descendants matching type StaticText
+    t =    10.05s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    10.06s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    10.11s         Find: Descendants matching type StaticText
+    t =    10.11s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    10.95s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    10.95s     Find the "voiceAudit" StaticText
+    t =    10.99s     Capturing element debug description
+    t =    11.02s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    11.08s         Find: Descendants matching type StaticText
+    t =    11.08s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    11.09s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    11.14s         Find: Descendants matching type StaticText
+    t =    11.14s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    11.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    11.87s     Find the "voiceAudit" StaticText
+    t =    11.90s     Capturing element debug description
+    t =    11.94s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    11.99s         Find: Descendants matching type StaticText
+    t =    11.99s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    11.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    12.06s         Find: Descendants matching type StaticText
+    t =    12.06s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    12.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    12.87s     Find the "voiceAudit" StaticText
+    t =    12.91s     Capturing element debug description
+    t =    12.95s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    13.01s         Find: Descendants matching type StaticText
+    t =    13.01s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    13.01s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    13.07s         Find: Descendants matching type StaticText
+    t =    13.07s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    13.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    13.87s     Find the "voiceAudit" StaticText
+    t =    13.90s     Capturing element debug description
+    t =    13.93s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    13.98s         Find: Descendants matching type StaticText
+    t =    13.99s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    13.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    14.04s         Find: Descendants matching type StaticText
+    t =    14.05s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    14.90s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    14.90s     Find the "voiceAudit" StaticText
+    t =    14.94s     Capturing element debug description
+    t =    14.98s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    15.04s         Find: Descendants matching type StaticText
+    t =    15.04s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    15.04s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    15.19s         Find: Descendants matching type StaticText
+    t =    15.20s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    15.90s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    15.90s     Find the "voiceAudit" StaticText
+    t =    15.94s     Capturing element debug description
+    t =    15.97s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    16.02s         Find: Descendants matching type StaticText
+    t =    16.02s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    16.02s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    16.08s         Find: Descendants matching type StaticText
+    t =    16.08s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    16.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    16.87s     Find the "voiceAudit" StaticText
+    t =    16.91s     Capturing element debug description
+    t =    16.94s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    16.99s         Find: Descendants matching type StaticText
+    t =    16.99s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    16.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    17.04s         Find: Descendants matching type StaticText
+    t =    17.05s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    17.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    17.87s     Find the "voiceAudit" StaticText
+    t =    17.94s     Capturing element debug description
+    t =    18.00s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    18.05s         Find: Descendants matching type StaticText
+    t =    18.05s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    18.06s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    18.11s         Find: Descendants matching type StaticText
+    t =    18.12s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    18.93s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    18.93s     Find the "voiceAudit" StaticText
+    t =    18.97s     Capturing element debug description
+    t =    19.00s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    19.05s         Find: Descendants matching type StaticText
+    t =    19.05s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    19.05s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    19.11s         Find: Descendants matching type StaticText
+    t =    19.11s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    19.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    19.89s     Find the "voiceAudit" StaticText
+    t =    19.93s     Capturing element debug description
+    t =    19.96s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    20.01s         Find: Descendants matching type StaticText
+    t =    20.01s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    20.01s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    20.07s         Find: Descendants matching type StaticText
+    t =    20.07s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    20.89s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    20.89s     Find the "voiceAudit" StaticText
+    t =    20.94s     Capturing element debug description
+    t =    20.98s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    21.03s         Find: Descendants matching type StaticText
+    t =    21.03s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    21.04s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    21.09s         Find: Descendants matching type StaticText
+    t =    21.09s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    21.95s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    21.95s     Find the "voiceAudit" StaticText
+    t =    22.01s     Capturing element debug description
+    t =    22.07s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    22.12s         Find: Descendants matching type StaticText
+    t =    22.12s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    22.13s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    22.19s         Find: Descendants matching type StaticText
+    t =    22.19s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    23.92s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    23.92s     Find the "voiceAudit" StaticText
+    t =    23.95s     Capturing element debug description
+    t =    23.99s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    24.05s         Find: Descendants matching type StaticText
+    t =    24.05s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    24.06s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    24.12s         Find: Descendants matching type StaticText
+    t =    24.12s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    24.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    24.87s     Find the "voiceAudit" StaticText
+    t =    24.92s     Capturing element debug description
+    t =    24.96s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    25.03s         Find: Descendants matching type StaticText
+    t =    25.03s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    25.04s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    25.10s         Find: Descendants matching type StaticText
+    t =    25.11s         Requesting snapshot of accessibility hierarchy for app with pid 30744
+    t =    25.92s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    25.92s     Find the "voiceAudit" StaticText
+    t =    26.11s Added attachment named 'VO-01-actual-owner-six-events-and-settings'
+    t =    26.11s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroVoiceActualOwnerSixEventsSettingsAndCancellation]' passed (26.334 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletLandscapeLobbyStartsMatch]' started.
+    t =     0.00s Start Test at 2026-10-10 02:27:14.950
+    t =     0.02s Set Up
+    t =     0.02s Setting device orientation to Landscape Left
+    t =     0.03s     Device orientation changed to Landscape Left
+    t =     0.09s     Interface orientation changed to Landscape Right
+    t =     0.09s     Wait for com.tacticalgo.prototype to idle
+    t =     0.09s Open com.tacticalgo.prototype
+    t =     0.09s     Launch com.tacticalgo.prototype
+    t =     0.09s         Terminate com.tacticalgo.prototype:30744
+2026-10-10 02:27:16.084 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 02:27:16.084 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.34s         Setting up automation session
+    t =     2.03s         Wait for com.tacticalgo.prototype to idle
+    t =     4.32s Find the Window (First Match)
+    t =     4.37s Find the Window (First Match)
+    t =     4.37s Find the "choose-warrior" Button
+    t =     4.43s Find the "startMatch" Button
+    t =     4.58s Added attachment named 'iPad-native-landscape-lobby'
+    t =     4.58s Tap "startMatch" Button
+    t =     4.58s     Wait for com.tacticalgo.prototype to idle
+    t =     4.59s     Find the "startMatch" Button
+    t =     4.60s     Check for interrupting elements affecting "startMatch" Button
+    t =     4.61s     Synthesize event
+    t =     4.90s     Wait for com.tacticalgo.prototype to idle
+    t =     5.01s Waiting 10.0s for "playArena" Other to exist
+    t =     6.06s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     6.07s         Checking existence of `"playArena" Other`
+    t =     6.12s Find the "playEndTurn" Button
+    t =     6.15s Waiting 10.0s for "playArena" Other to exist
+    t =     7.20s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     7.20s         Checking existence of `"playArena" Other`
+    t =     7.25s Tap "playArena" Other[0.13, 0.18]
+    t =     7.25s     Wait for com.tacticalgo.prototype to idle
+    t =     7.25s     Find the "playArena" Other
+    t =     7.29s     Check for interrupting elements affecting "playArena" Other
+    t =     7.31s     Synthesize event
+    t =     7.31s         Find the "playArena" Other
+    t =     7.34s         Find the "playArena" Other
+    t =     7.38s         Find the "playArena" Other
+    t =     7.68s     Wait for com.tacticalgo.prototype to idle
+    t =     7.69s Find the "playConfirm" Button
+    t =     7.71s Tap "playConfirm" Button
+    t =     7.71s     Wait for com.tacticalgo.prototype to idle
+    t =     7.72s     Find the "playConfirm" Button
+    t =     7.75s     Check for interrupting elements affecting "playConfirm" Button
+    t =     7.77s     Synthesize event
+    t =     8.06s     Wait for com.tacticalgo.prototype to idle
+    t =     8.06s Find the "currentTurn" StaticText
+    t =     8.10s Setting device orientation to Portrait
+    t =     8.10s     Device orientation changed to Portrait
+    t =     8.15s     Interface orientation changed to Portrait
+    t =     8.15s     Wait for com.tacticalgo.prototype to idle
+    t =     8.21s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletLandscapeLobbyStartsMatch]' passed (8.437 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNativePortraitLandscapeAndSelectionSurviveRotation]' started.
+    t =     0.00s Start Test at 2026-10-10 02:27:23.387
+    t =     0.02s Set Up
+    t =     0.02s Setting device orientation to Portrait
+    t =     0.03s     Wait for com.tacticalgo.prototype to idle
+    t =     0.18s Open com.tacticalgo.prototype
+    t =     0.18s     Launch com.tacticalgo.prototype
+    t =     0.18s         Terminate com.tacticalgo.prototype:30819
+2026-10-10 02:27:24.601 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 02:27:24.601 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.42s         Setting up automation session
+    t =     1.89s         Wait for com.tacticalgo.prototype to idle
+    t =     3.11s Find the Window (First Match)
+    t =     3.14s Tap "電腦對戰" Button
+    t =     3.14s     Wait for com.tacticalgo.prototype to idle
+    t =     3.14s     Find the "電腦對戰" Button
+    t =     3.19s     Check for interrupting elements affecting "電腦對戰" Button
+    t =     3.21s     Synthesize event
+    t =     3.50s     Wait for com.tacticalgo.prototype to idle
+    t =     3.71s Tap "白方後手" Button
+    t =     3.72s     Wait for com.tacticalgo.prototype to idle
+    t =     3.72s     Find the "白方後手" Button
+    t =     3.74s     Check for interrupting elements affecting "白方後手" Button
+    t =     3.76s     Synthesize event
+    t =     4.05s     Wait for com.tacticalgo.prototype to idle
+    t =     4.28s Find the "簡單" Button
+    t =     4.39s Added attachment named 'iPad-native-portrait-lobby'
+    t =     4.39s Find the "startMatch" Button
+    t =     4.42s Tap "startMatch" Button
+    t =     4.42s     Wait for com.tacticalgo.prototype to idle
+    t =     4.42s     Find the "startMatch" Button
+    t =     4.43s     Check for interrupting elements affecting "startMatch" Button
+    t =     4.45s     Synthesize event
+    t =     4.73s     Wait for com.tacticalgo.prototype to idle
+    t =     4.90s Waiting 5.0s for "botStatus" Any to exist
+    t =     5.92s     Checking `Expect predicate `existsNoRetry == 1` for object "botStatus" Any`
+    t =     5.92s         Checking existence of `"botStatus" Any`
+    t =     6.99s Checking `Expect predicate `value == "已完成1電腦回合"` for object "botStatus" Any`
+    t =     7.00s     Find the "botStatus" Any
+    t =     7.05s Find the "currentTurn" StaticText
+    t =     7.09s Find the "playConfirm" Button
+    t =     7.13s Find the "playArena" Other
+    t =     7.24s Added attachment named 'iPad-native-portrait-match'
+    t =     7.25s Setting device orientation to Landscape Left
+    t =     7.25s     Device orientation changed to Landscape Left
+    t =     7.29s     Interface orientation changed to Landscape Right
+    t =     7.29s     Wait for com.tacticalgo.prototype to idle
+    t =     7.33s Waiting 10.0s for "playArena" Other to exist
+    t =     8.35s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     8.35s         Checking existence of `"playArena" Other`
+    t =     8.39s Find the "playArena" Other
+    t =     8.42s Find the "playConfirm" Button
+/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/ios/TacticalGoUITests/PlayableGameTests.swift:535: error: -[TacticalGoUITests.PlayableGameTests testTabletNativePortraitLandscapeAndSelectionSurviveRotation] : XCTAssertGreaterThan failed: ("520.0") is not greater than ("550.0")
+    t =     8.48s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNativePortraitLandscapeAndSelectionSurviveRotation]' failed (8.715 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNineBoardLandscapeTouchAndSoundSettings]' started.
+    t =     0.00s Start Test at 2026-10-10 02:27:32.103
+    t =     0.03s Set Up
+    t =     0.03s Setting device orientation to Landscape Right
+    t =     0.03s     Device orientation changed to Landscape Right
+    t =     0.08s     Interface orientation changed to Landscape Left
+    t =     0.08s     Wait for com.tacticalgo.prototype to idle
+    t =     0.08s Open com.tacticalgo.prototype
+    t =     0.08s     Launch com.tacticalgo.prototype
+    t =     0.08s         Terminate com.tacticalgo.prototype:30832
+2026-10-10 02:27:33.221 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 02:27:33.221 xcodebuild[30723:315994] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.32s         Setting up automation session
+    t =     1.92s         Wait for com.tacticalgo.prototype to idle
+    t =     3.22s Waiting 10.0s for "playArena" Other to exist
+    t =     4.25s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     4.25s         Checking existence of `"playArena" Other`
+    t =     4.36s Find the "playArena" Other
+    t =     4.40s Find the "playEndTurn" Button
+    t =     4.45s Waiting 10.0s for "playArena" Other to exist
+    t =     5.45s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.45s         Checking existence of `"playArena" Other`
+    t =     5.50s Tap "playArena" Other[0.13, 0.18]
+    t =     5.50s     Wait for com.tacticalgo.prototype to idle
+    t =     5.50s     Find the "playArena" Other
+    t =     5.54s     Check for interrupting elements affecting "playArena" Other
+    t =     5.58s     Synthesize event
+    t =     5.58s         Find the "playArena" Other
+    t =     5.62s         Find the "playArena" Other
+    t =     5.66s         Find the "playArena" Other
+    t =     5.98s     Wait for com.tacticalgo.prototype to idle
+    t =     5.99s Find the "playArena" Other
+    t =     6.02s Find the "playConfirm" Button
+    t =     6.06s Tap "playConfirm" Button
+    t =     6.06s     Wait for com.tacticalgo.prototype to idle
+    t =     6.07s     Find the "playConfirm" Button
+    t =     6.10s     Check for interrupting elements affecting "playConfirm" Button
+    t =     6.13s     Synthesize event
+    t =     6.41s     Wait for com.tacticalgo.prototype to idle
+    t =     6.42s Find the "currentTurn" StaticText
+    t =     6.46s Tap "undoOrCancel" Button
+    t =     6.46s     Wait for com.tacticalgo.prototype to idle
+    t =     6.47s     Find the "undoOrCancel" Button
+    t =     6.51s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =     6.55s     Synthesize event
+    t =     6.84s     Wait for com.tacticalgo.prototype to idle
+    t =     6.84s Find the "currentTurn" StaticText
+    t =     6.89s Checking existence of `"1 AP" StaticText`
+    t =     7.05s Added attachment named 'iPad-native-nine-landscape'
+    t =     7.05s Tap "對戰選單" Button
+    t =     7.05s     Wait for com.tacticalgo.prototype to idle
+    t =     7.06s     Find the "對戰選單" Button
+    t =     7.09s     Check for interrupting elements affecting "對戰選單" Button
+    t =     7.12s     Synthesize event
+    t =     7.41s     Wait for com.tacticalgo.prototype to idle
+    t =     7.41s Tap "聲音設定" Button
+    t =     7.41s     Wait for com.tacticalgo.prototype to idle
+    t =     7.41s     Find the "聲音設定" Button
+    t =     7.46s     Check for interrupting elements affecting "audioSettings" Button
+    t =     7.50s     Synthesize event
+    t =     7.78s     Wait for com.tacticalgo.prototype to idle
+    t =     8.04s Waiting 10.0s for "audioMute" Switch to exist
+    t =     9.07s     Checking `Expect predicate `existsNoRetry == 1` for object "audioMute" Switch`
+    t =     9.07s         Checking existence of `"audioMute" Switch`
+    t =     9.17s Find the "musicVolume" Slider
+    t =    10.23s     Find the "musicVolume" Slider (retry 1)
+    t =    11.30s     Find the "musicVolume" Slider (retry 2)
+    t =    11.38s Swipe up Target Application 'com.tacticalgo.prototype'
+    t =    11.38s     Wait for com.tacticalgo.prototype to idle
+    t =    11.38s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    11.41s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    11.45s     Synthesize event
+    t =    11.87s     Wait for com.tacticalgo.prototype to idle
+    t =    12.40s Find the "musicVolume" Slider
+    t =    12.47s Find the "musicVolume" Slider
+    t =    12.64s Added attachment named 'iPad-native-sound-sheet'
+    t =    12.65s Tap "audioSettingsDone" Button
+    t =    12.65s     Wait for com.tacticalgo.prototype to idle
+    t =    12.65s     Find the "audioSettingsDone" Button
+    t =    12.71s     Check for interrupting elements affecting "audioSettingsDone" Button
+    t =    12.75s     Synthesize event
+    t =    13.04s     Wait for com.tacticalgo.prototype to idle
+    t =    13.45s Waiting 10.0s for "playEndTurn" Button to exist
+    t =    14.50s     Checking `Expect predicate `existsNoRetry == 1` for object "playEndTurn" Button`
+    t =    14.50s         Checking existence of `"playEndTurn" Button`
+    t =    14.55s Setting device orientation to Portrait
+    t =    14.55s     Device orientation changed to Portrait
+    t =    14.61s     Interface orientation changed to Portrait
+    t =    14.61s     Wait for com.tacticalgo.prototype to idle
+    t =    14.68s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNineBoardLandscapeTouchAndSoundSettings]' passed (14.894 seconds).
+Test Suite 'PlayableGameTests' failed at 2026-10-10 02:27:46.997.
+	 Executed 4 tests, with 1 failure (0 unexpected) in 58.380 (58.383) seconds
+Test Suite 'TacticalGoUITests.xctest' failed at 2026-10-10 02:27:46.998.
+	 Executed 4 tests, with 1 failure (0 unexpected) in 58.380 (58.383) seconds
+Test Suite 'Selected tests' failed at 2026-10-10 02:27:46.998.
+	 Executed 4 tests, with 1 failure (0 unexpected) in 58.380 (58.384) seconds
+2026-10-10 02:28:00.066 xcodebuild[30723:315994] [MT] IDETestOperationsObserverDebug: 73.270 elapsed -- Testing started completed.
+2026-10-10 02:28:00.067 xcodebuild[30723:315994] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 02:28:00.067 xcodebuild[30723:315994] [MT] IDETestOperationsObserverDebug: 73.270 sec, +73.270 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/S6-native-ipad-corrected.xcresult
+
+Failing tests:
+	PlayableGameTests.testTabletNativePortraitLandscapeAndSelectionSurviveRotation()
+
+** TEST EXECUTE FAILED **
+
+Testing started

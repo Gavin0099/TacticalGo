@@ -410,3 +410,7 @@ Specification: docs/onboarding/ONBOARD_01.md. Evidence: artifacts/onboard-01/REP
 ### 2026-10-10 Cozy-02 整合候選里程碑
 
 Owner 核准的 Cozy-02＋V1.1 B＋B2-B＋原 B-v02 已接入隔離分支 codex/cozy-02-integration，法師 ANIM-01／既有 AUDIO-01 僅呈現成功事件，不變更 Core、Bot、技能或資源。Swift151／0、Golden38組99步、390原生模擬器5／0、SE320內容約束1／0、iPad真機2／0。iPhone真正前景播放器audit17／17；Xcode手機手勢測試因啟動worker失敗仍BLOCK。雙裝置Wi-Fi候選0.7.0（702）安裝成功，最後重開iPadLocked／手機失聯，不當成目前都可啟動。聲畫片為原生錄影＋明示後製音效；美術、人耳聽感及BGM正式整合HOLD。未提交／上傳／合併／發布；此為工程里程碑，非Owner驗收完成。詳 docs/ios/COZY_02_INTEGRATION_PLAN.md 及 artifacts/ios/cozy-02-integration/REPORT.md。
+
+### 2026-10-10 GAME-FEEL-10H-v2 工程候選
+
+Cozy原生基線保存後，完成6句可替換離線英文語音、三職召喚／技能／普通落子提子及主將退場。Package156／Golden38組99步／原生phone22、SE2、iPadV3 4與真實手勢影片通過；iPad直向操作區擠出畫面已修正。iPhone Hero Voice 0.8.0（802）Wi-Fi安裝成功但Locked阻擋前景；V3真機及人耳、美術、正式BGM仍Pending。成果隔離 codex/game-feel-voice-01；Owner授權commit/push，無merge、發布或第二技能／Domain／Bot變更。交付及推送以 artifacts/ios/game-feel-voice-01/REPORT.md、DELIVERY.json 為準。

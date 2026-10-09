@@ -1,0 +1,16 @@
+[memory_record] advisory: test_evidence claims success without an existing artifacts/ path; the memory authority guard will flag this entry as test_evidence_provenance_not_found. Wrap the validation command in governance_tools.test_evidence_receipt_writer and cite the receipt path inside --test-evidence.
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/2026-10-10.md (surface identity=eb7ed6ec58355e6ecd4caf3611b0413098d41ca05d73deb78b6bd547dd25ae0a)
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/01_active_task.md (surface identity=eb7ed6ec58355e6ecd4caf3611b0413098d41ca05d73deb78b6bd547dd25ae0a)
+- memory_type: session-derived
+  record_format_version: 1.0
+  writer: governance_tools.memory_record
+  what_changed: GAME-FEEL-10H-v2 S0-S6 engineering candidate complete on codex/game-feel-voice-01. Cozy baseline17542ec, replaceable seeded offline Piper English Voice630c40b, successful receipt native summon/bastion/swap/drop/capture and iPad portrait fixc9f86c6. Original Apple local System Voice candidates removed before push; current V3 source attribution and six SHA reproducibility retained. No Core/Bot/rule/role identity change.
+  commit: c9f86c6
+  commit_hash: c9f86c6
+  session_id: cli-20261010-023922
+  memory_binding: bound
+  test_evidence: Package156/0; Golden38fixtures99steps PASS; Simulator phone22/0 V2, SE2/0 V2, iPadV3 4/0, phoneV3 focused2/0; seven-real-action film1/0 and ordinary commander-capture/undo film1/0; actual ownerVoice64 and frame24 PASS; Release/sign device build PASS. iPhone802WiFi install PASS but Locked10002 refuses launch; iPad device timeout.
+  next_step: S7 push isolated branch and deliver explicitly labelled native Simulator film with event-timed postmix, six auditions and evidence. Owner art/hearing/product and physical V3 foreground Pending; no merge/release/TestFlight.
+  plan_reconciliation: updated
+  record_identity: eb7ed6ec58355e6ecd4caf3611b0413098d41ca05d73deb78b6bd547dd25ae0a
+

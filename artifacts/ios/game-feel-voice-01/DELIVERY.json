@@ -1,0 +1,94 @@
+{
+  "status": "engineering_candidate_delivered",
+  "owner_acceptance": "Pending",
+  "branch": "codex/game-feel-voice-01",
+  "implementation_commit": "c9f86c6aac078ec423dac45b8b24ab084dfc3369",
+  "source_push_verified_commit": "c9f86c6aac078ec423dac45b8b24ab084dfc3369",
+  "main_before": "cdab133cd469dd185fd8ca3f47fea2e217cfb139",
+  "main_after": "cdab133cd469dd185fd8ca3f47fea2e217cfb139",
+  "merge": false,
+  "release": false,
+  "testflight": false,
+  "source_SHA256": {
+    "ios/TacticalGo/BoardViews.swift": "2d03ce354554753f8bd2ccc5c1da61b60e4bdc75c4a1a0ecac0da144d837653c",
+    "ios/TacticalGo/CombatAudio.swift": "86e61622a8cbd5f3668d443f73ab9fbd48f17b816c42e3a9197a7d491d3422c1",
+    "ios/TacticalGo/CozyAudit.swift": "6594c4aa06d19cef2e83aa03f93f8222ab5eb0773cf1b17620954eb4fc5d93dc",
+    "ios/TacticalGo/CozyBoard.swift": "72fb919754151f90b38cbe7dce59619edbc8c79b7d6de3e50f4990f74c7fb071",
+    "ios/TacticalGo/GameStore.swift": "bf972bc4340cb0e7378b1816cb80f592bc928488430b1de36af38bcb1ced9f09",
+    "ios/TacticalGo/PlayableGameView.swift": "5e6b4dbd4171806304363be444767b3aa262da22256d7ac281436eb0ac2f331e",
+    "ios/TacticalGo/Audio/Voice/manifest.json": "e00b7abd91fc76f551d7c0b78d4d59ef6dfe3902b15f0c20f7d263c9da52081a",
+    "scripts/generate-hero-voice-prototype.py": "6bf86f2c256eac92f3ce43679f0c699e7071132705766fda8c9d608c9a129d50"
+  },
+  "core_and_bot_changes": [],
+  "role_graphic_changes_since_S0": [],
+  "voice_version": "VO-01-prototype-v3-piper-seeded",
+  "test_evidence": {
+    "swift": {
+      "tests": 156,
+      "failures": 0,
+      "ref": "S6-package-all.log"
+    },
+    "golden": {
+      "fixtures": 38,
+      "steps": 99,
+      "ref": "S6-golden.log"
+    },
+    "native_simulator_V2": {
+      "phone": 22,
+      "SE": 2,
+      "failures": 0
+    },
+    "native_simulator_V3": {
+      "ipad": 4,
+      "phone_focused": 2,
+      "six_line_film": 1,
+      "ordinary_film": 1,
+      "failures": 0,
+      "actual_audio_owner_checks": 64,
+      "frame_checks": 24
+    },
+    "release_build": "PASS",
+    "signed_device_build": "PASS"
+  },
+  "physical_device": {
+    "phone": {
+      "installed": "0.8.0 (802)",
+      "bundle": "com.tacticalgo.prototype.gamefeel",
+      "launch": "Pending: Locked10002 after transport timeout",
+      "playback_and_human_hearing": "Pending"
+    },
+    "ipad": {
+      "install": "not performed: connection timeout",
+      "verification": "Simulator only"
+    }
+  },
+  "formal_BGM": "HOLD; musicIntegrationAllowed=false in normal candidate",
+  "media": {
+    "source": "real Simulator XCTest gestures",
+    "audio": "explicitly labelled event-timed POSTMIX, not device/system audio capture",
+    "sha256": {
+      "media/native-hero-game-feel-demo.mp4": "3825f0ce556cdde68429475be72a4e6c9af5c7c50d20b6092fe60cf494195f23",
+      "media/ordinary/native-hero-game-feel-demo.mp4": "91385486ce07b3dda58191a472af0982d112cc9234c57f9e75a5cfe8e0016ff4",
+      "media/warrior-two-lines.mp3": "a2eb15229116aa48e3a77daaabc9c76f52286e32b1cbab4061811199b77e9577",
+      "media/mage-two-lines.mp3": "3d8c62b620bfd5f3e67e55af57c3a9933720ebe59a070f0e96808ba6f9bebc63",
+      "media/rogue-two-lines.mp3": "5dcd342d329c15f6269abd5dd355520671a412deed606cc6318cb813cfc5e525"
+    }
+  },
+  "memory_guard": {
+    "run": true,
+    "exit": 0,
+    "blockers": 0,
+    "completion_claim_allowed": true,
+    "warnings": [
+      "local canonical writer/guard NOT FOUND; external canonical writer used",
+      "historical missing canonical memory2 and evidence provenance2"
+    ],
+    "full_governance_adoption_claimed": false
+  },
+  "limits": [
+    "Owner voice performance, art and gameplay acceptance Pending",
+    "Current V3 physical-device gestures and actual audio capture Pending",
+    "Same pinned offline runtime bit reproducibility only",
+    "TTS source attribution retained; full release rights review Pending"
+  ]
+}

@@ -15,3 +15,5 @@ HeroVoiceCue由before.current職業及成功outcome選台詞，首回合/最後A
 證據：S1-package-focused-final.log、S1-native.log／xcresult、S1-hero-voice-audit.json、S1-cozy-runtime-audit.json、S1-source-check.json。保留最初rawValue大小寫檔名失配與audit switch未含none的失敗紀錄；修正後才進此Gate。未修改Core、Bot決策、技能或角色素材。
 
 推送前修正：Apple macOS Tahoe SLA 2F不允許System Voice輸出公開分享；早期Apple本機試驗音檔已從此未推送提交替換。原S1-native為歷史接線驗證，Piper素材的新原生結果將另以S6 final及更新audit JSON確認。Piper只在本機產檔，engine／模型／Python不打包進App。原公開模型及資料集條款來源已留存；不宣稱完整商用權利或演員品質核准。
+
+最後素材 VO-01-prototype-v3-piper-seeded 已於 S6 iPad4／phone focused2 及七個成功操作的錄影重驗，actual owner Voice64 PASS。六檔兩次独立進程同SHA，S1-repro-check.json；舊Apple接線測試不作現行音檔證據。真機與聲線品質仍Pending。

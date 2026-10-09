@@ -1,0 +1,101 @@
+{
+  "checks" : [
+    {
+      "check" : "summon_warrior_starts_one_hidden_hero",
+      "pass" : true
+    },
+    {
+      "check" : "summon_warrior_lands_then_releases",
+      "pass" : true
+    },
+    {
+      "check" : "rapid_repeat_no_second_spend",
+      "pass" : true
+    },
+    {
+      "check" : "summon_undo_original",
+      "pass" : true
+    },
+    {
+      "check" : "summon_mage_starts_one_hidden_hero",
+      "pass" : true
+    },
+    {
+      "check" : "summon_mage_lands_then_releases",
+      "pass" : true
+    },
+    {
+      "check" : "rapid_repeat_no_second_spend",
+      "pass" : true
+    },
+    {
+      "check" : "summon_undo_original",
+      "pass" : true
+    },
+    {
+      "check" : "summon_rogue_starts_one_hidden_hero",
+      "pass" : true
+    },
+    {
+      "check" : "summon_rogue_lands_then_releases",
+      "pass" : true
+    },
+    {
+      "check" : "rapid_repeat_no_second_spend",
+      "pass" : true
+    },
+    {
+      "check" : "summon_undo_original",
+      "pass" : true
+    },
+    {
+      "check" : "bastion_two_synchronous_soldiers_hero_fixed",
+      "pass" : true
+    },
+    {
+      "check" : "bastion_one_AP_two_Mana",
+      "pass" : true
+    },
+    {
+      "check" : "swap_two_opposite_paths_halfway",
+      "pass" : true
+    },
+    {
+      "check" : "swap_preserves_two_piece_identities",
+      "pass" : true
+    },
+    {
+      "check" : "capture_false_real_commander_result",
+      "pass" : true
+    },
+    {
+      "check" : "capture_false_visual_contract",
+      "pass" : true
+    },
+    {
+      "check" : "capture_false_sound_retained",
+      "pass" : true
+    },
+    {
+      "check" : "capture_false_undo_clears_all",
+      "pass" : true
+    },
+    {
+      "check" : "capture_true_real_commander_result",
+      "pass" : true
+    },
+    {
+      "check" : "capture_true_visual_contract",
+      "pass" : true
+    },
+    {
+      "check" : "capture_true_sound_retained",
+      "pass" : true
+    },
+    {
+      "check" : "capture_true_undo_clears_all",
+      "pass" : true
+    }
+  ],
+  "status" : "PASS"
+}
