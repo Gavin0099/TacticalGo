@@ -1,0 +1,715 @@
+{
+  "baseline": "cdab133cd469dd185fd8ca3f47fea2e217cfb139",
+  "tests": 148,
+  "failures": 0,
+  "goldenFixtures": 38,
+  "goldenSteps": 99,
+  "tracedUntracedComparisons": 20,
+  "diagnostics": "PASS",
+  "behaviorFix": "HOLD",
+  "defaultBehaviorChanged": false,
+  "runs": [
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 40,
+      "mode": "baseline",
+      "score": -1432,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 453,
+      "completeTurnCandidates": 32,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 40,
+      "mode": "own-width-only",
+      "score": -1432,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 453,
+      "completeTurnCandidates": 32,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 40,
+      "mode": "complete-cap-only",
+      "score": -1432,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 1053,
+      "completeTurnCandidates": 32,
+      "replyComparisons": 32
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 40,
+      "mode": "reply-width-only",
+      "score": -1432,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 533,
+      "completeTurnCandidates": 32,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 40,
+      "mode": "wide-all",
+      "score": -1432,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xx.x.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 1133,
+      "completeTurnCandidates": 32,
+      "replyComparisons": 32
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 55,
+      "mode": "baseline",
+      "score": 1319,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 216,
+      "completeTurnCandidates": 67,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 55,
+      "mode": "own-width-only",
+      "score": 1319,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 240,
+      "completeTurnCandidates": 96,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 55,
+      "mode": "complete-cap-only",
+      "score": 1319,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 600,
+      "completeTurnCandidates": 67,
+      "replyComparisons": 32
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 55,
+      "mode": "reply-width-only",
+      "score": 1319,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 336,
+      "completeTurnCandidates": 67,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-candidate.json",
+      "ply": 55,
+      "mode": "wide-all",
+      "score": 1319,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 1104,
+      "completeTurnCandidates": 96,
+      "replyComparisons": 32
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 40,
+      "mode": "baseline",
+      "score": -123,
+      "actions": [
+        {
+          "action": {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "placeSoldier"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "result": {
+            "ap": 1,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 40,
+            "status": "ongoing"
+          }
+        },
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 113,
+      "completeTurnCandidates": 16,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 40,
+      "mode": "own-width-only",
+      "score": -123,
+      "actions": [
+        {
+          "action": {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "placeSoldier"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "result": {
+            "ap": 1,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 40,
+            "status": "ongoing"
+          }
+        },
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 113,
+      "completeTurnCandidates": 16,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 40,
+      "mode": "complete-cap-only",
+      "score": -123,
+      "actions": [
+        {
+          "action": {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "placeSoldier"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "result": {
+            "ap": 1,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 40,
+            "status": "ongoing"
+          }
+        },
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 169,
+      "completeTurnCandidates": 16,
+      "replyComparisons": 16
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 40,
+      "mode": "reply-width-only",
+      "score": -123,
+      "actions": [
+        {
+          "action": {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "placeSoldier"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "result": {
+            "ap": 1,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 40,
+            "status": "ongoing"
+          }
+        },
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 136,
+      "completeTurnCandidates": 16,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 40,
+      "mode": "wide-all",
+      "score": -123,
+      "actions": [
+        {
+          "action": {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "placeSoldier"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+            "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+          ],
+          "result": {
+            "ap": 1,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 40,
+            "status": "ongoing"
+          }
+        },
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 40)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 41, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 0,
+            "ply": 41,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 192,
+      "completeTurnCandidates": 16,
+      "replyComparisons": 16
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 55,
+      "mode": "baseline",
+      "score": 83,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 50,
+      "completeTurnCandidates": 10,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 55,
+      "mode": "own-width-only",
+      "score": 83,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 50,
+      "completeTurnCandidates": 10,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 55,
+      "mode": "complete-cap-only",
+      "score": 83,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 58,
+      "completeTurnCandidates": 10,
+      "replyComparisons": 10
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 55,
+      "mode": "reply-width-only",
+      "score": 83,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 50,
+      "completeTurnCandidates": 10,
+      "replyComparisons": 8
+    },
+    {
+      "source": "artifacts/r3-p1/standard-original.json",
+      "ply": 55,
+      "mode": "wide-all",
+      "score": 83,
+      "actions": [
+        {
+          "action": {
+            "kind": "endTurn"
+          },
+          "events": [
+            "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 55)",
+            "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 56, ap: 2, mana: 6)"
+          ],
+          "result": {
+            "ap": 2,
+            "board": ".oooooo\noooOxo.\noooQxoo\noxoxxxo\nxxoHx.x\nxxoXxx.\nxxxxx.x",
+            "current": 1,
+            "ply": 56,
+            "status": "ongoing"
+          }
+        }
+      ],
+      "transitions": 58,
+      "completeTurnCandidates": 10,
+      "replyComparisons": 10
+    }
+  ],
+  "files": [
+    {
+      "path": "artifacts/bot-p1/ply40.json.gz",
+      "sha256": "1928127caade91e05c25cc5f58c15a148282d89b21e6c59596c33b4a18142192",
+      "uncompressedSha256": "5c8ed91c891831ea14731a811a5889cd4e698f18bfb145d488edf6368e441e07"
+    },
+    {
+      "path": "artifacts/bot-p1/ply55.json.gz",
+      "sha256": "7f0706733a904703db89fee36107a8d10f34eab4d84a4bf49ef58b1cc3a4a8ba",
+      "uncompressedSha256": "524d5ef0b0f596d44e84546c7f14d3233d9b6ed8194deb183642a8e4623ea310"
+    },
+    {
+      "path": "artifacts/bot-p1/original40.json.gz",
+      "sha256": "5f7ce2debb8213be0cb9630f13d35a9650c25b0f2ce6866625a328b9b2b75fad",
+      "uncompressedSha256": "743c46e69c1e79b7be1c657ec44c7aef114c612913b9a0a2b575ac972e52574a"
+    },
+    {
+      "path": "artifacts/bot-p1/original55.json.gz",
+      "sha256": "8af8c7cd87d4600f1bcdb02c0c390d28b6fdff0ec4c267c4a953e736e019f06c",
+      "uncompressedSha256": "ac2cf597eb0cc57822ce9b999c73b9009935116d4b3da6c945c38de457fd1ad0"
+    },
+    {
+      "path": "artifacts/bot-p1/full-turn40.json",
+      "sha256": "25d7b80ba25b222b006ba5ae8658f2d441209176728e9ac2c33500cd2c7b89d4"
+    },
+    {
+      "path": "artifacts/bot-p1/full-turn55.json",
+      "sha256": "a618eb70e3b63fd4ace602366da6447d81266c4459482f50da698437f18afbaf"
+    },
+    {
+      "path": "artifacts/bot-p1/package-tests-final.log",
+      "sha256": "6014750c3cc8cff5af8b36e7c8f1fc7c44f24e11a8c9a7027eac9d92437dde55"
+    },
+    {
+      "path": "artifacts/bot-p1/golden.log",
+      "sha256": "37885161406b8f29bd8cfbfc2c65dc8d1e17b0948893005554198bd5b00960d7"
+    },
+    {
+      "path": "artifacts/bot-p1/golden.json",
+      "sha256": "ab5edac20592d89ac19736aa09efc0e5423484a01606f6190b70855257c2800e"
+    },
+    {
+      "path": "artifacts/r3-p1/standard-candidate.json",
+      "sha256": "06bd1920c1af19c50a141fe879df9757d3382395c0651ca786c2d248f115a214"
+    },
+    {
+      "path": "artifacts/r3-p1/standard-original.json",
+      "sha256": "4c436d3b476f3babce643ef5b181ca424c9cd77a57232a5ee08736d68a0a6d4b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/BotPlanner.swift",
+      "sha256": "f3af39c40e15f339feed4d09c1c0bbcff356d7b42eb588efdd131725280c586c"
+    },
+    {
+      "path": "artifacts/r3-p1/probe/Sources/main.swift",
+      "sha256": "4ec525d61bb15e6650e856d5d54de2c1751877bb1370ce7a44d73d910dbb25a4"
+    },
+    {
+      "path": "artifacts/r3-p1/probe/FullTurn/main.swift",
+      "sha256": "5edca6bd51343a42c3c73fa78fcc2f48d6b718f4cd6faa10bbeeb9f7a8c79f61"
+    }
+  ]
+}
