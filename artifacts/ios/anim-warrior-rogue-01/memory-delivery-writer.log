@@ -1,0 +1,16 @@
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/2026-10-10.md (surface identity=652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329)
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/04_review_log.md (surface identity=652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329)
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/01_active_task.md (surface identity=652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329)
+- memory_type: session-derived
+  record_format_version: 1.0
+  writer: governance_tools.memory_record
+  what_changed: 完成 tacticalgo-cutout-animation repo Skill並安裝個人skills；交付原畫戰士／盜賊2.5D本體原生候選及成功收據共同時序。保存順序：ANIM-W1／ANIM-R1→停供Owner觀看→VFX-01法師→VFX-02戰士／盜賊→三職SFX／輕量觸覺／英文語音。Owner覺得盜賊動作不錯，戰士初版還好；只調戰士抬盾hold70ms、下擊90ms、與雙兵580ms落定同拍、回震80ms，盜賊保留。最新Owner回饋動作改善但氣勢不足；技能氣勢仍未通過，未開VFX或新增VO。iPhone／iPad獨立Heroes1003透過Wi-Fi安裝啟動，不覆寫原候選；隔離commit/push已授權，未merge/TestFlight/發布。
+  commit: 0fa29dfa4817dafbebf146bcdcee47a4c60d88c4
+  commit_hash: 0fa29dfa4817dafbebf146bcdcee47a4c60d88c4
+  session_id: cli-20261010-172555
+  memory_binding: bound
+  test_evidence: Fresh Swift169tests/0failure；38fixtures/99actions/137snapshots與cached C#一致，C#未重跑；最新Simulator108/108 checks、2項receipt/secondAP、320/9dense UI及12收據錄製通過；實體iPhone1003實際2tests/0failure、108/108 checks；iPad安装啟動成功但UI runner認證取消，不宣稱動態PASS。Release與兩份Skill驗證通過。靜音Simulator錄影不作真機聲畫、人耳、真人表演通過證據；接縫、最小25px、裁切風險見REPORT。早期device0-test退出被拒絕，修harness後實際重跑tests。
+  next_step: 停在W1/R1工程候選，保留盜賊正面回饋及戰士改善／氣勢未過，供Owner觀看完整棋盤正常速度對照。VFX依既定獨立Slice後續安排，不自動開工，不merge/發布。
+  plan_reconciliation: updated
+  record_identity: 652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329
+

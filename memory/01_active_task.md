@@ -34,3 +34,7 @@
 - ANIM-M1/M2法師本體候選工程交付，本地未提交；演技/美術/真機動態Pending。162項結果與97/97 audit、正常速度錄影有可追溯receipt；iPad903已裝但Locked，手機unavailable，Domain/Bot不變。 <!-- memory_record_projection:active-task-summary:95fc212d4527f41ad3c0c34b7935f15b480e745e04fec73341642f8bb584b9de -->
 
 - ANIM-M3 isolated codex/anim-mage-m3 candidate: engineering evidence PASS; Owner visual/acting and physical dynamic gates Pending. Necessary commits/push authorized; merge/release prohibited. <!-- memory_record_projection:active-task-summary:00b75600385cb7804cbcb7d4d8d6d7b0d28767110fadfa83da7c47802f6eb947 -->
+
+- ANIM-W1／ANIM-R1 本體候選開發；完成後停下 Owner 動作驗收；VFX-01→VFX-02→聲音／觸覺／英文語音屬後續 <!-- memory_record_projection:active-task-summary:b4ffe21f5c781f8034d7f78fd253b8029ca005aaa2bcb60de5ae572c2f719c21 -->
+
+- ANIM-W1/R1及cutout-animation Skill工程交付；Rogue動作正面，Warrior改善但氣勢未過；停供Owner驗收，VFX-01/02未開。 <!-- memory_record_projection:active-task-summary:652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329 -->
