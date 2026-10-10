@@ -47,3 +47,14 @@
 - Validation boundary: PASS: artifacts/ios/anim-warrior-body-02/test-evidence-receipt.json runs scripts/verify-warrior-body02-delivery.py; full counts, source hashes and physical/human limits in artifacts/ios/anim-warrior-body-02/delivery-verification.json and REPORT.md. This verifier is evidence consistency, not a fresh execution of all tests or an acting judgment.
 - Next action: Owner reviews silent normal-speed warrior clips; wait for explicit all-three body approval before VFX. Voice remains HOLD. Physical input remains unverified.
 - PLAN reconciliation: `not_applicable`
+
+<!-- memory_record_projection:review-log:d0795c170c8367fa184ffa9551d74201854fe8ee6aa37d24adb67aa29871cd82 -->
+### Canonical memory checkpoint — cli-20261010-183943
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `d0795c170c8367fa184ffa9551d74201854fe8ee6aa37d24adb67aa29871cd82`
+- Commit binding: `c9d42e7` (bound)
+- Record: Owner 否決細線光圈候選偏弱；查閱固定版本 Vortex 有限拖尾／爆發與 Pow 棋盤圖層原始碼，自行實作 receipt 時間有限蓄能／方向帶／落點衝擊，未導入第三方引擎。法師出手到推動增加可見傳遞，總950/760ms不變。錄影VFR與host時鐘偏移造成初版剪輯缺段；新剪輯依實際編碼AP色碼對齊，僅重複靜止幀轉30fps，18段正常速度原生影片與SHA留證。iPad最新重測取得tunnel，但Locked拒啟動，尚無新測試。
+- Validation boundary: artifacts/ios/vfx-three-classes-01/evidence-receipt.json；delivery-verification.json；177 Swift tests，137 fresh Swift/cached C# snapshots；156 GameStore/Core checks，57 native checkpoints；4非零Simulator UI tests；iPhone2實際UI通過；iPad-retest-launch.log Locked且0新test。等價不證明規則正確，工程不證明氣勢或聽感；人物／Domain／Bot／投影未改。
+- Next action: 等待Owner看完整棋盤正常速度三職特效與解鎖iPad後重測。Owner美術／產品Pending；不得merge、TestFlight、發布、加入第二技能或新語音；語音仍未通過，BGM HOLD。
+- PLAN reconciliation: `updated`

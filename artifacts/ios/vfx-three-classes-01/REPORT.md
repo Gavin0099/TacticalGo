@@ -66,3 +66,5 @@ iPad先前啟動遭 CoreDevice／remote XPC 連線錯誤。Owner 要求「再測
 核心改動：SkillVFX.swift／SkillVFXView.swift、BoardPlayback接線、CozyBoard圖層、MagePerformance唯一演出時鐘、DEBUG原生稽核／fixture與錄影marker、聚焦 tests、剪輯及delivery verifier、source manifest、研究與slice文件。
 
 隔離候選可commit/push；本輪不merge、不TestFlight、不正式發布。工程候選交付不代表整體美術／產品結案。
+
+紀錄已透過外部 canonical memory_record writer 寫入 daily／review／active summary；memory_workflow --check --run-guard 的目前差異阻擋數為0。既有 missing canonical／provenance 及 repo-local writer 路徑警告保留於 memory-check.log；不宣稱歷史紀錄已正規化或治理全面導入。

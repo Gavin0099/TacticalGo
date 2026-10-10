@@ -42,3 +42,5 @@
 - ANIM-W1戰士續修候選在codex/anim-warrior-body-02；Owner氣勢待看片，三職均明確確認前不VFX，英文英雄語音HOLD／關閉。170 Swift、137 Golden、4 Simulator、108狀態檢查；iPad Wi-Fi build1005安裝／OS接受啟動，UI認證取消、iPhone unavailable，實機操作未通過。 <!-- memory_record_projection:active-task-summary:e05970b4bed5c671db0c3c3c1285f7deda4e084dc8fd7d03b96ee2c5493c5bba -->
 
 - ANIM-W1 Body02 candidate: Owner acting confirmation pending; all3 bodies before VFX; English hero voice HOLD/off. Evidence artifacts/ios/anim-warrior-body-02/REPORT.md. <!-- memory_record_projection:active-task-summary:782a3c02a32ee7bfb0e4b48bc12822f523ca3deab847d0f4d6f7654e30791eb6 -->
+
+- 三職 VFX finite-bursts-03 強化候選完成；177 Swift／137 Golden／4 Simulator UI／iPhone2 通過；Owner 美術 Pending。iPad 重測連線成功但鎖定拒啟動，等待解鎖；語音與BGM關閉，無 merge 或發布。 <!-- memory_record_projection:active-task-summary:d0795c170c8367fa184ffa9551d74201854fe8ee6aa37d24adb67aa29871cd82 -->
