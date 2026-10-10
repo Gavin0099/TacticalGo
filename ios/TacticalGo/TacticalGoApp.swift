@@ -13,7 +13,8 @@ import SwiftUI
         WindowGroup {
             Group {
                 #if DEBUG
-                if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
+                if ProcessInfo.processInfo.arguments.contains("--hero-pose-review") { HeroPoseReview() }
+                else if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
                 else { normalContent }
                 #else
                 normalContent

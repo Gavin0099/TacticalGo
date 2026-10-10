@@ -1,0 +1,25 @@
+{
+  "build": "1003",
+  "version": "1.0.0",
+  "bundle": "com.tacticalgo.prototype.herobody",
+  "delivery": "Independent local signed TacticalGo Heroes; Wi-Fi installation, not TestFlight/store",
+  "iphone": {
+    "model": "iPhone 16 Pro",
+    "os": "iOS 27.0",
+    "installed": true,
+    "latestBuildExecutedUItests": 2,
+    "failures": 0,
+    "stateAuditChecks": 108,
+    "humanActing": "Pending"
+  },
+  "ipad": {
+    "model": "iPad mini 6",
+    "os": "iPadOS 26.6.1",
+    "installed": true,
+    "launched": true,
+    "uiTests": "NOT PASS: runner authentication canceled",
+    "humanActing": "Pending"
+  },
+  "zeroTestsNotAccepted": true,
+  "sourceEvidence": "native-iphone-warrior-impact.log, physical-iphone-warrior-impact-audit.json; raw device diagnostics local-only"
+}

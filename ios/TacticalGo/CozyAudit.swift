@@ -13,6 +13,11 @@ import TacticalGoMotion
         let phase: String
         if reduced { phase = "reduced-final" }
         else if clip != nil { phase = clip!.timing.phase(at: elapsed) }
+        else if let hero = receipt.heroPerformance {
+            let t = hero.timing
+            if hero.isSummon { phase = elapsed < 0.26 ? "body-summon-approach" : elapsed < hero.duration ? "body-summon-settle" : "final" }
+            else { phase = elapsed < t.anticipationEnd ? "body-charge" : elapsed < t.release ? "body-release" : elapsed < t.moveStart ? "body-impact" : elapsed < t.arrival ? "body-travel" : elapsed < t.captureStart ? "body-land" : elapsed < duration ? "body-recover-capture" : "final" }
+        }
         else {
             switch receipt.action {
             case .summonHero: phase = elapsed < 0.322 ? "summon-appear" : elapsed < 0.46 ? "summon-settle" : elapsed < duration ? "capture" : "final"
@@ -224,6 +229,7 @@ import TacticalGoMotion
         rows.append(["id": receipt.id.uuidString,"receiptUptime": receipt.startedUptime,"action": String(describing: receipt.action),
                      "before": snapshot(receipt.before),"after": snapshot(receipt.outcome.state),"voice": voice,"voiceEligibilityOnly": true,"reducedMotion": reduced,
                      "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
+                     "heroBody":receipt.heroPerformance.map { p in ["class":p.heroClass.rawValue,"summon":p.isSummon,"release":p.timing.release,"moveStart":p.timing.moveStart,"arrival":p.timing.arrival,"captureStart":p.timing.captureStart,"recoveryEnd":p.timing.recoveryEnd] as [String:Any] } ?? [:],
                      "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : "m3",
                      "effectsEnabled": !ProcessInfo.processInfo.arguments.contains("--mage-no-effects"),
                      "events": receipt.outcome.events.map { String(describing: $0) },"size": receipt.before.board.size])
@@ -269,7 +275,7 @@ import TacticalGoMotion
         load(.rogue,diagram: "...O...\n.......\n.......\n...Ho..\n.......\n...X...\n.......",mode: .skill)
         store.select(Point(4,3)); store.confirm()
         if let receipt = store.playback {
-            let frame = BotBoardFrame.committed(receipt,elapsed: 0.26,pitch: 40,reducedMotion: false)
+            let frame = BotBoardFrame.committed(receipt,elapsed: 0.32,pitch: 40,reducedMotion: false)
             check("swap_two_opposite_paths_halfway",frame.hidden == [Point(3,3),Point(4,3)] && frame.sprites.count == 2 && frame.sprites.allSatisfy { abs($0.progress - 0.5) < 0.001 } && frame.sprites[0].from == frame.sprites[1].to && frame.sprites[1].from == frame.sprites[0].to)
             check("swap_preserves_two_piece_identities",Set(frame.sprites.map { String(describing: $0.piece) }).count == 2 && store.state.board[Point(4,3)] == Piece(.one,.hero) && store.state.board[Point(3,3)] == Piece(.two,.soldier))
         } else { check("swap_receipt",false) }

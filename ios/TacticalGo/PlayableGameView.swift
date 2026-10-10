@@ -61,6 +61,8 @@ enum PracticeLesson: String, CaseIterable, Identifiable {
 struct PlayableGameView: View {
     @State private var store = GameStore()
     @State private var visuals = GameVisualAssets.original
+    @State private var heroBodyAuditStatus = "RUNNING"
+    @State private var heroBodyAuditStarted = false
     @State private var mageBodyAuditStatus = "RUNNING"
     @State private var mageBodyAuditStarted = false
     @State private var cozyAuditStatus = "RUNNING"
@@ -150,6 +152,7 @@ struct PlayableGameView: View {
         }
         .overlay(alignment: .top) {
             #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--hero-body-audit") { Text(heroBodyAuditStatus).accessibilityIdentifier("heroBodyAudit").font(.caption).background(Cozy.card) }
             if ProcessInfo.processInfo.arguments.contains("--mage-body-audit") { Text(mageBodyAuditStatus).accessibilityIdentifier("mageBodyAudit").font(.caption).background(Cozy.card) }
             if ProcessInfo.processInfo.arguments.contains("--game-feel-audit") {
                 Text(gameFeelAuditStatus).accessibilityIdentifier("gameFeelAudit").font(.caption2).background(Cozy.card)
@@ -177,7 +180,7 @@ struct PlayableGameView: View {
             if args.contains("--demo-audio-defaults") {
                 store.audio.muted = false; store.audio.voiceEnabled = true; store.audio.voiceVolume = 0.75; store.audio.sfxVolume = 0.65; store.audio.musicEnabled = false
             }
-            if args.contains("--mage-body-review") { store.audio.voiceEnabled = false; store.audio.musicEnabled = false }
+            if args.contains("--mage-body-review") || args.contains("--hero-body-review") { store.audio.voiceEnabled = false; store.audio.musicEnabled = false }
             mageEffectsEnabled = !args.contains("--mage-no-effects")
             if args.contains("--mage-m2-reference") { mageRevision = .m2; mageMarkers = .legacy }
             if args.contains("--mage-compact") { store.mageTempo = .compact }
@@ -222,6 +225,13 @@ struct PlayableGameView: View {
                 store.session = GameSession(try! GameSetup.fromDiagram(config: .board(size: 7), diagram: diagram,classOne: hero,classTwo: hero,current: owner,manaOne: 4,manaTwo: 4,ap: 2))
                 store.mode = .skill; inMatch = true; store.setMatchAudioActive(true)
             }
+            if args.contains("--hero-body-demo") {
+                let hero:HeroClass = args.contains("rogue") ? .rogue : .warrior
+                let owner:Player = args.contains("--white-caster") ? .two : .one
+                store.leaveMatch();store.size = args.contains("--cozy-nine") ? 9 : 7
+                store.session = GameSession(try! HeroBodyFixture.state(hero,owner:owner,size:store.size,capture:args.contains("--hero-body-capture"),dense:args.contains("--hero-body-dense"),summon:args.contains("--hero-body-summon")))
+                store.mode = args.contains("--hero-body-summon") ? .summon : .skill;inMatch = true;store.setMatchAudioActive(true)
+            }
             if args.contains("--cozy-demo") {
                 store.leaveMatch(); store.size = args.contains("--cozy-nine") ? 9 : 7
                 let caster: Player = args.contains("--white-caster") ? .two : .one
@@ -256,6 +266,9 @@ struct PlayableGameView: View {
     private func startCozyAuditIfActive() {
         #if DEBUG
         guard scenePhase == .active else { return }
+        if !heroBodyAuditStarted, ProcessInfo.processInfo.arguments.contains("--hero-body-audit"), let cozyAssets {
+            heroBodyAuditStarted = true; Task { heroBodyAuditStatus = await HeroBodyAudit.run(store:store,assets:cozyAssets) }
+        }
         if !mageBodyAuditStarted, ProcessInfo.processInfo.arguments.contains("--mage-body-audit"), let cozyAssets {
             mageBodyAuditStarted = true; Task { mageBodyAuditStatus = await MageBodyAudit.run(store:store,assets:cozyAssets) }
         }

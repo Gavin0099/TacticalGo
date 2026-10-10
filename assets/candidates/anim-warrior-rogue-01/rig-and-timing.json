@@ -1,0 +1,67 @@
+{
+  "units": "512px original portrait coordinates; board pitch canvas0.88 and ground448/512",
+  "warrior": {
+    "headPivot": [
+      257,
+      289
+    ],
+    "heldPivot": [
+      146,
+      414
+    ],
+    "shieldPivot": [
+      354,
+      278
+    ],
+    "clothPivot": [
+      93,
+      378
+    ],
+    "bodyPivot": [
+      259,
+      460
+    ],
+    "skillMs": {
+      "anticipationEnd": 200,
+      "release": 320,
+      "moveStart": 340,
+      "arrival": 580,
+      "captureStart": 640,
+      "recoveryEnd": 900
+    },
+    "summonMs": 640,
+    "poseReview": "Owner: rogue motion accepted; warrior initial is only okay. Warrior-only refinement: shield Y -72 lift / -22 forward / +38 landing impact; x +12 lift keeps shield away from face;70ms raised hold, final90ms downstroke,80ms rebound. Impact coincides with both soldier arrivals; no new VFX. Still Owner acting Pending."
+  },
+  "rogue": {
+    "headPivot": [
+      287,
+      274
+    ],
+    "heldPivot": [
+      146,
+      393
+    ],
+    "clothPivot": [
+      405,
+      379
+    ],
+    "bodyPivot": [
+      277,
+      419
+    ],
+    "skillMs": {
+      "anticipationEnd": 120,
+      "release": 200,
+      "moveStart": 220,
+      "arrival": 420,
+      "captureStart": 480,
+      "recoveryEnd": 720
+    },
+    "summonMs": 580,
+    "crossingLanes": "Perpendicular presentation offsets: hero -0.16pitch, enemy +0.08pitch; sinusoidal, zero at both exact board endpoints. Vertical swaps use x-offset, horizontal swaps y-offset."
+  },
+  "maskSource": "ios/TacticalGo/HeroBodyView.swift",
+  "maskSHA256": "35d73e19856f421f8372d849b7bb0c2236f20bb02ea8c34f0f2a6c3be491a79b",
+  "events": "Only successful piecePlaced / piecesSwapped receipt; captures/wins/draw/turn read real outcome; no apply or resources in presentation adapter",
+  "vfxCueBoundary": "Timing is reusable cue contract, not implementation of VFX-01/VFX-02"
+}

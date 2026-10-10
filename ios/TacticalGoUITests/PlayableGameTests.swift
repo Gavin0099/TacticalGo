@@ -2,6 +2,78 @@ import XCTest
 
 @MainActor final class PlayableGameTests: XCTestCase {
 
+    func testHeroBodySharedReceiptAndCancellationAudit() {
+        let game = app(["--hero-body-demo","--hero","warrior","--hero-body-review","--mage-no-effects","--hero-body-audit"])
+        let status = game.staticTexts["heroBodyAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout:10))
+        let done = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label BEGINSWITH 'PASS'"),object:status)
+        XCTAssertEqual(XCTWaiter.wait(for:[done],timeout:80),.completed)
+        shot(game,"HERO-body-receipt-cancellation-audit")
+    }
+    func testWarriorRogueNativeRecordingWalkthrough() {
+        func hold(_ t:Double) { let w = XCTNSPredicateExpectation(predicate:NSPredicate{_,_ in false},object:nil);_ = XCTWaiter.wait(for:[w],timeout:t) }
+        for hero in ["warrior","rogue"] {
+            for scenario in ["summon","black","capture","white","dense","reduced"] {
+                var flags = ["--hero-body-demo","--hero",hero,"--hero-body-review","--mage-no-effects","--audio-trace"]
+                if scenario == "summon" {flags += ["--hero-body-summon"]}
+                if scenario == "capture" || scenario == "white" {flags += ["--hero-body-capture"]}
+                if scenario == "white" || scenario == "dense" || scenario == "reduced" {flags += ["--white-caster"]}
+                let dense = scenario == "dense" || scenario == "reduced"
+                if dense {flags += ["--cozy-nine","--cozy-320","--hero-body-dense"]}
+                else {flags += ["--cozy-390"]}
+                if scenario == "reduced" {flags += ["--cozy-reduced"]}
+                let game = app(flags),size = dense ? 9 : 7
+                XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout:10))
+                XCTAssertEqual(game.otherElements["playArena"].frame.width/game.otherElements["playArena"].frame.height,8/9.0,accuracy:0.02)
+                func select() {
+                    if scenario == "summon" {tap(game,3,4,size:size)}
+                    else if hero == "warrior" {tap(game,2,3,size:size);tap(game,4,3,size:size)}
+                    else {tap(game,4,3,size:size)}
+                }
+                select();XCTAssertTrue(game.staticTexts["2 AP"].exists);shot(game,"HERO-\(hero)-\(scenario)-preview")
+                game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                select();cozyConfirm(game);hold(1.6)
+                XCTAssertTrue(game.staticTexts["1 AP"].exists)
+                if scenario == "capture" || scenario == "white" {XCTAssertTrue(game.staticTexts[scenario == "white" ? "白方獲勝" : "黑方獲勝"].exists)}
+                shot(game,"HERO-\(hero)-\(scenario)-settled")
+                game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                XCUIDevice.shared.press(.home);game.activate();XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.terminate()
+            }
+        }
+        let gallery = app(["--hero-pose-review"])
+        XCTAssertTrue(gallery.buttons["heroPoseCast"].waitForExistence(timeout:10))
+        gallery.buttons["heroPoseSummon"].tap();hold(1.2);gallery.buttons["heroPoseCast"].tap();hold(1.2)
+        gallery.segmentedControls["heroPoseClass"].buttons["盜賊"].tap();gallery.buttons["heroPoseCast"].tap();hold(1.2)
+        shot(gallery,"HERO-closeup-supplement")
+    }
+    func testHeroBody320NineDenseNormalAndReduced() {
+        for hero in ["warrior","rogue"] {for reduced in [false,true] {
+            var flags = ["--hero-body-demo","--hero",hero,"--hero-body-dense","--cozy-nine","--cozy-320","--hero-body-review","--mage-no-effects"]
+            if reduced {flags += ["--white-caster","--cozy-reduced"]}
+            let game = app(flags),arena = game.otherElements["playArena"]
+            XCTAssertTrue(arena.waitForExistence(timeout:10));XCTAssertEqual(arena.frame.width,312,accuracy:1)
+            XCTAssertEqual(arena.frame.width/arena.frame.height,8/9.0,accuracy:0.02)
+            if hero == "warrior" {tap(game,2,3,size:9);tap(game,4,3,size:9)} else {tap(game,4,3,size:9)}
+            XCTAssertTrue(game.staticTexts["2 AP"].exists);cozyConfirm(game)
+            XCTAssertTrue(game.staticTexts["1 AP"].waitForExistence(timeout:5));shot(game,"HERO-320-9-\(hero)-reduced-\(reduced)")
+            game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["2 AP"].exists);game.terminate()
+        }}
+    }
+    func testHeroBodySecondAPAndBackgroundRemainPlayable() {
+        for hero in ["warrior","rogue"] {
+            let game = app(["--hero-body-demo","--hero",hero,"--hero-body-review","--mage-no-effects"])
+            if hero == "warrior" {tap(game,2,3);tap(game,4,3)} else {tap(game,4,3)}
+            cozyConfirm(game)
+            let enabled = XCTNSPredicateExpectation(predicate:NSPredicate(format:"enabled == true"),object:game.buttons["mode-soldier"])
+            XCTAssertEqual(XCTWaiter.wait(for:[enabled],timeout:5),.completed)
+            game.buttons["mode-soldier"].tap();tap(game,0,0);cozyConfirm(game)
+            XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout:5));XCTAssertTrue(game.staticTexts["currentTurn"].label.contains("白方"))
+            game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["1 AP"].exists)
+            game.terminate()
+        }
+    }
+
     func testMageBodySharedTimelineAndCancellationNativeAudit() {
         let game = app(["--cozy-demo","--mage-body-review","--mage-no-effects","--mage-body-audit"])
         let status = game.staticTexts["mageBodyAudit"]

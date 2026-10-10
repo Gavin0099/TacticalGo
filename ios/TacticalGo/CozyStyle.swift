@@ -39,6 +39,7 @@ struct CozyButton: ButtonStyle {
     let anim: Anim01Assets
     let mageBody: MageBodyAssets
     let heroes: [HeroClass: UIImage]
+    let heroPlates: [HeroClass: UIImage]
     let board: UIImage
     let shadow: UIImage
     static func load(bundle: Bundle = .main) throws -> Self {
@@ -59,7 +60,18 @@ struct CozyButton: ButtonStyle {
         }
         var heroes: [HeroClass: UIImage] = [:]
         for hero in [HeroClass.warrior, .mage, .rogue] { heroes[hero] = try image("B-" + hero.rawValue.lowercased() + "-v02", width: 512, height: 512) }
-        return try Self(anim: Anim01Assets.load(bundle: bundle), mageBody: MageBodyAssets.load(bundle: bundle), heroes: heroes,
+        guard let bodyPins = bundle.url(forResource:"source-pins",withExtension:"json",subdirectory:"HeroBody") else { throw Anim01Assets.Invalid.manifest }
+        let hashes = try JSONDecoder().decode([String:String].self,from:Data(contentsOf:bodyPins))
+        var plates: [HeroClass:UIImage] = [:]
+        for h in [HeroClass.warrior,.rogue] {
+            let name = h.rawValue.lowercased()+"-clean-plate.png"
+            guard let url = bundle.url(forResource:name,withExtension:nil,subdirectory:"HeroBody"),
+                  SHA256.hash(data:try Data(contentsOf:url)).map({String(format:"%02x",$0)}).joined() == hashes[name],
+                  let image = UIImage(contentsOfFile:url.path),let cg = image.cgImage,cg.width == cg.height,
+                  [.first,.last,.premultipliedFirst,.premultipliedLast].contains(cg.alphaInfo) else { throw Anim01Assets.Invalid.manifest }
+            plates[h] = image
+        }
+        return try Self(anim: Anim01Assets.load(bundle: bundle), mageBody: MageBodyAssets.load(bundle: bundle), heroes: heroes, heroPlates: plates,
                         board: image("v3-b-board-surface", width: 1024, height: 1152),
                         shadow: image("v3-b-board-shadow", width: 1024, height: 1152))
     }
@@ -73,6 +85,7 @@ struct CozyToken: View {
     let pitch: CGFloat
     var squash = 1.0
     var magePose: MageBodyPose = .rest
+    var heroPose: HeroBodyPose = .rest
     var markers: HeroMarkerStyle = .thinRing
     let heroClass: HeroClass
     private var black: Bool { piece.owner == .one }
@@ -117,8 +130,8 @@ struct CozyToken: View {
         }.allowsHitTesting(false)
     }
     private var readableHero: some View {
-        let canvas = pitch * (heroClass == .mage ? 0.92 : 0.70)
-        let ground = heroClass == .mage ? 448.0 : 420.0
+        let canvas = pitch * (heroClass == .mage ? 0.92 : 0.88)
+        let ground = 448.0
         return ZStack {
             // All base layers are behind the character. The intersection is unchanged.
             Ellipse().fill(Cozy.ink.opacity(0.17)).frame(width: pitch * 0.81,height: pitch * 0.37).offset(y: pitch * 0.06)
@@ -131,7 +144,7 @@ struct CozyToken: View {
             if let image = assets.heroes[heroClass] {
                 Group {
                     if heroClass == .mage { MageBodyView(original: image,plate:assets.mageBody.cleanPlate,pose:magePose,width:canvas) }
-                    else { Image(uiImage:image).resizable().frame(width:canvas,height:canvas) }
+                    else if let plate = assets.heroPlates[heroClass] { HeroBodyView(original:image,plate:plate,heroClass:heroClass,pose:heroPose,width:canvas) }
                 }
                 .offset(y:canvas * (0.5-ground/512))
             }

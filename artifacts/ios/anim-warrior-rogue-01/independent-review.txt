@@ -1,0 +1,7 @@
+Visual agent read-only review: actual512px and48pt native exports.
+Warrior shield-original-position large alpha hole fixed with masked garment backing; shield does not cover eyes/mouth and hand/weapon remain connected. Potential thin gold old-edge/neck seam remains closeup Pending. Rogue hood/face identity retained; fine old blade-edge/neck contour seam remains Pending. Most recent underlap additionally excludes original held/shield props to avoid duplicate remnants.
+Receipt wiring: actor identity derives from before.current, not after.current; exchanged hero travels to enemy destination, enemy soldier travels opposite. Capture opacity derives from actual destination event. No static caster overlay identified.
+Independent review found old draw/SFX result timing, corrected shared adapter and added final-AP draw regression. Also found optional generic FX reading old MotionPlan; now reads same receipt.plan without adding VFX.
+Static pose review does not pass normal-speed acting, human readability or final art Gates.
+
+Warrior refinement visual read-only: 48pt raised shield clearer, face/eyes/hair unoccluded; lower shield and two soldier bases remain distinguishable in sparse7x7 checkpoints.512px old shield gold/black edge and sleeve cut seams remain; raised right edge touches image canvas, clipping risk. .20-.27 hold70ms/.49-.58 downstroke90ms/.58 impact equals two arrivals/.58-.66 recoil80ms. Not proof of normal-speed acting or all dense board safety. Rogue unchanged.

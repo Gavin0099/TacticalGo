@@ -1,0 +1,10 @@
+{
+  "beforeRecordUptime": 66032.75714958334,
+  "surface": "Actual iPhone 390pt Simulator / SwiftUI / XCTest gestures",
+  "audio": "silent; no postmix",
+  "effects": "off; voice off; no postmix",
+  "recordReadyUptime": 66032.94574666666,
+  "testExitCode": 0,
+  "recordStopUptime": 66208.292420875,
+  "recorderExitCode": 0
+}

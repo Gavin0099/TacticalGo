@@ -1,0 +1,14 @@
+{
+  "before": "artifacts/ios/anim-warrior-rogue-01/media/native-1.mp4",
+  "after": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-1.mp4",
+  "output": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/warrior-before-after-native.mp4",
+  "speed": 1,
+  "sameScene": "Black Warrior,7x7,no captures,2AP skill,390pt native viewport",
+  "alignment": "Receipt uptime with0.45s pre-roll; recorder-start latency is not calibrated; no retiming",
+  "endPad": "Final resting frame only,<=0.2s per source; no synthesized animation",
+  "sha256": {
+    "artifacts/ios/anim-warrior-rogue-01/media/native-1.mp4": "62dd8d1dd28cce4ca071e92a9cecffee64d1297cd8b003cf32cd62fa428a7b0c",
+    "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-1.mp4": "690208703b8f2a0d2bb923033f9aa7bc834646a3672745c11f0f69354480b7aa",
+    "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/warrior-before-after-native.mp4": "4890d47f8a072c2dbfbf301db7520e17bd226213dd63baadee699f1bc07ef6d9"
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "boundary" : "Native SwiftUI\/actual GameStore; physical-device and human acting Gates separate",
+  "checks" : [
+    {
+      "check" : "warrior-one-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-two-drops-after-release",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-two-drops-after-release",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-two-drops-after-release",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-two-drops-after-release",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-two-opposite-tracked-paths",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-separate-crossing-lanes",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-two-opposite-tracked-paths",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-separate-crossing-lanes",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-two-opposite-tracked-paths",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-separate-crossing-lanes",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-shared-timeline",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-two-opposite-tracked-paths",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-separate-crossing-lanes",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-final-core-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-undo-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-interrupt-undo-state",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-cancel-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-background-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-restart-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-leave-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-interruption-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-illegal-no-charge",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-reduced-no-lock-final",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-reduced-no-voice",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-reduced-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-undo-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-interrupt-undo-state",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-cancel-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-background-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-restart-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-leave-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-interruption-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-illegal-no-charge",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-reduced-no-lock-final",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-reduced-no-voice",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-reduced-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-vertical-real-core",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-vertical-perpendicular-lanes",
+      "pass" : true
+    }
+  ],
+  "effects" : "off",
+  "status" : "PASS",
+  "voice" : "off"
+}

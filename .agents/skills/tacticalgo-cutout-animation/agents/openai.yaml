@@ -1,0 +1,4 @@
+interface:
+  display_name: "TacticalGo 原畫角色動畫"
+  short_description: "Animate original TacticalGo heroes on native small boards"
+  default_prompt: "Use $tacticalgo-cutout-animation to animate an existing TacticalGo hero without changing its identity or gameplay rules."

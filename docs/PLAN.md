@@ -1,5 +1,11 @@
 # Tactical Go｜職業導向戰術原型 PLAN
 
+## 2026-10-10 — 角色動作與特效順序（最新 Owner 決定）
+
+先將 M3 原畫分層與成功收據播放流程寫為 `tacticalgo-cutout-animation` Skill，再完成 ANIM-W1 戰士及 ANIM-R1 盜賊本體候選。本輪到此停止，交正常速度完整棋盤原生錄影給 Owner；不直接開始 VFX。
+
+後續依序：VFX-01 法師魔法之手（蓄能、短符文、方向能量、目標衝擊、落定）→ VFX-02 戰士盾牌震波／雙兵登場及盜賊短殘影 → SFX、輕量觸覺與英文語音時點整合。M3 人物呈現方向已接受，正式美術及本輪動作仍待人工驗收。本輪英文語音關閉、既有 SFX 可留；不修改 Domain、Bot、AP、Mana、提子、技能或投影。保持黑白薄底座／外側形狀標記；隔離分支可 commit/push，不 merge、TestFlight 或發布。完整 Slice 與 Gate 見 `docs/ios/SLICES.md`。
+
 ## 目前工作：BOT-01 單人電腦對戰（2026-10-09）
 
 Owner 核准第一版 Swift 電腦對手，取代早期「不做 AI／等待真人」限制；只限 BOT-01。已有核心與 SwiftUI 可玩版直接沿用，不重做移植。Bot Agent 負責獨立 TacticalGoBot、有限完整回合搜尋、固定戰術測試；本 Agent 負責必要單人入口、背景執行、逐步下棋演出、過期決策防護與原生驗證；Visual Agent 繼續獨立美術。
@@ -442,3 +448,5 @@ Owner 授權主要 Agent 協調 Visual 只讀檢視及 SwiftUI 整合，隔離 c
 工程候選：164 Swift 測試；38 Golden、99 actions、137 snapshots 與既存 C# 基準一致（本輪未新跑 C#）；97 原生收據、取消、復原及中斷檢查。390 M2/M3 同盤面、同尺寸及正常速度、320/9 dense／Reduced Motion 錄影，第二 AP、Bot 及 iPad 旋轉與命中回歸通過；Release、簽名建置通過。最初第二 AP 測試誤以為顯示 0 AP，依 Core 自動換手契約修正為白方 2 AP 後新跑通過，保留初次失敗。
 
 風險與驗收：32pt 細節及 320/9 實際 28.52pt pitch 仍是極限；固定原畫法杖側向揮動不是全方向手繪出手，方向以受術者與短促效果輔助。工程通過不宣稱角色演技、所有密集棋形或三個 Owner Gate 通過。兩台真機已安裝 Mage M3 1.0.0(1001)，鎖定拒絕啟動，動態驗收待解鎖。本輪允許必要提交與 push，禁止 merge、TestFlight 或發布。交付 artifacts/ios/anim-mage-m3/REPORT.md；正式美術與產品 Pending。
+
+2026-10-10 W1/R1 候選交付：Skill已保存與安裝、角色本體／原生證據已完成。Owner盜賊動作回饋正面；戰士修正後動作較好、技能氣勢仍不足，保持待驗收。先停在本輪，不以工程通過開啟VFX；後續順序仍為VFX-01法師、VFX-02戰士／盜賊，最後SFX／語音／觸覺整合。詳見docs/ios/SLICES.md與artifacts/ios/anim-warrior-rogue-01/REPORT.md。

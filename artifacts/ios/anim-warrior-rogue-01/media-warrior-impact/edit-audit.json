@@ -1,0 +1,3986 @@
+{
+  "source": "native-ui-silent.mov",
+  "sourceSHA256": "50f583a673bfeed47b5cddbe95fb8d45325f210790d8f6bcc4a4c217e808c352",
+  "claim": "Actual SwiftUI/Simulator input. Silent, normal speed, captions outside native viewport; no retiming or synthesized characters. Density uses orthogonally adjacent pre-action soldiers. Human acting/physical device Gates not inferred.",
+  "clips": [
+    {
+      "receipt": "A063F1A2-7962-4AF2-9376-F286E02A3320",
+      "class": "WARRIOR",
+      "scenario": "SUMMON",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": true
+      },
+      "start": 12.942997666669545,
+      "duration": 1.69,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-0.mp4",
+      "sha256": "8af47bc101b2932ff4d18eef46d455231b913f850ba2d4aec2bded7f9d4e66aa"
+    },
+    {
+      "receipt": "65AE2EA0-8375-4F24-AB6E-DC690747CB73",
+      "class": "WARRIOR",
+      "scenario": "SKILL",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": false
+      },
+      "start": 29.475817041672418,
+      "duration": 1.9500000000000002,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-1.mp4",
+      "sha256": "690208703b8f2a0d2bb923033f9aa7bc834646a3672745c11f0f69354480b7aa"
+    },
+    {
+      "receipt": "F538519D-83E4-4E17-8B3B-01365EC41BBB",
+      "class": "WARRIOR",
+      "scenario": "REAL CAPTURE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 2, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": false
+      },
+      "start": 45.54203550000675,
+      "duration": 2.55,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-2.mp4",
+      "sha256": "98f249bbd71d915461203da796dc6e79977dd530e592030c5bfa39046d3ddc81"
+    },
+    {
+      "receipt": "D95E52AD-1675-4966-9872-107BD1833569",
+      "class": "WARRIOR",
+      "scenario": "WHITE / REAL CAPTURE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              2,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecesCaptured(TacticalGoCore.Player.two, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 2, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.two)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": false
+      },
+      "start": 60.17544345833885,
+      "duration": 2.55,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-3.mp4",
+      "sha256": "12646e13c8b29988c468e3ee6f00344e40f6ae4ba4a85b78e6e5c1e6c38f9f6b"
+    },
+    {
+      "receipt": "B85FB73B-BAFC-49E9-9C10-493CED1DDAE8",
+      "class": "WARRIOR",
+      "scenario": "320pt / 9x9 DENSE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": false
+      },
+      "start": 75.07696125001239,
+      "duration": 1.9500000000000002,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-4.mp4",
+      "sha256": "75765a6196d256e81d551f8e5d7251516aa86c283ac911721ecafb268e82f5a9"
+    },
+    {
+      "receipt": "911F7BC9-B37F-4B01-BA08-BFEC839C1556",
+      "class": "WARRIOR",
+      "scenario": "REDUCED MOTION",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Warrior"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.58,
+        "captureStart": 0.64,
+        "class": "Warrior",
+        "moveStart": 0.34,
+        "recoveryEnd": 0.9,
+        "release": 0.32,
+        "summon": false
+      },
+      "start": 90.27777962501277,
+      "duration": 1.9500000000000002,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-5.mp4",
+      "sha256": "6857a6a7aa1ee6787649b0b38717756f254a6992e74902c4da256e7df1e0bc78"
+    },
+    {
+      "receipt": "5A08748B-F8F4-4C19-8936-75EC0582E0D0",
+      "class": "ROGUE",
+      "scenario": "SUMMON",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": true
+      },
+      "start": 101.8425673333375,
+      "duration": 1.63,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-6.mp4",
+      "sha256": "e0931d8aea16367b06b550876216a31308d007bdc30b5a7ff7eff34706d5c7f7"
+    },
+    {
+      "receipt": "1B30742D-9043-468A-A9E8-1029FC608010",
+      "class": "ROGUE",
+      "scenario": "SKILL",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecesSwapped(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": false
+      },
+      "start": 113.4253895000118,
+      "duration": 1.77,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-7.mp4",
+      "sha256": "d07dbe316aadda559216b3fcdf279e8d4add13fedc91f14692d3cbec436841a6"
+    },
+    {
+      "receipt": "AED59214-B1DF-411E-8EC8-69F05F51AEC8",
+      "class": "ROGUE",
+      "scenario": "REAL CAPTURE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              4,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              4,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              5,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecesSwapped(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": false
+      },
+      "start": 124.8921021666727,
+      "duration": 2.3899999999999997,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-8.mp4",
+      "sha256": "d24ce01f0b96fe83e4ea9d7133fb164fc1f8caf35ffcb020d86919d05417199a"
+    },
+    {
+      "receipt": "A4F109B6-D4E1-4826-BA28-12384FDE1E99",
+      "class": "ROGUE",
+      "scenario": "WHITE / REAL CAPTURE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              4,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              5,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              4,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecesSwapped(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))",
+        "piecesCaptured(TacticalGoCore.Player.two, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.two)"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": false
+      },
+      "start": 136.458923291674,
+      "duration": 2.3899999999999997,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-9.mp4",
+      "sha256": "801e7da52969e86190181e7ca47006056f22cf235537a5492e0ac4c06955cbf2"
+    },
+    {
+      "receipt": "EC89708E-D1F9-4C58-B294-2BB8B44CD53E",
+      "class": "ROGUE",
+      "scenario": "320pt / 9x9 DENSE",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecesSwapped(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))",
+        "piecesCaptured(TacticalGoCore.Player.two, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 3), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))])"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": false
+      },
+      "start": 148.54354145834515,
+      "duration": 1.81,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-10.mp4",
+      "sha256": "1eb602d74e02c8af972734360f4eec2d298f2e0c31d09ecf86a5627c97ef4ec8"
+    },
+    {
+      "receipt": "4A46D68D-9D11-44DF-A21A-819C615A0BE2",
+      "class": "ROGUE",
+      "scenario": "REDUCED MOTION",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Rogue",
+          "Rogue"
+        ],
+        "current": "two",
+        "mana": [
+          4,
+          2
+        ],
+        "pieces": [
+          {
+            "at": [
+              0,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              0
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "one"
+          },
+          {
+            "at": [
+              0,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              2,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "hero",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              6,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              4
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              6
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              0,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              1,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              5,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              6,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          },
+          {
+            "at": [
+              7,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              8,
+              8
+            ],
+            "kind": "soldier",
+            "owner": "two"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "piecesSwapped(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))",
+        "piecesCaptured(TacticalGoCore.Player.two, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 3), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))])"
+      ],
+      "bodyTiming": {
+        "arrival": 0.42,
+        "captureStart": 0.48,
+        "class": "Rogue",
+        "moveStart": 0.22,
+        "recoveryEnd": 0.72,
+        "release": 0.2,
+        "summon": false
+      },
+      "start": 160.71004812500615,
+      "duration": 1.81,
+      "speed": 1,
+      "file": "artifacts/ios/anim-warrior-rogue-01/media-warrior-impact/native-11.mp4",
+      "sha256": "e4bb6d0a815c13f2a0f69aba4f65689422a9b9b782f61934dbc4da4cb6757a9e"
+    }
+  ]
+}

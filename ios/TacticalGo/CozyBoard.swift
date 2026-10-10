@@ -80,6 +80,7 @@ struct CozyBoard: View {
         let clip = receipt?.magicHand
         let timing = receipt?.mageTempo.timing ?? MageTempo.full.timing
         let summonPoint = receipt?.mageSummon
+        let heroPerformance = receipt?.heroPerformance
         let mageSummoning = summonPoint != nil && elapsed < timing.summonEnd && !reducedMotion
         let generic: BotBoardFrame = {
             if let receipt, clip == nil { return BotBoardFrame.committed(receipt, elapsed: elapsed, pitch: Double(pitch), reducedMotion: reducedMotion) }
@@ -104,15 +105,18 @@ struct CozyBoard: View {
                 ZStack {
                     if presentation.legal.contains(p) { Circle().fill(Color.white.opacity(0.40)).frame(width: pitch * 0.15) }
                     if !hideMovedSource, !(mageSummoning && p == summonPoint), !generic.hidden.contains(p), let piece = displayed[p] {
-                        token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing, revision: mageRevision) : .rest).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
+                        token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing, revision: mageRevision) : .rest,
+                              heroPose: p == heroPerformance?.hero ? bodyPose(piece,receipt:receipt,elapsed:elapsed) : .rest).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
                     }
                 }.position(point(p, size: size)).zIndex(Double(p.y) * 10 + 10)
             }
             ForEach(generic.sprites.filter { !(summonPoint != nil && $0.piece.kind == .hero && $0.to == summonPoint && $0.piece.owner == receipt?.before.current) }) { sprite in
                 let a = point(sprite.from, size: size), b = point(sprite.to, size: size)
-                token(sprite.piece, pitch: pitch).scaleEffect(sprite.scale).opacity(sprite.opacity)
-                    .position(x: a.x + (b.x - a.x) * sprite.progress,
-                              y: a.y + (b.y - a.y) * sprite.progress + sprite.lift)
+                let bodySummon = heroPerformance?.isSummon == true && sprite.piece.kind == .hero && sprite.piece.owner == receipt?.before.current
+                token(sprite.piece, pitch: pitch,heroPose:bodyPose(sprite.piece,receipt:receipt,elapsed:elapsed))
+                    .scaleEffect(bodySummon ? 1 : sprite.scale).opacity(sprite.opacity)
+                    .position(x: a.x + (b.x - a.x) * sprite.progress + sprite.lateral,
+                              y: a.y + (b.y - a.y) * sprite.progress + (bodySummon ? 0 : sprite.lift))
                     .zIndex(180 + Double(sprite.to.y))
             }
             if mageSummoning, let summonPoint, let piece = presentation.state.board[summonPoint] {
@@ -120,7 +124,7 @@ struct CozyBoard: View {
                     .position(point(summonPoint,size: size)).zIndex(Double(summonPoint.y)*10+10)
             }
             if let receipt, case .summonHero = receipt.action, !reducedMotion, effectsEnabled {
-                let plan = MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
+                let plan = receipt.plan
                 if elapsed < (receipt.mageSummon != nil ? timing.summonEnd : plan.duration) {
                     ForEach(plan.cues.indices, id: \.self) { i in
                         if case .drop(.hero) = plan.cues[i].kind, let at = plan.cues[i].points.first {
@@ -136,7 +140,7 @@ struct CozyBoard: View {
                 }
             }
             if let receipt, !reducedMotion, effectsEnabled {
-                let plan = MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
+                let plan = receipt.plan
                 ForEach(plan.cues.indices, id: \.self) { i in
                     let cue = plan.cues[i]
                     let t = min(1, max(0, (elapsed - cue.start) / cue.duration))
@@ -215,7 +219,8 @@ struct CozyBoard: View {
             }
             // Liberties are real empty points of the commander group, never HP.
             // Movement shows source-board information; settling uses the committed result.
-            let informationBoard = showingAnimation && elapsed < timing.arrival ? receipt!.before.board : presentation.state.board
+            let beforeLanding = !reducedMotion && receipt != nil && elapsed < (heroPerformance?.timing.arrival ?? timing.arrival)
+            let informationBoard = (showingAnimation || heroPerformance != nil) && beforeLanding ? receipt!.before.board : presentation.state.board
             ForEach(Player.allCases, id: \.self) { owner in
                 if let commander = informationBoard.find(owner, .commander) {
                     let liberties = informationBoard.liberties(at: commander)
@@ -239,8 +244,15 @@ struct CozyBoard: View {
                 .offset(x: (0.5 - clip.anchorX) * width, y: (0.5 - clip.anchorY) * width)
         }
     }
-    private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest) -> some View {
-        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, markers: markerStyle, heroClass: presentation.state.heroClass(of: piece.owner))
+    private func bodyPose(_ piece: Piece,receipt: BoardPlayback?,elapsed: Double) -> HeroBodyPose {
+        guard !reducedMotion,let receipt,let p = receipt.heroPerformance,piece.kind == .hero,piece.owner == receipt.before.current,elapsed < receipt.visualDuration else { return .rest }
+        if p.isSummon { return HeroBodyPose.summon(p.heroClass,at:elapsed) }
+        let target = p.plan.cues.first { if case .swap = $0.kind { return true }; return false }?.points.last
+        let direction = target.map { $0.x < p.hero.x ? -1.0 : 1.0 } ?? 1
+        return HeroBodyPose.skill(p.heroClass,at:elapsed,direction:direction)
+    }
+    private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest,heroPose: HeroBodyPose = .rest) -> some View {
+        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, heroClass: presentation.state.heroClass(of: piece.owner))
     }
 }
 

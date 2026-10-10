@@ -96,7 +96,7 @@ import TacticalGoRecords
         let start = receipt?.startedUptime ?? ProcessInfo.processInfo.systemUptime
         let plan = Anim01MagicHand.make(before: before, action: action, outcome: outcome) != nil
             ? CombatFeedbackPlan.anim01(before: before, action: action, outcome: outcome, tempo: receipt?.mageTempo ?? mageTempo)
-            : CombatFeedbackPlan.make(before: before, action: action, outcome: outcome)
+            : receipt?.heroPerformance?.audio ?? CombatFeedbackPlan.make(before: before, action: action, outcome: outcome)
         audioDuration = plan.duration
         // A normal end-turn has no sound and must not silence an already
         // committed skill's pending landing/capture cues.
@@ -296,7 +296,7 @@ import TacticalGoRecords
             #endif
             let visualDuration: Double
             if presentationReducedMotion { visualDuration = 0 }
-            else if receipt.magicHand != nil || receipt.mageSummon != nil { visualDuration = receipt.visualDuration }
+            else if receipt.magicHand != nil || receipt.mageSummon != nil || receipt.heroPerformance != nil { visualDuration = receipt.visualDuration }
             else {
                 switch action {
                 case .summonHero, .placeSoldier, .castBastion, .castSwap: visualDuration = MotionPlan.make(before: before, action: action, outcome: o).duration
