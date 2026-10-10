@@ -61,6 +61,12 @@ import CryptoKit
         return Self(manifest: manifest, images: images)
     }
     func image(_ name: String) -> UIImage { images[name]! }
+    /// Frame selection is normalized to the receipt's phase, not a second independent clock.
+    func fx(_ name: String, progress: Double) -> UIImage? {
+        guard let clip = manifest.fx[name], progress >= 0, progress < 1, !clip.files.isEmpty else { return nil }
+        let index = min(clip.files.count-1,Int(progress*Double(clip.files.count)))
+        return images[clip.files[index]]
+    }
     func fx(_ name: String, elapsed: Double) -> UIImage? {
         guard let clip = manifest.fx[name], elapsed >= 0 else { return nil }
         let index = Int((elapsed * 1000) / Double(clip.frameMs))

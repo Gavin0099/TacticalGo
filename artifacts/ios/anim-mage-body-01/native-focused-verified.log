@@ -1,0 +1,547 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testMageBodySharedTimelineAndCancellationNativeAudit" "-only-testing:TacticalGoUITests/PlayableGameTests/testMageBody320DenseBothFactionsEffectsAndReducedMotion" "-only-testing:TacticalGoUITests/PlayableGameTests/testCozy390RealPushCapturePreviewUndoAndBackground" -resultBundlePath artifacts/ios/anim-mage-body-01/native-focused-verified.xcresult
+
+2026-10-10 12:14:31.736 xcodebuild[72055:929432] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/native-focused-verified.xcresult
+
+2026-10-10 12:14:31.741 xcodebuild[72055:929432] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 12:14:32.863 xcodebuild[72055:929432] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 12:14:34.201654+0800 TacticalGoUITests-Runner[72126:929969] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-10 12:14:34.723.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 12:14:34.723.
+Test Suite 'PlayableGameTests' started at 2026-10-10 12:14:34.723.
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozy390RealPushCapturePreviewUndoAndBackground]' started.
+    t =     0.00s Start Test at 2026-10-10 12:14:34.724
+    t =     0.03s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+2026-10-10 12:14:35.003 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:14:35.003 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.69s         Setting up automation session
+    t =     1.33s         Wait for com.tacticalgo.prototype to idle
+    t =     2.97s Get all elements bound by index for: Elements matching predicate '"blueResources" IN identifiers'
+    t =     3.12s Find the "blueResources" StaticText
+    t =     3.16s Find the "blueResources" StaticText
+    t =     3.21s Find the "blueResources" StaticText
+    t =     3.25s Find the "blueResources" StaticText
+    t =     3.39s Added attachment named 'cozy-390-7-before'
+    t =     3.39s Waiting 10.0s for "playArena" Other to exist
+    t =     4.45s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     4.45s         Checking existence of `"playArena" Other`
+    t =     4.57s Tap "playArena" Other[0.63, 0.51]
+    t =     4.57s     Wait for com.tacticalgo.prototype to idle
+    t =     4.57s     Find the "playArena" Other
+    t =     4.60s     Check for interrupting elements affecting "playArena" Other
+    t =     4.63s     Synthesize event
+    t =     4.63s         Find the "playArena" Other
+    t =     4.67s         Find the "playArena" Other
+    t =     4.70s         Find the "playArena" Other
+    t =     5.02s     Wait for com.tacticalgo.prototype to idle
+    t =     5.02s Find the "push-Up" Button
+    t =     5.07s Tap "push-Up" Button
+    t =     5.07s     Wait for com.tacticalgo.prototype to idle
+    t =     5.07s     Find the "push-Up" Button
+    t =     5.10s     Check for interrupting elements affecting "push-Up" Button
+    t =     5.13s     Synthesize event
+    t =     5.41s     Wait for com.tacticalgo.prototype to idle
+    t =     5.41s Get all elements bound by index for: Elements matching predicate '"blueResources" IN identifiers'
+    t =     5.45s Find the "blueResources" StaticText
+    t =     5.48s Find the "blueResources" StaticText
+    t =     5.52s Find the "blueResources" StaticText
+    t =     5.56s Find the "blueResources" StaticText
+    t =     5.68s Added attachment named 'cozy-390-7-preview'
+    t =     5.68s Find the "playConfirm" Button
+    t =     5.72s Find the "playConfirm" Button
+    t =     5.75s Tap "playConfirm" Button
+    t =     5.75s     Wait for com.tacticalgo.prototype to idle
+    t =     5.75s     Find the "playConfirm" Button
+    t =     5.78s     Check for interrupting elements affecting "playConfirm" Button
+    t =     5.81s     Synthesize event
+    t =     6.09s     Wait for com.tacticalgo.prototype to idle
+    t =     6.10s Waiting 5.0s for "黑方獲勝" StaticText to exist
+    t =     7.16s     Checking `Expect predicate `existsNoRetry == 1` for object "黑方獲勝" StaticText`
+    t =     7.16s         Checking existence of `"黑方獲勝" StaticText`
+    t =     7.29s Added attachment named 'cozy-390-7-captured'
+    t =     7.29s Tap "undoOrCancel" Button
+    t =     7.29s     Wait for com.tacticalgo.prototype to idle
+    t =     7.29s     Find the "undoOrCancel" Button
+    t =     7.32s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =     7.34s     Synthesize event
+    t =     7.63s     Wait for com.tacticalgo.prototype to idle
+    t =     7.63s Get all elements bound by index for: Elements matching predicate '"blueResources" IN identifiers'
+    t =     7.67s Find the "blueResources" StaticText
+    t =     7.70s Find the "blueResources" StaticText
+    t =     7.73s Find the "blueResources" StaticText
+    t =     7.76s Find the "blueResources" StaticText
+    t =     7.79s Pressing Home button
+    t =     8.26s Open com.tacticalgo.prototype
+    t =     8.26s     Activate com.tacticalgo.prototype
+    t =     8.73s         Wait for com.tacticalgo.prototype to idle
+    t =     8.76s Get all elements bound by index for: Elements matching predicate '"blueResources" IN identifiers'
+    t =     8.79s Find the "blueResources" StaticText
+    t =     8.82s Find the "blueResources" StaticText
+    t =     8.85s Find the "blueResources" StaticText
+    t =     8.88s Find the "blueResources" StaticText
+    t =     8.91s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozy390RealPushCapturePreviewUndoAndBackground]' passed (9.142 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBody320DenseBothFactionsEffectsAndReducedMotion]' started.
+    t =     0.00s Start Test at 2026-10-10 12:14:43.866
+    t =     0.02s Set Up
+    t =     0.02s Open com.tacticalgo.prototype
+    t =     0.02s     Launch com.tacticalgo.prototype
+    t =     0.02s         Terminate com.tacticalgo.prototype:72138
+2026-10-10 12:14:44.969 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:14:44.978 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.32s         Setting up automation session
+    t =     1.87s         Wait for com.tacticalgo.prototype to idle
+    t =     3.28s Waiting 10.0s for "playArena" Other to exist
+    t =     4.33s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     4.33s         Checking existence of `"playArena" Other`
+    t =     4.46s Find the "playArena" Other
+    t =     4.50s Find the "playArena" Other
+    t =     4.54s Waiting 10.0s for "playArena" Other to exist
+    t =     5.59s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.59s         Checking existence of `"playArena" Other`
+    t =     5.65s Tap "playArena" Other[0.50, 0.42]
+    t =     5.66s     Wait for com.tacticalgo.prototype to idle
+    t =     5.66s     Find the "playArena" Other
+    t =     5.70s     Check for interrupting elements affecting "playArena" Other
+    t =     5.73s     Synthesize event
+    t =     5.73s         Find the "playArena" Other
+    t =     5.77s         Find the "playArena" Other
+    t =     5.81s         Find the "playArena" Other
+    t =     6.14s     Wait for com.tacticalgo.prototype to idle
+    t =     6.14s Find the "push-Up" Button
+    t =     6.20s Tap "push-Up" Button
+    t =     6.20s     Wait for com.tacticalgo.prototype to idle
+    t =     6.20s     Find the "push-Up" Button
+    t =     6.24s     Check for interrupting elements affecting "push-Up" Button
+    t =     6.27s     Synthesize event
+    t =     6.55s     Wait for com.tacticalgo.prototype to idle
+    t =     6.56s Checking existence of `"2 AP" StaticText`
+    t =     6.62s Find the "playConfirm" Button
+    t =     6.67s Find the "playConfirm" Button
+    t =     6.71s Tap "playConfirm" Button
+    t =     6.71s     Wait for com.tacticalgo.prototype to idle
+    t =     6.72s     Find the "playConfirm" Button
+    t =     6.76s     Check for interrupting elements affecting "playConfirm" Button
+    t =     6.79s     Synthesize event
+    t =     7.09s     Wait for com.tacticalgo.prototype to idle
+    t =     7.09s Waiting 5.0s for "1 AP" StaticText to exist
+    t =     8.16s     Checking `Expect predicate `existsNoRetry == 1` for object "1 AP" StaticText`
+    t =     8.16s         Checking existence of `"1 AP" StaticText`
+    t =     8.32s Added attachment named 'MAGE-320-9-dense-white-false'
+    t =     8.32s Tap "undoOrCancel" Button
+    t =     8.32s     Wait for com.tacticalgo.prototype to idle
+    t =     8.32s     Find the "undoOrCancel" Button
+    t =     8.36s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =     8.39s     Synthesize event
+    t =     8.68s     Wait for com.tacticalgo.prototype to idle
+    t =     8.69s Checking existence of `"2 AP" StaticText`
+    t =     8.74s Terminate com.tacticalgo.prototype:72184
+    t =     9.83s Open com.tacticalgo.prototype
+    t =     9.83s     Launch com.tacticalgo.prototype
+2026-10-10 12:14:53.703 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:14:53.703 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    10.04s         Setting up automation session
+    t =    10.59s         Wait for com.tacticalgo.prototype to idle
+    t =    11.95s Waiting 10.0s for "playArena" Other to exist
+    t =    13.02s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    13.02s         Checking existence of `"playArena" Other`
+    t =    13.15s Find the "playArena" Other
+    t =    13.19s Find the "playArena" Other
+    t =    13.23s Waiting 10.0s for "playArena" Other to exist
+    t =    14.30s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    14.30s         Checking existence of `"playArena" Other`
+    t =    14.36s Tap "playArena" Other[0.50, 0.42]
+    t =    14.36s     Wait for com.tacticalgo.prototype to idle
+    t =    14.36s     Find the "playArena" Other
+    t =    14.40s     Check for interrupting elements affecting "playArena" Other
+    t =    14.43s     Synthesize event
+    t =    14.43s         Find the "playArena" Other
+    t =    14.47s         Find the "playArena" Other
+    t =    14.52s         Find the "playArena" Other
+    t =    14.84s     Wait for com.tacticalgo.prototype to idle
+    t =    14.84s Find the "push-Up" Button
+    t =    14.90s Tap "push-Up" Button
+    t =    14.90s     Wait for com.tacticalgo.prototype to idle
+    t =    14.90s     Find the "push-Up" Button
+    t =    14.94s     Check for interrupting elements affecting "push-Up" Button
+    t =    14.97s     Synthesize event
+    t =    15.25s     Wait for com.tacticalgo.prototype to idle
+    t =    15.26s Checking existence of `"2 AP" StaticText`
+    t =    15.31s Find the "playConfirm" Button
+    t =    15.36s Find the "playConfirm" Button
+    t =    15.40s Tap "playConfirm" Button
+    t =    15.40s     Wait for com.tacticalgo.prototype to idle
+    t =    15.40s     Find the "playConfirm" Button
+    t =    15.45s     Check for interrupting elements affecting "playConfirm" Button
+    t =    15.48s     Synthesize event
+    t =    15.78s     Wait for com.tacticalgo.prototype to idle
+    t =    15.78s Waiting 5.0s for "1 AP" StaticText to exist
+    t =    16.84s     Checking `Expect predicate `existsNoRetry == 1` for object "1 AP" StaticText`
+    t =    16.84s         Checking existence of `"1 AP" StaticText`
+    t =    16.99s Added attachment named 'MAGE-320-9-dense-white-true'
+    t =    16.99s Tap "undoOrCancel" Button
+    t =    16.99s     Wait for com.tacticalgo.prototype to idle
+    t =    16.99s     Find the "undoOrCancel" Button
+    t =    17.03s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    17.06s     Synthesize event
+    t =    17.35s     Wait for com.tacticalgo.prototype to idle
+    t =    17.36s Checking existence of `"2 AP" StaticText`
+    t =    17.41s Terminate com.tacticalgo.prototype:72199
+    t =    18.51s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBody320DenseBothFactionsEffectsAndReducedMotion]' passed (18.535 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBodySharedTimelineAndCancellationNativeAudit]' started.
+    t =     0.00s Start Test at 2026-10-10 12:15:02.403
+    t =     0.02s Set Up
+    t =     0.02s Open com.tacticalgo.prototype
+    t =     0.02s     Launch com.tacticalgo.prototype
+2026-10-10 12:15:02.427 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:15:02.427 xcodebuild[72055:929432] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.23s         Setting up automation session
+    t =     0.80s         Wait for com.tacticalgo.prototype to idle
+    t =     2.63s Waiting 10.0s for "mageBodyAudit" StaticText to exist
+    t =     3.68s     Checking `Expect predicate `existsNoRetry == 1` for object "mageBodyAudit" StaticText`
+    t =     3.68s         Checking existence of `"mageBodyAudit" StaticText`
+    t =     4.83s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     4.83s     Find the "mageBodyAudit" StaticText
+    t =     4.88s     Capturing element debug description
+    t =     4.91s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     4.96s         Find: Descendants matching type StaticText
+    t =     4.96s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =     4.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     5.02s         Find: Descendants matching type StaticText
+    t =     5.02s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     5.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     5.81s     Find the "mageBodyAudit" StaticText
+    t =     5.86s     Capturing element debug description
+    t =     5.89s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     5.94s         Find: Descendants matching type StaticText
+    t =     5.94s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =     5.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     6.00s         Find: Descendants matching type StaticText
+    t =     6.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     6.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     6.88s     Find the "mageBodyAudit" StaticText
+    t =     6.93s     Capturing element debug description
+    t =     6.96s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     7.03s         Find: Descendants matching type StaticText
+    t =     7.03s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =     7.03s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     7.09s         Find: Descendants matching type StaticText
+    t =     7.09s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     7.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     7.87s     Find the "mageBodyAudit" StaticText
+    t =     7.92s     Capturing element debug description
+    t =     7.95s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     8.00s         Find: Descendants matching type StaticText
+    t =     8.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =     8.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     8.06s         Find: Descendants matching type StaticText
+    t =     8.07s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     8.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     8.81s     Find the "mageBodyAudit" StaticText
+    t =     8.93s     Capturing element debug description
+    t =     8.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     9.03s         Find: Descendants matching type StaticText
+    t =     9.03s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =     9.03s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     9.09s         Find: Descendants matching type StaticText
+    t =     9.09s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     9.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =     9.82s     Find the "mageBodyAudit" StaticText
+    t =     9.86s     Capturing element debug description
+    t =     9.89s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =     9.99s         Find: Descendants matching type StaticText
+    t =    10.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    10.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    10.06s         Find: Descendants matching type StaticText
+    t =    10.06s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    10.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    10.81s     Find the "mageBodyAudit" StaticText
+    t =    10.86s     Capturing element debug description
+    t =    10.88s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    10.93s         Find: Descendants matching type StaticText
+    t =    10.94s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    10.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    11.04s         Find: Descendants matching type StaticText
+    t =    11.04s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    11.82s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    11.82s     Find the "mageBodyAudit" StaticText
+    t =    11.88s     Capturing element debug description
+    t =    11.91s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    11.96s         Find: Descendants matching type StaticText
+    t =    11.97s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    11.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    12.02s         Find: Descendants matching type StaticText
+    t =    12.02s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    12.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    12.79s     Find the "mageBodyAudit" StaticText
+    t =    12.85s     Capturing element debug description
+    t =    12.87s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    12.93s         Find: Descendants matching type StaticText
+    t =    12.93s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    12.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    12.98s         Find: Descendants matching type StaticText
+    t =    12.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    13.85s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    13.86s     Find the "mageBodyAudit" StaticText
+    t =    13.90s     Capturing element debug description
+    t =    13.95s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    14.00s         Find: Descendants matching type StaticText
+    t =    14.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    14.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    14.06s         Find: Descendants matching type StaticText
+    t =    14.06s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    14.85s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    14.85s     Find the "mageBodyAudit" StaticText
+    t =    14.90s     Capturing element debug description
+    t =    14.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    14.98s         Find: Descendants matching type StaticText
+    t =    14.98s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    14.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    15.03s         Find: Descendants matching type StaticText
+    t =    15.04s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    15.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    15.81s     Find the "mageBodyAudit" StaticText
+    t =    15.84s     Capturing element debug description
+    t =    15.87s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    15.92s         Find: Descendants matching type StaticText
+    t =    15.92s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    15.92s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    15.97s         Find: Descendants matching type StaticText
+    t =    15.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    16.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    16.87s     Find the "mageBodyAudit" StaticText
+    t =    16.91s     Capturing element debug description
+    t =    16.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    17.00s         Find: Descendants matching type StaticText
+    t =    17.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    17.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    17.06s         Find: Descendants matching type StaticText
+    t =    17.06s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    17.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    17.79s     Find the "mageBodyAudit" StaticText
+    t =    17.85s     Capturing element debug description
+    t =    17.87s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    17.92s         Find: Descendants matching type StaticText
+    t =    17.92s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    17.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    17.98s         Find: Descendants matching type StaticText
+    t =    17.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    18.84s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    18.84s     Find the "mageBodyAudit" StaticText
+    t =    18.89s     Capturing element debug description
+    t =    18.91s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    18.96s         Find: Descendants matching type StaticText
+    t =    18.96s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    18.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    19.02s         Find: Descendants matching type StaticText
+    t =    19.02s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    19.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    19.79s     Find the "mageBodyAudit" StaticText
+    t =    19.85s     Capturing element debug description
+    t =    19.91s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    19.97s         Find: Descendants matching type StaticText
+    t =    19.97s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    19.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    20.02s         Find: Descendants matching type StaticText
+    t =    20.03s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    20.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    20.79s     Find the "mageBodyAudit" StaticText
+    t =    20.85s     Capturing element debug description
+    t =    20.87s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    20.93s         Find: Descendants matching type StaticText
+    t =    20.93s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    20.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    20.98s         Find: Descendants matching type StaticText
+    t =    20.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    21.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    21.87s     Find the "mageBodyAudit" StaticText
+    t =    21.92s     Capturing element debug description
+    t =    21.95s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    22.00s         Find: Descendants matching type StaticText
+    t =    22.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    22.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    22.05s         Find: Descendants matching type StaticText
+    t =    22.05s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    22.82s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    22.82s     Find the "mageBodyAudit" StaticText
+    t =    22.88s     Capturing element debug description
+    t =    22.91s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    22.96s         Find: Descendants matching type StaticText
+    t =    22.97s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    22.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    23.02s         Find: Descendants matching type StaticText
+    t =    23.03s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    23.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    23.80s     Find the "mageBodyAudit" StaticText
+    t =    23.85s     Capturing element debug description
+    t =    23.88s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    23.93s         Find: Descendants matching type StaticText
+    t =    23.93s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    23.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    23.98s         Find: Descendants matching type StaticText
+    t =    23.99s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    24.85s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    24.86s     Find the "mageBodyAudit" StaticText
+    t =    24.91s     Capturing element debug description
+    t =    24.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    24.99s         Find: Descendants matching type StaticText
+    t =    24.99s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    24.99s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    25.04s         Find: Descendants matching type StaticText
+    t =    25.04s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    25.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    25.81s     Find the "mageBodyAudit" StaticText
+    t =    25.85s     Capturing element debug description
+    t =    25.88s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    25.93s         Find: Descendants matching type StaticText
+    t =    25.94s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    25.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    25.99s         Find: Descendants matching type StaticText
+    t =    26.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    26.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    26.88s     Find the "mageBodyAudit" StaticText
+    t =    26.93s     Capturing element debug description
+    t =    26.96s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    27.01s         Find: Descendants matching type StaticText
+    t =    27.01s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    27.01s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    27.06s         Find: Descendants matching type StaticText
+    t =    27.07s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    27.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    27.88s     Find the "mageBodyAudit" StaticText
+    t =    27.93s     Capturing element debug description
+    t =    28.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    28.05s         Find: Descendants matching type StaticText
+    t =    28.05s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    28.05s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    28.10s         Find: Descendants matching type StaticText
+    t =    28.11s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    28.86s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    28.86s     Find the "mageBodyAudit" StaticText
+    t =    28.92s     Capturing element debug description
+    t =    28.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    28.99s         Find: Descendants matching type StaticText
+    t =    28.99s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    28.99s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    29.08s         Find: Descendants matching type StaticText
+    t =    29.09s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    29.86s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    29.86s     Find the "mageBodyAudit" StaticText
+    t =    29.92s     Capturing element debug description
+    t =    29.94s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    30.00s         Find: Descendants matching type StaticText
+    t =    30.00s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    30.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    30.05s         Find: Descendants matching type StaticText
+    t =    30.06s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    30.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    30.82s     Find the "mageBodyAudit" StaticText
+    t =    30.87s     Capturing element debug description
+    t =    30.90s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    30.95s         Find: Descendants matching type StaticText
+    t =    30.95s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    30.95s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    31.00s         Find: Descendants matching type StaticText
+    t =    31.00s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    31.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    31.88s     Find the "mageBodyAudit" StaticText
+    t =    31.93s     Capturing element debug description
+    t =    31.96s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    32.01s         Find: Descendants matching type StaticText
+    t =    32.02s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    32.02s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    32.09s         Find: Descendants matching type StaticText
+    t =    32.09s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    32.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    32.88s     Find the "mageBodyAudit" StaticText
+    t =    32.93s     Capturing element debug description
+    t =    32.96s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    33.01s         Find: Descendants matching type StaticText
+    t =    33.01s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    33.01s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    33.06s         Find: Descendants matching type StaticText
+    t =    33.07s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    33.84s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    33.84s     Find the "mageBodyAudit" StaticText
+    t =    33.88s     Capturing element debug description
+    t =    33.90s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    33.95s         Find: Descendants matching type StaticText
+    t =    33.95s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    33.96s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    34.01s         Find: Descendants matching type StaticText
+    t =    34.01s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    34.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    34.79s     Find the "mageBodyAudit" StaticText
+    t =    34.83s     Capturing element debug description
+    t =    34.86s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    34.91s         Find: Descendants matching type StaticText
+    t =    34.91s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    34.92s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    34.97s         Find: Descendants matching type StaticText
+    t =    34.97s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    35.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    35.79s     Find the "mageBodyAudit" StaticText
+    t =    35.85s     Capturing element debug description
+    t =    35.87s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    35.92s         Find: Descendants matching type StaticText
+    t =    35.92s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    35.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    35.98s         Find: Descendants matching type StaticText
+    t =    35.98s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    36.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    36.79s     Find the "mageBodyAudit" StaticText
+    t =    36.83s     Capturing element debug description
+    t =    36.86s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    36.93s         Find: Descendants matching type StaticText
+    t =    36.93s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    36.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    36.99s         Find: Descendants matching type StaticText
+    t =    36.99s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    37.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    37.87s     Find the "mageBodyAudit" StaticText
+    t =    37.93s     Capturing element debug description
+    t =    37.95s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    38.00s         Find: Descendants matching type StaticText
+    t =    38.01s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    38.01s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    38.06s         Find: Descendants matching type StaticText
+    t =    38.06s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    38.85s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    38.85s     Find the "mageBodyAudit" StaticText
+    t =    38.91s     Capturing element debug description
+    t =    38.93s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    38.98s         Find: Descendants matching type StaticText
+    t =    38.98s         Find: Elements matching predicate '"mageBodyAudit" IN identifiers'
+    t =    38.99s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    39.03s         Find: Descendants matching type StaticText
+    t =    39.04s         Requesting snapshot of accessibility hierarchy for app with pid 72216
+    t =    39.79s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "mageBodyAudit" StaticText`
+    t =    39.80s     Find the "mageBodyAudit" StaticText
+    t =    39.94s Added attachment named 'MAGE-body-actual-owner-audit'
+    t =    39.94s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBodySharedTimelineAndCancellationNativeAudit]' passed (40.166 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 12:15:42.569.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 67.843 (67.846) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 12:15:42.571.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 67.843 (67.847) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 12:15:42.572.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 67.843 (67.849) seconds
+2026-10-10 12:15:42.912 xcodebuild[72055:929432] [MT] IDETestOperationsObserverDebug: 70.047 elapsed -- Testing started completed.
+2026-10-10 12:15:42.912 xcodebuild[72055:929432] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 12:15:42.912 xcodebuild[72055:929432] [MT] IDETestOperationsObserverDebug: 70.047 sec, +70.047 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/native-focused-verified.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

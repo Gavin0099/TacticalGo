@@ -1,0 +1,162 @@
+{
+  "reference_revision": "54deef97e0fb7157b0025a7282fc2c0a448d4fb9",
+  "cached_csharp_transcript": "artifacts/onboard-01/golden/csharp.json",
+  "cached_csharp_sha256": "9e41aaa31cc612a16e68e6f2270edb4ad382bf4af94280796c9eff4d670965da",
+  "fixtures": [
+    {
+      "path": "tests/ios-golden/bastion_captures_with_two_stones.json",
+      "sha256": "f7997faae4830e8e4fcf8fac78ceee793eb3b5c494fe199719776bd9e612f93f"
+    },
+    {
+      "path": "tests/ios-golden/bastion_pair_suicide.json",
+      "sha256": "415d83082015f8aeeeb8067b2799e25063152aa529ac5d603770155d23907de1"
+    },
+    {
+      "path": "tests/ios-golden/bastion_range_and_target_errors.json",
+      "sha256": "25c40d44adabd8ca70c5f2d209dda348de66bf59407b7b1ef11271591913bddf"
+    },
+    {
+      "path": "tests/ios-golden/capture_basic.json",
+      "sha256": "04cb624408e46ca806688eec986ddffd872e6230edf3fd1e1c8c1d5aa6b027ea"
+    },
+    {
+      "path": "tests/ios-golden/capture_before_suicide.json",
+      "sha256": "71b4bd7f574f3dfdcf50093bc3a0f0deef1d4d8af5d59f1d02b77025e5d6efa3"
+    },
+    {
+      "path": "tests/ios-golden/ko_recapture.json",
+      "sha256": "ba3d0926d7ea5aaddb97c015f57fd8303a9e15784a40be8590a7ef1e2e9ea243"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_commander_relief.json",
+      "sha256": "9236e878994efc35dfe7eaf432152a67a156ebc1b06c858c7e609138f7c05627"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_default.json",
+      "sha256": "32f429be017a2f20c2a2907d12772a663c0514eae0261e61b533228bd3c9eed5"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_explicit_seal.json",
+      "sha256": "a103f985538a7fd8abf8bbd76c8f76d6d50173d194c1a78767386f8a18c9dedb"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_friendly_capture.json",
+      "sha256": "74128ce9b8b5dd63b9edaac31bb6761194c12b6b09dd7dc2b1dd90ab889c970f"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_friendly_superko.json",
+      "sha256": "4de85446510a8cc00c4c2731986dadac9fc1fb99e0a4ee0ec9d9eb87db55772f"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_friendly_two_push_then_place.json",
+      "sha256": "3c7736be3667c803ac4045fa15c3f5f8ea33860b9f4d6942a747a833bf732412"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_insufficient_mana.json",
+      "sha256": "3c53d13239aa8746042a83d0b67f7811a3a8441c3c8360d74bf505a837983679"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_one_ap_event_order.json",
+      "sha256": "915cb75d8ec8f6dbd9fd458cc4fee75df3f6ed82af4c88bdcfe538e47bb1e55f"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_push_then_place.json",
+      "sha256": "44b9835c4bbdf9ed96605d14f2ee8edf7e39676fd5329d69911a84244660ead8"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_range_and_target_errors.json",
+      "sha256": "28eb689ec020b6cb002ef8f9a645487a588c31483b0d5981ccc5f91226b1ed86"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_range_two_decapitation.json",
+      "sha256": "d95deb8345094f17b63ba3fe9de1c543ed0799b07a6c0a90917c5ec3d2fdfe6d"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_split_groups.json",
+      "sha256": "e121712275f7e1974fa009b506b0a7eda51412789b66324d592136dee52e69a7"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_suicide_rollback.json",
+      "sha256": "b999a05b6f3b668cf3d2f97ba1b4951fb5de9e64fa5a2205bb5dd937e6e7cf65"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_superko_rollback.json",
+      "sha256": "dc6ca252ec41d36ec5dc607993656840296d0ed92f5c97cf4459e30aa05a86d0"
+    },
+    {
+      "path": "tests/ios-golden/magic_hand_target_and_cost.json",
+      "sha256": "ca346aec9971aee2118ce0bf7e3d4cf24ceee8c0a666596218161c0a3fd55d5d"
+    },
+    {
+      "path": "tests/ios-golden/mana_cap.json",
+      "sha256": "ec7da62932292b5b9aa88f69adaf7f0c682277a1a95a28728d0ba031d25c8e94"
+    },
+    {
+      "path": "tests/ios-golden/new_game_default_first_turn_one_ap.json",
+      "sha256": "012efe456c4b57bb0cd2f2dcecc50f20a606f2ef3334d14f9f0c431823802426"
+    },
+    {
+      "path": "tests/ios-golden/new_game_two_ap_baseline.json",
+      "sha256": "1f31348481b4f5578fcfebc834cc46b5c56d57dcad9d1f681299ad871da54fb1"
+    },
+    {
+      "path": "tests/ios-golden/no_resummon_by_default.json",
+      "sha256": "5e599209f327c934d93fc4978f1beed399fbc01bd17b69afc7daff6fcc0cedea"
+    },
+    {
+      "path": "tests/ios-golden/resummon_allowed_when_enabled.json",
+      "sha256": "8f8cfe11ff441d463050ab14f644f7bb4ef2d37a2bc489f86df84ca79f8da303"
+    },
+    {
+      "path": "tests/ios-golden/seal_blocks_then_expires.json",
+      "sha256": "110c947cdbe0fc1be0a8df362e25f8cd1d8d20fbdeb901771f30fb09c680ec83"
+    },
+    {
+      "path": "tests/ios-golden/seal_range_errors.json",
+      "sha256": "b38b2b2ab5b1be6c795ccb112200713ab323eb7e56ff738c0810ce0e31dcd738"
+    },
+    {
+      "path": "tests/ios-golden/suicide_rejected.json",
+      "sha256": "f95259eb3c21eae058e6c5c4c4da668b8a6f085e6e30354a0b908653551672e6"
+    },
+    {
+      "path": "tests/ios-golden/summon_adjacent_to_any_friend.json",
+      "sha256": "aa456f4f61b1c20f77f56d909949601164a011129160a14c8b27d13286ff9167"
+    },
+    {
+      "path": "tests/ios-golden/summon_needs_mana.json",
+      "sha256": "d323b031eaebd46022d1aef332545e7f9c0dfef3ff615a79c92256155cb74faa"
+    },
+    {
+      "path": "tests/ios-golden/swap_back_is_ko.json",
+      "sha256": "14d8be7b6d3b5cb7fda5a33c451eab0884397b8019be162bda9450bde83e2649"
+    },
+    {
+      "path": "tests/ios-golden/swap_basic.json",
+      "sha256": "963cd335acfcee8305bb227b11500227481c55c457630bf742bff408a95aff3b"
+    },
+    {
+      "path": "tests/ios-golden/swap_decapitates.json",
+      "sha256": "7093ac0438e1952d2b02d6b504bc2cc6bf0f380dee18b47a54473a82b93a0801"
+    },
+    {
+      "path": "tests/ios-golden/swap_suicide.json",
+      "sha256": "7940a79d929ac1825bf617b08f23feaaa41bdc2d5e1706b6a01fb1723fc81a4c"
+    },
+    {
+      "path": "tests/ios-golden/swap_target_errors.json",
+      "sha256": "424426a7bff4724b90081dfc9e510dba6e17bdb8eb07f18229694dd7ef9f6e15"
+    },
+    {
+      "path": "tests/ios-golden/turn_limit_draw.json",
+      "sha256": "a8fa43754ac9228406ff67b82b3dba46a840dd62612481cf60b8c4b000e57adb"
+    },
+    {
+      "path": "tests/ios-golden/win_by_commander_capture.json",
+      "sha256": "dba1f0bee2ca3f2c933ed9c934d611985c6227e69caa1a23e256d43fd742469c"
+    }
+  ],
+  "csharp_exporter_this_run": "NOT_RUN_SUCCESSFULLY: original temporary SDK gone; available SDK8 cannot target9",
+  "swift_replay_this_run": true,
+  "comparison": "137 snapshots match cached reviewed baseline; not a fresh C# execution"
+}

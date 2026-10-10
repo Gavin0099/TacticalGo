@@ -61,6 +61,7 @@ import TacticalGoRecords
     #endif
     var isPresenting = false
     var presentationReducedMotion = false
+    var mageTempo: MageTempo = .full
     @ObservationIgnored private var presentationTask: Task<Void, Never>?
     @ObservationIgnored private var audioTask: Task<Void, Never>?
     @ObservationIgnored private var audioGeneration: UInt64 = 0
@@ -94,7 +95,7 @@ import TacticalGoRecords
     func presentAudio(before: GameState, action: GameAction, outcome: ActionOutcome, receipt: BoardPlayback? = nil) {
         let start = receipt?.startedUptime ?? ProcessInfo.processInfo.systemUptime
         let plan = Anim01MagicHand.make(before: before, action: action, outcome: outcome) != nil
-            ? CombatFeedbackPlan.anim01(before: before, action: action, outcome: outcome)
+            ? CombatFeedbackPlan.anim01(before: before, action: action, outcome: outcome, tempo: receipt?.mageTempo ?? mageTempo)
             : CombatFeedbackPlan.make(before: before, action: action, outcome: outcome)
         audioDuration = plan.duration
         // A normal end-turn has no sound and must not silence an already
@@ -287,7 +288,7 @@ import TacticalGoRecords
             }
             audio.updateState(o.state)
             cancelPresentation(preserveVoice: true)
-            let receipt = BoardPlayback(before: before, action: action, outcome: o)
+            let receipt = BoardPlayback(before: before, action: action, outcome: o, mageTempo: mageTempo)
             playback = receipt
             presentAudio(before: before, action: action, outcome: o, receipt: receipt)
             #if DEBUG
@@ -295,7 +296,7 @@ import TacticalGoRecords
             #endif
             let visualDuration: Double
             if presentationReducedMotion { visualDuration = 0 }
-            else if let clip = Anim01MagicHand.make(before: before, action: action, outcome: o) { visualDuration = clip.duration }
+            else if receipt.magicHand != nil || receipt.mageSummon != nil { visualDuration = receipt.visualDuration }
             else {
                 switch action {
                 case .summonHero, .placeSoldier, .castBastion, .castSwap: visualDuration = MotionPlan.make(before: before, action: action, outcome: o).duration

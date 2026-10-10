@@ -12,10 +12,12 @@ import SwiftUI
     var body: some Scene {
         WindowGroup {
             Group {
-                if !legacyReview { PlayableGameView() }
-                else if ready { ContentView() }
-                else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
-                else { ProgressView("準備棋盤…") }
+                #if DEBUG
+                if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
+                else { normalContent }
+                #else
+                normalContent
+                #endif
             }.task {
                 guard legacyReview, !ready, !failed else { return }
                 do { try await ModelLibrary.load(); ready = true }
@@ -23,4 +25,11 @@ import SwiftUI
             }
         }
     }
+    @ViewBuilder private var normalContent: some View {
+        if !legacyReview { PlayableGameView() }
+        else if ready { ContentView() }
+        else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
+        else { ProgressView("準備棋盤…") }
+    }
+
 }

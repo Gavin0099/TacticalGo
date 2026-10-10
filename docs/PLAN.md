@@ -424,3 +424,13 @@ Owner 判定現版六句英文 TTS 死板，角色表演 Gate FAIL；S0–S7 工
 Owner 授權繼續。隔離 codex/hero-voice-performance-01，先以本機 Qwen3-TTS VoiceDesign、逐句表演指示生成戰士／法師各兩個乾聲候選，先聽感、不換遊戲內六句。模型僅開發端，不導入App新引擎，不用付費服務或演員／遊戲聲音參考，不擴充三職全套。驗證來源／內容／聲音檔案，表演與同職長期聲線一致性留待Owner。前版接線保留，正式BGM HOLD。
 
 VO-PERF-01 工程試聽完成：戰士A/B、法師A2/B3，獨立Whisper台詞4/4與PCM/SHA4/4。法師3個初期長度／字詞HOLD實驗保留，不當可整合語音。舊版→A→B乾聲比較已交Owner，聲音品質Pending；新素材未接入App，不重跑既有Swift/Golden冒充聲音證據。報告 artifacts/audio/hero-voice-performance-01/REPORT.md。
+
+### 2026-10-10 ANIM-M1／M2｜法師本體候選
+
+Owner 授權先做法師分層登場與原版一格魔法之手，以關閉語音、粒子與光圈後仍能看出蓄勢／出手／收勢為演出目標。隔離 codex/anim-mage-body-01：保留 B-v02 原畫，使用原圖頭身／手杖遮罩與有限遮蔽補圖，手與法杖共用握點轉換，底座保持 anchor。此為可編輯 2D cutout，不是 3D 或逐幀手繪；近景尚有少量拆層接縫，角色表演與美術 Gate 仍 Pending。
+
+單一 MageTiming 驅動本體、士兵、提子、音效與鎖定，完整／緊湊施法950／760ms，出手早於士兵移動。成功 Domain receipt 才播放；不改 Domain、Bot、候選技能或語音素材；候選遠距調度不套此一格演出。Reduced Motion 保留即時結算與必要 SFX。
+
+驗證：Swift162／0，Swift新重播與既有經審查 C# transcript 比較38組99步137 snapshots一致；此次 C# exporter 未成功重跑（現有SDK8無法target9）。390原生3／0、SE320原生2／0、正常速度六收據錄影1／0、320減少動態錄影重跑1／0，以及實際畫面 GameStore／Audio audit97／97。錄影是 Simulator真實操作、靜音、未變速；checkpoint圖與近景造型頁另標示，不冒充真機或一般對局。
+
+iPad Wi-Fi 已安裝獨立 TacticalGo Mage Body 0.9.0（903）；鎖定拒絕前景啟動，真機動態仍待驗證；iPhone unavailable。無本輪 commit／push／merge／發布，主 checkout 保持不動。詳 docs/ios/ANIM_MAGE_BODY_01.md 及 artifacts/ios/anim-mage-body-01/REPORT.md。

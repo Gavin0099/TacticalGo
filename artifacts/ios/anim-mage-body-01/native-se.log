@@ -1,0 +1,204 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=97B346CB-21D7-41DB-AE79-4B667C3B1566" "-only-testing:TacticalGoUITests/PlayableGameTests/testMageBody320DenseBothFactionsEffectsAndReducedMotion" "-only-testing:TacticalGoUITests/PlayableGameTests/testCozy320NineDenseAndReducedResult" -resultBundlePath artifacts/ios/anim-mage-body-01/native-se.xcresult
+
+2026-10-10 12:19:43.798 xcodebuild[73150:942586] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/native-se.xcresult
+
+2026-10-10 12:19:43.805 xcodebuild[73150:942586] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+{ platform:iOS Simulator, arch:x86_64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+2026-10-10 12:19:45.202 xcodebuild[73150:942586] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 12:19:51.078276+0800 TacticalGoUITests-Runner[73212:943205] [Default] Running tests...
+2026-10-10 12:19:51.109746+0800 TacticalGoUITests-Runner[73212:943349] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-10 12:19:51.151931+0800 TacticalGoUITests-Runner[73212:943349] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-10 12:19:53.557.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 12:19:53.557.
+Test Suite 'PlayableGameTests' started at 2026-10-10 12:19:53.558.
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozy320NineDenseAndReducedResult]' started.
+    t =     0.00s Start Test at 2026-10-10 12:19:53.558
+    t =     0.29s Set Up
+    t =     0.29s Open com.tacticalgo.prototype
+    t =     0.29s     Launch com.tacticalgo.prototype
+2026-10-10 12:19:54.162 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:19:54.162 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.24s         Setting up automation session
+    t =     2.00s         Wait for com.tacticalgo.prototype to idle
+    t =     4.19s Waiting 10.0s for "playArena" Other to exist
+    t =     5.26s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.27s         Checking existence of `"playArena" Other`
+    t =     5.41s Find the "playArena" Other
+    t =     5.46s Find the "playArena" Other
+    t =     5.56s Added attachment named 'cozy-320-9-dense'
+    t =     5.56s Terminate com.tacticalgo.prototype:73234
+    t =     6.64s Open com.tacticalgo.prototype
+    t =     6.64s     Launch com.tacticalgo.prototype
+2026-10-10 12:20:00.198 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:20:00.198 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     6.85s         Setting up automation session
+    t =     7.43s         Wait for com.tacticalgo.prototype to idle
+    t =     8.82s Waiting 10.0s for "playArena" Other to exist
+    t =     9.88s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     9.88s         Checking existence of `"playArena" Other`
+    t =    10.00s Tap "playArena" Other[0.50, 0.42]
+    t =    10.00s     Wait for com.tacticalgo.prototype to idle
+    t =    10.00s     Find the "playArena" Other
+    t =    10.04s     Check for interrupting elements affecting "playArena" Other
+    t =    10.07s     Synthesize event
+    t =    10.07s         Find the "playArena" Other
+    t =    10.11s         Find the "playArena" Other
+    t =    10.15s         Find the "playArena" Other
+    t =    10.58s     Wait for com.tacticalgo.prototype to idle
+    t =    10.58s Find the "push-Up" Button
+    t =    10.64s Tap "push-Up" Button
+    t =    10.64s     Wait for com.tacticalgo.prototype to idle
+    t =    10.64s     Find the "push-Up" Button
+    t =    10.68s     Check for interrupting elements affecting "push-Up" Button
+    t =    10.71s     Synthesize event
+    t =    11.00s     Wait for com.tacticalgo.prototype to idle
+    t =    11.00s Find the "playConfirm" Button
+    t =    11.06s Find the "playConfirm" Button
+    t =    11.09s Tap "playConfirm" Button
+    t =    11.09s     Wait for com.tacticalgo.prototype to idle
+    t =    11.10s     Find the "playConfirm" Button
+    t =    11.13s     Check for interrupting elements affecting "playConfirm" Button
+    t =    11.16s     Synthesize event
+    t =    11.45s     Wait for com.tacticalgo.prototype to idle
+    t =    11.45s Waiting 5.0s for "黑方獲勝" StaticText to exist
+    t =    12.52s     Checking `Expect predicate `existsNoRetry == 1` for object "黑方獲勝" StaticText`
+    t =    12.52s         Checking existence of `"黑方獲勝" StaticText`
+    t =    12.58s Swipe down Target Application 'com.tacticalgo.prototype'
+    t =    12.58s     Wait for com.tacticalgo.prototype to idle
+    t =    12.58s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    12.60s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    12.63s     Synthesize event
+    t =    13.05s     Wait for com.tacticalgo.prototype to idle
+    t =    13.57s Added attachment named 'cozy-320-9-reduced-captured'
+    t =    13.57s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozy320NineDenseAndReducedResult]' passed (13.807 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBody320DenseBothFactionsEffectsAndReducedMotion]' started.
+    t =     0.00s Start Test at 2026-10-10 12:20:07.368
+    t =     0.03s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+    t =     0.03s         Terminate com.tacticalgo.prototype:73243
+2026-10-10 12:20:08.492 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:20:08.492 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.33s         Setting up automation session
+    t =     1.77s         Wait for com.tacticalgo.prototype to idle
+    t =     3.13s Waiting 10.0s for "playArena" Other to exist
+    t =     4.17s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     4.17s         Checking existence of `"playArena" Other`
+    t =     4.29s Find the "playArena" Other
+    t =     4.33s Find the "playArena" Other
+    t =     4.38s Waiting 10.0s for "playArena" Other to exist
+    t =     5.42s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.43s         Checking existence of `"playArena" Other`
+    t =     5.49s Tap "playArena" Other[0.50, 0.42]
+    t =     5.49s     Wait for com.tacticalgo.prototype to idle
+    t =     5.49s     Find the "playArena" Other
+    t =     5.53s     Check for interrupting elements affecting "playArena" Other
+    t =     5.56s     Synthesize event
+    t =     5.56s         Find the "playArena" Other
+    t =     5.60s         Find the "playArena" Other
+    t =     5.64s         Find the "playArena" Other
+    t =     5.97s     Wait for com.tacticalgo.prototype to idle
+    t =     5.97s Find the "push-Up" Button
+    t =     6.03s Tap "push-Up" Button
+    t =     6.03s     Wait for com.tacticalgo.prototype to idle
+    t =     6.03s     Find the "push-Up" Button
+    t =     6.07s     Check for interrupting elements affecting "push-Up" Button
+    t =     6.10s     Synthesize event
+    t =     6.39s     Wait for com.tacticalgo.prototype to idle
+    t =     6.40s Checking existence of `"2 AP" StaticText`
+    t =     6.46s Find the "playConfirm" Button
+    t =     6.50s Find the "playConfirm" Button
+    t =     6.55s Tap "playConfirm" Button
+    t =     6.55s     Wait for com.tacticalgo.prototype to idle
+    t =     6.55s     Find the "playConfirm" Button
+    t =     6.59s     Check for interrupting elements affecting "playConfirm" Button
+    t =     6.62s     Synthesize event
+    t =     6.91s     Wait for com.tacticalgo.prototype to idle
+    t =     6.91s Waiting 5.0s for "1 AP" StaticText to exist
+    t =     7.97s     Checking `Expect predicate `existsNoRetry == 1` for object "1 AP" StaticText`
+    t =     7.98s         Checking existence of `"1 AP" StaticText`
+    t =     8.08s Added attachment named 'MAGE-320-9-dense-white-false'
+    t =     8.09s Tap "undoOrCancel" Button
+    t =     8.09s     Wait for com.tacticalgo.prototype to idle
+    t =     8.09s     Find the "undoOrCancel" Button
+    t =     8.13s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =     8.16s     Synthesize event
+    t =     8.44s     Wait for com.tacticalgo.prototype to idle
+    t =     8.45s Checking existence of `"2 AP" StaticText`
+    t =     8.50s Terminate com.tacticalgo.prototype:73255
+    t =     9.60s Open com.tacticalgo.prototype
+    t =     9.60s     Launch com.tacticalgo.prototype
+2026-10-10 12:20:16.972 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:20:16.972 xcodebuild[73150:942586] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     9.81s         Setting up automation session
+    t =    10.31s         Wait for com.tacticalgo.prototype to idle
+    t =    11.65s Waiting 10.0s for "playArena" Other to exist
+    t =    12.71s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    12.71s         Checking existence of `"playArena" Other`
+    t =    12.83s Find the "playArena" Other
+    t =    12.88s Find the "playArena" Other
+    t =    12.92s Waiting 10.0s for "playArena" Other to exist
+    t =    13.98s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    13.98s         Checking existence of `"playArena" Other`
+    t =    14.04s Tap "playArena" Other[0.50, 0.42]
+    t =    14.04s     Wait for com.tacticalgo.prototype to idle
+    t =    14.05s     Find the "playArena" Other
+    t =    14.09s     Check for interrupting elements affecting "playArena" Other
+    t =    14.12s     Synthesize event
+    t =    14.12s         Find the "playArena" Other
+    t =    14.16s         Find the "playArena" Other
+    t =    14.21s         Find the "playArena" Other
+    t =    14.53s     Wait for com.tacticalgo.prototype to idle
+    t =    14.53s Find the "push-Up" Button
+    t =    14.59s Tap "push-Up" Button
+    t =    14.59s     Wait for com.tacticalgo.prototype to idle
+    t =    14.59s     Find the "push-Up" Button
+    t =    14.63s     Check for interrupting elements affecting "push-Up" Button
+    t =    14.66s     Synthesize event
+    t =    14.94s     Wait for com.tacticalgo.prototype to idle
+    t =    14.95s Checking existence of `"2 AP" StaticText`
+    t =    15.00s Find the "playConfirm" Button
+    t =    15.05s Find the "playConfirm" Button
+    t =    15.09s Tap "playConfirm" Button
+    t =    15.09s     Wait for com.tacticalgo.prototype to idle
+    t =    15.09s     Find the "playConfirm" Button
+    t =    15.13s     Check for interrupting elements affecting "playConfirm" Button
+    t =    15.16s     Synthesize event
+    t =    15.45s     Wait for com.tacticalgo.prototype to idle
+    t =    15.46s Waiting 5.0s for "1 AP" StaticText to exist
+    t =    16.51s     Checking `Expect predicate `existsNoRetry == 1` for object "1 AP" StaticText`
+    t =    16.51s         Checking existence of `"1 AP" StaticText`
+    t =    16.61s Added attachment named 'MAGE-320-9-dense-white-true'
+    t =    16.61s Tap "undoOrCancel" Button
+    t =    16.61s     Wait for com.tacticalgo.prototype to idle
+    t =    16.62s     Find the "undoOrCancel" Button
+    t =    16.65s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    16.68s     Synthesize event
+    t =    16.96s     Wait for com.tacticalgo.prototype to idle
+    t =    16.97s Checking existence of `"2 AP" StaticText`
+    t =    17.02s Terminate com.tacticalgo.prototype:73266
+    t =    18.11s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBody320DenseBothFactionsEffectsAndReducedMotion]' passed (18.130 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 12:20:25.497.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 31.937 (31.940) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 12:20:25.498.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 31.937 (31.941) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 12:20:25.499.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 31.937 (31.942) seconds
+2026-10-10 12:20:25.830 xcodebuild[73150:942586] [MT] IDETestOperationsObserverDebug: 40.624 elapsed -- Testing started completed.
+2026-10-10 12:20:25.830 xcodebuild[73150:942586] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 12:20:25.830 xcodebuild[73150:942586] [MT] IDETestOperationsObserverDebug: 40.624 sec, +40.624 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/native-se.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

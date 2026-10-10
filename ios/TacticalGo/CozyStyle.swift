@@ -1,5 +1,6 @@
 import SwiftUI
 import CryptoKit
+import TacticalGoMotion
 import TacticalGoCore
 
 enum Cozy {
@@ -36,6 +37,7 @@ struct CozyButton: ButtonStyle {
 
 @MainActor struct CozyAssets {
     let anim: Anim01Assets
+    let mageBody: MageBodyAssets
     let heroes: [HeroClass: UIImage]
     let board: UIImage
     let shadow: UIImage
@@ -57,7 +59,7 @@ struct CozyButton: ButtonStyle {
         }
         var heroes: [HeroClass: UIImage] = [:]
         for hero in [HeroClass.warrior, .mage, .rogue] { heroes[hero] = try image("B-" + hero.rawValue.lowercased() + "-v02", width: 512, height: 512) }
-        return try Self(anim: Anim01Assets.load(bundle: bundle), heroes: heroes,
+        return try Self(anim: Anim01Assets.load(bundle: bundle), mageBody: MageBodyAssets.load(bundle: bundle), heroes: heroes,
                         board: image("v3-b-board-surface", width: 1024, height: 1152),
                         shadow: image("v3-b-board-shadow", width: 1024, height: 1152))
     }
@@ -68,6 +70,7 @@ struct CozyToken: View {
     let assets: CozyAssets
     let pitch: CGFloat
     var squash = 1.0
+    var magePose: MageBodyPose = .rest
     let heroClass: HeroClass
     private var black: Bool { piece.owner == .one }
     private var diameter: CGFloat { pitch * (piece.kind == .commander ? 0.73 : piece.kind == .hero ? 0.74 : 0.62) }
@@ -85,7 +88,10 @@ struct CozyToken: View {
             } else if piece.kind == .hero, let image = assets.heroes[heroClass] {
                 Ellipse().stroke(classColor, lineWidth: 2).frame(width: diameter * 0.90, height: diameter * 0.63)
                 let width = pitch * 0.70
-                Image(uiImage: image).resizable().frame(width: width, height: width)
+                Group {
+                    if heroClass == .mage { MageBodyView(original: image, plate: assets.mageBody.cleanPlate, pose: magePose, width: width) }
+                    else { Image(uiImage: image).resizable().frame(width: width, height: width) }
+                }
                     .mask { Rectangle().frame(width: width, height: width * 390/512).offset(y: width * (225.0/512 - 0.5)) }
                     .offset(y: width * (0.5 - 420.0/512))
                 Group {

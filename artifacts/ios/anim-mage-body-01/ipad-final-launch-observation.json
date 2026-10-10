@@ -1,0 +1,7 @@
+{
+  "candidateBuild": "0.9.0 (903)",
+  "bundle": "com.tacticalgo.prototype.magebody",
+  "observation": "Final launch retried after installation; tool returned exit1, CoreDevice10002 / FBS RequestDenied / Locked",
+  "claim": "installed; no foreground or physical animation verification",
+  "source": "observed exec_command session59247 at 2026-10-10 12:24:45 Taipei; excerpt, not complete stdout"
+}

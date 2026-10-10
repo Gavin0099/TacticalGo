@@ -8,11 +8,11 @@ import TacticalGoMotion
     private static var rows: [[String: Any]] = []
     static func record(receipt: BoardPlayback?, elapsed: Double, reduced: Bool) {
         guard let receipt else { return }
-        let clip = Anim01MagicHand.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome)
-        let duration = clip?.duration ?? MotionPlan.make(before: receipt.before, action: receipt.action, outcome: receipt.outcome).duration
+        let clip = receipt.magicHand
+        let duration = receipt.visualDuration
         let phase: String
         if reduced { phase = "reduced-final" }
-        else if clip != nil { phase = elapsed < 0.08 ? "charge" : elapsed < 0.30 ? "push" : elapsed < 0.40 ? "settle" : elapsed < duration ? "capture" : "final" }
+        else if clip != nil { phase = clip!.timing.phase(at: elapsed) }
         else {
             switch receipt.action {
             case .summonHero: phase = elapsed < 0.322 ? "summon-appear" : elapsed < 0.46 ? "summon-settle" : elapsed < duration ? "capture" : "final"
@@ -222,7 +222,8 @@ import TacticalGoMotion
            let stored = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] { rows = stored }
         let voice = HeroVoiceCue.make(before: receipt.before,action: receipt.action,outcome: receipt.outcome)?.key ?? "none"
         rows.append(["id": receipt.id.uuidString,"receiptUptime": receipt.startedUptime,"action": String(describing: receipt.action),
-                     "before": snapshot(receipt.before),"after": snapshot(receipt.outcome.state),"voice": voice,"reducedMotion": reduced,
+                     "before": snapshot(receipt.before),"after": snapshot(receipt.outcome.state),"voice": voice,"voiceEligibilityOnly": true,"reducedMotion": reduced,
+                     "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
                      "events": receipt.outcome.events.map { String(describing: $0) },"size": receipt.before.board.size])
         if rows.count > 64 { rows.removeFirst() }
         if let d = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first {

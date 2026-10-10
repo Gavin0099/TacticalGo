@@ -1,0 +1,26 @@
+[
+  {
+    "path": "ios/TacticalGo/Cozy/B-mage-v02.png",
+    "width": 512,
+    "height": 512,
+    "file_sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+    "rgba_sha256": "163d4ff0b5d8c7f2d9109c1f0e9a3c6e0d011ef5a0ae6b9a9fa5b274e6459a3e",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 144895
+  },
+  {
+    "path": "ios/TacticalGo/MageBody/clean-plate.png",
+    "width": 1254,
+    "height": 1254,
+    "file_sha256": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d",
+    "rgba_sha256": "d8aec154ab6e6e0beab49d76d2b1d5849b8a9dd4acbc54cc115904d7d4db3735",
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "transparent_pixels": 901609
+  }
+]

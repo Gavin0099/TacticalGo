@@ -8,8 +8,8 @@ final class Anim01Tests: XCTestCase {
         let result = GameEngine.apply(before, Anim01Fixture.action)
         let clip = try XCTUnwrap(Anim01MagicHand.make(before: before, action: Anim01Fixture.action, outcome: result))
         XCTAssertEqual(clip.displayTime(elapsed: 0.55, animating: true, reducedMotion: false), 0.55)
-        XCTAssertEqual(clip.displayTime(elapsed: 0.55, animating: false, reducedMotion: false), 0.58, accuracy: 1e-8)
-        XCTAssertEqual(clip.displayTime(elapsed: 0, animating: true, reducedMotion: true), 0.58, accuracy: 1e-8)
+        XCTAssertEqual(clip.displayTime(elapsed: 0.55, animating: false, reducedMotion: false), 0.95, accuracy: 1e-8)
+        XCTAssertEqual(clip.displayTime(elapsed: 0, animating: true, reducedMotion: true), 0.95, accuracy: 1e-8)
         XCTAssertNil(result.state.board[Point(3, 2)])
         XCTAssertEqual(result.state.winner, .one)
     }
@@ -26,7 +26,7 @@ final class Anim01Tests: XCTestCase {
                 XCTAssertEqual(clip.piece, Piece(owner, .soldier)); XCTAssertEqual(clip.caster, owner)
                 XCTAssertEqual(clip.hero, Point(3, 3))
                 XCTAssertEqual(clip.captures.count, 1); XCTAssertEqual(clip.captures.first?.at, Point(3, 2)); XCTAssertEqual(clip.captures.first?.piece, Piece(owner.opponent, .commander))
-                XCTAssertEqual(clip.winner, owner); XCTAssertEqual(clip.duration, 0.58, accuracy: 1e-8)
+                XCTAssertEqual(clip.winner, owner); XCTAssertEqual(clip.duration, 0.95, accuracy: 1e-8)
                 XCTAssertEqual(result.state.board[Point(4, 2)], Piece(owner, .soldier))
                 XCTAssertNil(result.state.board[Point(4, 3)]); XCTAssertNil(result.state.board[Point(3, 2)])
                 XCTAssertEqual(result.state.mana(of: owner), 2); XCTAssertEqual(result.state.apRemaining, 1)
@@ -53,7 +53,7 @@ final class Anim01Tests: XCTestCase {
                         XCTAssertEqual(clip.piece.owner, owner); XCTAssertEqual(clip.caster, caster)
                         XCTAssertEqual(clip.captures, []); XCTAssertNil(clip.winner)
                         XCTAssertEqual(result.state.board[clip.to], Piece(owner, .soldier))
-                        XCTAssertEqual(clip.duration, 0.4, accuracy: 1e-8)
+                        XCTAssertEqual(clip.duration, 0.95, accuracy: 1e-8)
                         XCTAssertEqual(before.board[Point(3, 2)], Piece(owner, .soldier))
                     }
                 }
@@ -85,12 +85,12 @@ final class Anim01Tests: XCTestCase {
         let before = try Anim01Fixture.state(capture: false)
         let result = GameEngine.apply(before, Anim01Fixture.action)
         let clip = try XCTUnwrap(Anim01MagicHand.make(before: before, action: Anim01Fixture.action, outcome: result))
-        XCTAssertEqual(clip.progress(at: 0), 0); XCTAssertEqual(clip.progress(at: 0.08), 0)
-        XCTAssertEqual(clip.progress(at: 0.19), 0.5, accuracy: 1e-8)
-        XCTAssertEqual(clip.progress(at: 0.30), 1); XCTAssertEqual(clip.progress(at: 0.40), 1)
+        XCTAssertEqual(clip.progress(at: 0), 0); XCTAssertEqual(clip.progress(at: 0.30), 0)
+        XCTAssertEqual(clip.progress(at: 0.42), 0.5, accuracy: 1e-8)
+        XCTAssertEqual(clip.progress(at: 0.54), 1); XCTAssertEqual(clip.progress(at: 0.66), 1)
         XCTAssertEqual(clip.progress(at: 0, reducedMotion: true), 1)
         XCTAssertEqual(CombatFeedbackPlan.anim01(before: before, action: Anim01Fixture.action, outcome: result).cues,
-                       [.init("mage", at: 0), .init("place", at: 0.3)])
+                       [.init("mage", at: 0.28), .init("place", at: 0.54)])
         XCTAssertEqual(result.state.board[Point(4, 2)], Piece(.one, .soldier))
         XCTAssertEqual(result.state.apRemaining, 1); XCTAssertEqual(result.state.mana(of: .one), 2)
     }

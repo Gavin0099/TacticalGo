@@ -61,12 +61,15 @@ enum PracticeLesson: String, CaseIterable, Identifiable {
 struct PlayableGameView: View {
     @State private var store = GameStore()
     @State private var visuals = GameVisualAssets.original
+    @State private var mageBodyAuditStatus = "RUNNING"
+    @State private var mageBodyAuditStarted = false
     @State private var cozyAuditStatus = "RUNNING"
     @State private var cozyAuditStarted = false
     @State private var voiceAuditStarted = false
     @State private var voiceAuditStatus = "RUNNING"
     @State private var requestedWidth: CGFloat?
     @State private var cozyReduced = false
+    @State private var mageEffectsEnabled = true
     @State private var gameFeelAuditStarted = false
     @State private var gameFeelAuditStatus = "準備測試"
     @State private var cozyAssets = try? CozyAssets.load()
@@ -145,6 +148,7 @@ struct PlayableGameView: View {
         }
         .overlay(alignment: .top) {
             #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--mage-body-audit") { Text(mageBodyAuditStatus).accessibilityIdentifier("mageBodyAudit").font(.caption).background(Cozy.card) }
             if ProcessInfo.processInfo.arguments.contains("--game-feel-audit") {
                 Text(gameFeelAuditStatus).accessibilityIdentifier("gameFeelAudit").font(.caption2).background(Cozy.card)
             }
@@ -171,6 +175,9 @@ struct PlayableGameView: View {
             if args.contains("--demo-audio-defaults") {
                 store.audio.muted = false; store.audio.voiceEnabled = true; store.audio.voiceVolume = 0.75; store.audio.sfxVolume = 0.65; store.audio.musicEnabled = false
             }
+            if args.contains("--mage-body-review") { store.audio.voiceEnabled = false; store.audio.musicEnabled = false }
+            mageEffectsEnabled = !args.contains("--mage-no-effects")
+            if args.contains("--mage-compact") { store.mageTempo = .compact }
             if args.contains("--onboard") { showOnboarding = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
             if args.contains("--bot-delayed") { store.botDelayNanoseconds = 2_500_000_000 }
@@ -220,6 +227,9 @@ struct PlayableGameView: View {
                 one = .mage; two = .warrior; store.mode = .skill; inMatch = true
                 store.setMatchAudioActive(true)
             }
+            if args.contains("--mage-dense") {
+                store.size = 9; store.session = GameSession(try! Anim01Fixture.denseState(caster: args.contains("--white-caster") ? .two : .one))
+            }
             if args.contains("--cozy-dense") {
                 let url = Bundle.main.url(forResource: "scenes", withExtension: "json", subdirectory: "Cozy")!
                 let scenes = try! JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [[String: Any]]
@@ -243,6 +253,9 @@ struct PlayableGameView: View {
     private func startCozyAuditIfActive() {
         #if DEBUG
         guard scenePhase == .active else { return }
+        if !mageBodyAuditStarted, ProcessInfo.processInfo.arguments.contains("--mage-body-audit"), let cozyAssets {
+            mageBodyAuditStarted = true; Task { mageBodyAuditStatus = await MageBodyAudit.run(store:store,assets:cozyAssets) }
+        }
         if !gameFeelAuditStarted, ProcessInfo.processInfo.arguments.contains("--game-feel-audit") {
             gameFeelAuditStarted = true; Task { gameFeelAuditStatus = await GameFeelFrameAudit.run(store: store) }
         }
@@ -584,7 +597,7 @@ struct PlayableGameView: View {
                 if let cozyAssets {
                     CozyBoard(presentation: data, assets: cozyAssets, playback: store.playback,
                               botPlayback: store.isBotActing ? store.playback : nil, botStartedAt: store.botMotionStartedAt,
-                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, select: store.select)
+                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, effectsEnabled: mageEffectsEnabled, select: store.select)
                 } else { Text("Cozy 素材校驗失敗；請重新安裝候選。").foregroundStyle(Cozy.danger) }
             }
                 .accessibilityElement(children: .ignore).accessibilityIdentifier("playArena")

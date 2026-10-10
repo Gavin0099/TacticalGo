@@ -1,6 +1,68 @@
 import XCTest
 
 @MainActor final class PlayableGameTests: XCTestCase {
+
+    func testMageBodySharedTimelineAndCancellationNativeAudit() {
+        let game = app(["--cozy-demo","--mage-body-review","--mage-no-effects","--mage-body-audit"])
+        let status = game.staticTexts["mageBodyAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout:10))
+        let done = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label BEGINSWITH 'PASS'"),object:status)
+        XCTAssertEqual(XCTWaiter.wait(for:[done],timeout:80),.completed)
+        shot(game,"MAGE-body-actual-owner-audit")
+    }
+    func testMageBody320DenseBothFactionsEffectsAndReducedMotion() {
+        for reduced in [false,true] {
+            var flags = ["--cozy-demo","--cozy-nine","--cozy-320","--mage-dense","--white-caster","--mage-body-review"]
+            if reduced { flags += ["--cozy-reduced","--mage-no-effects"] }
+            let game = app(flags)
+            let arena = game.otherElements["playArena"]
+            XCTAssertTrue(arena.waitForExistence(timeout:10))
+            XCTAssertEqual(arena.frame.width/arena.frame.height,8/9.0,accuracy:0.02)
+            tap(game,4,3,size:9)
+            for _ in 0..<5 { if game.buttons["push-Up"].isHittable { break }; game.swipeUp() }
+            game.buttons["push-Up"].tap(); XCTAssertTrue(game.staticTexts["2 AP"].exists)
+            cozyConfirm(game); XCTAssertTrue(game.staticTexts["1 AP"].waitForExistence(timeout:5))
+            shot(game,"MAGE-320-9-dense-white-\(reduced)")
+            game.buttons["undoOrCancel"].tap(); XCTAssertTrue(game.staticTexts["2 AP"].exists)
+            game.terminate()
+        }
+    }
+    func testMageBodyNativeRecordingWalkthrough() {
+        func hold(_ t: Double) {
+            let wait = XCTNSPredicateExpectation(predicate:NSPredicate { _,_ in false },object:nil)
+            _ = XCTWaiter.wait(for:[wait],timeout:t)
+        }
+        for compact in [false,true] {
+            let extra = compact ? ["--mage-compact"] : []
+            let summon = app(["--summon-demo","--hero","mage","--mage-body-review","--mage-no-effects","--audio-trace"]+extra)
+            XCTAssertTrue(summon.staticTexts["2 AP"].waitForExistence(timeout:10))
+            tap(summon,3,4); cozyConfirm(summon); hold(1.3)
+            XCTAssertTrue(summon.staticTexts["1 AP"].exists); shot(summon,"MAGE-summon-no-fx-\(compact)")
+            summon.buttons["undoOrCancel"].tap(); XCTAssertTrue(summon.staticTexts["2 AP"].exists); summon.terminate()
+            for capture in [false,true] {
+                let flags = capture ? [] : ["--cozy-no-capture"]
+                let game = app(["--cozy-demo","--cozy-390","--mage-body-review","--mage-no-effects","--audio-trace"]+extra+flags)
+                tap(game,4,3)
+                for _ in 0..<5 { if game.buttons["push-Up"].isHittable { break }; game.swipeUp() }
+                game.buttons["push-Up"].tap(); shot(game,"MAGE-preview-original-no-fx")
+                game.buttons["undoOrCancel"].tap(); XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.swipeDown(); tap(game,4,3)
+                for _ in 0..<5 { if game.buttons["push-Up"].isHittable { break }; game.swipeUp() }
+                game.buttons["push-Up"].tap(); cozyConfirm(game); hold(1.3)
+                XCTAssertTrue(game.staticTexts["1 AP"].exists)
+                if capture { XCTAssertTrue(game.staticTexts["黑方獲勝"].exists) }
+                shot(game,"MAGE-push-no-fx-\(capture)-\(compact)")
+                game.buttons["undoOrCancel"].tap(); XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                XCUIDevice.shared.press(.home); game.activate(); XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                game.terminate()
+            }
+        }
+        let pose = app(["--mage-pose-review"])
+        XCTAssertTrue(pose.buttons["magePoseSummon"].waitForExistence(timeout:10))
+        pose.buttons["magePoseSummon"].tap(); hold(1.2)
+        pose.buttons["magePoseCast"].tap(); hold(1.2)
+        shot(pose,"MAGE-closeup-no-fx-pose-gallery")
+    }
     private func cozyConfirm(_ app: XCUIApplication) {
         for _ in 0..<5 { if app.buttons["playConfirm"].isHittable { break }; app.swipeUp() }
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
