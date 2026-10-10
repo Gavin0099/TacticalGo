@@ -1,0 +1,125 @@
+{
+  "version": "VO-PERF-01-selected-pilot-v3",
+  "status": "Owner listening Pending; not accepted replacement",
+  "selected": [
+    {
+      "hero": "warrior",
+      "take": "A",
+      "text": "Hold the line!",
+      "instruct": "A young adult male fantasy guardian, youthful clear midrange voice with a warm slightly rough edge. Natural English, animated game character, clean dry studio recording. A firm urgent battlefield command to allies. Breath-supported projecting call, strongly stress HOLD and LINE, connected words and a decisive falling ending. Brave and protective, not enraged. No narration.",
+      "seed": 20261010,
+      "file": "warrior-A-dry.wav",
+      "raw_file": "raw/warrior-A-unprocessed.wav",
+      "duration_seconds": 1.04,
+      "sample_rate": 24000,
+      "gain": 1.2519244209891454,
+      "rms_dbfs": -19.99999987057016,
+      "peak_dbfs": -5.30771909007337,
+      "generation_seconds": 4.7152321338653564,
+      "sha256": "fc56a20b482aff80a9dc67775b4a57261c83174c72f2af9d5247565d8651bb7f",
+      "raw_sha256": "67c1c6e612ca114612d6fbceda6f2f0aff4c7152654cf8a6fc0d5eafb304b4a9"
+    },
+    {
+      "hero": "warrior",
+      "take": "B",
+      "text": "Hold the line!",
+      "instruct": "A young adult male fantasy guardian, youthful clear midrange voice with a warm slightly rough edge. Natural English, animated game character, clean dry studio recording. Lead allies with a short determined rallying shout. Give HOLD an assertive attack, lightly link the, then land LINE with conviction. Energetic and confident, no gravelly monster growl or extra words.",
+      "seed": 20261010,
+      "file": "warrior-B-dry.wav",
+      "raw_file": "raw/warrior-B-unprocessed.wav",
+      "duration_seconds": 0.8,
+      "sample_rate": 24000,
+      "gain": 0.6950124272728281,
+      "rms_dbfs": -19.999999223420986,
+      "peak_dbfs": -6.138438013016141,
+      "generation_seconds": 0.6751971244812012,
+      "sha256": "2e39c4e189bce86b46a3f16142267462ab38dd05fd66415bfc5964bde22290b6",
+      "raw_sha256": "8aa2e7f74a4f4ab874095eebbba57747077782dcc40c90d9d4b52cdf623e344e"
+    },
+    {
+      "hero": "mage",
+      "take": "A",
+      "text": "Off you go!",
+      "instruct": "A young adult female fantasy mage, clear bright midrange voice, warm smile and a lightly mischievous personality. Natural English, animated game character, clean dry studio recording. Speak one short playful phrase with a smiling, cheeky tone and lively rhythm. Clear spoken words, not sung or whispered. A light mischievous spellcasting quip.",
+      "seed": 20261015,
+      "file": "mage-A2-dry.wav",
+      "raw_file": "retry-mage-A/raw/mage-A-unprocessed.wav",
+      "duration_seconds": 1.1185833333333333,
+      "sample_rate": 24000,
+      "gain": 0.6987969888014611,
+      "rms_dbfs": -19.99999987057016,
+      "peak_dbfs": -7.634466048258557,
+      "generation_seconds": 1.0207240581512451,
+      "sha256": "3c17b3796d6d62bcefc2657c49e4cff22274d19d861cbb63ae6d0688c4db1745",
+      "raw_sha256": "1b51888f6f31bc4f7d3d1cb36777ceb2388f11d3eb4c03889f2f736716b529f7",
+      "replaces": "mage-A-dry.wav:12.8sec max-token cutoff, rejected"
+    },
+    {
+      "hero": "mage",
+      "take": "B",
+      "text": "Off you go!",
+      "instruct": "A young adult female fantasy mage, clear bright midrange voice, warm smile and a lightly mischievous personality. Natural English, animated game character, clean dry studio recording. A short, playful spoken phrase with clear English diction. Bright smiling voice, light quick rhythm and a cheeky upward inflection before a crisp finish. Lively natural speech.",
+      "seed": 20261015,
+      "file": "mage-B3-dry.wav",
+      "raw_file": "retry-mage-B3/raw/mage-B-unprocessed.wav",
+      "duration_seconds": 1.36,
+      "sample_rate": 24000,
+      "gain": 0.9337892944136095,
+      "rms_dbfs": -19.99999987057016,
+      "peak_dbfs": -5.669254086525884,
+      "generation_seconds": 1.55983304977417,
+      "sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950",
+      "raw_sha256": "477290a2f75cbfc2b5d80013388fd79d700fe6f2b7f7105aa5b3edf9775ce708",
+      "replaces": "mage-B and B2 held by independent ASR; simpler positive prompt, same seed as successful A2"
+    }
+  ],
+  "model": "Qwen3-TTS VoiceDesign1.7B 4bit",
+  "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+  "source_records": [
+    "source/first-pass-manifest.json",
+    "source/generator-first-pass.py",
+    "retry-mage-A/manifest.json",
+    "source/generator-mage-A2.py",
+    "retry-mage-B3/manifest.json",
+    "scripts/generate-hero-voice-performance-pilot.py"
+  ],
+  "voice_clone_reference": null,
+  "remote_inference": false,
+  "app_changed": false,
+  "source_rights": "See CREDITS.md / Apache2 model declarations; no complete release-rights assertion",
+  "processing": "dry; trim and linear gain only; comparisons old/A/B at approximately -20dBFS RMS",
+  "all_selected_words_match_independent_ASR": true,
+  "rejected_or_held_history": [
+    {
+      "file": "mage-A-dry.wav",
+      "reason": "12.8sec max-token limit reached"
+    },
+    {
+      "file": "mage-B-dry.wav",
+      "reason": "independent ASR reads Ha, off you go!; human accuracy not declared"
+    },
+    {
+      "file": "mage-B2-dry.wav",
+      "reason": "independent ASR reads Ah, you go!; human accuracy not declared"
+    }
+  ],
+  "reproducibility": "exact inputs/seeds/hashes retained; no independent rerun bit identity claimed",
+  "audition_mp3_sha256": {
+    "warrior-B-dry.mp3": "57b502821d1b43fbfe3a7599e66d61e1d1e2fcb749f87b7c98f53dcdf6d38ba4",
+    "mage-B2-dry.mp3": "c192133e6032c2476956bd62c61ca4780e9423859944052056a8773564355b14",
+    "mage-old-A-B.mp3": "d4d6acf7af5df7b767f0a22eeef4c26b494d90348eafa3b91c24703cd18f8371",
+    "mage-old-A-B-first-listen.mp3": "d4d6acf7af5df7b767f0a22eeef4c26b494d90348eafa3b91c24703cd18f8371",
+    "warrior-A-dry.mp3": "0a87cc6d724978f440f89ba13bdc981be1b25f75f79cdd40f870fec0e3a4572d",
+    "mage-B3-dry.mp3": "aa97204bc901c80ee482d36c46c69ba6966e2f830317f52fede8a48ef2d99494",
+    "mage-B-dry.mp3": "164950e479fb3563cd7308641581bec9cfac521c50b56066a42b69de475d03f4",
+    "mage-old-A-B2.mp3": "ef31f88b06180618fa34015356c5d8b0704d43f80c894c76aa0ee1c56285e849",
+    "mage-old-A-B3.mp3": "c6b265dafdf00192a882f12d5caeca3b1f299a5aa0c6da76803a13c16f685580",
+    "warrior-old-A-B.mp3": "a12ca55ad5e6488c1c2876a59a6e47458abd70cb79e5b5b9dd0bff868df9a213",
+    "mage-A2-dry.mp3": "3bcf987c5580d83673e64f0368bb702e6a8b1ef006ebb938c263a8c2fc06d120"
+  },
+  "comparison_files": {
+    "warrior": "warrior-old-A-B.mp3",
+    "mage": "mage-old-A-B3.mp3",
+    "order": "rejected original Piper -> new A -> new B; final mage B is B3"
+  }
+}

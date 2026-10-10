@@ -1,0 +1,56 @@
+{
+  "version": "VO-PERF-01-Qwen-VoiceDesign-pilot",
+  "status": "audition_only; Owner performance Gate Pending",
+  "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+  "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+  "model_license": "Apache-2.0 as declared by original and converted model",
+  "model_sha256": {
+    "model.safetensors": "d8627de7ef411f6775182925059e140a9e1edb1fde8feeb540b4fba0edee1e58",
+    "tokenizer_config.json": "dc3c31c3bdaedd5016382bb3cbe07323026775ad51f5a4fb564505992ae4a670",
+    "config.json": "37e4e0d7b2b10b8f9946734ec808eab6045a435b5ec35219b5c07a153444675d",
+    "generation_config.json": "f1b90b4513f3b34c62851049e2492d7b4c5940daf1276f89c82b8ef04127f3aa",
+    "README.md": "40d213ae6ec58c48d4362a66a8e77bc8518b87acf6cd5e54b4aa2352a588a277",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "model.safetensors.index.json": "8ea3f7115ca2b729e5af4e83b2580d1be97dd54d80e8ef7aa27257c04d84d325",
+    "preprocessor_config.json": "efdde1022ea9d76928bf7a9cd53139138f5ba2e466e837f08f6105ab1af1c119",
+    "speech_tokenizer/model.safetensors": "836b7b357f5ea43e889936a3709af68dfe3751881acefe4ecf0dbd30ba571258",
+    "speech_tokenizer/config.json": "ee65bb901c876664ab8707c487157aa1a6ee57c65969b28fb5ec9dc211e68167",
+    "speech_tokenizer/configuration.json": "6bc26d64eb5024b4d1dab5a52371958b429256d6c9d59787f1f5294a54e0cebd",
+    "speech_tokenizer/preprocessor_config.json": "fcb3805e597e786d4067706e602f6688524640f8d3396790e2e09b5942fcbdfb"
+  },
+  "runtime": {
+    "mlx": "0.32.3",
+    "mlx-audio": "0.5.8",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3"
+  },
+  "source": "scripts/generate-hero-voice-performance-pilot.py",
+  "source_sha256": "d0b64158c4417c454e69ad7fc60342adcac0ee1d3350511cf822688cfaf6dd7d",
+  "offline_inference": true,
+  "reference_audio": null,
+  "paid_service": false,
+  "app_audio_changed": false,
+  "processing": "edge trim + linear gain toward -20dBFS RMS / capped -3dBFS peak; no sound effects/music/pitch/time warping",
+  "reproducibility": "seed and source pins retained; cross-process bit identity not yet claimed",
+  "assets": [
+    {
+      "hero": "mage",
+      "take": "B",
+      "text": "Off you go!",
+      "instruct": "A young adult female fantasy mage, clear bright midrange voice, warm smile and a lightly mischievous personality. Natural English, animated game character, clean dry studio recording. Speak the supplied three words once, with a bright mischievous smile and a quick bouncy spoken rhythm. Off lightly springs forward, you connects, go lands playfully. Clear speech, not singing. Do not add a laugh, chuckle, exclamation, greeting or other words.",
+      "seed": 20261016,
+      "file": "mage-B-dry.wav",
+      "raw_file": "raw/mage-B-unprocessed.wav",
+      "duration_seconds": 2.372916666666667,
+      "sample_rate": 24000,
+      "gain": 1.6644421603068966,
+      "rms_dbfs": -19.99999987057016,
+      "peak_dbfs": -3.960669002451806,
+      "generation_seconds": 1.9306628704071045,
+      "sha256": "32bd48cf4568086a6e77b3e500fda23e59399f2edc68cc4c9bb78051938f2f61",
+      "raw_sha256": "ac95871f4e328a784930a03b7c9846ce9e715bfe2d5d45e903d25ca2f0910c1d"
+    }
+  ]
+}

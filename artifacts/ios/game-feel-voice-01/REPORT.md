@@ -66,3 +66,7 @@ Mac macOS 26.6.2、Xcode 26.6（17F113）、SDK 26.5。真正 iPhone 16 Pro／iO
 ## Owner 待驗收
 
 三職聲線是否有角色個性、召喚與技能是否有存在感但不遮戰術資訊；真機揚聲器／耳機聽感及同步、iPhone/iPad 真機動態操作、美術整體一致性與正式素材權利。均 Pending。這次不宣稱玩法更好玩、真人驗收通過、正式 BGM 啟用或發布完成。
+
+## 交付後 Owner 聽感審查
+
+Owner 指出六句 TTS 死板、像英文朗讀。**现版角色表演 Gate 不通過**；保留既有接線／成功事件工程結果，不能再以工程 PASS 宣稱聲線可採納。逐句表演 Brief 與先驗證戰士／法師兩句的下一輪 Gate 在 docs/ios/HERO_VOICE_PERFORMANCE_REVIEW.md。此回饋只記錄審查，沒有重產音訊、改播放器或付費採購。

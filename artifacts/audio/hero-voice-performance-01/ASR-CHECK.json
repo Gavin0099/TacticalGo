@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "model": "mlx-community/whisper-tiny.en-mlx",
+  "revision": "5f4dafbb28e62a53c1b10426ff7eed36ca733bf7",
+  "runtime": "mlx-whisper0.4.3",
+  "target_text_used_as_prompt": false,
+  "scope": "independent automated word recognition only, may mishear; expression and human intelligibility Pending",
+  "checks": [
+    {
+      "file": "warrior-A-dry.wav",
+      "expected": "Hold the line!",
+      "recognized": "Hold the line.",
+      "match": true,
+      "sha256": "fc56a20b482aff80a9dc67775b4a57261c83174c72f2af9d5247565d8651bb7f",
+      "avg_logprobs": [
+        -0.45021206992013113
+      ]
+    },
+    {
+      "file": "warrior-B-dry.wav",
+      "expected": "Hold the line!",
+      "recognized": "Hold the line.",
+      "match": true,
+      "sha256": "2e39c4e189bce86b46a3f16142267462ab38dd05fd66415bfc5964bde22290b6",
+      "avg_logprobs": [
+        -0.49315125601632254
+      ]
+    },
+    {
+      "file": "mage-A2-dry.wav",
+      "expected": "Off you go!",
+      "recognized": "Off you go.",
+      "match": true,
+      "sha256": "3c17b3796d6d62bcefc2657c49e4cff22274d19d861cbb63ae6d0688c4db1745",
+      "avg_logprobs": [
+        -0.593646594456264
+      ]
+    },
+    {
+      "file": "mage-B3-dry.wav",
+      "expected": "Off you go!",
+      "recognized": "Off you go!",
+      "match": true,
+      "sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950",
+      "avg_logprobs": [
+        -0.6161124365670341
+      ]
+    }
+  ]
+}

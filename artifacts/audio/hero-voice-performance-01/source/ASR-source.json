@@ -1,0 +1,8 @@
+{
+  "model": "mlx-community/whisper-tiny.en-mlx",
+  "revision": "5f4dafbb28e62a53c1b10426ff7eed36ca733bf7",
+  "purpose": "offline independent transcript check only, no expression quality approval",
+  "original_source": "https://github.com/openai/whisper",
+  "runtime": "mlx-whisper0.4.3",
+  "input_privacy": "generated audio remains on this Mac"
+}

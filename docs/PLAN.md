@@ -414,3 +414,13 @@ Owner 核准的 Cozy-02＋V1.1 B＋B2-B＋原 B-v02 已接入隔離分支 codex/
 ### 2026-10-10 GAME-FEEL-10H-v2 工程候選
 
 Cozy原生基線保存後，完成6句可替換離線英文語音、三職召喚／技能／普通落子提子及主將退場。Package156／Golden38組99步／原生phone22、SE2、iPadV3 4與真實手勢影片通過；iPad直向操作區擠出畫面已修正。iPhone Hero Voice 0.8.0（802）Wi-Fi安裝成功但Locked阻擋前景；V3真機及人耳、美術、正式BGM仍Pending。成果隔離 codex/game-feel-voice-01；Owner授權commit/push，無merge、發布或第二技能／Domain／Bot變更。交付及推送以 artifacts/ios/game-feel-voice-01/REPORT.md、DELIVERY.json 為準。
+
+### Hero Voice 交付後聲音表演審查
+
+Owner 判定現版六句英文 TTS 死板，角色表演 Gate FAIL；S0–S7 工程接線結果不撤銷，聲音不採納為正式配音。下一輪先評估 Hold the line! 堅定喊聲與 Off you go! 俏皮施法的兩句實際表演，不以調音／更多平讀版本取代演出。見 docs/ios/HERO_VOICE_PERFORMANCE_REVIEW.md。本回饋未生成新音訊、修改程式或授權費用。
+
+### VO-PERF-01｜兩句表演乾聲試驗
+
+Owner 授權繼續。隔離 codex/hero-voice-performance-01，先以本機 Qwen3-TTS VoiceDesign、逐句表演指示生成戰士／法師各兩個乾聲候選，先聽感、不換遊戲內六句。模型僅開發端，不導入App新引擎，不用付費服務或演員／遊戲聲音參考，不擴充三職全套。驗證來源／內容／聲音檔案，表演與同職長期聲線一致性留待Owner。前版接線保留，正式BGM HOLD。
+
+VO-PERF-01 工程試聽完成：戰士A/B、法師A2/B3，獨立Whisper台詞4/4與PCM/SHA4/4。法師3個初期長度／字詞HOLD實驗保留，不當可整合語音。舊版→A→B乾聲比較已交Owner，聲音品質Pending；新素材未接入App，不重跑既有Swift/Golden冒充聲音證據。報告 artifacts/audio/hero-voice-performance-01/REPORT.md。

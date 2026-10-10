@@ -90,5 +90,13 @@
     "Current V3 physical-device gestures and actual audio capture Pending",
     "Same pinned offline runtime bit reproducibility only",
     "TTS source attribution retained; full release rights review Pending"
-  ]
+  ],
+  "owner_voice_performance_review": {
+    "status": "FAIL",
+    "reason": "Owner: rigid English reading, lacks firm warrior shout and playful mage casting",
+    "scope": "current six V3 TTS clips only; playback engineering evidence remains valid",
+    "next_gate": "two performed pilot lines before replacing all six",
+    "brief": "docs/ios/HERO_VOICE_PERFORMANCE_REVIEW.md",
+    "new_audio_generated": false
+  }
 }
