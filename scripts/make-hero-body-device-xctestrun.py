@@ -1,6 +1,6 @@
 """Bind a copied device harness to the actual signed products, not cached M3 metadata."""
-import hashlib,json,pathlib,plistlib
-R=pathlib.Path(__file__).resolve().parents[1];P=R/'ios/Build/Products';D=R/'artifacts/ios/anim-warrior-rogue-01'
+import hashlib,json,os,pathlib,plistlib
+R=pathlib.Path(__file__).resolve().parents[1];P=R/'ios/Build/Products';D=R/os.environ.get('HERO_BODY_DEVICE_EVIDENCE','artifacts/ios/anim-warrior-rogue-01')
 x=plistlib.loads((P/'TacticalGo_iphoneos26.5-arm64.xctestrun').read_bytes())
 t=x['TacticalGoUITests'];host=P/'Debug-iphoneos/TacticalGoUITests-Runner.app'
 actual=plistlib.loads((host/'Info.plist').read_bytes())['CFBundleIdentifier']

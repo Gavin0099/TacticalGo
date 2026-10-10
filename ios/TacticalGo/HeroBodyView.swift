@@ -115,13 +115,17 @@ private struct HeroCutoutRig {
         // Follow hair/skin/neck, not the silver shoulder: rotating a broad
         // horizontal chest cut would carry armour with the head and open a seam.
         let head = HeroCutoutPolygon([(90,0),(400,0),(400,190),(359,230),(327,253),(305,271),(286,279),(266,296),(234,288),(214,276),(192,258),(174,245),(147,226),(114,216),(90,193)])
-        let held = HeroCutoutPolygon([(172,333),(194,340),(209,358),(212,378),(237,392),(246,434),(231,448),(274,447),(306,483),(268,512),(215,495),(203,474),(171,467),(150,446),(150,416),(162,388),(171,371),(161,354)])
-        let shield = HeroCutoutPolygon([(247,332),(253,323),(414,279),(435,275),(475,312),(485,330),(472,405),(449,447),(411,472),(368,488),(325,478),(288,447),(266,408),(252,368)])
+        // Move the complete gauntlet and gold guard with the gripping hand.
+        // Cutting through those outlines left angular stationary fragments.
+        let held = HeroCutoutPolygon([(171,343),(194,343),(207,356),(216,388),(236,397),(241,430),(255,435),(268,440),(279,458),(285,492),(267,512),(170,512),(106,492),(77,470),(68,444),(81,421),(108,409),(149,409),(159,391),(166,369),(161,354)])
+        // Include the original black/gold rim, not only its blue interior.
+        // The old diagonal cut left a second gold edge on the chest when raised.
+        let shield = HeroCutoutPolygon([(241,334),(246,317),(412,271),(438,269),(480,308),(491,329),(479,408),(457,449),(417,491),(369,512),(307,512),(289,483),(273,452),(256,414),(244,374)])
         let cloth = HeroCutoutPolygon([(63,371),(89,379),(105,391),(80,409),(91,432),(79,442),(42,427),(30,413),(42,389)])
         return Self(head: head, held: held, shield: shield, cloth: cloth,
             backing: [
                 // Only the sleeve/chest originally hidden by the gripping hand.
-                HeroCutoutPolygon([(157,361),(200,361),(234,399),(240,452),(207,477),(151,465),(146,416)]),
+                held,
                 // Only the old shield occlusion is eligible for this backing.
                 // The shifted shield exposes its top strip during release;
                 // filling only the left strip would leave a transparent wedge.

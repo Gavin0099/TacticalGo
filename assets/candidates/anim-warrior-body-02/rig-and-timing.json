@@ -1,0 +1,43 @@
+{
+  "identity": "B-warrior-v02 original, unchanged",
+  "backing": "Existing frozen clean plate, cloth-only and original silhouette masks; no new raster generation",
+  "baseline": "eb7be20",
+  "changes": [
+    "Whole original shield rim moves with emblem",
+    "Full gripping hand, gauntlet and sword guard share one transform",
+    "Single 70ms coil hold; no second hold in downstroke",
+    "Two soldiers land simultaneously at480ms; recovery780ms",
+    "Warrior summon braces at210ms, settles640ms"
+  ],
+  "timingSeconds": {
+    "coil": 0.2,
+    "coilHoldEnd": 0.27,
+    "release": 0.34,
+    "moveStart": 0.35,
+    "arrival": 0.48,
+    "capture": 0.54,
+    "recoilEnd": 0.55,
+    "recovery": 0.78
+  },
+  "sources": [
+    {
+      "path": "ios/TacticalGo/Cozy/B-warrior-v02.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/warrior-clean-plate.png",
+      "sha256": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBodyView.swift",
+      "sha256": "19d05c5972a7375c4bfa43a2fc2f0fca0dbd7ce4c569b121d72cb42c833dee52"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroPerformance.swift",
+      "sha256": "136f135db82c0e2553555cd182cd1061751f58f90766db36b7d0a1831aacd118"
+    }
+  ],
+  "gate": "Owner acting/art PENDING; all3 bodies must be explicitly confirmed before VFX. English hero VO HOLD/off.",
+  "unchanged": "Mage/rogue body, Domain, Bot, resources, board projection and hit mapping",
+  "knownLimit": "Head-and-chest source; no full-body or true shield-to-ground contact claimed. Direction-specific perspective is not authored."
+}

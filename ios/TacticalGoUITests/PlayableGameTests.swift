@@ -11,8 +11,14 @@ import XCTest
         shot(game,"HERO-body-receipt-cancellation-audit")
     }
     func testWarriorRogueNativeRecordingWalkthrough() {
+        recordHeroBodyWalkthrough(["warrior","rogue"])
+    }
+    func testWarriorBody02NativeRecordingWalkthrough() {
+        recordHeroBodyWalkthrough(["warrior"])
+    }
+    private func recordHeroBodyWalkthrough(_ heroes: [String]) {
         func hold(_ t:Double) { let w = XCTNSPredicateExpectation(predicate:NSPredicate{_,_ in false},object:nil);_ = XCTWaiter.wait(for:[w],timeout:t) }
-        for hero in ["warrior","rogue"] {
+        for hero in heroes {
             for scenario in ["summon","black","capture","white","dense","reduced"] {
                 var flags = ["--hero-body-demo","--hero",hero,"--hero-body-review","--mage-no-effects","--audio-trace"]
                 if scenario == "summon" {flags += ["--hero-body-summon"]}
@@ -44,7 +50,9 @@ import XCTest
         let gallery = app(["--hero-pose-review"])
         XCTAssertTrue(gallery.buttons["heroPoseCast"].waitForExistence(timeout:10))
         gallery.buttons["heroPoseSummon"].tap();hold(1.2);gallery.buttons["heroPoseCast"].tap();hold(1.2)
-        gallery.segmentedControls["heroPoseClass"].buttons["盜賊"].tap();gallery.buttons["heroPoseCast"].tap();hold(1.2)
+        if heroes.contains("rogue") {
+            gallery.segmentedControls["heroPoseClass"].buttons["盜賊"].tap();gallery.buttons["heroPoseCast"].tap();hold(1.2)
+        }
         shot(gallery,"HERO-closeup-supplement")
     }
     func testHeroBody320NineDenseNormalAndReduced() {

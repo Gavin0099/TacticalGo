@@ -1,0 +1,14 @@
+{
+  "packageTests": 170,
+  "goldenSnapshots": 137,
+  "simulatorTests": 4,
+  "simulatorStateChecks": 108,
+  "nativeWarriorClips": 6,
+  "release": "PASS",
+  "protectedRuntimeDiff": "NONE",
+  "physicalIPadInAppChecks": null,
+  "physicalInputGate": "NOT PASS: iPad UI runner authentication canceled; iPhone unavailable",
+  "ownerBodyActingGate": "PENDING; never inferred from this script",
+  "voice": "HOLD/off; no voice production",
+  "vfx": "NOT STARTED: requires explicit Owner pass of all three bodies"
+}

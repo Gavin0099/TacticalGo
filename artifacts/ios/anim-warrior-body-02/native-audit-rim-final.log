@@ -1,0 +1,446 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testHeroBodySharedReceiptAndCancellationAudit" "-only-testing:TacticalGoUITests/PlayableGameTests/testHeroBodySecondAPAndBackgroundRemainPlayable" -resultBundlePath artifacts/ios/anim-warrior-body-02/native-audit-rim-final.xcresult
+
+2026-10-10 17:46:29.959 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-warrior-body-02/native-audit-rim-final.xcresult
+
+2026-10-10 17:46:29.964 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 17:46:30.166 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 17:46:31.265940+0800 TacticalGoUITests-Runner[21795:1450349] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 17:46:32.050.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 17:46:32.050.
+Test Suite 'PlayableGameTests' started at 2026-10-10 17:46:32.050.
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroBodySecondAPAndBackgroundRemainPlayable]' started.
+    t =     0.00s Start Test at 2026-10-10 17:46:32.051
+    t =     0.03s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+2026-10-10 17:46:32.901 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 17:46:32.903 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.49s         Setting up automation session
+    t =     2.03s         Wait for com.tacticalgo.prototype to idle
+    t =     3.43s Waiting 10.0s for "playArena" Other to exist
+    t =     4.50s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     4.50s         Checking existence of `"playArena" Other`
+    t =     4.74s Tap "playArena" Other[0.37, 0.51]
+    t =     4.74s     Wait for com.tacticalgo.prototype to idle
+    t =     4.74s     Find the "playArena" Other
+    t =     4.78s     Check for interrupting elements affecting "playArena" Other
+    t =     4.81s     Synthesize event
+    t =     4.81s         Find the "playArena" Other
+    t =     4.84s         Find the "playArena" Other
+    t =     4.88s         Find the "playArena" Other
+    t =     5.20s     Wait for com.tacticalgo.prototype to idle
+    t =     5.20s Waiting 10.0s for "playArena" Other to exist
+    t =     6.27s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     6.27s         Checking existence of `"playArena" Other`
+    t =     6.31s Tap "playArena" Other[0.63, 0.51]
+    t =     6.31s     Wait for com.tacticalgo.prototype to idle
+    t =     6.32s     Find the "playArena" Other
+    t =     6.35s     Check for interrupting elements affecting "playArena" Other
+    t =     6.37s     Synthesize event
+    t =     6.37s         Find the "playArena" Other
+    t =     6.40s         Find the "playArena" Other
+    t =     6.43s         Find the "playArena" Other
+    t =     6.74s     Wait for com.tacticalgo.prototype to idle
+    t =     6.75s Find the "playConfirm" Button
+    t =     6.91s Find the "playConfirm" Button
+    t =     6.94s Tap "playConfirm" Button
+    t =     6.94s     Wait for com.tacticalgo.prototype to idle
+    t =     6.94s     Find the "playConfirm" Button
+    t =     6.98s     Check for interrupting elements affecting "playConfirm" Button
+    t =     7.00s     Synthesize event
+    t =     7.29s     Wait for com.tacticalgo.prototype to idle
+    t =     8.37s Checking `Expect predicate `enabled == 1` for object "mode-soldier" Button`
+    t =     8.37s     Find the "mode-soldier" Button
+    t =     8.41s Tap "mode-soldier" Button
+    t =     8.41s     Wait for com.tacticalgo.prototype to idle
+    t =     8.41s     Find the "mode-soldier" Button
+    t =     8.44s     Check for interrupting elements affecting "mode-soldier" Button
+    t =     8.46s     Synthesize event
+    t =     8.75s     Wait for com.tacticalgo.prototype to idle
+    t =     8.76s Waiting 10.0s for "playArena" Other to exist
+    t =     9.83s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     9.83s         Checking existence of `"playArena" Other`
+    t =     9.88s Tap "playArena" Other[0.13, 0.18]
+    t =     9.88s     Wait for com.tacticalgo.prototype to idle
+    t =     9.88s     Find the "playArena" Other
+    t =     9.91s     Check for interrupting elements affecting "playArena" Other
+    t =     9.94s     Synthesize event
+    t =     9.94s         Find the "playArena" Other
+    t =     9.97s         Find the "playArena" Other
+    t =    10.01s         Find the "playArena" Other
+    t =    10.32s     Wait for com.tacticalgo.prototype to idle
+    t =    10.33s Find the "playConfirm" Button
+    t =    10.37s Find the "playConfirm" Button
+    t =    10.40s Tap "playConfirm" Button
+    t =    10.40s     Wait for com.tacticalgo.prototype to idle
+    t =    10.40s     Find the "playConfirm" Button
+    t =    10.43s     Check for interrupting elements affecting "playConfirm" Button
+    t =    10.46s     Synthesize event
+    t =    10.74s     Wait for com.tacticalgo.prototype to idle
+    t =    10.74s Waiting 5.0s for "2 AP" StaticText to exist
+    t =    11.81s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =    11.81s         Checking existence of `"2 AP" StaticText`
+    t =    11.86s Find the "currentTurn" StaticText
+    t =    11.90s Tap "undoOrCancel" Button
+    t =    11.90s     Wait for com.tacticalgo.prototype to idle
+    t =    11.90s     Find the "undoOrCancel" Button
+    t =    11.93s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    11.96s     Synthesize event
+    t =    12.24s     Wait for com.tacticalgo.prototype to idle
+    t =    12.24s Checking existence of `"1 AP" StaticText`
+    t =    12.28s Terminate com.tacticalgo.prototype:21821
+    t =    13.37s Open com.tacticalgo.prototype
+    t =    13.37s     Launch com.tacticalgo.prototype
+2026-10-10 17:46:45.426 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 17:46:45.426 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    13.59s         Setting up automation session
+    t =    14.09s         Wait for com.tacticalgo.prototype to idle
+    t =    15.66s Waiting 10.0s for "playArena" Other to exist
+    t =    16.72s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    16.72s         Checking existence of `"playArena" Other`
+    t =    16.81s Tap "playArena" Other[0.63, 0.51]
+    t =    16.81s     Wait for com.tacticalgo.prototype to idle
+    t =    16.81s     Find the "playArena" Other
+    t =    16.84s     Check for interrupting elements affecting "playArena" Other
+    t =    16.87s     Synthesize event
+    t =    16.87s         Find the "playArena" Other
+    t =    16.90s         Find the "playArena" Other
+    t =    16.93s         Find the "playArena" Other
+    t =    17.24s     Wait for com.tacticalgo.prototype to idle
+    t =    17.24s Find the "playConfirm" Button
+    t =    17.28s Find the "playConfirm" Button
+    t =    17.31s Tap "playConfirm" Button
+    t =    17.31s     Wait for com.tacticalgo.prototype to idle
+    t =    17.31s     Find the "playConfirm" Button
+    t =    17.35s     Check for interrupting elements affecting "playConfirm" Button
+    t =    17.37s     Synthesize event
+    t =    17.66s     Wait for com.tacticalgo.prototype to idle
+    t =    18.73s Checking `Expect predicate `enabled == 1` for object "mode-soldier" Button`
+    t =    18.73s     Find the "mode-soldier" Button
+    t =    18.78s Tap "mode-soldier" Button
+    t =    18.78s     Wait for com.tacticalgo.prototype to idle
+    t =    18.78s     Find the "mode-soldier" Button
+    t =    18.81s     Check for interrupting elements affecting "mode-soldier" Button
+    t =    18.83s     Synthesize event
+    t =    19.12s     Wait for com.tacticalgo.prototype to idle
+    t =    19.13s Waiting 10.0s for "playArena" Other to exist
+    t =    20.21s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    20.21s         Checking existence of `"playArena" Other`
+    t =    20.26s Tap "playArena" Other[0.13, 0.18]
+    t =    20.26s     Wait for com.tacticalgo.prototype to idle
+    t =    20.26s     Find the "playArena" Other
+    t =    20.29s     Check for interrupting elements affecting "playArena" Other
+    t =    20.32s     Synthesize event
+    t =    20.32s         Find the "playArena" Other
+    t =    20.35s         Find the "playArena" Other
+    t =    20.38s         Find the "playArena" Other
+    t =    20.71s     Wait for com.tacticalgo.prototype to idle
+    t =    20.71s Find the "playConfirm" Button
+    t =    20.76s Find the "playConfirm" Button
+    t =    20.80s Tap "playConfirm" Button
+    t =    20.80s     Wait for com.tacticalgo.prototype to idle
+    t =    20.80s     Find the "playConfirm" Button
+    t =    20.83s     Check for interrupting elements affecting "playConfirm" Button
+    t =    20.86s     Synthesize event
+    t =    21.15s     Wait for com.tacticalgo.prototype to idle
+    t =    21.15s Waiting 5.0s for "2 AP" StaticText to exist
+    t =    22.22s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =    22.22s         Checking existence of `"2 AP" StaticText`
+    t =    22.27s Find the "currentTurn" StaticText
+    t =    22.30s Tap "undoOrCancel" Button
+    t =    22.30s     Wait for com.tacticalgo.prototype to idle
+    t =    22.31s     Find the "undoOrCancel" Button
+    t =    22.34s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    22.36s     Synthesize event
+    t =    22.65s     Wait for com.tacticalgo.prototype to idle
+    t =    22.66s Checking existence of `"1 AP" StaticText`
+    t =    22.70s Terminate com.tacticalgo.prototype:21906
+    t =    23.71s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroBodySecondAPAndBackgroundRemainPlayable]' passed (23.730 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroBodySharedReceiptAndCancellationAudit]' started.
+    t =     0.00s Start Test at 2026-10-10 17:46:55.785
+    t =     0.02s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+2026-10-10 17:46:55.819 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 17:46:55.819 xcodebuild[21774:1450102] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.24s         Setting up automation session
+    t =     0.69s         Wait for com.tacticalgo.prototype to idle
+    t =     1.98s Waiting 10.0s for "heroBodyAudit" StaticText to exist
+    t =     3.04s     Checking `Expect predicate `existsNoRetry == 1` for object "heroBodyAudit" StaticText`
+    t =     3.04s         Checking existence of `"heroBodyAudit" StaticText`
+    t =     4.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =     4.21s     Find the "heroBodyAudit" StaticText
+    t =     4.27s     Capturing element debug description
+    t =     4.51s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     4.59s         Find: Descendants matching type StaticText
+    t =     4.59s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =     4.59s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     4.64s         Find: Descendants matching type StaticText
+    t =     4.65s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     6.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =     6.21s     Find the "heroBodyAudit" StaticText
+    t =     6.25s     Capturing element debug description
+    t =     6.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     6.33s         Find: Descendants matching type StaticText
+    t =     6.33s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =     6.33s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     6.40s         Find: Descendants matching type StaticText
+    t =     6.40s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     7.16s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =     7.16s     Find the "heroBodyAudit" StaticText
+    t =     7.51s     Capturing element debug description
+    t =     7.54s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     7.60s         Find: Descendants matching type StaticText
+    t =     7.60s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =     7.60s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     7.67s         Find: Descendants matching type StaticText
+    t =     7.67s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     9.19s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =     9.19s     Find the "heroBodyAudit" StaticText
+    t =     9.24s     Capturing element debug description
+    t =     9.27s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     9.34s         Find: Descendants matching type StaticText
+    t =     9.34s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =     9.35s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =     9.40s         Find: Descendants matching type StaticText
+    t =     9.40s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    10.22s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    10.22s     Find the "heroBodyAudit" StaticText
+    t =    10.27s     Capturing element debug description
+    t =    10.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    10.35s         Find: Descendants matching type StaticText
+    t =    10.35s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    10.36s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    10.41s         Find: Descendants matching type StaticText
+    t =    10.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    11.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    11.14s     Find the "heroBodyAudit" StaticText
+    t =    11.26s     Capturing element debug description
+    t =    11.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    11.34s         Find: Descendants matching type StaticText
+    t =    11.35s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    11.35s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    11.41s         Find: Descendants matching type StaticText
+    t =    11.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    12.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    12.14s     Find the "heroBodyAudit" StaticText
+    t =    12.17s     Capturing element debug description
+    t =    12.20s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    12.26s         Find: Descendants matching type StaticText
+    t =    12.26s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    12.26s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    12.31s         Find: Descendants matching type StaticText
+    t =    12.31s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    13.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    13.21s     Find the "heroBodyAudit" StaticText
+    t =    13.27s     Capturing element debug description
+    t =    13.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    13.35s         Find: Descendants matching type StaticText
+    t =    13.35s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    13.35s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    13.40s         Find: Descendants matching type StaticText
+    t =    13.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    14.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    14.21s     Find the "heroBodyAudit" StaticText
+    t =    14.29s     Capturing element debug description
+    t =    14.32s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    14.39s         Find: Descendants matching type StaticText
+    t =    14.39s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    14.39s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    14.44s         Find: Descendants matching type StaticText
+    t =    14.44s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    15.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    15.21s     Find the "heroBodyAudit" StaticText
+    t =    15.25s     Capturing element debug description
+    t =    15.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    15.33s         Find: Descendants matching type StaticText
+    t =    15.33s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    15.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    15.39s         Find: Descendants matching type StaticText
+    t =    15.39s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    16.22s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    16.22s     Find the "heroBodyAudit" StaticText
+    t =    16.26s     Capturing element debug description
+    t =    16.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    16.34s         Find: Descendants matching type StaticText
+    t =    16.34s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    16.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    16.39s         Find: Descendants matching type StaticText
+    t =    16.39s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    17.15s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    17.15s     Find the "heroBodyAudit" StaticText
+    t =    17.18s     Capturing element debug description
+    t =    17.21s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    17.25s         Find: Descendants matching type StaticText
+    t =    17.26s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    17.26s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    17.31s         Find: Descendants matching type StaticText
+    t =    17.31s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+2026-10-10 17:47:13.637 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =    18.20s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    18.20s     Find the "heroBodyAudit" StaticText
+    t =    18.25s     Capturing element debug description
+    t =    18.27s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    18.32s         Find: Descendants matching type StaticText
+    t =    18.32s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    18.33s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    18.43s         Find: Descendants matching type StaticText
+    t =    18.43s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+2026-10-10 17:47:14.458 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 17:47:14.845 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =    19.23s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    19.23s     Find the "heroBodyAudit" StaticText
+    t =    19.28s     Capturing element debug description
+    t =    19.31s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    19.37s         Find: Descendants matching type StaticText
+    t =    19.37s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    19.37s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    19.43s         Find: Descendants matching type StaticText
+    t =    19.43s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    20.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    20.14s     Find the "heroBodyAudit" StaticText
+    t =    20.19s     Capturing element debug description
+    t =    20.22s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    20.27s         Find: Descendants matching type StaticText
+    t =    20.28s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    20.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    20.33s         Find: Descendants matching type StaticText
+    t =    20.33s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    21.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    21.14s     Find the "heroBodyAudit" StaticText
+    t =    21.21s     Capturing element debug description
+    t =    21.26s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    21.31s         Find: Descendants matching type StaticText
+    t =    21.31s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    21.31s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    21.36s         Find: Descendants matching type StaticText
+    t =    21.37s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    22.20s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    22.20s     Find the "heroBodyAudit" StaticText
+    t =    22.25s     Capturing element debug description
+    t =    22.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    22.34s         Find: Descendants matching type StaticText
+    t =    22.34s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    22.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    22.44s         Find: Descendants matching type StaticText
+    t =    22.44s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    23.16s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    23.16s     Find the "heroBodyAudit" StaticText
+    t =    23.22s     Capturing element debug description
+    t =    23.24s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    23.29s         Find: Descendants matching type StaticText
+    t =    23.29s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    23.30s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    23.35s         Find: Descendants matching type StaticText
+    t =    23.35s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+2026-10-10 17:47:19.683 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =    24.22s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    24.22s     Find the "heroBodyAudit" StaticText
+    t =    24.28s     Capturing element debug description
+    t =    24.30s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    24.35s         Find: Descendants matching type StaticText
+    t =    24.36s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    24.36s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    24.41s         Find: Descendants matching type StaticText
+    t =    24.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    25.18s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    25.18s     Find the "heroBodyAudit" StaticText
+    t =    25.24s     Capturing element debug description
+    t =    25.26s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    25.31s         Find: Descendants matching type StaticText
+    t =    25.32s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    25.32s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    25.37s         Find: Descendants matching type StaticText
+    t =    25.37s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    26.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    26.14s     Find the "heroBodyAudit" StaticText
+    t =    26.19s     Capturing element debug description
+    t =    26.22s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    26.27s         Find: Descendants matching type StaticText
+    t =    26.27s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    26.27s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    26.32s         Find: Descendants matching type StaticText
+    t =    26.33s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    27.16s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    27.16s     Find the "heroBodyAudit" StaticText
+    t =    27.21s     Capturing element debug description
+    t =    27.24s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    27.29s         Find: Descendants matching type StaticText
+    t =    27.29s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    27.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    27.34s         Find: Descendants matching type StaticText
+    t =    27.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    28.21s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    28.22s     Find the "heroBodyAudit" StaticText
+    t =    28.26s     Capturing element debug description
+    t =    28.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    28.34s         Find: Descendants matching type StaticText
+    t =    28.34s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    28.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    28.40s         Find: Descendants matching type StaticText
+    t =    28.40s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    29.17s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    29.17s     Find the "heroBodyAudit" StaticText
+    t =    29.22s     Capturing element debug description
+    t =    29.29s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    29.34s         Find: Descendants matching type StaticText
+    t =    29.35s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    29.35s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    29.40s         Find: Descendants matching type StaticText
+    t =    29.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    30.20s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    30.20s     Find the "heroBodyAudit" StaticText
+    t =    30.26s     Capturing element debug description
+    t =    30.28s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    30.34s         Find: Descendants matching type StaticText
+    t =    30.34s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    30.34s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    30.39s         Find: Descendants matching type StaticText
+    t =    30.39s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    31.22s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    31.22s     Find the "heroBodyAudit" StaticText
+    t =    31.28s     Capturing element debug description
+    t =    31.31s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    31.36s         Find: Descendants matching type StaticText
+    t =    31.36s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    31.36s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    31.41s         Find: Descendants matching type StaticText
+    t =    31.41s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    32.19s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    32.19s     Find the "heroBodyAudit" StaticText
+    t =    33.05s     Capturing element debug description
+    t =    33.21s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    33.26s         Find: Descendants matching type StaticText
+    t =    33.26s         Find: Elements matching predicate '"heroBodyAudit" IN identifiers'
+    t =    33.27s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    33.32s         Find: Descendants matching type StaticText
+    t =    33.32s         Requesting snapshot of accessibility hierarchy for app with pid 21958
+    t =    34.14s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "heroBodyAudit" StaticText`
+    t =    34.14s     Find the "heroBodyAudit" StaticText
+    t =    34.27s Added attachment named 'HERO-body-receipt-cancellation-audit'
+    t =    34.27s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroBodySharedReceiptAndCancellationAudit]' passed (34.503 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 17:47:30.288.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 58.233 (58.238) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 17:47:30.289.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 58.233 (58.239) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 17:47:30.289.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 58.233 (58.240) seconds
+2026-10-10 17:47:30.388 xcodebuild[21774:1450102] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 17:47:30.647 xcodebuild[21774:1450102] [MT] IDETestOperationsObserverDebug: 60.478 elapsed -- Testing started completed.
+2026-10-10 17:47:30.647 xcodebuild[21774:1450102] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 17:47:30.647 xcodebuild[21774:1450102] [MT] IDETestOperationsObserverDebug: 60.478 sec, +60.478 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-warrior-body-02/native-audit-rim-final.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

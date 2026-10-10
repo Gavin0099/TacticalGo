@@ -3,6 +3,20 @@ import TacticalGoCore
 @testable import TacticalGoMotion
 
 final class HeroPerformanceTests: XCTestCase {
+    func testWarriorDownstrokeHasNoSecondHoldAndContactCarriesWeight() {
+        let t = HeroBodyTiming.skill(.warrior)
+        let samples = (0...6).map { t.release+(t.arrival-t.release)*Double($0)/6 }
+        let poses = samples.map { HeroBodyPose.skill(.warrior,at:$0) }
+        for pair in zip(poses,poses.dropFirst()) {
+            XCTAssertGreaterThan(pair.1.shieldY,pair.0.shieldY,
+                "After release the shield must keep descending until both soldiers land")
+        }
+        let coil = HeroBodyPose.skill(.warrior,at:t.anticipationEnd)
+        let contact = HeroBodyPose.skill(.warrior,at:t.arrival)
+        XCTAssertGreaterThan(contact.bodyY,coil.bodyY)
+        XCTAssertGreaterThan(contact.bodyY,poses[0].bodyY)
+        XCTAssertLessThan(HeroBodyPose.skill(.warrior,at:t.arrival+0.07).bodyY,contact.bodyY)
+    }
     func testBothTeamsSummonSkillsAndDenseFixturesUseRealCore() throws {
         for h in [HeroClass.warrior,.rogue] { for owner in Player.allCases {
             for size in [7,9] { for summon in [false,true] { for capture in [false,true] where !summon || !capture {

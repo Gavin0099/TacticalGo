@@ -34,7 +34,8 @@ while True:
 clock["recordReadyUptime"] = uptime()
 try:
     with (MEDIA / "native-record-test.log").open("w") as log:
-        command = ["xcodebuild","test-without-building","-xctestrun",str(ROOT/"ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun"),"-destination","platform=iOS Simulator,id="+UDID,"-only-testing:TacticalGoUITests/PlayableGameTests/testWarriorRogueNativeRecordingWalkthrough","-resultBundlePath",str(MEDIA/"native-record.xcresult")]
+        test = os.environ.get("HERO_BODY_RECORD_TEST", "testWarriorRogueNativeRecordingWalkthrough")
+        command = ["xcodebuild","test-without-building","-xctestrun",str(ROOT/"ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun"),"-destination","platform=iOS Simulator,id="+UDID,"-only-testing:TacticalGoUITests/PlayableGameTests/"+test,"-resultBundlePath",str(MEDIA/"native-record.xcresult")]
         result = subprocess.run(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
     clock["testExitCode"] = result.returncode
 finally:

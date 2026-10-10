@@ -217,3 +217,7 @@ Specification: docs/onboarding/ONBOARD_01.md. Evidence: artifacts/onboard-01/REP
 2026-10-10 ANIM-W1/R1 候選補充：已建立 tacticalgo-cutout-animation Skill 與原生候選；Owner 覺得盜賊動作不錯，戰士只有還好。盜賊版保持，戰士-only提高舉盾／下擊差異並讓盾牌最低點與雙兵落定同拍；新版戰士仍待 Owner 看片，不因此啟動 VFX-01／02。完整證據見 artifacts/ios/anim-warrior-rogue-01/REPORT.md。
 
 Owner 後續觀看戰士修正版：「動作有比較好一點，但是還是沒什麼氣勢」。記為動作改善正面回饋、技能氣勢未通過；VFX候選仍依原順序獨立安排，本輪未直接展開。
+
+2026-10-10 Owner最新Gate：繼續修ANIM-W1戰士本體；等戰士、法師、盜賊三者動作都經Owner確認通過，才開VFX。盜賊動作已有正面回饋，法師M3呈現方向已接受；不得自行換算成全部動作／美術通過。英雄英文語音聽感、情緒表演及真機聲畫驗收仍HOLD，本輪關閉、不新增台詞。Warrior-only迭代在codex/anim-warrior-body-02，不改Domain/Bot/資源/投影，不merge或發布。
+
+ANIM-W1續修候選交付：codex/anim-warrior-body-02，單次蓄勢停拍／連續下擊／雙兵480ms同拍落定及原畫盾邊、完整握劍手遮罩；法師／盜賊本體保持。170 Swift、137 Golden快照、4原生Simulator測試與108狀態檢查通過；正常速度靜音完整棋盤與同局面對照見artifacts/ios/anim-warrior-body-02/REPORT.md。iPad Wi-Fi build1005安裝與OS啟動接受；真機UI認證取消、iPhone unavailable，實機驗收未通過。Owner氣勢／表演Pending；三職Owner確認前VFX未開始；英雄語音HOLD／關閉，情緒／人耳聽感／同步仍待核准。

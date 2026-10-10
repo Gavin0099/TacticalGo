@@ -1,0 +1,22 @@
+{
+  "build": 1005,
+  "candidateBundle": "com.tacticalgo.prototype.herobody",
+  "displayName": "TacticalGo Heroes",
+  "iPad": {
+    "model": "iPad mini6",
+    "OS": "26.6.1",
+    "connection": "Wi-Fi",
+    "install": "succeeded",
+    "processLaunch": "OS accepted",
+    "UITest": "NOT PASS: runner authorization canceled",
+    "inAppAudit": "not retrieved; no108-check physical claim"
+  },
+  "iPhone": {
+    "model": "iPhone16Pro",
+    "OS": "27.0",
+    "install": "failed; device unavailable",
+    "currentCandidate": "not updated"
+  },
+  "videoSurface": "Simulator only",
+  "humanArtVoiceGate": "PENDING"
+}

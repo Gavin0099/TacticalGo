@@ -1,0 +1,518 @@
+{
+  "available" : [
+    312,
+    351
+  ],
+  "boardSize" : 9,
+  "checkpointMs" : -1,
+  "effectsEnabled" : false,
+  "fitted" : [
+    0,
+    0,
+    312,
+    351
+  ],
+  "heroRepresentation" : "B-v02 original head\/hand\/staff pixels + masked garment clean plate; articulated mage",
+  "mageCanvas" : 26.237250000000003,
+  "mageGroundSource" : 448,
+  "mageRevision" : "m3",
+  "markerStyle" : "thinRing",
+  "pack" : "anim-01-magic-hand-v01",
+  "pitch" : 28.518750000000001,
+  "reducedMotion" : true,
+  "renderer" : "native SwiftUI CozyBoard",
+  "units" : [
+    {
+      "center" : [
+        40.560000000000002,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        0,
+        0
+      ]
+    },
+    {
+      "center" : [
+        69.420000000000016,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        1,
+        0
+      ]
+    },
+    {
+      "center" : [
+        98.280000000000001,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        2,
+        0
+      ]
+    },
+    {
+      "center" : [
+        156,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        4,
+        0
+      ]
+    },
+    {
+      "center" : [
+        184.86000000000001,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        5,
+        0
+      ]
+    },
+    {
+      "center" : [
+        213.72000000000003,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        6,
+        0
+      ]
+    },
+    {
+      "center" : [
+        242.57999999999998,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        7,
+        0
+      ]
+    },
+    {
+      "center" : [
+        271.44,
+        63.18
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        8,
+        0
+      ]
+    },
+    {
+      "center" : [
+        126.55500000000001,
+        91.69874999999999
+      ],
+      "kind" : "commander",
+      "owner" : "black",
+      "point" : [
+        3,
+        1
+      ]
+    },
+    {
+      "center" : [
+        35.879999999999995,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        0,
+        2
+      ]
+    },
+    {
+      "center" : [
+        65.909999999999997,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        1,
+        2
+      ]
+    },
+    {
+      "center" : [
+        125.97,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        3,
+        2
+      ]
+    },
+    {
+      "center" : [
+        216.06,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        6,
+        2
+      ]
+    },
+    {
+      "center" : [
+        246.09000000000003,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        7,
+        2
+      ]
+    },
+    {
+      "center" : [
+        276.12,
+        120.21750000000002
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        8,
+        2
+      ]
+    },
+    {
+      "center" : [
+        125.38499999999999,
+        148.73625000000001
+      ],
+      "kind" : "hero",
+      "owner" : "white",
+      "point" : [
+        3,
+        3
+      ]
+    },
+    {
+      "center" : [
+        31.199999999999992,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        0,
+        4
+      ]
+    },
+    {
+      "center" : [
+        62.399999999999984,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        1,
+        4
+      ]
+    },
+    {
+      "center" : [
+        124.80000000000001,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        3,
+        4
+      ]
+    },
+    {
+      "center" : [
+        218.39999999999998,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        6,
+        4
+      ]
+    },
+    {
+      "center" : [
+        249.60000000000002,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        7,
+        4
+      ]
+    },
+    {
+      "center" : [
+        280.80000000000001,
+        177.255
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        8,
+        4
+      ]
+    },
+    {
+      "center" : [
+        124.215,
+        205.77374999999998
+      ],
+      "kind" : "commander",
+      "owner" : "white",
+      "point" : [
+        3,
+        5
+      ]
+    },
+    {
+      "center" : [
+        26.520000000000007,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        0,
+        6
+      ]
+    },
+    {
+      "center" : [
+        58.890000000000008,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        1,
+        6
+      ]
+    },
+    {
+      "center" : [
+        91.259999999999991,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        2,
+        6
+      ]
+    },
+    {
+      "center" : [
+        123.63,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        3,
+        6
+      ]
+    },
+    {
+      "center" : [
+        156,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        4,
+        6
+      ]
+    },
+    {
+      "center" : [
+        188.37,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        5,
+        6
+      ]
+    },
+    {
+      "center" : [
+        220.74000000000001,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        6,
+        6
+      ]
+    },
+    {
+      "center" : [
+        253.11000000000001,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        7,
+        6
+      ]
+    },
+    {
+      "center" : [
+        285.48000000000002,
+        234.29249999999999
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        8,
+        6
+      ]
+    },
+    {
+      "center" : [
+        21.840000000000003,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        0,
+        8
+      ]
+    },
+    {
+      "center" : [
+        55.379999999999995,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        1,
+        8
+      ]
+    },
+    {
+      "center" : [
+        88.920000000000016,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        2,
+        8
+      ]
+    },
+    {
+      "center" : [
+        122.46000000000001,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        3,
+        8
+      ]
+    },
+    {
+      "center" : [
+        156,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        4,
+        8
+      ]
+    },
+    {
+      "center" : [
+        189.54000000000002,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        5,
+        8
+      ]
+    },
+    {
+      "center" : [
+        223.07999999999998,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        6,
+        8
+      ]
+    },
+    {
+      "center" : [
+        256.62,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        7,
+        8
+      ]
+    },
+    {
+      "center" : [
+        290.15999999999997,
+        291.33000000000004
+      ],
+      "kind" : "soldier",
+      "owner" : "white",
+      "point" : [
+        8,
+        8
+      ]
+    }
+  ]
+}

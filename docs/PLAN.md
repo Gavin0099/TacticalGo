@@ -450,3 +450,7 @@ Owner 授權主要 Agent 協調 Visual 只讀檢視及 SwiftUI 整合，隔離 c
 風險與驗收：32pt 細節及 320/9 實際 28.52pt pitch 仍是極限；固定原畫法杖側向揮動不是全方向手繪出手，方向以受術者與短促效果輔助。工程通過不宣稱角色演技、所有密集棋形或三個 Owner Gate 通過。兩台真機已安裝 Mage M3 1.0.0(1001)，鎖定拒絕啟動，動態驗收待解鎖。本輪允許必要提交與 push，禁止 merge、TestFlight 或發布。交付 artifacts/ios/anim-mage-m3/REPORT.md；正式美術與產品 Pending。
 
 2026-10-10 W1/R1 候選交付：Skill已保存與安裝、角色本體／原生證據已完成。Owner盜賊動作回饋正面；戰士修正後動作較好、技能氣勢仍不足，保持待驗收。先停在本輪，不以工程通過開啟VFX；後續順序仍為VFX-01法師、VFX-02戰士／盜賊，最後SFX／語音／觸覺整合。詳見docs/ios/SLICES.md與artifacts/ios/anim-warrior-rogue-01/REPORT.md。
+
+2026-10-10 Owner進一步決定：先續修戰士獨立本體動作及盾牌遮罩接縫；三職動作全部經Owner確認後才可進VFX。英雄語音仍未通過產品聽感／情緒表演，保留HOLD。本輪不做特效、語音或規則變動。
+
+ANIM-W1續修候選交付：codex/anim-warrior-body-02，單次蓄勢停拍／連續下擊／雙兵480ms同拍落定及原畫盾邊、完整握劍手遮罩；法師／盜賊本體保持。170 Swift、137 Golden快照、4原生Simulator測試與108狀態檢查通過；正常速度靜音完整棋盤與同局面對照見artifacts/ios/anim-warrior-body-02/REPORT.md。iPad Wi-Fi build1005安裝與OS啟動接受；真機UI認證取消、iPhone unavailable，實機驗收未通過。Owner氣勢／表演Pending；三職Owner確認前VFX未開始；英雄語音HOLD／關閉，情緒／人耳聽感／同步仍待核准。

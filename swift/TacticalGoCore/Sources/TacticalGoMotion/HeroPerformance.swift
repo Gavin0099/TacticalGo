@@ -17,20 +17,20 @@ public struct HeroBodyPose: Equatable, Sendable {
         guard !reduced, (hero == .warrior || hero == .rogue), time >= 0, time < t.recoveryEnd else { return .rest }
         let d = direction < 0 ? -1.0 : 1.0
         let coil = hero == .warrior
-            ? Self(body:-5,bodyX:22,bodyY:12,head:3,held:-10,shield:-20,shieldX:12,shieldY:-72,cloth:-5)
+            ? Self(body:-7,bodyX:14,bodyY:24,head:5,held:-16,heldX:-6,heldY:-12,shield:-24,shieldX:-8,shieldY:-88,cloth:-6)
             : Self(body:-5*d,bodyX:-22*d,bodyY:34,head:3*d,held:-12,heldX:10,heldY:14,cloth:4)
         let release = hero == .warrior
-            ? Self(body:3,bodyX:-12,bodyY:6,head:-2,held:7,shield:-8,shieldX:18,shieldY:-22,cloth:3)
+            ? Self(body:2,bodyX:0,bodyY:12,head:-1,held:4,heldX:-3,heldY:-4,shield:-9,shieldX:-4,shieldY:-28,cloth:1)
             : Self(body:7*d,bodyX:22*d,bodyY:14,head:-3*d,held:10,heldX:-16,heldY:-8,cloth:-7)
         let landed = hero == .warrior
-            ? Self(body:2,bodyX:-8,bodyY:8,held:3,shield:3,shieldY:12,cloth:-5)
+            ? Self(body:-2,bodyX:4,bodyY:12,head:2,held:-3,heldY:-3,shield:-3,shieldY:8,cloth:-5)
             : Self(body:-3*d,bodyX:6*d,bodyY:20,head:1*d,held:3,cloth:6)
         // Warrior's lowest shield pose coincides with BOTH soldier landings.
         // A readable hold precedes the final quick downstroke; recoil follows
         // contact, rather than finishing while the soldiers are still falling.
-        let impact = Self(body:7,bodyX:-32,bodyY:22,head:-4,held:9,shield:10,shieldX:16,shieldY:38,cloth:6)
+        let impact = Self(body:10,bodyX:-18,bodyY:34,head:-6,held:11,heldX:-6,heldY:4,shield:12,shieldX:4,shieldY:34,cloth:7)
         let keys: [(Double,Self)] = hero == .warrior
-            ? [(0,.rest),(t.anticipationEnd,coil),(t.release-0.05,coil),(t.release,release),(t.arrival-0.09,release),(t.arrival,impact),(t.arrival+0.08,landed),(t.recoveryEnd-0.10,.rest),(t.recoveryEnd,.rest)]
+            ? [(0,.rest),(t.anticipationEnd,coil),(t.anticipationEnd+0.07,coil),(t.release,release),(t.arrival,impact),(t.arrival+0.07,landed),(t.recoveryEnd-0.10,.rest),(t.recoveryEnd,.rest)]
             : [(0,.rest),(t.anticipationEnd,coil),(t.release,release),(t.arrival,landed),(t.recoveryEnd-0.10,.rest),(t.recoveryEnd,.rest)]
         func sample(_ time: Double) -> Self {
             for i in 1..<keys.count where time <= keys[i].0 {
@@ -44,6 +44,14 @@ public struct HeroBodyPose: Equatable, Sendable {
     public static func summon(_ hero: HeroClass, at time: Double, reduced: Bool = false) -> Self {
         let end = hero == .warrior ? 0.64 : 0.58
         guard !reduced, (hero == .warrior || hero == .rogue), time >= 0, time < end else { return .rest }
+        if hero == .warrior {
+            let approach = Self(body:-4,head:2,held:-8,shield:-15,shieldY:-48,cloth:-4,lift:-12,opacity:0)
+            let contact = Self(body:5,bodyY:28,head:-3,held:7,heldY:4,shield:8,shieldY:24,cloth:5)
+            let brace = Self(body:1,bodyY:10,head:-1,held:2,shield:2,shieldY:6,cloth:-4)
+            if time < 0.21 { return blend(approach,contact,time/0.21) }
+            if time < 0.30 { return blend(contact,brace,(time-0.21)/0.09) }
+            return blend(brace,.rest,(time-0.30)/(end-0.30))
+        }
         let approach = Self(held:hero == .rogue ? -10 : -3,shield:-8,shieldY:-24,cloth:-3,lift:-18,opacity:0)
         let land = hero == .warrior ? Self(body:-3,bodyY:14,held:4,shield:7,shieldY:12,cloth:5) : Self(body:-5,bodyY:24,held:8,heldY:8,cloth:-6)
         if time < 0.26 { return blend(approach,land,time/0.26) }
@@ -55,7 +63,7 @@ public struct HeroBodyTiming: Equatable, Sendable {
     public let anticipationEnd: Double, release: Double, moveStart: Double, arrival: Double, captureStart: Double, recoveryEnd: Double
     public static func skill(_ hero: HeroClass) -> Self {
         hero == .warrior
-            ? Self(anticipationEnd:0.20,release:0.32,moveStart:0.34,arrival:0.58,captureStart:0.64,recoveryEnd:0.90)
+            ? Self(anticipationEnd:0.20,release:0.34,moveStart:0.35,arrival:0.48,captureStart:0.54,recoveryEnd:0.78)
             : Self(anticipationEnd:0.12,release:0.20,moveStart:0.22,arrival:0.42,captureStart:0.48,recoveryEnd:0.72)
     }
 }
