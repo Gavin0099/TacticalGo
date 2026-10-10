@@ -1,0 +1,10 @@
+{
+  "beforeRecordUptime": 62465.27617875,
+  "surface": "Actual SE 320pt Simulator / SwiftUI / XCTest gestures",
+  "audio": "silent; no postmix",
+  "effects": "body-first review; final directed FX sample separately identified",
+  "recordReadyUptime": 62466.32254870833,
+  "testExitCode": 0,
+  "recordStopUptime": 62492.818534625,
+  "recorderExitCode": 0
+}

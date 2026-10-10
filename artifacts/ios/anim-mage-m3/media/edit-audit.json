@@ -1,0 +1,1134 @@
+{
+  "source": "actual native-ui-silent.mov",
+  "claim": "Simulator recording; silent; no retiming or synthesized character frames; captions outside native viewport",
+  "sameFixtureDomainReceipts": "PASS for all 3 actions across M2 full / M3 full / M3 compact",
+  "clips": [
+    {
+      "receipt": "1CCBDD6F-C0EC-4164-9750-BCDC6E7B119B",
+      "revision": "m2",
+      "tempo": "full",
+      "effects": false,
+      "action": "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          1,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 3)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+      ],
+      "trimStart": 11.645001708337805,
+      "duration": 1.77,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-0.mp4"
+    },
+    {
+      "receipt": "1C1C4FF8-F920-4606-8B51-777BA36C3D40",
+      "revision": "m2",
+      "tempo": "full",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))"
+      ],
+      "trimStart": 21.62681495833822,
+      "duration": 2.0,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-1.mp4"
+    },
+    {
+      "receipt": "6F5C48C5-2764-45AC-82FD-254001E94EDB",
+      "revision": "m2",
+      "tempo": "full",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "trimStart": 32.443267583334816,
+      "duration": 2.0,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-2.mp4"
+    },
+    {
+      "receipt": "CB7E9441-ACE1-4051-8B60-CCE16D4782D9",
+      "revision": "m3",
+      "tempo": "full",
+      "effects": false,
+      "action": "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          1,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 3)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+      ],
+      "trimStart": 41.50739308333577,
+      "duration": 1.77,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-3.mp4"
+    },
+    {
+      "receipt": "ECD8BEA4-B113-402E-9245-EA16C4C59D66",
+      "revision": "m3",
+      "tempo": "full",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))"
+      ],
+      "trimStart": 51.24369279166858,
+      "duration": 2.0,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-4.mp4"
+    },
+    {
+      "receipt": "87AE291D-664D-482B-92E8-07AFB9FC8731",
+      "revision": "m3",
+      "tempo": "full",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "trimStart": 61.976960916665846,
+      "duration": 2.0,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-5.mp4"
+    },
+    {
+      "receipt": "3BB32732-F164-40B3-8CFA-2D121439DCC0",
+      "revision": "m3",
+      "tempo": "compact",
+      "effects": false,
+      "action": "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          1,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              0
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              4
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 3)",
+        "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+      ],
+      "trimStart": 71.0448719166714,
+      "duration": 1.65,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-6.mp4"
+    },
+    {
+      "receipt": "8F70A38B-0871-4F16-92AD-E3864F8E4CF0",
+      "revision": "m3",
+      "tempo": "compact",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))"
+      ],
+      "trimStart": 80.90940083333844,
+      "duration": 1.81,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-7.mp4"
+    },
+    {
+      "receipt": "C8D9FCC8-889B-4C8A-B903-2EE9F1D344AC",
+      "revision": "m3",
+      "tempo": "compact",
+      "effects": false,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "trimStart": 91.6267719166688,
+      "duration": 1.81,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-8.mp4"
+    },
+    {
+      "receipt": "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+      "revision": "m3",
+      "tempo": "full",
+      "effects": true,
+      "action": "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          4,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Mage",
+          "Warrior"
+        ],
+        "current": "one",
+        "mana": [
+          2,
+          4
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "hero",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "events": [
+        "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+        "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))",
+        "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+        "gameWon(TacticalGoCore.Player.one)"
+      ],
+      "trimStart": 99.84465091667225,
+      "duration": 2.0,
+      "speed": 1,
+      "file": "artifacts/ios/anim-mage-m3/media/native-9.mp4"
+    }
+  ],
+  "previewCancelUndo": {
+    "start": 46.393692791668585,
+    "duration": 9.4,
+    "speed": 1
+  }
+}

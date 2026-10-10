@@ -39,15 +39,29 @@ struct MageBodyView: View {
                     ZStack {
                         source(original).mask(MageMask.staff)
                         source(original).mask(MageMask.hand)
-                    }.rotationEffect(.degrees(pose.elbow),anchor: UnitPoint(x: 174/512.0,y: 436/512.0))
+                    }.offset(x: width * pose.heldX / 512)
+                        .rotationEffect(.degrees(pose.elbow),anchor: UnitPoint(x: 174/512.0,y: 436/512.0))
                 }.rotationEffect(.degrees(pose.shoulder),anchor: UnitPoint(x: 205/512.0,y: 370/512.0))
 
             }.rotationEffect(.degrees(pose.torso),anchor: UnitPoint(x: 263/512.0,y: 445/512.0))
-                .offset(y: width * pose.torsoY / 512)
+                .offset(x: width * pose.torsoX / 512, y: width * pose.torsoY / 512)
         }.frame(width: width,height: width)
             .offset(y: width * pose.lift / 512).opacity(pose.opacity)
             .allowsHitTesting(false)
         }
+    }
+    /// Visual prop point transformed through the same held/shoulder/body pivots.
+    /// Does not query or modify any rule or board coordinate.
+    static func tipOffset(pose: MageBodyPose, width: CGFloat) -> CGPoint {
+        func rotate(_ p: CGPoint,_ a: CGPoint,_ degrees: Double) -> CGPoint {
+            let t = degrees * .pi / 180, x = p.x-a.x, y = p.y-a.y
+            return CGPoint(x:a.x+x*cos(t)-y*sin(t),y:a.y+x*sin(t)+y*cos(t))
+        }
+        var p = CGPoint(x:64+pose.heldX,y:180)
+        p = rotate(p,CGPoint(x:174,y:436),pose.elbow)
+        p = rotate(p,CGPoint(x:205,y:370),pose.shoulder)
+        p = rotate(p,CGPoint(x:263,y:445),pose.torso)
+        return CGPoint(x:(p.x+pose.torsoX-256)*width/512,y:(p.y+pose.torsoY+pose.lift-448)*width/512)
     }
     private func source(_ image: UIImage) -> some View {
         Image(uiImage: image).resizable().interpolation(.high).frame(width: width,height: width)

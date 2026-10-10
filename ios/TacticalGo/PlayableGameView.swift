@@ -70,6 +70,8 @@ struct PlayableGameView: View {
     @State private var requestedWidth: CGFloat?
     @State private var cozyReduced = false
     @State private var mageEffectsEnabled = true
+    @State private var mageRevision: MageArtRevision = .m3
+    @State private var mageMarkers: HeroMarkerStyle = .thinRing
     @State private var gameFeelAuditStarted = false
     @State private var gameFeelAuditStatus = "準備測試"
     @State private var cozyAssets = try? CozyAssets.load()
@@ -177,6 +179,7 @@ struct PlayableGameView: View {
             }
             if args.contains("--mage-body-review") { store.audio.voiceEnabled = false; store.audio.musicEnabled = false }
             mageEffectsEnabled = !args.contains("--mage-no-effects")
+            if args.contains("--mage-m2-reference") { mageRevision = .m2; mageMarkers = .legacy }
             if args.contains("--mage-compact") { store.mageTempo = .compact }
             if args.contains("--onboard") { showOnboarding = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
@@ -597,7 +600,7 @@ struct PlayableGameView: View {
                 if let cozyAssets {
                     CozyBoard(presentation: data, assets: cozyAssets, playback: store.playback,
                               botPlayback: store.isBotActing ? store.playback : nil, botStartedAt: store.botMotionStartedAt,
-                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, effectsEnabled: mageEffectsEnabled, select: store.select)
+                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, effectsEnabled: mageEffectsEnabled, mageRevision: mageRevision, markerStyle: mageMarkers, select: store.select)
                 } else { Text("Cozy 素材校驗失敗；請重新安裝候選。").foregroundStyle(Cozy.danger) }
             }
                 .accessibilityElement(children: .ignore).accessibilityIdentifier("playArena")

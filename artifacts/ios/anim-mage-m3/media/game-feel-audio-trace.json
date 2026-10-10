@@ -1,0 +1,3502 @@
+[
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.297488708333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47923.298956500003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.300328625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47923.30180483334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.303095791671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.304411625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47923.305778000002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.307078166668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47923.308489583338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.309799666669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47923.311103874999,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47923.312417833338,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47925.898037708335,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47926.735448541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47926.738362916672,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47929.311191458335,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47930.168981166673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47930.17128083334,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47930.473977125002,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47930.730079625006,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47930.847480750002,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47931.146161208337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47932.102146041667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47932.105931083337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47932.652473958333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47932.654817125003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47932.656775250005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47932.65894091667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47932.661066500004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47932.663020083339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.261242416673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.263451875006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.265491458333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.267364416672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.269307916671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.271158583339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.305804458338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.308012000001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.309730749999,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.311379625004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47933.313017916669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47933.314563666667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.411795083339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.413793833337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.41541383334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.416967750003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.418600958335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.420129041668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.421694291668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.423181791666,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.424706125006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.426333083335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.427856083334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.429419250002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.430921083338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47935.432444333339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47935.433958708338,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47939.065297708337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47939.486042166667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47939.490011583337,
+    "volume" : 0
+  },
+  {
+    "key" : "summon",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47939.502449,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47941.268744458335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47941.271197500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.74136579167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.743472583337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.745832708337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.747741041669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.74976133334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.751398750006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.75318408334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.754941500003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.756796708338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.758767708336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.760509500004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.762372958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.764085875002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47943.765814166669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47943.767489291669,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47946.560635541668,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47947.402286458338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47947.405936625,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47949.952560333339,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47950.785898458336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47950.788595833335,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47951.008638833337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47951.232614458335,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47952.585591250005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47952.588178500002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.134911625006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.137580708339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.140083124999,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.142579333333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.145076958339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.147385208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.751302750003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.754095333337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.756449791668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.7590165,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.761566000001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.763800708337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.800171500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.802568916668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.804583458339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.806421000001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47953.808220833336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47953.809986416672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.926396875002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.928595625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.930477166672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.932310208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.934161166668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.935967958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.937770000004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.939535375001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.941322416671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.943143041666,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.944919625006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.94678991667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.948554625,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47955.950340541669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47955.95210179167,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47958.499296250004,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47959.335719125003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47959.340348041667,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47961.901823750006,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47962.735837458335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47962.738795375,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47962.957930708333,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47963.181965750002,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47963.267279833337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 47963.52386175,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47964.568912166673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47964.579255000004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.124314750006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.127350666669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.129993958333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.132555833334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.13515466667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.137465375003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.722495500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.72507104167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.727448833335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.729885958339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.732493833333,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.735445666673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.765278125,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.768018583338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.770328000006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.772396083339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 47965.774400458336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 47965.776381625001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.209049958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.215833416667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.217897500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.219874375005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.222004583338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.224121541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.226178416669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.228184083338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.230237916672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.232289208339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.234326500002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.236401458336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.238389583334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62323.240391791667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62323.242397166672,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62327.529845791672,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62327.953463083337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62327.957911666672,
+    "volume" : 0
+  },
+  {
+    "key" : "summon",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62327.976884458338,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62329.636153125,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62329.63901979167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.95504579167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.957570625003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.959726541667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.961875458335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.964055625001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.966138291667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.968250500002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.970319541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.972434875002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.974602416667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.976848875005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.97909108334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.981226958334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62331.983304875001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62331.985373541669,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62334.611499583334,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62335.553063666674,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62335.55749033334,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62337.150240875002,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62337.936281166672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62337.939662666671,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62338.249003791672,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62338.494330541667,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62339.65253320834,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62339.655600958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.197986666673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.201195166672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.204066833336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.206934750007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.209808375002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.212547541669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.828281500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.831703208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.83468879167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.837414208334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.840155375001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.842863208338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.86920279167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.872038750007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.875384208339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.877837625005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62340.880240416671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62340.882754583334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.947880791668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.950554125004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.952924625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.955225041667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.957544708341,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.959774083334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.962045375003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.964514583335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.966816791668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.96915533334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.971449791672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.973840750004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.976095666672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62342.978376166669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62342.980634791667,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62345.527186375002,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62346.386147083336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62346.39048095834,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62347.948337666669,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62348.752801166673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62348.756083916669,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62349.047076750001,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62349.313923291673,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62349.431084333337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62349.740448208337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62350.486031291672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62350.497809791668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.040956458339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.044412708339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.047744541669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.050841125005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.054923041673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.057952500007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.649332666668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.652973166667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.656468500005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.660000083335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.663711750007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.667085833338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.705554791668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.708493958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.711307083337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.71390366667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62351.716400041667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62351.718981291669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.764896541674,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.767758666669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.770288833337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.772735250001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.775238375005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.777651833334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.780110750005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.782511708334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.784965083338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.787419,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.789832416667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.792445541672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.79489733334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62353.797325833337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62353.799780666668,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62357.400793708337,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62357.815210958339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62357.820587833339,
+    "volume" : 0
+  },
+  {
+    "key" : "summon",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62357.837793833336,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62359.519027500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62359.522515916673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.795205500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.798120958338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.800690750002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.803188750004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.805734166672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.808183625006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.810626708335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.813089166673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.815562500007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.818020416671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.820470875005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.823007125007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.825414625004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62361.827830291673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62361.830264125005,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62364.366709125003,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62365.219358375005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62365.223653541667,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62366.766414333339,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62367.552899208335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62367.556576125004,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62367.854650291672,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62368.121422958335,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62369.252524208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62369.255866125,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62369.790675125005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62369.794090916672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62369.797099583338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62369.799964208338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62369.802950625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62369.805827041673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.399352458335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.403122041673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.406705000001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.410125416667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.413951583338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.417292666672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.44566058334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.448689500001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.45151420834,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.454063208337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62370.456597166667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62370.459075958337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.488846916669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.491772291673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.494360875004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.496800291672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.49928933334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.501779666673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.504246125005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.506682625004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.509140833339,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.511563041669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.513961625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.516429000003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.518791458337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62372.521176000002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62372.523552041668,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62375.084370083336,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62375.936009916673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62375.940622083341,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62377.48436179167,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62378.286134333335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62378.289829375004,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62378.59370141667,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62378.838871916669,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62378.967179666673,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62379.276382666671,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62380.00248066667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62380.01250054167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62380.540870250006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62380.544479916673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62380.547696666668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62380.550781666672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62380.553875291669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62380.556870583336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.156915791667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.160829,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.164402666669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.167974875003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.171485833336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.174855958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.206403958335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.209391208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.212094875002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.214611791671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62381.217276291667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62381.22018933334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.305360750004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.308430375,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.311316000007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.314004583335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.316790166667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.319378625005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.322032750002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.324637250007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.327262916668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.329824833338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.332317666667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.33484458334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.337324333334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62383.339785625001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62383.342266208339,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62386.95112245834,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62387.352977333336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62387.357910125007,
+    "volume" : 0
+  },
+  {
+    "key" : "summon",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62387.377476375004,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62389.052480416671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62389.055859500004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.193622250001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.196483833337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.199061041669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.201484958336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.204062875004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.206535166668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.209120791667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.211613750005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.214119666671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.216597541672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.218991583337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.221480541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.22384895834,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62391.226233041671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62391.228596291672,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62393.935109666672,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62394.785968333337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62394.79054466667,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62396.366919750006,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62397.219245583336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62397.222143666673,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62397.444243583341,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62397.657706333339,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62398.91918425,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62398.922173625004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62399.422489250006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62399.425398125,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62399.428165125006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62399.430880416672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62399.433708208337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62399.436308833334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.02039720834,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.023490458334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.026410750004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.029293125001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.032164041673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.035239500001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.065034041669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.068437583337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.071351791674,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.074088166672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62400.076680208338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62400.079423208335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.137065000003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.139966416667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.142517541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.144983708335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.147535916672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.149942000004,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.152357250001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.154756208336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.15717704167,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.159620541672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.162028875005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.164546541673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.166978416673,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62402.169402833337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62402.17180441667,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62404.736912333334,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62405.569326625002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62405.573822500002,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62407.147510250004,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62407.936258500005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62407.939647083338,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62408.160862083336,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62408.385093416669,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62408.470346291673,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62408.727085791674,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62409.652603625007,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62409.664981416674,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.190527750005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.193901083338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.196930500002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.199765833335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.202720666668,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.205729041671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.795748875003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.798845000005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.801741791671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.804694375001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.807820500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.810886083338,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.842843916667,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.845955666671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.848766333336,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.851314458334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62410.853884416669,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62410.857012625005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.775807000005,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.780448666672,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.783266083337,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.785821916674,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.788442125006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.790916500002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.793325708335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.795794375001,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.798246583334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.800687500006,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.803107250002,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.805584333335,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.807982625003,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62412.810380916671,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-voice",
+    "playing" : false,
+    "uptime" : 62412.812774791673,
+    "volume" : 0
+  },
+  {
+    "key" : "selection",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62415.36840795834,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62416.152872583334,
+    "volume" : 0
+  },
+  {
+    "key" : "all",
+    "kind" : "stop-sfx",
+    "playing" : false,
+    "uptime" : 62416.157555708334,
+    "volume" : 0
+  },
+  {
+    "key" : "mage",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62416.467153875004,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "place",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62416.723263708336,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "capture",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62416.84065704167,
+    "volume" : 0.64999997615814209
+  },
+  {
+    "key" : "victory",
+    "kind" : "sfx",
+    "playing" : true,
+    "uptime" : 62417.138986750004,
+    "volume" : 0.64999997615814209
+  }
+]

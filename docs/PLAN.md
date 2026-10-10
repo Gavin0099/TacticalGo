@@ -434,3 +434,11 @@ Owner 授權先做法師分層登場與原版一格魔法之手，以關閉語�
 驗證：Swift162／0，Swift新重播與既有經審查 C# transcript 比較38組99步137 snapshots一致；此次 C# exporter 未成功重跑（現有SDK8無法target9）。390原生3／0、SE320原生2／0、正常速度六收據錄影1／0、320減少動態錄影重跑1／0，以及實際畫面 GameStore／Audio audit97／97。錄影是 Simulator真實操作、靜音、未變速；checkpoint圖與近景造型頁另標示，不冒充真機或一般對局。
 
 iPad Wi-Fi 已安裝獨立 TacticalGo Mage Body 0.9.0（903）；鎖定拒絕前景啟動，真機動態仍待驗證；iPhone unavailable。無本輪 commit／push／merge／發布，主 checkout 保持不動。詳 docs/ios/ANIM_MAGE_BODY_01.md 及 artifacts/ios/anim-mage-body-01/REPORT.md。
+
+### 2026-10-10 ANIM-M3｜小尺寸法師與英雄底座標記
+
+Owner 授權主要 Agent 協調 Visual 只讀檢視及 SwiftUI 整合，隔離 codex/anim-mage-m3；M1/M2 先驗 SHA 保存於 4e15078，原畫、clean plate 及舊交付不覆寫。英雄字牌與大徽章移至薄底座外緣，黑為實心圓、白為空心菱形；法師 canvas 0.70→0.92 pitch、ground source 448，移除舊裁切。加大本體重心及手杖姿勢差異，維持共享 950／760ms 時鐘、成功收據及原版一格推動。Domain、Bot、AP/Mana、投影與命中不改。
+
+工程候選：164 Swift 測試；38 Golden、99 actions、137 snapshots 與既存 C# 基準一致（本輪未新跑 C#）；97 原生收據、取消、復原及中斷檢查。390 M2/M3 同盤面、同尺寸及正常速度、320/9 dense／Reduced Motion 錄影，第二 AP、Bot 及 iPad 旋轉與命中回歸通過；Release、簽名建置通過。最初第二 AP 測試誤以為顯示 0 AP，依 Core 自動換手契約修正為白方 2 AP 後新跑通過，保留初次失敗。
+
+風險與驗收：32pt 細節及 320/9 實際 28.52pt pitch 仍是極限；固定原畫法杖側向揮動不是全方向手繪出手，方向以受術者與短促效果輔助。工程通過不宣稱角色演技、所有密集棋形或三個 Owner Gate 通過。兩台真機已安裝 Mage M3 1.0.0(1001)，鎖定拒絕啟動，動態驗收待解鎖。本輪允許必要提交與 push，禁止 merge、TestFlight 或發布。交付 artifacts/ios/anim-mage-m3/REPORT.md；正式美術與產品 Pending。

@@ -55,13 +55,13 @@ final class MagePerformanceTests: XCTestCase {
         for tempo in MageTempo.allCases {
             let t = tempo.timing
             for boundary in [t.anticipationEnd,t.release,t.arrival,t.recoveryEnd-0.10,t.recoveryEnd] {
-                let a = MageBodyPose.cast(at:boundary-0.00001,timing:t),b = MageBodyPose.cast(at:boundary+0.00001,timing:t)
+                let a = MageBodyPose.cast(at:boundary-0.00001,timing:t,revision:.m2),b = MageBodyPose.cast(at:boundary+0.00001,timing:t,revision:.m2)
                 XCTAssertLessThan(abs(a.shoulder-b.shoulder),0.01)
                 XCTAssertLessThan(abs(a.cape-b.cape),0.01)
                 XCTAssertLessThan(abs(a.torsoY-b.torsoY),0.01)
             }
             for n in 0...100 {
-                let pose = MageBodyPose.cast(at:Double(n)*t.recoveryEnd/100,timing:t)
+                let pose = MageBodyPose.cast(at:Double(n)*t.recoveryEnd/100,timing:t,revision:.m2)
                 XCTAssertLessThanOrEqual(abs(pose.shoulder),24)
                 XCTAssertLessThanOrEqual(abs(pose.torso),2)
                 XCTAssertLessThanOrEqual(abs(pose.head),2)
@@ -94,4 +94,44 @@ final class MagePerformanceTests: XCTestCase {
         XCTAssertNotEqual(late.cape,0)
         XCTAssertEqual(MageBodyPose.summon(at:t.summonEnd,timing:t),.rest)
     }
+    func testM3WeightShiftIsVisibleAtActualCellScaleWithoutChangingClock() {
+        for tempo in MageTempo.allCases {
+            let timing = tempo.timing
+            let anticipation = MageBodyPose.cast(at:timing.anticipationEnd,timing:timing)
+            let release = MageBodyPose.cast(at:timing.release,timing:timing)
+            // Reviewed design bound: a 46.56pt board cell must have at least
+            // 5pt of body travel; no whole-token scale participates.
+            XCTAssertGreaterThan((anticipation.torsoX-release.torsoX)*0.92*46.56/512,5)
+            XCTAssertLessThanOrEqual(abs(anticipation.torsoX),45)
+            XCTAssertLessThanOrEqual(abs(release.torsoX),45)
+            XCTAssertLessThanOrEqual(abs(release.shoulder+release.elbow),25)
+            XCTAssertLessThan(release.heldX,0) // held pixels offset away from face
+            XCTAssertEqual(MageBodyPose.cast(at:timing.recoveryEnd,timing:timing),.rest)
+            XCTAssertEqual(tempo == .full ? 0.95 : 0.76,timing.recoveryEnd)
+            for boundary in [timing.anticipationEnd,timing.release,timing.arrival,timing.recoveryEnd] {
+                let a = MageBodyPose.cast(at:boundary-0.00001,timing:timing)
+                let b = MageBodyPose.cast(at:boundary+0.00001,timing:timing)
+                XCTAssertLessThan(abs(a.torsoX-b.torsoX),0.02)
+                XCTAssertLessThan(abs(a.heldX-b.heldX),0.02)
+                XCTAssertLessThan(abs(a.cape-b.cape),0.02)
+            }
+        }
+    }
+    func testM2ReferenceAndM3UseSameDomainOutcomeAndReducedBoundary() throws {
+        let before = try Anim01Fixture.state(capture:false)
+        let result = GameEngine.apply(before,Anim01Fixture.action)
+        let timing = MageTempo.full.timing
+        let m2 = MageBodyPose.cast(at:timing.release,timing:timing,revision:.m2)
+        let m3 = MageBodyPose.cast(at:timing.release,timing:timing,revision:.m3)
+        XCTAssertEqual(m2.torsoX,0)
+        XCTAssertNotEqual(m2,m3)
+        for revision in MageArtRevision.allCases {
+            XCTAssertEqual(MageBodyPose.cast(at:timing.release,timing:timing,reduced:true,revision:revision),.rest)
+            XCTAssertEqual(MageBodyPose.summon(at:timing.summonEnd,timing:timing,revision:revision),.rest)
+        }
+        XCTAssertEqual(result.state.apRemaining,1)
+        XCTAssertEqual(result.state.mana(of:.one),2)
+        XCTAssertEqual(result.state.board[Point(4,2)],Piece(.one,.soldier))
+    }
+
 }

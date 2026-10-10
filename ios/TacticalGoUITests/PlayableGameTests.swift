@@ -63,6 +63,53 @@ import XCTest
         pose.buttons["magePoseCast"].tap(); hold(1.2)
         shot(pose,"MAGE-closeup-no-fx-pose-gallery")
     }
+    func testMageM3SameBoardM2M3Recording() {
+        func hold(_ t: Double) {
+            let wait = XCTNSPredicateExpectation(predicate:NSPredicate { _,_ in false },object:nil)
+            _ = XCTWaiter.wait(for:[wait],timeout:t)
+        }
+        for mode in ["m2-full","m3-full","m3-compact"] {
+            var extra: [String] = []
+            if mode == "m2-full" { extra += ["--mage-m2-reference"] }
+            if mode == "m3-compact" { extra += ["--mage-compact"] }
+            let summon = app(["--summon-demo","--hero","mage","--mage-body-review","--mage-no-effects","--audio-trace"]+extra)
+            XCTAssertTrue(summon.staticTexts["2 AP"].waitForExistence(timeout:10))
+            tap(summon,3,4);cozyConfirm(summon);hold(1.2)
+            XCTAssertTrue(summon.staticTexts["1 AP"].exists);shot(summon,"M3-"+mode+"-summon")
+            summon.buttons["undoOrCancel"].tap();XCTAssertTrue(summon.staticTexts["2 AP"].exists);summon.terminate()
+            for capture in [false,true] {
+                let flags = capture ? [] : ["--cozy-no-capture"]
+                let game = app(["--cozy-demo","--cozy-390","--mage-body-review","--mage-no-effects","--audio-trace"]+extra+flags)
+                tap(game,4,3);game.buttons["push-Up"].tap()
+                XCTAssertTrue(game.staticTexts["2 AP"].exists);shot(game,"M3-"+mode+"-preview")
+                game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                tap(game,4,3);game.buttons["push-Up"].tap();cozyConfirm(game);hold(1.2)
+                XCTAssertTrue(game.staticTexts["1 AP"].exists)
+                if capture { XCTAssertTrue(game.staticTexts["黑方獲勝"].exists) }
+                shot(game,"M3-"+mode+"-push-\(capture)")
+                game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["2 AP"].exists)
+                XCUIDevice.shared.press(.home);game.activate();XCTAssertTrue(game.staticTexts["2 AP"].exists);game.terminate()
+            }
+        }
+        let fx = app(["--cozy-demo","--cozy-390","--mage-body-review","--audio-trace"])
+        tap(fx,4,3);fx.buttons["push-Up"].tap();cozyConfirm(fx);hold(1.2)
+        XCTAssertTrue(fx.staticTexts["黑方獲勝"].exists);shot(fx,"M3-directed-fx-after-success");fx.terminate()
+        let review = app(["--mage-pose-review"])
+        XCTAssertTrue(review.buttons["magePoseCast"].waitForExistence(timeout:10))
+        review.buttons["magePoseCast"].tap();hold(1.2);shot(review,"M3-closeup-supplement")
+    }
+    func testMageM3TwoAPRemainsPlayableAfterPresentation() {
+        let game = app(["--cozy-demo","--cozy-no-capture","--mage-body-review","--mage-no-effects"])
+        tap(game,4,3);game.buttons["push-Up"].tap();cozyConfirm(game)
+        XCTAssertTrue(game.staticTexts["1 AP"].waitForExistence(timeout:5))
+        let unlocked = XCTNSPredicateExpectation(predicate:NSPredicate(format:"enabled == true"),object:game.buttons["mode-soldier"])
+        XCTAssertEqual(XCTWaiter.wait(for:[unlocked],timeout:5),.completed)
+        game.buttons["mode-soldier"].tap();tap(game,0,0);cozyConfirm(game)
+        XCTAssertTrue(game.staticTexts["2 AP"].waitForExistence(timeout:5))
+        XCTAssertTrue(game.staticTexts["currentTurn"].label.contains("白方"),"Core ends the turn automatically after the second AP")
+        shot(game,"M3-second-ap-after-mage-recovery")
+        game.buttons["undoOrCancel"].tap();XCTAssertTrue(game.staticTexts["1 AP"].exists)
+    }
     private func cozyConfirm(_ app: XCUIApplication) {
         for _ in 0..<5 { if app.buttons["playConfirm"].isHittable { break }; app.swipeUp() }
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)

@@ -224,6 +224,8 @@ import TacticalGoMotion
         rows.append(["id": receipt.id.uuidString,"receiptUptime": receipt.startedUptime,"action": String(describing: receipt.action),
                      "before": snapshot(receipt.before),"after": snapshot(receipt.outcome.state),"voice": voice,"voiceEligibilityOnly": true,"reducedMotion": reduced,
                      "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
+                     "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : "m3",
+                     "effectsEnabled": !ProcessInfo.processInfo.arguments.contains("--mage-no-effects"),
                      "events": receipt.outcome.events.map { String(describing: $0) },"size": receipt.before.board.size])
         if rows.count > 64 { rows.removeFirst() }
         if let d = FileManager.default.urls(for: .documentDirectory,in: .userDomainMask).first {

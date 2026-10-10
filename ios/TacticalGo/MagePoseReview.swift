@@ -51,6 +51,22 @@ struct MagePoseReview: View {
         guard let original = assets.heroes[.mage],let docs = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first else { return }
         let directory = docs.appendingPathComponent("mage-pose-review")
         try? FileManager.default.createDirectory(at:directory,withIntermediateDirectories:true)
+        let m3 = docs.appendingPathComponent("mage-m3-review")
+        try? FileManager.default.createDirectory(at:m3,withIntermediateDirectories:true)
+        for pitch in [32.0,48.0,64.0] {
+            let sheet = ImageRenderer(content:MageM3SizeSheet(assets:assets,pitch:pitch).frame(width:390))
+            sheet.scale = 1
+            try? sheet.uiImage?.pngData()?.write(to:m3.appendingPathComponent("markers-poses-\(Int(pitch)).png"))
+            for revision in MageArtRevision.allCases { for owner in Player.allCases {
+                for (name,time) in [("rest",0.0),("anticipation",0.18),("release",0.28)] {
+                    let pose = MageBodyPose.cast(at:time,timing:MageTempo.full.timing,revision:revision)
+                    let token = CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:pose,markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
+                        .frame(width:pitch*1.7,height:pitch*2.0)
+                    let image = ImageRenderer(content:token);image.scale = 1
+                    try? image.uiImage?.pngData()?.write(to:m3.appendingPathComponent("\(revision.rawValue)-\(owner)-\(name)-\(Int(pitch)).png"))
+                }
+            }}
+        }
         for width in [32,48,64,128,512] {
             for (name,t) in [("rest",0.0),("anticipation",0.18),("release",0.28),("recover",0.75)] {
                 let renderer = ImageRenderer(content: MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing),width:CGFloat(width)).frame(width:CGFloat(width),height:CGFloat(width)))
@@ -58,6 +74,30 @@ struct MagePoseReview: View {
                 try? renderer.uiImage?.pngData()?.write(to:directory.appendingPathComponent("\(name)-\(width).png"))
             }
         }
+    }
+}
+
+/// Native 1px/pt samples; not enlarged character illustrations.
+private struct MageM3SizeSheet: View {
+    let assets: CozyAssets
+    let pitch: CGFloat
+    var body: some View {
+        VStack(spacing:8) {
+            Text("M2 / M3 · pitch \(Int(pitch)) pt · native 1px/pt").font(.caption.bold())
+            Text("原姿 / 蓄勢 / 出手 · 同原畫、同時刻；不是對局結算").font(.caption2)
+            ForEach(MageArtRevision.allCases,id:\.self) { revision in
+                ForEach(Player.allCases,id:\.self) { owner in
+                    HStack(spacing:6) {
+                        Text("\(revision.rawValue)\n\(owner == .one ? "黑" : "白")").font(.caption).frame(width:26)
+                        ForEach([0.0,0.18,0.28],id:\.self) { t in
+                            CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:revision),markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
+                                .frame(width:100,height:96)
+                        }
+                    }
+                }
+            }
+            Text("黑：實心圓；白：空心菱形。標記在底座前緣。\npitch<32略去職業徽章；此表不宣稱真人辨識通過。").font(.caption2)
+        }.padding(8).background(Cozy.card).foregroundStyle(Cozy.ink)
     }
 }
 

@@ -14,6 +14,8 @@ struct CozyBoard: View {
     let reducedMotion: Bool
     let checkpoint: Double?
     var effectsEnabled = true
+    var mageRevision: MageArtRevision = .m3
+    var markerStyle: HeroMarkerStyle = .thinRing
     let select: (Point) -> Void
     private var receipt: BoardPlayback? {
         guard let playback, playback.outcome.success, playback.outcome.state == presentation.state else { return nil }
@@ -65,7 +67,8 @@ struct CozyBoard: View {
             "available": [available.width, available.height], "fitted": [fit.x, fit.y, fit.width, fit.height],
             "pitch": fit.pitch, "boardSize": board.size, "units": units,
             "heroRepresentation": "B-v02 original head/hand/staff pixels + masked garment clean plate; articulated mage",
-            "effectsEnabled": effectsEnabled, "reducedMotion": reducedMotion, "checkpointMs": checkpoint.map { $0 * 1000 } ?? -1]
+            "effectsEnabled": effectsEnabled, "mageRevision":mageRevision.rawValue, "markerStyle":markerStyle == .legacy ? "legacy" : "thinRing",
+            "mageCanvas":fit.pitch * (mageRevision == .m2 ? 0.70 : 0.92), "mageGroundSource":mageRevision == .m2 ? 420 : 448, "reducedMotion": reducedMotion, "checkpointMs": checkpoint.map { $0 * 1000 } ?? -1]
         if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
            let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
             try? data.write(to: directory.appendingPathComponent("cozy-render-geometry.json"), options: .atomic)
@@ -101,7 +104,7 @@ struct CozyBoard: View {
                 ZStack {
                     if presentation.legal.contains(p) { Circle().fill(Color.white.opacity(0.40)).frame(width: pitch * 0.15) }
                     if !hideMovedSource, !(mageSummoning && p == summonPoint), !generic.hidden.contains(p), let piece = displayed[p] {
-                        token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing) : .rest).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
+                        token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing, revision: mageRevision) : .rest).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
                     }
                 }.position(point(p, size: size)).zIndex(Double(p.y) * 10 + 10)
             }
@@ -113,7 +116,7 @@ struct CozyBoard: View {
                     .zIndex(180 + Double(sprite.to.y))
             }
             if mageSummoning, let summonPoint, let piece = presentation.state.board[summonPoint] {
-                token(piece, pitch: pitch, magePose: MageBodyPose.summon(at: elapsed, timing: timing))
+                token(piece, pitch: pitch, magePose: MageBodyPose.summon(at: elapsed, timing: timing, revision: mageRevision))
                     .position(point(summonPoint,size: size)).zIndex(Double(summonPoint.y)*10+10)
             }
             if let receipt, case .summonHero = receipt.action, !reducedMotion, effectsEnabled {
@@ -163,8 +166,26 @@ struct CozyBoard: View {
                 let position = CGPoint(x: a.x + (b.x - a.x) * progress, y: a.y + (b.y - a.y) * progress)
                 let squash = elapsed >= timing.arrival && elapsed < timing.captureStart ? 0.94 + 0.06 * (elapsed - timing.arrival) / (timing.captureStart - timing.arrival) : 1
                 token(clip.piece, pitch: pitch, squash: squash).position(position).zIndex(Double(clip.from.y) * 10 + Double(clip.to.y - clip.from.y) * 10 * progress + 11)
-                if effectsEnabled, elapsed < timing.moveStart { effect("cast", progress: elapsed / timing.moveStart, pitch: pitch).position(point(clip.hero, size: size)).zIndex(190) }
-                else if effectsEnabled, elapsed < timing.arrival { effect("push", progress: (elapsed - timing.moveStart) / (timing.arrival - timing.moveStart), pitch: pitch).position(position).zIndex(190) }
+                if effectsEnabled, mageRevision == .m3, elapsed >= timing.release, elapsed < timing.arrival {
+                    let hero = point(clip.hero,size:size)
+                    let pose = MageBodyPose.cast(at:elapsed,timing:timing)
+                    let tip = MageBodyView.tipOffset(pose:pose,width:pitch * 0.92)
+                    let opacity = sin(.pi * min(1,max(0,(elapsed-timing.release)/(timing.arrival-timing.release))))
+                    Circle().fill(Cozy.card.opacity(opacity)).frame(width:3,height:3)
+                        .position(x:hero.x+tip.x,y:hero.y+tip.y).zIndex(190)
+                    // Short directional cue occupies the gap, not faces or source/target bodies.
+                    let dx = a.x-hero.x, dy = a.y-hero.y, distance = max(1,hypot(dx,dy))
+                    let unit = CGPoint(x:dx/distance,y:dy/distance)
+                    let start = CGPoint(x:hero.x+unit.x*pitch*0.50,y:hero.y+unit.y*pitch*0.50)
+                    let end = CGPoint(x:hero.x+unit.x*pitch*0.62,y:hero.y+unit.y*pitch*0.62)
+                    Path { p in
+                        p.move(to:start);p.addLine(to:end)
+                        p.move(to:CGPoint(x:end.x-unit.x*3-unit.y*2,y:end.y-unit.y*3+unit.x*2));p.addLine(to:end)
+                        p.addLine(to:CGPoint(x:end.x-unit.x*3+unit.y*2,y:end.y-unit.y*3-unit.x*2))
+                    }.stroke(Cozy.deepMage.opacity(opacity),style:StrokeStyle(lineWidth:1.3,lineCap:.round)).zIndex(190)
+                }
+                if effectsEnabled, mageRevision == .m2, elapsed < timing.moveStart { effect("cast", progress: elapsed / timing.moveStart, pitch: pitch).position(point(clip.hero, size: size)).zIndex(190) }
+                else if effectsEnabled, elapsed >= timing.moveStart, elapsed < timing.arrival { effect("push", progress: (elapsed - timing.moveStart) / (timing.arrival - timing.moveStart), pitch: pitch).position(position).zIndex(190) }
                 else if effectsEnabled, elapsed < timing.captureStart { effect("landing", progress: (elapsed - timing.arrival) / (timing.captureStart - timing.arrival), pitch: pitch).position(b).zIndex(190) }
                 if effectsEnabled, elapsed >= timing.captureStart {
                     ForEach(clip.captures, id: \.at) { captured in
@@ -219,7 +240,7 @@ struct CozyBoard: View {
         }
     }
     private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest) -> some View {
-        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroClass: presentation.state.heroClass(of: piece.owner))
+        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, markers: markerStyle, heroClass: presentation.state.heroClass(of: piece.owner))
     }
 }
 

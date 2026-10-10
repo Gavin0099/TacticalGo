@@ -1,0 +1,396 @@
+{
+  "checks" : [
+    {
+      "check" : "full-one-false-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "full-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "full-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "compact-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-preview-no-state-no-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-cancel-preview",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-confirm-once",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-successful-receipt",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-final-once-and-unlocked",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-shared-sfx",
+      "pass" : true
+    },
+    {
+      "check" : "compact-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.05-original",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.45-original",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "undo-0.75-original",
+      "pass" : true
+    },
+    {
+      "check" : "cancel-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "cancel-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "cancel-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "background-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "background-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "background-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "restart-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "restart-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "restart-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "leave-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "leave-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "leave-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "interruption-0.05-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "interruption-0.45-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "interruption-0.75-no-stale-work",
+      "pass" : true
+    },
+    {
+      "check" : "illegal-no-presentation-no-cost",
+      "pass" : true
+    },
+    {
+      "check" : "reduced-final-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "reduced-keeps-sfx-no-voice",
+      "pass" : true
+    },
+    {
+      "check" : "reduced-undo",
+      "pass" : true
+    }
+  ],
+  "deviceBoundary" : "Simulator checks do not prove physical-device or human acting acceptance",
+  "renderer" : "actual SwiftUI CozyBoard; ImageRenderer receipt checkpoints",
+  "status" : "PASS",
+  "voice" : "disabled"
+}

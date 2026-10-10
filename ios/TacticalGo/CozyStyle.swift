@@ -65,18 +65,25 @@ struct CozyButton: ButtonStyle {
     }
 }
 
+enum HeroMarkerStyle { case legacy, thinRing }
+
 struct CozyToken: View {
     let piece: Piece
     let assets: CozyAssets
     let pitch: CGFloat
     var squash = 1.0
     var magePose: MageBodyPose = .rest
+    var markers: HeroMarkerStyle = .thinRing
     let heroClass: HeroClass
     private var black: Bool { piece.owner == .one }
     private var diameter: CGFloat { pitch * (piece.kind == .commander ? 0.73 : piece.kind == .hero ? 0.74 : 0.62) }
     private var classColor: Color { heroClass == .mage ? Cozy.mage : heroClass == .warrior ? Cozy.sage : Cozy.coordinate }
     private var symbol: String { heroClass == .warrior ? "shield.fill" : heroClass == .mage ? "sparkle" : "bolt.fill" }
-    var body: some View {
+    @ViewBuilder var body: some View {
+        if markers == .thinRing && piece.kind == .hero { readableHero }
+        else { legacyToken }
+    }
+    private var legacyToken: some View {
         ZStack {
             Ellipse().fill(Cozy.ink.opacity(0.18)).frame(width: diameter * 1.05, height: diameter * 0.60).offset(y: pitch * 0.05)
             Ellipse().fill(black ? Cozy.coordinate : Cozy.muted).frame(width: diameter, height: diameter * 0.70).offset(y: pitch * 0.035)
@@ -109,6 +116,41 @@ struct CozyToken: View {
             }
         }.allowsHitTesting(false)
     }
+    private var readableHero: some View {
+        let canvas = pitch * (heroClass == .mage ? 0.92 : 0.70)
+        let ground = heroClass == .mage ? 448.0 : 420.0
+        return ZStack {
+            // All base layers are behind the character. The intersection is unchanged.
+            Ellipse().fill(Cozy.ink.opacity(0.17)).frame(width: pitch * 0.81,height: pitch * 0.37).offset(y: pitch * 0.06)
+            Ellipse().fill(black ? Cozy.color(0x263C50) : Cozy.color(0xF1E7D3))
+                .frame(width: pitch * 0.74,height: pitch * 0.36).offset(y: pitch * 0.03)
+            Ellipse().stroke(black ? Cozy.color(0x263C50) : Cozy.color(0xB59D66),lineWidth: max(1,pitch * 0.025))
+                .frame(width: pitch * 0.76,height: pitch * 0.38).offset(y: pitch * 0.03)
+            Ellipse().stroke(black ? Cozy.card : Cozy.ink,lineWidth: max(0.65,pitch * 0.012))
+                .frame(width: pitch * 0.70,height: pitch * 0.32).offset(y: pitch * 0.03)
+            if let image = assets.heroes[heroClass] {
+                Group {
+                    if heroClass == .mage { MageBodyView(original: image,plate:assets.mageBody.cleanPlate,pose:magePose,width:canvas) }
+                    else { Image(uiImage:image).resizable().frame(width:canvas,height:canvas) }
+                }
+                .offset(y:canvas * (0.5-ground/512))
+            }
+            // Solid disc vs hollow diamond is readable without faction color.
+            Group {
+                if black { Circle().fill(Cozy.card).overlay(Circle().fill(Cozy.coordinate).padding(0.7)) }
+                else { CozyFactionDiamond().fill(Cozy.ink).overlay(CozyFactionDiamond().fill(Cozy.card).padding(1)) }
+            }.frame(width:max(3.5,pitch * 0.10),height:max(3.5,pitch * 0.10))
+                .offset(x:-pitch * 0.20,y:pitch * 0.225)
+            if pitch >= 32 {
+                Group {
+                    if heroClass == .rogue { CozyDagger().fill(black ? Cozy.card : Cozy.coordinate) }
+                    else { Image(systemName:symbol).font(.system(size:max(4.5,pitch * 0.105),weight:.bold)).foregroundStyle(black ? Cozy.card : Cozy.coordinate) }
+                }.frame(width:pitch * 0.12,height:pitch * 0.12)
+                    .offset(x:pitch * 0.23,y:pitch * 0.215)
+            }
+        }.allowsHitTesting(false)
+    }
+
 }
 
 private struct CozyDagger: Shape {
@@ -118,6 +160,14 @@ private struct CozyDagger: Shape {
             p.addLine(to: CGPoint(x: r.width * 0.32, y: r.height * 0.58)); p.closeSubpath()
             p.addRect(CGRect(x: r.width * 0.16, y: r.height * 0.58, width: r.width * 0.68, height: r.height * 0.12))
             p.addRect(CGRect(x: r.width * 0.42, y: r.height * 0.69, width: r.width * 0.16, height: r.height * 0.31))
+        }
+    }
+}
+
+private struct CozyFactionDiamond: Shape {
+    func path(in r: CGRect) -> Path {
+        Path { p in
+            p.move(to:CGPoint(x:r.midX,y:r.minY));p.addLine(to:CGPoint(x:r.maxX,y:r.midY));p.addLine(to:CGPoint(x:r.midX,y:r.maxY));p.addLine(to:CGPoint(x:r.minX,y:r.midY));p.closeSubpath()
         }
     }
 }

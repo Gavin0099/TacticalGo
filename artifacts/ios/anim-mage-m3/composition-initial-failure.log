@@ -1,0 +1,9 @@
+[Parsed_tpad_0 @ 0xa4ac14000] Unable to parse "stop_duration" option value ".1" as duration
+[fc#0 @ 0xa4b020000] Error applying option 'stop_duration' to filter 'tpad': Invalid argument
+Error : Invalid argument
+Traceback (most recent call last):
+  File "/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/scripts/compose-mage-m3-native.py", line 28, in <module>
+    subprocess.run(['ffmpeg','-y','-v','error','-i',str(clips[1]),'-i',str(clips[4]),'-filter_complex','[0:v]tpad=stop_mode=clone:stop_duration=.1[a];[a][1:v]hstack=inputs=2[v]','-map','[v]','-an','-c:v','libx264','-crf','19','-pix_fmt','yuv420p',str(P/'mage-m2-m3-push-side-by-side.mp4')],check=True)
+  File "/Users/pc49-58/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['ffmpeg', '-y', '-v', 'error', '-i', '/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/media/native-1.mp4', '-i', '/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/media/native-4.mp4', '-filter_complex', '[0:v]tpad=stop_mode=clone:stop_duration=.1[a];[a][1:v]hstack=inputs=2[v]', '-map', '[v]', '-an', '-c:v', 'libx264', '-crf', '19', '-pix_fmt', 'yuv420p', '/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/media/mage-m2-m3-push-side-by-side.mp4']' returned non-zero exit status 234.

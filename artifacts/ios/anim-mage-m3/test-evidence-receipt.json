@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python3 scripts/validate-mage-m3-evidence.py",
+  "exit_code": 0,
+  "started_at": "2026-10-10T08:24:38Z",
+  "finished_at": "2026-10-10T08:24:38Z",
+  "runner": "mage-m3-evidence",
+  "linked_commit": "449e906cf77ef1b3a6f90a3edbc8cea06a39d929",
+  "output_artifacts": [
+    "artifacts/ios/anim-mage-m3/test-evidence-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

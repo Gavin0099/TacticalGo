@@ -1,0 +1,27 @@
+{
+  "baseline": "449e906",
+  "preservedM2": "4e15078",
+  "branch": "codex/anim-mage-m3",
+  "files": {
+    "docs/PLAN.md": "87e070dfe489a8929612aa9c15356b452a6fed31795cd39ade7e4e42a5d61101",
+    "ios/TacticalGo/CozyAudit.swift": "09f9c46d6992c6ff193948fb004529d1314caf7a64254f1963de361797e16889",
+    "ios/TacticalGo/CozyBoard.swift": "00836b543608308d950b26e99a1f09c063cc7026e43ac458338cb67ef5c39e93",
+    "ios/TacticalGo/CozyStyle.swift": "da964999b8a4bc6da66faa05612e37646bf3040cef8ab5412d8ecbd66d63028f",
+    "ios/TacticalGo/MageBodyView.swift": "1cfea3972a62bf285a8659714fe864df7ead8431592966ff559bf922a374069a",
+    "ios/TacticalGo/MagePoseReview.swift": "76ab582622262d6167a78d2e5041e8c789ec13fae0ea9d1430da43c68dc1bc50",
+    "ios/TacticalGo/PlayableGameView.swift": "c98feb3b50d74b2c71bfa99a7cf8d067904b6f2cde2c9e0acd9541de96da6576",
+    "ios/TacticalGoUITests/PlayableGameTests.swift": "4b30aa6fcc18680adc2c89b995620aba60dd7098b3657febd1eee5199432f77e",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift": "d26f9600b2538ef4d08c10cc25973313a9eca472ff34cfcc0b30f09944b879c9",
+    "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MagePerformanceTests.swift": "07786905c99f6824cbe8bcfbdede328178df0bfa8f016a87d0442d29da20db52",
+    "docs/ios/ANIM_M3.md": "8b3a6886b57c9f06aff5708af796516f133a8b254bf6795cf2508d8749e17a55",
+    "scripts/record-mage-m3-native.py": "8db2de0716f8a666daaef2a0151b0cc255ddf9e27e1188f62fc1977556d416d8",
+    "scripts/record-mage-m3-dense-native.py": "2e94f0c4c6db6bb96eef60296c3d3cf54f7b8a6810c5bb43bd11ceab0ff37288",
+    "scripts/compose-mage-m3-native.py": "0c29af6df1ce7bf9d897efe3db4c127dade793bc2c7f5290eba121cd2856f7d3",
+    "scripts/validate-mage-m3-evidence.py": "992dc9b999e80658f52a7caef42345d0ba19381571be614f0b2d46ad0abd868f",
+    "artifacts/ios/anim-mage-m3/REPORT.md": "82431f3958b86fa5119da19b241e7c0799be41aacd1c44244b81348fcaea4857"
+  },
+  "nativeRawLocalOnly": {
+    "media/native-ui-silent.mov": "a44c4d957119b8e6d5847e3b457eb57cc282b62830e9916b5e756cdbe7449152",
+    "media/dense/native-ui-silent.mov": "6e88b7f851814b9da914094627710d05b24e5003a21d2b193b82e68171a2b19e"
+  }
+}
