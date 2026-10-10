@@ -28,3 +28,7 @@
 - Hero Voice V3 product performance FAIL after Owner listening: rigid reading, lacks warrior firmness/mage playfulness. Preserve engineering delivery branch c5cde5d and wiring. New local review/brief only; no regenerated audio, code changes, paid service or push. Next actual two-line performance Gate before full recasting; formal BGM/art and physical V3 hearing Pending. <!-- memory_record_projection:active-task-summary:5c925fcf8460b524933975dcd26044d47334c209a8a02ff39adc0a15b868fe16 -->
 
 - VO-PERF-01 two-line dry pilot ready on local codex/hero-voice-performance-01; warriorA/B mageA2/B3, independent words4/4 and PCM4/4, seven generated takes with3 prior held experiments retained. Owner audition preference/acting acceptance Pending. No App/Domain/Bot or BGM change; no push/merge/release in this slice. Original VoiceV3 performance FAIL remains until replacement accepted. <!-- memory_record_projection:active-task-summary:1691a57f3dc78f21574036872386ce3d48bdb78d8358a1ce12aff550b6013847 -->
+
+- ANIM-M1/M2法師本體候選工程已交付，本地未提交；演技/美術與真機動態Pending。iPad903已裝但Locked，手機unavailable。VO新素材未整合、BGM HOLD；Domain/Bot不變。 <!-- memory_record_projection:active-task-summary:0017307175297158e5a53f22fa10f249a29b9b586d2d4a5c1c864d317070ec6d -->
+
+- ANIM-M1/M2法師本體候選工程交付，本地未提交；演技/美術/真機動態Pending。162項結果與97/97 audit、正常速度錄影有可追溯receipt；iPad903已裝但Locked，手機unavailable，Domain/Bot不變。 <!-- memory_record_projection:active-task-summary:95fc212d4527f41ad3c0c34b7935f15b480e745e04fec73341642f8bb584b9de -->
