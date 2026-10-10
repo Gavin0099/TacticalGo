@@ -32,3 +32,5 @@
 - ANIM-M1/M2法師本體候選工程已交付，本地未提交；演技/美術與真機動態Pending。iPad903已裝但Locked，手機unavailable。VO新素材未整合、BGM HOLD；Domain/Bot不變。 <!-- memory_record_projection:active-task-summary:0017307175297158e5a53f22fa10f249a29b9b586d2d4a5c1c864d317070ec6d -->
 
 - ANIM-M1/M2法師本體候選工程交付，本地未提交；演技/美術/真機動態Pending。162項結果與97/97 audit、正常速度錄影有可追溯receipt；iPad903已裝但Locked，手機unavailable，Domain/Bot不變。 <!-- memory_record_projection:active-task-summary:95fc212d4527f41ad3c0c34b7935f15b480e745e04fec73341642f8bb584b9de -->
+
+- ANIM-M3 isolated codex/anim-mage-m3 candidate: engineering evidence PASS; Owner visual/acting and physical dynamic gates Pending. Necessary commits/push authorized; merge/release prohibited. <!-- memory_record_projection:active-task-summary:00b75600385cb7804cbcb7d4d8d6d7b0d28767110fadfa83da7c47802f6eb947 -->
