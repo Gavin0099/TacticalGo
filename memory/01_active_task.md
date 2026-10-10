@@ -38,3 +38,7 @@
 - ANIM-W1／ANIM-R1 本體候選開發；完成後停下 Owner 動作驗收；VFX-01→VFX-02→聲音／觸覺／英文語音屬後續 <!-- memory_record_projection:active-task-summary:b4ffe21f5c781f8034d7f78fd253b8029ca005aaa2bcb60de5ae572c2f719c21 -->
 
 - ANIM-W1/R1及cutout-animation Skill工程交付；Rogue動作正面，Warrior改善但氣勢未過；停供Owner驗收，VFX-01/02未開。 <!-- memory_record_projection:active-task-summary:652b4c427dbf0faa155783a4faabe41ba3bfa6e8e31246f854a67bbbe3099329 -->
+
+- ANIM-W1戰士續修候選在codex/anim-warrior-body-02；Owner氣勢待看片，三職均明確確認前不VFX，英文英雄語音HOLD／關閉。170 Swift、137 Golden、4 Simulator、108狀態檢查；iPad Wi-Fi build1005安裝／OS接受啟動，UI認證取消、iPhone unavailable，實機操作未通過。 <!-- memory_record_projection:active-task-summary:e05970b4bed5c671db0c3c3c1285f7deda4e084dc8fd7d03b96ee2c5493c5bba -->
+
+- ANIM-W1 Body02 candidate: Owner acting confirmation pending; all3 bodies before VFX; English hero voice HOLD/off. Evidence artifacts/ios/anim-warrior-body-02/REPORT.md. <!-- memory_record_projection:active-task-summary:782a3c02a32ee7bfb0e4b48bc12822f523ca3deab847d0f4d6f7654e30791eb6 -->

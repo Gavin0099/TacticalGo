@@ -1,0 +1,8 @@
+{
+  "writer": "governance_tools.memory_record",
+  "evidenceCitationCorrection": "test-evidence-receipt.json",
+  "guard": "memory_workflow --check --repo . --run-guard",
+  "completionClaimAllowed": true,
+  "blockingItems": 0,
+  "warningBoundary": "Repo-local writer/guard surface not discovered;2 missing historical canonical records and6 provenance warnings, including the initial citation omitted this turn; a canonical evidence-citation correction is appended. No governance adoption claim."
+}

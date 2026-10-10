@@ -25,3 +25,25 @@
 - Validation boundary: Fresh Swift169tests/0failure；38fixtures/99actions/137snapshots與cached C#一致，C#未重跑；最新Simulator108/108 checks、2項receipt/secondAP、320/9dense UI及12收據錄製通過；實體iPhone1003實際2tests/0failure、108/108 checks；iPad安装啟動成功但UI runner認證取消，不宣稱動態PASS。Release與兩份Skill驗證通過。靜音Simulator錄影不作真機聲畫、人耳、真人表演通過證據；接縫、最小25px、裁切風險見REPORT。早期device0-test退出被拒絕，修harness後實際重跑tests。
 - Next action: 停在W1/R1工程候選，保留盜賊正面回饋及戰士改善／氣勢未過，供Owner觀看完整棋盤正常速度對照。VFX依既定獨立Slice後續安排，不自動開工，不merge/發布。
 - PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:e05970b4bed5c671db0c3c3c1285f7deda4e084dc8fd7d03b96ee2c5493c5bba -->
+### Canonical memory checkpoint — cli-20261010-175051
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `e05970b4bed5c671db0c3c3c1285f7deda4e084dc8fd7d03b96ee2c5493c5bba`
+- Commit binding: `06afb1cbad53de85b1421a7beef1570beaa711ac` (bound)
+- Record: Owner要求繼續修戰士並確認語音尚未通過。保留Mage/Rogue，本輪修完整盾邊、握劍手/護腕/护手遮罩、單次70ms蓄勢停拍和連續下擊，双兵480ms同拍落定與回震，登場加穩重落定。無Domain/Bot/AP/Mana/投影/角色身份/新語音/VFX變更。工程候選不等Owner表演核准。
+- Validation boundary: 170 Swift tests PASS; fresh Swift38 fixtures/99actions/137snapshots equal cached C#; C#not rerun, equivalence not rules correctness. 4 nonzero Simulator UI tests PASS,108 actual GameStore checks PASS.6 receipted silent normal-speed videos; unchanged originalSHA.ARM64 Release+signeddevicebuild PASS. iPad1005Wi-Fi install/OS launch success, UI runner auth canceled, in-app audit not retrieved; iPhone unavailable/install failed. Human acting/art/voice gates PENDING. Focused verifier PASS, no rules/Bot/projection diff.
+- Next action: 先看artifacts/ios/anim-warrior-body-02/REPORT.md與完整正常速度靜音原生Simulator影片、同局面舊新版對照；等待Owner戰士及三職本體確認才VFX。英文語音情緒、人耳聽感與實機同步仍HOLD，不重做語音。設備恢復後補實機操作；不merge/TestFlight/發布。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:782a3c02a32ee7bfb0e4b48bc12822f523ca3deab847d0f4d6f7654e30791eb6 -->
+### Canonical memory checkpoint — cli-20261010-175143
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `782a3c02a32ee7bfb0e4b48bc12822f523ca3deab847d0f4d6f7654e30791eb6`
+- Commit binding: `06afb1cbad53de85b1421a7beef1570beaa711ac` (bound)
+- Record: Evidence citation correction for Body02: previous canonical record omitted an artifacts path in test_evidence. This record binds the complete verification receipt; no new runtime, art, audio or acceptance decision.
+- Validation boundary: PASS: artifacts/ios/anim-warrior-body-02/test-evidence-receipt.json runs scripts/verify-warrior-body02-delivery.py; full counts, source hashes and physical/human limits in artifacts/ios/anim-warrior-body-02/delivery-verification.json and REPORT.md. This verifier is evidence consistency, not a fresh execution of all tests or an acting judgment.
+- Next action: Owner reviews silent normal-speed warrior clips; wait for explicit all-three body approval before VFX. Voice remains HOLD. Physical input remains unverified.
+- PLAN reconciliation: `not_applicable`
