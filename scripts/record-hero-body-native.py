@@ -23,7 +23,7 @@ def uptime():
 MEDIA.mkdir(parents=True,exist_ok=True)
 raw = MEDIA / "native-ui-silent.mov"
 assert not raw.exists(), "Keep failed and prior captures; select a new directory for a retry"
-clock = {"beforeRecordUptime":uptime(),"surface":"Actual iPhone 390pt Simulator / SwiftUI / XCTest gestures", "audio":"silent; no postmix", "effects":"off; voice off; no postmix"}
+clock = {"beforeRecordUptime":uptime(),"surface":"Actual iPhone 390pt Simulator / SwiftUI / XCTest gestures", "audio":"silent; no postmix", "effects":os.environ.get("HERO_BODY_EFFECTS","off; voice off; no postmix")}
 recorder = subprocess.Popen(["xcrun","simctl","io",UDID,"recordVideo","--codec=h264",str(raw)],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 lines = []
 while True:

@@ -1,0 +1,126 @@
+{
+  "engineeringStatus": "PASS",
+  "OwnerVisualStatus": "PENDING after weak first candidate rejected",
+  "package": {
+    "executed": 177,
+    "failures": 0,
+    "log": "package-strong-final.log",
+    "sha256": "12c6e98c6ad2e33c349120eb4c4638f187b1cd4784761b90f44b46db54977456"
+  },
+  "nativeReceipt": {
+    "executed": 1,
+    "failures": 0,
+    "log": "native-strong-03-audit.log",
+    "sha256": "bd6d232685c8a40405829c3b040d7ac694f01b97c0fb364babef640200404280"
+  },
+  "nativeSmall": {
+    "executed": 1,
+    "failures": 0,
+    "log": "native-strong-final-se.log",
+    "sha256": "41c33ccc18327011c2a2cbe2cbeccbb3274e898dde0b0a4d50916712a2c1bd4b"
+  },
+  "nativeRecording": {
+    "executed": 1,
+    "failures": 0,
+    "log": "media-strong-final/native-record-test.log",
+    "sha256": "443d58e12ccd483a3a4515489ca9f107b831d0413cf7263583957891383afa28"
+  },
+  "nativeBot": {
+    "executed": 1,
+    "failures": 0,
+    "log": "native-strong-final-bot.log",
+    "sha256": "45417b9fddc4de608f81b30c75a34c8fbe6bf07162e5d4d0705f2ccd04cbc323"
+  },
+  "physicalIPhone": {
+    "executed": 2,
+    "failures": 0,
+    "log": "native-strong-iphone.log",
+    "sha256": "d1c91bca21aaf1d92c9906cb1721481412e1ca675d4494d045940c0c662cd858"
+  },
+  "stateChecks": 156,
+  "nativeCheckpoints": 57,
+  "golden": {
+    "snapshots": 137,
+    "fixtures": 38,
+    "Swift": "fresh",
+    "CSharp": "cached, not rerun; equivalence does not establish rule correctness"
+  },
+  "clips": 18,
+  "audio": "silent; no reconstructed sound; English voice off",
+  "physical": {
+    "build": "1007",
+    "bundle": "com.tacticalgo.prototype.herobody",
+    "display": "TacticalGo Heroes",
+    "voice": "disabled in review launch; no voice acceptance",
+    "music": "disabled in review launch; music HOLD",
+    "SFX": "existing sounds enabled; no hearing/sync acceptance",
+    "devices": {
+      "iphone": {
+        "install": "PASS",
+        "nativeInput": "PASS:2 executed tests; native push/capture/undo + 3 classes x normal/reduced 320/9 background and second AP"
+      },
+      "ipad": {
+        "install": "PASS",
+        "nativeInput": "NOT RUN for this revision; prior UI authorization canceled",
+        "freshAudit": "NOT AVAILABLE: initial launch failed remote XPC; copied report lacks revision/runID, cached old FAIL not current evidence",
+        "historicalAudit": "1006 old rogue-leave-no-stale failed; no new reproduction/root-cause claim",
+        "latestRetest": {
+          "request": "Owner: \u518d\u6e2c\u4e00\u6b21",
+          "log": "ipad-retest-launch.log",
+          "tunnel": "PASS: acquired tunnel and developer image services",
+          "launch": "BLOCKED: FBSOpenApplicationErrorDomain7 Locked; CoreDevice10002",
+          "newNativeTests": 0,
+          "freshAudit": "NOT RUN; no new report claimed",
+          "required": "Unlock and keep screen on; question pending"
+        }
+      }
+    }
+  },
+  "protected": [
+    "swift/TacticalGoCore/Sources/TacticalGoCore",
+    "swift/TacticalGoCore/Sources/TacticalGoBot",
+    "ios/TacticalGo/BoardProjection.swift",
+    "ios/TacticalGo/GameStore.swift"
+  ],
+  "limits": [
+    "No Domain/Bot/projection/identity changes",
+    "No second skill, music integration or new voice",
+    "No merge/TestFlight/release",
+    "No FPS or human performance claim"
+  ],
+  "auditRunID": "E92C7C46-5B65-40F2-A399-DD0F9C682E71",
+  "identityPins": [
+    {
+      "path": "ios/TacticalGo/Cozy/B-warrior-v02.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-rogue-v02.png",
+      "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/warrior-clean-plate.png",
+      "sha256": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/rogue-clean-plate.png",
+      "sha256": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-mage-v02.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "path": "ios/TacticalGo/MageBodyView.swift",
+      "sha256": "1cfea3972a62bf285a8659714fe864df7ead8431592966ff559bf922a374069a"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBodyView.swift",
+      "sha256": "19d05c5972a7375c4bfa43a2fc2f0fca0dbd7ce4c569b121d72cb42c833dee52"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroPerformance.swift",
+      "sha256": "136f135db82c0e2553555cd182cd1061751f58f90766db36b7d0a1831aacd118"
+    }
+  ]
+}

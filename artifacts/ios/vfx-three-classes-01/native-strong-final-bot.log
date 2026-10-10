@@ -1,0 +1,102 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=97B346CB-21D7-41DB-AE79-4B667C3B1566" "-only-testing:TacticalGoUITests/PlayableGameTests/testMagePushAndCaptureArePresentedFromRealBotEvents" -resultBundlePath artifacts/ios/vfx-three-classes-01/native-strong-final-bot.xcresult
+
+2026-10-10 18:34:04.634 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/vfx-three-classes-01/native-strong-final-bot.xcresult
+
+2026-10-10 18:34:04.667 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+{ platform:iOS Simulator, arch:x86_64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+2026-10-10 18:34:04.867 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 18:34:05.185 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 18:34:05.294 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 18:34:06.222592+0800 TacticalGoUITests-Runner[32279:1567049] [Default] Running tests...
+2026-10-10 18:34:06.331 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Test Suite 'Selected tests' started at 2026-10-10 18:34:06.665.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 18:34:06.666.
+Test Suite 'PlayableGameTests' started at 2026-10-10 18:34:06.666.
+Test Case '-[TacticalGoUITests.PlayableGameTests testMagePushAndCaptureArePresentedFromRealBotEvents]' started.
+    t =     0.00s Start Test at 2026-10-10 18:34:06.667
+    t =     0.03s Set Up
+    t =     0.04s Open com.tacticalgo.prototype
+    t =     0.04s     Launch com.tacticalgo.prototype
+2026-10-10 18:34:06.920 xcodebuild[32243:1566571] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 18:34:06.920 xcodebuild[32243:1566571] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-10-10 18:34:07.034 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =     0.66s         Setting up automation session
+    t =     1.10s         Wait for com.tacticalgo.prototype to idle
+    t =     3.70s Checking `Expect predicate `value == "1/2 準備"` for object "playMessage" StaticText`
+    t =     3.70s     Find the "playMessage" StaticText
+    t =     3.84s     Capturing element debug description
+    t =     3.88s         Requesting snapshot of accessibility hierarchy for app with pid 32291
+    t =     3.94s         Find: Descendants matching type StaticText
+    t =     3.94s         Find: Elements matching predicate '"playMessage" IN identifiers'
+    t =     3.94s         Requesting snapshot of accessibility hierarchy for app with pid 32291
+    t =     4.00s         Find: Descendants matching type StaticText
+    t =     4.00s         Requesting snapshot of accessibility hierarchy for app with pid 32291
+    t =     4.70s Checking `Expect predicate `value == "1/2 準備"` for object "playMessage" StaticText`
+    t =     4.70s     Find the "playMessage" StaticText
+    t =     4.75s Find the "playMessage" StaticText
+    t =     4.83s Added attachment named 'BOT-01-mage-push-target-and-arrow'
+    t =     4.83s Tap "botReviewAdvance" Button
+    t =     4.83s     Wait for com.tacticalgo.prototype to idle
+    t =     4.83s     Find the "botReviewAdvance" Button
+    t =     4.87s     Check for interrupting elements affecting "botReviewAdvance" Button
+    t =     4.89s     Synthesize event
+    t =     5.17s     Wait for com.tacticalgo.prototype to idle
+    t =     6.23s Checking `Expect predicate `value == "1/2 落定"` for object "playMessage" StaticText`
+    t =     6.23s     Find the "playMessage" StaticText
+    t =     6.29s Checking existence of `"1 AP" StaticText`
+    t =     6.36s Added attachment named 'BOT-01-mage-push-landed'
+    t =     6.36s Tap "botReviewAdvance" Button
+    t =     6.36s     Wait for com.tacticalgo.prototype to idle
+    t =     6.36s     Find the "botReviewAdvance" Button
+    t =     6.40s     Check for interrupting elements affecting "botReviewAdvance" Button
+    t =     6.43s     Synthesize event
+    t =     6.72s     Wait for com.tacticalgo.prototype to idle
+    t =     7.77s Checking `Expect predicate `value == "2/2 準備"` for object "playMessage" StaticText`
+    t =     7.77s     Find the "playMessage" StaticText
+    t =     7.83s Find the "playMessage" StaticText
+    t =     7.86s Tap "botReviewAdvance" Button
+    t =     7.86s     Wait for com.tacticalgo.prototype to idle
+    t =     7.87s     Find the "botReviewAdvance" Button
+    t =     7.90s     Check for interrupting elements affecting "botReviewAdvance" Button
+    t =     7.92s     Synthesize event
+    t =     8.20s     Wait for com.tacticalgo.prototype to idle
+    t =     9.27s Checking `Expect predicate `value == "2/2 落定"` for object "playMessage" StaticText`
+    t =     9.27s     Find the "playMessage" StaticText
+    t =     9.32s Checking existence of `"白方獲勝" StaticText`
+    t =     9.36s Tap "botReviewAdvance" Button
+    t =     9.36s     Wait for com.tacticalgo.prototype to idle
+    t =     9.36s     Find the "botReviewAdvance" Button
+    t =     9.39s     Check for interrupting elements affecting "botReviewAdvance" Button
+    t =     9.42s     Synthesize event
+    t =     9.71s     Wait for com.tacticalgo.prototype to idle
+    t =     9.72s Waiting 5.0s for "botStatus" Any to exist
+2026-10-10 18:34:17.023 xcodebuild[32243:1566571] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =    10.77s     Checking `Expect predicate `existsNoRetry == 1` for object "botStatus" Any`
+    t =    10.77s         Checking existence of `"botStatus" Any`
+    t =    11.87s Checking `Expect predicate `value == "已完成1電腦回合"` for object "botStatus" Any`
+    t =    11.87s     Find the "botStatus" Any
+    t =    11.93s Checking existence of `"白方獲勝" StaticText`
+    t =    12.00s Added attachment named 'BOT-01-mage-push-place-capture-victory'
+    t =    12.00s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMagePushAndCaptureArePresentedFromRealBotEvents]' passed (12.221 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 18:34:18.889.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.221 (12.223) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 18:34:18.890.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.221 (12.224) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 18:34:18.891.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.221 (12.225) seconds
+2026-10-10 18:34:19.223 xcodebuild[32243:1566571] [MT] IDETestOperationsObserverDebug: 14.341 elapsed -- Testing started completed.
+2026-10-10 18:34:19.223 xcodebuild[32243:1566571] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 18:34:19.223 xcodebuild[32243:1566571] [MT] IDETestOperationsObserverDebug: 14.341 sec, +14.341 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/vfx-three-classes-01/native-strong-final-bot.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

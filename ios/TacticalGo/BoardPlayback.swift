@@ -14,6 +14,7 @@ struct BoardPlayback: Sendable {
     let mageTempo: MageTempo
     let heroPerformance: HeroPerformance?
     var magicHand: Anim01MagicHand? { Anim01MagicHand.make(before: before, action: action, outcome: outcome, tempo: mageTempo) }
+    var skillVFX: SkillVFX? { SkillVFX.make(before: before, action: action, outcome: outcome, tempo: mageTempo) }
     var mageSummon: Point? {
         guard outcome.success, case .summonHero(let point) = action, before.heroClass(of: before.current) == .mage else { return nil }
         return point

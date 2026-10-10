@@ -1,0 +1,3 @@
+PASS: 177 Swift tests; 137 equivalence snapshots; 4 nonzero native tests,156 checks;18 encoded-frame-aligned clips. Human VFX Gate not inferred.
+[test_evidence_receipt] receipt=artifacts/ios/vfx-three-classes-01/evidence-receipt.json exit_code=0
+  test_evidence: PASS: artifacts/ios/vfx-three-classes-01/evidence-receipt.json -> exit_code=0

@@ -1,4 +1,14 @@
+> 2026-10-10 Owner 最新回饋：三職細線／光圈 VFX「有點弱」，視覺不通過。依據 Vortex 有限多段粒子及 Pow 分層研究，製作更清楚的蓄能／方向傳遞／局部撞擊強化候選；不增加音樂、語音、規則或第二技能。唯一法師演出時間表調整，但總長仍950/760ms。研究及驗證：artifacts/ios/vfx-three-classes-01/research/DECISION.md；Native/Owner Gate 分開回報。
+
 # Swift／iOS 開發切片
+
+## 2026-10-10 — 三職 VFX 開工授權（取代先等全部本體核准的啟動限制）
+
+Owner 明確要求「開始做三個職業的特效」：在既有 Cozy-02、B-v02 與已完成本體上依序執行 VFX-W1 築壘、VFX-M1 原版一格魔法之手、VFX-R1 換位。只接成功 before/action/outcome 收據，預覽輕量、捕獲依正式 payload、共用既有演出時鐘；取消／復原／重開／背景／Bot／Reduced Motion 回歸。三職完成後交正常速度完整棋盤、7×7／9×9 稀疏密集、黑白及條件提子原生影片供 Owner 看，不自動延伸第二技能。
+
+此授權只開啟特效工作，不代表戰士／三職本體、整體美術或英雄語音已正式驗收。英文英雄語音維持 HOLD／關閉；不修改 Domain、Bot、AP/Mana、技能、人物原畫或投影，不新增配音。隔離分支 codex/vfx-three-classes-01 可必要 commit/push，不 merge、TestFlight 或發布。工程與真人觀感、模擬器與真機分別報告；完整候選證據見 artifacts/ios/vfx-three-classes-01/REPORT.md。
+
+以下日期相同的舊「本輪不開 VFX」條目為歷史決策，不覆蓋這次 Owner 新授權。
 
 ## 2026-10-10 — 原畫角色動畫與後續 VFX 決策
 

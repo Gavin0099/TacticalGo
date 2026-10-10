@@ -1,0 +1,11 @@
+{
+  "repo": "twostraws/Vortex",
+  "sha": "c9efc55beaf0837a8806f06615085365a3257b6d",
+  "files": [
+    "LICENSE",
+    "Sandbox/Sandbox/PreviewViews/FireworksView.swift",
+    "Sandbox/Sandbox/PreviewViews/MagicView.swift",
+    "Sources/Vortex/Presets/Fireworks.swift",
+    "Sources/Vortex/Presets/Magic.swift"
+  ]
+}

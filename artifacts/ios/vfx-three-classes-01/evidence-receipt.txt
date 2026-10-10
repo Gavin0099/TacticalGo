@@ -1,0 +1,1 @@
+PASS: 177 Swift tests; 137 equivalence snapshots; 4 nonzero native tests,156 checks;18 encoded-frame-aligned clips. Human VFX Gate not inferred.

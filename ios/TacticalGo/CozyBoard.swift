@@ -98,6 +98,10 @@ struct CozyBoard: View {
             Image(uiImage: assets.shadow).resizable().frame(width: size.width, height: size.height)
             Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height)
             ArenaGrid(boardSize: presentation.state.board.size).stroke(Color.ink.opacity(0.30), lineWidth: 1)
+            if effectsEnabled, let receipt, let fx = receipt.skillVFX {
+                SkillVFXLayer(receipt:receipt,plan:fx,elapsed:elapsed,pitch:pitch,size:size,reduced:reducedMotion,foreground:false,center:{point($0,size:size)})
+                    .id(receipt.id).zIndex(3)
+            }
             ForEach(presentation.state.board.points, id: \.self) { p in
                 let hideMovedSource = showingAnimation && p == clip?.from
                 let captured = clip?.captures.first { $0.at == p }
@@ -145,12 +149,12 @@ struct CozyBoard: View {
                     let cue = plan.cues[i]
                     let t = min(1, max(0, (elapsed - cue.start) / cue.duration))
                     if elapsed >= cue.start, elapsed < cue.start + cue.duration {
-                        if case .bastion = cue.kind, let hero = cue.points.first {
+                        if receipt.skillVFX == nil, case .bastion = cue.kind, let hero = cue.points.first {
                             Image(systemName: "shield.fill").font(.system(size: pitch * 0.33, weight: .bold))
                                 .foregroundStyle(Cozy.gold.opacity(1 - t)).offset(y: -pitch * 0.14 * t)
                                 .position(point(hero, size: size)).zIndex(190)
                         }
-                        if case .swap = cue.kind {
+                        if receipt.skillVFX == nil, case .swap = cue.kind {
                             ForEach(cue.points, id: \.self) { p in
                                 Circle().stroke(Cozy.deepMage.opacity(1-t), style: StrokeStyle(lineWidth: 2,dash: [3,3]))
                                     .frame(width: pitch * 0.76, height: pitch * 0.76).position(point(p,size: size)).zIndex(185)
@@ -170,36 +174,10 @@ struct CozyBoard: View {
                 let position = CGPoint(x: a.x + (b.x - a.x) * progress, y: a.y + (b.y - a.y) * progress)
                 let squash = elapsed >= timing.arrival && elapsed < timing.captureStart ? 0.94 + 0.06 * (elapsed - timing.arrival) / (timing.captureStart - timing.arrival) : 1
                 token(clip.piece, pitch: pitch, squash: squash).position(position).zIndex(Double(clip.from.y) * 10 + Double(clip.to.y - clip.from.y) * 10 * progress + 11)
-                if effectsEnabled, mageRevision == .m3, elapsed >= timing.release, elapsed < timing.arrival {
-                    let hero = point(clip.hero,size:size)
-                    let pose = MageBodyPose.cast(at:elapsed,timing:timing)
-                    let tip = MageBodyView.tipOffset(pose:pose,width:pitch * 0.92)
-                    let opacity = sin(.pi * min(1,max(0,(elapsed-timing.release)/(timing.arrival-timing.release))))
-                    Circle().fill(Cozy.card.opacity(opacity)).frame(width:3,height:3)
-                        .position(x:hero.x+tip.x,y:hero.y+tip.y).zIndex(190)
-                    // Short directional cue occupies the gap, not faces or source/target bodies.
-                    let dx = a.x-hero.x, dy = a.y-hero.y, distance = max(1,hypot(dx,dy))
-                    let unit = CGPoint(x:dx/distance,y:dy/distance)
-                    let start = CGPoint(x:hero.x+unit.x*pitch*0.50,y:hero.y+unit.y*pitch*0.50)
-                    let end = CGPoint(x:hero.x+unit.x*pitch*0.62,y:hero.y+unit.y*pitch*0.62)
-                    Path { p in
-                        p.move(to:start);p.addLine(to:end)
-                        p.move(to:CGPoint(x:end.x-unit.x*3-unit.y*2,y:end.y-unit.y*3+unit.x*2));p.addLine(to:end)
-                        p.addLine(to:CGPoint(x:end.x-unit.x*3+unit.y*2,y:end.y-unit.y*3-unit.x*2))
-                    }.stroke(Cozy.deepMage.opacity(opacity),style:StrokeStyle(lineWidth:1.3,lineCap:.round)).zIndex(190)
-                }
-                if effectsEnabled, mageRevision == .m2, elapsed < timing.moveStart { effect("cast", progress: elapsed / timing.moveStart, pitch: pitch).position(point(clip.hero, size: size)).zIndex(190) }
-                else if effectsEnabled, elapsed >= timing.moveStart, elapsed < timing.arrival { effect("push", progress: (elapsed - timing.moveStart) / (timing.arrival - timing.moveStart), pitch: pitch).position(position).zIndex(190) }
-                else if effectsEnabled, elapsed < timing.captureStart { effect("landing", progress: (elapsed - timing.arrival) / (timing.captureStart - timing.arrival), pitch: pitch).position(b).zIndex(190) }
-                if effectsEnabled, elapsed >= timing.captureStart {
-                    ForEach(clip.captures, id: \.at) { captured in
-                        effect("capture", progress: (elapsed - timing.captureStart) / (timing.captureEnd - timing.captureStart), pitch: pitch).position(point(captured.at, size: size)).zIndex(190)
-                    }
-                }
             }
-            if let clip, reducedMotion {
-                Circle().stroke(Color(red: 146 / 255.0, green: 119 / 255.0, blue: 182 / 255.0), lineWidth: 2)
-                    .frame(width: pitch * 0.78).position(point(clip.to, size: size)).zIndex(190)
+            if effectsEnabled, let receipt, let fx = receipt.skillVFX {
+                SkillVFXLayer(receipt:receipt,plan:fx,elapsed:elapsed,pitch:pitch,size:size,reduced:reducedMotion,foreground:true,center:{point($0,size:size)})
+                    .id(receipt.id).zIndex(190)
             }
             if let preview, !showingAnimation {
                 Anim01Arrow(from: point(preview.from, size: size), to: point(preview.to, size: size), pitch: pitch)

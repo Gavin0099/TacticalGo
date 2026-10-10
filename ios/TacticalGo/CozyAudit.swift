@@ -230,6 +230,7 @@ import TacticalGoMotion
                      "before": snapshot(receipt.before),"after": snapshot(receipt.outcome.state),"voice": voice,"voiceEligibilityOnly": true,"reducedMotion": reduced,
                      "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
                      "heroBody":receipt.heroPerformance.map { p in ["class":p.heroClass.rawValue,"summon":p.isSummon,"release":p.timing.release,"moveStart":p.timing.moveStart,"arrival":p.timing.arrival,"captureStart":p.timing.captureStart,"recoveryEnd":p.timing.recoveryEnd] as [String:Any] } ?? [:],
+                     "skillVFX":receipt.skillVFX.map{ p in ["kind":p.kind.rawValue,"hero":[p.hero.x,p.hero.y],"sources":p.sources.map{[$0.x,$0.y]},"destinations":p.destinations.map{[$0.x,$0.y]},"release":p.release,"moveStart":p.moveStart,"arrival":p.arrival,"captureStart":p.captureStart,"end":p.end] as [String:Any]} ?? [:],
                      "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : "m3",
                      "effectsEnabled": !ProcessInfo.processInfo.arguments.contains("--mage-no-effects"),
                      "events": receipt.outcome.events.map { String(describing: $0) },"size": receipt.before.board.size])

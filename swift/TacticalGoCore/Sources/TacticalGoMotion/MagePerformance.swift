@@ -6,8 +6,10 @@ public enum MageTempo: String, Sendable, CaseIterable {
     case full, compact
     public var timing: MageTiming {
         self == .full
-            ? MageTiming(anticipationEnd: 0.18, release: 0.28, moveStart: 0.30, arrival: 0.54, captureStart: 0.66, recoveryEnd: 0.95, summonEnd: 0.72)
-            : MageTiming(anticipationEnd: 0.12, release: 0.20, moveStart: 0.22, arrival: 0.42, captureStart: 0.51, recoveryEnd: 0.76, summonEnd: 0.60)
+            // Reserve a visible flight interval after the staff's release, before the push.
+            // Total recovery/unlock is unchanged; all actors, VFX and SFX read this clock.
+            ? MageTiming(anticipationEnd: 0.18, release: 0.26, moveStart: 0.38, arrival: 0.60, captureStart: 0.70, recoveryEnd: 0.95, summonEnd: 0.72)
+            : MageTiming(anticipationEnd: 0.12, release: 0.20, moveStart: 0.30, arrival: 0.48, captureStart: 0.57, recoveryEnd: 0.76, summonEnd: 0.60)
     }
 }
 

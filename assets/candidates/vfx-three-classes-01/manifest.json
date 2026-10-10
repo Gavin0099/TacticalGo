@@ -1,0 +1,83 @@
+{
+  "version": "VFX-three-classes-01 / finite-bursts-03",
+  "baseline": "60ffa998c4d31c23b05acc1bc2332f786c5784ae",
+  "method": "Locally authored finite deterministic Canvas particles, colored glow envelopes, charge seals and directional ribbons; no new package or raster",
+  "status": "Owner rejected thin-ring first candidate as weak; strengthened native candidate awaiting visual review",
+  "rights": "No new third-party asset; existing portrait/clean-plate rights boundary unchanged, not claimed release-approved",
+  "sources": [
+    {
+      "path": "ios/TacticalGo/Cozy/B-warrior-v02.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-rogue-v02.png",
+      "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/warrior-clean-plate.png",
+      "sha256": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/rogue-clean-plate.png",
+      "sha256": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-mage-v02.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "path": "ios/TacticalGo/MageBodyView.swift",
+      "sha256": "1cfea3972a62bf285a8659714fe864df7ead8431592966ff559bf922a374069a"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBodyView.swift",
+      "sha256": "19d05c5972a7375c4bfa43a2fc2f0fca0dbd7ce4c569b121d72cb42c833dee52"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroPerformance.swift",
+      "sha256": "136f135db82c0e2553555cd182cd1061751f58f90766db36b7d0a1831aacd118"
+    }
+  ],
+  "timingSeconds": {
+    "bastion": {
+      "release": 0.34,
+      "moveStart": 0.35,
+      "arrival": 0.48,
+      "captureStart": 0.54,
+      "end": 0.78
+    },
+    "magicHand": {
+      "release": 0.26,
+      "moveStart": 0.38,
+      "arrival": 0.6,
+      "captureStart": 0.7,
+      "end": 0.95
+    },
+    "swap": {
+      "release": 0.2,
+      "moveStart": 0.22,
+      "arrival": 0.42,
+      "captureStart": 0.48,
+      "end": 0.72
+    },
+    "magicHandCompact": {
+      "release": 0.2,
+      "moveStart": 0.3,
+      "arrival": 0.48,
+      "captureStart": 0.57,
+      "end": 0.76
+    }
+  },
+  "reduced": "Immediate authoritative result and <=240ms static direction/endpoint cue. No body animation or particles. Not short slide.",
+  "layering": "Ground layer3 behind all actors; foreground190 with painted-area mask; existing tactical selection/liberties above. Hit testing disabled. Same fitted projection.",
+  "limitations": [
+    "Head/chest cutouts unchanged; no full body/direction-authored new poses",
+    "No second skill, friendly redeploy VFX or new voice",
+    "No global screen shake or new haptic system",
+    "Canvas PNG timings are not actual device FPS",
+    "Existing SFX unchanged; silent recordings do not prove human sound synchronization"
+  ],
+  "references": [
+    "artifacts/ios/vfx-three-classes-01/research/DECISION.md"
+  ]
+}

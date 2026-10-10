@@ -1,0 +1,5 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version--58304C5D6DBC2206.txt
+Build of product 'tacticalgo-golden' complete! (0.24s)
+PASS: 38 shared Golden fixtures, 99 steps (state, rejection and ordered events)

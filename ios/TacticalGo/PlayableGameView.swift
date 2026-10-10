@@ -59,6 +59,9 @@ enum PracticeLesson: String, CaseIterable, Identifiable {
 
 /// A0 playable product entry. Original cards/tokens; no 3D resource loading.
 struct PlayableGameView: View {
+    @State private var skillVFXAuditStatus = "waiting"
+    @State private var skillVFXAuditStarted = false
+
     @State private var store = GameStore()
     @State private var visuals = GameVisualAssets.original
     @State private var heroBodyAuditStatus = "RUNNING"
@@ -115,6 +118,16 @@ struct PlayableGameView: View {
         }
         .background(LinearGradient(colors: [Cozy.bg, Cozy.selected], startPoint: .top, endPoint: .bottom).ignoresSafeArea())
         .foregroundStyle(Cozy.ink).preferredColorScheme(.light)
+        .overlay(alignment:.topLeading) {
+            #if DEBUG
+            // Encoded-frame registration only in recordings. Resource transition comes from
+            // real Core state; it locates the shot without assuming host/simulator clock equality.
+            if ProcessInfo.processInfo.arguments.contains("--vfx-record-marker") {
+                Rectangle().fill(store.state.apRemaining == 1 ? Color(red:1,green:0,blue:1) : Color(red:0,green:1,blue:1))
+                    .frame(width:8,height:8).padding(4).allowsHitTesting(false).accessibilityHidden(true)
+            }
+            #endif
+        }
         .sheet(isPresented: $showRules) { rules }
         .fullScreenCover(isPresented: $showOnboarding) { OnboardingView { showOnboarding = false } }
         .sheet(isPresented: $showGrid) { accessibleGrid }
@@ -159,6 +172,9 @@ struct PlayableGameView: View {
             }
             if ProcessInfo.processInfo.arguments.contains("--voice-review") {
                 Text(store.audio.voiceObservations.last?["key"] ?? "尚未觸發語音").font(.system(size: 9)).accessibilityIdentifier("heroStage").padding(2).background(Cozy.card.opacity(0.85)).allowsHitTesting(false)
+            }
+            if ProcessInfo.processInfo.arguments.contains("--vfx-audit") {
+                Text(skillVFXAuditStatus).accessibilityIdentifier("skillVFXAudit").padding(4).background(Cozy.card)
             }
             if ProcessInfo.processInfo.arguments.contains("--voice-audit") {
                 Text(voiceAuditStatus).accessibilityIdentifier("voiceAudit").padding(4).background(Cozy.card)
@@ -252,6 +268,13 @@ struct PlayableGameView: View {
                     classOne: hero("hero"), classTwo: hero("enemyHero"), manaOne: scene["mana"] as! Int, manaTwo: scene["enemyMana"] as! Int,
                     ap: scene["ap"] as! Int, ply: scene["ply"] as! Int))
             }
+            if args.contains("--vfx-demo") {
+                let hero:HeroClass = args.contains("warrior") ? .warrior : args.contains("rogue") ? .rogue : .mage
+                let owner:Player = args.contains("--white-caster") ? .two : .one
+                store.leaveMatch();store.size = args.contains("--cozy-nine") ? 9 : 7
+                store.session = GameSession(try! SkillVFXFixture.state(hero,owner:owner,size:store.size,capture:args.contains("--vfx-capture"),dense:args.contains("--vfx-dense"),enemyTarget:args.contains("--vfx-enemy")))
+                store.mode = .skill;inMatch = true;store.setMatchAudioActive(true)
+            }
             if args.contains("--play-nine") { boardSize = 9; startMatch() }
             if args.contains("--play-win") { startMatch(); store.loadWinningTurn() }
             if args.contains("--play-draw") { startMatch(); store.loadLastTurn() }
@@ -266,6 +289,9 @@ struct PlayableGameView: View {
     private func startCozyAuditIfActive() {
         #if DEBUG
         guard scenePhase == .active else { return }
+        if !skillVFXAuditStarted, ProcessInfo.processInfo.arguments.contains("--vfx-audit"), let cozyAssets {
+            skillVFXAuditStarted = true; Task {skillVFXAuditStatus = await SkillVFXAudit.run(store:store,assets:cozyAssets)}
+        }
         if !heroBodyAuditStarted, ProcessInfo.processInfo.arguments.contains("--hero-body-audit"), let cozyAssets {
             heroBodyAuditStarted = true; Task { heroBodyAuditStatus = await HeroBodyAudit.run(store:store,assets:cozyAssets) }
         }
