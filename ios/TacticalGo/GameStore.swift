@@ -389,7 +389,7 @@ import TacticalGoContent
             expansion.confirm(systemReduced:UIAccessibility.isReduceMotionEnabled)
             if before != expansion.state {
                 audio.updateState(expansion.state); audioDuration = expansion.presentationHold
-                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:1.8) }
+                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:expansion.presentationAudioHold) }
                 scheduleComputerTurn()
             }
             return
@@ -404,7 +404,7 @@ import TacticalGoContent
         if let expansion {
             if expansion.commit(action,systemReduced:UIAccessibility.isReduceMotionEnabled) {
                 audio.updateState(state); audioDuration = expansion.presentationHold
-                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:audioDuration) }
+                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:expansion.presentationAudioHold) }
             }
             return
         }

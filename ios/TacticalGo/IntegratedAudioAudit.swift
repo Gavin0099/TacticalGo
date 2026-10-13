@@ -2,6 +2,7 @@
 import Foundation
 import AVFoundation
 import TacticalGoCore
+import TacticalGoContent
 import TacticalGoMotion
 
 /// Exercises real AVAudioPlayer and the integrated store's cancellable cue task.
@@ -113,6 +114,27 @@ import TacticalGoMotion
         terminal.stop(); audio.cancelEffects(); audio.setSceneActive(false); audio.setSceneActive(true)
         try? await Task.sleep(for: .milliseconds(1400))
         record("expansion_terminal_no_loop_or_ending_revival", terminalCalls == ["defeat"] && !audio.musicIsPlaying && !audio.musicEndingIsPlaying)
+        // AV23: an ordinary follow-up must not truncate a completed skill's committed voice.
+        let responsive = ExpansionLabStore();responsive.practice(.rogue);responsive.voice = true;responsive.muted = false;responsive.scene(true)
+        let original = responsive.state,chain = ExpansionPractice.rogue.action
+        let expectedChain = GameEngine.apply(original,chain)
+        let chainCommitted = responsive.commit(chain,systemReduced:false)
+        record("expansion_music_duck_keeps_voice_window",responsive.presentationAudioHold > responsive.presentationHold && responsive.presentationHold == 0.70)
+        try? await Task.sleep(for:.milliseconds(800))
+        record("expansion_visual_unlocks_while_voice_tail_plays",chainCommitted && !responsive.playing && responsive.state == expectedChain.state && responsive.audit.contains("voices=1"))
+        let follow = GameAction.placeSoldier(Point(8,8)),expectedFollow = GameEngine.apply(responsive.state,follow)
+        let followed = responsive.commit(follow,systemReduced:false)
+        record("expansion_ordinary_followup_retains_voice",followed && expectedFollow.success && responsive.state == expectedFollow.state && responsive.audit.contains("voices=1"))
+        responsive.undo()
+        record("expansion_undo_cancels_retained_voice",responsive.state == expectedChain.state && responsive.audit.contains("voices=0"))
+        responsive.practice(.rogue);responsive.scene(true);_ = responsive.commit(chain,systemReduced:false)
+        try? await Task.sleep(for:.milliseconds(800))
+        responsive.scene(false)
+        record("expansion_background_cancels_retained_voice",responsive.audit.contains("voices=0") && !responsive.playing)
+        try? await Task.sleep(for:.milliseconds(700))
+        responsive.scene(true)
+        record("expansion_return_cannot_replay_old_voice",responsive.audit.contains("voices=0") && !responsive.playing)
+        responsive.scene(false)
         audio.resetBattle(); terminal.warriorBotReview(); terminal.scene(true)
         _ = terminal.commit(winningShift,systemReduced:false)
         try? await Task.sleep(for: .milliseconds(30))

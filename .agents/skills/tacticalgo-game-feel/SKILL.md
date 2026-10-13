@@ -2,7 +2,7 @@
 name: tacticalgo-game-feel
 description: Research, design, iterate, and review TacticalGo screen style, board UI, animation, VFX, sound effects, and music against Hearthstone presentation quality and D&D tabletop references. Use for coordinated audiovisual polish and before/after comparisons; character creation and gameplay rules are separate concerns.
 metadata:
-  version: "1.5"
+  version: "1.6"
 ---
 
 # TacticalGo Game Feel
@@ -17,7 +17,7 @@ metadata:
 2. 區分本次要求的是研究、比較候選、正式程式整合，或已授權的連續迭代。按要求完成，不為例行可逆修正反覆詢問；研究／skill 建立不自行擴張成整套遊戲重做。
 3. Owner 在 2026-10-13 已指定 `codex/v11-monster-battlefield`（曾口述 v11-moster），舊 main／AV-STYLE-01 不能再充當新版證據。先 fetch 核對本次最新指定分支；這不是永久固定 commit。
 4. 先看實際遊戲畫面與現用素材，再作美術判斷。照片、概念圖、舊 HTML 與程式碼都不能替代當前 runtime 畫面；缺少時清楚標示，仍可完成來源研究和候選設計。
-5. Owner 後續已認可 UI20 風格，先完成主畫面與 icon，再明確指示開始動畫。現可在此風格上做AV21可逆候選；原生驗證缺口持續標示，不把UI20認可當成最終聲畫品質驗收。
+5. Owner 後續已認可 UI20 風格，先完成主畫面與 icon，再明確指示開始動畫及自主優化。沿用同一風格迭代四職演出；原生驗證缺口持續標示，不把UI20認可當成最終聲畫品質驗收。
 
 ## 依工作載入
 

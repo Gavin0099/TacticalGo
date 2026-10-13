@@ -33,8 +33,11 @@ import TacticalGoVisuals
             player.volume = Float(min(1,max(0,volume)))
         }
     }
-    func cancel() { players.values.forEach { $0.stop() } }
+    func cancel(keepingVoice: Bool = false) {
+        for (key,player) in players where !(keepingVoice && (key.contains("voice") || key.hasPrefix("mage-cast-"))) { player.stop() }
+    }
     var playing: Int { players.values.filter(\.isPlaying).count }
+    var playingVoices: Int { players.filter { ($0.key.contains("voice") || $0.key.hasPrefix("mage-cast-")) && $0.value.isPlaying }.count }
 }
 
 @MainActor @Observable final class PresentationLabStore {

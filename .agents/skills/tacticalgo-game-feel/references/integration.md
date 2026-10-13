@@ -11,6 +11,8 @@
 - tools/animation-21為可播放Canvas比較，時間常數來自Swift、標本座標另行描述；它不執行Domain，也不等同原生分層rig／投影／音訊。看清楚這些差異後才能使用其中證據。Swift測試與整合音訊audit在Windows未執行。
 - AV22的game-spell-atlas-v22是原創透明8格局部材質，SpellAccentFrame控制蓄力／接觸尾韻。只在成功receipt的施法者／受影響點使用，不把光環解讀為buff或新增落子。未受影響棋子最多淡化12%，降低動態與收束恢復1；危險／選取不能跟著淡化。
 - tools/animation-22改用來源polygon與pose表的Canvas分層合成；兩側都用同一層合成，避免把工具改善算成native進步。密集標本／細節放大是比較用，未執行Domain。32／48／64樣本之外仍要原生正常速度影片；不可宣稱Canvas與SwiftUI等價。
+- AV23以ExpansionPlaybackWindow分開visual／input／audio：普通動作在視覺結束恢復操作，終局維持收束等待。已落定技能配音可延續到普通落子／召喚／非終局結束回合；新技能或魔物／戰利／終局替換，復原／重開／離場／背景／中斷完整停止。GameStore的bot等待使用presentationHold，音樂duck使用presentationAudioHold，不能用輸入時間截短配音混音。
+- tools/animation-23兩側都用AV22素材，只比較來源時序和browser WAV生命週期；工具下一手不執行Domain。WAV sample count、browser回復可操作與實機觸控延遲分別報告；原生IntegratedAudioAudit及Swift窗口測試在Windows仍NOT RUN。
 - Interface 19 的 browser 位於 tools/game-interface-preview；它是排版／互動 fixture，不是 SwiftUI renderer 或遊戲規則引擎。Windows 上 build、原生 UI、效能、VoiceOver、真機聲畫皆另驗。
 
 ## 歷史定位（非當前 runtime）

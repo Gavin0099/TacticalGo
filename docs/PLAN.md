@@ -624,6 +624,14 @@ browser工作台tools/animation-21可播放七技能、正常速度／時間滑�
 
 沿用UI20與AV21候選，保留前輪来源后新增原創8格局部特效，依成功receipt蓄力／接觸取樣；連鎖新增第二次蓄力，奉獻新增抬手釋放；非受影響棋子短暫退後至88%且完整恢復，危險與選取仍在特效上方。Domain規則、角色原圖／clean plate、UI20源與音訊排程不改。
 
-tools/animation-22以來源分層polygon與before／after pose keyframes重建比較，修正AV21整圖轉動工具限制；新增24个32／48／64px樣本、密集標本與對等細節放大。這些是Canvas候選，不是原生或合法Domain執行。原生已新增三項回歸但NOT RUN；Windows無Swift／Xcode，原生编譯／聲畫／FPS／輸入恢復未驗。候選材質與兩個出力拍点改善，但爐石整体品質尚未達成。
+tools/animation-22以來源分層polygon與before／after pose keyframes重建比較，修正AV21整圖轉動工具限制；新增24个32／48／64px樣本、密集標本與對等細節放大。這些是Canvas候選，不是原生或合法Domain執行。原生已新增三項回歸但NOT RUN；Windows無Swift／Xcode，原生編譯／聲畫／FPS／輸入恢復未驗。候選材質與兩個出力拍点改善，但爐石整体品質尚未達成。
 
 完整prompt／原圖hash／來源快照／失敗與最終檢查在artifacts/animation-22；報告ANIMATION_22.md。下一關Mac原生同局面375／402密集聲畫與工程回歸；沒有Git或TestFlight發布。
+
+## 2026-10-13 先推送，再做 AV23 節奏
+
+Owner明確授權「先push然後再優化」。UI19／UI20／AV21／AV22候選已推送codex/v11-game-interface，remote核對354acb22ad77d8e9bdb2b3d5d400fc3e4084e893。HTTP408兩次後精簡重複影音，完整未發布歷史仍保存在本機refs/codex-safety/av22-unpublished-full-20261013；其他工作樹未改，沒有hook bypass／主線合併／TestFlight。此段更新前面歷史記錄中的「未push」狀態。
+
+接續AV23分開visual／input／audio窗口：一般成功動作演出結束後恢復操作，普通下一手可讓已落定技能配音收尾；新技能／魔物戰利／終局替換舊聲音，復原／背景／中斷等完整停止。音樂duck仍涵蓋配音，不隨輸入提前恢復。保留UI20／AV22原畫、WAV與規則。來源推導盜賊減少約0.579秒等待，非真機實測。
+
+Browser27項與來源／資產不變核對通過；第一次matchMedia事件等待及WAV四捨五入的harness失敗保留。三項Swift窗口測試及六項實際store／音訊audit新增但NOT RUN，Windows無Swift／Xcode。報告docs/v11/ANIMATION_23.md；完成來源檢查後同分支提交與推送，下一關Mac原生編譯／串行UI音訊／四職密集聲畫，尚不能宣稱爐石品質或裝置延遲改善已驗。

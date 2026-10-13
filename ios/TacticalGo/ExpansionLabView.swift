@@ -16,6 +16,7 @@ import TacticalGoVisuals
     var difficulty = "easy"
     var controlsLocked: Bool { playing || (state.current == computer && state.status == .ongoing) }
     var presentationHold = 0.0
+    var presentationAudioHold = 0.0
     var size = 9
     var one: HeroClass = .warrior
     var two: HeroClass = .mage
@@ -118,8 +119,8 @@ import TacticalGoVisuals
         active = isActive; if !isActive { stop() }
         audio.musicVolume = 0; audio.setMatchActive(isActive); audio.setSceneActive(isActive)
     }
-    func stop() {
-        generation += 1; task?.cancel(); task = nil; samples.cancel(); audio.cancelEffects()
+    func stop(keepingCompletedVoice: Bool = false) {
+        generation += 1; task?.cancel(); task = nil; samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
         playing = false; receipt = nil
     }
     func cancelSelection() { selected = []; pending = nil }
@@ -219,8 +220,17 @@ import TacticalGoVisuals
         guard active,!interrupted else { return false }
         let before = state, outcome = session!.apply(action)
         guard outcome.success else { message = GameStore.reason(outcome.reason); return false }
-        stop(); cancelSelection()
-        receipt = ExpansionPresentation.make(before:before,action:action,outcome:outcome,current:state)
+        let plan = ExpansionPresentation.make(before:before,action:action,outcome:outcome,current:state)
+        // An ordinary follow-up may let an already-committed line finish. Undo/background/restart
+        // call the default full stop; a new skill/terminal performance replaces the old voice.
+        let ordinaryFollowup: Bool
+        switch action {
+        case .placeSoldier,.summonHero,.endTurn: ordinaryFollowup = true
+        default: ordinaryFollowup = false
+        }
+        let keepVoice = !playing && receipt == nil && ordinaryFollowup && state.status == .ongoing && !muted && voice
+        stop(keepingCompletedVoice:keepVoice); cancelSelection()
+        receipt = plan
         if before.current != state.current { mode = .soldier }
         started = ProcessInfo.processInfo.systemUptime; playing = (receipt?.duration ?? 0) > 0
         message = challenge && PriestSanctuaryChallenge.solved(state) ? "挑戰完成：犧牲一兵，牧師棋群形成兩個真眼。" : "已確認：\(before.current == .one ? "黑" : "白")方行動。"
@@ -315,22 +325,27 @@ import TacticalGoVisuals
         lastSoundKeys = sound.map { $0.0 } + (routedEnding ? ending.map { [$0] } ?? [] : [])
         for (key,delay,volume) in sound { if samples.schedule(key,after:delay,volume:volume) { cues += 1 } }
         let endingTail = routedEnding && !muted ? ending.map { samples.duration($0) } ?? 0 : 0
-        let hold = max(p.duration + endingTail,sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0)
-        presentationHold = hold
+        let window = ExpansionPlaybackWindow.make(visualEnd:p.duration,lastSoundEnd:sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0,
+                                                  terminal:ending != nil,endingTail:endingTail)
+        presentationHold = window.inputEnd
+        presentationAudioHold = window.audioEnd
+        playing = window.inputEnd > 0
         task = Task { @MainActor [weak self] in
             do {
-                if routedEnding, let ending {
-                    try await Task.sleep(for:.seconds(p.duration))
-                    guard let self, self.generation == marker, self.active, !self.interrupted else { return }
-                    self.onTerminalCue?(ending)
-                    try await Task.sleep(for:.seconds(max(0,hold-p.duration)))
-                } else { try await Task.sleep(for:.seconds(hold)) }
+                try await Task.sleep(for:.seconds(window.visualEnd))
+                guard let self,self.generation == marker,self.active,!self.interrupted else { return }
+                if routedEnding,let ending { self.onTerminalCue?(ending) }
+                if ending == nil { self.playing = false; self.receipt = nil }
+                try await Task.sleep(for:.seconds(max(0,window.inputEnd-window.visualEnd)))
+                guard self.generation == marker,self.active,!self.interrupted else { return }
+                self.playing = false; self.receipt = nil
+                try await Task.sleep(for:.seconds(max(0,window.audioEnd-window.inputEnd)))
             } catch { return }
             guard let self,self.generation == marker else { return }
-            self.playing = false; self.receipt = nil
+            self.task = nil
         }
     }
-    var audit: String { "cues=\(cues)|players=\(samples.playing)|active=\(playing)|generation=\(generation)|keys=\(lastSoundKeys.joined(separator:","))|frozen=\(reviewTime != nil && frameReceipt != nil)|muted=\(muted)|voice=\(voice)|reduced=\(reduced)" }
+    var audit: String { "cues=\(cues)|players=\(samples.playing)|active=\(playing)|generation=\(generation)|keys=\(lastSoundKeys.joined(separator:","))|frozen=\(reviewTime != nil && frameReceipt != nil)|muted=\(muted)|voice=\(voice)|reduced=\(reduced)|voices=\(samples.playingVoices)" }
     var help: String {
         switch mode {
         case .soldier: "選一個空點，確認後落子。"

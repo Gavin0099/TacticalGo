@@ -1,0 +1,152 @@
+{
+  "evidence": "Canvas + real HTMLAudioElement WAV playback; no native execution or listening verdict",
+  "checks": [
+    {
+      "width": 375,
+      "skill": 0,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 1,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 2,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 3,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 4,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 5,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "skill": 6,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 0,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 1,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 2,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 3,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 4,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 5,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "skill": 6,
+      "check": "source visual end reports ready; board fits",
+      "passed": true
+    },
+    {
+      "check": "chain unlocks while real browser WAV plays; next-hand probe retains it until natural end",
+      "passed": true
+    },
+    {
+      "check": "undo-style full cancellation stops retained WAV and stale timers",
+      "passed": true
+    },
+    {
+      "check": "new skill stops old voice before scheduling new one",
+      "passed": true
+    },
+    {
+      "check": "background-style stop cannot revive voice or rendering",
+      "passed": true
+    },
+    {
+      "check": "reduced motion retains final result and visual-end input timing",
+      "passed": true
+    },
+    {
+      "skill": 0,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 1,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 2,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 3,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 4,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 5,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "skill": 6,
+      "check": "normal-speed comparison finishes both windows",
+      "passed": true
+    },
+    {
+      "check": "review page fits phone",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeBuild": "NOT RUN",
+  "nativeTests": "NOT RUN",
+  "deviceLatency": "NOT RUN"
+}

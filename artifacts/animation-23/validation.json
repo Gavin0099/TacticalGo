@@ -1,0 +1,12 @@
+{
+  "baseline_pushed_commit": "354acb22ad77d8e9bdb2b3d5d400fc3e4084e893",
+  "branch": "codex/v11-game-interface",
+  "scope": "AV23 input/audio separation; no release",
+  "browser_cases": 27,
+  "browser_result": "PASS",
+  "source_integrity": "PASS",
+  "skill_validation": "PASS; both copies byte-identical",
+  "git_diff_check": 0,
+  "native_Swift_build_tests_audio_latency": "NOT RUN: no Swift/Xcode/iOS SDK on this Windows host",
+  "merge_TestFlight_install": "NOT RUN"
+}
