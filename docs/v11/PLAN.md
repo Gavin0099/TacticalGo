@@ -199,3 +199,12 @@ Visual10/0；Beta主5/0＋Debug小3/0，0skip，8次執行/7種方法。arena與
 Visual10/Beta-main5/Debug-small3皆0失敗0skip，8次執行7種方法；<=0.5pt矩形回歸涵蓋Owner7×7牧師/電腦法師、準備落定、終局、四職/技能方向/預覽取消/Undo/loot/續玩。Core/Bot/Motion/Records/Content對1105來源不變，250完整Swift為歷史證據；54素材/兩怪原生像素/簽名archive+IPA與來源核對通過。主小原生圖已查看，iPad/真機1106仍待，首compile失敗保留並修復。
 
 同一暖色桌遊介面與固定棋盤候選完成，Owner更新1106驗收；不再擴scope或重傳成功包。最新OWNER_REVIEW18、interface18 DELIVERY/ASC_BUILD/ASC_GROUP與testflight1106-ready.png。未動另一1.0checkout/封存/送審或Git commit/push/main合併，原heartbeat保持暫停。工程PASS不等於真人品質接受。
+
+
+## 2026-10-13 Owner授權Git推送：1106來源已上傳
+
+Owner「先推上去」明確授權commit/push候選分支，取代舊候選no-commit/no-push限制。1.1完整來源e25b2d8fcd7e6ea3122c6957a1198a587b290bb5已推至origin/codex/v11-monster-battlefield並以git ls-remote核對一致；main仍cdab133，未merge/PR/App Review/公開發布，不動另一1.0checkout。517檔含應用/套件/測試/必要原始及聲畫素材/設計/來源權利/精簡證據，排除本機9.6GB建置cache、簽名archive/IPA/provisioning/帳戶裝置日誌。
+
+從待提交index匯出乾淨來源，全Swift252/0，unsigned Simulator Beta build成功1106，54PresentationLab bytes一致及兩怪存在。封裝收據git-review/VALIDATION.json；interface18 SOURCE_PIN無變，之前8次UI來源不變未重跑、真機與真人品質未宣稱。自有code/docs/scripts/memory whitespace通過；第三方license/HTML原bytes含CRLF尾空白保留，簡式私鑰/token/簽名檔掃描無命中非全面安全audit。舊TestFlight1106維持，不重傳App。完整歴史artifacts仍本機，乾淨clone不能憑此執行依賴本機封存的delivery scripts，GIT_DELIVERY.md明確標示。
+
+Git推送請求完成；後續依Owner選擇試玩/新slice，不自行合併main或新增功能。原十小時heartbeat保持暫停。

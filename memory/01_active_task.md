@@ -84,3 +84,5 @@
 - 18候選1106上傳中：7/9同一暖色UI與固定棋盤，Visual10/Beta5/小Debug3通過、0skip，AI/終局/預覽/Undo幾何不跳動；Apple處理Owner分發待確認，真機與真人style待驗。規則素材未改，1.0與Git發布未動，heartbeat保持暫停。 <!-- memory_record_projection:active-task-summary:7a7e032d6630b69a611f4f82bc34e62ece6f1215231cd2fe37bb58adbf30e75a -->
 
 - 18完成：1106 TestFlight已上傳/Apple處理/Owner1.1可測，1人4build保留1103/4/5；phone7/9暖色矩形UI與固定棋盤，Visual10/Beta5/小Debug3通過0skip、矩形≤0.5pt含牧師對電腦法師。Owner更新1106驗收，未證真機或真人外觀；規則素材不變、1.0與Git發布未動，heartbeat暫停，不擴scope/重傳。 <!-- memory_record_projection:active-task-summary:da9ea28c4e7a7766cbd9a583f6952341e53b2b121c10b2c3eec56308252e2d8e -->
+
+- Owner授權Git推送完成：1.1/1106來源e25b2d8已推origin/codex/v11-monster-battlefield並核對；main未合併、另一1.0 checkout未動。乾淨source Swift252/0、unsigned Beta1106/54素材完整PASS，9.6GB封存簽名暫存留本機，TestFlight1106不重傳。真人品質待Owner，heartbeat保持暫停，停止擴scope。 <!-- memory_record_projection:active-task-summary:3117f94ef273e311e3170c135471c94985c8cd21f784819a8ef655cfe8aa01af -->

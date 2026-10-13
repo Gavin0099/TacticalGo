@@ -168,3 +168,14 @@
 - Validation boundary: artifacts/v11/interface-18/DELIVERY.json、ASC_BUILD.json、ASC_GROUP.json、testflight1106-ready.png；Visual10/0、Beta-main5/0、Debug-small3/0且0skip，8次執行7種方法，四職/技能/preview/cancel/AI準備落定/終局/Undo/loot/resume矩形≤0.5pt。Core/Bot/Motion/Records/Content源對1105不變，250全Swift是歷史結果；源固定/簽名54素材2怪PASS；失敗build-first保留。
 - Next action: Owner從TestFlight更新1.1/1106，新開牧師對法師7x7並試9x9，驗收新外觀/觸控與棋盤穩定。工程完成停止擴scope/重傳，無1106真機安裝或真人接受證據；1.0及Git發布未動，heartbeat保持暫停。
 - PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:3117f94ef273e311e3170c135471c94985c8cd21f784819a8ef655cfe8aa01af -->
+### Canonical memory checkpoint — cli-20261013-123228
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `3117f94ef273e311e3170c135471c94985c8cd21f784819a8ef655cfe8aa01af`
+- Commit binding: `e25b2d8fcd7e6ea3122c6957a1198a587b290bb5` (bound)
+- Record: Owner先推上去授權commit/push；1106完整來源e25b2d8已推至origin/codex/v11-monster-battlefield，git ls-remote一致。517檔含code/tests/素材/來源權利/docs/精簡證據，9.6GB本機建置封存/簽名/帳戶裝置日志排除，保留本機。main仍cdab133，沒有PR/main merge/App Review或公開發布，另一1.0 checkout未改。
+- Validation boundary: artifacts/v11/git-review/VALIDATION.json與clean-source-swift.log：待提交index乾淨匯出Swift252/0、unsigned Simulator Beta1106 build成功、54素材byte一致和兩怪存在；interface18源pin未變，既有Beta5/Debug3不重跑。staged code/docs/scripts/memory whitespace PASS，簡式私鑰/token/簽名檔掃描無命中；third-party raw CRLF留原bytes。
+- Next action: Git推送請求完成，保持1106 TestFlight與paused heartbeat；Owner可檢視分支/試玩，新slice另依Owner指示，不擴scope或自行main merge。真人外觀/聲畫/玩法與真機1106接受仍待。
+- PLAN reconciliation: `updated`
