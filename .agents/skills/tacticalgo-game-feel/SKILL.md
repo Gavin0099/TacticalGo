@@ -2,7 +2,7 @@
 name: tacticalgo-game-feel
 description: Research, design, iterate, and review TacticalGo screen style, board UI, animation, VFX, sound effects, and music against Hearthstone presentation quality and D&D tabletop references. Use for coordinated audiovisual polish and before/after comparisons; character creation and gameplay rules are separate concerns.
 metadata:
-  version: "1.6"
+  version: "1.7"
 ---
 
 # TacticalGo Game Feel

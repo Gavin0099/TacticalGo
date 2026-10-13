@@ -635,3 +635,22 @@ Owner明確授權「先push然後再優化」。UI19／UI20／AV21／AV22候選�
 接續AV23分開visual／input／audio窗口：一般成功動作演出結束後恢復操作，普通下一手可讓已落定技能配音收尾；新技能／魔物戰利／終局替換舊聲音，復原／背景／中斷等完整停止。音樂duck仍涵蓋配音，不隨輸入提前恢復。保留UI20／AV22原畫、WAV與規則。來源推導盜賊減少約0.579秒等待，非真機實測。
 
 Browser27項與來源／資產不變核對通過；第一次matchMedia事件等待及WAV四捨五入的harness失敗保留。三項Swift窗口測試及六項實際store／音訊audit新增但NOT RUN，Windows無Swift／Xcode。報告docs/v11/ANIMATION_23.md；完成來源檢查後同分支提交與推送，下一關Mac原生編譯／串行UI音訊／四職密集聲畫，尚不能宣稱爐石品質或裝置延遲改善已驗。
+
+## 2026-10-13 AV24：90%品質目標仍未完成
+
+Owner要求分析距離爐石品質，未達則繼續優化，至少90%以上才可停止；另明確要求本輪push並更新剩餘plan。最新候選基線371718e已推送；source仍004ed4c。AV24完成兩次局部調整，但沒有可靠證據宣稱90%，品質目標保持開放。不能用browser測試數／像素差異／未看完整的競品GIF自行升級品質结論。
+
+- [x] AV23已推送371718e；配音／輸入窗口分離、普通下一手保留配音、音樂duck涵蓋音訊。
+- [x] AV24四職接觸beat：180ms局部輪廓、連鎖0.26／0.36兩段交換、奉獻供體原點；不改Domain。
+- [x] 第一輪增量不足後再調整手繪材質大小／透明度，原生ground／foreground分層保住人物；前版／iteration-1與最終證據保留。
+- [x] 連鎖兩段接觸沿用原WAV但獨立player alias，避免第一個起播被覆蓋；原時長／AV23輸入窗口保留。
+- [x] 最終browser41項motion＋32項contact／Canvas／WAV檢查，來源／資產／Domain不變和Xcode檔案接線核對；這不是原生或品質百分比。
+- [x] Mac原生驗證腳本與三項Swift contact測試／一項實際audio排程audit已準備；腳本只做過Bash語法檢查。
+- [ ] Mac跑完整Swift測試；Debug／Beta原生編譯，修正本輪或先前UI20／AV21／AV22／AV23未經編譯的整合問題。使用review-animation24-native.sh並核對來源SHA。
+- [ ] 串行Native UI／IntegratedAudioAudit，確定新測試真的執行且未skip；覆蓋復原、靜音、背景／中斷、終局與快速下一手。
+- [ ] 同局面375／402、普通／密集、七技能正常速度及降低動態的原生影片；檢查分層接縫、接觸點、前後層與陣營辨識。
+- [ ] 實際聽四職同音量A/B，核對兩段接觸／配音／BGM duck和疊音；必要時修音效或原創來源，不把排程成功當聽感品質。
+- [ ] 真機觸控恢復、FPS／frame time、VoiceOver／Dynamic Type／iPad与完整對局舒適度。
+- [ ] 依原生聲畫比較再迭代人物表演、次要動作與材質份量；用代表性爐石片段和獨立真人比較判斷整體接近程度。90%仍未驗收，不關閉本項。
+
+本輪驗證後推送同一codex/v11-game-interface候選分支；不合併main或發布TestFlight。報告ANIMATION_24.md與artifacts/animation-24；目前可完成本機候選與browser比較，缺Mac／iPhone聲畫評估能力的項目明確保留，不能冒稱整體完成。

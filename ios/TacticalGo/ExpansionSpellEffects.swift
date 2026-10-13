@@ -4,27 +4,31 @@ import TacticalGoCore
 import TacticalGoMotion
 
 /// Decorative objects follow only the confirmed receipt. Danger/base overlays remain above these effects.
+enum ExpansionEffectPlane: Equatable { case ground, foreground }
 struct ExpansionSpellEffects: View {
     let receipt: ExpansionPresentation
     let assets: P02CozyAssets
     let hands: [UIImage]
     let time: Double, pitch: CGFloat, size: CGSize
     let reduced: Bool
+    var plane: ExpansionEffectPlane = .foreground
     let center: (Point) -> CGPoint
     var body: some View {
         ZStack {
             if !reduced,time.isFinite,time >= 0,time < receipt.duration {
-                switch receipt.action {
-                case .castMagicHand,.castDoublePull: mage
-                case .castBastion,.castReformation: warrior
-                case .castSwap,.castChainSwap: rogue
-                case .castSanctuary: priest
-                case .castOffering: offering
-                case .useStickyBounce: bounce
-                case .useShadowStep: shadow
-                default: EmptyView()
+                if plane == .foreground {
+                    switch receipt.action {
+                    case .castMagicHand,.castDoublePull: mage
+                    case .castBastion,.castReformation: warrior
+                    case .castSwap,.castChainSwap: rogue
+                    case .castSanctuary: priest
+                    case .castOffering: offering
+                    case .useStickyBounce: bounce
+                    case .useShadowStep: shadow
+                    default: EmptyView()
+                    }
+                    if !receipt.captures.isEmpty { captureRings }
                 }
-                if !receipt.captures.isEmpty { captureRings }
                 paintedAccents
             }
         }.frame(width:size.width,height:size.height).allowsHitTesting(false).accessibilityHidden(true)
@@ -33,9 +37,9 @@ struct ExpansionSpellEffects: View {
     private var accentFrame: SpellAccentFrame { .sample(at:time,release:receipt.release,arrival:receipt.arrival,duration:receipt.duration) }
     @ViewBuilder private var paintedAccents: some View {
         switch receipt.action {
-        case .castBastion,.castReformation: paintedWarrior
+        case .castBastion,.castReformation: if plane == .ground { paintedWarrior }
         case .castMagicHand,.castDoublePull: paintedMage
-        case .castSwap,.castChainSwap: paintedRogue
+        case .castSwap,.castChainSwap: if plane == .ground { paintedRogue }
         case .castOffering: paintedPriest
         default: EmptyView()
         }
@@ -46,18 +50,21 @@ struct ExpansionSpellEffects: View {
                 GameSpellSprite(index:5,size:pitch*0.88).opacity(f.charge*0.32).position(x:heroCenter.x,y:heroCenter.y+pitch*0.02)
                 ForEach(targets,id:\.self) { target in
                     let q = center(target)
-                    GameSpellSprite(index:0,size:pitch*1.10*f.scale).opacity(f.impact*0.68).position(q)
-                    GameSpellSprite(index:5,size:pitch*1.06*f.scale).opacity(f.impact*0.38).position(q)
+                    GameSpellSprite(index:0,size:pitch*1.44*f.scale).opacity(f.impact*0.82).position(q)
+                    GameSpellSprite(index:5,size:pitch*1.26*f.scale).opacity(f.impact*0.46).position(q)
                 }
                     }
     }
     private var paintedMage: some View {
         let f = accentFrame
         return ZStack {
-                let offset = MageBodyView.tipOffset(pose:.cast(at:time,timing:MagePresentationVariant.arcaneHand.timing,reduced:false,revision:.r2),width:pitch*0.92)
-                GameSpellSprite(index:4,size:pitch*0.58).opacity(f.charge).position(x:heroCenter.x+offset.x,y:heroCenter.y+offset.y)
-                ForEach(receipt.transfers.indices,id:\.self) { i in
-                    GameSpellSprite(index:1,size:pitch*1.04*f.scale).opacity(f.impact*0.60).position(center(receipt.transfers[i].to))
+                if plane == .foreground {
+                    let offset = MageBodyView.tipOffset(pose:.cast(at:time,timing:MagePresentationVariant.arcaneHand.timing,reduced:false,revision:.r2),width:pitch*0.92)
+                    GameSpellSprite(index:4,size:pitch*0.66).opacity(f.charge).position(x:heroCenter.x+offset.x,y:heroCenter.y+offset.y)
+                } else {
+                    ForEach(receipt.transfers.indices,id:\.self) { i in
+                        GameSpellSprite(index:1,size:pitch*1.30*f.scale).opacity(f.impact*0.76).position(center(receipt.transfers[i].to))
+                    }
                 }
                     }
     }
@@ -78,8 +85,8 @@ struct ExpansionSpellEffects: View {
                         if case .castChainSwap(let first,_) = receipt.action { return move.from == first ? min(1,u*2):max(0,(u-0.5)*2) }
                         return u
                     }()
-                    let alpha = time >= receipt.moveStart && time < receipt.arrival ? sin(Double.pi*stage)*0.52:0
-                    GameSpellSprite(index:move.piece.kind == .hero ? 2:6,size:pitch*0.88)
+                    let alpha = time >= receipt.moveStart && time < receipt.arrival ? sin(Double.pi*stage)*0.64:0
+                    GameSpellSprite(index:move.piece.kind == .hero ? 2:6,size:pitch*1.06)
                         .rotationEffect(.radians(atan2(b.y-a.y,b.x-a.x))).opacity(alpha).position(q)
                 }
                     }
@@ -89,8 +96,11 @@ struct ExpansionSpellEffects: View {
         return ZStack {
                 if let sacrifice = receipt.sacrifices.first {
                     let q = center(sacrifice),leaf = OfferingDissolveFrame.sample(at:time,release:receipt.release,arrival:receipt.arrival)
-                    GameSpellSprite(index:3,size:pitch*0.92).opacity(leaf.opacity*0.70).position(x:q.x,y:q.y-pitch*leaf.lift)
-                    GameSpellSprite(index:7,size:pitch*1.06*f.scale).opacity(f.impact*0.42).position(q)
+                    if plane == .foreground {
+                        GameSpellSprite(index:3,size:pitch*1.10).opacity(leaf.opacity*0.80).position(x:q.x,y:q.y-pitch*leaf.lift)
+                    } else {
+                        GameSpellSprite(index:7,size:pitch*1.26*f.scale).opacity(f.impact*0.64).position(q)
+                    }
                 }
                     }
     }
@@ -120,8 +130,9 @@ struct ExpansionSpellEffects: View {
                 Canvas { context,_ in
                     if f.alpha > 0 {
                         var beam = Path();beam.move(to:staff);beam.addQuadCurve(to:q,control:CGPoint(x:(staff.x+q.x)/2,y:max(staff.y,q.y)+pitch*0.22))
-                        context.stroke(beam,with:.color(P02Cozy.deepMage.opacity(f.alpha*0.75)),style:StrokeStyle(lineWidth:pitch*0.08,lineCap:.round))
-                        context.stroke(beam,with:.color(Color.mint.opacity(f.alpha*0.8)),style:StrokeStyle(lineWidth:pitch*0.035,lineCap:.round))
+                        context.stroke(beam,with:.color(P02Cozy.ink.opacity(f.alpha*0.45)),style:StrokeStyle(lineWidth:pitch*0.17,lineCap:.round))
+                        context.stroke(beam,with:.color(P02Cozy.deepMage.opacity(f.alpha*0.85)),style:StrokeStyle(lineWidth:pitch*0.12,lineCap:.round))
+                        context.stroke(beam,with:.color(Color.mint.opacity(f.alpha*0.9)),style:StrokeStyle(lineWidth:pitch*0.04,lineCap:.round))
                     }
                     wave(context,at:b,color:P02Cozy.deepMage)
                     if time >= receipt.arrival,time < receipt.arrival+0.14 {

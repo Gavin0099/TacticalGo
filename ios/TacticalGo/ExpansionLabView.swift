@@ -301,6 +301,7 @@ import TacticalGoVisuals
                 if voice { sound.append(("w7-voice-B",0.08,0.85)) }
             case .castSwap,.castChainSwap:
                 sound = [("p8-rogue-coil",0.04,skillVolume),("p8-rogue-dash",p.moveStart,skillVolume),("p8-rogue-land",p.arrival,skillVolume)]
+                if p.isChainSwap { sound.insert(("p8-rogue-land-first",(p.moveStart+p.arrival)/2,skillVolume*0.60),at:2) }
                 if voice { sound.append(("p8-voice-rogue-"+castTake,0.06,0.85)) }
             case .castSanctuary, .castOffering:
                 sound = [("p8-priest-prayer",0.06,skillVolume),("p8-priest-bless",p.moveStart,skillVolume),("p8-priest-land",p.arrival,skillVolume)]
@@ -548,6 +549,12 @@ struct ExpansionBoard: View {
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
                 ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1)
                 if let p,store.effects {
+                    ExpansionContactEffects(receipt:p,time:time,pitch:pitch,size:size,reduced:reduced,
+                                            center:{ presentation.center($0,size) }).zIndex(5)
+                }
+                if let p,store.effects {
+                    ExpansionSpellEffects(receipt:p,assets:assets,hands:store.handPoses,time:time,pitch:pitch,size:size,reduced:reduced,
+                                          plane:.ground,center:{ presentation.center($0,size) }).zIndex(6)
                     ExpansionSpellEffects(receipt:p,assets:assets,hands:store.handPoses,time:time,pitch:pitch,size:size,reduced:reduced,center:{ presentation.center($0,size) }).zIndex(160)
                 }
                 ForEach(board.points,id:\.self) { point in

@@ -119,6 +119,7 @@ import TacticalGoMotion
         let original = responsive.state,chain = ExpansionPractice.rogue.action
         let expectedChain = GameEngine.apply(original,chain)
         let chainCommitted = responsive.commit(chain,systemReduced:false)
+        record("expansion_chain_schedules_two_independent_contacts",chainCommitted && responsive.lastSoundKeys.contains("p8-rogue-land-first") && responsive.lastSoundKeys.contains("p8-rogue-land") && responsive.audit.hasPrefix("cues=5|"))
         record("expansion_music_duck_keeps_voice_window",responsive.presentationAudioHold > responsive.presentationHold && responsive.presentationHold == 0.70)
         try? await Task.sleep(for:.milliseconds(800))
         record("expansion_visual_unlocks_while_voice_tail_plays",chainCommitted && !responsive.playing && responsive.state == expectedChain.state && responsive.audit.contains("voices=1"))

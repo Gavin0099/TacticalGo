@@ -11,9 +11,11 @@ import TacticalGoVisuals
     private var players: [String: AVAudioPlayer] = [:]
     private(set) var error: String?
     init() {
-        for key in ["p8-rogue-coil","p8-rogue-dash","p8-rogue-land","p8-priest-prayer","p8-priest-bless","p8-priest-land","p8-slime-coil","p8-slime-bounce","p8-slime-land","p8-wolf-growl","p8-wolf-dash","p8-wolf-land","p8-voice-rogue-A","p8-voice-rogue-B","p8-voice-priest-A","p8-voice-priest-B","p-charge","p-release","p-land","p-capture","mage-voice-english","mage-cast-A","mage-cast-B","p3-air","p4-conjure","p4-push","p4-contact","p5-conjure","p5-push","p5-contact","w7-brace","w7-strike","w7-land","w7-voice-A","w7-voice-B","warrior","place","draw","capture","victory","defeat"] {
+        for key in ["p8-rogue-coil","p8-rogue-dash","p8-rogue-land","p8-rogue-land-first","p8-priest-prayer","p8-priest-bless","p8-priest-land","p8-slime-coil","p8-slime-bounce","p8-slime-land","p8-wolf-growl","p8-wolf-dash","p8-wolf-land","p8-voice-rogue-A","p8-voice-rogue-B","p8-voice-priest-A","p8-voice-priest-B","p-charge","p-release","p-land","p-capture","mage-voice-english","mage-cast-A","mage-cast-B","p3-air","p4-conjure","p4-push","p4-contact","p5-conjure","p5-push","p5-contact","w7-brace","w7-strike","w7-land","w7-voice-A","w7-voice-B","warrior","place","draw","capture","victory","defeat"] {
             do {
-                guard let url = Bundle.main.url(forResource: key, withExtension: "wav", subdirectory: key.hasPrefix("p8-") ? "PresentationLab/P08" : key.hasPrefix("w7-") ? "PresentationLab/P07" : key.hasPrefix("mage-cast-") ? "PresentationLab/P06" : key.hasPrefix("p5-") ? "PresentationLab/P05" : key.hasPrefix("p4-") ? "PresentationLab/P04" : key == "p3-air" ? "PresentationLab/P03" : ["warrior","place","draw","capture","victory","defeat"].contains(key) ? "Audio" : "PresentationLab") else {
+                // The two chain contacts need independent players; scheduling one twice replaces its first start.
+                let resourceKey = key == "p8-rogue-land-first" ? "p8-rogue-land" : key
+                guard let url = Bundle.main.url(forResource: resourceKey, withExtension: "wav", subdirectory: key.hasPrefix("p8-") ? "PresentationLab/P08" : key.hasPrefix("w7-") ? "PresentationLab/P07" : key.hasPrefix("mage-cast-") ? "PresentationLab/P06" : key.hasPrefix("p5-") ? "PresentationLab/P05" : key.hasPrefix("p4-") ? "PresentationLab/P04" : key == "p3-air" ? "PresentationLab/P03" : ["warrior","place","draw","capture","victory","defeat"].contains(key) ? "Audio" : "PresentationLab") else {
                     throw CocoaError(.fileNoSuchFile)
                 }
                 let player = try AVAudioPlayer(contentsOf: url); player.prepareToPlay(); players[key] = player

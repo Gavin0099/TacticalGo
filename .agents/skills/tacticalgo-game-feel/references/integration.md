@@ -13,6 +13,9 @@
 - tools/animation-22改用來源polygon與pose表的Canvas分層合成；兩側都用同一層合成，避免把工具改善算成native進步。密集標本／細節放大是比較用，未執行Domain。32／48／64樣本之外仍要原生正常速度影片；不可宣稱Canvas與SwiftUI等價。
 - AV23以ExpansionPlaybackWindow分開visual／input／audio：普通動作在視覺結束恢復操作，終局維持收束等待。已落定技能配音可延續到普通落子／召喚／非終局結束回合；新技能或魔物／戰利／終局替換，復原／重開／離場／背景／中斷完整停止。GameStore的bot等待使用presentationHold，音樂duck使用presentationAudioHold，不能用輸入時間截短配音混音。
 - tools/animation-23兩側都用AV22素材，只比較來源時序和browser WAV生命週期；工具下一手不執行Domain。WAV sample count、browser回復可操作與實機觸控延遲分別報告；原生IntegratedAudioAudit及Swift窗口測試在Windows仍NOT RUN。
+- AV24的ExpansionContactBeat／Frame從已驗receipt列出接觸格與拍點；連鎖第一交換在moveStart／arrival中點，第二在arrival。ground接觸輪廓z5、手繪材料z6在棋子下，語義／杖尖／光葉保留前景；降低動態不新增接觸效果。改材料大小時用375／402密集盤面看人物輪廓，不能只看放大圖。
+- 同一AVAudioPlayer排兩個未來起播會覆蓋先前起點。AV24連鎖第一接觸使用獨立p8-rogue-land-first player alias，讀同一原WAV，最終接觸保留p8-rogue-land；復原／背景／新技能仍一起取消。核對當前來源，不把0.26／0.36當所有未來技能的固定值。
+- Owner指定至少90%爐石品質才可停止。測試數、Canvas pixel差異和自評比例不支持整體90%結論；把未驗的原生聲画、聽感、完整對局與獨立比較留在PLAN。review-animation24-native.sh是Mac工程驗證入口，Windows只做過語法檢查，不能當native PASS。
 - Interface 19 的 browser 位於 tools/game-interface-preview；它是排版／互動 fixture，不是 SwiftUI renderer 或遊戲規則引擎。Windows 上 build、原生 UI、效能、VoiceOver、真機聲畫皆另驗。
 
 ## 歷史定位（非當前 runtime）
