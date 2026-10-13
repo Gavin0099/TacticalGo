@@ -17,6 +17,14 @@ public struct ExpansionPresentation: Equatable, Sendable {
     public let release: Double, moveStart: Double, arrival: Double, captureStart: Double, duration: Double
     public var caster: Player { before.current }
     public var hero: Point? { before.board.find(caster,.hero) }
+    /// The validated result and the human perspective choose the ending, never the acting side.
+    public func terminalCue(computer: Player?) -> String? {
+        switch after.status {
+        case .ongoing: nil
+        case .drawn: "draw"
+        case .won: computer != nil && after.winner == computer ? "defeat" : "victory"
+        }
+    }
     public static func make(before: GameState, action: GameAction, outcome: ActionOutcome, current: GameState) -> Self? {
         guard outcome.success, current == outcome.state,
               GameEngine.apply(before,action) == outcome else { return nil }

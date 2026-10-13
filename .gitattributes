@@ -1,0 +1,5 @@
+# Historical source snapshots are evidence artifacts. Keep their exact bytes
+# across Windows/macOS checkouts; review the active Swift sources normally.
+artifacts/**/baseline/** -text -diff
+artifacts/av21-pending/source/** -text -diff
+artifacts/av21-pending/tracked.patch -text -diff

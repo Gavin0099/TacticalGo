@@ -23,12 +23,12 @@ struct RecordLibraryView: View {
                                 .accessibilityIdentifier("replay-" + record.id.uuidString)
                             Spacer()
                             if record.steps.last?.after.status == .ongoing || record.steps.isEmpty {
-                                Button("續玩") { resume(record); dismiss() }.buttonStyle(.bordered)
+                                Button("續玩") { resume(record); dismiss() }.buttonStyle(GameButtonStyle(padded: true))
                             } else { Text(record.steps.last?.after.winner.map { $0 == .one ? "黑方獲勝" : "白方獲勝" } ?? "和局").font(.caption) }
                         }
                     }.padding(.vertical, 6)
                 }
-            }.navigationTitle("存局與棋譜")
+            }.gameSheetSurface().navigationTitle("存局與棋譜")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() }.accessibilityIdentifier("recordsDone") } }
         }
     }
@@ -63,7 +63,7 @@ private struct RecordReplayView: View {
                             Button("上一步") { index -= 1 }.disabled(index == 0).accessibilityIdentifier("replayPrevious")
                             Button("下一步") { index += 1 }.disabled(index + 1 >= frames.count).accessibilityIdentifier("replayNext")
                             Button("最後") { index = frames.count - 1 }.disabled(index + 1 >= frames.count).accessibilityIdentifier("replayLast")
-                        }.buttonStyle(.bordered)
+                        }.buttonStyle(GameButtonStyle(padded: true))
                         if !frame.events.isEmpty {
                             Text(frame.events.map(eventLabel).joined(separator:" · ")).font(.subheadline)
                         }
@@ -76,7 +76,7 @@ private struct RecordReplayView: View {
                     }.padding(12).frame(maxWidth:784).frame(maxWidth:.infinity)
                 }
             } else { Text("這份棋譜無法驗證，原檔已保留。") }
-        }.navigationTitle("對局重播").navigationBarTitleDisplayMode(.inline)
+        }.gameSheetSurface().navigationTitle("對局重播").navigationBarTitleDisplayMode(.inline)
     }
     private func eventLabel(_ event: ActionEvent) -> String {
         switch event {

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TacticalGo Game Feel"
+  short_description: "Unify fantasy board visuals, motion, and audio polish"
+  default_prompt: "Use $tacticalgo-game-feel to improve TacticalGo's full-screen style, animation, and sound toward the Hearthstone benchmark, with comparable evidence and preserved gameplay."

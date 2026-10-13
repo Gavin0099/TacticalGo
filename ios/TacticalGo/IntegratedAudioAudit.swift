@@ -99,6 +99,28 @@ import TacticalGoMotion
         audio.setSceneActive(true)
         try? await Task.sleep(for: .milliseconds(1400))
         record("B_background_no_old_ending", !audio.musicEndingIsPlaying && !audio.musicIsPlaying)
+        // AV21: real expansion receipt routes the player's defeat through the existing music bus.
+        audio.resetBattle(); audio.musicVolume = 0.2; audio.sfxVolume = 0
+        let terminal = ExpansionLabStore(); terminal.computer = .one; terminal.muted = true
+        var terminalCalls: [String] = []
+        terminal.onTerminalCue = { key in terminalCalls.append(key); audio.play(key) }
+        terminal.warriorBotReview(); terminal.scene(true)
+        let winningShift = GameAction.castReformation(SoldierShift(Point(3,3),Point(4,2)), SoldierShift(Point(5,3),Point(5,2)))
+        let terminalCommitted = terminal.commit(winningShift,systemReduced:false)
+        record("expansion_receipt_is_computer_commander_capture", terminalCommitted && terminal.state.status == .won && terminal.state.winner == .one)
+        try? await Task.sleep(for: .milliseconds(1300))
+        record("expansion_defeat_routes_music_with_SFX_off", terminalCalls == ["defeat"] && audio.musicEnded && audio.musicEndingIsPlaying && audio.activeEffectCount == 0)
+        terminal.stop(); audio.cancelEffects(); audio.setSceneActive(false); audio.setSceneActive(true)
+        try? await Task.sleep(for: .milliseconds(1400))
+        record("expansion_terminal_no_loop_or_ending_revival", terminalCalls == ["defeat"] && !audio.musicIsPlaying && !audio.musicEndingIsPlaying)
+        audio.resetBattle(); terminal.warriorBotReview(); terminal.scene(true)
+        _ = terminal.commit(winningShift,systemReduced:false)
+        try? await Task.sleep(for: .milliseconds(30))
+        terminal.scene(false); audio.cancelEffects(); audio.finishBattleSilently(); audio.setSceneActive(false)
+        try? await Task.sleep(for: .milliseconds(1500))
+        terminal.scene(true); audio.setSceneActive(true)
+        record("expansion_background_cancels_pending_terminal", terminalCalls == ["defeat"] && audio.musicEnded && !audio.musicIsPlaying && !audio.musicEndingIsPlaying)
+        terminal.scene(false); terminal.onTerminalCue = nil
         audio.setMatchActive(false)
         defaults.removePersistentDomain(forName: suite)
 

@@ -45,6 +45,15 @@ import XCTest
         for hero in ["warrior","mage","rogue","priest"] {
             let app = integrated(hero);ready(app)
             let frames = boardFrames(app)
+            let dock = app.otherElements["gameActionDock"]
+            XCTAssertEqual(dock.frame.height, 200, accuracy: 0.5, "The presentation contract reserves a fixed 200pt dock")
+            for id in ["mode-soldier", "mode-summon", "mode-skill", "tacticalHelp", "playConfirm", "playEndTurn"] {
+                let button = app.buttons[id]
+                XCTAssertTrue(button.isHittable, "Visible action: \(id)")
+                XCTAssertGreaterThanOrEqual(button.frame.width, 44)
+                XCTAssertGreaterThanOrEqual(button.frame.height, 44)
+            }
+            if hero != "priest" { XCTAssertTrue(app.buttons["mode-advanced"].isHittable) }
             tap(app,"mode-soldier");fixedBoard(app,frames)
             normalPoints(app,[(8,8)]);fixedBoard(app,frames)
             tap(app,"tacticalHelp");tap(app,"tacticalHelpDone");fixedBoard(app,frames)
@@ -95,7 +104,15 @@ import XCTest
         let hit = XCTNSPredicateExpectation(predicate:NSPredicate(format:"value == %@","1/1 落定"),object:app.staticTexts["playMessage"])
         XCTAssertEqual(XCTWaiter.wait(for:[hit],timeout:20),.completed);fixedBoard(app,frames)
         tap(app,"botReviewAdvance");XCTAssertTrue(app.descendants(matching:.any)["matchResult"].firstMatch.waitForExistence(timeout:10));fixedBoard(app,frames)
+        XCTAssertFalse(app.buttons["mode-soldier"].exists)
+        XCTAssertFalse(app.buttons["playConfirm"].exists)
+        XCTAssertFalse(app.buttons["playEndTurn"].exists)
+        XCTAssertTrue(app.buttons["resultReplay"].isHittable)
+        XCTAssertEqual(app.otherElements["gameActionDock"].frame.height, 200, accuracy: 0.5)
         shot(app,"fixed-board-terminal-warm")
+        XCTAssertFalse(app.buttons["undoOrCancel"].isEnabled, "This fixture has no earlier human decision to undo")
+        tap(app,"resultReplay");ready(app);fixedBoard(app,frames)
+        XCTAssertFalse(app.buttons["resultReplay"].exists)
         #else
         throw XCTSkip("Engineering capture fixture is DEBUG-only")
         #endif
@@ -117,6 +134,7 @@ import XCTest
         let audit = app.staticTexts["integratedExpansionAudit"]
         let voice = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","w7-voice-B"),object:audit)
         XCTAssertEqual(XCTWaiter.wait(for:[voice],timeout:10),.completed)
+        XCTAssertTrue(audit.label.contains("defeat"), "A computer win must choose the human defeat ending")
         XCTAssertFalse(app.descendants(matching:.any)["matchResult"].exists,"Result waits until computer landing completes")
         XCTAssertFalse(app.buttons["play-cell-4-1"].label.contains("白方 主將"))
         shot(app,"computer-reformation-weight-confirmed-english-B")

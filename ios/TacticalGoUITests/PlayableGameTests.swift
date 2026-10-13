@@ -175,7 +175,7 @@ import XCTest
     }
     func testCandidateMageDenseRedeployPreviewCancelUndoAndOriginalPushSwitch() {
         let app = app(["--skill-screenshot", "--candidate-skills", "--mage-redeploy"])
-        XCTAssertTrue(app.segmentedControls["mageOperation"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["mageOperation"].waitForExistence(timeout: 10))
         tap(app, 3, 2); tap(app, 1, 1)
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
         XCTAssertTrue(app.staticTexts["2 AP"].exists)
@@ -187,7 +187,7 @@ import XCTest
         shot(app, "candidate-mage-dense-redeploy-confirmed")
         app.buttons["undoOrCancel"].tap()
         XCTAssertTrue(app.staticTexts["2 AP"].exists)
-        app.segmentedControls["mageOperation"].buttons["推動"].tap()
+        app.buttons["mageOperation"].tap(); app.buttons["推動"].tap()
         tap(app, 3, 2)
         XCTAssertTrue(app.buttons["push-Up"].exists)
         XCTAssertFalse(app.buttons["push-Up"].isEnabled) // dense own soldiers still block original push
@@ -741,7 +741,8 @@ import XCTest
         }
         XCTAssertTrue(app.staticTexts["黑方獲勝"].exists)
         XCTAssertEqual(app.staticTexts["currentTurn"].label, "對戰結束")
-        XCTAssertFalse(app.buttons["playEndTurn"].isEnabled)
+        XCTAssertFalse(app.buttons["playEndTurn"].exists)
+        XCTAssertTrue(app.buttons["resultReplay"].isHittable)
         shot(app, "A0-complete-match-real-new-game")
         app.buttons["undoOrCancel"].tap()
         XCTAssertFalse(app.staticTexts["黑方獲勝"].exists)
@@ -795,7 +796,8 @@ import XCTest
         let win = app(["--play-win"])
         tap(win, 3, 3); win.buttons["playConfirm"].tap()
         XCTAssertTrue(win.staticTexts["黑方獲勝"].exists)
-        XCTAssertFalse(win.buttons["playEndTurn"].isEnabled)
+        XCTAssertFalse(win.buttons["playEndTurn"].exists)
+        XCTAssertTrue(win.buttons["resultReplay"].isHittable)
         shot(win, "A0-win")
         win.buttons["undoOrCancel"].tap()
         XCTAssertFalse(win.staticTexts["黑方獲勝"].exists)
@@ -804,9 +806,10 @@ import XCTest
         XCTAssertTrue(draw.buttons["playEndTurn"].waitForExistence(timeout: 10))
         draw.buttons["playEndTurn"].tap()
         XCTAssertTrue(draw.staticTexts["和局"].exists)
-        XCTAssertFalse(draw.buttons["playEndTurn"].isEnabled)
+        XCTAssertFalse(draw.buttons["playEndTurn"].exists)
+        XCTAssertTrue(draw.buttons["resultReplay"].isHittable)
         shot(draw, "A0-draw")
-        draw.buttons["再玩一局"].tap()
+        draw.buttons["resultReplay"].tap()
         XCTAssertFalse(draw.staticTexts["和局"].exists)
         XCTAssertTrue(draw.staticTexts["1 AP"].exists)
     }

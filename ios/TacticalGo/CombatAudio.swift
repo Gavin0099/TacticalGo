@@ -159,6 +159,12 @@ import TacticalGoMotion
         }
     }
 
+    /// A cancelled terminal performance must not resume the battle loop or replay an ending cue.
+    func finishBattleSilently() {
+        guard matchActive, !mix.ended else { return }
+        mix.finish(at: now); startMixTask()
+    }
+
     #if DEBUG
     var musicIsPlaying: Bool { music.contains { $0.isPlaying } }
     var musicPlayerTimes: [Double] { music.map(\.currentTime) }

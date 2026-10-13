@@ -596,3 +596,34 @@ Apple已處理1105（build0c69c29f-572f-46d9-a749-42356512a668），只加入既
 完整Swift250/0、最終Beta6/0、Debug2/0且0skip；签名/源固定/54素材對1104+新archive/IPA一致/兩怪像素PASS。失敗、skip、DB鎖、早於export的驗證與DEBUG測試預期修正保留，階段Beta4不加總。最後討伐狼/史萊姆標題小字修正由最終簽名archive重編譯，無控制/規則/時序變化，驗證界線記在VALIDATION_BOUNDARY。正常速度Simulator無聲戰士前後同一receipt，來源原畫/英文B不變。
 
 Owner回饋請求的可逆17候選完成，不再自行擴scope/重傳。從TestFlight更新1105，新開一般電腦對戰試玩；舊1.0局仍原規則、舊1.1缺solo元資料按雙人還原。最新OWNER_REVIEW17與solo17 DELIVERY/ASC_BUILD/ASC_GROUP、testflight1105-ready.png。1.0 checkout/封存/送審、Git commit/push/main merge未動；十小時heartbeat已暫停。工程PASS不等於真人品質接受。
+
+
+## 2026-10-13 Owner 授權全遊戲介面重做（19）
+
+Owner 指定新推送的 codex/v11-monster-battlefield，並指出底部仍像一般表單，要求整體以爐石呈現品質自主迭代。此新指令授權共用外觀和操作呈現，沒有 Git／TestFlight 發布授權。以004ed4c建立codex/v11-game-interface，保留其他checkout。
+
+本輪新增GameInterface共用材料／插畫圖集／技能卡／能量寶石，四職200pt操作区、戰利入口、結算替換，以及選角／HUD／教學／支援頁面樣式。規則、PhoneMatchLayout、原棋盤素材、聲音／動畫排程未改。Browser50布局與9類fixture互動通過；原生UI回歸已更新但Windows無Xcode，build、native UI、iPad、VoiceOver／Dynamic Type與真機未跑，不能沿用1106測試。報告docs/v11/GAME_INTERFACE_19.md；下一關是Mac編譯與同局面375／402原生畫面核對，音畫整體品質尚未達成驗收。沒有提交／上傳／合併／安裝。
+
+## 2026-10-13 UI20：主畫面與 icon 先完成
+
+Owner認可新風格並指定先主畫面與icon、再動畫。沿用004ed4c來源及codex/v11-game-interface隔離工作樹，自主完成安靜背景／霧面HUD／手繪木框、44pt英雄徽章、能量晶石與AP標記；七技能各有獨立構圖，保留牧師只有奉獻。大廳選角增加勾選、開始對局置於主要位置、續玩和棋譜入口沿用44pt共用樣式。
+
+圖集先後修正跨格串色，框先後調薄並減少外緣留白；完整prompt、原始來源／hash、前版與當前375／402圖保存artifacts/game-interface-20。Browser50布局／9類fixture互動與21個32／48／64圖示樣本通過，這不是原生執行或玩家品質驗收。Windows沒有Xcode，native build／UI／VoiceOver／Dynamic Type／iPad及真機仍NOT RUN。報告docs/v11/GAME_INTERFACE_20.md。
+
+先前開始的AV21七個tracked檔案及兩個新Motion檔案已完整保存在artifacts/av21-pending，並自本輪active runtime撤下；混合UI19測試只移除AV21新增的敗北assert。奉獻語義／終局cue路由仍是下一切片待修，不能宣稱已解決。接續先Mac核對UI20原生畫面，再以同一UI做四職完整演出；未提交／push／merge／安裝／TestFlight發布。
+
+## 2026-10-13 AV21：Owner 明確授權開始四職動畫
+
+Owner在UI20候選完成後指示「然後開始做動畫，以爐石品質為目標」，因此恢復保存中的AV21候選並開始可逆呈現實作；缺少Mac不阻塞候選開發，但原生整合仍待驗。七技能加入棋子受力、落地壓縮／回彈、交換弧線、兩段連鎖、奉獻原點消散；提子／主將地面圈與玩家視角終局cue接線。結束回合透過commit receipt讓draw可收束。規則、UI20原畫／主畫面及棋盤frame未變。
+
+browser工作台tools/animation-21可播放七技能、正常速度／時間滑桿／降低動態、375／402與聲音預設關閉。它是獨立Canvas路徑示意，並非SwiftUI或Domain執行。正常播放／取消／端點與路徑分離等結果保存在artifacts/animation-21；Swift八項新測試、原生UI及IntegratedAudioAudit已寫，NOT RUN。Windows／WSL沒有Swift compiler，也沒有Xcode／iOS SDK；基線與修改後原生build均未驗證，不能沿用歷史250或1106當本輪結果。
+
+報告docs/v11/ANIMATION_21.md；接續Mac編譯／Swift／原生UI與整合音訊，再看同局面聲畫錄影調整。沒有Git commit／push／merge、安裝或TestFlight授權／發布；爐石整體品質仍未驗收。
+
+## 2026-10-13 AV22：Owner 要求持續逼近爐石品質
+
+沿用UI20與AV21候選，保留前輪来源后新增原創8格局部特效，依成功receipt蓄力／接觸取樣；連鎖新增第二次蓄力，奉獻新增抬手釋放；非受影響棋子短暫退後至88%且完整恢復，危險與選取仍在特效上方。Domain規則、角色原圖／clean plate、UI20源與音訊排程不改。
+
+tools/animation-22以來源分層polygon與before／after pose keyframes重建比較，修正AV21整圖轉動工具限制；新增24个32／48／64px樣本、密集標本與對等細節放大。這些是Canvas候選，不是原生或合法Domain執行。原生已新增三項回歸但NOT RUN；Windows無Swift／Xcode，原生编譯／聲畫／FPS／輸入恢復未驗。候選材質與兩個出力拍点改善，但爐石整体品質尚未達成。
+
+完整prompt／原圖hash／來源快照／失敗與最終檢查在artifacts/animation-22；報告ANIMATION_22.md。下一關Mac原生同局面375／402密集聲畫與工程回歸；沒有Git或TestFlight發布。

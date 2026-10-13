@@ -12,6 +12,7 @@ import TacticalGoVisuals
     enum Mode: String, CaseIterable { case soldier = "落子", summon = "召喚", skill = "技能", advanced = "第二技能", loot = "戰利能力" }
     enum Monsters: String, CaseIterable { case none = "無魔物", slime = "史萊姆", wolf = "暗影狼", dual = "雙怪" }
     var computer: Player?
+    @ObservationIgnored var onTerminalCue: ((String) -> Void)?
     var difficulty = "easy"
     var controlsLocked: Bool { playing || (state.current == computer && state.status == .ongoing) }
     var presentationHold = 0.0
@@ -229,8 +230,8 @@ import TacticalGoVisuals
         saveCandidate(announce:false); schedule(systemReduced:systemReduced); return true
     }
     func endTurn() {
-        guard !controlsLocked else { return }; stop(); cancelSelection()
-        if session!.apply(.endTurn).success { message = "已結束回合。"; saveCandidate(announce:false) }
+        guard !controlsLocked else { return }
+        if commit(.endTurn,systemReduced:reduced) { message = "已結束回合。" }
     }
     var canUndoHuman: Bool {
         guard let session else { return false }
@@ -305,14 +306,26 @@ import TacticalGoVisuals
             default: break
             }
             if !p.captures.isEmpty { sound.append(("capture",p.captureStart,p.isHeroSkill && voice ? 0.30:0.60)) }
-            if p.after.status == .won { sound.append(("victory",p.duration,p.isHeroSkill && voice ? 0.30:0.60)) }
+            if let ending = p.terminalCue(computer: computer), onTerminalCue == nil {
+                sound.append((ending,p.duration,p.isHeroSkill && voice ? 0.30:0.60))
+            }
         }
-        lastSoundKeys = sound.map { $0.0 }
+        let ending = p.terminalCue(computer: computer)
+        let routedEnding = ending != nil && onTerminalCue != nil
+        lastSoundKeys = sound.map { $0.0 } + (routedEnding ? ending.map { [$0] } ?? [] : [])
         for (key,delay,volume) in sound { if samples.schedule(key,after:delay,volume:volume) { cues += 1 } }
-        let hold = max(p.duration,sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0)
+        let endingTail = routedEnding && !muted ? ending.map { samples.duration($0) } ?? 0 : 0
+        let hold = max(p.duration + endingTail,sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0)
         presentationHold = hold
         task = Task { @MainActor [weak self] in
-            do { try await Task.sleep(for:.seconds(hold)) } catch { return }
+            do {
+                if routedEnding, let ending {
+                    try await Task.sleep(for:.seconds(p.duration))
+                    guard let self, self.generation == marker, self.active, !self.interrupted else { return }
+                    self.onTerminalCue?(ending)
+                    try await Task.sleep(for:.seconds(max(0,hold-p.duration)))
+                } else { try await Task.sleep(for:.seconds(hold)) }
+            } catch { return }
             guard let self,self.generation == marker else { return }
             self.playing = false; self.receipt = nil
         }
@@ -524,7 +537,7 @@ struct ExpansionBoard: View {
                 }
                 ForEach(board.points,id:\.self) { point in
                     if let piece = board[point],!sources.contains(point) {
-                        token(piece,pitch:pitch,plan:p).position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
+                        posedToken(piece,pitch:pitch,plan:p,point:point).position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
                     }
                     if board.monsters.contains(point),let kind = store.state.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
                         ZStack { Ellipse().fill(P02Cozy.card).overlay(Ellipse().stroke(P02Cozy.sage,lineWidth:1.5)).frame(width:pitch*0.76,height:pitch*0.40)
@@ -542,8 +555,8 @@ struct ExpansionBoard: View {
                 if let p,moving {
                     ForEach(p.transfers.indices,id:\.self) { i in
                         let move = p.transfers[i],t = p.progress(at:time)
-                        let point = transferCenter(move,receipt:p,progress:t,presentation:presentation,size:size)
-                        token(move.piece,pitch:pitch,plan:p).position(point).zIndex(180)
+                        let point = transferCenter(move,receipt:p,progress:t,presentation:presentation,size:size,pitch:pitch)
+                        posedToken(move.piece,pitch:pitch,plan:p,point:move.to,moving:true).position(point).zIndex(180)
                     }
                     ForEach(p.placements,id:\.self) { point in
                         if let piece = p.after.board[point] {
@@ -553,7 +566,11 @@ struct ExpansionBoard: View {
                     }
                 }
                 if let p,!reduced,time >= p.arrival,time < p.captureStart+0.18 {
-                    ForEach(p.captures,id:\.at) { captured in token(captured.piece,pitch:pitch,plan:nil).opacity(time < p.captureStart ? 1:max(0,1-(time-p.captureStart)/0.18)).position(presentation.center(captured.at,size)).zIndex(190) }
+                    ForEach(p.captures,id:\.at) { captured in
+                        let f = CaptureDissolveFrame.sample(at:time,start:p.captureStart,commander:captured.piece.kind == .commander)
+                        token(captured.piece,pitch:pitch,plan:nil).scaleEffect(f.scale,anchor:.bottom)
+                            .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
+                    }
                 }
                 if let preview = store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
@@ -578,6 +595,12 @@ struct ExpansionBoard: View {
                 .allowsHitTesting(!store.playing && store.reviewTime == nil)
         }
     }
+    private func posedToken(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?,point: Point,moving: Bool = false) -> some View {
+        let f = plan?.tokenFrame(at:point,time:time,moving:moving,reduced:reduced) ?? .rest
+        let focus = plan?.contextOpacity(at:point,time:time,reduced:reduced) ?? 1
+        return token(piece,pitch:pitch,plan:plan).scaleEffect(x:f.scaleX,y:f.scaleY,anchor:.bottom)
+            .rotationEffect(.degrees(f.tilt),anchor:.bottom).opacity(f.opacity*focus).offset(y:pitch*CGFloat(f.lift))
+    }
     @ViewBuilder private func token(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?) -> some View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
@@ -590,13 +613,13 @@ struct ExpansionBoard: View {
         } else if piece.kind == .hero,hero == .rogue,let image = assets.heroes[.rogue],let plate = store.roguePlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
-                ExpansionHeroBody(original:image,plate:plate,hero:.rogue,pose:performing ? .rogue(at:time,reduced:reduced):.rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
+                ExpansionHeroBody(original:image,plate:plate,hero:.rogue,pose:performing ? .rogue(at:time,reduced:reduced,chained:plan?.isChainSwap == true):.rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
                 faction(piece,pitch:pitch)
             }
         } else if piece.kind == .hero,hero == .priest,let image = store.priest,let plate = store.priestPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
-                ExpansionHeroBody(original:image,plate:plate,hero:.priest,pose:performing ? .priest(at:time,reduced:reduced):.rest,width:pitch*0.98).offset(y:-pitch*0.43)
+                ExpansionHeroBody(original:image,plate:plate,hero:.priest,pose:performing ? .priest(at:time,reduced:reduced,offering:plan?.isOffering == true):.rest,width:pitch*0.98).offset(y:-pitch*0.43)
                 faction(piece,pitch:pitch)
             }
         } else {
@@ -611,12 +634,16 @@ struct ExpansionBoard: View {
         if kind == .slime { return (1+0.16*coil,1-0.14*coil,0,-0.08*sin(t * .pi*2)) }
         return (1,1,-8*coil,-0.06*coil)
     }
-    private func transferCenter(_ move: CombatTransfer,receipt: ExpansionPresentation,progress t: Double,presentation: BoardPresentation,size: CGSize) -> CGPoint {
+    private func transferCenter(_ move: CombatTransfer,receipt: ExpansionPresentation,progress t: Double,presentation: BoardPresentation,size: CGSize,pitch: CGFloat) -> CGPoint {
         let a = presentation.center(move.from,size),b = presentation.center(move.to,size)
-        if move.piece.kind == .hero,case .castChainSwap(let first,_) = receipt.action {
+        if case .castSwap = receipt.action {
+            let offset = RogueSwapArc.offset(dx:Double(b.x-a.x),dy:Double(b.y-a.y),progress:t,pitch:Double(pitch))
+            return CGPoint(x:a.x+(b.x-a.x)*t+offset.x,y:a.y+(b.y-a.y)*t+offset.y)
+        }
+        if case .castChainSwap(let first,_) = receipt.action {
             let middle = presentation.center(first,size)
-            if t < 0.5 { return CGPoint(x:a.x+(middle.x-a.x)*t*2,y:a.y+(middle.y-a.y)*t*2) }
-            return CGPoint(x:middle.x+(b.x-middle.x)*(t-0.5)*2,y:middle.y+(b.y-middle.y)*(t-0.5)*2)
+            let point = RogueChainPath.position(from:(Double(a.x),Double(a.y)),to:(Double(b.x),Double(b.y)),via:(Double(middle.x),Double(middle.y)),progress:t,pitch:Double(pitch),hero:move.piece.kind == .hero,firstEnemy:move.from == first)
+            return CGPoint(x:point.x,y:point.y)
         }
         return CGPoint(x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t)
     }

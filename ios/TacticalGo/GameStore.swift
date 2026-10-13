@@ -17,23 +17,29 @@ import TacticalGoContent
         match.muted = audio.muted; match.computer = computer; match.difficulty = botDifficulty.rawValue
         match.restart(); expansion = match; self.size = match.size; self.computer = computer
         botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
-        match.scene(audioSceneActive)
+        bindExpansionAudio(match); match.scene(audioSceneActive)
     }
     func resumeExpansion() -> Bool {
         let match = ExpansionLabStore()
         guard match.resumeCandidate() else { recordErrorMessage = match.message; return false }
         match.muted = audio.muted
-        leaveMatch(); expansion = match; size = match.size; computer = match.computer; botDifficulty = BotDifficulty(rawValue:match.difficulty) ?? .easy; match.scene(audioSceneActive); return true
+        leaveMatch(); expansion = match; size = match.size; computer = match.computer; botDifficulty = BotDifficulty(rawValue:match.difficulty) ?? .easy; bindExpansionAudio(match); match.scene(audioSceneActive); return true
     }
     func expansionPractice(_ value: ExpansionPractice) {
         leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.practice(value)
-        expansion = match; size = match.size; match.scene(audioSceneActive)
+        expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
     }
     func expansionChallenge(counter: Bool = false) {
         leaveMatch(); let match = ExpansionLabStore()
         if counter { match.priestCounter() } else { match.priestChallenge() }
         match.muted = audio.muted
-        expansion = match; size = match.size; match.scene(audioSceneActive)
+        expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
+    }
+    private func bindExpansionAudio(_ match: ExpansionLabStore) {
+        match.onTerminalCue = { [weak self, weak match] key in
+            guard let self, let match, self.expansion === match, self.audioMatchActive, self.audioSceneActive else { return }
+            self.audio.play(key)
+        }
     }
     #endif
     var savedRecords: [MatchRecord] = []
@@ -98,6 +104,9 @@ import TacticalGoContent
         #endif
         audioGeneration &+= 1; audioTask?.cancel(); audioTask = nil
         audio.cancelEffects()
+        #if DEBUG || TACTICALGO_V11
+        if let match = expansion, match.state.status != .ongoing { audio.finishBattleSilently() }
+        #endif
     }
     func setMatchAudioActive(_ active: Bool) {
         #if DEBUG || TACTICALGO_V11
@@ -108,6 +117,9 @@ import TacticalGoContent
         audioMatchActive = active
         if !active { cancelAudioFeedback() }
         audio.setMatchActive(active)
+        #if DEBUG || TACTICALGO_V11
+        if active, let match = expansion, match.state.status != .ongoing, !match.playing { audio.finishBattleSilently() }
+        #endif
     }
     func setSceneAudioActive(_ active: Bool) {
         #if DEBUG || TACTICALGO_V11

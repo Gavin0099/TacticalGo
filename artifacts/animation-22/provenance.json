@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-13",
+  "generator": "image_gen.imagegen",
+  "source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-9bc8f8fc-1326-435f-8e1b-20ef88085091.png",
+  "asset": "ios/TacticalGo/Assets.xcassets/game-spell-atlas-v22.imageset/game-spell-atlas-v22.png",
+  "sha256": "2a4dbc5f7abd53ea8185f68aa68d62cfe59e2ea9642b9188d5953b7ccffac3df",
+  "prompt_verbatim": "fx-prompt.txt",
+  "dimensions": [
+    1774,
+    887
+  ],
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "grid": [
+    4,
+    2
+  ],
+  "cell_edge_pixels": 443.5,
+  "fractional_cell_sampling": "equal render cells with fully transparent gutters; source pixels unchanged",
+  "boundary_alpha_max": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "original_pixels_preserved": true,
+  "competitor_media_imported": false,
+  "status": "original_generated_candidate"
+}

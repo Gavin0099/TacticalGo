@@ -1,0 +1,21 @@
+{
+  "asset_catalogs": "PASS",
+  "atlas_4x2_and_alpha": "PASS",
+  "generated_pixels_preserved": "PASS",
+  "xcode_source_registration": "PASS",
+  "domain_and_board_layout_sources": "unchanged",
+  "installed_skill_byte_match": true,
+  "skill_files": 8,
+  "native_build": "NOT RUN - no Xcode on Windows",
+  "native_ui_tests": "NOT RUN",
+  "evidence_boundary": "Static checks do not parse or compile SwiftUI",
+  "changed_tracked": [
+    "docs/PLAN.md",
+    "ios/TacticalGo.xcodeproj/project.pbxproj",
+    "ios/TacticalGo/OnboardingView.swift",
+    "ios/TacticalGo/PlayableGameView.swift",
+    "ios/TacticalGo/RecordLibraryView.swift",
+    "ios/TacticalGoUITests/ExpansionLabTests.swift",
+    "ios/TacticalGoUITests/PlayableGameTests.swift"
+  ]
+}
