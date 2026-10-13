@@ -1,0 +1,332 @@
+{
+  "status": "candidate_owner_listening_pending",
+  "rights": {
+    "Kenney": "CC0, original License.txt retained in sources",
+    "voice": "Existing pinned Qwen VoiceDesign, no reference voice; source manifest retained; owner acceptance pending",
+    "art": "Existing TacticalGo candidate; generation record retained; owner acceptance separate"
+  },
+  "sample_origin_claim": "Licensed audio samples; no claim these were physically recorded foley",
+  "sources": [
+    {
+      "id": "charge-cloth",
+      "source": "assets/candidates/present-01/audio/raw/cloth1.ogg",
+      "sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d",
+      "pack": "rpg-audio",
+      "length": 0.2,
+      "ffmpeg_filter": "highpass=f=250,lowpass=f=4200",
+      "reverse": false
+    },
+    {
+      "id": "charge-crystal",
+      "source": "assets/candidates/present-01/audio/raw/impactGlass_light_000.ogg",
+      "sha256": "d750cf88097d0c3e69920e6e14496e1444e1a9da01aa4cca8f5ec8cb44c57b4f",
+      "pack": "impact-sounds",
+      "length": 0.2,
+      "ffmpeg_filter": "highpass=f=700,lowpass=f=6500",
+      "reverse": true
+    },
+    {
+      "id": "release-air",
+      "source": "assets/candidates/present-01/audio/raw/knifeSlice.ogg",
+      "sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+      "pack": "rpg-audio",
+      "length": 0.3,
+      "ffmpeg_filter": "highpass=f=450,lowpass=f=7000",
+      "reverse": false
+    },
+    {
+      "id": "land-wood",
+      "source": "assets/candidates/present-01/audio/raw/impactWood_light_000.ogg",
+      "sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+      "pack": "impact-sounds",
+      "length": 0.18,
+      "ffmpeg_filter": "highpass=f=100,lowpass=f=2500",
+      "reverse": false
+    },
+    {
+      "id": "land-crystal",
+      "source": "assets/candidates/present-01/audio/raw/impactGlass_light_002.ogg",
+      "sha256": "710db7451bb7857b9140dfe6afe4621ea2188ad65eda3919c569d1bb285b933d",
+      "pack": "impact-sounds",
+      "length": 0.18,
+      "ffmpeg_filter": "highpass=f=1200,lowpass=f=7000",
+      "reverse": false
+    },
+    {
+      "id": "capture-crystal",
+      "source": "assets/candidates/present-01/audio/raw/impactGlass_light_004.ogg",
+      "sha256": "f535b7cb7835400d8d28bcf9e1cf047ce3c0eb7a6456bdb1a4a27acbec1ed2cb",
+      "pack": "impact-sounds",
+      "length": 0.18,
+      "ffmpeg_filter": "highpass=f=500,lowpass=f=6000",
+      "reverse": false
+    }
+  ],
+  "recipes": {
+    "p-charge": [
+      [
+        "charge-cloth",
+        0.45
+      ],
+      [
+        "charge-crystal",
+        0.7
+      ]
+    ],
+    "p-release": [
+      [
+        "release-air",
+        1
+      ]
+    ],
+    "p-land": [
+      [
+        "land-wood",
+        0.75
+      ],
+      [
+        "land-crystal",
+        0.65
+      ]
+    ],
+    "p-capture": [
+      [
+        "capture-crystal",
+        0.75
+      ]
+    ]
+  },
+  "outputs": [
+    {
+      "file": "assets/candidates/present-01/audio/stems/charge-cloth.wav",
+      "sha256": "10d99b9023f1341c9730406a3237488ee637413572a636e732bf4126515e37f6",
+      "frames": 8820,
+      "duration": 0.2,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -34.42052286180956,
+      "dc": -3.423214528510536e-05,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/stems/charge-crystal.wav",
+      "sha256": "43dd5967e0e3c503d00c6f4b1cf1b07b211a74907d2430d45f57076059ca0916",
+      "frames": 8820,
+      "duration": 0.2,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -30.19509603024214,
+      "dc": -5.1993691274427145e-06,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/stems/release-air.wav",
+      "sha256": "3d2941ca2ed33ff0cc009680b3e5600a2aaddaa06137edccb51d5fc690bcfe75",
+      "frames": 13230,
+      "duration": 0.3,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -27.147609746309975,
+      "dc": -2.53673753444824e-07,
+      "start_sample": 0.0,
+      "end_sample": -0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/stems/land-wood.wav",
+      "sha256": "8b1199b0710fcf0516b932a28d0d298d71a62fbc84a873ea32699086b4043cef",
+      "frames": 7938,
+      "duration": 0.18,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -31.26867979104864,
+      "dc": 8.381626877129167e-05,
+      "start_sample": 0.0,
+      "end_sample": -0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/stems/land-crystal.wav",
+      "sha256": "b21925ea07e035e16ddf7632d2b18d613181fe354323da1432a17628a76ee072",
+      "frames": 7938,
+      "duration": 0.18,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -31.3518951989139,
+      "dc": -2.9710496157344827e-07,
+      "start_sample": 0.0,
+      "end_sample": -0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/stems/capture-crystal.wav",
+      "sha256": "90631df03dc20a3e556366c3f709a0811b9d1f4483de3ac0d0b091af8dd43e53",
+      "frames": 7938,
+      "duration": 0.18,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -12.041199826559248,
+      "rms_dbfs": -29.12305563693558,
+      "dc": -3.242384842702871e-06,
+      "start_sample": -0.0,
+      "end_sample": -0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/cues/p-charge.wav",
+      "sha256": "97ae86f66c46096e8a97841c1f55d655453127cdc230ad6922aa37f9525b4f11",
+      "frames": 8820,
+      "duration": 0.2,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -7.544989197575731,
+      "rms_dbfs": -24.999999999999993,
+      "dc": -4.617593434900203e-05,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 2.4246942197051644
+    },
+    {
+      "file": "assets/candidates/present-01/audio/cues/p-release.wav",
+      "sha256": "e68dc62b27b8476157001b7cd07da462aef067bf48c35a6f489a648f43db9ff6",
+      "frames": 13230,
+      "duration": 0.3,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -7.893590080249272,
+      "rms_dbfs": -22.99999999999998,
+      "dc": -4.089366380459624e-07,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1.612057347252794
+    },
+    {
+      "file": "assets/candidates/present-01/audio/cues/p-land.wav",
+      "sha256": "4c9885cf88989ceaf65f30a7b3f15bb56fc52207e2c4b080900a3c513583d134",
+      "frames": 7938,
+      "duration": 0.18,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -5.192746210115122,
+      "rms_dbfs": -24.754120799708236,
+      "dc": 0.00013448682150599562,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 2.1459835425947658
+    },
+    {
+      "file": "assets/candidates/present-01/audio/cues/p-capture.wav",
+      "sha256": "aa31f9ff7fa5cb292ad77130eab796e7401521957e8f298f51dd8e4d3623e3ba",
+      "frames": 7938,
+      "duration": 0.18,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -5.918144189623659,
+      "rms_dbfs": -23.00000000000006,
+      "dc": -6.561714682081568e-06,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 2.698307984362884
+    }
+  ],
+  "dry_previews": [
+    {
+      "file": "assets/candidates/present-01/audio/A-sfx-preview.wav",
+      "sha256": "c9a3948c17a590d87769b24cc2ca0caa618e5a391db65bcd17e4690646ae7cba",
+      "frames": 66150,
+      "duration": 1.5,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -3.965375891704751,
+      "rms_dbfs": -20.480382211811694,
+      "dc": -7.390051559738695e-05,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/B-sfx-preview.wav",
+      "sha256": "b67198f62949c9bf6731b1757e8217d7a29d12e287164df2860aa02fea013bff",
+      "frames": 66150,
+      "duration": 1.5,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -5.924371831000769,
+      "rms_dbfs": -28.117666368039323,
+      "dc": 9.121979589092647e-06,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    }
+  ],
+  "overlap_previews": [
+    {
+      "file": "assets/candidates/present-01/audio/B-capture-preview.wav",
+      "sha256": "91434a799d385f5917988b94bd9ca87d21dd88f4e8c7e9aa95688d25fe794db4",
+      "frames": 136710,
+      "duration": 3.1,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -3.125868586508818,
+      "rms_dbfs": -22.225187796669875,
+      "dc": 2.0129153072185086e-06,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    },
+    {
+      "file": "assets/candidates/present-01/audio/B-capture-voice-preview.wav",
+      "sha256": "5619cc59c4d6fcd020d8707e587835a89971d8e7edc54229895ddb5050ff56f8",
+      "frames": 136710,
+      "duration": 3.1,
+      "sample_rate": 44100,
+      "channels": 2,
+      "peak_dbfs": -2.7159188736495254,
+      "rms_dbfs": -21.380079252068796,
+      "dc": 6.318827506420671e-06,
+      "start_sample": 0.0,
+      "end_sample": 0.0,
+      "gain": 1
+    }
+  ],
+  "ffmpeg_version": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "resources": [
+    {
+      "file": "clean-plate.png",
+      "sha256": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d"
+    },
+    {
+      "file": "mage-original.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "file": "mage-voice-english.wav",
+      "sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950"
+    },
+    {
+      "file": "p-capture.wav",
+      "sha256": "aa31f9ff7fa5cb292ad77130eab796e7401521957e8f298f51dd8e4d3623e3ba"
+    },
+    {
+      "file": "p-charge.wav",
+      "sha256": "97ae86f66c46096e8a97841c1f55d655453127cdc230ad6922aa37f9525b4f11"
+    },
+    {
+      "file": "p-land.wav",
+      "sha256": "4c9885cf88989ceaf65f30a7b3f15bb56fc52207e2c4b080900a3c513583d134"
+    },
+    {
+      "file": "p-release.wav",
+      "sha256": "e68dc62b27b8476157001b7cd07da462aef067bf48c35a6f489a648f43db9ff6"
+    }
+  ]
+}

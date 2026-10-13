@@ -114,7 +114,7 @@ import XCTest
     }
     private func app(_ args: [String] = []) -> XCUIApplication {
         continueAfterFailure = false
-        let app = XCUIApplication(); app.launchArguments = args + ["--record-isolation", UUID().uuidString]; app.launch(); return app
+        let app = XCUIApplication(); app.launchArguments = args + ["--original-rules", "--record-isolation", UUID().uuidString]; app.launch(); return app
     }
     private func tap(_ app: XCUIApplication, _ x: Int, _ y: Int, size: Int = 7) {
         let arena = app.otherElements["playArena"]

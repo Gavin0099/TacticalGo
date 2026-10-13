@@ -1,0 +1,149 @@
+{
+  "schema": "tacticalgo-monster-art-v01",
+  "style": "cozy-tabletop-v0.1",
+  "owner_request": "怪物圖樣也要按照 skill 來畫",
+  "batch_count": 2,
+  "representation": "purpose-authored simplified board creature tokens; not portraits reduced into certified production tokens",
+  "skills": [
+    {
+      "path": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/SKILL.md",
+      "sha256": "03755f0ff72be80fd2516413ff8d67311642daa58e8dbe5dbb3a0b7370f5b769"
+    },
+    {
+      "path": "/Users/pc49-58/.codex/skills/.system/imagegen/SKILL.md",
+      "sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba"
+    }
+  ],
+  "owner_direction_source": "docs/visual/CHECKPOINT_VIS_FEEL_01.md",
+  "owner_direction_sha256": "c8bd9782d5606f3c0636a6287af9d46cd1406169716b1343d2387719373857f8",
+  "assets": [
+    {
+      "id": "slime-token-v01",
+      "filename": "slime-token-v01.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "a84b0dc78fdf3a28b952bacf5cb0d133232361cb3934e8a940c7e22550b9bbaf",
+      "decoded_rgba_sha256": "a9ee6bec37dd307ccc22a3e18cfc37a9ffd4a44ae58d31b607ab7466c519f184",
+      "alpha": {
+        "zero": 843540,
+        "opaque": 401,
+        "partial": 728575
+      },
+      "visible_bounds_alpha_gte_13": [
+        39,
+        185,
+        1216,
+        1092
+      ],
+      "alpha_gate_passed": true,
+      "original_output_path": "/Users/pc49-58/.codex/generated_images/01a12a76-7b6b-7e61-b59a-58b25bbff41b/exec-3dc0caf5-d21f-4f49-a375-dc37c47bf602.png",
+      "original_preserved": true,
+      "prompt_path": "prompts/slime.txt",
+      "prompt_sha256": "37a210a42ef05bd3d2c00eeb4b0948138b024549d3505903e18452b02490a37b",
+      "reference": {
+        "asset_id": "tg-warrior-01",
+        "version": "v01",
+        "role": "STYLE only; not human identity",
+        "path": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/assets/warrior-v01.png",
+        "file_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322"
+      },
+      "generation": {
+        "tool": "image_gen.imagegen",
+        "mode": "built_in",
+        "model": "unknown",
+        "tool_version": "unknown",
+        "transparent_background": true,
+        "repair_calls": 0
+      },
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "debug_lab_preview": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "status": "pending",
+        "commercial_acceptance": "not_recorded"
+      },
+      "qa": {
+        "alpha": "pass",
+        "bounds": "not_clipped",
+        "scale_review": "visually_reviewed_32_48_64",
+        "player_recognition": "not_run",
+        "consumer_ui": "two_flow_tests_passed_and_actual_screenshots_reviewed"
+      }
+    },
+    {
+      "id": "shadow-wolf-token-v01",
+      "filename": "shadow-wolf-token-v01.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "673985208151922fdafe6dccd2530bcde814d7eae307e011f222d17f5e486d50",
+      "decoded_rgba_sha256": "b96f5e25bc93c026af288c5d2494fffe1d9d562520cc7ce79e9cddca141aa531",
+      "alpha": {
+        "zero": 843504,
+        "opaque": 594,
+        "partial": 728418
+      },
+      "visible_bounds_alpha_gte_13": [
+        179,
+        45,
+        1073,
+        1214
+      ],
+      "alpha_gate_passed": true,
+      "original_output_path": "/Users/pc49-58/.codex/generated_images/01a12a76-7b6b-7e61-b59a-58b25bbff41b/exec-799f4370-75b2-4c83-8c8c-0cdc101fc4ca.png",
+      "original_preserved": true,
+      "prompt_path": "prompts/shadow-wolf.txt",
+      "prompt_sha256": "1347dc1d1b0d2ac0ac0532700f29a110a8fb26f1cc250e69db2d4af77e974455",
+      "reference": {
+        "asset_id": "tg-warrior-01",
+        "version": "v01",
+        "role": "STYLE only; not human identity",
+        "path": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/assets/warrior-v01.png",
+        "file_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322"
+      },
+      "generation": {
+        "tool": "image_gen.imagegen",
+        "mode": "built_in",
+        "model": "unknown",
+        "tool_version": "unknown",
+        "transparent_background": true,
+        "repair_calls": 0
+      },
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "debug_lab_preview": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "status": "pending",
+        "commercial_acceptance": "not_recorded"
+      },
+      "qa": {
+        "alpha": "pass",
+        "bounds": "not_clipped",
+        "scale_review": "visually_reviewed_32_48_64",
+        "player_recognition": "not_run",
+        "consumer_ui": "two_flow_tests_passed_and_actual_screenshots_reviewed"
+      }
+    }
+  ],
+  "usage": "Only independent 1.1 Debug MonsterLab; both candidate PNGs verified absent from the actual built Release app.",
+  "retouched": false,
+  "notes": [
+    "Warm brown outlines and soft paper texture match fixed warrior style reference.",
+    "32px preserves broad blob versus pointed-ear silhouette; wolf fur and facial detail diminish.",
+    "QA derivatives do not modify original PNGs.",
+    "No gameplay/domain or approved reference asset changes."
+  ]
+}

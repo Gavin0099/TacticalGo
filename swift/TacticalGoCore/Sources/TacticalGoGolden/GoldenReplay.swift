@@ -83,6 +83,10 @@ public enum GoldenReplay {
     private static func event(_ e: ActionEvent) -> [String: Any] {
         var d: [String: Any] = ["type": e.name]
         switch e {
+        case .pieceSacrificed(let p, let at): d.merge(["player": p.name, "at": xy(at)]) { _, b in b }
+        case .monsterLootGranted(let p, let ability, let unlock): d.merge(["player": p.name, "ability": ability.rawValue, "unlockPly": unlock]) { _, b in b }
+        case .monsterAbilityUsed(let p, let ability): d.merge(["player": p.name, "ability": ability.rawValue]) { _, b in b }
+        case .monsterHunted(let p, let at): d.merge(["player": p.name, "at": xy(at)]) { _, b in b }
         case .resourcesSpent(let p, let ap, let mana): d.merge(["player": p.name, "ap": ap, "mana": mana]) { _, b in b }
         case .piecePlaced(let p, let at, let kind): d.merge(["player": p.name, "at": xy(at), "kind": kind.rawValue]) { _, b in b }
         case .piecesSwapped(let p, let a, let b): d.merge(["player": p.name, "a": xy(a), "b": xy(b)]) { _, b in b }

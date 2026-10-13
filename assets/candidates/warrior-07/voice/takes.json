@@ -1,0 +1,36 @@
+[
+  {
+    "hero": "warrior",
+    "take": "A",
+    "text": "Hold the line!",
+    "instruct": "A young adult male fantasy guardian. Clear warm midrange voice with a slight rough edge, brave and protective, natural fluent English and clean dry studio recording. Give allies a firm urgent battlefield command with breath-supported projection. Strongly stress HOLD and LINE with connected words and a decisive falling ending. Youthful energy, reliable and resolute. Short natural voice acting, no narration or extra words.",
+    "seed": 20261022,
+    "file": "warrior-A-dry.wav",
+    "raw_file": "raw/warrior-A-unprocessed.wav",
+    "duration_seconds": 0.872,
+    "sample_rate": 24000,
+    "gain": 1.289363513229665,
+    "rms_dbfs": -18.000000436554874,
+    "peak_dbfs": -3.798725518574464,
+    "generation_seconds": 0.7777910232543945,
+    "sha256": "14ef54760ba517d09f5e4bfaa7e731ea8f4508fffb8a6e7418c503687e78d1ab",
+    "raw_sha256": "256cb4248ac34c7b6af535bddade57bed436157f46ade997cf8d3d817595795c"
+  },
+  {
+    "hero": "warrior",
+    "take": "B",
+    "text": "Hold the line!",
+    "instruct": "A young adult male fantasy guardian. Clear warm midrange voice with a slight rough edge, brave and protective, natural fluent English and clean dry studio recording. An energetic rallying shout to stand firm while striking a shield into the ground. Warm confident authority, punchy HOLD and an emphatic LINE. A short brave protective command, no exaggerated monster growl, no narration, no extra words.",
+    "seed": 20261023,
+    "file": "warrior-B-dry.wav",
+    "raw_file": "raw/warrior-B-unprocessed.wav",
+    "duration_seconds": 1.2,
+    "sample_rate": 24000,
+    "gain": 1.039059808547204,
+    "rms_dbfs": -18.000000436554874,
+    "peak_dbfs": -4.4361765331916665,
+    "generation_seconds": 0.707993745803833,
+    "sha256": "f3c9dd9d10b4286b8da19bf15d504b2863984177a0201b5686c7142ba7b8f465",
+    "raw_sha256": "79055540201dfd0c89084ef6b39afaf6cb97b15ca08ec1ea6de9e95c0ccb983d"
+  }
+]

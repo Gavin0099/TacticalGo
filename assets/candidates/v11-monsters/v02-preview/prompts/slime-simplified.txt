@@ -1,0 +1,7 @@
+Use case: identity-preserve
+Asset type: TacticalGo simplified slime board-token candidate for native 32/48/64 pixel display.
+Input images: Image 1 is the EDIT TARGET and IDENTITY reference, the user-provided mint slime. Image 2 is STYLE only, the fixed TacticalGo warrior rendering reference; do not copy its anatomy, costume, or props.
+Primary request: Make ONE simplified board-token representation of the same mint slime. Preserve its distinctive broad soft blob body, bent curling wave-shaped top, warm brown outer contour, tilted friendly face, two large brown eyes with cream whites, open cheerful mouth, jade/mint palette, upper-left lighting and gentle handmade 2.5D volume.
+Change only visual complexity: remove ALL detached droplets around the body; reduce the many tiny highlight spots to two broad soft highlight patches; simplify interior texture and folds into large calm color areas. Keep the curled top as a prominent identity cue. Prioritize a compact continuous silhouette and clear face at 32 pixels. Broad matte painted shading with subtle paper grain, warm dark-brown contours; no plastic shine.
+Composition: single centered creature, full silhouette inside a square canvas with about 6 percent clear margin; no clipping. Transparent background with true alpha. Creature body should read opaque.
+Constraints: no background, no floor, no ground shadow, no baked circle or faction base, no lettering, no extra character, no external particles. Preserve the mint slime identity rather than inventing a different creature.

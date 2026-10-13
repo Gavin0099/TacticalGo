@@ -89,7 +89,7 @@ import TacticalGoMotion
         case .rogue:
             pitch = anticipation * 1.4; depth = sin(Float(t) * .pi) * 0.07
             rotate("right-arm", -anticipation * 2); rotate("left-arm", anticipation * 2)
-        case .none: break
+        case .priest, .none: break
         }
         let stance = GroundedLegPose(depth: Double(depth), rootPitch: Double(pitch))
         let capeAmplitude: Float = heroClass == .rogue ? 0.18 : (heroClass == .warrior ? 0.14 : 0.10)

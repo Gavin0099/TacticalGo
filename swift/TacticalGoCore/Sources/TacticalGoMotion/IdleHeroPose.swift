@@ -20,6 +20,7 @@ public struct IdleHeroPose: Equatable, Sendable {
         case .warrior: leftArm = -0.025 * wave; rightArm = 0.015 * wave
         case .mage: leftArm = 0.012 * wave; rightArm = -0.045 * wave
         case .rogue: leftArm = 0.035 * wave; rightArm = -0.035 * wave
+        case .priest: leftArm = -0.02 * wave; rightArm = 0.03 * wave
         case .none: leftArm = 0; rightArm = 0
         }
         let amplitude = hero == .warrior ? 0.06 : hero == .mage ? 0.04 : 0.07

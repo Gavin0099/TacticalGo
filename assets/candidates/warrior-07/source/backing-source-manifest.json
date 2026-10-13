@@ -1,0 +1,31 @@
+{
+  "base": "c13f23e",
+  "files": {
+    ".agents/skills/tacticalgo-cutout-animation/SKILL.md": "ad90e1f7ad0847a4e1e55c160776977ea8d91d34210258313d8387292f39983f",
+    ".agents/skills/tacticalgo-cutout-animation/agents/openai.yaml": "f6a23084401d98921fa61eb99211c0dfd5dea431008b52073409dba45ee4d644",
+    ".agents/skills/tacticalgo-cutout-animation/references/native-contract.md": "628e56d85986f0c0c788094f6f9cd4f2bbc6aa310a2776036ca640b7905b7eca",
+    ".agents/skills/tacticalgo-cutout-animation/references/review-and-delivery.md": "4d42a774c2aa0c0a843e87305b96cc8f8eaab2db261eb681cadeb6523c4de56b",
+    "assets/candidates/anim-warrior-rogue-01/prompts.json": "07d67cfc4f84e96238c8f453bf15d22c7eb9ed38d0e1e037fcae53562eeb5762",
+    "assets/candidates/anim-warrior-rogue-01/provenance.json": "095b50fb5d8164f25294269b248a63069a9a56a993d1f85773479700ede920f3",
+    "assets/candidates/anim-warrior-rogue-01/rig-and-timing.json": "6b250fe0977315ff63857d83debe977919ecb63951447aefc9fcfbdf9ced3ce6",
+    "ios/TacticalGo/BoardPlayback.swift": "0f337342a193b92073754ca6a52a80c240c0cf60cf46eafbb986c1a681215128",
+    "ios/TacticalGo/BoardViews.swift": "5b732627bcd29cb2ab3cf47138d3b9cfe9a1ff0678e3636581283a4435ed5dae",
+    "ios/TacticalGo/CozyAudit.swift": "3265cd8d31a166f7e50b4de61c00207d061cff92a0bfb01c9d3de181d53b6794",
+    "ios/TacticalGo/CozyBoard.swift": "3bbf6f0725fc571fd41cf56d2a73c220712a27f8007a1659a4d4c08e754b378b",
+    "ios/TacticalGo/CozyStyle.swift": "352491b990c3d31e05183fff26752cf0e0576c5e188ebe2dfeab591c49e20efd",
+    "ios/TacticalGo/GameStore.swift": "e6dcdd5064e6eef63ec6ea6a5656690d95216a651ae50b38f001c31337f69f9a",
+    "ios/TacticalGo/HeroBody/rogue-clean-plate.png": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da",
+    "ios/TacticalGo/HeroBody/source-pins.json": "ebb66673c1867a70265cfeea9db2e0548615c89e9c4c0e11ec64e3a541a70063",
+    "ios/TacticalGo/HeroBody/warrior-clean-plate.png": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63",
+    "ios/TacticalGo/HeroBodyReview.swift": "05f9b4190ab2fed51e38eaa69e0d6de43c5e835032746add836658667425efba",
+    "ios/TacticalGo/HeroBodyView.swift": "35d73e19856f421f8372d849b7bb0c2236f20bb02ea8c34f0f2a6c3be491a79b",
+    "ios/TacticalGo/PlayableGameView.swift": "9574d9a570b3e2c077b6c546bb13c22d7ed66498979866a7ed47c49b0df15490",
+    "ios/TacticalGo/TacticalGoApp.swift": "e84cccda9e92f5dd0c33a9ad1ab7604faa4ddfe569acd75ed2e5462ed1323656",
+    "ios/TacticalGo.xcodeproj/project.pbxproj": "f4171bfd7ef6ddd4f3f80db3fa203055936d0be8283efac5b17678a1d858abbc",
+    "ios/TacticalGoUITests/PlayableGameTests.swift": "48d667750abcb4b7a70b515c2806c5fae7d132a4856b6c3f643a9b8911b064ab",
+    "scripts/verify-hero-body-delivery.py": "df2b9a123b0ffc07a30c32c463a12c7c5d141fa4d645d77f9ff6ccc526797834",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroPerformance.swift": "8c15f5b11f2a7cdad8170454c775dbecb4fa27739390f5b905fd68bc0418a347",
+    "swift/TacticalGoCore/Tests/TacticalGoMotionTests/HeroPerformanceTests.swift": "74cb4627dbb3a045d806cba0d7a017e3c9e273eedc12f1e36fe04809a135ae92"
+  },
+  "Owner": "Rogue motion liked; Warrior improved but lacks force; skill atmosphere NOT PASS; no VFX started"
+}

@@ -80,6 +80,10 @@ private struct RecordReplayView: View {
     }
     private func eventLabel(_ event: ActionEvent) -> String {
         switch event {
+        case .pieceSacrificed: return "奉獻己兵"
+        case .monsterHunted: return "史萊姆討伐（原型）"
+        case .monsterLootGranted: return "獲得魔物能力（原型）"
+        case .monsterAbilityUsed: return "使用魔物能力（原型）"
         case .resourcesSpent(_,let ap,let mana): return "消耗 \(ap) AP、\(mana) 能量"
         case .piecesCaptured(_,let pieces): return "提子 \(pieces.count) 枚"
         case .piecePlaced(_,_,let kind): return kind == .hero ? "英雄召喚" : "落子"

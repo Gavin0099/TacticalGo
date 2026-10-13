@@ -1,0 +1,68 @@
+{
+  "alpha_gate_passed": true,
+  "records": [
+    {
+      "id": "slime-user-original",
+      "filename": "slime-user-original.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "25c33a5e48d4fede828dad91fed27d73fc9b74324a1aae5879ce7a23c14990e9",
+      "decoded_rgba_sha256": "0894b14da8a804a9e4bf7518860a2d0ce5908d18d3c695eed42635bbda7769d5",
+      "alpha": {
+        "zero": 754904,
+        "opaque": 1180,
+        "partial": 816432
+      },
+      "visible_bounds_alpha_gte_13": [
+        41,
+        68,
+        1222,
+        1171
+      ],
+      "alpha_gate_passed": true
+    },
+    {
+      "id": "slime-token-v02",
+      "filename": "slime-token-v02.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "42ebac0255241f7ef8479dcabfa2692a6bad9ee8e80a35be8d2bf4f72f64e97e",
+      "decoded_rgba_sha256": "fcb59c7f4bd8f311c9771bed915066db19f921a92048bf3dd4cdbe3c0f488218",
+      "alpha": {
+        "zero": 795765,
+        "opaque": 1212,
+        "partial": 775539
+      },
+      "visible_bounds_alpha_gte_13": [
+        42,
+        80,
+        1213,
+        1184
+      ],
+      "alpha_gate_passed": true
+    },
+    {
+      "id": "shadow-wolf-preview-v02",
+      "filename": "shadow-wolf-preview-v02.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "c392371b8ab1e221e774706cf670e5be353ce070d408812a4958b0d64c925f94",
+      "decoded_rgba_sha256": "92fcb4dc3ccbf92c9e7e166ecdb1509ac7c79b33a7a3fb865aa044818b5befba",
+      "alpha": {
+        "zero": 734671,
+        "opaque": 1200,
+        "partial": 836645
+      },
+      "visible_bounds_alpha_gte_13": [
+        136,
+        13,
+        1134,
+        1237
+      ],
+      "alpha_gate_passed": true
+    }
+  ]
+}

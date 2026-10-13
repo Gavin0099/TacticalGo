@@ -1,6 +1,6 @@
 ---
 name: tacticalgo-game-feel
-description: Improve TacticalGo board readability and selection, skill-preview, and capture feedback using existing assets; create static/motion comparisons and review evidence. Use for TacticalGo visual interaction work, not hero generation or gameplay rule changes.
+description: Improve TacticalGo board readability and combat presentation using existing assets, shared motion/audio timelines and A/B review evidence. Use for selection, skill-preview, successful combat feedback and sound mixing; not hero generation or gameplay rule changes.
 metadata:
   status: draft_owner_review
 ---
@@ -26,3 +26,5 @@ metadata:
 沿用素材 ID、來源 commit／版本、SHA-256、approval、availability 和 rights；引用不等於升格核准。新人物生成由現有 `tacticalgo-character-style` 處理，本 Skill 不重定人物比例或膚色。未來若授權製作 sprite，使用同一已核准 seed、固定比例與 anchor，檢查透明邊緣和遊戲尺寸；本輪只需現有素材。
 
 需要方法來源或未來 sprite 工作時讀 [sources.md](references/sources.md)。Game Studio Skills 不必安裝也可使用這些方法，不因此更換引擎。草稿不授權安裝、發布、push、merge 或正式素材整合。
+
+製作角色施法的聲畫 A/B 時，讀 [combat-presentation.md](references/combat-presentation.md)。本 Skill 負責演出節奏、混音與驗收；角色原畫切層與關節製作沿用 `tacticalgo-cutout-animation`，不重複定義另一套切層流程。

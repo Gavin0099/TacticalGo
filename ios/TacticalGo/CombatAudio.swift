@@ -173,6 +173,8 @@ import TacticalGoMotion
         reconcileMusic()
     }
     var cachedEffectCount: Int { effects.count }
+    #endif
+    #if DEBUG || TACTICALGO_V11
     var activeEffectCount: Int { effects.values.filter { $0.isPlaying }.count }
     #endif
 

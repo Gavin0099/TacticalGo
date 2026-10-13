@@ -1,0 +1,488 @@
+{
+  "version": "FEEL-10",
+  "status": "candidate; listening/acting Owner pending",
+  "sources": [
+    {
+      "author": "Kenney",
+      "license": "CC0",
+      "page": "https://kenney.nl/assets/rpg-audio",
+      "archive": "assets/candidates/present-01/sources/kenney-rpg-audio.zip",
+      "sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b"
+    },
+    {
+      "author": "Kenney",
+      "license": "CC0",
+      "page": "https://kenney.nl/assets/impact-sounds",
+      "archive": "assets/candidates/present-01/sources/kenney-impact-sounds.zip",
+      "sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8"
+    },
+    {
+      "author": "rubberduck",
+      "license": "CC0 as declared on author page",
+      "page": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
+      "archive": "assets/candidates/feel-10/source/water-splash-slime-sfx.zip",
+      "note": "Recorded slime/water material; no synthesized tone",
+      "sha256": "7cd39abb49d4362a37ba18dc0e454c7dc1d08029d4e5b683149046bc237b2eba"
+    },
+    {
+      "author": "CaveboyTup",
+      "license": "CC0 as declared on author page",
+      "page": "https://opengameart.org/content/wolf-monster-sound",
+      "archive": "assets/candidates/feel-10/source/wolf_monster_6.mp3",
+      "note": "Author-made processed creature sound from CC0 sources, not a real wolf recording",
+      "sha256": "ae5fe120c3e6e39f77af6f340e0ca2a93b27eb62884959e47eae9357c3556252"
+    }
+  ],
+  "processing": [
+    {
+      "stem": "cloth",
+      "source": "cloth2.ogg",
+      "source_sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201",
+      "start": 0,
+      "duration": 0.2,
+      "filters": "highpass=f=180,lowpass=f=6500",
+      "target_rms": -26,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "blade",
+      "source": "drawKnife2.ogg",
+      "source_sha256": "d5df6a4130cbb016f97b4883769a418917b9629cb4c21717030b186e0c73281a",
+      "start": 0,
+      "duration": 0.24,
+      "filters": "highpass=f=450,lowpass=f=6500",
+      "target_rms": -24,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "slice",
+      "source": "knifeSlice.ogg",
+      "source_sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+      "start": 0,
+      "duration": 0.2,
+      "filters": "highpass=f=600,lowpass=f=5500",
+      "target_rms": -27,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "foot",
+      "source": "footstep01.ogg",
+      "source_sha256": "313472dba31fd0c855376069fa368bb5a198c27251cc8398ef464578b7047a4c",
+      "start": 0,
+      "duration": 0.2,
+      "filters": "highpass=f=100,lowpass=f=2500",
+      "target_rms": -24,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "book",
+      "source": "bookOpen.ogg",
+      "source_sha256": "953390534377222bee89ac8cd9e60a58fdc037c71a4d7c18c43cd647c7f34ba8",
+      "start": 0,
+      "duration": 0.25,
+      "filters": "highpass=f=200,lowpass=f=4500",
+      "target_rms": -25,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "page",
+      "source": "bookFlip1.ogg",
+      "source_sha256": "fa81ac2fedc8c641661b87e349630a36c9800e795e0c800e029214efdbe26a7d",
+      "start": 0,
+      "duration": 0.24,
+      "filters": "highpass=f=500,lowpass=f=6000",
+      "target_rms": -27,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "bell",
+      "source": "impactBell_heavy_000.ogg",
+      "source_sha256": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f",
+      "start": 0,
+      "duration": 0.42,
+      "filters": "highpass=f=600,lowpass=f=6800",
+      "target_rms": -27,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "ground",
+      "source": "impactWood_medium_001.ogg",
+      "source_sha256": "15271dbe8e2872dbb0ff1aeb7b12b2d2b92b7c1951c88532b9ab9158c36dfc73",
+      "start": 0,
+      "duration": 0.22,
+      "filters": "highpass=f=160,lowpass=f=3800",
+      "target_rms": -25,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "soft",
+      "source": "impactSoft_medium_000.ogg",
+      "source_sha256": "7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3",
+      "start": 0,
+      "duration": 0.18,
+      "filters": "highpass=f=130,lowpass=f=3000",
+      "target_rms": -27,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "wet-coil",
+      "source": "slime_01.ogg",
+      "source_sha256": "4273c9510b03c3cc6b2d901fbd20de62ff4f537e4077a368355039c3081099a1",
+      "start": 0,
+      "duration": 0.24,
+      "filters": "highpass=f=180,lowpass=f=4800",
+      "target_rms": -24,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "wet-bounce",
+      "source": "slime_05.ogg",
+      "source_sha256": "6127939fac0319d821e13c54c14b6ccb16544f5ac1c5e4057ea6e75fc308f70f",
+      "start": 0,
+      "duration": 0.26,
+      "filters": "highpass=f=150,lowpass=f=5000",
+      "target_rms": -22,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "wet-land",
+      "source": "slime_12.ogg",
+      "source_sha256": "de5437b5ad2af49f6914679011bb212934986c1e13e9a4c9cf45537490f66f6e",
+      "start": 0,
+      "duration": 0.22,
+      "filters": "highpass=f=180,lowpass=f=4500",
+      "target_rms": -24,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "bubble",
+      "source": "bubble_02.ogg",
+      "source_sha256": "7992a1a4637ea727b177b3edbc086ec280167d67a8fad010bb8fb58893b2e2f2",
+      "start": 0,
+      "duration": 0.24,
+      "filters": "highpass=f=200,lowpass=f=5000",
+      "target_rms": -27,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    },
+    {
+      "stem": "wolf-growl",
+      "source": "wolf_monster_6.mp3",
+      "source_sha256": "ae5fe120c3e6e39f77af6f340e0ca2a93b27eb62884959e47eae9357c3556252",
+      "start": 0.1,
+      "duration": 0.52,
+      "filters": "highpass=f=100,lowpass=f=5200",
+      "target_rms": -23,
+      "edge_fades": [
+        0.006,
+        0.045
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/candidates/feel-10/audio/stems/cloth.wav",
+      "sha256": "105b7a43743074618aeade6bb71e24a0349986af99a7112f9c9daac0fe760260",
+      "duration": 0.2,
+      "peak_dbfs": -4.816809892758601,
+      "rms_dbfs": -26.000000000000018
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/blade.wav",
+      "sha256": "51b1b3bb6c345096c729b8eb29f2c43debab1b51a323822ddc2559e09e0072d7",
+      "duration": 0.24,
+      "peak_dbfs": -8.311846042419063,
+      "rms_dbfs": -24.00000000000004
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/slice.wav",
+      "sha256": "2774d849276c29561e9846e8f38c80b8f9d93f071ae4076ae1b11aaffeb19729",
+      "duration": 0.2,
+      "peak_dbfs": -8.258168303986308,
+      "rms_dbfs": -27.000000000000025
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/foot.wav",
+      "sha256": "e3ea65df132d0f24290c425197fd0bb9433e5587f1f5a4c9b2dbb61d36c55b39",
+      "duration": 0.2,
+      "peak_dbfs": -5.16964941433264,
+      "rms_dbfs": -24.00000000000004
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/book.wav",
+      "sha256": "3d8a86e0a51fee2b1f1f00f77ac14aadd377866bed26a1f5c12d869c4250355b",
+      "duration": 0.25,
+      "peak_dbfs": -6.455798168896077,
+      "rms_dbfs": -24.999999999999982
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/page.wav",
+      "sha256": "194e64f59e99eca786f4cb2102740a7e6c1573808893d2e4010ba7f1412218a8",
+      "duration": 0.24,
+      "peak_dbfs": -10.460880472063309,
+      "rms_dbfs": -27.000000000000057
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/bell.wav",
+      "sha256": "5fb2263fcc31c753fbfae80d7f10e2fc32e5eaa1d9082a883fb05d137b547b77",
+      "duration": 0.42,
+      "peak_dbfs": -12.404149151577247,
+      "rms_dbfs": -27.000000000000092
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/ground.wav",
+      "sha256": "6a0f7f0cbd89f980eb69762b3f4dd13bc04da218835401e3f9063564c8663520",
+      "duration": 0.22,
+      "peak_dbfs": -8.162605344416674,
+      "rms_dbfs": -25.000000000000053
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/soft.wav",
+      "sha256": "5d908ee3fcac27e6e51da65e31cf5baf098a7e84a2d3f805e5d22d0a6a04f70d",
+      "duration": 0.18,
+      "peak_dbfs": -10.794563562360313,
+      "rms_dbfs": -27.000000000000043
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/wet-coil.wav",
+      "sha256": "7f9e7070d89692cf64d07f1fa40df1c1ce91a654ff494bf3779ce179336e72b7",
+      "duration": 0.24,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -29.726632188239705
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/wet-bounce.wav",
+      "sha256": "2f3a8f663cb683129a34db3075d792eb5d40ec74a987a5553a9d6f5630d1cc20",
+      "duration": 0.26,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -26.71654807959341
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/wet-land.wav",
+      "sha256": "b78dadb1aa5c52ede6e4686c8494801a77d710e8f4ba6af75413edab58fcc44d",
+      "duration": 0.22,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -29.88680278011239
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/bubble.wav",
+      "sha256": "1583ca4600942b34ee9f80227248c3b1c6d0898fa230bf82fbdb266c30e3855d",
+      "duration": 0.24,
+      "peak_dbfs": -13.157470690109772,
+      "rms_dbfs": -27.000000000000043
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/stems/wolf-growl.wav",
+      "sha256": "59d298d0c519cd14f210eeadada2bae54acde8391399353dcace7bd2095624de",
+      "duration": 0.52,
+      "peak_dbfs": -7.4192904375051825,
+      "rms_dbfs": -23.00000000000004
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-rogue-coil.wav",
+      "sha256": "7103ea81b6e6a74a6238ddc04e230c7fc0c49efc76c0495acc6a3d70f61cc06a",
+      "duration": 0.24,
+      "peak_dbfs": -5.7258952908216765,
+      "rms_dbfs": -24.000000000000036
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-rogue-dash.wav",
+      "sha256": "bdb949ed60238eeccb9aa2d4ab99ed5d6621f4ac74cd71295acae2d0dfc2d0e0",
+      "duration": 0.2,
+      "peak_dbfs": -2.5831939863940305,
+      "rms_dbfs": -22.999999999999993
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-rogue-land.wav",
+      "sha256": "ca1569c41edab56abad1ce521665657c68dc48c6c26c4971986a8ceca28cdf21",
+      "duration": 0.2,
+      "peak_dbfs": -5.95889985595085,
+      "rms_dbfs": -23.00000000000002
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-priest-prayer.wav",
+      "sha256": "bce512b27878b06b006cb22e8c2effcb7c9474e764591d70ebc617d6190884fa",
+      "duration": 0.25,
+      "peak_dbfs": -7.621255458934904,
+      "rms_dbfs": -24.000000000000014
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-priest-bless.wav",
+      "sha256": "67b799b4014f680c368fcdace82f964cb9a5079464ff728b4fb62d0486d96241",
+      "duration": 0.42,
+      "peak_dbfs": -10.240955475341572,
+      "rms_dbfs": -25.000000000000007
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-priest-land.wav",
+      "sha256": "581c5f33811e0139b94281bd25b3161c7b9566f468ec6f3092a238a4926460f6",
+      "duration": 0.22,
+      "peak_dbfs": -7.73262374924868,
+      "rms_dbfs": -24.0
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-slime-coil.wav",
+      "sha256": "81d588ec8a28c388feb41d2ec1848389d528a4e6c3d92a7d5f94d30ffa2b5338",
+      "duration": 0.24,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -25.107218898135844
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-slime-bounce.wav",
+      "sha256": "2f3a8f663cb683129a34db3075d792eb5d40ec74a987a5553a9d6f5630d1cc20",
+      "duration": 0.26,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -26.71654807959341
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-slime-land.wav",
+      "sha256": "b347933eb0f6478aaea1ef4512caca26307e30596e314b4bbe6e11f986d2f7dc",
+      "duration": 0.22,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -25.77588378962581
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-wolf-growl.wav",
+      "sha256": "59d298d0c519cd14f210eeadada2bae54acde8391399353dcace7bd2095624de",
+      "duration": 0.52,
+      "peak_dbfs": -7.419290437505146,
+      "rms_dbfs": -23.0
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-wolf-dash.wav",
+      "sha256": "cc94b37c21f5b8f2df68bdb5624691b3ab57b06ba97a22a24f18c34507b2a8a3",
+      "duration": 0.2,
+      "peak_dbfs": -7.19026262317505,
+      "rms_dbfs": -24.0
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-wolf-land.wav",
+      "sha256": "ca1569c41edab56abad1ce521665657c68dc48c6c26c4971986a8ceca28cdf21",
+      "duration": 0.2,
+      "peak_dbfs": -5.95889985595085,
+      "rms_dbfs": -23.00000000000002
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-voice-rogue-A.wav",
+      "sha256": "f43723e8cc954aca46bd57703cf321920cc09396d9c93ffbb10eadaf98202ff9",
+      "source": "assets/candidates/feel-10/voice/rogue-A-dry.wav"
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-voice-rogue-B.wav",
+      "sha256": "27ff4cd2711489e5941645d0461a0c16458414c36548ddba5a8016f35c4c68de",
+      "source": "assets/candidates/feel-10/voice/rogue-B-dry.wav"
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-voice-priest-A.wav",
+      "sha256": "e5355bc1b8cf7dd1d6bc8dd4104af5c3d34d601909fcea78f7aff1a414172c0e",
+      "source": "assets/candidates/feel-10/voice/priest-A-dry.wav"
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P08/p8-voice-priest-B.wav",
+      "sha256": "cca68df93e96d64613522ba134962e9f3df28f3e8c4218323c76ec0f3d6835a7",
+      "source": "assets/candidates/feel-10/voice/priest-B-dry.wav"
+    }
+  ],
+  "previews": [
+    {
+      "file": "assets/candidates/feel-10/audio/rogue-A-mix.wav",
+      "sha256": "717197c355039c2ec27ffc880e8bce74a6612f9a0a3cd83b6c265f68bdacfa74",
+      "duration": 2.0,
+      "peak_dbfs": -3.9818279198787385,
+      "rms_dbfs": -22.977609287751175
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/rogue-B-mix.wav",
+      "sha256": "a1404f9f05d3694ee2a09a8ab6348380451eb047bab0547202d6e26463049c61",
+      "duration": 2.0,
+      "peak_dbfs": -5.337811356354858,
+      "rms_dbfs": -21.461493849442526
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/rogue-no-voice-mix.wav",
+      "sha256": "80a9ceed91da338ab41b8ee58757ab93b8e5e52d3d413d028099b929ce4131d4",
+      "duration": 2.0,
+      "peak_dbfs": -6.352186234885742,
+      "rms_dbfs": -32.04258696341875
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/priest-A-mix.wav",
+      "sha256": "f16f66f092a1e86bee2f4577f81d64d6bbb561ca473c16b329b51c830a4b1eb6",
+      "duration": 2.0,
+      "peak_dbfs": -4.465795284529689,
+      "rms_dbfs": -22.850285855735997
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/priest-B-mix.wav",
+      "sha256": "b3b31e76f07853fd098173915d218f3bb024aeebcede594196234fe566c995d7",
+      "duration": 2.0,
+      "peak_dbfs": -4.047025949295713,
+      "rms_dbfs": -23.496295874814777
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/priest-no-voice-mix.wav",
+      "sha256": "1d4cd09d1d68a46dbbfac4fb64f6cb26407cb208d8c8f107457e76e4f243afb1",
+      "duration": 2.0,
+      "peak_dbfs": -11.362988326077792,
+      "rms_dbfs": -31.701453355070043
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/slime-mix.wav",
+      "sha256": "65136a13ca1d34bc00ddd8292f99f8a1846561f8b55b7908d84754cf4cf2d027",
+      "duration": 1.5,
+      "peak_dbfs": -5.89984081333328,
+      "rms_dbfs": -32.7453833386479
+    },
+    {
+      "file": "assets/candidates/feel-10/audio/wolf-mix.wav",
+      "sha256": "d98eae855c68a729da7f6744ca81221f47e71727681a6b5ecc6022e772b8bdd2",
+      "duration": 1.5,
+      "peak_dbfs": -6.4012708190395005,
+      "rms_dbfs": -29.150127732983414
+    }
+  ],
+  "voice_gain": 0.85,
+  "sfx_gain": 0.65,
+  "voice_duck": 0.46,
+  "raw_voice_warp": false,
+  "master": "mono44.1k16bit PCM; voices24k original dry",
+  "rights": "source records retained; final release clearance not claimed"
+}
