@@ -127,3 +127,17 @@ Owner decisions, newest first. A decision here overrides any conflicting Draft t
 | 範圍 | 不擴充卷軸、神器、紅龍完整系統或大量美術；自動化 PASS 不取代真人遊戲性驗收 |
 
 Owner 補充的技術更正：Windows 可以用 Swift 官方 Windows toolchain 開發並執行純 Swift Package；SwiftUI 與完整 iOS App 的建置、模擬器除錯仍需 macOS/Xcode。
+
+## 2026-10-14 — 來源保全、整合順序與工具導入限制
+
+| 項目 | 決策 |
+|---|---|
+| 來源保全 | 1.0／1025 送審來源與 1.1／1112 候選來源已各自推送為獨立安全分支（`safety/1.0-1025-source-snapshot-20261014`、`safety/1.1-source-snapshot-20261014`）。標示為 source snapshot，不宣稱為經獨立重建驗證的精確 release source；1.0 的 256 項簽署輸入與 1.1 的 279 項來源清單皆逐項吻合。 |
+| 整合順序 | REL-STATUS → INTEG-DESIGN-01（設計 1.0／1.1 如何整合且不遺失 1.0 功能）→ INTEG-CORE-01（設計驗收後才實作）。Apple 審查結果只阻擋實際合併與發布決策，不阻擋整合設計。 |
+| 範圍凍結 | 整合底定前，不新增英雄、怪物、動畫、框架或 AI agent。 |
+| 驗收原則 | 驗收須包含玩家能否理解技能、戰鬥演出是否清楚、連續遊玩後是否想再玩；自動化測試通過不等於真人驗收。 |
+| AI 工具 | 研究 Claude-Code-Game-Studios（抽 4–6 個 skills 並與既有治理去重）、HunyuanVideo-Foley（戰鬥音效試作）、ACE-Step 1.5（配樂候選）；godot-mcp 僅用於 Owner 另外的 Godot 專案；Unreal／Unity／世界生成類工具不導入。工具能力與授權為 Owner 的研究結論，未經獨立查證。 |
+| 治理導入 | 以 PR #1 內容併入現行 main，並經框架受管更新（F-7）至 `2a09d54`。hooks 為各 clone 本機設定，框架拒絕從連結 worktree 套用（共用 hooks），故其他 worktree／clone 須各自安裝。導入不證明 runtime 或 CI 強制執行。 |
+| 後續待辦 | 支援／隱私網站（僅本機 repo）推送到遠端；簽名 IPA／archive 的異地備份；是否將 1112 加入 Owner 1.1 測試群組由 Owner 決定。 |
+
+證據：`memory/2026-10-14.md`（canonical 記錄）、`docs/save-1.0/`、`docs/save-1.1/`（位於各自的安全分支）。
