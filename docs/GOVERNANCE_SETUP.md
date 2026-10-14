@@ -89,9 +89,17 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
   closed: it does not check the value types of `config` entries or of `expect` entries (e.g. `{"ok": "true"}`);
   `GoldenReplayTests` is the authority. Adding more strictness only moves the line; it does not make `ok=True` mean
   "replayable". Decide strictness by whether a claim changes, not by review count.
+- **Candidate head vs the SHA the job actually checked out.** A `pull_request` run is reported against the PR head,
+  but the job checks out the PR *merge ref* by default. Observed on run 38595511730: checked-out HEAD
+  `4455508` (a merge commit, parents `cdab133` = main and `7b81332` = PR head) while the PR head was `7b81332`. The
+  workflow's first step now logs `git rev-parse HEAD`, `github.sha` and the PR head SHA. When the base is already an
+  ancestor of the head the two trees are identical (checked for this PR), but evidence must still name which SHA was
+  tested instead of saying "CI passed on the head".
 - **Do not turn a CI run into a success receipt on exit code alone.** `gh run view --exit-status` exits 0 for a run
   that is still queued or in progress. Use `scripts/ci_evidence_receipt.py`, which requires `completed`, `success`, the
-  expected head SHA and the expected steps before any receipt is written.
+  expected head SHA, at least one named expected step that succeeded, and that the producing checkout's local HEAD is
+  the commit under test (the framework writer binds `linked_commit` to the local HEAD); it reads the receipt back and
+  deletes it on mismatch.
 - `session_end_hook` fails on Python 3.9 (`X | None` annotations in `claim_enforcement_checker.py`) although the
   framework README states 3.9+; use Python 3.10 or newer.
 - Memory-guard warnings that remain are attributed, not resolved: `test_evidence_provenance_not_found` is the
