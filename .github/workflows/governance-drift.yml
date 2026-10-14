@@ -5,6 +5,10 @@ name: Governance Drift
 # governance files or the inputs of the golden-fixture validator. It is NOT run on every push.
 # NOTE (2026-10-14): Actions was disabled at repository level and was re-enabled the same day (GitHub-owned
 # actions only); see docs/GOVERNANCE_SETUP.md.
+# Least privilege stated in the file itself rather than relying on the repository's default token permissions.
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
   pull_request:
@@ -23,6 +27,8 @@ on:
       - "src/TacticalGo.Domain/Actions.cs"
       - "src/TacticalGo.Domain/ActionEvent.cs"
       - ".github/workflows/governance-drift.yml"
+      # managed hook configs: a re-deployed VS Code Stop -> session_end wiring must be caught here
+      - ".github/hooks/**"
 
 jobs:
   governance-drift:
@@ -49,3 +55,6 @@ jobs:
 
       - name: Run validator unit tests (negative cases)
         run: python -m unittest discover -s validators -p "test_*.py" -v
+
+      - name: Check managed hook wiring (VS Code Stop must not close out a session)
+        run: python validators/hook_wiring_check.py .

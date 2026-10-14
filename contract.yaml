@@ -14,3 +14,4 @@ rule_roots:
   - governance/rules
 validators:
   - validators/golden_fixture_validator.py
+  - validators/hook_wiring_check.py

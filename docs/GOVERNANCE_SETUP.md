@@ -46,6 +46,7 @@ python $FW/governance_tools/governance_drift_checker.py --repo . --framework-roo
 python $FW/governance_tools/external_repo_readiness.py --repo . --framework-root $FW --format human   # expect ready = True
 python validators/golden_fixture_validator.py .                                                # golden fixtures vs engine vocabulary + action arguments
 python -m unittest discover -s validators -p "test_*.py"                                       # validator negative tests
+python validators/hook_wiring_check.py .                                                       # VS Code Stop must not close out a session
 ```
 
 ## Updating the framework
@@ -72,6 +73,14 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
   the file, so re-check after any framework update. Closeout stays manual, at the real end of a work session:
   `python -m governance_tools.session_end_hook --project-root . --format human` (run with the framework root on
   `PYTHONPATH`). The Copilot `sessionEnd` hook is a genuine session event and is unchanged.
+- **Hook installation boundary (interim, until the framework template is fixed).** Verified in the pinned framework
+  source: `hook_installer` with no flag, `--copilot-only` and `--copilot-vscode-only`, and `f7_full_update --apply`
+  (it calls `install_governance_hooks` with its default `include_copilot=True`) can all deploy
+  `ai-governance-vscode.json`, i.e. the wrong Stop wiring. `--hooks-only` does not. So: keep the current framework pin,
+  initialise hooks with `--hooks-only`, and treat any F-7 apply or Copilot-surface install as a change that must be
+  followed by `git status .github/hooks` and `python validators/hook_wiring_check.py .`. CI runs the same check on any
+  PR that touches `.github/hooks/**`, so a re-deployed file fails the PR instead of relying on memory. This is a guard
+  against regression, not a fix of the framework template.
 - `session_end_hook` fails on Python 3.9 (`X | None` annotations in `claim_enforcement_checker.py`) although the
   framework README states 3.9+; use Python 3.10 or newer.
 - Memory-guard warnings that remain are attributed, not resolved: `test_evidence_provenance_not_found` is the
