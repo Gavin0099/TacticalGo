@@ -141,6 +141,9 @@ public final class AccessLedgerStore {
         )
     }
 
+    /// True when this match identity has an entry (any authorization, completed or not).
+    public func isRegistered(id: UUID) -> Bool { ledger.matches.contains { $0.id == id } }
+
     public func newMatchAccess(isUnlocked: Bool) -> AccessStartAvailability {
         if isUnlocked { return .unlocked }
         if snapshot.remainingTrialMatches > 0 {

@@ -291,6 +291,7 @@ struct PlayableGameView: View {
         }
         .onAppear {
             store.onMatchCompleted = { id in access.completedMatch(id: id) }
+            store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
             access.reconcileCompletedMatches(ids: store.savedRecords.compactMap {
                 guard let status = $0.steps.last?.after.status, status != .ongoing else { return nil }
                 return $0.id

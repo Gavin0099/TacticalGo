@@ -65,6 +65,13 @@ import TacticalGoContent
     var onMatchCompleted: ((UUID) -> Void)?
     private let records: RecordRepository
     var resumableRecord: MatchRecord? { savedRecords.first { $0.steps.last?.after.status == .ongoing || $0.steps.isEmpty } }
+    private var pendingAdmissions: PendingAdmissionJournal { PendingAdmissionJournal(directory: records.directory) }
+    /// C0 / R1: settle starts that stopped between saving the record and writing the access ledger.
+    /// `isRegistered` answers nil when the ledger is unreadable; nothing is deleted then.
+    func recoverInterruptedStarts(isUnlocked: Bool, isRegistered: (UUID) -> Bool?) {
+        let outcomes = pendingAdmissions.recover(repository: records, isUnlocked: isUnlocked, isRegistered: isRegistered)
+        if outcomes.values.contains(.discardedUnplayedRecord) { refreshRecords() }
+    }
     func refreshRecords() {
         do {
             let result = try records.list(); savedRecords = result.records
@@ -404,6 +411,18 @@ import TacticalGoContent
         records = RecordRepository(directory: directory)
         session = GameSession(Self.scenario(size: 7, review: .normal))
         audio.onInterruption = { [weak self] in self?.cancelBotWork() }
+        #if DEBUG
+        // Test hook: leave exactly what a stop between "record saved" and "ledger written" would leave behind,
+        // once per isolated namespace (a relaunch must not seed a second one).
+        let seed = ProcessInfo.processInfo.arguments
+        if (seed.contains("--seed-interrupted-start") || seed.contains("--seed-unmarked-start")),
+           directory.path.contains("/TestRecords/"), (try? records.list().records.isEmpty) == true {
+            let record = MatchRecord(size: 7, one: .warrior, two: .mage, computer: nil, difficulty: "easy", rules: GameStore.defaultMatchRules)
+            // The "unmarked" variant is the legacy shape: an unregistered record with no marker stays resumable.
+            if seed.contains("--seed-interrupted-start") { try? PendingAdmissionJournal(directory: directory).mark(record.id) }
+            try? records.save(record)
+        }
+        #endif
         refreshRecords()
     }
     func load(_ review: Review? = nil, size: Int? = nil) {
@@ -758,14 +777,18 @@ import TacticalGoContent
         let nextRecord = MatchRecord(size: nextSize, one: classOne, two: classTwo, computer: computer, difficulty: botDifficulty.rawValue, rules: rules)
         // Prepare and persist the new record before spending an advertising credit.
         // Neither board size nor the live session changes on either failure path.
-        do { try records.save(nextRecord) }
-        catch { recordErrorMessage = "無法保存新局，尚未消耗遊玩資格；原局保留。"; return false }
+        // C0 / R1: the marker outlives a stop between "record saved" and "ledger written"; launch recovery settles it.
+        let pending = authorize != nil ? pendingAdmissions : nil
+        do { try pending?.mark(nextRecord.id); try records.save(nextRecord) }
+        catch { pending?.clear(nextRecord.id); recordErrorMessage = "無法保存新局，尚未消耗遊玩資格；原局保留。"; return false }
         do { try authorize?(nextRecord.id) }
         catch {
             do { try FileManager.default.removeItem(at: records.url(nextRecord.id)) }
             catch { recordErrorMessage = "額度保存與新局清理未完成；原局保持不變，請稍後重試。"; return false }
+            pending?.clear(nextRecord.id)
             recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false
         }
+        pending?.clear(nextRecord.id)
         #if DEBUG || TACTICALGO_V11
         expansion?.scene(false); expansion = nil
         #endif

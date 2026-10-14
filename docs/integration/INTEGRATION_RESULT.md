@@ -29,10 +29,10 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 
 | Check | Result |
 |---|---|
-| Swift package, all targets | 405 tests (union of both lines) + 5 new identity tests, 0 failures |
+| Swift package, all targets | 417 tests (405 from the union of both lines + 5 identity + 7 pending-admission), 0 failures |
 | App build, Debug / iOS Simulator | succeeded |
 | App build, Beta (V11 flag, expansion assets) / iOS Simulator | succeeded |
-| New `IntegrationUITests` on iPhone 16 simulator | 4 / 4 passed: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
+| New `IntegrationUITests` on iPhone 16 simulator | 6 / 6 passed (two are the R1 recovery cases); the first four: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
 | Existing `MonetizationUITests` (1.0 paywall) | 9 / 9 passed |
 | Existing `RewardedAdNetworkUITests` | 2 / 2 passed |
 | 1.1 `MonsterLabTests` / `PresentationLabTests` | 7 / 7 and 8 / 8 passed |
@@ -62,8 +62,13 @@ integration neither fixes nor worsens them. No iPad simulator run was made.
 - The expansion single save slot: starting a new expansion match replaces an unfinished saved expansion match (existing
   1.1 behaviour). The replaced match was never charged because the trial is consumed at completion.
 - Real 1.0-produced save files (S5) have not been obtained; compatibility is covered at unit level only.
-- C0 R1 (the crash window between "record saved" and "admission written" for ORIGINAL matches) is not implemented;
-  it is the existing 1.0 behaviour and unchanged by this integration.
+- C0 R1 (the crash window between "record saved" and "ledger written" for ORIGINAL matches) is handled by a sidecar
+  marker (`<id>.pending`, `PendingAdmissionJournal`) instead of a new field in the match record, so the 1.0 save schema
+  is unchanged. After a stop in that window the unplayed, never-authorized record is removed at the next launch (it is
+  not charged and not kept as a free match); a record that already has moves, or any record the ledger knows, is left
+  alone. Covered by 7 package tests and 2 UI tests. Not covered: a stop inside the ledger file write itself (that file
+  is written atomically), and the expansion single-slot save (authorization happens before its save, so there is no
+  window).
 
 ## Needs a human look (cannot be decided by tests)
 

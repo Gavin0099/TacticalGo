@@ -49,6 +49,12 @@ import TacticalGoAccess
         updateSnapshot()
     }
 
+    /// nil when the ledger cannot be read (then no recovery decision may be taken from it).
+    func registration(of id: UUID) -> Bool? {
+        guard let ledger, errorMessage == nil else { return nil }
+        return ledger.isRegistered(id: id)
+    }
+
     func completedMatch(id: UUID) {
         guard let ledger else { return }
         do { _ = try ledger.completeMatch(id: id); updateSnapshot() }

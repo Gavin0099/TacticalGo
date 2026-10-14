@@ -63,4 +63,17 @@ import XCTest
         XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.staticTexts["currentTurn"].exists)
     }
+
+    // C0 / R1: a stop between "record saved" and "ledger written".
+    func testInterruptedStartIsNotOfferedAsAFreeResumableMatch() {
+        let app = launch(extra: ["--seed-interrupted-start"])
+        XCTAssertFalse(app.buttons["resumeMatch"].exists, "an unauthorized, unplayed start must not become a free match")
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3", "recovery must not charge anything")
+    }
+
+    func testLegacyUnmarkedRecordStaysResumable() {
+        let app = launch(extra: ["--seed-unmarked-start"])
+        XCTAssertTrue(app.buttons["resumeMatch"].waitForExistence(timeout: 5), "records without a marker are legacy and untouched")
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
+    }
 }
