@@ -26,6 +26,8 @@ on:
       - "tests/golden/**"
       - "src/TacticalGo.Domain/Actions.cs"
       - "src/TacticalGo.Domain/ActionEvent.cs"
+      - "src/TacticalGo.Domain/Primitives.cs"
+      - "tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs"
       - ".github/workflows/governance-drift.yml"
       # managed hook configs: a re-deployed VS Code Stop -> session_end wiring must be caught here
       - ".github/hooks/**"
