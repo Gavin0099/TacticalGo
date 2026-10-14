@@ -39,6 +39,11 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 | 1.1 `ExpansionLabTests` (driven against `ExpansionGameView`) | 26 passed, 7 skipped by the tests themselves (DEBUG-only fixtures), 1 failed: `testIntegratedCastingMuteReducedMotionAndBackgroundCancelPlayers`, which fails identically on the 1.1 snapshot `8c80ceb` (same missing `audioSettings` element) - pre-existing |
 | Existing `PlayableGameTests` / `AdvancedChallengeUITests` / `BoardInteractionTests` (119 run) | 37 failed on the first run. The same 34 that exist in 1.0 were re-run on the clean 1.0 snapshot (`d13fdfa`, same simulator): 32 fail there too (pre-existing, e.g. tablet-sized tests on an iPhone simulator, stale expectations) and 2 passed there but failed here - both were real integration defects, fixed (below). The 3 remaining failures were 1.1-only tests that need the 1.1 shell: routed to `ExpansionGameView` via the DEBUG-only `--integrated-*` launch arguments, 3 / 3 now pass |
 
+Final full re-run of those three suites after the last code change (119 tests): 33 failing test names, all of which
+either fail identically on the clean 1.0 snapshot or are listed above; plus one test that crashed once in an external
+symbol in the legacy 3D review path (`BoardInteractionTests.testOriginalIdentityCandidatesLoadPlaySwitchAndReturn`,
+passed in the first run and 2 / 2 when re-run alone) - treated as an unexplained one-off, not as a pass.
+
 ## Defects found by the regression run (fixed on this branch)
 
 1. `GameStore.resume` called `leaveMatch()` (which re-saves the previous record). Creating a candidate copy then made the
