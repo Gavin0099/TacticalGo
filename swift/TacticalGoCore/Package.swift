@@ -12,6 +12,7 @@ let package = Package(
         .library(name: "TacticalGoContent", targets: ["TacticalGoContent"]),
         .library(name: "TacticalGoMotion", targets: ["TacticalGoMotion"]),
         .library(name: "TacticalGoVisuals", targets: ["TacticalGoVisuals"]),
+        .executable(name: "tacticalgo-monsters", targets: ["MonsterRunner"]),
         .executable(name: "tacticalgo-records", targets: ["RecordsRunner"]),
         .executable(name: "tacticalgo-content", targets: ["ContentRunner"]),
         .executable(name: "tacticalgo-golden", targets: ["GoldenRunner"]),
@@ -25,9 +26,10 @@ let package = Package(
         .target(name: "TacticalGoOnboarding", dependencies: ["TacticalGoCore"], resources: [.copy("Fixtures")]),
         .testTarget(name: "TacticalGoOnboardingTests", dependencies: ["TacticalGoOnboarding", "TacticalGoCore"]),
         .target(name: "TacticalGoRecords", dependencies: ["TacticalGoCore"]),
-        .testTarget(name: "TacticalGoRecordsTests", dependencies: ["TacticalGoRecords", "TacticalGoCore"]),
+        .testTarget(name: "TacticalGoRecordsTests", dependencies: ["TacticalGoRecords", "TacticalGoCore", "TacticalGoContent"]),
         .target(name: "TacticalGoBot", dependencies: ["TacticalGoCore"]),
         .target(name: "TacticalGoContent", dependencies: ["TacticalGoCore", "TacticalGoRecords"]),
+        .executableTarget(name: "MonsterRunner", dependencies: ["TacticalGoCore"]),
         .executableTarget(name: "ContentRunner", dependencies: ["TacticalGoContent", "TacticalGoCore"]),
         .testTarget(name: "TacticalGoContentTests", dependencies: ["TacticalGoContent", "TacticalGoCore", "TacticalGoRecords"]),
         .executableTarget(name: "RecordsRunner", dependencies: ["TacticalGoRecords"]),
@@ -39,7 +41,7 @@ let package = Package(
         .executableTarget(name: "GoldenRunner", dependencies: ["TacticalGoGolden"]),
         .executableTarget(name: "R2Runner", dependencies: ["TacticalGoCore"]),
         .testTarget(name: "TacticalGoCoreTests", dependencies: ["TacticalGoCore", "TacticalGoGolden"]),
-        .testTarget(name: "TacticalGoMotionTests", dependencies: ["TacticalGoMotion", "TacticalGoCore"]),
+        .testTarget(name: "TacticalGoMotionTests", dependencies: ["TacticalGoMotion", "TacticalGoCore", "TacticalGoContent"]),
         .testTarget(name: "TacticalGoVisualsTests", dependencies: ["TacticalGoVisuals"])
     ]
 )

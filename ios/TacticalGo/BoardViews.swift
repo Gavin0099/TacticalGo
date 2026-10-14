@@ -76,6 +76,7 @@ struct ArenaGrid: Shape {
         case .warrior: CGPoint(x: 0.54, y: 0.93)
         case .mage: CGPoint(x: 0.54, y: 0.94)
         case .rogue: CGPoint(x: 0.55, y: 0.93)
+        case .priest: CGPoint(x: 0.5, y: 0.9)
         case .none: CGPoint(x: 0.5, y: 0.93)
         }
     }
@@ -261,10 +262,16 @@ struct SwiftBoard: View {
     private var botFocus: Set<Point> {
         guard let action = computerAction else { return [] }
         switch action {
+        case .castSanctuary(let a,let b), .castChainSwap(let a,let b): return [a,b]
+        case .castOffering(let p): return [p]
+        case .castDoublePull(let a,let b), .castReformation(let a,let b): return [a.from,a.to,b.from,b.to]
         case .placeSoldier(let p), .summonHero(let p), .castSeal(let p): return [p]
         case .castBastion(let a, let b), .castFriendlyRedeploy(let a, let b): return [a, b]
         case .castMagicHand(let p, let d): return [p, d.destination(from: p)]
         case .castSwap(let p): return Set([p] + (botArrow.map { [$0.0] } ?? []))
+        case .huntMonster(let p): return [p]
+        case .useStickyBounce(let a, let b): return [a, b]
+        case .useShadowStep(let p): return [p]
         case .endTurn: return []
         }
     }

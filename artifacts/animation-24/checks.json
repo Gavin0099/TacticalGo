@@ -1,0 +1,697 @@
+{
+  "baseline_commit": "371718e29dd1591945ba26e7c81c5cf06ec74495",
+  "source_identity": "PASS",
+  "new_file_project_wiring": "PASS; not a build",
+  "UI20_art_audio_Domain_AV23_input_window": "unchanged",
+  "chain_contact_WAV_duration": 0.2,
+  "chain_contact_times": [
+    0.26,
+    0.36
+  ],
+  "source_text_sha256_lf": {
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionContact.swift": "694a4cf0d8ac5676921e44d8d70df6f50e3c7e5356b6240b43752cb3f03400ba",
+    "ios/TacticalGo/ExpansionContactEffects.swift": "431d085b61a1be2c6e47ef1b22b4748085349024efbdab657a4484385b890b2f",
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "8f0853d8622987736df384911ad3640f7ae35fba80096239659bd5758277c3b6",
+    "ios/TacticalGo/ExpansionLabView.swift": "91f8893444eeb5a34b9ce7a0f5d4596ff1c07afe2480f353d490b0cf8dbbbb92",
+    "ios/TacticalGo/PresentationLabView.swift": "5179c585af8c881ef9b0e131fe5a4d7d8987add6c051c5975b74e95620565853",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "f02c0614f2d36a660fa1a1ab35798156e84d61c2186652afa62b04dd6f179524",
+    "ios/TacticalGo.xcodeproj/project.pbxproj": "3cc0b61b8ebead11807b0ea5c51426f4d573069aefe993496720be5987e8b97f"
+  },
+  "browser": {
+    "evidence": "browser motion study",
+    "nativeBuild": "NOT RUN",
+    "nativeTests": "NOT RUN",
+    "checks": [
+      {
+        "width": 375,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 0,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 1,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 2,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 3,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 4,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 5,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 6,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 0,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 1,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 2,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 3,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 4,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 5,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 6,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "interaction": "cancel before cues clears sound schedule",
+        "pass": true
+      },
+      {
+        "interaction": "background-style stop freezes and cancels RAF",
+        "pass": true
+      },
+      {
+        "interaction": "media reduced motion shows final board without donor or trail",
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "interaction": "seven-skill sequence plays continuously to final offering",
+        "pass": true
+      },
+      {
+        "interaction": "24 source-rig samples and second chain windup",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "interaction": "review page fits phone",
+        "pass": true
+      }
+    ],
+    "invariants": [],
+    "errors": [],
+    "video": "Silent browser motion recording; not native rig or device performance"
+  },
+  "contact_rendering": {
+    "evidence": "browser-only Canvas rendering; no native receipt/Swift/audio execution",
+    "checks": [
+      {
+        "check": "chain has two exchanges at four actual sockets, .26 and .36",
+        "passed": true
+      },
+      {
+        "check": "contact has no late/invalid/reduced residue",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "bastion",
+        "changed": 2284,
+        "points": [
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "timing": [
+          0.58,
+          1.02
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "bastion",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "reformation",
+        "changed": 2225,
+        "points": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "timing": [
+          0.58,
+          1.02
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "reformation",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "magic",
+        "changed": 1904,
+        "points": [
+          [
+            5,
+            3
+          ]
+        ],
+        "timing": [
+          0.68,
+          1.08
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "magic",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "double",
+        "changed": 3033,
+        "points": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "timing": [
+          0.68,
+          1.08
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "double",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "swap",
+        "changed": 709,
+        "points": [
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "timing": [
+          0.36,
+          0.7
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "swap",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "chain",
+        "changed": 1042,
+        "points": [
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "timing": [
+          0.36,
+          0.7
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "chain",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "offering",
+        "changed": 1254,
+        "points": [
+          [
+            4,
+            5
+          ]
+        ],
+        "timing": [
+          0.58,
+          0.94
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 375,
+        "id": "offering",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "bastion",
+        "changed": 2709,
+        "points": [
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "timing": [
+          0.58,
+          1.02
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "bastion",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "reformation",
+        "changed": 2624,
+        "points": [
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "timing": [
+          0.58,
+          1.02
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "reformation",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "magic",
+        "changed": 2266,
+        "points": [
+          [
+            5,
+            3
+          ]
+        ],
+        "timing": [
+          0.68,
+          1.08
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "magic",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "double",
+        "changed": 3587,
+        "points": [
+          [
+            5,
+            5
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "timing": [
+          0.68,
+          1.08
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "double",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "swap",
+        "changed": 847,
+        "points": [
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "timing": [
+          0.36,
+          0.7
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "swap",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "chain",
+        "changed": 1251,
+        "points": [
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "timing": [
+          0.36,
+          0.7
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "chain",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "offering",
+        "changed": 1523,
+        "points": [
+          [
+            4,
+            5
+          ]
+        ],
+        "timing": [
+          0.58,
+          0.94
+        ],
+        "check": "contact changes visible pixels at normal phone scale",
+        "passed": true
+      },
+      {
+        "width": 402,
+        "id": "offering",
+        "check": "exact same resting canvas after end",
+        "passed": true
+      },
+      {
+        "check": "reduced motion has identical final board and no new accent",
+        "passed": true
+      },
+      {
+        "check": "chain schedules two independent real browser contact WAV starts",
+        "contactAudio": [
+          {
+            "file": "P08/p8-rogue-land.wav",
+            "scheduled": 0.26,
+            "started": 0.2646000000238419
+          },
+          {
+            "file": "P08/p8-rogue-land.wav",
+            "scheduled": 0.36,
+            "started": 0.36489999997615813
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "nativeBuild": "NOT RUN",
+    "quality90Percent": "NOT ESTABLISHED"
+  },
+  "browser_relative_audio_gain": {
+    "evidence": "browser HTMLAudioElement scheduling/gain only",
+    "first": [
+      {
+        "src": "http://127.0.0.1:8771/ios/TacticalGo/PresentationLab/P08/p8-rogue-land.wav",
+        "volume": 0.22799999999999998,
+        "paused": false
+      }
+    ],
+    "cues": [
+      {
+        "file": "P08/p8-rogue-land.wav",
+        "scheduled": 0.26,
+        "started": 0.2669000000953674
+      },
+      {
+        "file": "P08/p8-rogue-land.wav",
+        "scheduled": 0.36,
+        "started": 0.3708000000715256
+      }
+    ],
+    "passed": true,
+    "listening": "NOT RUN",
+    "native": "NOT RUN"
+  },
+  "three_new_Swift_contact_tests": "NOT RUN",
+  "new_real_audio_schedule_audit": "NOT RUN",
+  "native_build_UI_latency_FPS_listening": "NOT RUN",
+  "quality_90_percent": "NOT ESTABLISHED",
+  "quality_work_remaining": true,
+  "tool_test_text_sha256_lf": {
+    "tools/animation-24/preview.js": "9fc8ac06caf7915620284d488f9f9930a60813e4b8340ca2a7ae478289500c80",
+    "tools/animation-24/contacts.js": "3c5a2fce140bf214bac9b210cf847c6fd1e33d3c050108260c9921f7d94e1275",
+    "tools/animation-24/accents.js": "d8af8f9311a602daa3de587dd199118143b1a12b6f8e86f960a6fb530bb7e9cb",
+    "scripts/review-animation24.cjs": "b679cc29e64bee53496404b83dae56b5be954e1ba36e5322f0da6e5de14be393",
+    "scripts/review-animation24-audio.cjs": "293a6d22f878e4a00c586152d6b9f7823e80c87ae4015370f88d0deb277778c7",
+    "scripts/review-animation24-native.sh": "b1ff0797380e1e464a6458837a3a02ebb2345a3d3270f3a1d0904bd79b451839",
+    "swift/TacticalGoCore/Tests/TacticalGoMotionTests/ExpansionContactTests.swift": "5c3b60a3a942a26a7234a9b40d95cd25ee6c1c7fd07ff338425d8850094316ad"
+  }
+}

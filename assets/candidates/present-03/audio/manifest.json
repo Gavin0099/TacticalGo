@@ -1,0 +1,110 @@
+{
+  "candidate": "owner listening pending",
+  "source": {
+    "author": "qubodup",
+    "page": "https://opengameart.org/content/sand-spell",
+    "download": "https://opengameart.org/sites/default/files/sand-spell.flac",
+    "license": "CC0",
+    "description": "Author describes a mouth-made air sound, sped up and faded. Not our recording.",
+    "sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+    "retained_page_sha256": "1a0d60001dd38744118900f7ce6c9f5df59ef60482b3274b57230365025a6d05"
+  },
+  "processing": {
+    "filter": "atrim=start=0.07:end=0.29,asetpts=PTS-STARTPTS,highpass=f=500,lowpass=f=4200",
+    "target_dry_rms_dbfs": -33,
+    "gain": 0.12873016121227668,
+    "fade_in": 0.02,
+    "fade_out": 0.06,
+    "duration": 0.22
+  },
+  "original_samples": [
+    {
+      "key": "mage",
+      "sha256": "ed12c7bc9e62477842344b24f1203e07f474b36b6fa64ec7cc4ca6e56cdbcdaa"
+    },
+    {
+      "key": "place",
+      "sha256": "c67d86e2777472f2569f66e6a5596a3e2654a827dec7cf19a126ae88d2f12ade"
+    },
+    {
+      "key": "capture",
+      "sha256": "c2c09bbe38e7a92f7e561785730afe584da5c1f973c99a7131bb793507aca202"
+    },
+    {
+      "key": "victory",
+      "sha256": "a751f8b3a4d39b8e8d792a9f66ab07f155bed32fe9bc8bc24d9222b59e7aaa2f"
+    }
+  ],
+  "timing": {
+    "mage": 0.26,
+    "air": 0.38,
+    "place": 0.6,
+    "capture": 0.7,
+    "victory": 0.95
+  },
+  "stem": {
+    "file": "assets/candidates/present-03/audio/air-isolated.wav",
+    "sha256": "a47518bb8b55e137d9d84479f5eb5ad46439c31a0cf7a1e0e2be9fe6c23826ed",
+    "duration": 0.22,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak_dbfs": -19.987183805677887,
+    "rms_dbfs": -34.061815355931685,
+    "dc": -9.434487714200198e-08,
+    "first": 0.0,
+    "last": -0.0
+  },
+  "previews": [
+    {
+      "file": "assets/candidates/present-03/audio/A-sfx.wav",
+      "sha256": "1c074f6f8bc06982055ec5d5be3e209731b6c5fc4c5116863ebe4106745b04cc",
+      "duration": 1.5,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -20.483924164257573,
+      "dc": -7.390051559738595e-05,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/present-03/audio/A-capture-sfx.wav",
+      "sha256": "d9e20ddcfc90f1b75f8a1906ff663166e876afa8893c1dbcc673913516f09553",
+      "duration": 3.2,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -19.596327277053128,
+      "dc": -3.858591291210237e-05,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/present-03/audio/C-sfx.wav",
+      "sha256": "4a10a52a0c5d01d69132c3959f110c607041e4b700f7ab5ec1481617b3bb5de1",
+      "duration": 1.5,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -20.439459718383727,
+      "dc": -7.390950980900704e-05,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/present-03/audio/C-capture-sfx.wav",
+      "sha256": "ec9387a15973e467c8c56d2feee08b9c19f0b6f90f34f49e4c38a48ba923526a",
+      "duration": 3.2,
+      "sample_rate": 44100,
+      "channels": 1,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -19.57928344973307,
+      "dc": -3.859012894879975e-05,
+      "first": 0.0,
+      "last": 0.0
+    }
+  ],
+  "voice": false,
+  "new_synthesized_tones": false,
+  "resource_sha256": "a47518bb8b55e137d9d84479f5eb5ad46439c31a0cf7a1e0e2be9fe6c23826ed"
+}

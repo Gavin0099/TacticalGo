@@ -3,13 +3,59 @@ import TacticalGoCore
 import TacticalGoMotion
 import TacticalGoBot
 import TacticalGoRecords
+import TacticalGoContent
 
 @MainActor @Observable final class GameStore {
     // Owner adopted these existing rules on 2026-10-11. Persisted records
     // continue to rebuild from their own rule identifier, without migration.
     static let defaultMatchRules: RecordRules = .redeployment
     enum Review: String, CaseIterable { case normal = "一般", skill = "技能預覽", danger = "危險" }
-    enum Mode: String, CaseIterable { case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能" }
+    enum Mode: String, CaseIterable { case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能", advanced = "第二技能", loot = "戰利能力" }
+    #if DEBUG || TACTICALGO_V11
+    var expansion: ExpansionLabStore?
+    /// Starts a full expansion match. `authorize` is the access gate: it runs BEFORE any state is changed, because the
+    /// expansion save is a single slot and must not be overwritten by a match that was never admitted.
+    @discardableResult
+    func startExpansion(one: HeroClass, two: HeroClass, size: Int, monsters: ExpansionLabStore.Monsters, cost: Int = 4, computer: Player? = nil,
+                        authorize: ((UUID) throws -> Void)? = nil) -> Bool {
+        let match = ExpansionLabStore()
+        if let authorize, let id = match.matchID {
+            do { try authorize(id) }
+            catch { recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false }
+        }
+        leaveMatch()
+        match.one = one; match.two = two; match.size = size; match.monsters = monsters; match.advancedCost = cost
+        match.muted = audio.muted; match.computer = computer; match.difficulty = botDifficulty.rawValue
+        match.restart(keepIdentity: true); expansion = match; self.size = match.size; self.computer = computer
+        match.onTerminal = { [weak self] id in self?.onMatchCompleted?(id) }
+        botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
+        bindExpansionAudio(match); match.scene(audioSceneActive)
+        return true
+    }
+    func resumeExpansion() -> Bool {
+        let match = ExpansionLabStore()
+        guard match.resumeCandidate() else { recordErrorMessage = match.message; return false }
+        match.muted = audio.muted
+        match.onTerminal = { [weak self] id in self?.onMatchCompleted?(id) }
+        leaveMatch(); expansion = match; size = match.size; computer = match.computer; botDifficulty = BotDifficulty(rawValue:match.difficulty) ?? .easy; bindExpansionAudio(match); match.scene(audioSceneActive); return true
+    }
+    func expansionPractice(_ value: ExpansionPractice) {
+        leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.practice(value)
+        expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
+    }
+    func expansionChallenge(counter: Bool = false) {
+        leaveMatch(); let match = ExpansionLabStore()
+        if counter { match.priestCounter() } else { match.priestChallenge() }
+        match.muted = audio.muted
+        expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
+    }
+    private func bindExpansionAudio(_ match: ExpansionLabStore) {
+        match.onTerminalCue = { [weak self, weak match] key in
+            guard let self, let match, self.expansion === match, self.audioMatchActive, self.audioSceneActive else { return }
+            self.audio.play(key)
+        }
+    }
+    #endif
     var savedRecords: [MatchRecord] = []
     var recordErrorMessage: String?
     var recordRules: RecordRules = .original
@@ -39,7 +85,7 @@ import TacticalGoRecords
         do {
             let restored = try record.rebuild().0
             guard restored.state.status == .ongoing else { return false }
-            cancelBotWork(); session = restored; activeRecord = record
+            leaveMatch(); cancelBotWork(); session = restored; activeRecord = record
             r2Fixture = nil
             size = record.size; computer = record.computer; recordRules = record.rules
             botDifficulty = BotDifficulty(rawValue: record.difficulty) ?? .easy
@@ -81,15 +127,27 @@ import TacticalGoRecords
     private(set) var audioCueHistory: [String] = []
     #endif
     func cancelAudioFeedback(preserveVoice: Bool = false) {
+        #if DEBUG || TACTICALGO_V11
+        expansion?.stop()
+        #endif
         audioGeneration &+= 1; audioTask?.cancel(); audioTask = nil
         audio.cancelEffects(preserveVoice: preserveVoice)
+        #if DEBUG || TACTICALGO_V11
+        if let match = expansion, match.state.status != .ongoing { audio.finishBattleSilently() }
+        #endif
     }
     func setMatchAudioActive(_ active: Bool) {
+        #if DEBUG || TACTICALGO_V11
+        expansion?.scene(active && audioSceneActive)
+        #endif
         if active && !audioMatchActive { audio.resetBattle() }
         audio.updateState(state)
         audioMatchActive = active
         if !active { cancelPresentation() }
         audio.setMatchActive(active)
+        #if DEBUG || TACTICALGO_V11
+        if active, let match = expansion, match.state.status != .ongoing, !match.playing { audio.finishBattleSilently() }
+        #endif
     }
     func cancelPresentation(preserveVoice: Bool = false) {
         presentationTask?.cancel(); presentationTask = nil
@@ -97,6 +155,9 @@ import TacticalGoRecords
         cancelAudioFeedback(preserveVoice: preserveVoice)
     }
     func setSceneAudioActive(_ active: Bool) {
+        #if DEBUG || TACTICALGO_V11
+        expansion?.scene(active && audioMatchActive)
+        #endif
         audioSceneActive = active
         if !active { cancelPresentation() }
         audio.setSceneActive(active)
@@ -147,12 +208,63 @@ import TacticalGoRecords
         }
     }
     var review: Review = .normal
-    var mode: Mode = .soldier
-    var selected: [Point] = []
+    private var legacyMode: Mode = .soldier
+    var mode: Mode {
+        get {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { return Mode.allCases.first { String(describing:$0) == String(describing:expansion.mode) } ?? .soldier }
+            #endif
+            return legacyMode
+        }
+        set {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { expansion.mode = ExpansionLabStore.Mode.allCases.first { String(describing:$0) == String(describing:newValue) } ?? .soldier; return }
+            #endif
+            legacyMode = newValue
+        }
+    }
+    private var legacySelected: [Point] = []
+    var selected: [Point] {
+        get {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { return expansion.selected }
+            #endif
+            return legacySelected
+        }
+        set {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { expansion.selected = newValue; return }
+            #endif
+            legacySelected = newValue
+        }
+    }
     var pushDirection: PushDirection?
     enum MageOperation: String, CaseIterable { case push = "推動", redeploy = "調度己兵" }
-    var mageOperation: MageOperation = .push
-    var message = "點棋盤預覽，再按確認。"
+    private var legacyMageOperation: MageOperation = .push
+    var mageOperation: MageOperation {
+        get {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { return expansion.state.config.experimentalFriendlyRedeploy ? .redeploy : .push }
+            #endif
+            return legacyMageOperation
+        }
+        set { legacyMageOperation = newValue }
+    }
+    private var legacyMessage = "點棋盤預覽，再按確認。"
+    var message: String {
+        get {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { return expansion.message }
+            #endif
+            return legacyMessage
+        }
+        set {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { expansion.message = newValue; return }
+            #endif
+            legacyMessage = newValue
+        }
+    }
     enum Renderer: String, CaseIterable { case models = "3D", swiftUI = "SwiftUI", spriteKit = "SpriteKit" }
     var renderer: Renderer = .models
     var size = 7
@@ -168,7 +280,7 @@ import TacticalGoRecords
     var botLastDecision = ""
     var botTurnsCompleted = 0
     var botDiscardedDecisions = 0
-    #if DEBUG
+    #if DEBUG || TACTICALGO_V11
     var deliverCancelledBotResult = false
     var botDelayNanoseconds: UInt64 = 0
     var botStepNanoseconds: UInt64 = 900_000_000
@@ -184,8 +296,17 @@ import TacticalGoRecords
     @ObservationIgnored private var botWorker: Task<BotTurnPlan?, Never>?
     @ObservationIgnored private var botDelivery: Task<Void, Never>?
     var isComputerTurn: Bool { isBotActing || (computer == state.current && state.status == .ongoing) }
+    var inputLocked: Bool {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { return isComputerTurn || expansion.playing }
+        #endif
+        return isComputerTurn || isPresenting
+    }
     var humanPlayer: Player { computer?.opponent ?? .one }
     var canUndoHumanDecision: Bool {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { return expansion.canUndoHuman }
+        #endif
         guard computer != nil else { return session.canUndo }
         var previous = session
         while previous.undo() {
@@ -204,16 +325,33 @@ import TacticalGoRecords
         case .castFriendlyRedeploy(let from, let to): return "調度己兵：\(c(from)) → \(c(to))"
         case .castSwap(let p): return "換位：英雄與 \(c(p))"
         case .castSeal(let p): return "封印 \(c(p))"
+        case .huntMonster(let p): return state.config.monsterBattlefield?.kind(at:p) == .shadowWolf ? "討伐暗影狼":"討伐史萊姆"
+        case .useStickyBounce: return "黏彈"
+        case .useShadowStep: return "影步"
+        case .castSanctuary: return "奉獻救援"
+        case .castOffering: return "奉獻"
+        case .castDoublePull: return "雙重牽引"
+        case .castReformation: return "戰線重整"
+        case .castChainSwap: return "連鎖換位"
         case .endTurn: return "結束回合"
         }
     }
 
-    var state: GameState { session.state }
+    var state: GameState {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { return expansion.state }
+        #endif
+        return session.state
+    }
     var selectedAction: GameAction? {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { return expansion.pending }
+        #endif
         guard let p = selected.first else { return nil }
         switch mode {
         case .soldier: return .placeSoldier(p)
         case .summon: return .summonHero(p)
+        case .advanced, .loot: return nil
         case .skill:
             switch state.heroClass(of: state.current) {
             case .warrior: return selected.count == 2 ? .castBastion(selected[0], selected[1]) : nil
@@ -224,12 +362,15 @@ import TacticalGoRecords
                 }
                 return pushDirection.map { .castMagicHand(p, $0) }
             case .rogue: return .castSwap(p)
-            case .none: return nil
+            case .priest, .none: return nil
             }
         }
     }
     var preview: ActionOutcome? { selectedAction.map { GameEngine.apply(state, $0) } }
     var legalTargets: Set<Point> {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { return expansion.legalTargets }
+        #endif
         guard !isComputerTurn else { return [] }
         let actions = GameEngine.legalActions(state)
         return Set(actions.flatMap { action -> [Point] in
@@ -249,7 +390,7 @@ import TacticalGoRecords
     }
     init() {
         var directory = URL.applicationSupportDirectory.appendingPathComponent("TacticalGo/Records-v1", isDirectory: true)
-        #if DEBUG
+        #if DEBUG || TACTICALGO_V11
         let args = ProcessInfo.processInfo.arguments
         if let i = args.firstIndex(of: "--record-isolation"), args.indices.contains(i + 1), let id = UUID(uuidString: args[i + 1]) {
             directory = URL.applicationSupportDirectory.appendingPathComponent("TacticalGo/TestRecords/" + id.uuidString, isDirectory: true)
@@ -257,7 +398,7 @@ import TacticalGoRecords
         #endif
         records = RecordRepository(directory: directory)
         session = GameSession(Self.scenario(size: 7, review: .normal))
-        audio.onInterruption = { [weak self] in self?.cancelPresentation() }
+        audio.onInterruption = { [weak self] in self?.cancelBotWork() }
         refreshRecords()
     }
     func load(_ review: Review? = nil, size: Int? = nil) {
@@ -271,6 +412,10 @@ import TacticalGoRecords
         message = self.review == .danger ? "主將棋串只剩 1 個生存空格。" : "點棋盤預覽，再按確認。"
     }
     func select(_ p: Point) {
+        guard !inputLocked else { return }
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { expansion.select(p); expansion.message = expansion.previewText; return }
+        #endif
         guard !isComputerTurn, !isPresenting else { return }
         if playback != nil { cancelPresentation(preserveVoice: true) }
         audio.play("selection")
@@ -281,13 +426,44 @@ import TacticalGoRecords
         if let preview { message = preview.success ? "預覽不扣資源；確認後才生效。" : Self.reason(preview.reason) }
         else { message = state.heroClass(of: state.current) == .mage ? (mageOperation == .redeploy ? "調度己兵：再選原棋群旁空點。" : "魔法之手：選擇推動方向。") : (state.config.bastionScope == .connectedGroup ? "築壘：再選原棋串旁另一個空點。" : "築壘：再選另一個相鄰空點。") }
     }
-    func changeMode(_ value: Mode) { guard !isComputerTurn, !isPresenting else { return }; cancelPresentation(); mode = value; selected = []; pushDirection = nil; message = "選擇目標後再確認。" }
+    func changeMode(_ value: Mode) {
+        guard !inputLocked else { return }; cancelPresentation(); mode = value; cancelSelection()
+        #if DEBUG || TACTICALGO_V11
+        if let expansion,value == .loot {
+            let owned = state.lootInventory(of:state.current).map(\.ability)
+            if !owned.contains(expansion.ability),let first = owned.first { expansion.ability = first }
+        }
+        #endif
+        message = "選擇目標後再確認。"
+    }
     func confirm() {
+        guard !inputLocked else { return }
+        #if DEBUG || TACTICALGO_V11
+        if let expansion {
+            let before = expansion.state
+            expansion.confirm(systemReduced:UIAccessibility.isReduceMotionEnabled)
+            if before != expansion.state {
+                audio.updateState(expansion.state); audioDuration = expansion.presentationHold
+                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:expansion.presentationAudioHold) }
+                scheduleComputerTurn()
+            }
+            return
+        }
+        #endif
         guard !isComputerTurn, !isPresenting, let action = selectedAction else { return }
         commit(action)
         scheduleComputerTurn()
     }
     private func commit(_ action: GameAction) {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion {
+            if expansion.commit(action,systemReduced:UIAccessibility.isReduceMotionEnabled) {
+                audio.updateState(state); audioDuration = expansion.presentationHold
+                if expansion.receipt?.isHeroSkill == true { audio.duckSkill(duration:expansion.presentationAudioHold) }
+            }
+            return
+        }
+        #endif
         let before = state
         let o = session.apply(action)
         if o.success {
@@ -329,6 +505,9 @@ import TacticalGoRecords
         } else { cancelPresentation(); message = Self.reason(o.reason) }
     }
     func undo() {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { guard canUndoHumanDecision else { return }; cancelBotWork(); expansion.undo(); mode = .soldier; audio.updateState(expansion.state); return }
+        #endif
         guard canUndoHumanDecision else { return }
         cancelBotWork()
         var undone = false
@@ -348,6 +527,10 @@ import TacticalGoRecords
         } else { scheduleComputerTurn() }
     }
     func endTurn() {
+        guard !inputLocked else { return }
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { expansion.endTurn(); audio.updateState(expansion.state); mode = .soldier; scheduleComputerTurn(); return }
+        #endif
         guard !isComputerTurn, !isPresenting else { return }
         commit(.endTurn)
         mode = .soldier
@@ -368,7 +551,12 @@ import TacticalGoRecords
         botWorker = nil; botDelivery = nil; isBotThinking = false
         isBotActing = false; botAction = nil; botMotionStartedAt = nil
     }
-    func leaveMatch() { cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline }
+    func leaveMatch() {
+        #if DEBUG || TACTICALGO_V11
+        expansion?.scene(false); expansion = nil
+        #endif
+        cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline
+    }
     func startR2(_ fixture: R2PracticeFixture, rules: RecordRules) -> Bool {
         do {
             let initial = try GameSetup.fromDiagram(config:rules.config(size:7),diagram:fixture.diagram,
@@ -384,6 +572,9 @@ import TacticalGoRecords
         cancelBotWork()
         botDifficulty = difficulty
         if difficulty == .easy { botPolicy = .baseline }
+        #if DEBUG || TACTICALGO_V11
+        expansion?.difficulty = difficulty.rawValue; expansion?.saveCandidate(announce:false)
+        #endif
         saveRecord()
         message = "電腦難度已改為\(difficulty == .easy ? "簡單" : "標準")。"
         scheduleComputerTurn()
@@ -398,7 +589,7 @@ import TacticalGoRecords
         scheduleComputerTurn()
     }
     private func waitForBotPresentationPhase(minimumDuration: Double = 0) async throws {
-        #if DEBUG
+        #if DEBUG || TACTICALGO_V11
         if botReviewPhases {
             let permit = botReviewPermit, generation = botGeneration
             while botReviewPermit == permit {
@@ -446,7 +637,7 @@ import TacticalGoRecords
             }
             // Atomic validation before any visual/session commit, entirely through Domain.
             var expected = snapshot
-            guard plan.actions.count <= snapshot.apRemaining + 1 else {
+            guard plan.actions.count <= snapshot.apRemaining + snapshot.board.monsters.count + 1 else {
                 self.botLastDecision = "拒絕超過回合長度的計畫。"; self.commit(.endTurn); return
             }
             for action in plan.actions {
@@ -477,7 +668,7 @@ import TacticalGoRecords
                 self.botMotionStartedAt = nil; self.playback = nil
                 self.message = "電腦第 \(index + 1) 步：\(self.botActionLabel)"
                 UIAccessibility.post(notification: .announcement, argument: self.message)
-                do { try await self.waitForBotPresentationPhase() } catch { return }
+                do { try await self.waitForBotPresentationPhase(minimumDuration:index == 0 ? self.audioDuration:0) } catch { return }
                 // Every visible step has its own generation/state check after the suspension.
                 guard !Task.isCancelled, self.botGeneration == generation,
                       self.computer == actor, self.state == executionState else { return }
@@ -525,6 +716,8 @@ import TacticalGoRecords
         session = replay; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
         playback = nil; selected = []; pushDirection = nil; mode = .soldier; scheduleComputerTurn()
     }
+    #endif
+    #if DEBUG || TACTICALGO_V11
     func loadBotMageMotionReview() {
         activeRecord = nil
         cancelBotWork(); computer = .two; size = 7
@@ -568,6 +761,9 @@ import TacticalGoRecords
             catch { recordErrorMessage = "額度保存與新局清理未完成；原局保持不變，請稍後重試。"; return false }
             recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false
         }
+        #if DEBUG || TACTICALGO_V11
+        expansion?.scene(false); expansion = nil
+        #endif
         size = nextSize; recordRules = rules; r2Fixture = nil
         cancelBotWork(); self.computer = computer; botPolicy = .baseline; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
         session = GameSession(try! GameSetup.newGame(config: recordRules.config(size: size), classOne: classOne, classTwo: classTwo))
@@ -601,7 +797,7 @@ import TacticalGoRecords
         mageOperation = operation; selected = []; pushDirection = nil
         message = operation == .redeploy ? "先選英雄射程內、相連棋群中的己方士兵。" : "選普通士兵，再選推動方向。"
     }
-    #if DEBUG
+    #if DEBUG || TACTICALGO_V11
     func loadSkillScreenshot(candidate: Bool, mage: Bool) {
         leaveMatch()
         let rules: RecordRules = candidate ? .redeployment : .original
@@ -629,8 +825,15 @@ import TacticalGoRecords
             classOne: .mage, classTwo: .rogue, manaOne: 4, manaTwo: 3, ap: 2)
     }
     func cancelSelection() {
-        cancelPresentation(); selected = []; pushDirection = nil; message = "已取消預覽，沒有扣除資源。" }
+        #if DEBUG || TACTICALGO_V11
+        expansion?.cancelSelection()
+        #endif
+        cancelPresentation(); selected = []; pushDirection = nil; message = "已取消預覽，沒有扣除資源。"
+    }
     func chooseDirection(_ direction: PushDirection) {
+        #if DEBUG || TACTICALGO_V11
+        if let expansion { expansion.push(direction); pushDirection = direction; return }
+        #endif
         guard !isComputerTurn else { return }
         pushDirection = direction
         if let preview { message = preview.success ? "預覽不扣資源；確認後才生效。" : Self.reason(preview.reason) }
@@ -647,6 +850,10 @@ import TacticalGoRecords
     }
     static func reason(_ r: IllegalReason) -> String {
         switch r {
+        case .monsterModeDisabled: "本局未啟用魔物戰場。"
+        case .noMonsterLoot: "沒有這項戰利能力，或已使用完畢。"
+        case .monsterLootLocked: "戰利能力要到下一個己方回合才能使用。"
+        case .insufficientMonsterControl: "史萊姆四鄰友軍需至少兩格，且多於敵方。"
         case .skillNotSelected: "這個法師技能未啟用。"
         case .invalidDirection: "請選擇上、右、下或左。"
         case .none: "合法"

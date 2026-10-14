@@ -1,0 +1,297 @@
+{
+  "evidence": "authored browser motion study, not executed Domain receipts",
+  "advanced_reference": "ExpansionPractice coordinates; basic specimens are independently authored visual examples",
+  "native_timeline_extracted": true,
+  "fixtures": [
+    {
+      "id": "bastion",
+      "action": "castBastion",
+      "hero": "warrior",
+      "title": "築壘",
+      "icon": 2,
+      "kind": "place",
+      "origin": [
+        4,
+        4
+      ],
+      "placements": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "intent": "雙兵落地壓縮，短暫停住後回彈",
+      "release": 0.34,
+      "moveStart": 0.35,
+      "arrival": 0.58,
+      "captureStart": 0.68,
+      "duration": 1.02,
+      "transfers": []
+    },
+    {
+      "id": "reformation",
+      "action": "castReformation",
+      "hero": "warrior",
+      "title": "戰線重整",
+      "icon": 3,
+      "kind": "move",
+      "origin": [
+        4,
+        5
+      ],
+      "transfers": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            5,
+            5
+          ],
+          "owner": "black",
+          "kind": "soldier"
+        },
+        {
+          "from": [
+            5,
+            6
+          ],
+          "to": [
+            6,
+            6
+          ],
+          "owner": "black",
+          "kind": "soldier"
+        }
+      ],
+      "intent": "兩兵調度後壓實；不投射新增護盾",
+      "release": 0.34,
+      "moveStart": 0.35,
+      "arrival": 0.58,
+      "captureStart": 0.68,
+      "duration": 1.02,
+      "placements": []
+    },
+    {
+      "id": "magic",
+      "action": "castMagicHand",
+      "hero": "mage",
+      "title": "魔法之手",
+      "icon": 4,
+      "kind": "move",
+      "origin": [
+        4,
+        4
+      ],
+      "transfers": [
+        {
+          "from": [
+            5,
+            4
+          ],
+          "to": [
+            5,
+            3
+          ],
+          "owner": "white",
+          "kind": "soldier"
+        }
+      ],
+      "intent": "先托住棋子，再推動、接觸和釋放",
+      "release": 0.3,
+      "moveStart": 0.46,
+      "arrival": 0.68,
+      "captureStart": 0.8,
+      "duration": 1.08,
+      "placements": []
+    },
+    {
+      "id": "double",
+      "action": "castDoublePull",
+      "hero": "mage",
+      "title": "雙重牽引",
+      "icon": 5,
+      "kind": "move",
+      "origin": [
+        4,
+        4
+      ],
+      "transfers": [
+        {
+          "from": [
+            4,
+            5
+          ],
+          "to": [
+            5,
+            5
+          ],
+          "owner": "black",
+          "kind": "soldier"
+        },
+        {
+          "from": [
+            4,
+            3
+          ],
+          "to": [
+            3,
+            3
+          ],
+          "owner": "white",
+          "kind": "soldier"
+        }
+      ],
+      "intent": "雙手分別連到兩兵；保留兩方身份",
+      "release": 0.3,
+      "moveStart": 0.46,
+      "arrival": 0.68,
+      "captureStart": 0.8,
+      "duration": 1.08,
+      "placements": []
+    },
+    {
+      "id": "swap",
+      "action": "castSwap",
+      "hero": "rogue",
+      "title": "換位",
+      "icon": 6,
+      "kind": "swap",
+      "origin": [
+        4,
+        4
+      ],
+      "transfers": [
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            5,
+            4
+          ],
+          "owner": "black",
+          "kind": "hero"
+        },
+        {
+          "from": [
+            5,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "owner": "white",
+          "kind": "soldier"
+        }
+      ],
+      "intent": "兩條相反弧線，避免在中心疊成一團",
+      "release": 0.12,
+      "moveStart": 0.16,
+      "arrival": 0.36,
+      "captureStart": 0.44,
+      "duration": 0.7,
+      "placements": []
+    },
+    {
+      "id": "chain",
+      "action": "castChainSwap",
+      "hero": "rogue",
+      "title": "連鎖換位",
+      "icon": 7,
+      "kind": "chain",
+      "origin": [
+        4,
+        4
+      ],
+      "middle": [
+        5,
+        4
+      ],
+      "transfers": [
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            5,
+            3
+          ],
+          "owner": "black",
+          "kind": "hero"
+        },
+        {
+          "from": [
+            5,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "owner": "white",
+          "kind": "soldier",
+          "first": true
+        },
+        {
+          "from": [
+            5,
+            3
+          ],
+          "to": [
+            5,
+            4
+          ],
+          "owner": "white",
+          "kind": "soldier"
+        }
+      ],
+      "intent": "先完成第一組交換，再突入第二組",
+      "release": 0.12,
+      "moveStart": 0.16,
+      "arrival": 0.36,
+      "captureStart": 0.44,
+      "duration": 0.7,
+      "placements": []
+    },
+    {
+      "id": "offering",
+      "action": "castOffering",
+      "hero": "priest",
+      "title": "奉獻",
+      "icon": 8,
+      "kind": "offering",
+      "origin": [
+        3,
+        5
+      ],
+      "sacrifice": [
+        4,
+        5
+      ],
+      "intent": "己兵在原點向上消散，留下可讀空點",
+      "release": 0.2,
+      "moveStart": 0.32,
+      "arrival": 0.58,
+      "captureStart": 0.68,
+      "duration": 0.94,
+      "placements": [],
+      "transfers": []
+    }
+  ],
+  "source_sha256": {
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionPresentation.swift": "f642fc34b0115b589ae0f40b9e0152ec97caa91ef3cab8e4a8f4dd91dc4e5f20",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionFeedback.swift": "30b20a3ea06d004f914602f146d852a6f2168bc2c4f4ed1632c0db55d345eee0",
+    "ios/TacticalGo/ExpansionLabView.swift": "353bea8333d8d098b3dd12f20da8d3694516b998c848e8c50befe4df411280bc",
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "dbdd62d0d1f7f1a0443fb9acf5bbd9242120a6e5d5566997e4e4d7ab269163a0",
+    "swift/TacticalGoCore/Sources/TacticalGoContent/ExpansionPractice.swift": "065c4f9c5787b6938a526367ea0703461dca3384f54c5f05eb82826c1ffbf5c6"
+  }
+}

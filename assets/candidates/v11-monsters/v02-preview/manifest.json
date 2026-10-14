@@ -1,0 +1,191 @@
+{
+  "schema": "tacticalgo-monster-art-v02-preview",
+  "date": "2026-10-11",
+  "owner_request": "好的 做一版讓我看看效果",
+  "scope": "visual preview only; app resources and rules unchanged",
+  "skills": [
+    {
+      "path": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/SKILL.md",
+      "sha256": "03755f0ff72be80fd2516413ff8d67311642daa58e8dbe5dbb3a0b7370f5b769"
+    },
+    {
+      "path": "/Users/pc49-58/.codex/skills/.system/imagegen/SKILL.md",
+      "sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba"
+    }
+  ],
+  "assets": [
+    {
+      "id": "slime-user-original",
+      "filename": "slime-user-original.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "25c33a5e48d4fede828dad91fed27d73fc9b74324a1aae5879ce7a23c14990e9",
+      "decoded_rgba_sha256": "0894b14da8a804a9e4bf7518860a2d0ce5908d18d3c695eed42635bbda7769d5",
+      "alpha": {
+        "zero": 754904,
+        "opaque": 1180,
+        "partial": 816432
+      },
+      "visible_bounds_alpha_gte_13": [
+        41,
+        68,
+        1222,
+        1171
+      ],
+      "alpha_gate_passed": true,
+      "source_path": "/var/folders/fp/yq_7k60s201b51vt5mtcjj_m0000gn/T/codex-clipboard-c3a83fb7-d489-407e-af3b-8fb494a2de2a.png",
+      "source_bytes_preserved": true,
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false,
+        "app_integration": false
+      },
+      "rights": {
+        "status": "pending",
+        "commercial_acceptance": "not_recorded"
+      },
+      "qa": {
+        "alpha": "pass",
+        "bounds": "not_clipped",
+        "scale_review": "visually_reviewed_32_48_64",
+        "player_recognition": "not_run",
+        "consumer_app": "not_integrated"
+      },
+      "provenance": {
+        "type": "user_supplied",
+        "generation_metadata": "not_provided"
+      }
+    },
+    {
+      "id": "slime-token-v02",
+      "filename": "slime-token-v02.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "42ebac0255241f7ef8479dcabfa2692a6bad9ee8e80a35be8d2bf4f72f64e97e",
+      "decoded_rgba_sha256": "fcb59c7f4bd8f311c9771bed915066db19f921a92048bf3dd4cdbe3c0f488218",
+      "alpha": {
+        "zero": 795765,
+        "opaque": 1212,
+        "partial": 775539
+      },
+      "visible_bounds_alpha_gte_13": [
+        42,
+        80,
+        1213,
+        1184
+      ],
+      "alpha_gate_passed": true,
+      "source_path": "/Users/pc49-58/.codex/generated_images/01a12a76-7b6b-7e61-b59a-58b25bbff41b/exec-ff28e5e9-268e-4714-8c43-1dd5e297164d.png",
+      "source_bytes_preserved": true,
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false,
+        "app_integration": false
+      },
+      "rights": {
+        "status": "pending",
+        "commercial_acceptance": "not_recorded"
+      },
+      "qa": {
+        "alpha": "pass",
+        "bounds": "not_clipped",
+        "scale_review": "visually_reviewed_32_48_64",
+        "player_recognition": "not_run",
+        "consumer_app": "not_integrated"
+      },
+      "provenance": {
+        "type": "built_in_imagegen_edit",
+        "model": "unknown",
+        "tool_version": "unknown",
+        "transparent_background": true,
+        "generation_calls": 1,
+        "repair_calls": 0,
+        "prompt_path": "prompts/slime-simplified.txt",
+        "prompt_sha256": "1405ab9d96fb0ae83a82c6687e781417989938fe89b2f506f1c63c18416ca70b",
+        "references": [
+          {
+            "role": "EDIT_TARGET and IDENTITY",
+            "path": "sources/slime-user-reference.png",
+            "file_sha256": "25c33a5e48d4fede828dad91fed27d73fc9b74324a1aae5879ce7a23c14990e9"
+          },
+          {
+            "role": "STYLE only",
+            "path": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/assets/warrior-v01.png",
+            "file_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322"
+          }
+        ]
+      }
+    },
+    {
+      "id": "shadow-wolf-preview-v02",
+      "filename": "shadow-wolf-preview-v02.png",
+      "width": 1254,
+      "height": 1254,
+      "has_alpha": true,
+      "file_sha256": "c392371b8ab1e221e774706cf670e5be353ce070d408812a4958b0d64c925f94",
+      "decoded_rgba_sha256": "92fcb4dc3ccbf92c9e7e166ecdb1509ac7c79b33a7a3fb865aa044818b5befba",
+      "alpha": {
+        "zero": 734671,
+        "opaque": 1200,
+        "partial": 836645
+      },
+      "visible_bounds_alpha_gte_13": [
+        136,
+        13,
+        1134,
+        1237
+      ],
+      "alpha_gate_passed": true,
+      "source_path": "/var/folders/fp/yq_7k60s201b51vt5mtcjj_m0000gn/T/codex-clipboard-16047a8b-a521-4fa6-a2c8-b20e6efbbf2a.png",
+      "source_bytes_preserved": true,
+      "approval": {
+        "status": "pending_exact_file_acceptance"
+      },
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false,
+        "app_integration": false
+      },
+      "rights": {
+        "status": "pending",
+        "commercial_acceptance": "not_recorded"
+      },
+      "qa": {
+        "alpha": "pass",
+        "bounds": "not_clipped",
+        "scale_review": "visually_reviewed_32_48_64",
+        "player_recognition": "not_run",
+        "consumer_app": "not_integrated"
+      },
+      "provenance": {
+        "type": "user_supplied",
+        "generation_metadata": "not_provided"
+      }
+    }
+  ],
+  "preview": {
+    "board": "qa/board-preview.png",
+    "scale_review": "qa/scale-review.png",
+    "art_size_in_board_px": 32,
+    "grid_spacing_px": 38,
+    "board_fixture": "illustrative, not legal engine replay",
+    "neutral_ring": "externally composited; not baked into original"
+  },
+  "observations": [
+    "Slime curled top, tilted face, mint color and open smile retained; detached droplets removed.",
+    "Interior highlight noise reduced. Three broad highlights remain, rather than the exact two requested in the prompt. No further repair needed for this preview.",
+    "32px differentiates broad slime body and pointed wolf ears; wolf fur and facial details merge.",
+    "48/64px show more readable expressions. This is agent visual review, not a measured player-recognition result."
+  ]
+}

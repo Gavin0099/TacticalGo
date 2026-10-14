@@ -1,0 +1,17 @@
+AV21 candidate, 2026-10-13
+Source branch fetch: origin/codex/v11-monster-battlefield == 004ed4cdc661bc20261a587e11d91e54dc649b9d.
+git apply --check of preserved AV21 patch: PASS; restored only documented animation/audio paths; pre-animation snapshots saved under baseline.
+Initial browser setup: FAIL, sheet querySelector returned one non-iterable canvas. Changed to querySelectorAll; retained failed-setup-browser.webm.
+First corrected browser run: PASS, 25 cases; superseded, not added to final counts.
+Final browser run after staged chain pose adjustment: PASS, 26 cases; endpoint/separation/invalid pose/Offering tail invariants pass; no browser errors.
+Normal-speed seven-skill continuous sequence reached final Offering. Browser recording is silent and does not execute native cutout rigs or Domain.
+node --check preview.js and motion.js: PASS.
+verify-animation21.py: PASS; UI20 source/assets byte-identical, Core/Content/Bot/Records diff empty, actual timeline source hashes, 12 existing SFX WAVs.
+Voice duration read-only measurement: P06 mage-cast-B 1.040s; P07 w7-voice-B 1.200s; P08 rogue B 1.219s, priest B 0.880s. No listening claim.
+Skill 1.4 validation: PASS; installed and repo skill byte-identical.
+git diff --check: PASS, expected LF/CRLF warnings only.
+Native compiler availability: no Swift on Windows; WSL Ubuntu command -v swift returned no path. No Xcode/iOS SDK.
+Eight new Swift tests, native UI and integrated audio audit: NOT RUN.
+Original branch buildability, modified native build, real audio/mix playback, device FPS, native input restoration, Dynamic Type, VoiceOver: NOT RUN.
+open_in_codex animation workbench: queued; visibility not confirmed.
+No commit/push/merge/install/TestFlight or public release.

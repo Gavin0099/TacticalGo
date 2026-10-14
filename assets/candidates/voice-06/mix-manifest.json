@@ -1,0 +1,31 @@
+{
+  "scope": "accepted native D animation reused with authored postmix; not live phone audio",
+  "takes": [
+    {
+      "take": "A",
+      "file": "assets/candidates/voice-06/cast-A-mix.wav",
+      "sha256": "d640d876a6ec6ab68df56242ac4657568f778809dba6f15ca02922e2eff342ed",
+      "voice_start": 0.08,
+      "voice_end": 0.9415873015873015,
+      "recovery": 1.08,
+      "voice_volume": 0.85,
+      "sfx_volume": 0.65,
+      "sfx_duck": 0.42,
+      "peak_dbfs": -4.931526259061244,
+      "rms_dbfs": -21.41476439817973
+    },
+    {
+      "take": "B",
+      "file": "assets/candidates/voice-06/cast-B-mix.wav",
+      "sha256": "e630aadf33e61e837ff9b7eafffb7ee486bb4334ea4b2b086586e9787180e54e",
+      "voice_start": 0.08,
+      "voice_end": 1.1197278911564628,
+      "recovery": 1.1197278911564628,
+      "voice_volume": 0.85,
+      "sfx_volume": 0.65,
+      "sfx_duck": 0.42,
+      "peak_dbfs": -3.3023356203303598,
+      "rms_dbfs": -20.736727871309817
+    }
+  ]
+}

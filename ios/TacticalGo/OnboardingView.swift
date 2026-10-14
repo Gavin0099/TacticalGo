@@ -142,12 +142,12 @@ struct OnboardingView: View {
                             .accessibilityIdentifier("onboardFeedback")
                         if model.session.completed {
                             Button(model.session.progress.lessonIndex == 4 ? "完成基礎教學" : "下一個小目標") { model.next() }
-                                .buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink)
+                                .buttonStyle(GameButtonStyle(kind: .primary, padded: true)).tint(Color.gold).foregroundStyle(Color.ink)
                                 .frame(minHeight: 44).accessibilityIdentifier("onboardNext")
                         } else {
                             HStack(spacing: 8) {
                                 Button("取消") { model.cancel() }.accessibilityIdentifier("onboardCancel")
-                                Button("確認") { model.confirm() }.buttonStyle(.borderedProminent)
+                                Button("確認") { model.confirm() }.buttonStyle(GameButtonStyle(kind: .primary, padded: true))
                                     .tint(Color.gold).foregroundStyle(Color.ink).disabled(!model.canConfirm)
                                     .accessibilityLabel("確認落子").accessibilityIdentifier("onboardConfirm")
                                 Button("大按鍵選點") { showPoints = true }.accessibilityIdentifier("onboardPoints")
@@ -161,7 +161,7 @@ struct OnboardingView: View {
                 }.padding(.horizontal, 12).padding(.bottom, 12).frame(maxWidth: 720).frame(maxWidth: .infinity)
             }
         }
-        .background(Color.ink.ignoresSafeArea()).foregroundStyle(.white).preferredColorScheme(.dark)
+        .background(GameBackdrop()).foregroundStyle(GameChrome.cream).preferredColorScheme(.dark).tint(GameChrome.gold).buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showPoints) { points }
         .alert("重新開始會重設教學進度；正式對局不變。", isPresented: $confirmRestart) {
             Button("重設教學進度", role: .destructive) { model.restart() }.accessibilityIdentifier("onboardRestartConfirmed")
@@ -208,7 +208,7 @@ struct OnboardingView: View {
                                 Text("\(String(UnicodeScalar(65 + point.x)!))\(point.y + 1)")
                                 Text(model.state.board[point].map { "\($0.owner == .one ? "黑" : "白")\($0.kind == .commander ? "將" : "兵")" } ?? "空點").font(.system(size: 10))
                             }.frame(maxWidth: .infinity, minHeight: 48)
-                        }.buttonStyle(.bordered).accessibilityIdentifier("onboardPoint-\(point.x)-\(point.y)")
+                        }.buttonStyle(GameButtonStyle(padded: true)).accessibilityIdentifier("onboardPoint-\(point.x)-\(point.y)")
                     }
                 }.padding(12)
             }.navigationTitle("交叉點大按鍵")
@@ -220,7 +220,7 @@ struct OnboardingView: View {
             Text("你已完成五個基礎操作").font(.title2.bold())
             Text("下一步試著自己思考：要增加己方的氣，還是封住對方的氣？\n英雄與技能可在現有玩法練習中體驗，完整技能新手課程尚未加入。")
                 .multilineTextAlignment(.center)
-            Button("前往自由對戰選角") { model.pause(); close() }.buttonStyle(.borderedProminent)
+            Button("前往自由對戰選角") { model.pause(); close() }.buttonStyle(GameButtonStyle(kind: .primary, padded: true))
                 .tint(Color.gold).foregroundStyle(Color.ink).accessibilityIdentifier("onboardFinish")
         }.padding(24)
     }

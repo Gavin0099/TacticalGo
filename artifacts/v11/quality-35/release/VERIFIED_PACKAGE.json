@@ -1,0 +1,35 @@
+{
+  "version": "1.1",
+  "build": "1112",
+  "bundle": "com.tacticalgo.prototype.herobody",
+  "sourceFiles": 279,
+  "sourceUnchanged": true,
+  "distributionVerified": true,
+  "internalOnly": true,
+  "getTaskAllow": false,
+  "presentationAssets": 54,
+  "monsterPixelsEqual": [
+    "slime-token-v02.png",
+    "shadow-wolf-preview-v02.png"
+  ],
+  "ipaSHA256": "7a92995bc6a5dfbadd42b7c522ca77bdfe335aa79ebddffdf3a764be8540cf55",
+  "ipaBytes": 73439372,
+  "swiftTests": 310,
+  "swiftFailures": 0,
+  "currentCaptionSequenceNative": {
+    "402pt": "1/0/0",
+    "375pt": "1/0/0"
+  },
+  "priorCaptionFourClassSmallNative": "4/0/0",
+  "actualPlayerCadenceChecks": 54,
+  "audioAuditBoundary": "before caption-only UI edits; audio logic unchanged; not actual listening",
+  "unchangedRulesBotArtAudioAssets": true,
+  "uploaded": false,
+  "appleProcessed": false,
+  "ownerGroupAvailable": false,
+  "physicalAudioValidated": false,
+  "physicalFrameTimeValidated": false,
+  "humanQualityAccepted": false,
+  "hearthstonePercentageClaim": null,
+  "publicRelease": false
+}

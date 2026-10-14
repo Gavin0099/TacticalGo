@@ -10,6 +10,12 @@ import TacticalGoContent
         false
         #endif
     }
+    @ViewBuilder private var normalRoot: some View {
+        if !legacyReview { PlayableGameView() }
+        else if ready { ContentView() }
+        else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
+        else { ProgressView("準備棋盤…") }
+    }
     var body: some Scene {
         WindowGroup {
             Group {
@@ -18,9 +24,14 @@ import TacticalGoContent
                 else if ProcessInfo.processInfo.arguments.contains("--intro-challenges") { ChallengesView {} }
                 else if ProcessInfo.processInfo.arguments.contains("--hero-pose-review") { HeroPoseReview() }
                 else if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
-                else { normalContent }
+                else if ProcessInfo.processInfo.arguments.contains("--exp-art-review") { ExpansionArtReview() }
+                else if ProcessInfo.processInfo.arguments.contains("--monster-lab") { MonsterLabView() }
+                else if ProcessInfo.processInfo.arguments.contains("--expansion-lab") { ExpansionLabView() }
+                else if ProcessInfo.processInfo.arguments.contains("--presentation-lab") { CombatPresentationLabView() }
+                else if Bundle.main.bundleIdentifier == "com.tacticalgo.prototype.presentationlab" || ProcessInfo.processInfo.arguments.contains("--v11-home") { V11HomeView() }
+                else { normalRoot }
                 #else
-                normalContent
+                normalRoot
                 #endif
             }.task {
                 guard legacyReview, !ready, !failed else { return }
@@ -29,11 +40,4 @@ import TacticalGoContent
             }
         }
     }
-    @ViewBuilder private var normalContent: some View {
-        if !legacyReview { PlayableGameView() }
-        else if ready { ContentView() }
-        else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
-        else { ProgressView("準備棋盤…") }
-    }
-
 }

@@ -72,6 +72,22 @@ Owner 明確要求「開始做三個職業的特效」：在既有 Cozy-02、B-v
 
 後續依序：VFX-01 法師魔法之手（蓄能、短符文、方向能量、目標衝擊、落定）→ VFX-02 戰士盾牌震波／雙兵登場及盜賊短殘影 → SFX、輕量觸覺與英文語音時點整合。M3 人物呈現方向已接受，正式美術及本輪動作仍待人工驗收。本輪英文語音關閉、既有 SFX 可留；不修改 Domain、Bot、AP、Mana、提子、技能或投影。保持黑白薄底座／外側形狀標記；隔離分支可 commit/push，不 merge、TestFlight 或發布。完整 Slice 與 Gate 見 `docs/ios/SLICES.md`。
 
+## 2026-10-14 最新TestFlight交付1110
+
+Owner完成Xcode登入後，1110（含P32提示修正及1109聲畫改善）已成功上傳/Apple處理/加入既有Owner1.1群組，實際正在測試。源274/簽名/54素材/兩怪像素核對與P30/P32既有測試分開保留；Owner從TestFlight更新，手機實際安裝與真人品質未驗。舊1103/4/5/6保留，不新tester、不動1.0審查/Git/公開發布；heartbeatPAUSED、成功包不重傳。交付證據testflight-33/DELIVERY與ready screenshot。
+
+## 2026-10-14 八Slice品質計畫核對／UI首修
+
+1106歷史TestFlight、1108最後Owner接受手機與1109最新未交付候選已分開；十小時窗口已結束，heartbeat維持PAUSED。依Owner新八Slice方向，先保留1109來源274和兩簽名包，恢復1106 Simulator八圖，核對已有UI20/動作/混音而不倒退重作。UI首修只消除法師合法預覽後仍要求選點的同屏矛盾；1110正式Beta主2/小1（兩種方法）0fail0skip、主小圖與獨立只讀review保存，無字級/棋盤/規則/聲畫素材變更。完整八項映射PRESENTATION_32_PLAN、實際交付PRESENTATION_32_REVIEW；PRES-00真機含聲、FPS、真人品質仍未完成。1110僅Simulator未簽名/手機/TestFlight，原1109上傳仍待Xcode帳戶權限；無新Git發布，不重啟舊窗口。
+
+## 2026-10-14 持續聲畫優化窗口
+
+Owner回報1108畫面／音效好很多，授權十小時UI／動畫／音效優化至台北09:54:08；AUTONOMOUS_27_PLAN.md與最新v11/PLAN為接續合約，heartbeat已更新ACTIVE。P27受限技能牌／共用只讀原因完成，282Swift／Beta3／小Debug2通過且0skip，原生圖與同局面1108對照已保存；P28動作／P29聲音／最終真機交付仍待，不能當全部完成。iPhone保持1108到窗口末，無規則／AI策略或Git／TestFlight發布。
+
+## 最新交付：2026-10-13 Mac整理與UX26手機1108
+
+Native25完成UI20／AV21–24原生整理並Wi-Fi交付1107；Owner三項回饋進入UX26，恢復合法綠色落點、技能逐步引導／限制，直接預設沿棋群築壘＋調度己兵，solo／雙人／Bot／新存局一致。舊紀錄保留原規則。Swift277/0、Beta6/0＋小Debug3/0及49個真AVAudioPlayer審核通過；1108已簽名、Wi-Fi安裝及啟動，既有7存局／5偏好檔全保留。來源06c534c＋當前本機修正，未新增commit／push／main合併／TestFlight上傳。完整交付見docs/v11/OWNER_REVIEW_26.md、最新docs/v11/PLAN.md與artifacts/v11/ux-26；真人清晰度、聲畫品質／FPS及90%品質目標仍待驗收，heartbeat保持暫停。以下保留歷史計畫，不以舊狀態覆蓋此交付。
+
 ## 目前工作：BOT-01 單人電腦對戰（2026-10-09）
 
 Owner 核准第一版 Swift 電腦對手，取代早期「不做 AI／等待真人」限制；只限 BOT-01。已有核心與 SwiftUI 可玩版直接沿用，不重做移植。Bot Agent 負責獨立 TacticalGoBot、有限完整回合搜尋、固定戰術測試；本 Agent 負責必要單人入口、背景執行、逐步下棋演出、過期決策防護與原生驗證；Visual Agent 繼續獨立美術。
@@ -717,3 +733,251 @@ Owner 表示填寫完成後已重新核對 Apple 商務：台灣稅務「已完�
 首頁限定回歸已完成：第一次重跑選錯測試類別、實際零測試，不計通過；接著一次真實執行仍失敗，查明前次 selector 修正在另一個 legacy-resume 方法。已還原該處並只修實際失敗的首頁方法，重新建置成功；03執行1方法PASS／0FAIL、exit0，保留存局／偏好／續玩斷言。iPad Pro 13 M4／iOS18橫向兩章與棋盤／控制項方法亦1PASS／0FAIL、exit0。正式 runtime、Domain、AI、資源及存檔不變。原失敗／零測試日誌保留，最新結果追加至 `artifacts/release-submission-1025/`，不覆寫1024凍結包。
 
 五張未修改原生候選圖已準備，均來自1024 Debug Simulator，不冒充最後1.0真機。iPad原生PNG為2064×2752、EXIF orientation8，呈現2752×2064橫向；保留原檔與此差異，正式RC上傳時再核。profile補齊後pre-archive仍因公開URL、IAP／UMP與本人帳戶Gate拒絕執行，沒有以輸入草稿繞過封存限制。
+
+
+## 2026-10-11 — 1.1 魔物戰場獨立原型
+
+Owner 要求切出 slice 後往下做。於 codex/v11-monster-battlefield 工作樹先做 MOB-01 中立占位與 MOB-02 主動 0／1 AP 討伐比較；不更改 1.0 checkout、不納入發布。合約／驗證與後續黏彈／影步 gate 見 docs/v11/PLAN.md。真人好玩度與投入回報未驗收。
+
+Owner 表示現在沒空測、要求繼續。真人比較不作為工程阻擋；MOB-03a 黏彈與 MOB-03b 單隻暗影狼／影步按候選合約接續實作並自動驗證。雙怪同場、Bot、正式存局與真人平衡仍另待辦。能力與取得重播見 artifacts/v11/mob-03/REPORT.md。
+
+### 2026-10-11：1.1 MOB-04 雙怪原型
+
+Owner「再往下做，下次才測」：雙怪同場／多份戰利能力在 codex/v11-monster-battlefield 獨立工作樹推進。合約與驗證見 docs/v11/PLAN.md；真人取捨延後，不作為工程 gate。未授權發布、提交或推送。
+
+MOB-04 已完成工程驗證：188 項 Swift／7 項 UI 操作、62 組 Golden／164 steps、雙怪 14 分支與原單怪 28 分支通過；Debug／Release 編譯通過。人工好玩度與成本平衡留至下次。
+
+### 2026-10-11：魔物圖樣依角色風格 skill
+
+生成史萊姆／暗影狼兩張透明棋盤候選，已接入隔離 1.1 Debug Lab；最新兩項操作與 Debug／Release build 通過，候選 PNG 排除 Release。原圖、完整 prompt、reference／RGBA hashes、32/48/64px QA 保存於 assets/candidates/v11-monsters/v01。真人辨識待下次；production=false，無提交／推送／發布。
+
+## 2026-10-11 怪物圖樣 v02 預覽里程碑
+
+依 Owner 看效果要求，完成新版史萊姆簡化候選＋Owner 新狼原圖、32/48/64 px 對照與 9×9 明暗靜態棋盤示意。三檔透明／邊界／來源 hash 驗證通過；尺寸與示意已目視。現有 App 仍沿用 v01；本次沒有更換消費端資源或遊戲規則。來源與完整提示在 `assets/candidates/v11-monsters/v02-preview/`，證據 `artifacts/v11/monster-art-v02-preview/REPORT.json`。正式採用與真人辨識仍待後續決定／測試。
+
+## 2026-10-11 v02 圖樣載入測試版
+
+依 Owner「載入進去讓我測試」，已替換獨立 Debug MonsterLab 引用與 Release 排除檔名；兩檔實際 Debug 資源存在／Release 排除、來源 hash、Debug／Release build 通過。App 已啟動，新史萊姆單怪画面確認。兩個 UI tests／16 失敗斷言；雙怪畫面與操作尚未確認。CUA 回報 Mac 鎖定，已請 Owner 解鎖；原因尚未定案，不提前報驗證完成。證據 artifacts/v11/monster-art-v02-integration/REPORT.json 與 DIAGNOSIS.md。遊戲核心、1.0 checkout 與正式發布未修改。
+
+## PRESENT-01 — 魔法之手聲畫候選
+
+2026-10-11 Owner 授權先做動畫與聲音。以本機保存 M3 commit c13f23e019eef6d5492a511c93e55df6dd6007f7 作 A（非正式 main），B 共用原畫與 Domain receipt，700ms 時序及 CC0 音層。獨立 Debug lab、候選資源與 iPhone bundle。Motion 30 tests 已通過；native build／UI／小尺寸錄影／device delivery 待驗證。第一次 Swift 編譯小數字面值已修正；native build ENOSPC 已保留失敗 log，只清可重建 own cache，未刪素材／原始證據。Game Feel 草稿補同時間軸及音訊來源／取消流程，未安裝新 Skill。
+
+最終法師候選工程驗證：Motion 30／0、原生 UI 4／0、最終 Debug／Release／簽署 device build 通過，獨立 iPhone App「TacticalGo 聲畫」最新安裝成功。七個資源 hash 一致，Release 排除；本輪 Domain／規則 hash 不變。A／B 原生模擬器錄影與清楚標示的後混 SFX 預覽、320 pt 密集 9 路及 32／48／64 px QA 保存。出手前取消保留 0.22 秒门檻，測試先等首屏布局；早期失敗與修正見 artifacts/v11/present-01/REPORT.md。手機啟動回報 Locked，實機 A/B 錄影、真人聽感／辨識、iPad、其他職業／怪物聲畫及一般對局整合仍 pending；不以工程 PASS 宣稱完整演出系統或 Owner 驗收完成。無新提交／推送／合併／發布。
+
+
+## PRESENT-01 Owner 品質驗收退回（最新狀態）
+
+Owner「比之前更難看 聲音也很差」。工程通過仍保存，但演出與聽感明確 rejected，撤下推薦；尚未改寫或安裝新候選。原比較 A 是未驗收 M3，沒有包含 Owner 原本一般對局，基準需確認。下一修正版須先比較真正原版、body-only 演出與孤立音效短樣，再接完整 Lab；不以更快時序、更多粒子或來源 license 當作品質證據。已詢問 Owner「之前」指一般對局或 A，待明確基準後進行依賴修改。記錄 artifacts/v11/present-01/OWNER_REVIEW.json。
+
+## PRESENT-02 — 手機 1.0 基準已確認
+
+Owner 回答「手機1.0的版本」，取代上一節基準待確認的狀態。裝置原一般 App 為皇冠戰略 build1023；从簽署 SOURCE-1023 封存唯讀取得真正 R1 時序、原角色／兵卒／底座／棋盤及音效。隔離 Debug Lab A 恢復此固定法師基準，上一版 B 保留為已退回診斷。還原不是演出或聽感改善；新藝術候選仍待製作及 Owner 驗收。
+
+已保存原生模擬器短樣，後混原 SFX，明示非實機錄音、不含 BGM／語音。Motion31/0；原生4/0涵蓋減少動態／靜音／背景／復原及提子。首次背景復原失敗與診斷保留；XCTest tap 發生在回前景縮放中的視窗，改待視窗恢復原幾何後通過，未修改 Domain 或復原邏輯。最終 A/B 測試另補明確選 B，專項1/0通過。Debug／Release編譯、20來源hash／8Debug素材／Release排除與保留證據收據通過。手機原1.0與其他 agent checkout 未更動，本輪沒有新手機安裝、提交／推送／合併／發布。證據 artifacts/v11/present-02/REPORT.md。
+
+## PRESENT-03 — 依手機原版製作法師候選 C
+
+2026-10-12 Owner「透過這版來改」。保留1023原畫、立體棋盤、0.95秒節奏與原四音效；C握杖持續到落定、收斂身體位移、披風跟隨，改用稀疏晶體／牽引／落點光效及可關閉的CC0氣流音層，無語音／BGM。A仍可切回基準。原生模擬器五段正常速度片段與32／48／64姿勢已目視；手機獨立「TacticalGo 聲畫」安裝及啟動成功，原一般App沒有被本輪修改。
+
+Motion33/0，原生4/0及小尺寸／音層開關專項1/0，Debug／Release／device build、簽署、來源及device hash、Release排除、Core／規則不變與保存證據收據通過。第一次取消0.695秒不符0.22秒門檻，改非同步Canvas後原門檻重驗通過；不宣稱跨裝置首播性能。新增專項首次0 tests未計入，專用test runner重新安裝後真正執行1/0。原失敗、0項xcresult、VFR短尾初版與原錄影保存。預覽音訊後混，非實機收音；真人品質未驗收，完整一般對局及其他職業／怪物演出尚未完成。無提交／推送／合併／發布。證據 artifacts/v11/present-03/REPORT.md。
+
+
+## PRESENT-03 退回／PRESENT-04 新方向
+
+Owner 指出 C「還是差不多，沒有學到爐石戰記的精隨」。C 品質 rejected；既有工程證據不作為藝術驗收。D 改用原創有形魔法手的伸出／抓穩／推開／放手、士兵受力與撞擊，重新設計三段材質聲音，而非稀疏粒子或微调。基準 A 保留1023；新時序與素材、聲音来源／驗證計畫見 artifacts/v11/present-04/PLAN.md。仍限隔離 Debug Lab，Owner品質待验收，無提交／推送／合併／發布。
+
+PRESENT-04 native36 Motion/6 UI, Debug/Release/device builds and separate phone Lab delivery verified. Owner accepts animation; audio remains rejected as weak. AUDIO-05 keeps accepted visual assets/poses/timing unchanged, researches primary public sound-design methods and adds an isolated stronger audio profile with level-matched comparison. No release authorization.
+
+
+## VOICE-06 — prioritize English casting voice
+
+Owner prioritizes casting voice and chooses English. D animation remains accepted
+and unchanged. Two new offline Qwen VoiceDesign `Move aside!` takes, 0.862/1.040s,
+normalized dry at -18dBFS RMS; independent unprompted Whisper recognizes both.
+Separate Lab defaults voice on, retains A baseline, offers two takes and voice
+volume, ducks E/D SFX to42% during speech. Raw/prompt/seed/model/license/source
+pins retained; no cloning, paid inference, rules or release changes. Native
+verification and separate device delivery underway; acting quality Owner pending.
+AUDIO-05 prior native suite actually executed7 tests/0 failures; its stronger SFX
+is supporting work, not the complete answer to the new voice priority.
+
+
+VOICE-06 final Owner steering: second take is relatively better; default B with
+A retained. B-default native8/0, Debug/device builds and separate phone install
+and launch passed. Raw/processed speech uses pinned existing offline model and
+no reference speaker; voice underlays no rules. Accepted D animation source
+pins unchanged. Final Release/resource saved-evidence receipt passed; listening
+quality still pending, no general-match integration or release.
+
+
+## WARRIOR-07 — English Bastion and visible shield effects
+
+Owner accepts continuing after mage voice B; next class is warrior Bastion.
+Second warrior `Hold the line!` take B is relatively preferred and becomes
+default. Original phone1023 hero art and existing cutout garment backing are
+identity-pinned; shields split into two visible projections at confirmed
+summon targets, strike with both pawn landings at .58, dissipate by .98.
+No gameplay buff or rule change; accepted mage D/B remains selectable.
+43 focused Motion tests pass after Owner steering. Final native captures,
+both-class UI lifecycle/voice verification and separate device delivery are
+in progress. Owner effect/acting quality remains pending; no commit/push/release.
+Plan/source/provenance/failure evidence: artifacts/v11/warrior-07/PLAN.md and
+assets/candidates/warrior-07/.
+
+WARRIOR-07 final:43 Motion/0,12 native UI/0 (8 mage +4 warrior), final
+Debug/Release/device builds and separate phone install/final launch succeed.
+Five actual native scenes and labelled postmix, original32/48/64pt and derived
+1x pixel review retained. Saved delivery verification checks baseline pins,
+resources, WAV headroom, Release exclusion and source/receipt integrity.
+Source/provenance and prior failures retained; report artifacts/v11/warrior-07/REPORT.md.
+Owner B voice is relatively preferred; new shield effects await viewing.
+No full-match/Bot integration, general App1.0 change, commit/push/merge/release.
+
+## 2026-10-12 1.1 十小時候選開發
+
+依Owner十小時自主授權，在codex/v11-monster-battlefield獨立工作樹執行。完整順序與截止見 [AUTONOMOUS_12_PLAN.md](v11/AUTONOMOUS_12_PLAN.md)。EXPANSION-08/PLAY-09/FEEL-10/CONTENT-11已具工程候選，235/0 Swift與首輪20/0原生驗證；DELIVERY-12尚需新的v02輪廓、戰士/反制回歸、正常速度影片、Release隔離與獨立手機安裝。沒有提交、上傳、合併或發布。
+
+02:49候選交付：上述功能、14張有效原生動作圖、6段正常速度原生畫面/後製混音、獨立候選存局及牧師真眼/法師反制完成；235/0 Swift和27項不同原生UI測試通過。Debug/Release/簽名真機build、Release素材排除、來源pins及編譯魔物像素一致、獨立手機安裝通過。手機鎖定造成啟動未驗證，無真機聲畫錄影；真人聲音/美術/玩法待窗口後。兩組無效截圖與失敗驗證保留；scene定格資料與正常播放取消分離、存局解除定格均有新回歸。範圍提前完成後不擴大，11:37:48後由既有heartbeat統一回報並暫停。完整邊界與影片：v11/OWNER_REVIEW_12.md。
+
+## 2026-10-12 08:31 Owner 要求安裝
+
+依 Owner「幫我安裝」，重新安裝現有已簽名的獨立 com.tacticalgo.prototype.presentationlab 至配對 iPhone 16 Pro，devicectl 安裝與啟動均成功（PID 35718）。此前手機鎖定的啟動失敗保留為歷史證據；當前已可啟動。未重新建置、未改規則/聲畫來源、未動普通手機1.0；沒有真機聲畫錄影或真人驗收證據。新證據 artifacts/v11/feel-10/device-install-owner-20261012-0031.json 與 device-launch-owner-20261012-0031.json。既有235 Swift/27原生UI結果未重跑。十小時窗口其餘安排不變；11:37:48台北後統一回報並暫停 heartbeat，不需要再重複安裝或啟動。
+
+## 2026-10-12 08:46 同一手機App的1.1整合
+
+依Owner「直接合併進去讓我測試」，Debug普通首頁新增1.1新玩法入口與返回首頁；重新建置 com.tacticalgo.prototype.herobody／皇冠戰略1.1/1101，安裝與啟動成功PID35893。3項原生UI通過（無flag新入口→技能預覽確認/Undo→回原對戰、既有擴充首頁、原召喚取消/確認/Undo），Simulator/Release/簽名手機build和codesign通過。既有54份聲畫資源hash一致。安裝前Documents/Preferences已備份，更新後六份Documents hash未變；不宣稱全部設定runtime驗收。已接受法師D/英文B、戰士英文B保留。
+
+本次是同一手機測試App整合，不是Git main合併或1.1公開發布；未修改另一agent的1.0上架工作樹/封存，未commit/push。Core與聲畫素材未改，235 Swift/27不同原生UI保留為前輪證據，不重复累計。新證據 artifacts/v11/integrated-phone-13/DELIVERY.json；试玩入口更新至OWNER_REVIEW_12.md。截止後统一回報並暫停heartbeat；現在已有成功啟動，無需再重複安裝/啟動。真人趣味/聲畫/美術/平衡及真機錄影仍待。
+
+## 2026-10-12 09:22 Owner 修正：完整接入原對戰（進行中）
+
+Owner要求四職/第二技能/魔物直接接入原選角與棋盤，不能另開一頁；13版openExpansion已撤銷。14版以GameStore提供同一界面的目前對局，擴充session為新模式唯一盤面擁有者，原規則session/Bot仍獨立保留。新牧師奉獻為1 AP/2能量，只移除兩格內己方普通兵，不搬移或補子；新castOffering action保留舊castSanctuary存局重播意義。已跑完整239 Swift/0；6項階段原生UI/0後，補齊技能標題、BGM復原/施法ducking，正跑Native-delivery九項最後回歸，不提前宣稱通過。
+
+已修正Timeline外層識別標籤覆蓋格點、直接格點操作未更新預覽訊息；Mute測試需點實際switch thumb並斷言值，修復後通過；牧師測試合法開局增加敵方回應與召喚後再奉獻，避免試圖重返舊盤面的Ko。失敗日志與xcresults均留存。當前Debug Simulator/Release/已簽名herobody1.1/1102均建置通過；手機離線、備份未成功，1102未安裝（先前1101有成功紀錄）。剩餘：九項結果、畫面/素材/簽名核對、可用時備份後更新手机。入口與聲畫採用仍待真人，未改1.0上架checkout/封存或Git main，未commit/push/發布。詳見INTEGRATION_14_CONTRACT.md、artifacts/v11/integration-14/。
+
+## 2026-10-12 09:28 同一選角／棋盤候選完成，手機待連線
+
+14版已撤銷另頁入口；四職選角、三職第二技能、魔物/戰利、英文聲畫、背景音樂ducking、保存/續玩/Undo直接走原PlayableGameView。牧師奉獻為1 AP/2能量只移除兩格內己方士兵，不位移或補子；舊Sanctuary重播意義保留。完整239 Swift/0，最終同一build九項原生UI/0；階段六項不重複加總。六張操作圖與四職首頁已觀看。54份聲畫素材byte相同，兩隻魔物的原生解碼像素相同；Release排除真實檔名slime-token-v02.png/shadow-wolf-preview-v02.png與PresentationLab。Debug Simulator/Release/簽名herobody1.1/1102與codesign通过。
+
+剩餘唯一工程交付阻擋是iPhone unavailable；artifacts/v11/integration-14/install-20261012T012446Z/devices.json明確未嘗試安裝。1102已簽名保存，不能沿用1101成功紀錄宣稱1102已在手機。後續heartbeat若手機可用，可執行bash scripts/install-unified-integration14.sh備份再更新；成功後重新執行python3 scripts/verify-unified-integration14.py更新DELIVERY.json並記錄實際結果，不重跑來源未變的239/9、不重複已成功安裝。手機持續離線/鎖定則保存成品，不等待或向Owner提問。無新增功能待辦，不以填滿窗口擴大範圍。
+
+工程驗證不等於真人樂趣/配音演技/美術/平衡/素材採用；新玩法目前本機雙人，原Bot仍三職原規則；沒有真機声画录像。未修改1.0agent checkout/封存，未commit/push/main合併或發布。最新試玩/畫面/真實邊界OWNER_REVIEW_14.md；最終證據artifacts/v11/integration-14/DELIVERY.json。11:37:48台北後統一整理並暫停heartbeat。
+
+
+## 2026-10-12 09:53 Owner授權TestFlight（15）
+
+Owner新指令「幫我上傳到TestFlight讓我測試」授權本輪1.1 beta上傳，取代十小時窗口的no-upload限制，沒有授權App Review/公開發行或Git整合。建立Beta組態/scheme以TACTICALGO_V11包含完整原選角/原棋盤擴充，保留Release組態；App Release最佳化，DEBUG根Lab/啟動測試注入不開啟。簽名herobody1.1/1103 archive及internal-only IPA匯出通過；signature/get-task-allow=false/icon/privacy54聲畫byte/兩魔物原生像素通過。Beta原生2+1項/0實際原首頁與玩法練習操作，239Swift套件來源逐檔一致沿用14結果。
+
+實際上傳exit70 Failed to Use Accounts；Xcode Apple Accounts為空、ASC瀏覽器也回登入頁。上傳未成功、Apple處理和Owner群組可下載均未核對。簽名IPA保存，已請Owner在Xcode登入完成後回覆，不向聊天索取密碼。接續bash scripts/upload-testflight15.sh會先驗SOURCE_PIN並防重複成功上傳；成功後查看既有App6821588889的內部TestFlight群組。最新OWNER_REVIEW_15.md與artifacts/v11/testflight-15/DELIVERY.json。沒有修改1.0agent工作樹/封存/送審、沒有commit/push/main merge/公開發布。1102真機離線未安装是另一項歷史交付，不冒充1103 TestFlight。
+
+
+## 2026-10-12 10:28 TestFlight登入界線
+
+Owner回覆登入後ASC網頁已驗證登入成功，Xcode上傳帳戶仍空；續傳exit70 Failed to Use Accounts，未上傳1103。已開Xcode登入sheet並請Owner在此完成驗證；不再要求重登網頁。ASC原無內部群組，按自測目的新建手動分發Owner 1.1（d4c66485-705a-45b7-8e5f-9aaf5bbefe54），僅現有帳號持有人1名；0build/沒有可用建置版本。未加入1025或其他使用者，未啟用自動分發、公開外部連結或送審。來源/簽名IPA未變，不重建/重跑測試。下一步Xcode登入後upload-testflight15.sh續傳，再查處理並加1103到Owner群組；最新OWNER_REVIEW_15.md/ASC_GROUP.json。
+
+
+## 2026-10-12 10:39 TestFlight 1103 已交付
+
+Owner完成Xcode登入後，1.1/1103續傳exit0/Upload succeeded，Apple處理完成。內部only build8549d8db-ff8a-4692-9a3d-35c862638766已加入Owner 1.1，群組1人/1build正在測試，Owner已邀請；僅1103、不加入1025/其他使用者。此build繁中試玩內容已保存。最終DELIVERY.json三項true（uploaded/Apple處理/Owner群組可測試）；手機安裝及真人聲畫/平衡驗收未由此證明。簽名來源/54素材/2魔物/Beta3項與239來源未變證據保留，未重建/重跑。成功辨識腳本修正小寫Upload succeeded並跑真實失敗/本機export/成功upload三fixture，不重複成功上傳。
+
+上傳請求完成，Owner可從Apple邀請信開TestFlight安裝皇冠戰略1.1/1103並試本機雙人/玩法練習。最新OWNER_REVIEW_15.md及testflight1103-ready.png/owner-invited.png。未修改1.0上架checkout/封存/送審、未commit/push/main merge/公開發布。窗口剩餘不新增功能或重複成功交付；11:37:48台北後原定整理並暫停heartbeat，工程PASS不等於真人品質已接受。
+
+
+## 2026-10-12 11:09 Owner回饋：iPhone 9×9太小（16）
+
+新授權回饋進入獨立可逆Slice16：原投影/規則不變，手機9×9以focused視窗裁外框留白、增加棋盤空間，行動區精簡，完整技能說明在info sheet；所有81格/邊角/底部行動/法師方向保留。7×7與iPad原框不變。Visuals8/0、主手機乾淨串行4/0＋小手机1/0；402pt格36.67pt，小375pt為28×28.5，未聲稱44pt/真人已接受。七張當前原生圖已檢視。先前fixture模式/按鈕大小寫錯誤與兩主runner重疊非正常退出均保留且不作交付依據，修正後serial通過。
+
+1104簽名archive/IPA、54聲畫byte與兩魔物像素、來源固定PASS。只變Visuals/Anim01Geometry，Core/Content/Bot/Motion/Records來源未變；239為前輪完整Swift，不報當前全部重跑。已在進行upload-phone-board16.sh，成功後查Apple處理並只加1104到既有Owner1.1；1103保留，不重複傳成功包。最新OWNER_REVIEW_16.md、artifacts/v11/phone-board-16/DELIVERY.json。未動1.0agent checkout/封存/送審或Git發布；真人手機可讀性仍Owner驗收，截止後不再新增實作。
+
+
+## 2026-10-12 11:18 手機9×9放大版1104已交付
+
+1104已成功上傳/Apple處理完成，build93af286d-5699-4d1f-add8-b51915d16764，既有Owner1.1只Owner1人/1103及1104兩build正在測試；1104試玩說明已保存，1103保留。DELIVERY三項true。主native串行4/0＋小1/0、Visual8/0、54声画/两魔物/签名/源固定PASS；圖與量測已核：402pt手機格36.67pt，小375pt格28×28.5。Core/Content/Bot/Motion/Records未變，239完整Swift為歷史結果，不報全套重跑。
+
+手機9×9布局改善請求的候選完成，Owner可TestFlight更新1104，比較畫面與觸控大小。ASC顯示Owner已裝1103/16Pro/iOS27，1104真機安裝/真人可讀性驗收仍待；不把Simulator當iOS27真機。最新OWNER_REVIEW_16.md及phone-board-16/DELIVERY.json、testflight1104-ready.png。沒有新增角色技能聲音或修改1.0送審/Git發布，截止前剩餘只保存/讀取有意義的新輸入，不重複已完成驗證/上傳；截止後整理並暫停heartbeat。
+
+
+## 2026-10-12 11:56 Owner新回饋：電腦對戰1.1與戰士重量（17）
+
+十小時自動窗口已結束，heartbeat已按既定要求暫停。Owner11:42/11:43明確指出solo仍舊規則/舊棋盤，要求新技能預設、取消切換；另要求戰士重量感。此輪新授權只在1.1工作樹修正，不動1.0 checkout/送審、Git發佈。
+
+根因是 lobby solo 強制useExpansion=false、三職/7x7，再由legacy GameSession/SwiftBoard/CombatAudio執行；Bot拒絕expansion/monster。現在solo也走同一ExpansionLabStore/ExpansionBoard與英文B確認事件，四職/第二技能預設；大廳版別切換撤銷，魔物/盤面/執色/難度保留。Bot搜尋Core合法技能/討伐/戰利，配對上限256，先排序主將戰線且不移走貼主將的牆；規則完整列舉預設不變。solo元資料存局可選且舊1.1預設雙人，舊1.0重播保留。undo跨過AI回覆、世代/盤面守衛、輸入鎖、聲畫尾韻等待保留。戰士原畫weight蓄力/快速下擊/60ms停格回彈；接觸.58/SFX/英文B保持。
+
+250完整Swift/0（swift-delivery.log）；階段Beta4/0，最終6 UI正在跑。Debug與Beta同時建置發現ios/Build共用DB鎖，Debug失敗保留，不作交付證據；改串行後重跑Debug安全2項。原階段測試fixture怪物未配置/瀕死邊角救援實際仍必敗/舊拒絕Bot期待與初次cap漏遠端勝機均保留，修正fixture與主將優先排序後250/0。下一步finalBeta/Debug、新1105簽名/素材/源固定及原TestFlight內部Owner交付，真人AI/動畫品質待Owner。
+
+
+## 2026-10-12 12:12 17完整工程候選1105已上傳
+
+完整Swift250/0，最終Beta6/0（實際大廳/雙執色/四職/魔物/第二技能/放大棋盤/奉獻/復原續玩），DEBUG安全2/0且0skip。Debug target未定義DEBUG導致兩工程test skipped，不冒稱pass；重跑明確定義DEBUG後先發現測試錯誤期望動畫未落定就顯示勝負，按原契約修正測試，最終2/0。原失敗/skip/DB鎖/早於export的驗證全部保留不加總。250為最新完整套件，無沿用239/235當本輪測試。
+
+原畫戰士重量姿勢與英文B確認事件共享，原始54素材byte對1104及新archive/IPA皆相同，兩魔物原生像素相同。戰士前後正常速度Simulator無聲影片同局面/資源/結果，非手機聲畫；角色/AI/樂趣仍Owner待驗。主原生圖已檢視，solo新版棋盤可用。署名/Privacy/圖標、來源固定與archive/IPA核對PASS。TestFlight1105實際upload exit0/Upload succeeded在12:10:10台北完成；Apple處理/Owner群組可下載尚待網頁核對，不由上傳成功推論。
+
+唯一後續小字改動為電腦討伐Caption区分暗影狼/史萊姆，無新控制/規則/時序；簽名archive重新編譯當前來源，原生已驗證玩法行為不變。SOURCE_PIN涵蓋當前app/套件/測試/project。最新OWNER_REVIEW17與solo17 DELIVERY；接續Apple處理後只加1105到現有Owner1.1，保留1103/1104，不重傳。1.0 checkout/封存/送審與Git發布未動，原十小時heartbeat已暫停，本輪新Owner回饋修正。
+
+
+## 2026-10-12 12:20 17完成：1105已TestFlight可測
+
+Apple已處理1105（build0c69c29f-572f-46d9-a749-42356512a668），只加入既有Owner1.1內部手動群組，1人/1103、1104、1105三建置正在測試；繁中個別build試玩說明已保存。ASC看見Owner目前裝1104/16Pro/iOS27，但1105真機安裝與真人重量感/聲畫/AI品質未證，不能用Simulator影片代替。
+
+完整Swift250/0、最終Beta6/0、Debug2/0且0skip；签名/源固定/54素材對1104+新archive/IPA一致/兩怪像素PASS。失敗、skip、DB鎖、早於export的驗證與DEBUG測試預期修正保留，階段Beta4不加總。最後討伐狼/史萊姆標題小字修正由最終簽名archive重編譯，無控制/規則/時序變化，驗證界線記在VALIDATION_BOUNDARY。正常速度Simulator無聲戰士前後同一receipt，來源原畫/英文B不變。
+
+Owner回饋請求的可逆17候選完成，不再自行擴scope/重傳。從TestFlight更新1105，新開一般電腦對戰試玩；舊1.0局仍原規則、舊1.1缺solo元資料按雙人還原。最新OWNER_REVIEW17與solo17 DELIVERY/ASC_BUILD/ASC_GROUP、testflight1105-ready.png。1.0 checkout/封存/送審、Git commit/push/main merge未動；十小時heartbeat已暫停。工程PASS不等於真人品質接受。
+
+
+## 2026-10-13 Owner 授權全遊戲介面重做（19）
+
+Owner 指定新推送的 codex/v11-monster-battlefield，並指出底部仍像一般表單，要求整體以爐石呈現品質自主迭代。此新指令授權共用外觀和操作呈現，沒有 Git／TestFlight 發布授權。以004ed4c建立codex/v11-game-interface，保留其他checkout。
+
+本輪新增GameInterface共用材料／插畫圖集／技能卡／能量寶石，四職200pt操作区、戰利入口、結算替換，以及選角／HUD／教學／支援頁面樣式。規則、PhoneMatchLayout、原棋盤素材、聲音／動畫排程未改。Browser50布局與9類fixture互動通過；原生UI回歸已更新但Windows無Xcode，build、native UI、iPad、VoiceOver／Dynamic Type與真機未跑，不能沿用1106測試。報告docs/v11/GAME_INTERFACE_19.md；下一關是Mac編譯與同局面375／402原生畫面核對，音畫整體品質尚未達成驗收。沒有提交／上傳／合併／安裝。
+
+## 2026-10-13 UI20：主畫面與 icon 先完成
+
+Owner認可新風格並指定先主畫面與icon、再動畫。沿用004ed4c來源及codex/v11-game-interface隔離工作樹，自主完成安靜背景／霧面HUD／手繪木框、44pt英雄徽章、能量晶石與AP標記；七技能各有獨立構圖，保留牧師只有奉獻。大廳選角增加勾選、開始對局置於主要位置、續玩和棋譜入口沿用44pt共用樣式。
+
+圖集先後修正跨格串色，框先後調薄並減少外緣留白；完整prompt、原始來源／hash、前版與當前375／402圖保存artifacts/game-interface-20。Browser50布局／9類fixture互動與21個32／48／64圖示樣本通過，這不是原生執行或玩家品質驗收。Windows沒有Xcode，native build／UI／VoiceOver／Dynamic Type／iPad及真機仍NOT RUN。報告docs/v11/GAME_INTERFACE_20.md。
+
+先前開始的AV21七個tracked檔案及兩個新Motion檔案已完整保存在artifacts/av21-pending，並自本輪active runtime撤下；混合UI19測試只移除AV21新增的敗北assert。奉獻語義／終局cue路由仍是下一切片待修，不能宣稱已解決。接續先Mac核對UI20原生畫面，再以同一UI做四職完整演出；未提交／push／merge／安裝／TestFlight發布。
+
+## 2026-10-13 AV21：Owner 明確授權開始四職動畫
+
+Owner在UI20候選完成後指示「然後開始做動畫，以爐石品質為目標」，因此恢復保存中的AV21候選並開始可逆呈現實作；缺少Mac不阻塞候選開發，但原生整合仍待驗。七技能加入棋子受力、落地壓縮／回彈、交換弧線、兩段連鎖、奉獻原點消散；提子／主將地面圈與玩家視角終局cue接線。結束回合透過commit receipt讓draw可收束。規則、UI20原畫／主畫面及棋盤frame未變。
+
+browser工作台tools/animation-21可播放七技能、正常速度／時間滑桿／降低動態、375／402與聲音預設關閉。它是獨立Canvas路徑示意，並非SwiftUI或Domain執行。正常播放／取消／端點與路徑分離等結果保存在artifacts/animation-21；Swift八項新測試、原生UI及IntegratedAudioAudit已寫，NOT RUN。Windows／WSL沒有Swift compiler，也沒有Xcode／iOS SDK；基線與修改後原生build均未驗證，不能沿用歷史250或1106當本輪結果。
+
+報告docs/v11/ANIMATION_21.md；接續Mac編譯／Swift／原生UI與整合音訊，再看同局面聲畫錄影調整。沒有Git commit／push／merge、安裝或TestFlight授權／發布；爐石整體品質仍未驗收。
+
+## 2026-10-13 AV22：Owner 要求持續逼近爐石品質
+
+沿用UI20與AV21候選，保留前輪来源后新增原創8格局部特效，依成功receipt蓄力／接觸取樣；連鎖新增第二次蓄力，奉獻新增抬手釋放；非受影響棋子短暫退後至88%且完整恢復，危險與選取仍在特效上方。Domain規則、角色原圖／clean plate、UI20源與音訊排程不改。
+
+tools/animation-22以來源分層polygon與before／after pose keyframes重建比較，修正AV21整圖轉動工具限制；新增24个32／48／64px樣本、密集標本與對等細節放大。這些是Canvas候選，不是原生或合法Domain執行。原生已新增三項回歸但NOT RUN；Windows無Swift／Xcode，原生編譯／聲畫／FPS／輸入恢復未驗。候選材質與兩個出力拍点改善，但爐石整体品質尚未達成。
+
+完整prompt／原圖hash／來源快照／失敗與最終檢查在artifacts/animation-22；報告ANIMATION_22.md。下一關Mac原生同局面375／402密集聲畫與工程回歸；沒有Git或TestFlight發布。
+
+## 2026-10-13 先推送，再做 AV23 節奏
+
+Owner明確授權「先push然後再優化」。UI19／UI20／AV21／AV22候選已推送codex/v11-game-interface，remote核對354acb22ad77d8e9bdb2b3d5d400fc3e4084e893。HTTP408兩次後精簡重複影音，完整未發布歷史仍保存在本機refs/codex-safety/av22-unpublished-full-20261013；其他工作樹未改，沒有hook bypass／主線合併／TestFlight。此段更新前面歷史記錄中的「未push」狀態。
+
+接續AV23分開visual／input／audio窗口：一般成功動作演出結束後恢復操作，普通下一手可讓已落定技能配音收尾；新技能／魔物戰利／終局替換舊聲音，復原／背景／中斷等完整停止。音樂duck仍涵蓋配音，不隨輸入提前恢復。保留UI20／AV22原畫、WAV與規則。來源推導盜賊減少約0.579秒等待，非真機實測。
+
+Browser27項與來源／資產不變核對通過；第一次matchMedia事件等待及WAV四捨五入的harness失敗保留。三項Swift窗口測試及六項實際store／音訊audit新增但NOT RUN，Windows無Swift／Xcode。報告docs/v11/ANIMATION_23.md；完成來源檢查後同分支提交與推送，下一關Mac原生編譯／串行UI音訊／四職密集聲畫，尚不能宣稱爐石品質或裝置延遲改善已驗。
+
+## 2026-10-13 AV24：90%品質目標仍未完成
+
+Owner要求分析距離爐石品質，未達則繼續優化，至少90%以上才可停止；另明確要求本輪push並更新剩餘plan。最新候選基線371718e已推送；source仍004ed4c。AV24完成兩次局部調整，但沒有可靠證據宣稱90%，品質目標保持開放。不能用browser測試數／像素差異／未看完整的競品GIF自行升級品質结論。
+
+- [x] AV23已推送371718e；配音／輸入窗口分離、普通下一手保留配音、音樂duck涵蓋音訊。
+- [x] AV24四職接觸beat：180ms局部輪廓、連鎖0.26／0.36兩段交換、奉獻供體原點；不改Domain。
+- [x] 第一輪增量不足後再調整手繪材質大小／透明度，原生ground／foreground分層保住人物；前版／iteration-1與最終證據保留。
+- [x] 連鎖兩段接觸沿用原WAV但獨立player alias，避免第一個起播被覆蓋；原時長／AV23輸入窗口保留。
+- [x] 最終browser41項motion＋32項contact／Canvas／WAV檢查，來源／資產／Domain不變和Xcode檔案接線核對；這不是原生或品質百分比。
+- [x] Mac原生驗證腳本與三項Swift contact測試／一項實際audio排程audit已準備；腳本只做過Bash語法檢查。
+- [ ] Mac跑完整Swift測試；Debug／Beta原生編譯，修正本輪或先前UI20／AV21／AV22／AV23未經編譯的整合問題。使用review-animation24-native.sh並核對來源SHA。
+- [ ] 串行Native UI／IntegratedAudioAudit，確定新測試真的執行且未skip；覆蓋復原、靜音、背景／中斷、終局與快速下一手。
+- [ ] 同局面375／402、普通／密集、七技能正常速度及降低動態的原生影片；檢查分層接縫、接觸點、前後層與陣營辨識。
+- [ ] 實際聽四職同音量A/B，核對兩段接觸／配音／BGM duck和疊音；必要時修音效或原創來源，不把排程成功當聽感品質。
+- [ ] 真機觸控恢復、FPS／frame time、VoiceOver／Dynamic Type／iPad与完整對局舒適度。
+- [ ] 依原生聲畫比較再迭代人物表演、次要動作與材質份量；用代表性爐石片段和獨立真人比較判斷整體接近程度。90%仍未驗收，不關閉本項。
+
+本輪驗證後推送同一codex/v11-game-interface候選分支；不合併main或發布TestFlight。報告ANIMATION_24.md與artifacts/animation-24；目前可完成本機候選與browser比較，缺Mac／iPhone聲畫評估能力的項目明確保留，不能冒稱整體完成。

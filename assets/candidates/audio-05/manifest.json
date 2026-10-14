@@ -1,0 +1,350 @@
+{
+  "status": "owner_listening_pending",
+  "sample_rate": 44100,
+  "channels": 1,
+  "voice": false,
+  "bgm": false,
+  "animation_changed": false,
+  "references": [
+    {
+      "url": "https://news.blizzard.com/en-us/article/23964694/inside-battle-net-meet-the-sound-team-behind-hearthstones-harmonic-design",
+      "use": "Fixed cast/hit beats, emotional identity and layered source texture"
+    },
+    {
+      "url": "https://www.gamedeveloper.com/audio/making-of-rpg-magic-2-sound-pack",
+      "use": "Cast/impact split, low/mid/high balance, foley+synth layering and tails; no source samples copied"
+    },
+    {
+      "url": "https://blog.prosoundeffects.com/how-to-sound-design-magic-spell-sound-effects",
+      "use": "Primary tutorial: design/layer/process reusable source sounds; no commercial library copied"
+    }
+  ],
+  "rights": [
+    {
+      "author": "Kenney",
+      "license": "CC0",
+      "page": "https://kenney.nl/assets/impact-sounds",
+      "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+      "license_sha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db"
+    },
+    {
+      "author": "qubodup",
+      "license": "CC0",
+      "page": "https://opengameart.org/content/sand-spell",
+      "sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+      "description": "Author mouth-made source; not our studio recording"
+    }
+  ],
+  "processing": [
+    {
+      "id": "gather-air",
+      "source": "assets/candidates/audio-05/raw/sand-spell.flac",
+      "sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+      "filters": "atrim=start=0.12:end=0.50,asetpts=PTS-STARTPTS,areverse,highpass=f=150,lowpass=f=4700,acompressor=threshold=0.08:ratio=2:attack=4:release=60",
+      "duration": 0.38,
+      "fade_in": 0.045,
+      "fade_out": 0.025,
+      "target_rms": -20
+    },
+    {
+      "id": "gather-resonance",
+      "source": "assets/candidates/audio-05/raw/impactBell_heavy_002.ogg",
+      "sha256": "a4171ed1a4a17fb858a38de1c59b5b42e50d8f046c525706c0e3ac8671f189f5",
+      "filters": "atrim=end=0.34,areverse,highpass=f=650,lowpass=f=5200",
+      "duration": 0.38,
+      "fade_in": 0.08,
+      "fade_out": 0.05,
+      "target_rms": -24
+    },
+    {
+      "id": "force-air",
+      "source": "assets/candidates/audio-05/raw/sand-spell.flac",
+      "sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+      "filters": "atrim=start=0.10:end=0.36,asetpts=PTS-STARTPTS,highpass=f=140,lowpass=f=6200,acompressor=threshold=0.07:ratio=3:attack=2:release=70",
+      "duration": 0.26,
+      "fade_in": 0.004,
+      "fade_out": 0.045,
+      "target_rms": -17
+    },
+    {
+      "id": "force-body",
+      "source": "assets/candidates/audio-05/raw/impactPunch_heavy_002.ogg",
+      "sha256": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3",
+      "filters": "atrim=end=0.20,highpass=f=130,lowpass=f=1700,acompressor=threshold=0.09:ratio=3:attack=2:release=70",
+      "duration": 0.2,
+      "fade_in": 0.003,
+      "fade_out": 0.06,
+      "target_rms": -19
+    },
+    {
+      "id": "contact-transient",
+      "source": "assets/candidates/audio-05/raw/impactWood_medium_001.ogg",
+      "sha256": "15271dbe8e2872dbb0ff1aeb7b12b2d2b92b7c1951c88532b9ab9158c36dfc73",
+      "filters": "atrim=end=0.22,highpass=f=450,lowpass=f=4800",
+      "duration": 0.22,
+      "fade_in": 0.002,
+      "fade_out": 0.05,
+      "target_rms": -20
+    },
+    {
+      "id": "contact-body",
+      "source": "assets/candidates/audio-05/raw/impactPunch_heavy_002.ogg",
+      "sha256": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3",
+      "filters": "atrim=end=0.26,highpass=f=100,lowpass=f=2200,acompressor=threshold=0.08:ratio=3:attack=2:release=70",
+      "duration": 0.26,
+      "fade_in": 0.002,
+      "fade_out": 0.06,
+      "target_rms": -16
+    },
+    {
+      "id": "contact-table",
+      "source": "assets/candidates/audio-05/raw/impactPlank_medium_003.ogg",
+      "sha256": "0602a7b3eab5f53484f10fe775ee4204e7a2ba9703c886b302e012f7f6fab8de",
+      "filters": "atrim=end=0.26,highpass=f=140,lowpass=f=1200",
+      "duration": 0.26,
+      "fade_in": 0.002,
+      "fade_out": 0.08,
+      "target_rms": -21
+    },
+    {
+      "id": "contact-magic-tail",
+      "source": "assets/candidates/audio-05/raw/impactBell_heavy_002.ogg",
+      "sha256": "a4171ed1a4a17fb858a38de1c59b5b42e50d8f046c525706c0e3ac8671f189f5",
+      "filters": "atrim=end=0.35,highpass=f=750,lowpass=f=4300,aecho=0.8:0.7:42|81:0.22|0.12",
+      "duration": 0.35,
+      "fade_in": 0.004,
+      "fade_out": 0.1,
+      "target_rms": -25
+    }
+  ],
+  "recipes": {
+    "p5-conjure": [
+      [
+        "gather-air",
+        1,
+        0
+      ],
+      [
+        "gather-resonance",
+        1,
+        0.015
+      ]
+    ],
+    "p5-push": [
+      [
+        "force-air",
+        1,
+        0
+      ],
+      [
+        "force-body",
+        1,
+        0.008
+      ]
+    ],
+    "p5-contact": [
+      [
+        "contact-transient",
+        0.7,
+        0
+      ],
+      [
+        "contact-body",
+        1,
+        0
+      ],
+      [
+        "contact-table",
+        1,
+        0.006
+      ],
+      [
+        "contact-magic-tail",
+        1,
+        0.018
+      ]
+    ]
+  },
+  "files": [
+    {
+      "file": "assets/candidates/audio-05/stems/gather-air.wav",
+      "sha256": "babe437ad7876b72cfe83f1af5d49ea700168a89d9d2a84dcf7b348ee050670b",
+      "duration": 0.38,
+      "peak_dbfs": -9.975771481504301,
+      "rms_dbfs": -20.000000000000064,
+      "dc": 0.00018361580362924638,
+      "first": -0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/gather-resonance.wav",
+      "sha256": "2b68ea076672f092d1a915a862b2e8879310de7b93d516279f16ec7c22c8780f",
+      "duration": 0.38,
+      "peak_dbfs": -5.4431757298656125,
+      "rms_dbfs": -23.99999999999999,
+      "dc": -0.00019131904510625506,
+      "first": -0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/force-air.wav",
+      "sha256": "71813e6d32a83e2a8dfea9e805cb2e092b7decf94671af7316264e0e0ff22019",
+      "duration": 0.26,
+      "peak_dbfs": -6.999502358584659,
+      "rms_dbfs": -17.00000000000005,
+      "dc": 0.00020773390829572342,
+      "first": 0.0,
+      "last": -0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/force-body.wav",
+      "sha256": "e587ccc5239901a2b14d3f09ac31270f1f9a2141b16be3cae48f2215a79302d3",
+      "duration": 0.2,
+      "peak_dbfs": -7.022008110832049,
+      "rms_dbfs": -19.00000000000006,
+      "dc": 0.0009432264587162486,
+      "first": 0.0,
+      "last": -0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/contact-transient.wav",
+      "sha256": "067eae85487ba34dcecf257a4781d274f276e32fa0ccdeb22243906f7242329f",
+      "duration": 0.22,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -20.87312598803969,
+      "dc": -0.0009910737619280012,
+      "first": -0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/contact-body.wav",
+      "sha256": "b5a715b5b8a9e9017e61b9a713df3ebe8f974cf2a5adaf5edec0f1ad3de11cda",
+      "duration": 0.26,
+      "peak_dbfs": -3.477254530762912,
+      "rms_dbfs": -16.00000000000006,
+      "dc": 0.0008785106776846006,
+      "first": 0.0,
+      "last": -0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/contact-table.wav",
+      "sha256": "60852464fcbab8f95b52a304298e7c1dceae421ada6d91e322dae6d60b0bc966",
+      "duration": 0.26,
+      "peak_dbfs": -4.031213870842702,
+      "rms_dbfs": -20.999999999999975,
+      "dc": 2.9601888223327313e-05,
+      "first": 0.0,
+      "last": -0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/stems/contact-magic-tail.wav",
+      "sha256": "9aa28d93116a2ccfc775304ce2bb7fdd1221e2c6bd5f136cfa3fb8dbbf735f5f",
+      "duration": 0.35,
+      "peak_dbfs": -5.068772880458252,
+      "rms_dbfs": -25.000000000000078,
+      "dc": 1.4429459800572745e-05,
+      "first": 0.0,
+      "last": -0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/p5-conjure.wav",
+      "sha256": "579e01623cf7919cabba51fa5d89b8f9562d6633c4a2cd647a32211b7860bd90",
+      "duration": 0.39501133786848075,
+      "peak_dbfs": -4.748196584589714,
+      "rms_dbfs": -16.999999999999986,
+      "dc": -4.55794568213957e-06,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/p5-push.wav",
+      "sha256": "c278893f11b0d1ea93cdfd6f631ddcca98fe6c482e96c8fb085958bdb14eb8be",
+      "duration": 0.26,
+      "peak_dbfs": -5.334901808600474,
+      "rms_dbfs": -14.99999999999999,
+      "dc": 0.0010945777051457955,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/p5-contact.wav",
+      "sha256": "5ecb6d908f6410b041d60e2c277c0d5cf34705ffdba891a81f9b2eb21bf83444",
+      "duration": 0.3680045351473923,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -15.496993602793637,
+      "dc": 0.0010654710769631393,
+      "first": 0.0,
+      "last": 0.0
+    }
+  ],
+  "previews": [
+    {
+      "file": "assets/candidates/audio-05/D-sfx.wav",
+      "sha256": "e916638bad0042adcd80ae033f8b099057c85f0a28ebb0278d589f132fcd841f",
+      "duration": 1.65,
+      "peak_dbfs": -6.81504197773979,
+      "rms_dbfs": -25.536552151281946,
+      "dc": -0.00011380653483576143,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/D-level-matched.wav",
+      "sha256": "96ba94e7d00f562a088f84a0b42b97ecebe54c875a32bc67419a3b5343f3314c",
+      "duration": 1.65,
+      "peak_dbfs": -5.778489826457847,
+      "rms_dbfs": -24.500000000000167,
+      "dc": -0.0001282315251791902,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/D-capture-sfx.wav",
+      "sha256": "7a6ccf33f1b75e4bd7c3a5bb3d6ebe4cdb121c0aef67efa99a7a7fe9919a482e",
+      "duration": 3.4,
+      "peak_dbfs": -6.462932704323549,
+      "rms_dbfs": -21.175813421012574,
+      "dc": -5.8942626588722435e-05,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/E-sfx.wav",
+      "sha256": "d5a9e6bbec2efce1fdb58b7a029c5a1df0abb1208ca950562c90cd06ee6b98d6",
+      "duration": 1.65,
+      "peak_dbfs": -6.161085456832446,
+      "rms_dbfs": -21.690239336101552,
+      "dc": 0.0002658649505936248,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/E-level-matched.wav",
+      "sha256": "ea95864af0db21aec52533eb59960ba589301aa63d62328b42e3617fe2524596",
+      "duration": 1.65,
+      "peak_dbfs": -8.970846120730897,
+      "rms_dbfs": -24.5,
+      "dc": 0.00019238581797038605,
+      "first": 0.0,
+      "last": 0.0
+    },
+    {
+      "file": "assets/candidates/audio-05/E-capture-sfx.wav",
+      "sha256": "9f046c291d70a41151624ede87c4cc406a22785fcb7e26a4a5f3eb40ff2073ef",
+      "duration": 3.4,
+      "peak_dbfs": -6.161085456832446,
+      "rms_dbfs": -20.19697841664478,
+      "dc": 0.0001253097119284805,
+      "first": 0.0,
+      "last": 0.0
+    }
+  ],
+  "timing": {
+    "conjure": 0.08,
+    "push": 0.46,
+    "contact": 0.68,
+    "capture": 0.8,
+    "victory": 1.08
+  },
+  "level_match": "D and E dry previews independently match -24.5dBFS RMS over1.65s; compare texture apart from loudness"
+}

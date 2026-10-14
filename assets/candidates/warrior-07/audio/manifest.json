@@ -1,0 +1,171 @@
+{
+  "source_pack": "assets/candidates/present-01/sources/kenney-impact-sounds.zip",
+  "source_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+  "license": "Kenney Impact Sounds CC0",
+  "page": "https://kenney.nl/assets/impact-sounds",
+  "raw": {
+    "impactSoft_medium_000.ogg": "7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3",
+    "impactMetal_light_002.ogg": "25a96f90a9a1f88a531e824e126f0519504625e5635e65a72e4f31611428db29",
+    "impactMetal_heavy_003.ogg": "b0f2ba4dabde9a87eb9c188a19d31e0c2300fd321adeba08d3b9b8aa011d7037",
+    "impactPunch_heavy_002.ogg": "7993dd4c156b9979ad69f17be5ebe31850b16039a3857f8477141be54dfee1b3",
+    "impactWood_medium_001.ogg": "15271dbe8e2872dbb0ff1aeb7b12b2d2b92b7c1951c88532b9ab9158c36dfc73"
+  },
+  "license_sha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+  "processing": [
+    {
+      "stem": "brace-soft",
+      "source": "impactSoft_medium_000.ogg",
+      "filters": "highpass=f=200,lowpass=f=4200",
+      "duration": 0.2,
+      "target_rms": -24,
+      "edge_fades": [
+        0.003,
+        0.055
+      ]
+    },
+    {
+      "stem": "brace-rim",
+      "source": "impactMetal_light_002.ogg",
+      "filters": "highpass=f=650,lowpass=f=3900",
+      "duration": 0.2,
+      "target_rms": -26,
+      "edge_fades": [
+        0.003,
+        0.055
+      ]
+    },
+    {
+      "stem": "strike-metal",
+      "source": "impactMetal_heavy_003.ogg",
+      "filters": "highpass=f=200,lowpass=f=5200,acompressor=threshold=0.08:ratio=2:attack=3:release=65",
+      "duration": 0.33,
+      "target_rms": -21,
+      "edge_fades": [
+        0.003,
+        0.055
+      ]
+    },
+    {
+      "stem": "strike-body",
+      "source": "impactPunch_heavy_002.ogg",
+      "filters": "highpass=f=110,lowpass=f=2100,acompressor=threshold=0.08:ratio=3:attack=2:release=75",
+      "duration": 0.26,
+      "target_rms": -18,
+      "edge_fades": [
+        0.003,
+        0.055
+      ]
+    },
+    {
+      "stem": "pawn-ground",
+      "source": "impactWood_medium_001.ogg",
+      "filters": "highpass=f=350,lowpass=f=4700",
+      "duration": 0.24,
+      "target_rms": -24,
+      "edge_fades": [
+        0.003,
+        0.055
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "assets/candidates/warrior-07/audio/stems/brace-soft.wav",
+      "sha256": "25b78b194c194892143824ece2454433fa6a553ff44051963c47489721304d84",
+      "duration": 0.2,
+      "peak_dbfs": -6.808619902172495,
+      "rms_dbfs": -24.000000000000025
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/stems/brace-rim.wav",
+      "sha256": "6a9f3fbf5605cd888d538fd0859c28582368de027ddf0b8e42e6e06263c64fd0",
+      "duration": 0.2,
+      "peak_dbfs": -8.147339445256174,
+      "rms_dbfs": -26.00000000000005
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/stems/strike-metal.wav",
+      "sha256": "82ed76f33edf67e653f83f4ca557a515de67260c88310284b7b1c0d72b777fbe",
+      "duration": 0.33,
+      "peak_dbfs": -2.1581079461903916,
+      "rms_dbfs": -24.278654725887115
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/stems/strike-body.wav",
+      "sha256": "1f659b9c1965e508053b026fbd6237ea5ebbd48faba00ff413266a32aa6b618b",
+      "duration": 0.26,
+      "peak_dbfs": -5.283573017941208,
+      "rms_dbfs": -18.00000000000009
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/stems/pawn-ground.wav",
+      "sha256": "e5e65b763efc264be5eccfcbe87ecb8e980942753575c937e4a944f9f62f1820",
+      "duration": 0.24,
+      "peak_dbfs": -6.36761331848101,
+      "rms_dbfs": -23.999999999999957
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P07/w7-brace.wav",
+      "sha256": "140cb9a9047363c58ffd1d6a7db5f5ea3aea977b1f90581a902b033d8fcbc7eb",
+      "duration": 0.2,
+      "peak_dbfs": -4.858721079874094,
+      "rms_dbfs": -22.999999999999993
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P07/w7-strike.wav",
+      "sha256": "9198097da95fc412354b83536949bec051a5280cd72d702af6231baca98f88be",
+      "duration": 0.33,
+      "peak_dbfs": -2.968969974172179,
+      "rms_dbfs": -17.000000000000007
+    },
+    {
+      "file": "ios/TacticalGo/PresentationLab/P07/w7-land.wav",
+      "sha256": "d51ab8b8dd12b2d7650abd8b4042f5a4ee9f12f60cf710463adfe43019543c1f",
+      "duration": 0.24,
+      "peak_dbfs": -4.896970346238814,
+      "rms_dbfs": -22.000000000000043
+    }
+  ],
+  "previews": [
+    {
+      "file": "assets/candidates/warrior-07/audio/cast-A-mix.wav",
+      "sha256": "f3a8888705813cbf4d126654642aabc1c99837b4b664f5a772a0dc43b7978c54",
+      "duration": 2.0,
+      "peak_dbfs": -5.215862284547566,
+      "rms_dbfs": -22.695602294216553
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/cast-B-mix.wav",
+      "sha256": "1ab31ccd74e8037e44a223e2f0f3499a6840dee9f68eea10e91eee6e9cd2c08d",
+      "duration": 2.0,
+      "peak_dbfs": -4.8080977164133705,
+      "rms_dbfs": -21.390243253287785
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/cast-silent-voice-mix.wav",
+      "sha256": "c92128f1090b30fafb114650ee378180d442ac0b1b83dc2d3c86d7f31222ff81",
+      "duration": 2.0,
+      "peak_dbfs": -1.6926129731084667,
+      "rms_dbfs": -26.997038582049537
+    },
+    {
+      "file": "assets/candidates/warrior-07/audio/cast-original-mix.wav",
+      "sha256": "9b58a8fd3bb0d9f556703a1c172671c1a4b24d78b57b20cbe16cbbb323480324",
+      "duration": 2.0,
+      "peak_dbfs": -6.0937347080003015,
+      "rms_dbfs": -21.648969455837033
+    }
+  ],
+  "timing": {
+    "voice": 0.08,
+    "brace": 0.2,
+    "strike": 0.58,
+    "land": 0.58,
+    "capture": 0.68,
+    "rest": 1.02
+  },
+  "voice_gain": 0.85,
+  "sfx_gain": 0.65,
+  "voice_duck": 0.42,
+  "quality": "Owner pending"
+}

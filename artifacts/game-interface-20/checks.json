@@ -1,0 +1,356 @@
+{
+  "asset_integrity": "PASS",
+  "source_registration": "PASS",
+  "AV21_parked": "PASS",
+  "browser": {
+    "evidence": "browser-design-fixture",
+    "nativeBuild": "NOT RUN",
+    "nativeTests": "NOT RUN",
+    "checks": [
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "warrior",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "rogue",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "priest",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "hero": "mage",
+        "screen": "directions",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "warrior",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "rogue",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "ready",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "preview",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "loot",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "locked",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "result",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "priest",
+        "screen": "lobby",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "hero": "mage",
+        "screen": "directions",
+        "pass": true
+      }
+    ],
+    "interactions": [
+      "preview",
+      "cancel retains resources",
+      "confirm changes fixture resource display",
+      "undo restores fixture display",
+      "insufficient fixture resources reject confirm",
+      "loot scroll and unlock state",
+      "help and Escape",
+      "reduced motion",
+      "keyboard replay"
+    ],
+    "screenshots": [
+      "candidate-402-preview.png",
+      "candidate-375-ready.png",
+      "candidate-375-result.png",
+      "candidate-375-lobby.png",
+      "candidate-402-lobby.png",
+      "candidate-overview.png",
+      "candidate-four-classes.png",
+      "candidate-action-dock.png",
+      "seven-skills-32-48-64.png"
+    ],
+    "errors": []
+  },
+  "native_build": "NOT RUN",
+  "native_UI": "NOT RUN",
+  "reason": "Windows has no Xcode/iOS SDK",
+  "source_sha256": {
+    "ios/TacticalGo/GameInterface.swift": "11e5914d397c340b8be6f034befd2f62be4cb3b591a020de5767a3b7e640d6b4",
+    "ios/TacticalGo/PlayableGameView.swift": "768c89dce061068eb750069fcb9b8cca0dd0bfbf52cc7d0a770993d1e3ba49d2",
+    "tools/game-interface-20/index.html": "425dfbb86537773d87ca25e70110b793e47b21f49e0446a9a5febb843c27b505",
+    "tools/game-interface-20/preview.js": "903d7e0bc3280218a165b160c74b2345c9bcb8b7bd0f4c17edf695e2ac63560b",
+    "tools/game-interface-20/style.css": "a13050fabb9006b7a3729c6432fb8214b6426714f71547fce8d3ee43c4dbb65b"
+  },
+  "screenshots_sha256": {
+    "candidate-375-lobby.png": "b624a8fe1fc49e289d9666830783f26f13bd335e746c4b882af4f6958fbc8238",
+    "candidate-375-ready.png": "bf02914fd7f543d9cbbd36a141209220e3f04771666e3c8097381425cc9c045c",
+    "candidate-375-result.png": "e22577c74e0e878b8ac01316d5301a2e27b90ddba9e61f5e62c1ac647ac570d9",
+    "candidate-402-lobby.png": "ddb22bb82a6c2c28c619115b3dd684330e500b82725e3afde49c0f48a1836397",
+    "candidate-402-preview.png": "b6c9deb51f64757bff5bbfb1437f27ec58fc6211884e517b2069ce5db3762ce2",
+    "candidate-action-dock.png": "40f8f6c907985113f805cbfcf7011b86d3d1ec9a1f287d9d7f43970109552e24",
+    "candidate-four-classes.png": "0179dfd2446e51b33aa991afe9b7c012a1512005e844583793704cd6c50f10d8",
+    "candidate-overview.png": "9629e7086aa3dcaa0cec4daa1d2968b1891467add6b086d52e35b44608bfcf6e",
+    "seven-skills-32-48-64.png": "369b02a0ce8050cf90d1597925a44a328a6dea180765e26ec58d585dae4f684e"
+  }
+}

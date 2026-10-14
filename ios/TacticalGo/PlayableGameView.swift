@@ -6,14 +6,15 @@ import TacticalGoRecords
 import TacticalGoContent
 
 extension HeroClass {
-    var title: String { switch self { case .warrior: "戰士"; case .mage: "法師"; case .rogue: "盜賊"; case .none: "無職業" } }
+    var title: String { switch self { case .warrior: "戰士"; case .mage: "法師"; case .rogue: "盜賊"; case .priest: "牧師"; case .none: "無職業" } }
     var art: String { rawValue.lowercased() }
-    var skillTitle: String { switch self { case .warrior: "築壘"; case .mage: "魔法之手"; case .rogue: "換位"; case .none: "技能" } }
+    var skillTitle: String { switch self { case .warrior: "築壘"; case .mage: "魔法之手"; case .rogue: "換位"; case .priest: "奉獻"; case .none: "技能" } }
     var skillHelp: String {
         switch self {
         case .warrior: "英雄相鄰的兩個空點，同時放士兵。"
         case .mage: "距離 2 內的任一士兵，推往相鄰空點。"
         case .rogue: "與相鄰敵方士兵交換位置。"
+        case .priest: "犧牲兩格內己兵，打開氣或眼；不補子、不位移。"
         case .none: "請先選擇職業。"
         }
     }
@@ -29,7 +30,7 @@ extension HeroClass {
         }
         return skillHelp
     }
-    var summonCost: Int { self == .mage ? 3 : 2 }
+    var summonCost: Int { self == .mage || self == .priest ? 3 : 2 }
 }
 extension PushDirection {
     var title: String { switch self { case .up: "上"; case .right: "右"; case .down: "下"; case .left: "左"; case .invalid: "？" } }
@@ -111,6 +112,7 @@ struct PlayableGameView: View {
     @State private var store = GameStore()
     @State private var access = PlayAccess()
     @State private var showUnlock = false
+    @State private var showExpansion = false
     @State private var pendingMatchRules: RecordRules?
     @State private var adIsPresented = false
     @State private var showPrivacy = false
@@ -204,6 +206,14 @@ struct PlayableGameView: View {
                 store.setSceneAudioActive(!presented && scenePhase == .active)
             })
         }
+        #if DEBUG || TACTICALGO_V11
+        .fullScreenCover(isPresented: $showExpansion, onDismiss: {
+            // Back in the 1.0 shell: its own match audio and scene state take over again.
+            store.setSceneAudioActive(scenePhase == .active)
+        }) {
+            ExpansionGameView(access: access, onClose: { showExpansion = false })
+        }
+        #endif
         .sheet(isPresented: $showPrivacy) {
             ReleaseInformationView(access: access, presentationChanged: { presented in
                 adIsPresented = presented
@@ -463,6 +473,12 @@ struct PlayableGameView: View {
                     Button { openChallenges(.introduction) } label: {
                         Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44)
                     }.accessibilityIdentifier("lobbyChallenges")
+                    #if DEBUG || TACTICALGO_V11
+                    // Explicit entry (D6): the original rules stay the default; expansions are opened on purpose.
+                    Button { showExpansion = true } label: {
+                        Label("擴充玩法", systemImage: "sparkles").frame(maxWidth: .infinity, minHeight: 44)
+                    }.accessibilityIdentifier("lobbyExpansion")
+                    #endif
                 }.font(.subheadline.weight(.semibold)).foregroundStyle(SellTheme.paper)
             }.padding(.horizontal, tablet ? 32 : 22).padding(.vertical, 14)
                 .frame(maxWidth: tablet ? 560 : 500).frame(maxWidth: .infinity)
@@ -1321,6 +1337,8 @@ struct PlayableGameView: View {
             if hero == .mage, store.state.config.experimentalFriendlyRedeploy, store.mageOperation == .redeploy { return "先選英雄兩格內的相連己兵，再選原棋群旁空點。1 AP＋2 能量" }
             if hero == .mage, store.state.config.magicHandDestination == .opposingSoldierExchange { return "推入相鄰空點，或交換異色普通士兵。1 AP＋2 能量" }
             return hero.skillHelp + " 1 AP＋2 能量"
+        // The second skill and monster loot exist only in the expansion shell, never in this one.
+        case .advanced, .loot: return "擴充技能請在「擴充玩法」中使用。"
         }
     }
     private var accessibleGrid: some View {

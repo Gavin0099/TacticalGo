@@ -39,7 +39,9 @@ import TacticalGoRecords
         case .warrior: return selected.count == 2 ? .castBastion(first, selected[1]) : nil
         case .mage: return .castMagicHand(first, direction)
         case .rogue: return .castSwap(first)
-        case .none: return nil
+        // The 1.0 challenge campaigns only use the three original classes; the priest's skill belongs to the
+        // expansion shell and has no action in this screen.
+        case .priest, .none: return nil
         }
     }
     var preview: ActionOutcome? { action.flatMap(controller.preview) }

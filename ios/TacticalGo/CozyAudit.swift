@@ -163,7 +163,7 @@ import TacticalGoMotion
             case .warrior: store.select(Point(2,3)); store.select(Point(4,3))
             case .mage: store.select(Point(4,3)); store.chooseDirection(.up)
             case .rogue: store.select(Point(4,3))
-            case .none: return
+            case .priest, .none: return   // this audit covers the three original classes only
             }
         }
         for hero in [HeroClass.warrior, .mage, .rogue] {

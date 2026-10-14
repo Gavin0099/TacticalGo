@@ -249,6 +249,12 @@ import TacticalGoMotion
         }
     }
 
+    /// A cancelled terminal performance must not resume the battle loop or replay an ending cue.
+    func finishBattleSilently() {
+        guard matchActive, !mix.ended else { return }
+        mix.finish(at: now); startMixTask()
+    }
+
     #if DEBUG
     var auditState: [String: Any] {
         ["uptime": now, "integrationAllowed": musicIntegrationAllowed,
@@ -275,6 +281,8 @@ import TacticalGoMotion
     var cachedVoiceCount: Int { voices.count }
     func voiceDurationForAudit(_ key: String) -> Double { voices[key]?.duration ?? 0 }
     var cachedEffectCount: Int { effects.count }
+    #endif
+    #if DEBUG || TACTICALGO_V11
     var activeEffectCount: Int { effects.values.filter { $0.isPlaying }.count }
     #endif
 

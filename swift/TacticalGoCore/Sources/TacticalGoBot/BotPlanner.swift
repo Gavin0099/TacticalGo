@@ -7,7 +7,7 @@ public enum BotDifficulty: String, Sendable, CaseIterable {
 
 /// Work limits are deterministic, rather than elapsed-time cutoffs. This keeps replay choices stable.
 public struct BotLimits: Sendable {
-    /// Caps explicit apply calls; Core.legalActions also performs bounded internal validation.
+    /// Caps explicit apply calls; internal legal enumeration caps advanced pairs at256.
     public let maxDomainTransitions: Int
     public let ownBeamWidth: Int
     public let replyBeamWidth: Int
@@ -124,7 +124,12 @@ private struct Search {
         guard stats.domainTransitions < limits.maxDomainTransitions else { stats.budgetExhausted = true; return [] }
         // Core is the sole source of move legality, including suicide, ko, resources and skill gates.
         stats.legalEnumerations += 1
-        let legal = GameEngine.legalActions(state)
+        let legal = GameEngine.legalActions(state,expansionCandidateLimit:256).filter { action in
+            // New1.1 presents Redeploy as the ordinary Mage skill; match the human repertoire.
+            if state.config.expansionSkills && state.config.experimentalFriendlyRedeploy,
+               case .castMagicHand = action { return false }
+            return true
+        }
         var nodes: [Node] = []
         for (index, action) in legal.enumerated() {
             guard let result = apply(state, action) else {
@@ -255,6 +260,7 @@ private struct Search {
             // pressure among close own-turn candidates. Deterministic, same legal rules.
             let alternatives = completed.dropFirst().filter { node in
                 node.actions != best.actions && node.score >= best.score - 120 &&
+                node.state.lootInventory(of: me).count >= best.state.lootInventory(of: me).count &&
                 node.actions.contains(where: { $0 != .endTurn }) &&
                 node.state.board.find(me, .commander).map { node.state.board.liberties(at: $0).count >= 3 } == true &&
                 (root.board.find(me, .hero) == nil || node.state.board.find(me, .hero) != nil)
@@ -326,6 +332,17 @@ private struct Search {
         if state.status == .drawn { return 0 }
         func faction(_ owner: Player) -> Int {
             var score = state.mana(of: owner) * 7
+            // One-use loot has future tactical value even while waiting for unlock.
+            score += state.lootInventory(of: owner).count * 280
+            for monster in state.board.points where state.board.monsters.contains(monster) {
+                let control = state.board.neighbors(of: monster).filter { state.board[$0]?.owner == owner }.count
+                score += control * 18
+                if control >= 2 { score += 20 }
+                if state.config.monsterBattlefield?.kind(at: monster) == .shadowWolf,
+                   let hero = state.board.find(owner,.hero) {
+                    score += max(0,3-hero.distance(to:monster)) * 12
+                }
+            }
             var seen: Set<Point> = []
             for p in state.board.points {
                 guard let piece = state.board[p], piece.owner == owner else { continue }
@@ -384,7 +401,8 @@ private struct Search {
             reasons.append("主將生存空格 \(root.board.liberties(at: commander).count) → \(node.state.board.liberties(at: after).count)")
         }
         if node.actions.contains(where: isSummon) { reasons.append("召喚英雄支援攻守位置") }
-        if node.actions.contains(where: isSkill) { reasons.append("使用職業技能重組棋形") }
+        if node.actions.contains(where: isSkill) { reasons.append("使用技能重組棋形") }
+        if node.actions.contains(where: { if case .huntMonster = $0 { return true }; return false }) { reasons.append("討伐魔物取得一次性戰利能力") }
         let enemyBefore = root.board.points.filter { root.board[$0]?.owner == me.opponent }.count
         let enemyAfter = node.state.board.points.filter { node.state.board[$0]?.owner == me.opponent }.count
         if enemyAfter < enemyBefore { reasons.append("提掉敵方棋子 \(enemyBefore - enemyAfter) 枚") }
@@ -421,7 +439,7 @@ private func isSummon(_ action: GameAction) -> Bool {
 }
 private func isSkill(_ action: GameAction) -> Bool {
     switch action {
-    case .castBastion, .castMagicHand, .castFriendlyRedeploy, .castSwap, .castSeal: true
+    case .castBastion, .castMagicHand, .castFriendlyRedeploy, .castSwap, .castSeal, .castOffering, .castSanctuary, .castDoublePull, .castReformation, .castChainSwap, .useStickyBounce, .useShadowStep: true
     default: false
     }
 }
@@ -436,7 +454,15 @@ private func actionKey(_ action: GameAction) -> String {
     case .castMagicHand(let point, let direction): return "4-push:\(p(point)):\(direction.rawValue)"
     case .castFriendlyRedeploy(let source, let destination): return "7-redeploy:\(p(source)):\(p(destination))"
     case .castSwap(let point): return "5-swap:\(p(point))"
+    case .castSanctuary(let a,let b): return "8-sanctuary:\(p(a)):\(p(b))"
+    case .castOffering(let a): return "8-offering:\(p(a))"
+    case .castDoublePull(let a,let b): return "8-pull:\(p(a.from)):\(p(a.to)):\(p(b.from)):\(p(b.to))"
+    case .castReformation(let a,let b): return "8-reformation:\(p(a.from)):\(p(a.to)):\(p(b.from)):\(p(b.to))"
+    case .castChainSwap(let a,let b): return "8-chain:\(p(a)):\(p(b))"
     case .castSeal(let point): return "6-seal:\(p(point))"
+    case .useStickyBounce(let a, let b): return "8-bounce:\(p(a)):\(p(b))"
+    case .useShadowStep(let at): return "8-step:\(p(at))"
+    case .huntMonster(let point): return "8-hunt:\(p(point))"
     case .endTurn: return "9-end"
     }
 }

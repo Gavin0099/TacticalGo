@@ -35,7 +35,7 @@ public struct MageTiming: Equatable, Sendable {
 
 /// Angles in degrees, offsets in the immutable 512px source-art coordinates.
 /// Shoulder and elbow transforms are nested; hand and staff share the same grip transform.
-public enum MageArtRevision: String, Sendable, CaseIterable { case m2, m3, r1 }
+public enum MageArtRevision: String, Sendable, CaseIterable { case m2, m3, r1, r2 }
 
 public struct MageBodyPose: Equatable, Sendable {
     public var torso = 0.0
@@ -82,6 +82,7 @@ public struct MageBodyPose: Equatable, Sendable {
         return mix(stable,.rest,(t-0.72)/0.28)
     }
     public static func cast(at time: Double, timing: MageTiming, reduced: Bool = false, revision: MageArtRevision = .m3) -> Self {
+        if revision == .r2 { return contactCast(at: time, timing: timing, reduced: reduced) }
         if revision == .r1 { return revisedCast(at: time, timing: timing, reduced: reduced) }
         if revision == .m2 { return m2Cast(at: time, timing: timing, reduced: reduced) }
         guard !reduced, time >= 0, time < timing.recoveryEnd else { return .rest }
@@ -153,6 +154,30 @@ public struct MageBodyPose: Equatable, Sendable {
         if t < 0.65 { return mix(grounded,planted,(t-0.35)/0.30) }
         if t < 0.82 { return mix(planted,handStable,(t-0.65)/0.17) }
         return mix(handStable,.rest,(t-0.82)/0.18)
+    }
+
+    /// Phone-R1-derived acting: held hand commits through pawn contact, then
+    /// elbow/body recover before cloth. Faction base never participates.
+    private static func contactCast(at time: Double, timing: MageTiming, reduced: Bool) -> Self {
+        guard !reduced, time >= 0, time < timing.recoveryEnd else { return .rest }
+        let lead = Self(torso: 1, torsoX: 6, heldX: -5, torsoY: 3, shoulder: -3, elbow: -8, head: -1)
+        let coil = Self(torso: 3, torsoX: 20, heldX: -4, torsoY: 8, shoulder: -10, elbow: -6, head: -2, cape: -3)
+        let release = Self(torso: -3, torsoX: -24, heldX: -25, torsoY: -3, shoulder: 20, elbow: 5, head: 2, cape: 5)
+        let contact = Self(torso: -2, torsoX: -18, heldX: -22, shoulder: 20, elbow: 4, head: 2, cape: -4)
+        let recoil = Self(torso: -1, torsoX: -8, heldX: -10, torsoY: 2, shoulder: 8, elbow: 3, head: 1, cape: 3)
+        let keys: [(Double,Self)] = [(0,.rest),(0.07,lead),(timing.anticipationEnd,coil),
+            (timing.release,release),(timing.moveStart,release),(timing.arrival,contact),
+            (timing.arrival + 0.07,recoil),(timing.recoveryEnd - 0.12,.rest),(timing.recoveryEnd,.rest)]
+        func sample(_ t: Double) -> Self {
+            for i in 1..<keys.count where t <= keys[i].0 {
+                let a=keys[i-1],b=keys[i]; return mix(a.1,b.1,(t-a.0)/(b.0-a.0))
+            }
+            return .rest
+        }
+        var pose=sample(time)
+        pose.head=sample(max(0,time-0.04)).head
+        pose.cape=sample(max(0,time-0.065)).cape
+        return pose
     }
 
 }

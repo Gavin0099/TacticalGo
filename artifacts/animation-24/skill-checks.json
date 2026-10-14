@@ -1,0 +1,13 @@
+{
+  "version": "1.7",
+  "repo_installed_byte_identity": {
+    "SKILL.md": true,
+    "agents/openai.yaml": true,
+    "assets/iteration-record.md": true,
+    "references/game-ui.md": true,
+    "references/integration.md": true,
+    "references/iteration.md": true,
+    "references/sources.md": true,
+    "references/style.md": true
+  }
+}

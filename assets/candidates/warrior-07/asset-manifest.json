@@ -1,0 +1,13 @@
+{
+  "source_sha256": {
+    "ios/TacticalGo/WarriorBodyView.swift": "3f59b19be2f66defdecad09971b2fb38df4081f9b8c5528e08777594bb383e72",
+    "ios/TacticalGo/PresentationLab/P02/warrior.png": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+    "ios/TacticalGo/PresentationLab/P07/warrior-clean-plate.png": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63"
+  },
+  "source_tree_read_only": "/Users/pc49-58/.codex/worktrees/autonomous-slices-1011/TacticalGo",
+  "identity": "original phone1023 B-v02 pixels",
+  "backing_approval": "candidate",
+  "backing_rights": "pending",
+  "new_generation": false,
+  "owner_review": "pending"
+}

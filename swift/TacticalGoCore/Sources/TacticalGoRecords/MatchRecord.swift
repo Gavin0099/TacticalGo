@@ -31,7 +31,15 @@ public struct RecordedAction: Codable, Equatable, Sendable {
         case .castMagicHand(let p, let d): kind = "push"; points = [p]; direction = d.rawValue
         case .castFriendlyRedeploy(let from, let to): kind = "redeploy"; points = [from,to]; direction = nil
         case .castSwap(let p): kind = "swap"; points = [p]; direction = nil
+        case .castSanctuary(let a, let b): kind = "unsupported-expansion-sanctuary"; points = [a,b]; direction = nil
+        case .castOffering(let p): kind = "unsupported-expansion-offering"; points = [p]; direction = nil
+        case .castDoublePull(let a, let b): kind = "unsupported-expansion-pull"; points = [a.from,a.to,b.from,b.to]; direction = nil
+        case .castReformation(let a, let b): kind = "unsupported-expansion-reformation"; points = [a.from,a.to,b.from,b.to]; direction = nil
+        case .castChainSwap(let a, let b): kind = "unsupported-expansion-chain"; points = [a,b]; direction = nil
         case .castSeal(let p): kind = "seal"; points = [p]; direction = nil
+        case .useStickyBounce(let a, let b): kind = "unsupported-monster-bounce"; points = [a,b]; direction = nil
+        case .useShadowStep(let p): kind = "unsupported-monster-step"; points = [p]; direction = nil
+        case .huntMonster(let p): kind = "unsupported-monster-hunt"; points = [p]; direction = nil
         case .endTurn: kind = "end"; points = []; direction = nil
         }
     }
@@ -55,6 +63,8 @@ public struct RecordedAction: Codable, Equatable, Sendable {
         func c(_ p: Point) -> String { "\(p.x >= 0 && p.x < 26 ? String(UnicodeScalar(65 + p.x)!) : "?")\(p.y + 1)" }
         let coordinates = points.map(c).joined(separator: "、")
         switch kind {
+        case "unsupported-monster-hunt": return "討伐（魔物原型不支援正式存局）"
+        case "unsupported-monster-bounce", "unsupported-monster-step": return "戰利能力（魔物原型不支援正式存局）"
         case "soldier": return "落子 \(coordinates)"
         case "summon": return "召喚英雄 \(coordinates)"
         case "bastion": return "築壘 \(coordinates)"
@@ -90,6 +100,10 @@ public func recordedEvents(_ events: [ActionEvent]) -> [String] {
     return events.map { e in
         let data: String
         switch e {
+        case .monsterLootGranted(let who, let ability, let unlock): data = "\(who.rawValue):\(ability.rawValue):\(unlock)"
+        case .monsterAbilityUsed(let who, let ability): data = "\(who.rawValue):\(ability.rawValue)"
+        case .pieceSacrificed(let who, let at): data = "\(who.rawValue):\(p(at))"
+        case .monsterHunted(let who, let at): data = "\(who.rawValue):\(p(at))"
         case .resourcesSpent(let who, let ap, let mana): data = "\(who.rawValue):\(ap):\(mana)"
         case .piecePlaced(let who, let at, let kind): data = "\(who.rawValue):\(p(at)):\(kind.rawValue)"
         case .piecesSwapped(let who, let a, let b): data = "\(who.rawValue):\(p(a)):\(p(b))"
@@ -142,7 +156,7 @@ public struct MatchRecord: Codable, Identifiable, Sendable {
     }
     public func rebuild() throws -> (GameSession, [ReplayFrame]) {
         guard schema == 1, engineVersion == "tacticalgo-actions-v1" else { throw RecordError.unsupportedVersion }
-        guard [7,9].contains(size), one != .none, two != .none, computer == nil || size == 7,
+        guard [7,9].contains(size), HeroClass.originalClasses.contains(one), HeroClass.originalClasses.contains(two), computer == nil || size == 7,
               ["easy","standard"].contains(difficulty), steps.count <= 300 else { throw RecordError.invalidSetup }
         var session = GameSession(try GameSetup.newGame(config: rules.config(size: size), classOne: one, classTwo: two))
         var frames = [ReplayFrame(state: session.state, step: nil, events: [])]

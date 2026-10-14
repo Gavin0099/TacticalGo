@@ -1,0 +1,17 @@
+{
+  "version": "1.1",
+  "build": "1112",
+  "bundle": "com.tacticalgo.prototype.herobody",
+  "uploaded": true,
+  "method": "Xcode Organizer TestFlight Internal Only",
+  "sourceUnchanged": true,
+  "nativeObservedText": "TacticalGo 1.1 (1112) uploaded",
+  "screenshot": "artifacts/v11/quality-35/release/XCODE_UPLOAD_SUCCESS.png",
+  "screenshotSHA256": "8f76dca7c607c7eb7baf010b688f1f467e86eecbcc1766324fad5543bb329057",
+  "observedUTC": "2026-10-14T10:14:10.072079+00:00",
+  "priorCLIExitCode": 70,
+  "appleProcessed": false,
+  "ownerGroupAvailable": false,
+  "publicRelease": false,
+  "humanQualityAccepted": false
+}

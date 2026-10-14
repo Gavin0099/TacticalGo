@@ -1,0 +1,233 @@
+{
+  "scope": "AV21 candidate",
+  "ui20_source_and_assets": "byte-identical",
+  "domain_content_bot_records_diff": "empty",
+  "timeline_source_hash": "PASS",
+  "existing_audio_assets": [
+    {
+      "path": "ios/TacticalGo/PresentationLab/P07/w7-brace.wav",
+      "sha256": "140cb9a9047363c58ffd1d6a7db5f5ea3aea977b1f90581a902b033d8fcbc7eb",
+      "duration": 0.2
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P07/w7-strike.wav",
+      "sha256": "9198097da95fc412354b83536949bec051a5280cd72d702af6231baca98f88be",
+      "duration": 0.33
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P07/w7-land.wav",
+      "sha256": "d51ab8b8dd12b2d7650abd8b4042f5a4ee9f12f60cf710463adfe43019543c1f",
+      "duration": 0.24
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P05/p5-conjure.wav",
+      "sha256": "579e01623cf7919cabba51fa5d89b8f9562d6633c4a2cd647a32211b7860bd90",
+      "duration": 0.39501133786848075
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P05/p5-push.wav",
+      "sha256": "c278893f11b0d1ea93cdfd6f631ddcca98fe6c482e96c8fb085958bdb14eb8be",
+      "duration": 0.26
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P05/p5-contact.wav",
+      "sha256": "5ecb6d908f6410b041d60e2c277c0d5cf34705ffdba891a81f9b2eb21bf83444",
+      "duration": 0.3680045351473923
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-rogue-coil.wav",
+      "sha256": "7103ea81b6e6a74a6238ddc04e230c7fc0c49efc76c0495acc6a3d70f61cc06a",
+      "duration": 0.24
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-rogue-dash.wav",
+      "sha256": "bdb949ed60238eeccb9aa2d4ab99ed5d6621f4ac74cd71295acae2d0dfc2d0e0",
+      "duration": 0.2
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-rogue-land.wav",
+      "sha256": "ca1569c41edab56abad1ce521665657c68dc48c6c26c4971986a8ceca28cdf21",
+      "duration": 0.2
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-priest-prayer.wav",
+      "sha256": "bce512b27878b06b006cb22e8c2effcb7c9474e764591d70ebc617d6190884fa",
+      "duration": 0.25
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-priest-bless.wav",
+      "sha256": "67b799b4014f680c368fcdace82f964cb9a5079464ff728b4fb62d0486d96241",
+      "duration": 0.42
+    },
+    {
+      "path": "ios/TacticalGo/PresentationLab/P08/p8-priest-land.wav",
+      "sha256": "581c5f33811e0139b94281bd25b3161c7b9566f468ec6f3092a238a4926460f6",
+      "duration": 0.22
+    }
+  ],
+  "browser": {
+    "evidence": "browser motion study",
+    "nativeBuild": "NOT RUN",
+    "nativeTests": "NOT RUN",
+    "checks": [
+      {
+        "width": 375,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "interaction": "cancel before cues clears sound schedule",
+        "pass": true
+      },
+      {
+        "interaction": "background-style stop freezes and cancels RAF",
+        "pass": true
+      },
+      {
+        "interaction": "media reduced motion shows final board without donor or trail",
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "interaction": "seven-skill sequence plays continuously to final offering",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "interaction": "review page fits phone",
+        "pass": true
+      }
+    ],
+    "invariants": [],
+    "errors": [],
+    "video": "Silent browser motion recording; not native rig or device performance"
+  },
+  "source_sha256": {
+    "ios/TacticalGo/CombatAudio.swift": "615d77d22e75bfdeed6439f8c7ecb87f5259d85d4fdaf2abaaa48bdbf2f87d07",
+    "ios/TacticalGo/GameStore.swift": "e08bd675b3e587721cc8ea9292bcebf9a529b416bb09632935966e20429bbb31",
+    "ios/TacticalGo/ExpansionLabView.swift": "353bea8333d8d098b3dd12f20da8d3694516b998c848e8c50befe4df411280bc",
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "dbdd62d0d1f7f1a0443fb9acf5bbd9242120a6e5d5566997e4e4d7ab269163a0",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "c6abaee0a7394e3780e8ad446062d98e61759fce83aa1a6ca978335d1ffea642",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionPresentation.swift": "f642fc34b0115b589ae0f40b9e0152ec97caa91ef3cab8e4a8f4dd91dc4e5f20",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionFeedback.swift": "30b20a3ea06d004f914602f146d852a6f2168bc2c4f4ed1632c0db55d345eee0",
+    "swift/TacticalGoCore/Tests/TacticalGoMotionTests/ExpansionFeedbackTests.swift": "a06bf57f75b7870027308855b42c8d6749895b34de7395a8b4ebb10ea41bde80"
+  },
+  "artifact_sha256": {
+    "candidate-overview.png": "d12ba30bcddace9cf2d31908e5466dd4cced11941bcf17e4155944ff08030e17",
+    "failed-setup-browser.webm": "6ca6ccbd1e4ebd30c7d0458228b6e14520516284e686d088b7aef690ae28cadc",
+    "offering-reduced.png": "ff9a52d5fdc0ae5630a4ba1827bdd2b0de3f6f4f64569c5237118981e59a640a",
+    "seven-skill-sheet.png": "63477ed1b0e3865d225666b485576ddb9198e8ba3efdb03f16f985fc37b832cc",
+    "seven-skills-browser.webm": "66bfee1dbf9683d9e5f1cb2bce54439609ded85bd06b7139972552192012407e",
+    "skill-0-midpoint.png": "13781ab459caae40c7652322233d1bfcb383089730350c0d49700c30bbc489f2",
+    "skill-1-midpoint.png": "16070ed1406be073f7661568565cd00660edc044c0dc94dfa08330e359a665b4",
+    "skill-2-midpoint.png": "cac1588a391f754d860bfea25466e0fb3164e8692bd1fa686491f82dcb1872bb",
+    "skill-3-midpoint.png": "aa045ec4932f03c5d415a5b95397b8163aab6d25aa804865d6134cfc64715890",
+    "skill-4-midpoint.png": "2dfb0ed95c7c189a9e4b9b3f8c4386be2f6401b5b200e99b4f06e86b25cef748",
+    "skill-5-midpoint.png": "9dd41f0b8d06e4622ada78c77efbf5ec3725f4362299972a1fe60df5eccfba0a",
+    "skill-6-midpoint.png": "4cd7a9a605d70abd18d6f094f1e858d1d1bf6c3ef17b0cbaefd5286278deb624"
+  },
+  "native_build": "NOT RUN",
+  "swift_tests": "NOT RUN",
+  "native_audio_audit": "NOT RUN",
+  "native_performance": "NOT RUN",
+  "reason": "No Swift compiler in Windows or WSL; no Xcode/iOS SDK"
+}

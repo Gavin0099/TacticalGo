@@ -24,3 +24,14 @@ obj/
 
 # Windows prototype publish output
 dist/
+
+# Native / Swift prototype build products (retain reports and screenshots)
+ios/Build/
+swift/TacticalGoCore/.build/
+artifacts/v11/**/DerivedData/
+artifacts/v11/**/ReleaseDerivedData/
+artifacts/v11/**/ReleaseBuild/
+artifacts/v11/**/*.xcresult/
+
+# 1.1 generated builds/signing/results stay local; curated evidence is added explicitly.
+artifacts/v11/
