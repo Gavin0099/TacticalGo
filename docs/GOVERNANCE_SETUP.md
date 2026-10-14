@@ -78,9 +78,20 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
   (it calls `install_governance_hooks` with its default `include_copilot=True`) can all deploy
   `ai-governance-vscode.json`, i.e. the wrong Stop wiring. `--hooks-only` does not. So: keep the current framework pin,
   initialise hooks with `--hooks-only`, and treat any F-7 apply or Copilot-surface install as a change that must be
-  followed by `git status .github/hooks` and `python validators/hook_wiring_check.py .`. CI runs the same check on any
+  followed by `git status .github/hooks` and `python validators/hook_wiring_check.py .`.
+  CI detects a re-deployed file; it cannot stop a local installer from writing it first, so "check after the update"
+  leaves a window. Close it with isolation: do not run F-7 apply in a working directory where agent hooks are loaded.
+  Run the update in an isolated clone that loads no agent hooks, confirm `.github/hooks` has no Stop wiring
+  (`hook_wiring_check.py`), and only then promote the change to working clones. CI runs the same check on any
   PR that touches `.github/hooks/**`, so a re-deployed file fails the PR instead of relying on memory. This is a guard
   against regression, not a fix of the framework template.
+- **Golden validator is a structure pre-check, not a replay.** Review still lists two gaps that were deliberately not
+  closed: it does not check the value types of `config` entries or of `expect` entries (e.g. `{"ok": "true"}`);
+  `GoldenReplayTests` is the authority. Adding more strictness only moves the line; it does not make `ok=True` mean
+  "replayable". Decide strictness by whether a claim changes, not by review count.
+- **Do not turn a CI run into a success receipt on exit code alone.** `gh run view --exit-status` exits 0 for a run
+  that is still queued or in progress. Use `scripts/ci_evidence_receipt.py`, which requires `completed`, `success`, the
+  expected head SHA and the expected steps before any receipt is written.
 - `session_end_hook` fails on Python 3.9 (`X | None` annotations in `claim_enforcement_checker.py`) although the
   framework README states 3.9+; use Python 3.10 or newer.
 - Memory-guard warnings that remain are attributed, not resolved: `test_evidence_provenance_not_found` is the

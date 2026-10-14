@@ -31,6 +31,8 @@ on:
       - ".github/workflows/governance-drift.yml"
       # managed hook configs: a re-deployed VS Code Stop -> session_end wiring must be caught here
       - ".github/hooks/**"
+      - "scripts/ci_evidence_receipt.py"
+      - "scripts/test_ci_evidence_receipt.py"
 
 jobs:
   governance-drift:
@@ -60,3 +62,6 @@ jobs:
 
       - name: Check managed hook wiring (VS Code Stop must not close out a session)
         run: python validators/hook_wiring_check.py .
+
+      - name: Run evidence helper tests (success judgement)
+        run: python -m unittest discover -s scripts -p "test_*.py" -v

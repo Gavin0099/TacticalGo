@@ -6,7 +6,12 @@ must only name things the C# reference engine actually defines (illegal-reason n
 Why this exists: the fixtures are the contract the future Swift port must pass. If a fixture names a reason or event
 that the engine does not define (typo, rename, removed rule), the port would be checked against a nonsense expectation.
 
-Scope and limits: this validates structure, vocabulary, the setup shape and the required argument shape of every action. It does NOT replay the fixtures (the C# test
+Scope and limits: this validates structure, vocabulary, the setup shape and the required argument shape of every action.
+KNOWN LIMITS (reported by review, deliberately not closed here): it does not check the JSON *value* types of `config`
+entries (e.g. a string boardSize) or of `expect` entries (e.g. {"ok": "true"}, {"cells": []}); GoldenReplayTests
+(ParseConfig / Check) reads those with GetInt32/GetBoolean/EnumerateObject and is the authority. An `ok=True` here
+therefore means "well-formed enough to attempt a replay", never "replayable"; the C# replay and the Swift parity
+tests decide that. It does NOT replay the fixtures (the C# test
 `GoldenReplayTests` does that) and says nothing about game balance, fun, or whether a player understands anything.
 """
 
