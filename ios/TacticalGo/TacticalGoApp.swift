@@ -28,6 +28,8 @@ import TacticalGoContent
                 else if ProcessInfo.processInfo.arguments.contains("--monster-lab") { MonsterLabView() }
                 else if ProcessInfo.processInfo.arguments.contains("--expansion-lab") { ExpansionLabView() }
                 else if ProcessInfo.processInfo.arguments.contains("--presentation-lab") { CombatPresentationLabView() }
+                // The 1.1 shell's own audits/fixtures (`--integrated-*`) are driven against the expansion shell directly.
+                else if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("--integrated-") }) { ExpansionGameView() }
                 else if Bundle.main.bundleIdentifier == "com.tacticalgo.prototype.presentationlab" || ProcessInfo.processInfo.arguments.contains("--v11-home") { V11HomeView() }
                 else { normalRoot }
                 #else

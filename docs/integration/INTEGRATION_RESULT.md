@@ -33,14 +33,30 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 | App build, Debug / iOS Simulator | succeeded |
 | App build, Beta (V11 flag, expansion assets) / iOS Simulator | succeeded |
 | New `IntegrationUITests` on iPhone 16 simulator | 4 / 4 passed: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
-| Existing `MonetizationUITests` (1.0 paywall) | see the result recorded in the pull request |
+| Existing `MonetizationUITests` (1.0 paywall) | 9 / 9 passed |
+| Existing `RewardedAdNetworkUITests` | 2 / 2 passed |
+| Existing `PlayableGameTests` / `AdvancedChallengeUITests` / `BoardInteractionTests` (119 run) | 37 failed on the first run. The same 34 that exist in 1.0 were re-run on the clean 1.0 snapshot (`d13fdfa`, same simulator): 32 fail there too (pre-existing, e.g. tablet-sized tests on an iPhone simulator, stale expectations) and 2 passed there but failed here - both were real integration defects, fixed (below). The 3 remaining failures were 1.1-only tests that need the 1.1 shell: routed to `ExpansionGameView` via the DEBUG-only `--integrated-*` launch arguments, 3 / 3 now pass |
+
+## Defects found by the regression run (fixed on this branch)
+
+1. `GameStore.resume` called `leaveMatch()` (which re-saves the previous record). Creating a candidate copy then made the
+   original newer than its copy, so "resume" after a relaunch restored the original rules instead of the copy. The 1.0
+   behaviour is restored: only a live expansion match is dropped there.
+2. The merged test file had taken three lines of the 1.1 interface (`mageOperation` as a menu, `resultReplay`) for tests
+   that drive the 1.0 shell; reverted to the 1.0 interface. The three 1.1-only audit tests now start the expansion shell.
+
+## Known pre-existing failures (same on the 1.0 snapshot, not caused by the integration)
+
+32 UI tests (tablet / landscape tests run on an iPhone simulator, tests of 1.1-era UI that the 1.0 source tree itself no
+longer matches, `testNineBoardAccessibleGridWinAndDraw`, ...). They are listed so a later cleanup can decide; the
+integration neither fixes nor worsens them. No iPad simulator run was made.
 
 ## Not verified / known gaps
 
 - C# replay and C#/Swift step-by-step equivalence were not re-run (no `dotnet` on this machine). The Swift side of the
   shared Golden fixtures passes in both lines and the fixture trees are identical.
-- The full existing UI suites (`PlayableGameTests`, `AdvancedChallengeUITests`, `ExpansionLabTests`, ...) were not run
-  end to end; only the monetization suite and the new integration tests were.
+- `ExpansionLabTests`, `MonsterLabTests`, `PresentationLabTests` were not run on the integrated build.
+- The 1.1-only tests were not re-run on the 1.1 snapshot as a baseline (they pass here).
 - No physical device, no iPad, no signed archive, no TestFlight, no App Store action.
 - The expansion single save slot: starting a new expansion match replaces an unfinished saved expansion match (existing
   1.1 behaviour). The replaced match was never charged because the trial is consumed at completion.

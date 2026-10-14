@@ -1760,7 +1760,7 @@ import XCTest
     }
     func testCandidateMageDenseRedeployPreviewCancelUndoAndOriginalPushSwitch() {
         let app = app(["--skill-screenshot", "--candidate-skills", "--mage-redeploy"])
-        XCTAssertTrue(app.buttons["mageOperation"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.segmentedControls["mageOperation"].waitForExistence(timeout: 10))
         tap(app, 3, 2); tap(app, 1, 1)
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
         XCTAssertTrue(app.staticTexts["2 AP"].exists)
@@ -1772,7 +1772,7 @@ import XCTest
         shot(app, "candidate-mage-dense-redeploy-confirmed")
         app.buttons["undoOrCancel"].tap()
         XCTAssertTrue(app.staticTexts["2 AP"].exists)
-        app.buttons["mageOperation"].tap(); app.buttons["推動"].tap()
+        app.segmentedControls["mageOperation"].buttons["推動"].tap()
         tap(app, 3, 2)
         XCTAssertTrue(app.buttons["push-Up"].exists)
         XCTAssertFalse(app.buttons["push-Up"].isEnabled) // dense own soldiers still block original push
@@ -2069,7 +2069,8 @@ import XCTest
         #if DEBUG
         let app = app(["--integrated-practice","mage"])
         #else
-        let app = app()
+        // Integrated app: the 1.1 lobby is the expansion shell, driven directly (DEBUG-only routing).
+        let app = app(["--integrated-lobby"])
         XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
         app.buttons["玩法練習"].tap();app.buttons["法師 · 擴充技能"].tap()
         #endif
@@ -2654,7 +2655,7 @@ import XCTest
         XCTAssertTrue(draw.staticTexts["和局"].exists)
         XCTAssertFalse(draw.buttons["playEndTurn"].exists)
         shot(draw, "A0-draw")
-        draw.buttons["resultReplay"].tap()
+        draw.buttons["再玩一局"].tap()
         XCTAssertFalse(draw.staticTexts["和局"].exists)
         XCTAssertTrue(draw.staticTexts["1 AP"].exists)
     }

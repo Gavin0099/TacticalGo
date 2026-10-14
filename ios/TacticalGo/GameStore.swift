@@ -85,7 +85,12 @@ import TacticalGoContent
         do {
             let restored = try record.rebuild().0
             guard restored.state.status == .ongoing else { return false }
-            leaveMatch(); cancelBotWork(); session = restored; activeRecord = record
+            // Only drop a live expansion match here. The original shell never re-saved the previous record on
+            // resume: doing so would make a freshly created candidate copy older than its source on disk.
+            #if DEBUG || TACTICALGO_V11
+            expansion?.scene(false); expansion = nil
+            #endif
+            cancelBotWork(); session = restored; activeRecord = record
             r2Fixture = nil
             size = record.size; computer = record.computer; recordRules = record.rules
             botDifficulty = BotDifficulty(rawValue: record.difficulty) ?? .easy
