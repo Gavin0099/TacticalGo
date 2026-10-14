@@ -266,6 +266,7 @@ struct P02CozyToken: View {
                 }
                 .offset(y:canvas * (0.5-ground/512))
             }
+            if commercialStyle { P02SellUnitFrontRim(black:black,width:pitch*0.74).offset(y:pitch*0.03) }
             // Solid disc vs hollow diamond is readable without faction color.
             Group {
                 if black { Circle().fill(P02Cozy.card).overlay(Circle().fill(P02Cozy.coordinate).padding(0.7)) }
@@ -320,6 +321,27 @@ struct P02SellUnitBase: View {
 }
 
 
+
+/// The front lip stays in front of a leaning figure, keeping team material readable.
+struct P02SellUnitFrontRim: View {
+    let black:Bool
+    let width:CGFloat
+    var body:some View {
+        P02FrontHalfEllipse().stroke(black ? P02Cozy.color(0xCBDAD5):P02Cozy.color(0x786B51),lineWidth:3.2)
+            .overlay(P02FrontHalfEllipse().stroke(black ? P02Cozy.color(0x102B38):P02Cozy.color(0xFFF6E1),lineWidth:2.0))
+            .frame(width:width,height:width*0.48).allowsHitTesting(false).accessibilityHidden(true)
+    }
+}
+private struct P02FrontHalfEllipse: Shape {
+    func path(in rect:CGRect) -> Path {
+        Path { p in
+            let k:CGFloat = 0.5522847498,rx = rect.width/2,ry = rect.height/2
+            p.move(to:CGPoint(x:rect.maxX,y:rect.midY))
+            p.addCurve(to:CGPoint(x:rect.midX,y:rect.maxY),control1:CGPoint(x:rect.maxX,y:rect.midY+ry*k),control2:CGPoint(x:rect.midX+rx*k,y:rect.maxY))
+            p.addCurve(to:CGPoint(x:rect.minX,y:rect.midY),control1:CGPoint(x:rect.midX-rx*k,y:rect.maxY),control2:CGPoint(x:rect.minX,y:rect.midY+ry*k))
+        }
+    }
+}
 
 struct P02Anim01Sprite: View {
     let asset: P02CozyAssets.Sprite

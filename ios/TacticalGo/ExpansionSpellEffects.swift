@@ -18,13 +18,14 @@ struct ExpansionSpellEffects: View {
             if !reduced,time.isFinite,time >= 0,time < receipt.duration {
                 if plane == .foreground {
                     switch receipt.action {
-                    case .castMagicHand,.castDoublePull: mage
+                    case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: mage
                     case .castBastion,.castReformation: warrior
                     case .castSwap,.castChainSwap: rogue
                     case .castSanctuary: priest
                     case .castOffering: offering
                     case .useStickyBounce: bounce
                     case .useShadowStep: shadow
+                    case .huntMonster: huntReward
                     default: EmptyView()
                     }
                     if !receipt.captures.isEmpty { captureRings }
@@ -34,11 +35,27 @@ struct ExpansionSpellEffects: View {
         }.frame(width:size.width,height:size.height).allowsHitTesting(false).accessibilityHidden(true)
     }
     private var heroCenter: CGPoint { receipt.hero.map(center) ?? .zero }
+    private var huntReward: some View {
+        ZStack {
+            if let point = receipt.hunted.first,let grant = receipt.lootGrants.first {
+                let kind: MonsterKind = grant.ability == .stickyBounce ? .slime:.shadowWolf
+                let f = MonsterHuntFrame.sample(kind:kind,at:time,arrival:receipt.arrival,duration:receipt.duration)
+                let q = center(point)
+                ZStack {
+                    Ellipse().fill(grant.owner == .one ? P02Cozy.ink:P02Cozy.card)
+                        .overlay(Ellipse().stroke(grant.owner == .one ? P02Cozy.sage:P02Cozy.ink,lineWidth:1.5))
+                        .frame(width:pitch*0.58,height:pitch*0.22).offset(y:pitch*0.10)
+                    GameIconView(icon:grant.ability == .stickyBounce ? .slime:.shadow,size:pitch*0.58)
+                }.scaleEffect(f.rewardScale).opacity(f.rewardOpacity)
+                    .position(x:q.x,y:q.y-pitch*f.rewardLift)
+            }
+        }
+    }
     private var accentFrame: SpellAccentFrame { .sample(at:time,release:receipt.release,arrival:receipt.arrival,duration:receipt.duration) }
     @ViewBuilder private var paintedAccents: some View {
         switch receipt.action {
         case .castBastion,.castReformation: if plane == .ground { paintedWarrior }
-        case .castMagicHand,.castDoublePull: paintedMage
+        case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: paintedMage
         case .castSwap,.castChainSwap: if plane == .ground { paintedRogue }
         case .castOffering: paintedPriest
         default: EmptyView()

@@ -4,12 +4,17 @@ import XCTest
 
 final class WarriorPresentationTests:XCTestCase {
     func testWeightedDownstrokeImpactHoldAndDelayedRecoveryPreserveRestAndReducedMotion() {
-        // Owner contract: hold windup until .42; contact .58; hold to .64;
+        // Q35 contract: leave windup at release .34, before motion .35;
+        // contact .58; hold to .64;
         // recoil .74, body rest .94, cloth follows. No rule/timing alteration.
-        let coil = WarriorBodyPose.skill(at:0.42,weighted:true)
+        let coil = WarriorBodyPose.skill(at:0.28,weighted:true)
         let impact = WarriorBodyPose.skill(at:0.58,weighted:true)
         let hold = WarriorBodyPose.skill(at:0.64,weighted:true)
-        XCTAssertEqual(coil.shieldY,-104);XCTAssertEqual(impact.shieldY,46)
+        XCTAssertEqual(coil.shieldY,-104);XCTAssertEqual(impact.shieldY,26)
+        let departure = WarriorBodyPose.skill(at:0.34,weighted:true)
+        XCTAssertGreaterThan(departure.shieldY,coil.shieldY)
+        XCTAssertGreaterThan(departure.body,coil.body)
+        XCTAssertLessThan(departure.shieldY,impact.shieldY)
         XCTAssertEqual(impact.body,hold.body);XCTAssertEqual(impact.shieldY,hold.shieldY)
         XCTAssertLessThan(WarriorBodyPose.skill(at:0.74,weighted:true).shieldY,impact.shieldY)
         XCTAssertEqual(WarriorBodyPose.skill(at:0.94,weighted:true).body,0)
@@ -101,5 +106,18 @@ final class WarriorPresentationTests:XCTestCase {
         XCTAssertEqual(WarriorBastionEffectFrame.sample(at:0.80).phase,.dissolve)
         for t in [-1,0,0.98,1.02,Double.nan,Double.infinity] {XCTAssertEqual(WarriorBastionEffectFrame.sample(at:t).alpha,0)}
         XCTAssertEqual(WarriorBastionEffectFrame.sample(at:0.58,reduced:true).alpha,0)
+    }
+    func testProjectionClearsSoldierBeforeRecoveryAndNeverExpandsAtContact() {
+        // P28 contract: figure readability takes over at contact. The echo clears
+        // by .78, before body rest .94; ground impact and timing remain distinct.
+        let before = WarriorBastionEffectFrame.sample(at:0.579)
+        let contact = WarriorBastionEffectFrame.sample(at:0.58)
+        XCTAssertLessThanOrEqual(contact.scale,1)
+        XCTAssertEqual(contact.scale,before.scale,accuracy:0.002)
+        XCTAssertEqual(contact.impact,1)
+        XCTAssertLessThan(WarriorBastionEffectFrame.sample(at:0.70).alpha,contact.alpha)
+        XCTAssertEqual(WarriorBastionEffectFrame.sample(at:0.78).alpha,0)
+        XCTAssertEqual(WarriorBastionEffectFrame.sample(at:0.90).alpha,0)
+        XCTAssertGreaterThan(contact.alpha,0)
     }
 }

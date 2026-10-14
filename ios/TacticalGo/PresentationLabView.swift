@@ -9,6 +9,11 @@ import TacticalGoVisuals
 /// Debug experiment with retained players and an explicit cancellation owner.
 @MainActor final class PresentationSamples {
     private var players: [String: AVAudioPlayer] = [:]
+    private var scheduledGains: [String:Double] = [:]
+    private var effectsGain = 1.0
+    private var voiceGain = 1.0
+    private static func isVoice(_ key:String) -> Bool { key.contains("voice") || key.hasPrefix("mage-cast-") }
+    private static func finiteGain(_ value:Double) -> Double { value.isFinite ? max(0,value) : 0 }
     private(set) var error: String?
     init() {
         for key in ["p8-rogue-coil","p8-rogue-dash","p8-rogue-land","p8-rogue-land-first","p8-priest-prayer","p8-priest-bless","p8-priest-land","p8-slime-coil","p8-slime-bounce","p8-slime-land","p8-wolf-growl","p8-wolf-dash","p8-wolf-land","p8-voice-rogue-A","p8-voice-rogue-B","p8-voice-priest-A","p8-voice-priest-B","p-charge","p-release","p-land","p-capture","mage-voice-english","mage-cast-A","mage-cast-B","p3-air","p4-conjure","p4-push","p4-contact","p5-conjure","p5-push","p5-contact","w7-brace","w7-strike","w7-land","w7-voice-A","w7-voice-B","warrior","place","draw","capture","victory","defeat"] {
@@ -23,22 +28,46 @@ import TacticalGoVisuals
         }
     }
     @discardableResult func schedule(_ key: String, after delay: Double, volume: Double) -> Bool {
-        guard let player = players[key], volume > 0 else { return false }
-        player.stop(); player.currentTime = 0; player.volume = Float(min(1,max(0,volume)))
+        let base = Self.finiteGain(volume)
+        let gain = base * (Self.isVoice(key) ? voiceGain : effectsGain)
+        guard let player = players[key], gain > 0 else { return false }
+        player.stop(); player.currentTime = 0; player.volume = Float(min(1,gain))
         let success = player.play(atTime: player.deviceCurrentTime + max(0,delay))
+        if success { scheduledGains[key] = base } else { scheduledGains.removeValue(forKey:key) }
         if !success { error = "候選音效播放失敗：\(key)" }
         return success
     }
     func duration(_ key:String) -> Double { players[key]?.duration ?? 0 }
+    #if DEBUG
+    func volume(_ key:String) -> Double { Double(players[key]?.volume ?? 0) }
+    func isPlaying(_ key:String) -> Bool { players[key]?.isPlaying ?? false }
+    #endif
+    /// Keep per-cue material balance. Changing a bus never starts or revives a player.
+    func setMix(effects:Double,voice:Double) {
+        effectsGain = Self.finiteGain(effects); voiceGain = Self.finiteGain(voice)
+        for (key,base) in scheduledGains {
+            guard let player = players[key] else { continue }
+            let gain = base * (Self.isVoice(key) ? voiceGain : effectsGain)
+            if gain == 0 { player.stop(); scheduledGains.removeValue(forKey:key) }
+            player.volume = Float(min(1,gain))
+        }
+    }
     func effectsVolume(_ volume:Double, keys:Set<String>? = nil) {
         for (key,player) in players where !key.contains("voice") && !key.hasPrefix("mage-cast-") && (keys == nil || keys!.contains(key)) {
             player.volume = Float(min(1,max(0,volume)))
         }
     }
     func cancel(keepingVoice: Bool = false) {
-        for (key,player) in players where !(keepingVoice && (key.contains("voice") || key.hasPrefix("mage-cast-"))) { player.stop() }
+        for (key,player) in players where !(keepingVoice && Self.isVoice(key)) {
+            player.stop(); scheduledGains.removeValue(forKey:key)
+        }
     }
     var playing: Int { players.values.filter(\.isPlaying).count }
+    /// Called only after a previous visual unlock, so these voices have already started.
+    var remainingVoiceDuration: Double {
+        players.filter { Self.isVoice($0.key) && $0.value.isPlaying }
+            .map { max(0,$0.value.duration-$0.value.currentTime) }.max() ?? 0
+    }
     var playingVoices: Int { players.filter { ($0.key.contains("voice") || $0.key.hasPrefix("mage-cast-")) && $0.value.isPlaying }.count }
 }
 

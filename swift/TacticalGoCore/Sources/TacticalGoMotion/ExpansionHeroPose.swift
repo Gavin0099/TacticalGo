@@ -23,7 +23,7 @@ public struct ExpansionHeroPose: Equatable, Sendable {
         let contact = Self(body:4,bodyX:-7,bodyY:17,head:-2,hand:9,cloth:8)
         let recoil = Self(body:-3,bodyX:3,bodyY:3,head:2,hand:-4,cloth:-4)
         let keys: [(Double,Self)] = chained
-            ? [(0,.rest),(0.12,coil),(0.16,release),(0.24,contact),(0.26,recoil),(0.28,coil),(0.30,release),(0.36,contact),(0.44,recoil),(0.60,.rest),(0.70,.rest)]
+            ? [(0,.rest),(0.12,coil),(0.16,release),(0.24,contact),(0.26,contact),(0.27,recoil),(0.28,coil),(0.30,release),(0.36,contact),(0.44,recoil),(0.60,.rest),(0.70,.rest)]
             : [(0,.rest),(0.12,coil),(0.16,release),(0.36,contact),(0.44,recoil),(0.60,.rest),(0.70,.rest)]
         var p = sample(t,keys:keys); p.cloth = sample(max(0,t-0.06),keys:keys).cloth; return p
     }

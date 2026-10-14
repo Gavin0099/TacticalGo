@@ -7,6 +7,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
     public static let byteLimit = 512 * 1024
     public let computer: Player?
     public let difficulty: String?
+    public let baseSkills: String?
     public let version: Int
     public let rules: String
     public let size: Int
@@ -28,6 +29,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
             case .summonHero(let p): kind = "summon"; points = [p]
             case .castBastion(let a,let b): kind = "bastion"; points = [a,b]
             case .castMagicHand(let p,_): kind = "hand"; points = [p]
+            case .castFriendlyRedeploy(let a,let b): kind = "redeploy"; points = [a,b]
             case .castSwap(let p): kind = "swap"; points = [p]
             case .castSanctuary(let a,let b): kind = "sanctuary"; points = [a,b]
             case .castOffering(let p): kind = "offering"; points = [p]
@@ -38,7 +40,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
             case .useStickyBounce(let a,let b): kind = "bounce"; points = [a,b]
             case .useShadowStep(let p): kind = "step"; points = [p]
             case .endTurn: kind = "end"; points = []
-            case .castSeal,.castFriendlyRedeploy: throw RecordError.invalidSetup
+            case .castSeal: throw RecordError.invalidSetup
             }
         }
         public func domain() throws -> GameAction {
@@ -48,6 +50,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
             case ("soldier",1): return .placeSoldier(points[0])
             case ("summon",1): return .summonHero(points[0])
             case ("bastion",2): return .castBastion(points[0],points[1])
+            case ("redeploy",2): return .castFriendlyRedeploy(points[0],points[1])
             case ("swap",1): return .castSwap(points[0])
             case ("sanctuary",2): return .castSanctuary(sacrifice:points[0],destination:points[1])
             case ("offering",1): return .castOffering(points[0])
@@ -77,6 +80,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
     public init(session: GameSession, computer: Player? = nil, difficulty: String? = nil) throws {
         self.computer = computer; self.difficulty = difficulty
         let s = session.state, c = s.config
+        baseSkills = c.bastionScope == .connectedGroup && c.experimentalFriendlyRedeploy ? "redeployment" : nil
         version = 1; rules = Self.rulesID; size = c.boardSize
         classOne = s.heroClass(of:.one); classTwo = s.heroClass(of:.two)
         advancedMana = c.expansionSkillManaCost; huntAP = c.monsterBattlefield?.huntAPCost
@@ -92,6 +96,8 @@ public struct ExpansionMatchRecord: Codable, Sendable {
         guard [7,9].contains(size),[4,5].contains(advancedMana),classOne != .none,classTwo != .none,
               actions.count <= 500,monsters.count <= 2 else { throw RecordError.invalidSetup }
         var c = RuleConfig.board(size:size); c.expansionSkills = true; c.expansionSkillManaCost = advancedMana
+        guard baseSkills == nil || baseSkills == "redeployment" else { throw RecordError.invalidSetup }
+        if baseSkills == "redeployment" { c.bastionScope = .connectedGroup; c.experimentalFriendlyRedeploy = true }
         if monsters.isEmpty { guard huntAP == nil else { throw RecordError.invalidSetup } }
         else {
             guard size == 9,let huntAP,[0,1].contains(huntAP) else { throw RecordError.invalidSetup }

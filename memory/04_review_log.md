@@ -179,3 +179,289 @@
 - Validation boundary: artifacts/v11/git-review/VALIDATION.json與clean-source-swift.log：待提交index乾淨匯出Swift252/0、unsigned Simulator Beta1106 build成功、54素材byte一致和兩怪存在；interface18源pin未變，既有Beta5/Debug3不重跑。staged code/docs/scripts/memory whitespace PASS，簡式私鑰/token/簽名檔掃描無命中；third-party raw CRLF留原bytes。
 - Next action: Git推送請求完成，保持1106 TestFlight與paused heartbeat；Owner可檢視分支/試玩，新slice另依Owner指示，不擴scope或自行main merge。真人外觀/聲畫/玩法與真機1106接受仍待。
 - PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:5ec9e6c1b4b4147aa2dab1353c177d1ed640cc14fab70c47e998c4dfb19b6b98 -->
+### Canonical memory checkpoint — cli-20261013-235046
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `5ec9e6c1b4b4147aa2dab1353c177d1ed640cc14fab70c47e998c4dfb19b6b98`
+- Commit binding: `06c534c` (bound)
+- Record: Native25整理06c534c最新UI20/AV21-24並Wi-Fi交付1107；Owner三項回饋接UX26：Core合法落點、逐步技能提示與限制、預設沿棋群築壘及調度己兵，Bot/新紀錄同步，舊紀錄不變。1108已Wi-Fi安裝啟動，既有存局偏好保留；無新commit/push/main merge/TestFlight。
+- Validation boundary: UX26完整Swift277/0；Beta6/0+小375ptDebug3/0，9執行7種方法0skip；實際AVAudioPlayer49check PASS含新版MageB/undo/background。258來源固定、54聲畫byte及兩怪compiled pixel PASS；devicectl install/launch success、裝置version1.1/build1108，Documents7及Preferences5既有內容不變。evidence_refs: docs/v11/OWNER_REVIEW_26.md, artifacts/v11/ux-26/{swift-final.log,BetaUI.xcresult,DebugSmall.xcresult,integrated-audio-audit.json,SOURCE_PIN.json,SIGNED_BUILD.json,install-*/RESULT.json}。Native25歷史failed runs保留且非全batch PASS。
+- Next action: Owner於既有皇冠戰略新開對局驗收提示與新版技能；舊存局維持原規則。真人聲畫/FPS/iPad/VoiceOver/DynamicType與90%品質未驗，heartbeat暫停，不擴scope。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:0ea2f5d15502204835f1df64eb3ef02bf53cc4f4c7f46ca4c81691dc0174801c -->
+### Canonical memory checkpoint — cli-20261014-001311
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `0ea2f5d15502204835f1df64eb3ef02bf53cc4f4c7f46ca4c81691dc0174801c`
+- Commit binding: `06c534c` (bound)
+- Record: Owner說1108畫面音效好很多，授權十小時UI/動畫/音訊自主優化。新窗口UTC2026-10-13 15:54:08至2026-10-14 01:54:08，既有heartbeat更新ACTIVE20分鐘，旧窗口不重啟。P27-UI完成受限技能牌鎖記/降飽和/暗底、可點原因、英雄已離場說明；只讀全局前提不代表目標合法性。保留1108 dirty來源及簽名包；未改規則/費用/AI策略/聲音/動作，未新commit/push/merge/TestFlight/手機更新。
+- Validation boundary: 完整Swift282/0；Beta3/0+375ptDebug2/0，5次執行4種方法0skip；四職固定棋盤/44pt，卡片quota/召喚可點原因/Undo，以及原綠點/預覽取消/續玩。首付費討伐fixture已走到解鎖卻錯誤期待鎖定，改0AP窗口，focused5及全282重跑通過，失敗swift-first保存。主小原生圖已檢視並同402pt1108比較，非Owner/獨立審美驗收；聲音49check屬UX26未變歷史不報重跑。evidence_refs: docs/v11/AUTONOMOUS_27_PLAN.md, docs/v11/POLISH_27_REVIEW.md, artifacts/v11/polish-27/{PROGRESS.json,SOURCE_PIN.json,baseline,swift-final.log,BetaCards.xcresult,SmallCards.xcresult}。
+- Next action: 接續P28-MOTION：先在正常整合棋盤保存同receipt的原畫基線影片，明示DEBUG工程注入/無真機同步；按相同局面改四職蓄勢接觸收勢再比較。P29同音量材質/配音/BGM混音；窗口末只Wi-Fi備份更新最佳已驗App，鎖定離線保存簽名；截止後一次回報並PAUSED，不向Owner提問。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:b0f522c33e75cc79d817c64388da933155181bb991a3ce730d3241f050da88a7 -->
+### Canonical memory checkpoint — cli-20261014-003933
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `b0f522c33e75cc79d817c64388da933155181bb991a3ce730d3241f050da88a7`
+- Commit binding: `06c534c` (bound)
+- Record: P28A：正常整合DEBUG選取預覽確認錄七招合法ExpansionPractice基線；實際Core狀態/AP/Mana/排程trace。戰士投影峰值.50、落定scale.96、.78消散，避免遮新兵臉；本體/.58SFX/1.02恢復/原畫不改。兩戰士同結果無聲A/B保存，Runtime只改WarriorPresentationPlan。DEBUG場景啟動task退出及Python/Simulator不同clock原點兩失敗修正保留，近似對齊不量測AV延遲。
+- Validation boundary: WarriorPresentation focused8/0；Debug NativeSafety2/0,0skip含錄影等待背景取消/返回不晚到、R3遠端築壘/Undo/固定棋盤。7baseline+2candidate成功Core結果，兩戰士before/after/AP/Mana/release/moveStart/arrival/duration/soundkeys一致；原生Debug build成功。282全Swift為P27歷史本輪未全重跑。evidence_refs: docs/v11/POLISH_28_REVIEW.md, artifacts/v11/polish-28/{SOURCE_PIN_P28A.json,PROGRESS.json,baseline,warrior-candidate,warrior-motion.log,NativeSafety.xcresult,*comparison-silent.mp4,failed-baseline-first,failed-baseline-clock}；圖已看、錄影无音軌/對齊近似、非真機聲畫/FPS或獨立真人審美。
+- Next action: P28B：先檢視已保存Mage/Rogue/Priest原生七招影片/影格，提出可指出動作差距後做同receipt候選；例如連鎖第一接觸停留是否可讀，先確認再改，不改規則。P29原聲源材質/配音BGM混音。截止UTC2026-10-14 01:54:08，窗口末Wi-Fi備份更新最佳候選，未可用保存簽名包；截止後一次回報與PAUSED。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:3b541ef49159f1d30a9a96cefc3b3338b71842a0f922990e762ac938660ec98f -->
+### Canonical memory checkpoint — cli-20261014-011058
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `3b541ef49159f1d30a9a96cefc3b3338b71842a0f922990e762ac938660ec98f`
+- Commit binding: `06c534c` (bound)
+- Record: P28B盜賊連鎖位置.26-.29短停，保留.28再蓄勢/.30出力/.36接觸/.70解鎖；普通換位、規則/費用/原畫/音檔不改。同Core結果無聲原生A/B與.275精確定格保存。DEBUG正常棋盤讀reviewTime、Undo清除已棄定格；保持舊Lab背景定格。修測試AX角色應盜賊非英雄與Mage重啟清除練習參數，真正首頁續玩通過。
+- Validation boundary: Motion72/0，三個新連鎖站位/有界單調連續/正常與Reduced不變；首兩72回歸各1fail修復且保留。Native三種方法分批最終PASS0skip：NativeChain首batch舊Labfreeze pass；NativeChainFixed batch精確RootFrame/Undo pass；NativeMageResumeFixed focused1pass。兩batch各有1其他harness失敗不冒稱全通過。同before/after/AP/Mana/timing/soundkeys，比較無聲且對齊近似；精確.275原生圖已看。evidence_refs: docs/v11/POLISH_28B_REVIEW.md, artifacts/v11/polish-28b/{SOURCE_PIN.json,PROGRESS.json,motion-fixed.log,NativeChain.xcresult,NativeChainFixed.xcresult,NativeMageResumeFixed.xcresult,rogue-chain-comparison-silent.mp4}。282full屬P27歷史，手機仍1108，不Git/TestFlight，不真人品質聲稱。
+- Next action: P28C先核對pending huntMonster時blockedReason/stepPrompt是否錯套目前技能的quota/Mana/noAP；免費0AP討伐/獎勵也應一致，僅改善顯示不改規則。檢視魔物/戰利演出，再P29配音/原CC0材質/BGM層次。最後Beta/完整集成/簽名/窗口末Wi-Fi更新最佳，截止UTC2026-10-14 01:54:08一次回報PAUSED。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:5f77e6e03cadac961d7a57e6d1cc556df99fcab3fb43e2b1465dc5285238a0bd -->
+### Canonical memory checkpoint — cli-20261014-012947
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `5f77e6e03cadac961d7a57e6d1cc556df99fcab3fb43e2b1465dc5285238a0bd`
+- Commit binding: `06c534c` (bound)
+- Record: P28C討伐提示依actual hunt／Core validate，不沿用職業Mana/quota；同魔物原畫、控制/AP費用/獎勵解鎖，取消恢復。Content5/0與主Native2/小1 PASS0skip，前候選同局面圖保存；兩初輪fixture/預覽字樣失敗修正保留。無規則/AI/音檔/動作變更，手機仍1108。
+- Validation boundary: artifacts/v11/polish-28c/content-final.log; NativeFixed.xcresult2/0; NativeSmall.xcresult1/0; SOURCE_PIN263; POLISH_28C_REVIEW.md; 原生失敗baseline及初輪保留。
+- Next action: P28D先錄兩魔物討伐/戰利正常原生基線，再按可見差距迭代；P29混音，最終Beta/全套/簽名Wi-Fi末段交付，截止台北09:54。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:a020021d7e0a9c4fc9b4ba14d4c43be85489ab1f31124460acfe5c126512ef43 -->
+### Canonical memory checkpoint — cli-20261014-015351
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `a020021d7e0a9c4fc9b4ba14d4c43be85489ab1f31124460acfe5c126512ef43`
+- Commit binding: `06c534c` (bound)
+- Record: P28D合法四魔物/戰利正常影片；討伐加接觸收縮、實際monsterLootGranted圖示/持有者文字。黏彈/影步原動作、.44/.76及音檔不變，Core/Bot對1108雜湊相同。Content3/完整Motion76/Native兩方法＋caption後reward重跑PASS0skip；.41/.50定格與最後A/B檢視，首testable import編譯失敗保留。SOURCE_PIN268，手機仍1108。
+- Validation boundary: artifacts/v11/polish-28d/content-first.log3/0; motion-all.log76/0; NativeReward.xcresult2/0; NativeRewardCaption.xcresult1/0; SOURCE_PIN268; caption-comparison-silent與exact-contact; POLISH_28D_REVIEW.md。
+- Next action: P29-A现有feel-10/audio真材質stems、Mage/Warrior英文B配音與BGM同响度混音比較，峰值/層次/實際native取消。最終Beta/全套/簽名Wi-Fi窗口末交付，截止台北09:54。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:dcd99b5e96a740f936c8c4eb1b3044f88649518f7a14672066d822133d6a31d8 -->
+### Canonical memory checkpoint — cli-20261014-022928
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `dcd99b5e96a740f936c8c4eb1b3044f88649518f7a14672066d822133d6a31d8`
+- Commit binding: `06c534c` (bound)
+- Record: P29A只調低次要蓄勢/移動，命中/英文B.85/源WAV/時間/BGM保留；15+15真native排程，52實際player volume合約檢查與30對同响度離線試聽（最大.03LU/峰值≤-3dBTP）保存。Motion78/49actual audio檢查全PASS，非真人聽感或真機錄音。兩renderer初輪JSON/線性匹配失敗修正保留；原素材SHA/作者CC0頁核對。手機1108。
+- Validation boundary: artifacts/v11/polish-29a/motion.log78/0; NativeAudio.xcresult1UI/0skip; integrated-audio-audit49/0; baseline/candidate SCHEDULES實際52gains; ab-converged30pairs及MANIFEST/LISTEN; SOURCE_PIN272; POLISH_29A_REVIEW.md。
+- Next action: P29B补實際1.1聲音sheet的獨立SFX/英文voice音量及偏好持續性，預設混音不變，零音量/正在施法/尾音取消不復播/BGM獨立原生驗證。最終全套/Beta/簽名Wi-Fi窗口末。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:3cb4d4454a85972570eccffc03f9bcb3cc03e47dc829c8cd5cd492c684ea5e01 -->
+### Canonical memory checkpoint — cli-20261014-025721
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `3cb4d4454a85972570eccffc03f9bcb3cc03e47dc829c8cd5cd492c684ea5e01`
+- Commit binding: `06c534c` (bound)
+- Record: P29B實際1.1聲音sheet增加獨立SFX/英文voice音量與保存，80/85預設保留P29A，live stage比例與零值取消不復播、title可見/百分比同行；DEBUG review不寫Owner偏好。首Observable遞迴崩潰修正且保存。手機仍1108。
+- Validation boundary: polish-29b/NativeDelivery主4及NativeSmall小1 PASS0fail0skip，5次/4方法；22實際volume checks+49既有audio checks全PASS。SOURCE_PIN272未變；Domain/Bot5及WAV52對1108未變；主小圖已看。First2fail/crash source、Fixed3中間21+49保留不加總。POLISH_29B_REVIEW記非真機/代理未聽/402percent81/87/37不是同gain。
+- Next action: P30整體四職/魔物/solo/雙人/375pt候選收斂，完整Swift/Beta與簽名最佳來源；窗口末fresh Documents/Preferences備份後Wi-Fi更新同herobody App，鎖定離線保存包；截止UTC2026-10-14 01:54:08回報一次PAUSED，不提問，不Git/TestFlight。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:2a73d22e1cfef340f8214f291b2360a56c71bad7f29ee085bf725818137d765f -->
+### Canonical memory checkpoint — cli-20261014-034125
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `2a73d22e1cfef340f8214f291b2360a56c71bad7f29ee085bf725818137d765f`
+- Commit binding: `06c534c` (bound)
+- Record: P30候選1109準備完成：完整Swift300、正式Beta主11/小2/最後音量1全PASS0skip，14次11方法；完成鈕cream最後差异有相應頁回歸。54聲畫byte/2怪解碼像素一致、development簽名與裝置/來源SHA通過，未安裝手機。首錯Debug runner中斷與PNG路徑錯誤保留不算PASS。比較索引/READY、installer資料保存fixture及窗口guard準備完成。
+- Validation boundary: polish-30/swift-full300/0; BetaMainFinal11、BetaSmall2、BetaSoundFinal1全0fail0skip；BETA_MAIN_SOURCE_PIN/前色來源保留，最後Runtime只Done文字色。SOURCE_PIN274/SIGNED_BUILD/54PresentationAssets/4份monsterPixels equal=true；5手寫保存/receipt fixture；check-only無phone action、outside window exit75。COMPARE21links/OWNER_REVIEW30。非真機AV/聽感/爐石品質。
+- Next action: 來源/結果未變不新增或重跑；UTC2026-10-14 01:34:08至01:54:08窗口末用python3 scripts/install-polish30-wifi.py，fresh Documents/Preferences備份後Wi-Fi更新同herobody App。查實際install/launch/appInfo/data結果，成功不重裝；locked/offline/backup失敗保存1109、不等Owner。截止後一次回報PAUSED。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:0696ade10b8b4d92ee355377f9f246a24375715b0d4be6306d6322cad69a9721 -->
+### Canonical memory checkpoint — cli-20261014-083739
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `0696ade10b8b4d92ee355377f9f246a24375715b0d4be6306d6322cad69a9721`
+- Commit binding: `06c534c` (bound)
+- Record: Owner明確授權直接上傳TestFlight，P31開始P30同來源1109 distribution archive；原窗口只此禁止TestFlight限制被新授權取代。
+- Validation boundary: P30來源274逐檔SHA核對無變；沿用Swift300/0與正式Beta14次11方法0skip，P31archive執行中不是PASS。
+- Next action: 串行archive/export驗簽和來源後上傳，Apple處理後只加入既有Owner1.1內部群組；保持其他scope限制，不重複成功上傳。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:3114f7db077882cec73c4cc83ba2a1efcacea90bb299bce75b5424a7079a81da -->
+### Canonical memory checkpoint — cli-20261014-084136
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `3114f7db077882cec73c4cc83ba2a1efcacea90bb299bce75b5424a7079a81da`
+- Commit binding: `06c534c` (bound)
+- Record: P31 1109 App Store簽名archive/export已完成並核對274源/54演出素材/2怪像素/privacy與distribution；兩次實際upload exit70 Failed to Use Accounts，現Xcode帳戶無此team ASC上傳權限，已開登入sheet請Owner完成登入。
+- Validation boundary: artifacts/v11/testflight-31 archive/export成功、verification.log、VERIFIED_PACKAGE、DELIVERY與两upload RESULT保留；300Swift/Beta14次為沿用P30而非新測。
+- Next action: Owner完成Xcode原開發者帳戶登入後續傳既有1109 archive；成功才核Apple處理與Owner1.1群組，不重建未變候選或冒稱已上傳。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:887fc23fdc7c99e95e6be5e20c6ea1381c4fd70afb088e75cef8813bdb034287 -->
+### Canonical memory checkpoint — cli-20261014-094413
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `887fc23fdc7c99e95e6be5e20c6ea1381c4fd70afb088e75cef8813bdb034287`
+- Commit binding: `06c534c` (bound)
+- Record: 窗口末Wi-Fi交付檢查：1109源/簽名通過但iPhone unavailable、無localNetwork，installer連線階段exit1未嘗試安裝；有界apps probe exit1 CoreDevice1011無法找到手機。兩種簽名包保存，無手機改動。
+- Validation boundary: polish-30/install-20261014T014243Z RESULT installAttempted=false/candidateVerified=true、devices/probe logs；沒有真機更新證據。P30既有300Swift/Beta14次保持，P31兩exit70保留。
+- Next action: 截止前無狀態改變保持安靜不重試；UTC01:54:08後核交付報告一次PAUSED。TestFlight仍等Xcode原帳戶登入後續傳既有archive，不重建來源未變包。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:3049b4f8d807da66e9a24037525ca377c90cc97778fd667055645728505dbd3a -->
+### Canonical memory checkpoint — cli-20261014-100407
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `3049b4f8d807da66e9a24037525ca377c90cc97778fd667055645728505dbd3a`
+- Commit binding: `06c534c` (bound)
+- Record: 十小時窗口已截止，1109工程/比較/兩種簽名包保存，最後來源274與binary相同；Wi-Fi連線不可用未安裝，TestFlight帳戶權限兩exit70未上傳。automation_update確認PAUSED，停止新增實作。
+- Validation boundary: WINDOW_RESULT/AUTOMATION_PAUSE保存；300Swift/正式Beta14次11方法是P30證據，最後只核hash無新測；真實Wifi RESULT installAttempted=false及P31兩upload exit70保留，未手機/真人驗收。
+- Next action: Owner看COMPARE與OWNER_REVIEW30；原Xcode開發者帳戶登入完成後續傳已授權P31既有archive，核Apple處理及Owner1.1群組。未变來源不重建/重測，不重啟窗口。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:cff8dc46c4689ca02d80345b8da7af633bb88999139d9b33bfa8b0d8e5bcf0ec -->
+### Canonical memory checkpoint — cli-20261014-121218
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `cff8dc46c4689ca02d80345b8da7af633bb88999139d9b33bfa8b0d8e5bcf0ec`
+- Commit binding: `06c534c` (bound)
+- Record: Owner八Slice品質方向核對完成；1109來源274與兩包保留、1106八張Simulator圖恢復。P32僅修本機狀態欄預覽完成仍要求選點的矛盾，獨立圖審確認階段一致；1110為Simulator候選，沒有重作角色或新聲音。
+- Validation boundary: 正式Beta build-for-testing成功；主2/小1原生執行0fail0skip，兩種方法，含非法來源/部分選取/合法預覽/cancel/Undo/續玩/7solo；SOURCE_DIFF63行/CHANGE_BOUNDARY/CANDIDATE_SOURCE_PIN保存，未重跑未變300Swift或音訊。
+- Next action: 沿PRESENTATION_32_PLAN下一批比較合法點/資源框層級，取得從選角至勝負完整含聲手機基線；未聲稱全八Slice/PRES00真機Gate完成。原1109 TestFlight授權仍等原Xcode帳戶登入可續傳既有archive。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:2217d7101542ea49bd2900027c20ae629714ffa922cf8ea798a29c250405063c -->
+### Canonical memory checkpoint — cli-20261014-135407
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `2217d7101542ea49bd2900027c20ae629714ffa922cf8ea798a29c250405063c`
+- Commit binding: `06c534c` (bound)
+- Record: Owner完成Xcode登入後P33上傳最新1110含P32修正，原1109保存。1110 App Store archive/export及274源/54素材/2怪像素/privacy/簽名核對成功，這次帳戶步驟通過，實際Starting upload而非已完成。
+- Validation boundary: testflight-33 archive/export/verification.log與VERIFIED_PACKAGE；沿用P30 Swift300/14次、P32新主2/小1，沒有重報新測試。
+- Next action: 等待既有upload進程結果，不重開upload；成功核Apple處理並只加入既有Owner1.1內部群組，實際可測才完成。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:bba1c751262cd21475d36037b3f6217d8a0dbfbc613554487158efc762eea194 -->
+### Canonical memory checkpoint — cli-20261014-135712
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `bba1c751262cd21475d36037b3f6217d8a0dbfbc613554487158efc762eea194`
+- Commit binding: `06c534c` (bound)
+- Record: P33最新1110上傳成功，exit0及Upload succeeded/EXPORT SUCCEEDED；ASC實際可見1.1(1110)處理中，帳戶阻擋解除。
+- Validation boundary: testflight-33 upload RESULT/UPLOAD/DELIVERY及apple-processing.png證明收到，尚非群組可測；source/signature/native evidence不重跑。
+- Next action: 不重傳成功1110；等待Apple處理後只加入既有Owner1.1群組，核可下載狀態後報完成。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:a99ea651a75d605337511894d87c0fbb9184e68a6254a4c5bee9eec55d40d6d3 -->
+### Canonical memory checkpoint — cli-20261014-140022
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `a99ea651a75d605337511894d87c0fbb9184e68a6254a4c5bee9eec55d40d6d3`
+- Commit binding: `06c534c` (bound)
+- Record: P33 TestFlight1110交付完成：成功上傳exit0後Apple準備測試，加入既有Owner1.1群組，實際列正在測試/90天；不新tester，舊四build保留。
+- Validation boundary: testflight-33 DELIVERY/UPLOAD/成功log/testflight1110-ready.png；來源274最後SHA無變、archive/export/簽名/54素材/2怪像素PASS，P30/P32測試分開沿用，未證手机已安裝或真人品質。
+- Next action: Owner在iPhone TestFlight更新1.1/1110真人驗收；成功1110不重傳，1109舊封存保留不傳。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:43f3329bee31e765c8e2fa5f7c9f2a9ec57fa0fa86fa4609c3541b3014b984d6 -->
+### Canonical memory checkpoint — cli-20261014-142440
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `43f3329bee31e765c8e2fa5f7c9f2a9ec57fa0fa86fa4609c3541b3014b984d6`
+- Commit binding: `06c534c` (bound)
+- Record: P34根據1110真人回饋補盜賊兩招選角展示與同棋盤討伐Menu，明示包圍不自動觸發，進既有預覽確認/拒絕原因。牧師分析原奉獻兩眼用途，未改技能規則。首UI type-check build失敗修helper後成功，原生主7回歸執行中。
+- Validation boundary: Offering/HuntContent8/0、PriestSanctuaryChallenge2/0；首build65與修復build保存，候選pin274/PROGRESS，Native仍running不是PASS。
+- Next action: 檢查主原生結果再375最窄及兩魔物/戰利共存驗證；有失敗先修，不假稱盜賊缺技能已重現或牧師平衡已改善。全部候選通過才依既有授權交付TestFlight。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:6a795248b592cf75ba7672c162695d598612c2dc975399c959a77606561c24cd -->
+### Canonical memory checkpoint — cli-20261014-144314
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `6a795248b592cf75ba7672c162695d598612c2dc975399c959a77606561c24cd`
+- Commit binding: `06c534c` (bound)
+- Record: P34補盜賊兩招展示、討伐入口與白話狼站位。首7 Native因戰利命中範圍不足1方法失敗；contentShape修正後主3與白話提示最後主2通過。牧師仍奉獻、未改規則。
+- Validation boundary: feedback-34: Main 6PASS/1FAIL保留；MainFixed3/0、MainFinal2/0、Content8+Priest2及Hunt5/0；Small仍執行中。
+- Next action: 完成375pt三項回歸及圖審，通過才簽名1111並接既有TestFlight交付。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:d8c2d954d9b49220d07ce88bced501bf9e0b9504ab8e1f3a291516437fe028b2 -->
+### Canonical memory checkpoint — cli-20261014-150315
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `d8c2d954d9b49220d07ce88bced501bf9e0b9504ab8e1f3a291516437fe028b2`
+- Commit binding: `06c534c` (bound)
+- Record: P34最後主2/小375三項3通過，獨立圖審無阻斷重疊，源274/54資產/2怪像素/distribution/privacy核對通過，1111開始上傳。Owner確認新局，缺招未重現；牧師未改強度。
+- Validation boundary: feedback-34: 首Main6PASS1FAIL；MainFixed3/0、MainFinal2/0、Small3/0均0skip；10種Content15次PASS；release/VERIFIED_PACKAGE.json。
+- Next action: 核實1111上傳與Apple處理，加入既有Owner1.1群組；不增加測試者、Git或公開发布。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:465ab26ee9b1c30c0eb822a87e36300cda636e55315f40459d0f9bdcf28bff3a -->
+### Canonical memory checkpoint — cli-20261014-153129
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `465ab26ee9b1c30c0eb822a87e36300cda636e55315f40459d0f9bdcf28bff3a`
+- Commit binding: `06c534c` (bound)
+- Record: P34 1111成功上傳且Apple完成處理，既有Owner1.1列正在測試90天。Owner主畫面新局連鎖牌整張缺，追加白後手/標準/雙怪正確黑牧師白盜賊1/0/0仍兩招可見，缺招根因未定位；牧師未改強度。
+- Validation boundary: feedback-34/release/DELIVERY.json/testflight1111-ready.png; Main首6PASS1FAIL、修後主3與主2/小3均0fail0skip；Content10種15次PASS；白後手新增首弱fixture實双盜賊、補角色assertion4失敗保留、全卡可見後BlackPriest/WhiteRogue 1/0/0。
+- Next action: Owner更新1111測討伐入口；取得缺牌完整對戰圖與TestFlight建置號定位。牧師一般對局價值與規則改良保持待辦，不自稱三項全解決。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:543a851400806b2d84796e4789a1209cac623bf4d3cce199faf2deed4a13bacc -->
+### Canonical memory checkpoint — cli-20261014-154421
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `543a851400806b2d84796e4789a1209cac623bf4d3cce199faf2deed4a13bacc`
+- Commit binding: `06c534c` (bound)
+- Record: P35依Owner新授權按八Slice續做UI動畫音訊品質，收斂後再TF；1111源274/dirty完整凍結，候選1112私有，品質不自評百分比。
+- Validation boundary: quality-35/START.json/BASELINE_SOURCE_PIN；devicectl iPhone unavailable；既有1111只test-only差異，這輪未有新runtime或PASS。
+- Next action: 建立完整合法基線片段並修每招重播語音策略；手機可用再真機AV/FPS，同時獨立審查UI/動作。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:2284e23b84c2384f056408115a12f784998d4ef7c9e7b018ca76b568ce1a8ab4 -->
+### Canonical memory checkpoint — cli-20261014-163733
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `2284e23b84c2384f056408115a12f784998d4ef7c9e7b018ca76b568ce1a8ab4`
+- Commit binding: `06c534c` (bound)
+- Record: Quality35正常首頁7/9完整Beta基線PASS並保存12圖/112秒無聲影片；cadence第一輪Debug3方法PASS44/22/49實際player，初誤Beta3fail保留；review補lastEligibleTime。新UI4.5pt所有targets/戰士.34departure與.58contact/carry每cue混音已做，11技能正常速度native錄到，新native回歸進行中。
+- Validation boundary: quality-35 baseline-native-main1/0/0；voice-policy-reviewed14/0；visual-motion21/0；voice-handoff修後Content3/0；CadenceDebugAudio3/0/0；最新VisualTailDebug尚在跑
+- Next action: 接續375/402新圖與正常速度獨立比較、完整Beta及平台Gate；手機unavailable，含聲/P95/真人未驗，最佳候選未達可聲稱80–90%且不提前TestFlight。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:e9899461c54604d950226d5663574e3d55dd5f5798de619ac7dcf7eb95911789 -->
+### Canonical memory checkpoint — cli-20261014-181119
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `e9899461c54604d950226d5663574e3d55dd5f5798de619ac7dcf7eb95911789`
+- Commit binding: `06c534c` (bound)
+- Record: Quality35收斂1112：低頻英B／快速交棒tail逐cue混音、zero-duration endTurn未cleanup切尾根因修正，成功新局才reset cadence；戰士出手及盾Y26穿底座修正、陣營前沿、合法點／確認／正式勝因文案。最新Swift310/0、主小正常7/9對局各1/0/0、iPad四職1/0/0；279源及signed IPA核對。Owner回覆推上TestFlight，首CLI70帳戶失敗，Organizer同archive正在Uploading，不假稱已收到。
+- Validation boundary: quality-35/shield-fixed-full-swift-tests310/0；context-final-beta-main及ContextSmallFinalBeta最新各1/0/0；FinalIPadBeta1/0/0；SmallFinalBeta文案前4/0/0；native cadence54全PASS/volume22/audio49分開；release VERIFIED_PACKAGE279源54素材2怪pixels/IPA核對；首upload-20261014T100245Z exit70保存
+- Next action: 核實Organizer上傳結果與Apple處理、既有Owner1.1群組可用，保存1112交付與截圖；真機聲畫/P95/人類品質仍未驗，不宣稱80–90%。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:18a5f127a3ee600ffcf04cc4286abcca15bb1fa4674cde477a8a5ed327edf807 -->
+### Canonical memory checkpoint — cli-20261014-182029
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `18a5f127a3ee600ffcf04cc4286abcca15bb1fa4674cde477a8a5ed327edf807`
+- Commit binding: `06c534c` (bound)
+- Record: Quality35 1.1/1112由Xcode Organizer上傳成功；同279源已驗archive，GUI實際IPA另驗版本/bundle/54演出及其他Audio/兩怪/privacy/signature/profile。首CLI70保留；ASC網頁登入逾時，Owner登入問題已提出，Apple處理與Owner群組未核實。
+- Validation boundary: quality-35/release XCODE_UPLOAD_SUCCESS.png、GUI_UPLOAD_RESULT／GUI_UPLOADED_PACKAGE／DELIVERY；Swift310/0；最新主小序列各1/0/0，iPad四職1/0/0；canonical memory guard無blockers；來源279未變
+- Next action: Owner登入ASC後核1112處理／既有Owner1.1群組及可安裝；不得重新上傳同build。不稱80–90%、真機／人類聽感／FPS已驗，其他源工作保留。
+- PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:bbb7fd1b70e3fce6d1555b00609ecd69b5fecf81e9c760c9678dd7b45b9f28cc -->
+### Canonical memory checkpoint — cli-20261014-182517
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `bbb7fd1b70e3fce6d1555b00609ecd69b5fecf81e9c760c9678dd7b45b9f28cc`
+- Commit binding: `06c534c` (bound)
+- Record: 1112 GUI上傳和實際IPA核對已完成，uploaded證據保存；ASC網頁需重新登入，準備帶前景時Mac已鎖定，無法自動解鎖。DELIVERY標記Apple處理與Owner群組not_verified，不作失敗／可安裝結論，不重傳。
+- Validation boundary: release/XCODE_UPLOAD_SUCCESS.png／GUI_UPLOAD_RESULT／GUI_UPLOADED_PACKAGE／DELIVERY；來源279未變，memory-upload guard completion allowed true／blockers空；既有310Swift和最新主小+iPad結果維持
+- Next action: Owner手動解鎖Mac並登入既有ASC頁面後，接續只核1112處理／Owner1.1群組，來源未變不重跑或重傳。真機／人類80–90%品質仍未接受。
+- PLAN reconciliation: `updated`

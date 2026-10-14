@@ -1,4 +1,82 @@
+1112交付補註：Xcode6:11PM顯示Uploaded to Apple／Build1112；GUI實際package核對已完成。ASC可安裝／Owner群組仍未核實，Mac後來鎖定；Owner需手動解鎖並登入既有頁面。DELIVERY明列not_verified，不能把它當Apple未處理或處理失敗，不能重傳。
+
+## 2026-10-14 1112上傳成功、App Store Connect可測確認待登入
+
+Xcode Organizer已明示TacticalGo1.1(1112)uploaded；用同已驗archive，279來源不变、未重建。GUIUploaded-1112實際IPA另驗版本／bundle／54演出＋其他Audio／两怪＋privacy／簽名profile；GUI manage build=true實際1112，與私有export不同SHA各記。CLI exit70 Failed to Use Accounts保留，轉GUI成功，不假稱CLI成功。ASC刷新登入逾時，已請Owner只登入網頁以核Apple處理與既有Owner1.1群組；DELIVERY.json明列uploaded=true、processing/group/installable未確認。不追加源變更／重傳／新群組／公開发布；QUALITY35八Slice質感缺口和80–90%未驗維持。
+
+## 2026-10-14 Quality35：1112聲畫候選收斂、Owner改先TestFlight
+
+低頻英B／快速交棒尾音／逐cue gain、戰士.34出手及盾Y26穿底座修正、四職陣營前沿、合法點層級、行動確認與正式勝因文案完成。Swift310/0；最新Beta正常首頁7/9完整序列402與375各1/0/0，iPad四職1/0/0；文案前小四職／魔物4/0/0及native player54／22／49各自來源邊界保留。279源pin、1.1/1112簽名／IPA／54演出檔／兩怪pixels核對保存。拒用盾Y60与zero-endTurn尾音失败保留，不宣稱真人重量或80–90%。Owner於手機連線問題回覆「推上testflight」改先交付；首CLI exit70找不到團隊ASC上傳帳戶，現Xcode Organizer用同archive接續。Apple未收到前不稱可測，不重建、不Git／公開发布；QUALITY_35_REVIEW有八Slice與真機／視聽／P95缺口，heartbeatPAUSED。
+
+## 2026-10-14 Quality35首輪：完整片段與聲畫節奏（進行中）
+
+正常首頁7/9完整Beta基線至勝負/Undo已保存1/0/0、12原生圖；first cadence Debug3/0/0及44/22/49實際player checks保存，不能代表真機聽感。現在1112候選為低頻英B、快速下一方技能保留尾音且每cue混音、空點降飽和、戰士.34出手/.58接觸。.35士兵移動、1.02解鎖與Core不变。11技能原生正常速度silent片段保存；新carry/UI/身體相關native仍跑，最终Gate尚未PASS，未上傳。QUALITY_35_REVIEW／PLAN／AUDIO_CONTRACT／VISUAL_CONTRACT明列初配置Beta失敗、fixture失敗、來源及真機/真人缺口。接續375/402同場景圖、獨立審查、正式Beta和平台核對，維持heartbeatPAUSED。
+
 # 1.1 魔物戰場 slices（2026-10-11）
+
+P35 Owner授權按八Slice持續提升UI／動畫／聲音、以爐石80–90%為品質目標，收斂後才再TestFlight。1111目前274源／dirty完整凍結，與已上傳差異只交付後UI測試；運行原圖聲音不變，候選1112先私有。QUALITY_35_PLAN映射八項，不把舊編號當完成，不自評百分比、不新十小時/Goal/排程。手機目前離線，已請同Wi-Fi解鎖，先做完整合法演出序列與確定的施法語音低頻缺口，再UI盤面焦點／戰士本體接觸／矩陣及全套收斂。保留MageD/英B、Warrior英B、技能/AP/Mana/Bot/存局與另一checkout，heartbeatPAUSED，不Git/公開發布。真機含聲／50ms／效能／多人質感驗收分開，不提前用單項改動上傳。
+
+P34交付1111完成：Apple收到upload exit0、處理完成，既有Owner1.1實際列正在測試/90天，testflight1111-ready.png與DELIVERY保存；1110/舊包保留，未加測試人員、不Git/公開發布。Owner確認主畫面新局且連鎖牌整張缺，仍未重現、不能歸因舊存局或鎖頭。交付後只追加一個UI測試：白後手/標準/雙怪實際黑牧師白盜賊、兩招/限制/棋盤1PASS0FAIL0skip；首弱fixture實為雙盜賊不能報牧師，補角色assertion後4失敗為部分露出卡片沒選到牧師，完整捲入後通過，無遊戲改動或重傳。273其他來源與上傳pin相同，新增測試源另存。375捲動卡圖獨立審查確認四職/三職兩招/盜賊費用文字完整。討伐Menu及白話位置提示已交付，牧師未改強度。待Owner缺牌完整對戰圖/TF建置號定位，普通局牧師價值仍開放，未把三項全稱修好；heartbeatPAUSED。
+
+P34候選1111工程與簽名完成：最後主2／小375三項3均PASS0skip，control-only主3PASS、首7為6PASS1FAIL保留。Owner已確認新開對局，不能歸因舊存局；無args的Beta從正式首頁開solo兩招可見，原缺招未重現。375已有loot＋剩狼／拒絕／盜賊圖獨立review未見阻斷重疊，選角卡文字低於折線未完整攝入圖，未冒稱小卡文字全驗收。源274／54素材／2怪像素／distribution/privacy核對通過，1111上傳中，Apple處理與Owner群組待；牧師玩法改良仍未做。P34範圍仍展示與人工討伐操作，不改規則、費用、Bot、保存、原圖聲音或Git，heartbeatPAUSED。
+
+P34主尺寸收斂：首7 Native為6PASS/1FAIL，原因是戰利plain button的命中/accessibility僅42.67×13.33；補Rectangle contentShape保留既有52×44與200dock後，針對3項PASS0skip。獨立review確認選角與對戰兩招可見、但正鄰術語不清楚；改狼原因為上下左右一格，Hunt5/0、最後主2/0已通過，小375三项正在跑。原規則/費用/Bot/保存/原畫/WAV不變；原首失敗、控制修正與最終來源分開保存，1111未簽名未傳，牧師一般局價值仍待。FEEDBACK_34_REVIEW及feedback-34記錄，heartbeat仍PAUSED。
+
+P34處理1110真人三項回饋：盜賊戰鬥第二招缺失尚未重現，已確認選角只介紹普通招，補兩招名稱/第二招費用；魔物補同盤討伐Menu與包圍不自動觸發提示，進既有Core預覽/確認、wolf正鄰英雄與隔回合loot仍維持。Owner怪物答兩者/不確定，續局/新局待答。牧師現1AP2Mana奉獻刪己兵，合法兩眼挑戰/反制2項、Offering/Hunt提示8項PASS，不代表一般局好用，未改規則/費用/第二招。首SwiftUI卡表達式type-check build65失敗保留，分離顯示helper後build成功；1111主7原生回歸正在跑，完成才判候選可交付。原1110/TestFlight包保留、heartbeatPAUSED，不Git/公開發佈。合約FEEDBACK_34_CONTRACT，證據feedback-34。
+
+P33交付完成：1.1/1110已App Store簽名、成功上傳（exit0 Upload succeeded），Apple已準備內部測試，加入既有Owner1.1後實際列正在測試/90天。1110含P32提示一致性，1103/4/5/6保留，沒有新增tester/群組或1.0審查。源274最後未變、54素材/2怪像素/privacy/身份通過；P30與P32分開既有測試。DELIVERY及testflight1110-ready.png保存，Owner用TestFlight更新再真人驗收；未證iPhone已安装或品質通過。無新Git/公開發布/規則/音檔/人物改動，heartbeat仍PAUSED；成功1110不重傳，未傳1109保留。
+
+P33 1110已成功上傳：UTC05:54:52 upload exit0、Upload succeeded/EXPORT SUCCEEDED，ASC可見1.1(1110)處理中，非帳戶block。1110含P32提示修正；54素材/2怪像素/源274/distribution核對保持，原1109不重傳。Apple處理與Owner1.1群組可下載仍待，已有實際processing截圖與DELIVERY，不稱可測完成。
+
+P33接續Owner完成Xcode登入：上傳最新1110（含P32提示修正），原1109保存。1110源274/App Store archive/export/身份/privacy/54素材/2怪像素核對成功；P30既有300Swift/14次與P32最新主2/小1分開沿用。這次已跨過帳戶步驟，UTC05:53:24實際Starting upload，目前尚不能稱完成。成功後核Apple處理與既有Owner1.1群組，不重複上傳、不加測試人員、不動1.0/Git/規則，heartbeat仍PAUSED。證據testflight-33，合約TESTFLIGHT_33_CONTRACT。
+
+P32完成版本核對與UI-21首修：保留1109源274/原signed package；1106八張Simulator圖恢復。新1110僅改本機狀態欄，消除合法預覽後仍要求選點的矛盾，對應六個失敗/部分/合法/cancel/undo回歸assertion。正式Beta主2/小1（三次、兩方法）0fail/0skip，同402法師圖與375候選已看，獨立只讀review確認階段一致且無此圖可見退步。CANDIDATE_SOURCE_PIN/SOURCE_DIFF/CHANGE_BOUNDARY/PRESENTATION_32_REVIEW保存；不報新300Swift或音訊/動作變更。八Slice映射與真正缺口在PRESENTATION_32_PLAN；PRES-00尚缺含聲真機，完整片段/人工Gate仍待。1110未簽名/安裝/TestFlight，原1109仍可待Xcode登入後續傳，heartbeat保持PAUSED、無新Git/規則/其他checkout改動。
+
+Owner提供八Slice品質計畫後接續P32：先核對1106/1108/1109，274份1109來源完整凍結保存，從已完成1106 Beta xcresult重新匯出八張Simulator圖；非真機。沿用UI20/P27/P28/P29已有改進，不從1106倒退。獨立只讀reviewer找到預覽完成但上方仍要求選點的真實矛盾；UI-21首修只讓頂部反映本機回合/選取/合法/拒絕/演出狀態，底部維持具體步驟。主小正式Beta回歸進行中，新候選以1110作Simulator識別，尚未簽名/手機/TestFlight。規格PRESENTATION_32_CONTRACT、八項映射PRESENTATION_32_PLAN；原1109簽名封存/上傳授權保留，原十小時及heartbeat仍結束PAUSED，不新增規則/動畫/音檔/版面尺寸。
+
+十小時窗口已於台北2026-10-14 09:54:08截止，02:02:42 UTC核對完畢，停止新增實作、heartbeat工具確認PAUSED（保留failed_runs_only）。1109工程與兩種簽名包完成，274來源及binary/SOURCE_PIN仍相同；300Swift、Beta14次11方法保持。未完成交付：Wi-Fi連線不可用，installer未嘗試安裝，最後已核手機1108；TestFlight兩次exit70帳戶無上傳權限，Apple尚未收到，等Owner原Xcode帳戶驗證後續傳既有archive，不因此重開十小時或新增玩法。比較21檔與已知真人/真機缺口在COMPARE與OWNER_REVIEW30；真實WINDOW_RESULT保存。不Git/公開发布/1.0改動、不稱爐石品質，Owner驗收待。
+
+窗口末Wi-Fi交付檢查2026-10-14 UTC01:42:43：候選274來源/簽名通過，iPhone配對仍在但unavailable、tunnel unavailable、無localNetwork；installer在連線階段退出1，未備份/未嘗試安裝。額外20秒上限device info apps實際exit1 CoreDeviceError1011無法找到裝置，無手機改動。不等待Owner、不反覆重試；1109 development及distribution包保留，最後已核手機1108。本窗口仍至01:54:08，截止後單次報告並暫停；TestFlight另因帳戶權限block未上傳。證據polish-30/install-20261014T014243Z。
+
+P31目前blocked於Xcode上傳帳戶：1109 App Store distribution archive/export成功，274來源未變，get-task-allow=false、54素材/兩怪像素、privacy、1.1/1109/herobody已核。上傳兩次exit70 Failed to Use Accounts（第二次allowProvisioningUpdates仍同因），Apple尚未收到，不假稱TestFlight可測。ASC網頁可見既有Owner群組4build/最新1106；Xcode現帳戶無此team上傳權限，已開登入sheet並請Owner完成原開發者帳戶驗證。後续只續傳既有archive，不重建/重跑來源未變檢查，成功後核Apple處理與Owner群組；所有其餘窗口限制維持。
+
+Owner新授權直接TestFlight：接續P30同來源1109，P31 App Store簽名封存→匯出→上傳→Apple處理→既有Owner1.1群組；300Swift/Beta14次沿用，來源274已核未變。只取代禁止TestFlight條件，不Git/公開發布、不動1.0。當前手機1108，Wi-Fi末段安裝另有原授權但不可冒稱TestFlight已成功。規格TESTFLIGHT_31_CONTRACT.md、證據artifacts/v11/testflight-31。
+
+P30候選1109準備完成、手機未更新：完整Swift300/0，正式TACTICALGO_V11無DEBUG Beta主11/小2/最終設定1 PASS0skip（14次/11方法）；主11後唯一runtime差異是完成鈕cream，保留主來源並補相應主小頁。54PresentationLab bytes/兩怪解碼像素對1108及source相同、development簽名/註冊裝置/profile/1.1-1109/herobody PASS，SOURCE_PIN274及SHA保存。比較索引COMPARE.md、OWNER_REVIEW30、READY/PROGRESS已存；首錯Debug runner手動中斷與首PNG source路徑錯誤都保留不列PASS。5installer手寫資料/receipt fixture與窗口外exit75通過，check-only無手機操作。
+
+接續只讀候選/來源/新Owner指示；無新差距不新增實作或重跑。UTC2026-10-14 01:34:08–01:54:08（台北09:34–09:54）才用python3 scripts/install-polish30-wifi.py，先fresh Documents/Preferences備份，再Wi-Fi更新同App，查install-*/RESULT真實版本/啟動/数据；若已有成功結果不重裝。手機鎖定/離線或備份失敗保存1109不等待Owner。截止後核對交付、回報一次PAUSED；人類聲畫/觸控/爐石品質、真機FPS/AV錄影仍未驗，最後已核手機1108，本輪未commit/push/merge/TestFlight。窗口仍ACTIVE。
+
+P29B獨立聲音控制完成：實際1.1 sheet音效／英文配音獨立音量與保存、主標題可見、百分比同行，預設80/85保留P29A聲畫；原模式SFX預設65不混用。Live ratio／0取消不復播／偏好／BGM與Core/視覺不變22實際player檢查＋既有49 PASS；主4／小1 native執行0fail0skip（4種方法）。首observer遞迴崩潰已修，兩首失敗／崩潰來源保留；fixed中間3不加總。DEBUG錄影不寫Owner偏好。SOURCE_PIN272、主小已檢視圖與POLISH_29B_REVIEW保存，source WAV52／Domain+Bot5逐檔對1108未變。接續P30整體原生收斂、全Swift／Beta／簽名最佳候選，窗口末Wi-Fi備份更新；手機仍1108／窗口ACTIVE，不Git/TestFlight、不提問。
+
+## 2026-10-14 十小時聲畫優化：進行中
+
+P29A混音候選完成：只調低次要蓄勢／移動gain，命中、英B語音.85／WAV／時間與BGM不變。15＋15實際native排程、52實際player gain對照與30對同LUFS離線試聽保存，差最大.03LU、試聽峰值≤-3dBTP；非真機錄音／聽感驗收。Motion78/0、Native1 runner中的49個audio檢查全PASS0skip，renderer兩初輪JSON／短片匹配失敗修正且保留。POLISH_29A_REVIEW、LISTEN、SOURCE_PIN272、PROGRESS保存。接續P29B實際1.1聲音sheet缺少獨立音效／配音音量，補控制與持續性、零音量／調整取消，預設混音保留；最終全套／Beta／簽名Wi-Fi待收斂，手機1108／窗口ACTIVE。
+
+P28D完成兩怪討伐接觸候選：先保存四段魔物／戰利正常影片，僅討伐加接觸收縮、event授權戰利圖示與持有者文字，.44／.76、WAV／Core／Bot不變；黏彈／影步動作先保留。Content3/0、完整Motion76/0、Native兩方法＋文字後reward重跑PASS0skip，.41／.50精確定格及同receipt A/B保存並檢視；非真機／真人品質。首偽造receipt測試import範圍編譯修正、所有基線/初候選保留。POLISH_28D_REVIEW、SOURCE_PIN268、PROGRESS；接續P29-A現有feel-10真材質stems／英文B配音同响度與混音層次，最終全套／Beta／簽名Wi-Fi仍待。手機1108、窗口ACTIVE。
+
+P28C完成討伐提示修正：實際hunt動作使用Core只讀驗證，顯示魔物原畫、控制數、0Mana／AP費用與戰利解鎖；職業牌仍維持自己的quota鎖，取消恢復。合法開局回歸Content5/0，主Native2＋小375pt1 PASS0skip；舊App矛盾畫面與候選同局面圖已保存並檢視。首Mana fixture期待及首候選「合法預覽」字樣回歸失敗修正，未變規則／AI／音檔／動作。POLISH_28C_REVIEW及polish-28c/SOURCE_PIN263、PROGRESS保存。接續P28D先錄魔物討伐／戰利原生基線，再P29混音；全套／Beta／最終手機待收斂，手機仍1108，窗口ACTIVE。
+
+P28B完成連鎖接觸候選：第一格.26–.29短停，保留.28再蓄勢／.30出力、.36第二接觸和.70解鎖；原畫／音檔／Core結果／普通換位不改。Motion72/0；三種原生方法分批最终通過0skip（不是單一全PASS batch），包括0.275正常UI精確定格／Undo、旧Lab定格背景、Mage真首頁續玩及提示。兩次第二蓄勢／出力回歸失敗修正、兩Native harness／定格時鐘問題修正均保留。原生定格及同結果無聲A/B已保存；POLISH_28B_REVIEW.md、polish-28b/PROGRESS。下一步P28C檢查怪物討伐／戰利提示是否錯套技能限制與其動作，然後P29混音。未報282全Swift重跑或真人／真機品質；手機仍1108，窗口仍ACTIVE。
+
+P28A接續完成：DEBUG正常棋盤七招從合法開局原生錄影，固定Core結果／資源／時間線。戰士投影較小、.78消散，不再在落定後長時間遮新兵臉；本體、.58接觸／SFX、1.02恢復、原畫／底座不變。兩招同receipt無聲A/B及影格已保存並檢視，只有WarriorPresentationPlan runtime差異；8聚焦Motion＋2 Debug安全通過、0skip。兩次錄影入口／不同clock原點錯誤已修且保留失敗資料，非遊戲規則改動。POLISH_28_REVIEW.md及polish-28/PROGRESS記錄界線。下一步P28B讀Mage／Rogue／Priest既有基線後提出具體動作差距，再P29混音；不重錄未變七招，不報282全套重跑，不宣稱真人／真機／爐石品質。iPhone仍1108，窗口末才更新最佳候選。
+
+Owner接受1108畫面／音效的相對改善，另授權UI、動畫、音效持續優化至台北2026-10-14 09:54:08。AUTONOMOUS_27_PLAN.md是本輪合約，舊十小時計畫已結束；既有heartbeat已更新ACTIVE每20分鐘接續，截止後回報／PAUSED。只在此worktree、保留全部1108dirty成果，不動規則／費用／AI策略／另一1.0 checkout，無Git或TestFlight發布。
+
+第一輪P27-UI完成：技能牌受限鎖記／降飽和／暗底，保持可點查看原因；全局只讀readiness不等於目標合法性，英雄已離場不誤導重召。完整Swift282/0、主Beta3/0＋小Debug2/0且0skip；四職固定棋盤／44pt、預覽取消／Undo／續玩／綠點保護。付費討伐測試fixture错误修正成當回合0AP窗口，失敗日志保留。主小當前原生圖已檢視，對照同402pt局面1108，無獨立真人品質結論。artifacts/v11/polish-27保留基準258源、候選260源、參考App與PROGRESS；POLISH_27_REVIEW.md說明實際比較。
+
+下一輪P28先錄同receipt正常速度原畫演出，分析四職部位／接觸／收勢，再P29分層音訊與配音／BGM混音。聲音／動畫本輪尚未新增改善，沒有把靜態UI改動冒稱完整完成。iPhone仍1108，窗口末只更新最佳已驗候選，鎖定／離線保存簽名包不等待Owner；截止前不提問，不以空轉新增玩法或數字自評爐石品質。
+
+## 最新接續：2026-10-13 Native25／UX26完成手機候選
+
+最新候選分支codex/v11-game-interface基線06c534c在此worktree更新；另一1.0 checkout不變。Native25完成UI20／AV21–24原生整合及觸控／聲音設定返回修正，1107已Wi-Fi安裝啟動且保存既有存局。Owner回饋落點提示消失、技能說明不清楚及基本技能仍舊版，接續UX26，不把1107工程PASS當真人接受。
+
+UX26依Owner明確確認預設沿棋群築壘＋調度己兵，直接接正常solo／雙人；復原、Bot及可選紀錄profile保留一致，舊存局不改規則。恢復Core合法綠點／綠圈，步驟與限制原因直接在操作區，固定棋盤／200pt dock不變。新版法師調度接MageB及原畫魔法牽引，戰士B與素材保留。
+
+完整Swift277/0，Beta6/0＋小375pt Debug3/0（9次執行、7種方法、0skip），49個實際原生audio審核全部通過，含新版法師配音／Undo取消／背景不復播。綠點與第二步目標原生截圖已檢視。1108開發簽名、258來源素材固定、54聲畫位元及兩魔物編譯像素核對PASS；Wi-Fi安裝及啟動成功，裝置App資訊1.1/1108。安裝前重新備份Documents7／Preferences5，既有文件雜湊與偏好值全不變。
+
+OWNER_REVIEW_26.md及artifacts/v11/ux-26保存交付；Native25歷史失敗與1107簽名包保留。此輪未commit／push／main merge／TestFlight發布，heartbeat保持暫停。iPad／VoiceOver／DynamicType／FPS／真機聲畫同步及真人玩法／品質仍待驗收，90%爐石品質目標保持開放。停止擴scope，等Owner新開對局試玩；舊存局明示原技能。
+
+以下為歷史slice紀錄，各輪基線與狀態不替代上述最新交付。
 
 Owner 要求切出 slice 後往下做。候選模式獨立於 1.0 發布；本 worktree 基準 cdab133（本機 origin/main），不更改其他 agent 的 checkout、不提交／推送／發布。
 

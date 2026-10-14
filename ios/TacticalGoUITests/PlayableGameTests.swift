@@ -416,6 +416,75 @@ import XCTest
         XCTAssertEqual(XCTWaiter.wait(for: [passed], timeout: 90), .completed)
         shot(app, "BOT-03a-integrated-native-audio-audit")
     }
+    func testIntegratedIndependentSoundVolumesNativePlayers() {
+        let app = app(["--integrated-volume-audit"])
+        let status = app.staticTexts["integratedAudioAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout:10))
+        let passed = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label == %@","PASS"),object:status)
+        XCTAssertEqual(XCTWaiter.wait(for:[passed],timeout:30),.completed)
+        shot(app,"P29B-native-independent-volume-audit")
+    }
+    func testIntegratedCharacterVoiceCadenceNativePlayers() {
+        let app = app(["--integrated-cadence-audit"])
+        let status = app.staticTexts["integratedAudioAudit"]
+        XCTAssertTrue(status.waitForExistence(timeout:10))
+        let passed = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label == %@","PASS"),object:status)
+        XCTAssertEqual(XCTWaiter.wait(for:[passed],timeout:30),.completed)
+        shot(app,"Q35-native-voice-cadence-audit")
+    }
+    func testIntegratedSoundSheetIndependentVolumesPersist() {
+        #if DEBUG
+        let app = app(["--integrated-practice","mage"])
+        #else
+        let app = app()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        app.buttons["玩法練習"].tap();app.buttons["法師 · 擴充技能"].tap()
+        #endif
+        let arena = app.otherElements["playArena"]
+        XCTAssertTrue(arena.waitForExistence(timeout:10));let frame = arena.frame
+        func open() { app.buttons["對戰選單"].tap();app.buttons["聲音設定"].tap() }
+        open()
+        XCTAssertTrue(app.staticTexts["soundSettingsTitle"].waitForExistence(timeout:5))
+        XCTAssertTrue(app.sliders["sfxVolume"].waitForExistence(timeout:5))
+        XCTAssertTrue(app.sliders["voiceVolume"].isHittable)
+        if app.switches["castVoice"].value as? String == "0" {
+            app.switches["castVoice"].coordinate(withNormalizedOffset:CGVector(dx:0.92,dy:0.5)).tap()
+        }
+        let sfx = app.staticTexts["sfxVolumeValue"].label,voice = app.staticTexts["voiceVolumeValue"].label
+        let enabled = app.switches["castVoice"].value as? String
+        shot(app,"P29B-settings-default")
+        app.sliders["sfxVolume"].adjust(toNormalizedSliderPosition:0.25)
+        app.sliders["voiceVolume"].adjust(toNormalizedSliderPosition:0.45)
+        let changedSFX = app.staticTexts["sfxVolumeValue"].label,changedVoice = app.staticTexts["voiceVolumeValue"].label
+        XCTAssertNotEqual(changedSFX,sfx);XCTAssertNotEqual(changedVoice,voice)
+        app.switches["castVoice"].coordinate(withNormalizedOffset:CGVector(dx:0.92,dy:0.5)).tap()
+        let changed = app.switches["castVoice"].value as? String
+        XCTAssertNotEqual(changed,enabled)
+        XCTAssertEqual(app.staticTexts["voiceVolumeValue"].label,"語音已關閉")
+        app.swipeUp()
+        XCTAssertTrue(app.sliders["musicVolume"].isHittable)
+        app.sliders["musicVolume"].adjust(toNormalizedSliderPosition:0.20)
+        shot(app,"P29B-settings-independent-controls")
+        app.buttons["audioSettingsDone"].tap()
+        XCTAssertTrue(app.buttons["playConfirm"].waitForExistence(timeout:5))
+        XCTAssertEqual(arena.frame,frame)
+        app.terminate();app.launch()
+        #if !DEBUG
+        XCTAssertTrue(app.buttons["resumeExpansion"].waitForExistence(timeout:15))
+        app.buttons["resumeExpansion"].tap()
+        #endif
+        open()
+        XCTAssertEqual(app.staticTexts["sfxVolumeValue"].label,changedSFX)
+        XCTAssertEqual(app.switches["castVoice"].value as? String,changed)
+        app.switches["castVoice"].coordinate(withNormalizedOffset:CGVector(dx:0.92,dy:0.5)).tap()
+        XCTAssertEqual(app.staticTexts["voiceVolumeValue"].label,changedVoice)
+        // XCTest drag positions are approximate; return near baseline on this simulator.
+        app.sliders["sfxVolume"].adjust(toNormalizedSliderPosition:0.80)
+        app.sliders["voiceVolume"].adjust(toNormalizedSliderPosition:0.85)
+        app.swipeUp();app.sliders["musicVolume"].adjust(toNormalizedSliderPosition:0.30)
+        app.buttons["audioSettingsDone"].tap()
+        XCTAssertEqual(arena.frame,frame)
+    }
     func testSoundSettingsPersistInComputerMatch() {
         let app = app(["--play-bot"])
         app.buttons["對戰選單"].tap(); app.buttons["聲音設定"].tap()

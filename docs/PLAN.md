@@ -1,5 +1,21 @@
 # Tactical Go｜職業導向戰術原型 PLAN
 
+## 2026-10-14 最新TestFlight交付1110
+
+Owner完成Xcode登入後，1110（含P32提示修正及1109聲畫改善）已成功上傳/Apple處理/加入既有Owner1.1群組，實際正在測試。源274/簽名/54素材/兩怪像素核對與P30/P32既有測試分開保留；Owner從TestFlight更新，手機實際安裝與真人品質未驗。舊1103/4/5/6保留，不新tester、不動1.0審查/Git/公開發布；heartbeatPAUSED、成功包不重傳。交付證據testflight-33/DELIVERY與ready screenshot。
+
+## 2026-10-14 八Slice品質計畫核對／UI首修
+
+1106歷史TestFlight、1108最後Owner接受手機與1109最新未交付候選已分開；十小時窗口已結束，heartbeat維持PAUSED。依Owner新八Slice方向，先保留1109來源274和兩簽名包，恢復1106 Simulator八圖，核對已有UI20/動作/混音而不倒退重作。UI首修只消除法師合法預覽後仍要求選點的同屏矛盾；1110正式Beta主2/小1（兩種方法）0fail0skip、主小圖與獨立只讀review保存，無字級/棋盤/規則/聲畫素材變更。完整八項映射PRESENTATION_32_PLAN、實際交付PRESENTATION_32_REVIEW；PRES-00真機含聲、FPS、真人品質仍未完成。1110僅Simulator未簽名/手機/TestFlight，原1109上傳仍待Xcode帳戶權限；無新Git發布，不重啟舊窗口。
+
+## 2026-10-14 持續聲畫優化窗口
+
+Owner回報1108畫面／音效好很多，授權十小時UI／動畫／音效優化至台北09:54:08；AUTONOMOUS_27_PLAN.md與最新v11/PLAN為接續合約，heartbeat已更新ACTIVE。P27受限技能牌／共用只讀原因完成，282Swift／Beta3／小Debug2通過且0skip，原生圖與同局面1108對照已保存；P28動作／P29聲音／最終真機交付仍待，不能當全部完成。iPhone保持1108到窗口末，無規則／AI策略或Git／TestFlight發布。
+
+## 最新交付：2026-10-13 Mac整理與UX26手機1108
+
+Native25完成UI20／AV21–24原生整理並Wi-Fi交付1107；Owner三項回饋進入UX26，恢復合法綠色落點、技能逐步引導／限制，直接預設沿棋群築壘＋調度己兵，solo／雙人／Bot／新存局一致。舊紀錄保留原規則。Swift277/0、Beta6/0＋小Debug3/0及49個真AVAudioPlayer審核通過；1108已簽名、Wi-Fi安裝及啟動，既有7存局／5偏好檔全保留。來源06c534c＋當前本機修正，未新增commit／push／main合併／TestFlight上傳。完整交付見docs/v11/OWNER_REVIEW_26.md、最新docs/v11/PLAN.md與artifacts/v11/ux-26；真人清晰度、聲畫品質／FPS及90%品質目標仍待驗收，heartbeat保持暫停。以下保留歷史計畫，不以舊狀態覆蓋此交付。
+
 ## 目前工作：BOT-01 單人電腦對戰（2026-10-09）
 
 Owner 核准第一版 Swift 電腦對手，取代早期「不做 AI／等待真人」限制；只限 BOT-01。已有核心與 SwiftUI 可玩版直接沿用，不重做移植。Bot Agent 負責獨立 TacticalGoBot、有限完整回合搜尋、固定戰術測試；本 Agent 負責必要單人入口、背景執行、逐步下棋演出、過期決策防護與原生驗證；Visual Agent 繼續獨立美術。

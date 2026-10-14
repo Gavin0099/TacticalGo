@@ -26,10 +26,42 @@ import TacticalGoVisuals
     var mode: Mode = .soldier
     var ability: MonsterAbility = .stickyBounce
     var selected: [Point] = []
+    @ObservationIgnored private var hintState: GameState?
+    @ObservationIgnored private var hintMode: Mode?
+    @ObservationIgnored private var hintSelection: [Point] = []
+    @ObservationIgnored private var hintAbility: MonsterAbility?
+    @ObservationIgnored private var hintPoints: Set<Point> = []
+    var legalTargets: Set<Point> {
+        guard !controlsLocked, reviewTime == nil else { return [] }
+        if hintState != state || hintMode != mode || hintSelection != selected || hintAbility != ability {
+            let kind: TacticalHintMode = switch mode {
+            case .soldier: .soldier; case .summon: .summon; case .skill: .skill; case .advanced: .advanced; case .loot: .loot
+            }
+            hintPoints = TacticalHints.targets(state,mode:kind,selected:selected,ability:ability)
+            hintState = state; hintMode = mode; hintSelection = selected; hintAbility = ability
+        }
+        return hintPoints
+    }
     var pending: GameAction?
     var message = "選擇格點，再確認行動。"
     var instruction: String?
-    var voice = true
+    var voice: Bool {
+        didSet { if persistSoundPreferences { soundDefaults.set(voice,forKey:"combatAudio.castVoiceEnabled") }; updateSoundMix() }
+    }
+    var sfxVolume: Double {
+        didSet {
+            let value = Self.soundLevel(sfxVolume)
+            if value != sfxVolume { sfxVolume = value; return }
+            if persistSoundPreferences { soundDefaults.set(sfxVolume,forKey:"combatAudio.expansionSFXVolume") }; updateSoundMix()
+        }
+    }
+    var voiceVolume: Double {
+        didSet {
+            let value = Self.soundLevel(voiceVolume)
+            if value != voiceVolume { voiceVolume = value; return }
+            if persistSoundPreferences { soundDefaults.set(voiceVolume,forKey:"combatAudio.castVoiceVolume") }; updateSoundMix()
+        }
+    }
     var muted = false
     var reduced = false
     var effects = true
@@ -37,6 +69,7 @@ import TacticalGoVisuals
     var challenge = false
     var showHint = false
     var savedCount = 0
+    var legacySkillsOnResume = false
     var reviewTime: Double?
     var reviewWidth: CGFloat?
     var reviewFixture = false
@@ -49,6 +82,9 @@ import TacticalGoVisuals
     private(set) var generation = 0
     private(set) var cues = 0
     private(set) var lastSoundKeys: [String] = []
+    #if DEBUG
+    @ObservationIgnored private(set) var lastSoundSchedule: [(key:String,delay:Double,gain:Double,playerGain:Double)] = []
+    #endif
     var state: GameState { session!.state }
     var preview: ActionOutcome? { pending.map { GameEngine.apply(state,$0) } }
     let assets = try? P02CozyAssets.load()
@@ -76,12 +112,25 @@ import TacticalGoVisuals
         }; return result
     }()
     @ObservationIgnored private let samples = PresentationSamples()
+    @ObservationIgnored private var voiceCadence = CharacterVoiceCadence()
+    #if DEBUG
+    var voiceClockForAudit: Double?
+    var voiceKeyForAudit: String?
+    func setVoiceCadenceForAudit(_ profile: CharacterVoiceCadence.Profile) { voiceCadence = CharacterVoiceCadence(profile:profile) }
+    #endif
+    @ObservationIgnored private let soundDefaults: UserDefaults
+    @ObservationIgnored private var persistSoundPreferences = true
     @ObservationIgnored private let audio = CombatAudio(defaults:UserDefaults(suiteName:"TacticalGo.expansionLab")!)
     @ObservationIgnored private var task: Task<Void,Never>?
     @ObservationIgnored private var active = false
     @ObservationIgnored private var interrupted = false
     @ObservationIgnored nonisolated(unsafe) private var observer: (any NSObjectProtocol)?
-    init() {
+    init(soundDefaults: UserDefaults = .standard) {
+        self.soundDefaults = soundDefaults
+        voice = soundDefaults.object(forKey:"combatAudio.castVoiceEnabled") as? Bool ?? true
+        sfxVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.expansionSFXVolume") as? Double ?? 0.80)
+        voiceVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.castVoiceVolume") as? Double ?? 0.85)
+        updateSoundMix()
         restart(); loadReview()
         observer = NotificationCenter.default.addObserver(forName:AVAudioSession.interruptionNotification,object:nil,queue:.main) { [weak self] note in
             let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
@@ -93,6 +142,19 @@ import TacticalGoVisuals
             }
         }
     }
+    private static func soundLevel(_ value:Double) -> Double { value.isFinite ? min(1,max(0,value)) : 0 }
+    private func updateSoundMix() {
+        samples.setMix(effects:sfxVolume/0.80,voice:voice ? voiceVolume/0.85 : 0)
+    }
+    #if DEBUG
+    func soundVolumeForAudit(_ key:String) -> Double { samples.volume(key) }
+    func soundPlayingForAudit(_ key:String) -> Bool { samples.isPlaying(key) }
+    func configureReviewSound(voiceEnabled:Bool) {
+        persistSoundPreferences = false
+        defer { persistSoundPreferences = true }
+        muted = false; voice = voiceEnabled; sfxVolume = 0.80; voiceVolume = 0.85
+    }
+    #endif
     private func loadReview() {
         let args = ProcessInfo.processInfo.arguments
         func value(_ key: String) -> String? { guard let i = args.firstIndex(of:key),i+1 < args.count else { return nil }; return args[i+1] }
@@ -125,19 +187,46 @@ import TacticalGoVisuals
     }
     func cancelSelection() { selected = []; pending = nil }
     func restart() {
-        stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; instruction = nil; mode = .soldier
+        stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; instruction = nil; mode = .soldier; legacySkillsOnResume = false
         if monsters != .none { size = 9 }
-        var c = RuleConfig.board(size:size); c.expansionSkills = true; c.expansionSkillManaCost = advancedCost
+        var c = TacticalHints.updatedConfig(size:size,advancedCost:advancedCost)
         switch monsters {
         case .none: break
         case .slime: c.monsterBattlefield = .init(huntAPCost:huntCost,kind:.slime,awardsLoot:true)
         case .wolf: c.monsterBattlefield = .init(huntAPCost:huntCost,kind:.shadowWolf,awardsLoot:true)
         case .dual: c.monsterBattlefield = .init(monsters:[.init(.slime,at:Point(2,4)),.init(.shadowWolf,at:Point(6,4))],huntAPCost:huntCost,awardsLoot:true)
         }
-        do { session = GameSession(try GameSetup.newGame(config:c,classOne:one,classTwo:two)); message = "新對局，輪流操作黑白兩方。" }
+        do { session = GameSession(try GameSetup.newGame(config:c,classOne:one,classTwo:two)); voiceCadence.reset(); message = "新對局，輪流操作黑白兩方。" }
         catch { message = "開局失敗：\(error)" }
     }
     #if DEBUG
+    func monsterReview(_ fixture: MonsterPresentationPractice) {
+        stop();cancelSelection();reviewTime = nil;reviewWidth = nil;reviewFixture = false;challenge = false;showHint = false
+        do {
+            session = try fixture.session();size = 9;one = .warrior;two = .mage
+            monsters = fixture.kind == .slime ? .slime:.wolf;computer = nil;legacySkillsOnResume = false
+            mode = fixture.isHunt ? .soldier:.loot
+            ability = fixture.kind == .slime ? .stickyBounce:.shadowStep
+            instruction = "工程錄影局面：从合法開局重播，與正常對局共用preview／confirm。"
+            message = "已重播\(session!.log.count)個合法行動；確認前不扣資源。"
+        } catch { message = "魔物錄影局面未載入：\(error)" }
+    }
+    /// Hand-placed pose/occlusion QA; not evidence of competitive reachability.
+    func qualityWarriorReview(owner:Player,size:Int,dense:Bool) throws {
+        let fixture = try WarriorPresentationFixture.state(owner:owner,size:size,dense:dense)
+        let rebuilt = try GameSetup.fromDiagram(config:TacticalHints.updatedConfig(size:size),diagram:fixture.board.diagram,
+                                               classOne:fixture.heroClass(of:.one),classTwo:fixture.heroClass(of:.two),
+                                               current:owner,manaOne:6,manaTwo:6,ap:2)
+        stop();cancelSelection();voiceCadence.reset();reviewTime = nil;reviewReceipt = nil;reviewFixture = true
+        session = GameSession(rebuilt);self.size = size;one = rebuilt.heroClass(of:.one);two = rebuilt.heroClass(of:.two)
+        computer = nil;monsters = .none;mode = .skill;legacySkillsOnResume = false
+        instruction = "工程密集棋形：僅驗本體姿勢與鄰兵，不作開局可達或玩法平衡證明。"
+    }
+    func voiceHandoffReview() throws {
+        let rebuilt = try CombatVoiceHandoff.session()
+        stop();cancelSelection();voiceCadence.reset();reviewTime = nil;reviewReceipt = nil
+        session = rebuilt;size = 9;one = .rogue;two = .mage;computer = nil;mode = .skill
+    }
     func warriorBotReview() {
         stop();cancelSelection();reviewFixture = true
         var c = RuleConfig.board(size:9);c.expansionSkills = true
@@ -145,11 +234,17 @@ import TacticalGoVisuals
         size = 9;one = .warrior;two = .mage
         instruction = "工程棋形：電腦以戰線重整提主將；不作可達開局或平衡證明。"
     }
+    /// Exact-time renderer QA after a real successful commit; never an alternate rules path.
+    @discardableResult func freezeConfirmedFrame(_ time: Double) -> Bool {
+        guard let p = receipt,time.isFinite,time >= 0,time <= p.duration else { return false }
+        stop();reviewReceipt = p;reviewTime = time
+        return true
+    }
     #endif
     func practice(_ fixture: ExpansionPractice) {
-        stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false
+        stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; legacySkillsOnResume = false
         do {
-            session = try fixture.session(cost:advancedCost); size = 9; monsters = .none; one = fixture.hero; two = .mage
+            session = try fixture.session(cost:advancedCost,updatedBaseSkills:true); voiceCadence.reset(); size = 9; monsters = .none; one = fixture.hero; two = .mage
             mode = fixture == .priest ? .skill : .advanced; instruction = fixture.instruction
             message = "已重播 \(session!.log.count) 個合法行動；可照說明試用，也可自由落子比較。"
         } catch { message = "試用局面載入失敗：\(error)" }
@@ -158,6 +253,7 @@ import TacticalGoVisuals
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; showHint = false
         do {
             session = try PriestSanctuaryChallenge.session(cost:advancedCost)
+            voiceCadence.reset()
             size = 9; monsters = .none; one = .priest; two = .mage; challenge = true
             mode = .skill; instruction = PriestSanctuaryChallenge.brief
             message = "已從合法開局重播到單眼困境。可試普通落子，或用救援形成兩眼。"
@@ -167,6 +263,7 @@ import TacticalGoVisuals
         stop();cancelSelection();reviewTime = nil;reviewWidth = nil;reviewFixture = false;showHint = false;challenge = false
         do {
             session = try PriestSanctuaryChallenge.counterSession(cost:advancedCost)
+            voiceCadence.reset()
             size = 9;monsters = .none;one = .priest;two = .mage;mode = .skill
             instruction = "法師反制：選 F4 的黑方士兵，再向左推到 E4。新空點 F4 與白方包圍圈相鄰，兩口氣不再都是安全的真眼。黑方仍能回應，並非強制獲勝。"
             message = "救援成功後的合法回應：白方法師剛召喚到 H4，剩1 AP。"
@@ -181,7 +278,7 @@ import TacticalGoVisuals
         switch mode {
         case .soldier: selected = [p]; pending = .placeSoldier(p); return
         case .summon: selected = [p]; pending = .summonHero(p); return
-        case .skill: needed = hero == .warrior ? 2 : 1
+        case .skill: needed = hero == .warrior || (hero == .mage && state.config.experimentalFriendlyRedeploy) ? 2 : 1
         case .advanced: needed = hero == .warrior || hero == .mage ? 4 : hero == .rogue ? 2 : 0
         case .loot: needed = ability == .stickyBounce ? 2 : 1
         }
@@ -195,7 +292,9 @@ import TacticalGoVisuals
             case .warrior: pending = .castBastion(selected[0],selected[1])
             case .priest: pending = .castOffering(selected[0])
             case .rogue: pending = .castSwap(p)
-            case .mage,.none: break
+            case .mage:
+                if state.config.experimentalFriendlyRedeploy { pending = .castFriendlyRedeploy(selected[0],selected[1]) }
+            case .none: break
             }
         case .advanced:
             if hero == .rogue { pending = .castChainSwap(first:selected[0],second:selected[1]) }
@@ -221,19 +320,26 @@ import TacticalGoVisuals
         let before = state, outcome = session!.apply(action)
         guard outcome.success else { message = GameStore.reason(outcome.reason); return false }
         let plan = ExpansionPresentation.make(before:before,action:action,outcome:outcome,current:state)
-        // An ordinary follow-up may let an already-committed line finish. Undo/background/restart
-        // call the default full stop; a new skill/terminal performance replaces the old voice.
-        let ordinaryFollowup: Bool
-        switch action {
-        case .placeSoldier,.summonHero,.endTurn: ordinaryFollowup = true
-        default: ordinaryFollowup = false
-        }
-        let keepVoice = !playing && receipt == nil && ordinaryFollowup && state.status == .ongoing && !muted && voice
+        // Once the visual unlocks, an ongoing confirmed line can finish across a
+        // quick turn/quiet skill. Undo, background and terminal outcomes fully stop.
+        // Cadence prevents another line from starting immediately over this tail.
+        let previousVisualEnded = !playing && (receipt == nil || receipt?.duration == 0)
+        let keepVoice = previousVisualEnded && state.status == .ongoing && !muted && voice && voiceVolume > 0
         stop(keepingCompletedVoice:keepVoice); cancelSelection()
         receipt = plan
         if before.current != state.current { mode = .soldier }
         started = ProcessInfo.processInfo.systemUptime; playing = (receipt?.duration ?? 0) > 0
         message = challenge && PriestSanctuaryChallenge.solved(state) ? "挑戰完成：犧牲一兵，牧師棋群形成兩個真眼。" : "已確認：\(before.current == .one ? "黑" : "白")方行動。"
+        if state.status == .won, let winner = state.winner {
+            // Explain the confirmed result; no animation or board inspection decides victory.
+            let commander = outcome.events.compactMap { event -> CapturedPiece? in
+                guard case .piecesCaptured(_,let pieces) = event else { return nil }
+                return pieces.first { $0.piece.kind == .commander }
+            }.first
+            if let commander {
+                message = "\(commander.piece.owner == .one ? "黑" : "白")方主將已被提，\(winner == .one ? "黑" : "白")方獲勝。"
+            }
+        }
         if ProcessInfo.processInfo.arguments.contains("--exp-autoplay") {
             FileHandle.standardOutput.write(Data(("EXPANSION_RECEIPT id=\(generation) class=\(before.heroClass(of:before.current).rawValue) ap=\(before.apRemaining)->\(state.apRemaining) mana=\(before.mana(of:before.current))->\(state.mana(of:before.current)) before=\(before.board.diagram.replacingOccurrences(of:"\n",with:"/")) after=\(state.board.diagram.replacingOccurrences(of:"\n",with:"/"))"+"\n").utf8))
         }
@@ -253,6 +359,8 @@ import TacticalGoVisuals
     func undo() {
         guard canUndoHuman else { return }
         stop(); cancelSelection()
+        // A reviewed frame belongs to the discarded receipt, never the restored state.
+        reviewTime = nil;reviewReceipt = nil
         repeat { guard session!.undo() else { break } } while computer == state.current
         message = "已復原盤面、資源、技能與魔物庫存。"; saveCandidate(announce:false)
     }
@@ -278,10 +386,12 @@ import TacticalGoVisuals
             let rebuilt = try record.rebuild()
             reviewTime = nil; reviewWidth = nil; reviewFixture = false
             computer = record.computer; difficulty = record.difficulty ?? "easy"
+            voiceCadence.reset()
             session = rebuilt; size = state.config.boardSize; one = state.heroClass(of:.one); two = state.heroClass(of:.two)
             advancedCost = state.config.expansionSkillManaCost; huntCost = state.config.monsterBattlefield?.huntAPCost ?? 1
             if let mode = state.config.monsterBattlefield { monsters = mode.monsters.count == 2 ? .dual : mode.monsters[0].kind == .slime ? .slime:.wolf } else { monsters = .none }
             savedCount = session!.log.count; challenge = false; instruction = nil; showHint = false; mode = .soldier
+            legacySkillsOnResume = !state.config.experimentalFriendlyRedeploy
             message = "已重播並載入 \(savedCount) 個合法行動，復原也已恢復。"
             return true
         } catch { message = "候選存局未載入：\(error)。目前盤面沒有更動。"; return false }
@@ -290,43 +400,74 @@ import TacticalGoVisuals
         guard let p = receipt else { return }
         let marker = generation
         var sound: [(String,Double,Double)] = []
-        let skillVolume = voice ? 0.30:0.65
+        let voiceCue: (String,Double)?
+        switch p.action {
+        case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: voiceCue = ("mage-cast-B",0.08)
+        case .castBastion,.castReformation: voiceCue = ("w7-voice-B",0.08)
+        case .castSwap,.castChainSwap: voiceCue = ("p8-voice-rogue-"+castTake,0.06)
+        case .castSanctuary,.castOffering: voiceCue = ("p8-voice-priest-"+castTake,0.06)
+        default: voiceCue = nil
+        }
+        let carriedVoiceTail = samples.remainingVoiceDuration
+        var hasVoice = false
+        var acceptedVoice: (String,Double,Double)?
+        if let (key,delay) = voiceCue {
+            var proposal = voiceCadence
+            #if DEBUG
+            let clock = voiceClockForAudit ?? ProcessInfo.processInfo.systemUptime
+            let requestedKey = voiceKeyForAudit ?? key
+            #else
+            let clock = ProcessInfo.processInfo.systemUptime
+            let requestedKey = key
+            #endif
+            let requested = proposal.shouldSpeak(player:p.before.current,hero:p.before.heroClass(of:p.before.current),at:clock,
+                                                  eligible:!muted && voice && voiceVolume > 0)
+            if requested {
+                hasVoice = samples.schedule(requestedKey,after:delay,volume:0.85)
+                if hasVoice { voiceCadence = proposal; acceptedVoice = (requestedKey,delay,0.85);cues += 1 }
+            } else { voiceCadence = proposal }
+        }
+        let voiceEnd = max(carriedVoiceTail,acceptedVoice.map { $0.1+samples.duration($0.0) } ?? 0)
+        // A carried sentence must not suppress a later contact after it has ended.
+        func mix(at delay:Double) -> ExpansionCueMix { ExpansionCueMix(voiceEnabled:delay < voiceEnd) }
         if !muted {
             switch p.action {
-            case .castMagicHand,.castDoublePull:
-                sound = [("p5-conjure",0.08,skillVolume),("p5-push",p.moveStart,skillVolume),("p5-contact",p.arrival,skillVolume)]
-                if voice { sound.append(("mage-cast-B",0.08,0.85)) }
+            case .castMagicHand,.castFriendlyRedeploy,.castDoublePull:
+                sound = [("p5-conjure",0.08,mix(at:0.08).preparation),("p5-push",p.moveStart,mix(at:p.moveStart).motion),("p5-contact",p.arrival,mix(at:p.arrival).impact)]
             case .castBastion,.castReformation:
-                sound = [("w7-brace",0.20,skillVolume),("w7-strike",p.arrival,skillVolume),("w7-land",p.arrival,skillVolume)]
-                if voice { sound.append(("w7-voice-B",0.08,0.85)) }
+                sound = [("w7-brace",0.20,mix(at:0.20).preparation),("w7-strike",p.arrival,mix(at:p.arrival).impact),("w7-land",p.arrival,mix(at:p.arrival).impact)]
             case .castSwap,.castChainSwap:
-                sound = [("p8-rogue-coil",0.04,skillVolume),("p8-rogue-dash",p.moveStart,skillVolume),("p8-rogue-land",p.arrival,skillVolume)]
-                if p.isChainSwap { sound.insert(("p8-rogue-land-first",(p.moveStart+p.arrival)/2,skillVolume*0.60),at:2) }
-                if voice { sound.append(("p8-voice-rogue-"+castTake,0.06,0.85)) }
+                sound = [("p8-rogue-coil",0.04,mix(at:0.04).preparation),("p8-rogue-dash",p.moveStart,mix(at:p.moveStart).motion),("p8-rogue-land",p.arrival,mix(at:p.arrival).impact)]
+                if p.isChainSwap { let at = (p.moveStart+p.arrival)/2; sound.insert(("p8-rogue-land-first",at,mix(at:at).impact*0.60),at:2) }
             case .castSanctuary, .castOffering:
-                sound = [("p8-priest-prayer",0.06,skillVolume),("p8-priest-bless",p.moveStart,skillVolume),("p8-priest-land",p.arrival,skillVolume)]
-                if voice { sound.append(("p8-voice-priest-"+castTake,0.06,0.85)) }
+                sound = [("p8-priest-prayer",0.06,mix(at:0.06).preparation),("p8-priest-bless",p.moveStart,mix(at:p.moveStart).motion),("p8-priest-land",p.arrival,mix(at:p.arrival).impact)]
             case .useStickyBounce:
-                sound = [("p8-slime-coil",0.12,0.65),("p8-slime-bounce",p.moveStart,0.65),("p8-slime-land",p.arrival,0.65)]
+                sound = [("p8-slime-coil",0.12,ExpansionCueMix.monsterPreparation),("p8-slime-bounce",p.moveStart,ExpansionCueMix.monsterMotion),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)]
             case .useShadowStep:
-                sound = [("p8-wolf-growl",0.02,0.65),("p8-wolf-dash",p.moveStart,0.65),("p8-wolf-land",p.arrival,0.65)]
+                sound = [("p8-wolf-growl",0.02,ExpansionCueMix.monsterPreparation),("p8-wolf-dash",p.moveStart,ExpansionCueMix.monsterMotion),("p8-wolf-land",p.arrival,ExpansionCueMix.monsterImpact)]
             case .huntMonster(let point):
                 let slime = p.before.config.monsterBattlefield?.kind(at:point) == .slime
-                sound = slime ? [("p8-slime-coil",0.02,0.65),("p8-slime-land",p.arrival,0.65)] : [("p8-wolf-growl",0.02,0.65),("p8-wolf-land",p.arrival,0.65)]
+                sound = slime ? [("p8-slime-coil",0.02,ExpansionCueMix.monsterPreparation),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)] : [("p8-wolf-growl",0.02,ExpansionCueMix.monsterPreparation),("p8-wolf-land",p.arrival,ExpansionCueMix.monsterImpact)]
             case .placeSoldier,.summonHero: sound = [("place",p.arrival,0.55)]
             default: break
             }
-            if !p.captures.isEmpty { sound.append(("capture",p.captureStart,p.isHeroSkill && voice ? 0.30:0.60)) }
+            if !p.captures.isEmpty { sound.append(("capture",p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60)) }
             if let ending = p.terminalCue(computer: computer), onTerminalCue == nil {
-                sound.append((ending,p.duration,p.isHeroSkill && voice ? 0.30:0.60))
+                sound.append((ending,p.duration,p.duration < voiceEnd ? 0.30:0.60))
             }
         }
         let ending = p.terminalCue(computer: computer)
         let routedEnding = ending != nil && onTerminalCue != nil
-        lastSoundKeys = sound.map { $0.0 } + (routedEnding ? ending.map { [$0] } ?? [] : [])
         for (key,delay,volume) in sound { if samples.schedule(key,after:delay,volume:volume) { cues += 1 } }
+        // Voice was scheduled once before choosing the matching SFX mix.
+        // Include it in the shared lifetime/audit timeline without playing it again.
+        if let acceptedVoice { sound.append(acceptedVoice) }
+        lastSoundKeys = sound.map { $0.0 } + (routedEnding ? ending.map { [$0] } ?? [] : [])
+        #if DEBUG
+        lastSoundSchedule = sound.map { (key:$0.0,delay:$0.1,gain:$0.2,playerGain:samples.volume($0.0)) }
+        #endif
         let endingTail = routedEnding && !muted ? ending.map { samples.duration($0) } ?? 0 : 0
-        let window = ExpansionPlaybackWindow.make(visualEnd:p.duration,lastSoundEnd:sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0,
+        let window = ExpansionPlaybackWindow.make(visualEnd:p.duration,lastSoundEnd:max(carriedVoiceTail,sound.map { $0.1 + samples.duration($0.0) }.max() ?? 0),
                                                   terminal:ending != nil,endingTail:endingTail)
         presentationHold = window.inputEnd
         presentationAudioHold = window.audioEnd
@@ -347,14 +488,95 @@ import TacticalGoVisuals
         }
     }
     var audit: String { "cues=\(cues)|players=\(samples.playing)|active=\(playing)|generation=\(generation)|keys=\(lastSoundKeys.joined(separator:","))|frozen=\(reviewTime != nil && frameReceipt != nil)|muted=\(muted)|voice=\(voice)|reduced=\(reduced)|voices=\(samples.playingVoices)" }
-    var help: String {
+    var huntPreview: TacticalHuntPreview? {
+        guard case .huntMonster(let point) = pending else { return nil }
+        return TacticalHuntPreview(state,at:point)
+    }
+    var presentedHuntKind: MonsterKind? {
+        if let hunt = huntPreview { return hunt.kind }
+        guard let p = frameReceipt,let point = p.hunted.first else { return nil }
+        return p.before.config.monsterBattlefield?.kind(at:point)
+    }
+    var presentedHuntTitle: String? {
+        if let hunt = huntPreview { return hunt.title }
+        guard let kind = presentedHuntKind,let p = frameReceipt else { return nil }
+        return "\(p.caster == .one ? "黑方":"白方")討伐 · \(kind == .slime ? "史萊姆":"暗影狼")"
+    }
+    var blockedReason: String? {
+        if controlsLocked { return playing ? "演出中，落定後可操作" : "對手回合，請等待" }
+        if let hunt = huntPreview { return hunt.reason == .none ? nil : hunt.targetRestriction ?? GameStore.reason(hunt.reason) }
+        let kind: TacticalHintMode = switch mode {
+        case .soldier: .soldier; case .summon: .summon; case .skill: .skill; case .advanced: .advanced; case .loot: .loot
+        }
+        return TacticalReadiness.restriction(state,mode:kind,ability:ability)?.message
+    }
+    var stepPrompt: String {
+        if let blockedReason { return blockedReason }
+        if let hunt = huntPreview { return hunt.awardsLoot ? "確認取得\(hunt.reward) · 下個己方回合可用" : "確認討伐，移除魔物打開空點" }
+        if let preview {
+            guard preview.success else { return "目標不合法，重新選點或取消" }
+            let action: String = switch pending {
+            case .placeSoldier: "放兵"
+            case .summonHero: "召喚英雄"
+            case .castBastion: state.config.bastionScope == .connectedGroup ? "沿棋群築壘" : "築壘"
+            case .castMagicHand: "施放魔法之手"
+            case .castFriendlyRedeploy: "調度己兵"
+            case .castSwap: "換位"
+            case .castOffering: "奉獻己兵"
+            case .castDoublePull: "施放雙重牽引"
+            case .castReformation: "戰線重整"
+            case .castChainSwap: "連鎖換位"
+            case .useStickyBounce: "使用黏彈"
+            case .useShadowStep: "使用影步"
+            default: "執行行動"
+            }
+            return "目標已選好，按確認\(action)"
+        }
+        let hero = state.heroClass(of:state.current),n = selected.count
         switch mode {
-        case .soldier: "選一個空點，確認後落子。"
+        case .soldier: return "① 點綠色空點 → ② 確認放兵"
+        case .summon: return "① 選己方棋子旁綠點 → ② 確認"
+        case .skill:
+            switch hero {
+            case .warrior: return n == 0 ? "① 選棋群旁第1個空點" : "② 選第2個不同空點"
+            case .mage: return state.config.experimentalFriendlyRedeploy ? (n == 0 ? "① 選相連己兵（法師2格內）" : "② 選原棋群旁空點") : (n == 0 ? "① 選2格內普通兵" : "② 選推動方向")
+            case .rogue: return "① 選正鄰敵兵 → ② 確認換位"
+            case .priest: return "① 選2格內己兵 → ② 確認奉獻"
+            case .none: return "先選擇職業"
+            }
+        case .advanced:
+            if hero == .rogue { return n == 0 ? "① 選英雄正鄰敵兵" : "② 選第1敵兵旁另一敵兵" }
+            return ["① 選第1顆士兵","② 選第1個目的空點","③ 選第2顆不同士兵","④ 選第2個不同空點"][min(n,3)]
+        case .loot: return ability == .shadowStep ? "① 選英雄直線2格內空點" : n == 0 ? "① 選己方接觸支點" : "② 選支點旁普通士兵"
+        }
+    }
+    var tacticalMessage: String {
+        if let p = frameReceipt,!p.hunted.isEmpty {
+            if let grant = p.lootGrants.first {
+                return "\(grant.owner == .one ? "黑方":"白方")取得\(grant.ability == .stickyBounce ? "黏彈":"影步")一次 · 下個己方回合可用"
+            }
+            return "討伐移除魔物，空點已打開 · 本局無戰利獎勵"
+        }
+        if let blockedReason { return blockedReason }
+        if let hunt = huntPreview { return "合法預覽：\(hunt.summary)" }
+        if preview != nil { return previewText }
+        if mode == .soldier {
+            return state.board.monsters.isEmpty ? "綠點可放士兵 · 1 AP · 先預覽再確認" : "包圍後點「討伐」→ 確認；不會自動觸發"
+        }
+        if mode == .summon { return "1 AP＋\(state.config.summonCost(state.heroClass(of:state.current))) 能量 · 己兵旁空點" }
+        if legalTargets.isEmpty { return "沒有合法目標；先連接棋群或換一招" }
+        let cost = mode == .loot ? 0 : mode == .advanced ? state.config.expansionSkillManaCost : state.config.skillManaCost
+        return "1 AP＋\(cost) 能量 · 每回合限一次 · 綠圈提示下一點"
+    }
+    var help: String {
+        if let hunt = huntPreview { return hunt.help }
+        return switch mode {
+        case .soldier: state.board.monsters.isEmpty ? "選一個空點，確認後落子。" : "放兵仍需選空點再確認。魔物不會因包圍自動消失；點討伐選單或棋盤魔物，查看控制數、條件與AP，再按確認。己方英雄須站在狼的上下左右一格；戰利能力下個己方回合解鎖。"
         case .summon: "選己方棋子正鄰空點。牧師和法師召喚3能量，其他2能量。"
         case .skill:
             switch state.heroClass(of:state.current) {
-            case .warrior: "依序選戰士正鄰兩個空點。"
-            case .mage: "選距法師2格內的普通士兵，再選推動方向。"
+            case .warrior: state.config.bastionScope == .connectedGroup ? "依序選戰士相連棋群旁兩個不同空點。英雄可以透過相連士兵延伸築壘。" : "依序選戰士正鄰兩個空點。"
+            case .mage: state.config.experimentalFriendlyRedeploy ? "先選法師2格內、與法師相連的己方士兵，再選原棋群旁空點。只調度己兵，不增加棋子。" : "選距法師2格內的普通士兵，再選推動方向。"
             case .rogue: "選盜賊正鄰的敵方普通士兵。"
             case .priest: "選距牧師2格內的己方士兵。奉獻會移除它以打開氣或眼，不在別處補子。"
             case .none: "尚未選職業。"
@@ -372,7 +594,14 @@ import TacticalGoVisuals
     }
     var previewText: String {
         guard let preview else { return selected.isEmpty ? help : "已選 \(selected.count) 個位置。\(help)" }
-        guard preview.success else { return GameStore.reason(preview.reason) }
+        guard preview.success else {
+            if case .castFriendlyRedeploy = pending {
+                if preview.reason == .invalidTarget { return "只能調度己方普通士兵，不能移敵兵或英雄" }
+                if preview.reason == .notAdjacentToFriend { return "此己兵未與法師棋群相連" }
+                if preview.reason == .outOfRange { return "來源須在法師2格內，目的須在原棋群旁" }
+            }
+            return GameStore.reason(preview.reason)
+        }
         let captures = preview.events.reduce(0) { n,e in if case .piecesCaptured(_,let p) = e { return n+p.count }; return n }
         let spent = preview.events.compactMap { e -> String? in if case .resourcesSpent(_,let ap,let mana) = e { return "\(ap) AP／\(mana) 能量" }; return nil }.first ?? ""
         return "合法預覽：\(spent) · 提 \(captures) 顆。確認前不扣資源、不播聲音。"
@@ -543,11 +772,23 @@ struct ExpansionBoard: View {
             let board = p?.board(at:time,reduced:reduced) ?? store.state.board
             let moving = p != nil && !reduced && time < p!.arrival
             let sources = Set(moving ? p!.transfers.map(\.from) : [])
-            let presentation = BoardPresentation(state:store.state,selected:store.selected,legal:[],preview:store.preview)
+            let targets = store.legalTargets
+            let presentation = BoardPresentation(state:store.state,selected:store.selected,legal:targets,preview:store.preview)
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
                 ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1)
+                ForEach(targets.sorted { $0.y == $1.y ? $0.x < $1.x : $0.y < $1.y },id:\.self) { point in
+                    if board.isEmpty(point) {
+                        Circle().fill(Color(red:0.18,green:0.62,blue:0.46))
+                            .overlay(Circle().stroke(Color(red:0.94,green:0.94,blue:0.76).opacity(0.65),lineWidth:0.5))
+                            .frame(width:4.5,height:4.5)
+                            .shadow(color:.black.opacity(0.55),radius:0.8).position(presentation.center(point,size)).zIndex(8)
+                    } else {
+                        Circle().stroke(Color(red:0.25,green:0.85,blue:0.63),lineWidth:2).frame(width:pitch*0.82,height:pitch*0.82)
+                            .position(presentation.center(point,size)).zIndex(225)
+                    }
+                }.allowsHitTesting(false).accessibilityHidden(true)
                 if let p,store.effects {
                     ExpansionContactEffects(receipt:p,time:time,pitch:pitch,size:size,reduced:reduced,
                                             center:{ presentation.center($0,size) }).zIndex(5)
@@ -573,6 +814,7 @@ struct ExpansionBoard: View {
                         .buttonStyle(.plain).position(presentation.center(point,size)).zIndex(300)
                         .accessibilityIdentifier("\(identityPrefix)-\(point.x)-\(point.y)")
                         .accessibilityLabel("\(String(UnicodeScalar(65+point.x)!))\(point.y+1)，\(cellName(point))")
+                        .accessibilityValue(targets.contains(point) ? "可選下一點" : "")
                 }
                 if let p,moving {
                     ForEach(p.transfers.indices,id:\.self) { i in
@@ -630,18 +872,21 @@ struct ExpansionBoard: View {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
                 WarriorBodyView(original:image,plate:plate,pose:performing ? .skill(at:time,reduced:reduced,weighted:weightedWarrior) : .rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
+                P02SellUnitFrontRim(black:piece.owner == .one,width:pitch*0.74).offset(y:pitch*0.03)
                 faction(piece,pitch:pitch)
             }
         } else if piece.kind == .hero,hero == .rogue,let image = assets.heroes[.rogue],let plate = store.roguePlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
                 ExpansionHeroBody(original:image,plate:plate,hero:.rogue,pose:performing ? .rogue(at:time,reduced:reduced,chained:plan?.isChainSwap == true):.rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
+                P02SellUnitFrontRim(black:piece.owner == .one,width:pitch*0.74).offset(y:pitch*0.03)
                 faction(piece,pitch:pitch)
             }
         } else if piece.kind == .hero,hero == .priest,let image = store.priest,let plate = store.priestPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
                 ExpansionHeroBody(original:image,plate:plate,hero:.priest,pose:performing ? .priest(at:time,reduced:reduced,offering:plan?.isOffering == true):.rest,width:pitch*0.98).offset(y:-pitch*0.43)
+                P02SellUnitFrontRim(black:piece.owner == .one,width:pitch*0.74).offset(y:pitch*0.03)
                 faction(piece,pitch:pitch)
             }
         } else {
@@ -652,9 +897,8 @@ struct ExpansionBoard: View {
     }
     private func monsterPose(_ kind: MonsterKind,point: Point,plan: ExpansionPresentation?) -> (x:CGFloat,y:CGFloat,tilt:Double,lift:CGFloat) {
         guard let plan,!reduced,plan.hunted.contains(point),time < plan.arrival else { return (1,1,0,0) }
-        let t = min(1,max(0,time/plan.arrival)),coil = sin(t * .pi)
-        if kind == .slime { return (1+0.16*coil,1-0.14*coil,0,-0.08*sin(t * .pi*2)) }
-        return (1,1,-8*coil,-0.06*coil)
+        let f = MonsterHuntFrame.sample(kind:kind,at:time,arrival:plan.arrival,duration:plan.duration)
+        return (f.x,f.y,f.tilt,f.lift)
     }
     private func transferCenter(_ move: CombatTransfer,receipt: ExpansionPresentation,progress t: Double,presentation: BoardPresentation,size: CGSize,pitch: CGFloat) -> CGPoint {
         let a = presentation.center(move.from,size),b = presentation.center(move.to,size)

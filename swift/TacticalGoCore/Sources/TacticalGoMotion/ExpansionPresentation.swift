@@ -4,6 +4,11 @@ public struct CombatTransfer: Equatable, Sendable {
     public let from: Point, to: Point
     public let piece: Piece
 }
+public struct CombatLootGrant: Equatable, Sendable {
+    public let owner: Player
+    public let ability: MonsterAbility
+    public let unlockPly: Int
+}
 /// Shared 1.1 timeline: immutable Domain receipt in, visual parameters out.
 /// Full receipt comparison prevents a forged event list from authorizing a successful performance.
 public struct ExpansionPresentation: Equatable, Sendable {
@@ -13,6 +18,7 @@ public struct ExpansionPresentation: Equatable, Sendable {
     public let placements: [Point]
     public let sacrifices: [Point]
     public let hunted: [Point]
+    public let lootGrants: [CombatLootGrant]
     public let captures: [CapturedPiece]
     public let release: Double, moveStart: Double, arrival: Double, captureStart: Double, duration: Double
     public var caster: Player { before.current }
@@ -40,10 +46,14 @@ public struct ExpansionPresentation: Equatable, Sendable {
         let placements = outcome.events.compactMap { if case .piecePlaced(_,let at,_) = $0 { return at }; return nil }
         let sacrifices = outcome.events.compactMap { if case .pieceSacrificed(_,let at) = $0 { return at }; return nil }
         let hunted = outcome.events.compactMap { if case .monsterHunted(_,let at) = $0 { return at }; return nil }
+        let loot = outcome.events.compactMap { event -> CombatLootGrant? in
+            if case .monsterLootGranted(let player,let ability,let ply) = event { return .init(owner:player,ability:ability,unlockPly:ply) }
+            return nil
+        }
         let captures = outcome.events.flatMap { event -> [CapturedPiece] in if case .piecesCaptured(_,let pieces) = event { return pieces }; return [] }
         let timing: (Double,Double,Double,Double,Double)
         switch action {
-        case .castMagicHand, .castDoublePull: timing = (0.30,0.46,0.68,0.80,1.08)
+        case .castMagicHand, .castFriendlyRedeploy, .castDoublePull: timing = (0.30,0.46,0.68,0.80,1.08)
         case .castBastion, .castReformation: timing = (0.34,0.35,0.58,0.68,1.02)
         case .castSwap, .castChainSwap: timing = (0.12,0.16,0.36,0.44,0.70)
         case .castSanctuary, .castOffering: timing = (0.20,0.32,0.58,0.68,0.94)
@@ -52,11 +62,11 @@ public struct ExpansionPresentation: Equatable, Sendable {
         case .huntMonster: timing = (0.14,0.20,0.44,0.54,0.76)
         case .summonHero: timing = (0.10,0.10,0.34,0.44,0.72)
         case .placeSoldier: timing = (0,0,0.15,0.22,0.40)
-        case .castSeal, .castFriendlyRedeploy: timing = (0.20,0.30,0.58,0.68,0.90)
+        case .castSeal: timing = (0.20,0.30,0.58,0.68,0.90)
         case .endTurn: timing = (0,0,0,0,0)
         }
         return .init(before:before,after:outcome.state,action:action,transfers:transfers,placements:placements,
-            sacrifices:sacrifices,hunted:hunted,captures:captures,release:timing.0,moveStart:timing.1,
+            sacrifices:sacrifices,hunted:hunted,lootGrants:loot,captures:captures,release:timing.0,moveStart:timing.1,
             arrival:timing.2,captureStart:timing.3,duration:timing.4)
     }
     public func board(at time: Double, reduced: Bool = false) -> Board {
@@ -64,7 +74,15 @@ public struct ExpansionPresentation: Equatable, Sendable {
     }
     public func progress(at time: Double, reduced: Bool = false) -> Double {
         guard time.isFinite else { return 1 }
-        return reduced ? 1 : MotionCurves.ease((time-moveStart)/max(0.001,arrival-moveStart))
+        guard !reduced else { return 1 }
+        if isChainSwap {
+            let contact = (moveStart+arrival)/2
+            let resume = contact+min(0.03,(arrival-contact)*0.3)
+            if time < contact { return 0.5*MotionCurves.ease((time-moveStart)/max(0.001,contact-moveStart)) }
+            if time <= resume { return 0.5 }
+            return 0.5+0.5*MotionCurves.ease((time-resume)/max(0.001,arrival-resume))
+        }
+        return MotionCurves.ease((time-moveStart)/max(0.001,arrival-moveStart))
     }
     public var isHeroSkill: Bool {
         switch action {

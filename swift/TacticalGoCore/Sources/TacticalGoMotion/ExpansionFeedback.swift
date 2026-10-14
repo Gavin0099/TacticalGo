@@ -41,7 +41,7 @@ extension ExpansionPresentation {
         let landing = MotionCurves.clamp((time-arrival)/0.18)
         let pulse = time >= arrival ? sin(.pi*landing) * (1-landing) : 0
         switch action {
-        case .castMagicHand, .castDoublePull:
+        case .castMagicHand, .castFriendlyRedeploy, .castDoublePull:
             let squash = ArcaneHandFrame.sample(at:time).pawnSquash
             return .init(scaleX: 2-squash, scaleY: squash)
         case .castBastion, .castReformation:

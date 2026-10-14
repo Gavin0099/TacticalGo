@@ -95,7 +95,12 @@ private struct Search {
         guard stats.domainTransitions < limits.maxDomainTransitions else { stats.budgetExhausted = true; return [] }
         // Core is the sole source of move legality, including suicide, ko, resources and skill gates.
         stats.legalEnumerations += 1
-        let legal = GameEngine.legalActions(state,expansionCandidateLimit:256)
+        let legal = GameEngine.legalActions(state,expansionCandidateLimit:256).filter { action in
+            // New1.1 presents Redeploy as the ordinary Mage skill; match the human repertoire.
+            if state.config.expansionSkills && state.config.experimentalFriendlyRedeploy,
+               case .castMagicHand = action { return false }
+            return true
+        }
         var nodes: [Node] = []
         for action in legal {
             guard let result = apply(state, action) else { break }

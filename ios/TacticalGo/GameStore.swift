@@ -196,7 +196,16 @@ import TacticalGoContent
     }
     var pushDirection: PushDirection?
     enum MageOperation: String, CaseIterable { case push = "推動", redeploy = "調度己兵" }
-    var mageOperation: MageOperation = .push
+    private var legacyMageOperation: MageOperation = .push
+    var mageOperation: MageOperation {
+        get {
+            #if DEBUG || TACTICALGO_V11
+            if let expansion { return expansion.state.config.experimentalFriendlyRedeploy ? .redeploy : .push }
+            #endif
+            return legacyMageOperation
+        }
+        set { legacyMageOperation = newValue }
+    }
     private var legacyMessage = "點棋盤預覽，再按確認。"
     var message: String {
         get {
@@ -315,7 +324,7 @@ import TacticalGoContent
     var preview: ActionOutcome? { selectedAction.map { GameEngine.apply(state, $0) } }
     var legalTargets: Set<Point> {
         #if DEBUG || TACTICALGO_V11
-        if expansion != nil { return [] }
+        if let expansion { return expansion.legalTargets }
         #endif
         guard !isComputerTurn else { return [] }
         let actions = GameEngine.legalActions(state)

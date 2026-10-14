@@ -16,12 +16,13 @@ public struct WarriorBodyPose: Equatable, Sendable {
         guard !reduced, time.isFinite, time>=0, time<1.02 else { return .rest }
         let coil=Self(body:weighted ? -10:-7,bodyX:weighted ? 18:14,bodyY:weighted ? 30:24,head:5,held:weighted ? -22:-16,heldX:-6,heldY:-12,shield:weighted ? -32:-24,shieldX:-8,shieldY:weighted ? -104:-88,cloth:-6)
         let release=Self(body:2,bodyY:12,head:-1,held:4,heldX:-3,heldY:-4,shield:-9,shieldX:-4,shieldY:-28,cloth:1)
-        let impact=Self(body:weighted ? 14:10,bodyX:weighted ? -24:-18,bodyY:weighted ? 44:34,head:-6,held:weighted ? 16:11,heldX:-6,heldY:4,shield:weighted ? 18:12,shieldX:4,shieldY:weighted ? 46:34,cloth:7)
+        let impact=Self(body:weighted ? 24:10,bodyX:weighted ? -28:-18,bodyY:weighted ? 60:34,head:weighted ? -10:-6,held:weighted ? 16:11,heldX:-6,heldY:4,shield:weighted ? 28:12,shieldX:4,shieldY:weighted ? 26:34,cloth:7)
         let recoil=Self(body:-2,bodyX:4,bodyY:12,head:2,held:-3,heldY:-3,shield:-3,shieldY:8,cloth:-5)
-        // Weight candidate: long windup, fast downstroke, 60ms impact hold,
-        // delayed recovery. Ground contact remains .58 for both soldier and SFX.
+        let departure=Self(body:-4,bodyX:8,bodyY:22,head:2,held:-10,heldX:-4,heldY:-6,shield:-20,shieldX:-6,shieldY:-72,cloth:-3)
+        // The body has visibly left the windup at receipt release .34, before
+        // soldier motion .35. Contact .58 and the 60ms weight hold stay shared.
         let keys:[(Double,Self)] = weighted
-            ? [(0,.rest),(0.24,coil),(0.42,coil),(0.50,release),(0.58,impact),(0.64,impact),(0.74,recoil),(0.94,.rest),(1.02,.rest)]
+            ? [(0,.rest),(0.22,coil),(0.28,coil),(0.34,departure),(0.50,release),(0.58,impact),(0.64,impact),(0.74,recoil),(0.94,.rest),(1.02,.rest)]
             : [(0,.rest),(0.20,coil),(0.27,coil),(0.34,release),(0.58,impact),(0.65,recoil),(0.92,.rest),(1.02,.rest)]
         func sample(_ t:Double)->Self {
             for i in 1..<keys.count where t<=keys[i].0 { return blend(keys[i-1].1,keys[i].1,(t-keys[i-1].0)/(keys[i].0-keys[i-1].0)) }
@@ -99,9 +100,11 @@ public struct WarriorBastionEffectFrame:Equatable,Sendable {
     public static func sample(at time:Double,reduced:Bool=false)->Self {
         func u(_ a:Double,_ b:Double)->Double {MotionCurves.clamp((time-a)/(b-a))}
         guard !reduced,time.isFinite,time>=0.16,time<0.98 else {return Self(phase:.ended,alpha:0,travel:0,scale:0,lift:0,impact:0)}
-        if time<0.30 {let t=u(0.16,0.30);return Self(phase:.forge,alpha:0.72*t,travel:0,scale:0.25+0.45*t,lift:0.15,impact:0)}
-        if time<0.58 {let t=MotionCurves.ease(u(0.30,0.58));return Self(phase:.deploy,alpha:0.72,travel:t,scale:0.70+0.30*t,lift:0.15*(1-t),impact:0)}
-        if time<0.70 {let t=u(0.58,0.70);return Self(phase:.impact,alpha:0.72-0.24*t,travel:1,scale:1.12-0.12*t,lift:0,impact:1-u(0.58,0.84))}
-        let t=u(0.70,0.98);return Self(phase:.dissolve,alpha:0.48*(1-t),travel:1,scale:1,lift:0,impact:1-u(0.58,0.84))
+        if time<0.30 {let t=u(0.16,0.30);return Self(phase:.forge,alpha:0.50*t,travel:0,scale:0.25+0.45*t,lift:0.15,impact:0)}
+        if time<0.58 {let t=MotionCurves.ease(u(0.30,0.58));return Self(phase:.deploy,alpha:0.50,travel:t,scale:0.70+0.26*t,lift:0.15*(1-t),impact:0)}
+        // The real soldier owns contact: no expanding opaque shield over its face.
+        // Keep a brief echo, then clear it before the body has recovered.
+        if time<0.70 {let t=u(0.58,0.70);return Self(phase:.impact,alpha:0.50-0.38*t,travel:1,scale:0.96-0.10*t,lift:0,impact:1-u(0.58,0.84))}
+        let t=u(0.70,0.78);return Self(phase:.dissolve,alpha:0.12*(1-t),travel:1,scale:0.86,lift:0,impact:1-u(0.58,0.84))
     }
 }

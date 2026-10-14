@@ -92,6 +92,9 @@ struct PlayableGameView: View {
     @State private var showRules = false
     @State private var showGrid = false
     @State private var confirmExit = false
+    #if DEBUG
+    @State private var polishReviewUsed = false
+    #endif
     
     private var heroes: [HeroClass] {
         useExpansion ? HeroClass.allCases.filter { $0 != .none } : HeroClass.originalClasses
@@ -157,7 +160,7 @@ struct PlayableGameView: View {
         }
         .sheet(isPresented: $showSoundSettings) {
             #if DEBUG || TACTICALGO_V11
-            if let match = store.expansion { IntegratedExpansionSoundSettings(store:match,background:store.audio) }
+            if let match = store.expansion { IntegratedExpansionSoundSettings(store:match,background:store.audio,close: { showSoundSettings = false }) }
             else { CombatSoundSettings(audio: store.audio) }
             #else
             CombatSoundSettings(audio: store.audio)
@@ -176,11 +179,14 @@ struct PlayableGameView: View {
         .overlay(alignment: .top) {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--integrated-review-audit"),let match = store.expansion { Text(match.audit).font(.system(size:8)).accessibilityIdentifier("integratedExpansionAudit") }
-            if ProcessInfo.processInfo.arguments.contains("--integrated-audio-audit") {
+            if ProcessInfo.processInfo.arguments.contains("--integrated-audio-audit") || ProcessInfo.processInfo.arguments.contains("--integrated-volume-audit") || ProcessInfo.processInfo.arguments.contains("--integrated-cadence-audit") {
                 Text(audioAuditStatus).accessibilityIdentifier("integratedAudioAudit").padding().background(Color.ink)
             }
             #endif
         }
+        #if DEBUG
+        .task(id:scenePhase) { await runPolishReview() }
+        #endif
         .onAppear {
             store.setSceneAudioActive(scenePhase == .active)
             store.setMatchAudioActive(inMatch)
@@ -191,14 +197,29 @@ struct PlayableGameView: View {
                 store.expansionPractice(value); boardSize = store.size; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two)
                 inMatch = true; store.setMatchAudioActive(true)
             }
+            if let i = args.firstIndex(of:"--polish-monster"),args.indices.contains(i+1),let value = MonsterPresentationPractice(rawValue:args[i+1]) {
+                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:value.kind == .slime ? .slime:.wolf)
+                store.expansion?.monsterReview(value);boardSize = 9;one = .warrior;two = .mage
+                inMatch = true;store.setMatchAudioActive(true)
+            }
             if args.contains("--solo-warrior-review") {
                 useExpansion = true;singlePlayer = true
                 store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.one)
                 store.expansion?.warriorBotReview();store.expansion?.muted = false;boardSize = 9
                 inMatch = true;store.setMatchAudioActive(true);store.scheduleComputerTurn()
             }
+            if args.contains("--quality-warrior-fixture"),let match = store.expansion {
+                let qualitySize = args.contains("--quality-seven") ? 7:9
+                let owner:Player = args.contains("--quality-white") ? .two:.one
+                do {
+                    try match.qualityWarriorReview(owner:owner,size:qualitySize,dense:!args.contains("--quality-sparse"))
+                    boardSize = qualitySize;one = match.state.heroClass(of:.one);two = match.state.heroClass(of:.two)
+                } catch { match.message = "工程棋形載入失敗：\(error)" }
+            }
             if args.contains("--onboard") { showOnboarding = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
+            if args.contains("--integrated-volume-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.runVolumes() } }
+            if args.contains("--integrated-cadence-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.runVoiceCadence() } }
             if args.contains("--bot-delayed") { store.botDelayNanoseconds = 2_500_000_000 }
             // Leave enough time to open the native menu on a small/loaded simulator.
             if args.contains("--bot-late-result") {
@@ -223,6 +244,80 @@ struct PlayableGameView: View {
             #endif
         }
     }
+    #if DEBUG
+    /// Recording-only input follows the same preview/confirm path as a human.
+    private func runPolishReview() async {
+        let args = ProcessInfo.processInfo.arguments
+        guard scenePhase == .active,!polishReviewUsed,args.contains("--polish-autoplay") else { return }
+        func value(after flag:String) -> String? {
+            guard let i = args.firstIndex(of:flag),args.indices.contains(i+1) else { return nil }
+            return args[i+1]
+        }
+        let fixture = value(after:"--integrated-practice").flatMap(ExpansionPractice.init(rawValue:))
+        let monsterFixture = value(after:"--polish-monster").flatMap(MonsterPresentationPractice.init(rawValue:))
+        guard fixture != nil || monsterFixture != nil else { return }
+        polishReviewUsed = true
+        do { try await Task.sleep(for:.seconds(3)) } catch { return }
+        guard inMatch,scenePhase == .active,let match = store.expansion else { return }
+        // Fixed review conditions only; never write the owner's persisted sound preferences.
+        match.configureReviewSound(voiceEnabled:!args.contains("--polish-voice-off"))
+        if args.contains("--polish-body-only") { match.effects = false }
+        if args.contains("--polish-reduced") { match.reduced = true }
+        let basic = args.contains("--polish-basic") || fixture == .priest
+        let points: [Point]
+        let action: GameAction
+        if args.contains("--quality-warrior-fixture") {
+            points = [Point(2,3),Point(4,3)];action = .castBastion(points[0],points[1])
+        } else if let monsterFixture {
+            points = monsterFixture.points;action = monsterFixture.action
+            match.ability = monsterFixture.kind == .slime ? .stickyBounce:.shadowStep
+            store.changeMode(monsterFixture.isHunt ? .soldier:.loot)
+        } else if let fixture,basic {
+            switch fixture {
+            case .warrior: points = [Point(5,5),Point(6,6)];action = .castBastion(points[0],points[1])
+            case .mage: points = [Point(4,5),Point(5,5)];action = .castFriendlyRedeploy(points[0],points[1])
+            case .rogue: points = [Point(5,4)];action = .castSwap(points[0])
+            case .priest: points = [Point(4,5)];action = .castOffering(points[0])
+            }
+        } else if let fixture {
+            action = fixture.action
+            switch action {
+            case .castReformation(let a,let b),.castDoublePull(let a,let b): points = [a.from,a.to,b.from,b.to]
+            case .castChainSwap(let a,let b): points = [a,b]
+            default: return
+            }
+        } else { return }
+        let before = match.state,generation = match.generation
+        let expected = GameEngine.apply(before,action)
+        guard expected.success else { return }
+        if monsterFixture == nil { store.changeMode(basic ? .skill:.advanced) }
+        for p in points { store.select(p) }
+        guard match.preview?.success == true,match.state == before else { return }
+        do { try await Task.sleep(for:.milliseconds(800)) } catch { return }
+        guard inMatch,scenePhase == .active,store.expansion === match,
+              match.state == before,match.generation == generation else { return }
+        let committedAt = ProcessInfo.processInfo.systemUptime
+        store.confirm()
+        let p = match.frameReceipt
+        var report: [String:Any] = ["fixture":args.contains("--quality-warrior-fixture") ? "hand-placed-WarriorPresentationFixture":monsterFixture == nil ? "legal-opening-ExpansionPractice":"legal-opening-MonsterPresentationPractice","hero":before.heroClass(of:before.current).rawValue,
+            "scene":monsterFixture?.rawValue ?? fixture?.rawValue ?? "unknown",
+            "basic":basic,"action":String(describing:action),"success":match.state == expected.state,
+            "before":before.board.diagram,"after":match.state.board.diagram,
+            "beforeAP":before.apRemaining,"afterAP":match.state.apRemaining,
+            "beforeMana":before.mana(of:before.current),"afterMana":match.state.mana(of:before.current),
+            "commitUptime":committedAt,"release":p?.release ?? -1,"moveStart":p?.moveStart ?? -1,
+            "arrival":p?.arrival ?? -1,"duration":p?.duration ?? -1,"soundKeys":match.lastSoundKeys]
+        report["voiceEnabled"] = match.voice
+        report["acceptedCues"] = match.cues
+        report["soundSchedule"] = match.lastSoundSchedule.map { ["key":$0.key,"delay":$0.delay,"gain":$0.gain,"actualPlayerGain":$0.playerGain] as [String:Any] }
+        if let i = args.firstIndex(of:"--polish-frame"),args.indices.contains(i+1),let time = Double(args[i+1]) {
+            report["frameTime"] = time;report["frameFrozen"] = match.freezeConfirmedFrame(time)
+        }
+        let url = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first!.appendingPathComponent("polish-native-review.json")
+        if let bytes = try? JSONSerialization.data(withJSONObject:report,options:[.prettyPrinted,.sortedKeys]) { try? bytes.write(to:url,options:.atomic) }
+        print("POLISH_COMMIT uptime=\(committedAt) success=\(match.state == expected.state)")
+    }
+    #endif
     private func lobby(size: CGSize) -> some View {
         let tablet = size.width >= 600
         let wide = size.width >= 900 && size.width > size.height
@@ -319,29 +414,52 @@ struct PlayableGameView: View {
                         Button {
                             if choosing == .one { one = h } else { two = h }
                         } label: {
-                            VStack(spacing: 7) {
-                                Image(uiImage: portrait(h)).resizable().scaledToFit().frame(height: portraitHeight)
-                                Text(h.title).font(.system(size: 17, weight: .bold))
-                                Text(h.skillTitle).font(.system(size: 12, weight: .semibold)).lineLimit(1)
-                            }.frame(maxWidth: .infinity).padding(.vertical, 12)
-                                .background(GamePanel(active: selected, kind: .hero))
-                                .overlay(GameCutCorner().stroke(selected ? GameChrome.accent(h) : .clear, lineWidth: 2))
-                                .overlay(alignment: .topTrailing) {
-                                    if selected {
-                                        Image(systemName: "checkmark.seal.fill").font(.system(size: 16, weight: .bold))
-                                            .foregroundStyle(GameChrome.cream).padding(5).accessibilityHidden(true)
-                                    }
-                                }
+                            heroChoiceFace(h,selected:selected,portraitHeight:portraitHeight)
                         }.buttonStyle(.plain).accessibilityIdentifier("choose-" + h.art)
-                            .accessibilityLabel(h.title + "，" + h.skillTitle).accessibilityAddTraits(selected ? [.isSelected] : [])
+                            .accessibilityLabel(lobbyHeroLabel(h))
+                            .accessibilityAddTraits(selected ? [.isSelected] : [])
                     }
                 }
+    }
+    private func lobbyHeroLabel(_ h:HeroClass) -> String {
+        let basic = h.title + "，" + lobbySkillTitle(h)
+        return useExpansion && h != .priest ? basic + "，" + advancedSkillTitle(h) : basic
+    }
+    private func heroChoiceFace(_ h:HeroClass,selected:Bool,portraitHeight:CGFloat) -> some View {
+        VStack(spacing:7) {
+            Image(uiImage:portrait(h)).resizable().scaledToFit().frame(height:portraitHeight)
+            Text(h.title).font(.system(size:17,weight:.bold))
+            Text(lobbySkillTitle(h)).font(.system(size:12,weight:.semibold)).lineLimit(1)
+            if useExpansion && h != .priest {
+                Text(advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
+            }
+        }.frame(maxWidth:.infinity).padding(.vertical,12)
+            .background(GamePanel(active:selected,kind:.hero))
+            .overlay(GameCutCorner().stroke(selected ? GameChrome.accent(h) : .clear,lineWidth:2))
+            .overlay(alignment:.topTrailing) {
+                if selected {
+                    Image(systemName:"checkmark.seal.fill").font(.system(size:16,weight:.bold))
+                        .foregroundStyle(GameChrome.cream).padding(5).accessibilityHidden(true)
+                }
+            }
+    }
+    private var updatedLobbySkills: Bool { useExpansion || selectedRules == .redeployment }
+    private func lobbySkillTitle(_ hero: HeroClass) -> String {
+        guard updatedLobbySkills else { return hero.skillTitle }
+        return hero == .mage ? "調度己兵" : hero == .warrior ? "沿棋群築壘" : hero.skillTitle
     }
     @ViewBuilder private var chosenSkill: some View {
                 let choice = choosing == .one ? one : two
                 VStack(spacing: 6) {
-                    Text(choice.skillHelp).font(.system(size: 14))
+                    Text(updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
                     Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(uiAccent)
+                    if useExpansion && choice != .priest {
+                        Text("第二技能：\(advancedSkillTitle(choice)) · 1 AP＋\(TacticalHints.updatedConfig(size:boardSize).expansionSkillManaCost) 能量；兩招共用每回合一次。")
+                            .font(.system(size:12)).foregroundStyle(uiSecondary).accessibilityIdentifier("lobbyAdvancedSkill")
+                    } else if useExpansion && choice == .priest {
+                        Text("奉獻：移除己兵打開氣或眼；不補兵，較適合救援被困棋群。")
+                            .font(.system(size:12)).foregroundStyle(uiSecondary)
+                    }
                 }.frame(minHeight: 45)
     }
     private var matchClasses: some View {
@@ -493,13 +611,29 @@ struct PlayableGameView: View {
             }
     }
     @ViewBuilder private var phoneStateBar: some View {
-        if presentedResult != nil {
+        if legacySkillWarning && !store.isBotActing {
+            Text("舊技能存局 · 新開對局使用新版設定").font(.system(size:11)).foregroundStyle(uiAccent)
+        } else if presentedResult != nil {
             HStack { Image(systemName:"crown.fill");Text("本局結算").bold();Spacer() }
                 .font(.system(size:12))
         } else if complete {
             Text("挑戰達成").font(.system(size:12)).frame(maxWidth:.infinity,alignment:.leading)
         } else if store.computer != nil { botStatus }
-        else { Text(store.recordErrorMessage ?? "點選目標 · 預覽後確認").font(.system(size:12)).foregroundStyle(uiSecondary).frame(maxWidth:.infinity,alignment:.leading) }
+        else {
+            Text(store.recordErrorMessage ?? localActionStatus)
+                .font(.system(size:12)).foregroundStyle(uiSecondary)
+                .frame(maxWidth:.infinity,alignment:.leading)
+                .accessibilityIdentifier("localActionStatus")
+        }
+    }
+    // The skill tray owns instructions; this bar reports the actual action phase.
+    private var localActionStatus: String {
+        if store.inputLocked { return "行動演出中 · 請稍候" }
+        if let preview = store.preview {
+            return preview.success ? "合法預覽 · 等待確認" : "目標未成立 · 查看下方原因"
+        }
+        if !store.selected.isEmpty { return "目標選取中 · 尚未施放" }
+        return "本機雙人 · \(side)行動"
     }
     @ViewBuilder private var matchBanners: some View {
             #if DEBUG
@@ -522,7 +656,7 @@ struct PlayableGameView: View {
             } else {
                 dockHeading.frame(height: 44)
                 gameAbilityRail.frame(height: 64)
-                Text(store.message.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
+                Text(tacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
                     .font(.system(size: 11, weight: .medium)).foregroundStyle(uiSecondary)
                     .lineLimit(1).truncationMode(.tail)
                     .frame(maxWidth: .infinity, minHeight: 16, maxHeight: 16, alignment: .leading)
@@ -536,22 +670,37 @@ struct PlayableGameView: View {
     }
     private var dockHeading: some View {
         HStack(spacing: 8) {
-            Image(uiImage: portrait(hero)).resizable().scaledToFit().padding(2).frame(width: 44, height: 44)
+            Image(uiImage: dockPortrait).resizable().scaledToFit().padding(2).frame(width: 44, height: 44)
                 .background(Circle().fill(GameChrome.ink))
                 .overlay(Circle().stroke(LinearGradient(colors: [GameChrome.cream, GameChrome.gold, GameChrome.bronze], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2))
                 .shadow(color: .black.opacity(0.50), radius: 2, y: 2)
             VStack(alignment: .leading, spacing: 1) {
-                Text(hero.title).font(.system(size: 14, weight: .heavy, design: .serif)).foregroundStyle(GameChrome.accent(hero))
-                Text(store.isBotActing ? "對手行動中" : "選擇戰術 · 每次 1 AP").font(.system(size: 10)).foregroundStyle(uiSecondary)
+                Text(dockTitle).font(.system(size: 14, weight: .heavy, design: .serif)).foregroundStyle(GameChrome.accent(hero)).accessibilityIdentifier("tacticalActionTitle")
+                Text(stepPrompt).font(.system(size: 11,weight:.semibold)).lineLimit(2).foregroundStyle(uiSecondary)
+                    .accessibilityIdentifier("skillStepPrompt")
             }
             Spacer(minLength: 0)
+            if !store.state.board.monsters.isEmpty {
+                Menu {
+                    ForEach(store.state.board.points.filter { store.state.board.monsters.contains($0) }, id: \.self) { point in
+                        let hunt = TacticalHuntPreview(store.state,at:point)
+                        Button("\(hunt.name) \(coordinate(point)) · \(hunt.reason == .none ? "可討伐" : "查看條件")") {
+                            store.select(point)
+                        }.accessibilityIdentifier("hunt-\(point.x)-\(point.y)")
+                    }
+                } label: {
+                    Text("討伐").font(.system(size:11,weight:.bold)).frame(width:44,height:44)
+                }.foregroundStyle(uiAccent).accessibilityLabel("討伐魔物").accessibilityIdentifier("huntMenu")
+                    .disabled(store.inputLocked || store.state.status != .ongoing)
+            }
             if !store.state.lootInventory(of: store.state.current).isEmpty {
                 Button { showLootAbilities.toggle() } label: {
                     Label("戰利", systemImage: "shippingbox.fill").font(.system(size: 11, weight: .bold)).frame(minWidth: 52, minHeight: 44)
+                        .contentShape(Rectangle())
                 }.buttonStyle(.plain).foregroundStyle(uiAccent)
                     .accessibilityLabel(showLootAbilities ? "查看職業技能" : "查看戰利能力").accessibilityIdentifier("showLootAbilities")
             }
-            if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy {
+            if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy && !store.state.config.expansionSkills {
                 Picker("魔法之手方式", selection: Binding(get: { store.mageOperation }, set: { store.changeMageOperation($0) })) {
                     ForEach(GameStore.MageOperation.allCases, id: \.self) { Text($0.rawValue).tag($0) }
                 }.pickerStyle(.menu).accessibilityIdentifier("mageOperation")
@@ -564,9 +713,22 @@ struct PlayableGameView: View {
             #endif
             Button { showTacticalHelp = true } label: {
                 Image(systemName: "book.closed.fill").font(.system(size: 15)).frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
             }.buttonStyle(.plain).foregroundStyle(uiAccent)
                 .accessibilityLabel("技能說明").accessibilityIdentifier("tacticalHelp")
         }
+    }
+    private var dockTitle: String {
+        #if DEBUG || TACTICALGO_V11
+        if let title = store.expansion?.presentedHuntTitle { return title }
+        #endif
+        return hero.title
+    }
+    private var dockPortrait: UIImage {
+        #if DEBUG || TACTICALGO_V11
+        if let match = store.expansion,let kind = match.presentedHuntKind,let image = match.monsterArt[kind] { return image }
+        #endif
+        return portrait(hero)
     }
     private func modeCost(_ mode: GameStore.Mode) -> Int {
         switch mode {
@@ -577,10 +739,35 @@ struct PlayableGameView: View {
         }
     }
     private func modeTitle(_ mode: GameStore.Mode) -> String {
-        switch mode { case .soldier: "放士兵"; case .summon: "召喚英雄"; case .skill: hero.skillTitle; case .advanced: advancedTitle; case .loot: "戰利能力" }
+        switch mode { case .soldier: "放士兵"; case .summon: "召喚英雄"; case .skill: hero == .mage && store.mageOperation == .redeploy ? "調度己兵" : hero == .warrior && store.state.config.bastionScope == .connectedGroup ? "沿棋群築壘" : hero.skillTitle; case .advanced: advancedTitle; case .loot: "戰利能力" }
+    }
+    private var stepPrompt: String {
+        #if DEBUG || TACTICALGO_V11
+        if let match = store.expansion { return match.stepPrompt }
+        #endif
+        return store.isBotActing ? "對手行動中" : "選擇戰術 · 每次 1 AP"
+    }
+    private var legacySkillWarning: Bool {
+        #if DEBUG || TACTICALGO_V11
+        return store.expansion?.legacySkillsOnResume == true
+        #else
+        return false
+        #endif
+    }
+    private var tacticalMessage: String {
+        #if DEBUG || TACTICALGO_V11
+        if let match = store.expansion { return match.tacticalMessage }
+        #endif
+        return store.message
     }
     private func modeIcon(_ mode: GameStore.Mode) -> GameIcon {
         switch mode { case .soldier: .soldier; case .summon: .summon; case .skill: .hero(hero); case .advanced: .hero(hero, advanced: true); case .loot: .slime }
+    }
+    private func modeRestriction(_ mode: GameStore.Mode, ability: MonsterAbility = .stickyBounce) -> String? {
+        let kind: TacticalHintMode = switch mode {
+        case .soldier: .soldier; case .summon: .summon; case .skill: .skill; case .advanced: .advanced; case .loot: .loot
+        }
+        return TacticalReadiness.restriction(store.state,mode:kind,ability:ability)?.message
     }
     private var gameAbilityRail: some View {
         GeometryReader { geo in
@@ -605,11 +792,12 @@ struct PlayableGameView: View {
                     HStack(spacing: 6) {
                         ForEach(availableModes.filter { $0 != .loot }, id: \.self) { mode in
                             Button { store.changeMode(mode) } label: {
-                                GameAbilityLabel(title: modeTitle(mode), icon: modeIcon(mode), mana: modeCost(mode), advanced: mode == .advanced)
+                                GameAbilityLabel(title: modeTitle(mode), icon: modeIcon(mode), mana: modeCost(mode), advanced: mode == .advanced, restriction: modeRestriction(mode))
                                     .frame(width: width)
-                            }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == mode))
+                            }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == mode, restricted: modeRestriction(mode) != nil))
                                 .disabled(store.inputLocked || store.state.status != .ongoing)
                                 .accessibilityIdentifier("mode-" + String(describing: mode))
+                                .accessibilityValue(modeRestriction(mode) ?? "可選目標，仍須合法預覽")
                                 .accessibilityAddTraits(store.mode == mode ? [.isSelected] : [])
                                 .id("mode-" + String(describing: mode))
                         }
@@ -617,11 +805,12 @@ struct PlayableGameView: View {
                         if let match = store.expansion {
                             ForEach(store.state.lootInventory(of: store.state.current), id: \.ability) { loot in
                                 Button { store.changeMode(.loot); match.ability = loot.ability } label: {
-                                    GameAbilityLabel(title: loot.ability == .stickyBounce ? "黏彈" : "影步", icon: loot.ability == .stickyBounce ? .slime : .shadow, mana: 0)
+                                    GameAbilityLabel(title: loot.ability == .stickyBounce ? "黏彈" : "影步", icon: loot.ability == .stickyBounce ? .slime : .shadow, mana: 0, restriction: modeRestriction(.loot,ability:loot.ability))
                                         .frame(width: width)
-                                }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == .loot && match.ability == loot.ability))
+                                }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == .loot && match.ability == loot.ability, restricted: modeRestriction(.loot,ability:loot.ability) != nil))
                                     .disabled(store.inputLocked || store.state.ply < loot.unlockPly || store.state.status != .ongoing)
                                     .accessibilityIdentifier("loot-" + loot.ability.rawValue)
+                                    .accessibilityValue(modeRestriction(.loot,ability:loot.ability) ?? "可選目標，仍須合法預覽")
                                     .id("loot-" + loot.ability.rawValue)
                             }
                         }
@@ -698,6 +887,9 @@ struct PlayableGameView: View {
         store.state.config.expansionSkills ? [.soldier,.summon,.skill] + (hero == .priest ? []:[.advanced]) + (store.state.lootInventory(of:store.state.current).isEmpty ? []:[.loot]) : [.soldier,.summon,.skill]
     }
     private var advancedTitle: String {
+        advancedSkillTitle(hero)
+    }
+    private func advancedSkillTitle(_ hero:HeroClass) -> String {
         switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest,.none: "第二技能" }
     }
     private func playerStrip(_ player: Player) -> some View {
@@ -745,7 +937,7 @@ struct PlayableGameView: View {
                 #if DEBUG || TACTICALGO_V11
                 if let match = store.expansion,let assets = match.assets {
                     TimelineView(.animation(minimumInterval:1.0/60,paused:!match.playing)) { _ in
-                        ExpansionBoard(store:match,assets:assets,time:ProcessInfo.processInfo.systemUptime-match.started,reduced:reduceMotion || match.reduced,identityPrefix:"play-cell",focusedNine:store.size == 9 && UIDevice.current.userInterfaceIdiom == .phone,focusedPhone:phoneInterface)
+                        ExpansionBoard(store:match,assets:assets,time:match.reviewTime ?? (match.playing ? ProcessInfo.processInfo.systemUptime-match.started : 2),reduced:reduceMotion || match.reduced,identityPrefix:"play-cell",focusedNine:store.size == 9 && UIDevice.current.userInterfaceIdiom == .phone,focusedPhone:phoneInterface)
                     }.clipped().accessibilityElement(children:.contain).accessibilityIdentifier("playArena")
                 } else {
                 SwiftBoard(visuals: visuals, presentation: data, computerAction: store.botAction,
@@ -791,6 +983,9 @@ struct PlayableGameView: View {
     private var modeHelp: String {
         if store.isBotActing { return store.botActionLabel }
         if let lesson { return lesson.instruction }
+        #if DEBUG || TACTICALGO_V11
+        if let match = store.expansion,match.huntPreview != nil { return match.help }
+        #endif
         switch store.mode {
         case .soldier: return "點空格放士兵 · 1 AP · 先預覽再確認"
         case .summon: return "選己方棋子旁的空點 · 1 AP＋\(hero.summonCost) 能量"
@@ -865,15 +1060,42 @@ struct PlayableGameView: View {
 private struct IntegratedExpansionSoundSettings: View {
     @Bindable var store: ExpansionLabStore
     @Bindable var background: CombatAudio
-    @Environment(\.dismiss) private var dismiss
+    let close: () -> Void
     var body: some View {
         NavigationStack {
             Form {
                 Toggle("靜音",isOn:$store.muted).accessibilityIdentifier("audioMute").onChange(of:store.muted) { background.muted = store.muted; store.stop() }
-                Toggle("英文施法語音",isOn:$store.voice).accessibilityIdentifier("castVoice").onChange(of:store.voice) { store.stop() }
+                Section("音效") {
+                    HStack {
+                        Slider(value:$store.sfxVolume,in:0...1).accessibilityLabel("音效音量").accessibilityIdentifier("sfxVolume")
+                        Text("\(Int(store.sfxVolume * 100))%").monospacedDigit().frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("sfxVolumeValue")
+                    }
+                }
+                Section("英文施法語音") {
+                    Toggle("播放角色台詞",isOn:$store.voice).accessibilityIdentifier("castVoice")
+                    HStack {
+                        Slider(value:$store.voiceVolume,in:0...1).accessibilityLabel("施法語音音量").accessibilityIdentifier("voiceVolume")
+                        Text(store.voice ? "\(Int(store.voiceVolume * 100))%" : "語音已關閉").font(.caption).monospacedDigit().frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("voiceVolumeValue")
+                    }
+                }
                 Toggle("減少動態",isOn:$store.reduced).accessibilityIdentifier("reduceCombatMotion").onChange(of:store.reduced) { store.stop() }
-                Section("背景音樂") { Slider(value:$background.musicVolume,in:0...1).accessibilityIdentifier("musicVolume") }
-            }.gameSheetSurface().navigationTitle("聲音與動畫").toolbar { Button("完成") { dismiss() }.accessibilityIdentifier("audioSettingsDone") }
+                Section("背景音樂") {
+                    HStack {
+                        Slider(value:$background.musicVolume,in:0...1).accessibilityLabel("配樂音量").accessibilityIdentifier("musicVolume")
+                        Text("\(Int(background.musicVolume * 100))%").monospacedDigit().frame(minWidth:48,alignment:.trailing)
+                    }
+                }
+                Section { Text("設定會保留。音效、英文台詞與配樂可分別調整；靜音會關閉全部聲音。").font(.footnote) }
+            }.gameSheetSurface().navigationTitle("聲音與動畫").navigationBarTitleDisplayMode(.inline).toolbar {
+                ToolbarItem(placement:.principal) {
+                    Text("聲音與動畫").font(.headline).foregroundStyle(GameChrome.cream).accessibilityIdentifier("soundSettingsTitle")
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: close) { Text("完成").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle()) }
+                        .foregroundStyle(GameChrome.cream)
+                        .accessibilityIdentifier("audioSettingsDone")
+                }
+            }
         }
     }
 }

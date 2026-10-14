@@ -22,8 +22,9 @@ public enum ExpansionPractice: String, Sendable, CaseIterable {
         case .priest: "選 E6 的己兵奉獻。它會消失並打開空點，不會在E7補子。比較失去兵力與新增氣的取捨。"
         }
     }
-    public func session(cost: Int = 4) throws -> GameSession {
+    public func session(cost: Int = 4, updatedBaseSkills: Bool = false) throws -> GameSession {
         var c = RuleConfig.board(size:9); c.expansionSkills = true; c.expansionSkillManaCost = cost
+        if updatedBaseSkills { c.bastionScope = .connectedGroup; c.experimentalFriendlyRedeploy = true }
         var session = GameSession(try GameSetup.newGame(config:c,classOne:hero,classTwo:.mage))
         let opening: [GameAction]
         switch self {

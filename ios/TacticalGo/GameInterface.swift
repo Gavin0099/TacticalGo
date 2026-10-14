@@ -102,6 +102,7 @@ struct GameIconView: View {
             .frame(width: size * 4, height: size * 3)
             .offset(x: -CGFloat(icon.rawValue % 4) * size, y: -CGFloat(icon.rawValue / 4) * size)
             .frame(width: size, height: size, alignment: .topLeading).clipped()
+            .allowsHitTesting(false)
             .accessibilityHidden(true)
     }
 }
@@ -129,16 +130,24 @@ struct GameAbilityLabel: View {
     let icon: GameIcon
     let mana: Int
     var advanced = false
+    var restriction: String?
     var body: some View {
         VStack(spacing: 1) {
             ZStack(alignment: .topLeading) {
-                GameIconView(icon: icon, size: 44).frame(maxWidth: .infinity)
+                GameIconView(icon: icon, size: 44).saturation(restriction == nil ? 1 : 0.32)
+                    .opacity(restriction == nil ? 1 : 0.68).frame(maxWidth: .infinity)
                 if mana > 0 { GameManaGem(value: mana).scaleEffect(0.82, anchor: .topLeading) }
                 if advanced { Text("II").font(.system(size: 12, weight: .black, design: .serif)).foregroundStyle(GameChrome.gold).frame(maxWidth: .infinity, alignment: .trailing) }
+                if restriction != nil {
+                    Image(systemName:"lock.fill").font(.system(size:10,weight:.bold)).foregroundStyle(GameChrome.cream)
+                        .frame(width:16,height:16).background(Circle().fill(GameChrome.ink))
+                        .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.bottomTrailing).accessibilityHidden(true)
+                }
             }
             Text(title).font(.system(size: 12, weight: .bold)).lineLimit(1).minimumScaleFactor(0.85)
         }.padding(.horizontal, 5).padding(.bottom, 3).frame(maxWidth: .infinity).frame(height: 64)
         .accessibilityElement(children: .ignore).accessibilityLabel(title + "，1 AP，\(mana) 能量")
+        .accessibilityValue(restriction ?? "可選目標，仍須合法預覽")
     }
 }
 
@@ -147,6 +156,7 @@ struct GameButtonStyle: ButtonStyle {
     var kind: Kind = .quiet
     var selected = false
     var padded = false
+    var restricted = false
     @Environment(\.isEnabled) private var enabled
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var top: Color {
@@ -154,7 +164,7 @@ struct GameButtonStyle: ButtonStyle {
         switch kind {
         case .primary: return Color(red: 0.91, green: 0.70, blue: 0.34)
         case .turn: return Color(red: 0.43, green: 0.27, blue: 0.15)
-        case .ability: return selected ? Color(red: 0.22, green: 0.36, blue: 0.37) : Color(red: 0.21, green: 0.29, blue: 0.30)
+        case .ability: return selected ? Color(red: 0.22, green: 0.36, blue: 0.37) : restricted ? Color(red:0.18,green:0.21,blue:0.22) : Color(red: 0.21, green: 0.29, blue: 0.30)
         case .quiet: return Color(red: 0.24, green: 0.20, blue: 0.16)
         }
     }
@@ -165,6 +175,7 @@ struct GameButtonStyle: ButtonStyle {
             .foregroundStyle(enabled && kind == .primary ? GameChrome.ink : enabled ? GameChrome.cream : GameChrome.muted)
             .background(LinearGradient(colors: enabled && kind == .primary ? [GameChrome.cream, top, GameChrome.gold] : [top, GameChrome.ink], startPoint: .top, endPoint: .bottom))
             .clipShape(GameCutCorner(cut: kind == .turn ? 12 : 6))
+            .contentShape(GameCutCorner(cut: kind == .turn ? 12 : 6))
             .overlay(GameCutCorner(cut: kind == .turn ? 12 : 6).stroke(selected && enabled ? GameChrome.teal : GameChrome.gold.opacity(enabled ? (kind == .ability ? 0.40 : 0.70) : 0.25), lineWidth: selected ? 2 : 1))
             .overlay(GameCutCorner(cut: kind == .turn ? 12 : 6).stroke(LinearGradient(colors: [.white.opacity(enabled ? 0.16 : 0.05), .clear, .black.opacity(0.45)], startPoint: .top, endPoint: .bottom), lineWidth: 2).padding(2))
             .overlay(alignment: .bottom) {

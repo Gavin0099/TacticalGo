@@ -23,6 +23,150 @@ import XCTest
     private func normalPoints(_ app: XCUIApplication,_ points: [(Int,Int)]) {
         for (x,y) in points { tap(app,"play-cell-\(x)-\(y)") }
     }
+    func testQualitySequenceFromNormalLobbyToMageCastCaptureResultAndUndo() {
+        for size in [7, 9] {
+            let app = integrated();XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+            app.swipeUp();tap(app,"choose-mage");XCTAssertTrue(app.buttons["choose-mage"].isSelected)
+            tap(app,"\(size) × \(size)")
+            XCTAssertTrue(app.segmentedControls["playBoardSize"].buttons["\(size) × \(size)"].isSelected)
+            shot(app,"quality35-\(size)-lobby")
+            tap(app,"startMatch");ready(app);let frames = boardFrames(app),c = size / 2
+            func place(_ x:Int,_ y:Int) { tap(app,"mode-soldier");normalPoints(app,[(x,y)]);tap(app,"playConfirm");ready(app) }
+            normalPoints(app,[(c+1,size-2)]);let before = resources(app)
+            XCTAssertEqual(app.staticTexts["skillStepPrompt"].label,"目標已選好，按確認放兵")
+            XCTAssertTrue(app.buttons["playConfirm"].isEnabled);shot(app,"quality35-\(size)-preview")
+            tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
+            XCTAssertTrue(app.buttons["play-cell-\(c+1)-\(size-2)"].label.contains("空點"));fixedBoard(app,frames)
+            place(c+1,size-2);place(0,0);tap(app,"playEndTurn");ready(app)
+            tap(app,"mode-summon");normalPoints(app,[(c+1,size-3)])
+            XCTAssertEqual(app.staticTexts["skillStepPrompt"].label,"目標已選好，按確認召喚英雄")
+            tap(app,"playConfirm");ready(app)
+            place(c-1,1);place(size-1,size-1);tap(app,"playEndTurn");ready(app)
+            let castBefore = resources(app);tap(app,"mode-skill");normalPoints(app,[(c+1,size-2),(c,size-3)])
+            XCTAssertTrue(app.buttons["playConfirm"].isEnabled);XCTAssertEqual(resources(app),castBefore)
+            XCTAssertEqual(app.staticTexts["skillStepPrompt"].label,"目標已選好，按確認調度己兵")
+            shot(app,"quality35-\(size)-mage-preview");tap(app,"playConfirm");ready(app)
+            XCTAssertTrue(app.buttons["play-cell-\(c+1)-\(size-2)"].label.contains("空點"))
+            XCTAssertTrue(app.buttons["play-cell-\(c)-\(size-3)"].label.contains("士兵"));fixedBoard(app,frames)
+            shot(app,"quality35-\(size)-mage-settled")
+            place(c,0);place(0,1);tap(app,"playEndTurn");ready(app);place(c+1,1)
+            let winningBefore = resources(app)
+            normalPoints(app,[(c,2)]);tap(app,"playConfirm")
+            let result = app.descendants(matching:.any)["matchResult"].firstMatch
+            XCTAssertTrue(result.waitForExistence(timeout:10));XCTAssertTrue(result.label.contains("黑方"))
+            XCTAssertEqual(app.staticTexts["playMessage"].label,"白方主將已被提，黑方獲勝。")
+            XCTAssertTrue(app.buttons["play-cell-\(c)-1"].label.contains("空點"));fixedBoard(app,frames)
+            XCTAssertFalse(app.buttons["mode-skill"].exists);shot(app,"quality35-\(size)-victory")
+            tap(app,"undoOrCancel");ready(app)
+            XCTAssertFalse(result.exists);XCTAssertEqual(resources(app),winningBefore)
+            XCTAssertFalse(app.staticTexts["playMessage"].label.contains("主將已被提"))
+            XCTAssertTrue(app.buttons["play-cell-\(c)-1"].label.contains("主將"));fixedBoard(app,frames)
+            shot(app,"quality35-\(size)-result-undo")
+            app.terminate()
+        }
+    }
+    func testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible() {
+        let app = integrated();XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout:15))
+        XCTAssertTrue(app.buttons["choose-rogue"].label.contains("換位"))
+        XCTAssertTrue(app.buttons["choose-rogue"].label.contains("連鎖換位"))
+        app.segmentedControls["matchMode"].buttons["電腦對戰"].tap()
+        tap(app,"choose-rogue")
+        XCTAssertTrue(app.staticTexts["lobbyAdvancedSkill"].label.contains("連鎖換位"))
+        shot(app,"feedback34-rogue-two-skills-lobby")
+        tap(app,"startMatch");ready(app);let frames = boardFrames(app)
+        XCTAssertTrue(app.buttons["mode-skill"].label.contains("換位"))
+        XCTAssertTrue(app.buttons["mode-advanced"].isHittable)
+        XCTAssertTrue(app.buttons["mode-advanced"].label.contains("連鎖換位"))
+        tap(app,"mode-advanced")
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("先召喚英雄"))
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled);fixedBoard(app,frames)
+        shot(app,"feedback34-rogue-advanced-visible-before-summon")
+    }
+    func testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening() {
+        let app = integrated();XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        app.segmentedControls["matchMode"].buttons["電腦對戰"].tap()
+        app.segmentedControls["humanSide"].buttons["白方後手"].tap()
+        app.segmentedControls["botDifficulty"].buttons["標準"].tap()
+        tap(app,"matchMonsters");app.buttons["雙怪"].tap()
+        tap(app,"電腦 · 黑方 ●")
+        XCTAssertTrue(app.segmentedControls["choosingTeam"].buttons["電腦 · 黑方 ●"].isSelected)
+        app.swipeUp()
+        tap(app,"choose-priest");XCTAssertTrue(app.buttons["choose-priest"].isSelected)
+        XCTAssertTrue(app.staticTexts["黑方 · 牧師"].exists)
+        tap(app,"你 · 白方 ○")
+        XCTAssertTrue(app.segmentedControls["choosingTeam"].buttons["你 · 白方 ○"].isSelected)
+        app.swipeUp()
+        tap(app,"choose-rogue");XCTAssertTrue(app.buttons["choose-rogue"].isSelected)
+        XCTAssertTrue(app.staticTexts["黑方 · 牧師"].exists)
+        XCTAssertTrue(app.staticTexts["白方 · 盜賊"].exists)
+        XCTAssertTrue(app.staticTexts["lobbyAdvancedSkill"].label.contains("連鎖換位"))
+        app.swipeUp();shot(app,"feedback34-rogue-white-standard-lobby-scrolled")
+        tap(app,"startMatch")
+        let enabled = XCTNSPredicateExpectation(predicate:NSPredicate(format:"enabled == true"),object:app.buttons["mode-soldier"])
+        XCTAssertEqual(XCTWaiter.wait(for:[enabled],timeout:25),.completed)
+        XCTAssertTrue(app.buttons["play-cell-8-8"].exists)
+        XCTAssertTrue(app.staticTexts["● 黑方 牧師"].exists)
+        XCTAssertTrue(app.staticTexts["輪到白方盜賊"].exists)
+        XCTAssertTrue(app.buttons["mode-skill"].isHittable)
+        XCTAssertTrue(app.buttons["mode-skill"].label.contains("換位"))
+        XCTAssertTrue(app.buttons["mode-advanced"].isHittable)
+        XCTAssertTrue(app.buttons["mode-advanced"].label.contains("連鎖換位"))
+        let frames = boardFrames(app);tap(app,"mode-advanced")
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("先召喚英雄"));fixedBoard(app,frames)
+        shot(app,"feedback34-rogue-white-standard-dual-after-computer")
+    }
+    func testWolfHuntMenuRejectsNoAdjacentHeroThenHuntsAndUndoPreservesResources() {
+        let app = integrated();XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        tap(app,"matchMonsters");app.buttons["暗影狼"].tap();tap(app,"choose-warrior");tap(app,"startMatch");ready(app)
+        let frames = boardFrames(app)
+        normalPoints(app,[(3,4)]);tap(app,"playConfirm");ready(app)
+        normalPoints(app,[(0,0)]);tap(app,"playConfirm");ready(app);tap(app,"playEndTurn")
+        normalPoints(app,[(5,4)]);tap(app,"playConfirm");ready(app)
+        let blocked = resources(app)
+        tap(app,"huntMenu");tap(app,"hunt-4-4")
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("上下左右一格"))
+        XCTAssertEqual(resources(app),blocked);fixedBoard(app,frames)
+        shot(app,"feedback34-wolf-needs-adjacent-hero")
+        tap(app,"undoOrCancel");normalPoints(app,[(4,6)]);tap(app,"playConfirm");ready(app);tap(app,"playEndTurn")
+        tap(app,"mode-summon");normalPoints(app,[(4,5)]);tap(app,"playConfirm");ready(app)
+        let before = resources(app)
+        tap(app,"huntMenu");tap(app,"hunt-4-4")
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("影步"))
+        XCTAssertEqual(resources(app),before);fixedBoard(app,frames)
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("暗影狼"));fixedBoard(app,frames)
+    }
+    func testDualMonsterHuntMenuAndLootRemainVisibleAtFixedDock() {
+        let app = integrated();XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        tap(app,"matchMonsters");app.buttons["雙怪"].tap();tap(app,"choose-warrior");tap(app,"startMatch");ready(app)
+        let frames = boardFrames(app)
+        normalPoints(app,[(2,5)]);tap(app,"playConfirm");ready(app);tap(app,"playEndTurn")
+        normalPoints(app,[(1,4)]);tap(app,"playConfirm");ready(app)
+        tap(app,"huntMenu");tap(app,"hunt-2-4");tap(app,"playConfirm");ready(app);tap(app,"playEndTurn");ready(app)
+        XCTAssertTrue(app.buttons["loot-stickyBounce"].exists)
+        for id in ["huntMenu","showLootAbilities","tacticalHelp"] {
+            XCTAssertTrue(app.buttons[id].isHittable,id)
+            XCTAssertGreaterThanOrEqual(app.buttons[id].frame.width,44,id)
+            XCTAssertGreaterThanOrEqual(app.buttons[id].frame.height,44,id)
+        }
+        XCTAssertFalse(app.buttons["huntMenu"].frame.intersects(app.buttons["showLootAbilities"].frame))
+        XCTAssertFalse(app.buttons["showLootAbilities"].frame.intersects(app.buttons["tacticalHelp"].frame))
+        XCTAssertEqual(app.otherElements["gameActionDock"].frame.height,200,accuracy:0.5);fixedBoard(app,frames)
+        shot(app,"feedback34-dual-hunt-and-loot-controls")
+        let before = resources(app)
+        tap(app,"huntMenu");tap(app,"hunt-6-4")
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("我0：敵0"))
+        shot(app,"feedback34-wolf-preview-with-loot")
+        tap(app,"undoOrCancel");fixedBoard(app,frames)
+    }
     private func resources(_ app: XCUIApplication) -> String {
         let element = app.descendants(matching:.any)["blueResources"].firstMatch
         XCTAssertTrue(element.exists); let value = element.value as? String
@@ -31,6 +175,160 @@ import XCTest
     private func boardFrames(_ app: XCUIApplication) -> [CGRect] {
         [app.descendants(matching:.any)["playArena"].firstMatch.frame,
          app.buttons["play-cell-0-0"].frame,app.buttons["play-cell-\(app.buttons["play-cell-8-8"].exists ? 8:6)-\(app.buttons["play-cell-8-8"].exists ? 8:6)"].frame]
+    }
+    func testUpdatedMageHintsStepsMoveQuotaAndResume() {
+        let app = integrated("mage");ready(app)
+        let frames = boardFrames(app),before = resources(app)
+        tap(app,"mode-soldier")
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"本機雙人 · 黑方行動")
+        XCTAssertEqual(app.buttons["play-cell-8-8"].value as? String,"可選下一點")
+        XCTAssertNotEqual(app.buttons["play-cell-4-7"].value as? String,"可選下一點")
+        shot(app,"ux26-soldier-legal-dots")
+        tap(app,"mode-skill")
+        XCTAssertTrue(app.buttons["mode-skill"].label.contains("調度己兵"))
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("①"))
+        XCTAssertEqual(app.buttons["play-cell-4-5"].value as? String,"可選下一點")
+        XCTAssertNotEqual(app.buttons["play-cell-4-3"].value as? String,"可選下一點")
+        // Enemy source remains clickable for a precise rejection; it never charges or casts.
+        normalPoints(app,[(4,3),(3,3)])
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("己方普通士兵"))
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"目標未成立 · 查看下方原因")
+        XCTAssertEqual(resources(app),before);fixedBoard(app,frames)
+        tap(app,"undoOrCancel")
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("①"))
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"本機雙人 · 黑方行動")
+        normalPoints(app,[(4,5)])
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("②"))
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"目標選取中 · 尚未施放")
+        XCTAssertEqual(app.buttons["play-cell-5-5"].value as? String,"可選下一點")
+        shot(app,"ux26-mage-frontier-hints")
+        normalPoints(app,[(5,5)])
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("合法預覽"))
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"合法預覽 · 等待確認")
+        XCTAssertEqual(resources(app),before);fixedBoard(app,frames)
+        shot(app,"ux26-mage-two-point-preview")
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-5-5"].label.contains("士兵"))
+        XCTAssertTrue(app.buttons["play-cell-4-5"].label.contains("空點"))
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本回合已施法"))
+        tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
+        XCTAssertEqual(app.staticTexts["localActionStatus"].label,"本機雙人 · 黑方行動")
+        app.terminate();app.launchArguments = [];app.launch();tap(app,"resumeExpansion");ready(app)
+        tap(app,"mode-skill");XCTAssertTrue(app.buttons["mode-skill"].label.contains("調度己兵"))
+        XCTAssertEqual(app.buttons["play-cell-4-5"].value as? String,"可選下一點")
+    }
+    func testUpdatedWarriorCanBuildBeyondHeroAdjacent() {
+        let app = integrated("warrior");ready(app);tap(app,"mode-skill")
+        let before = resources(app),frames = boardFrames(app)
+        XCTAssertTrue(app.buttons["mode-skill"].label.contains("沿棋群築壘"))
+        normalPoints(app,[(5,5)])
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("②"))
+        XCTAssertEqual(app.buttons["play-cell-6-6"].value as? String,"可選下一點")
+        normalPoints(app,[(6,6)])
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled);XCTAssertEqual(resources(app),before)
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-6-6"].label.contains("士兵"))
+        fixedBoard(app,frames);shot(app,"ux26-warrior-connected-frontier")
+        tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
+    }
+    func testNewGameExplainsMissingHeroAndShowsSoldierHints() {
+        let app = integrated();tap(app,"startMatch");ready(app)
+        let frames = boardFrames(app)
+        XCTAssertEqual(app.buttons["play-cell-0-0"].value as? String,"可選下一點")
+        tap(app,"mode-skill")
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("請先召喚英雄"))
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("請先召喚英雄"))
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        fixedBoard(app,frames);shot(app,"ux26-missing-hero-explained")
+    }
+    func testSkillCardsExplainRestrictionsBeforeAndAfterCasting() {
+        let app = integrated("mage");ready(app)
+        let frames = boardFrames(app),before = resources(app)
+        XCTAssertEqual(app.buttons["mode-skill"].value as? String,"可選目標，仍須合法預覽")
+        XCTAssertTrue((app.buttons["mode-summon"].value as? String ?? "").contains("本局已召喚"))
+        tap(app,"mode-summon");XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本局已召喚"))
+        fixedBoard(app,frames);shot(app,"p27-summon-restricted-card")
+        tap(app,"mode-skill");normalPoints(app,[(4,5),(5,5)])
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue((app.buttons["mode-skill"].value as? String ?? "").contains("本回合已施法"))
+        XCTAssertTrue((app.buttons["mode-advanced"].value as? String ?? "").contains("本回合已施法"))
+        XCTAssertEqual(app.buttons["mode-soldier"].value as? String,"可選目標，仍須合法預覽")
+        fixedBoard(app,frames);shot(app,"p27-used-skill-card")
+        tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
+        XCTAssertEqual(app.buttons["mode-skill"].value as? String,"可選目標，仍須合法預覽")
+    }
+    func testPolishAutoplayBackgroundNeverCommitsOnReturn() throws {
+        #if DEBUG
+        let app = XCUIApplication();app.launchArguments = ["--integrated-practice","warrior","--polish-autoplay","--polish-basic"]
+        app.launch();XCTAssertTrue(app.buttons["play-cell-6-6"].waitForExistence(timeout:10))
+        XCUIDevice.shared.press(.home)
+        // Exceeds the authored 3s preparation + .8s preview window.
+        let timer = XCTestExpectation(description:"recording input cancelled while backgrounded")
+        DispatchQueue.main.asyncAfter(deadline:.now()+4) { timer.fulfill() }
+        XCTAssertEqual(XCTWaiter.wait(for:[timer],timeout:6),.completed)
+        app.activate();ready(app)
+        XCTAssertTrue(app.buttons["play-cell-6-6"].label.contains("空點"))
+        let noReplay = XCTestExpectation(description:"foreground must not restart recording action")
+        DispatchQueue.main.asyncAfter(deadline:.now()+4) { noReplay.fulfill() }
+        XCTAssertEqual(XCTWaiter.wait(for:[noReplay],timeout:6),.completed)
+        XCTAssertTrue(app.buttons["play-cell-6-6"].label.contains("空點"))
+        XCTAssertTrue(resources(app).contains("4/6"));shot(app,"p28-autoplay-background-cancelled")
+        #else
+        throw XCTSkip("The recording input is DEBUG-only")
+        #endif
+    }
+    func testConfirmedChainFrameUsesExactPhaseAndUndoDiscardsIt() throws {
+        #if DEBUG
+        let app = XCUIApplication()
+        app.launchArguments = ["--integrated-practice","rogue","--polish-autoplay","--polish-frame","0.275","--integrated-review-audit"]
+        app.launch()
+        let audit = app.staticTexts["integratedExpansionAudit"]
+        XCTAssertTrue(audit.waitForExistence(timeout:10))
+        let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
+        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:10),.completed)
+        XCTAssertTrue(audit.label.contains("players=0|active=false"))
+        shot(app,"p28b-chain-first-contact-exact-frame")
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertTrue(audit.label.contains("frozen=false"))
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("盜賊"))
+        XCTAssertTrue(app.buttons["play-cell-5-3"].label.contains("士兵"))
+        XCTAssertTrue(resources(app).contains("4/6"))
+        #else
+        throw XCTSkip("Exact-frame review is DEBUG-only")
+        #endif
+    }
+    func testMonsterRewardFramesUndoAndReducedMotionUseRealCommit() throws {
+        #if DEBUG
+        for scene in ["slime-hunt","wolf-hunt"] {
+            let app = XCUIApplication()
+            app.launchArguments = ["--polish-monster",scene,"--polish-autoplay","--polish-frame","0.50","--integrated-review-audit"]
+            app.launch();let audit = app.staticTexts["integratedExpansionAudit"]
+            XCTAssertTrue(audit.waitForExistence(timeout:10))
+            let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
+            XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:10),.completed)
+            XCTAssertTrue(audit.label.contains("players=0|active=false"))
+            XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
+            XCTAssertTrue(app.staticTexts["tacticalActionTitle"].label.contains("黑方討伐"))
+            XCTAssertTrue(app.staticTexts["playMessage"].label.contains(scene == "slime-hunt" ? "取得黏彈":"取得影步"))
+            shot(app,"p28d-\(scene)-reward-exact")
+            tap(app,"undoOrCancel");ready(app)
+            XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains(scene == "slime-hunt" ? "史萊姆":"暗影狼"))
+            XCTAssertTrue(audit.label.contains("frozen=false"));app.terminate()
+        }
+        let app = XCUIApplication()
+        app.launchArguments = ["--polish-monster","slime-hunt","--polish-autoplay","--polish-frame","0.50","--polish-reduced","--integrated-review-audit"]
+        app.launch();let audit = app.staticTexts["integratedExpansionAudit"]
+        XCTAssertTrue(audit.waitForExistence(timeout:10))
+        let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
+        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:10),.completed)
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("取得黏彈"))
+        XCTAssertTrue(audit.label.contains("reduced=true"));shot(app,"p28d-reduced-reward-no-motion")
+        #else
+        throw XCTSkip("Recording fixture is DEBUG-only")
+        #endif
     }
     private func fixedBoard(_ app: XCUIApplication,_ frames: [CGRect],file:StaticString = #filePath,line:UInt = #line) {
         let current = boardFrames(app)
@@ -61,7 +359,7 @@ import XCTest
             tap(app,"mode-skill");fixedBoard(app,frames)
             if hero == "mage" {
                 normalPoints(app,[(4,5)]);fixedBoard(app,frames)
-                tap(app,"push-Right");fixedBoard(app,frames)
+                normalPoints(app,[(5,5)]);fixedBoard(app,frames)
                 tap(app,"playConfirm");ready(app);fixedBoard(app,frames)
                 tap(app,"undoOrCancel");fixedBoard(app,frames)
             }
@@ -250,7 +548,8 @@ import XCTest
             let before = resources(app);XCTAssertTrue(before.contains("2 AP"))
             tap(app,"mode-advanced");normalPoints(app,targets)
             let title = hero == "mage" ? "法師 · 雙重牽引":hero == "warrior" ? "戰士 · 戰線重整":"盜賊 · 連鎖換位"
-            XCTAssertTrue(app.staticTexts[title].exists)
+            XCTAssertTrue(app.buttons["mode-advanced"].isSelected)
+            XCTAssertTrue(app.buttons["mode-advanced"].label.contains(title.components(separatedBy: " · ").last!))
             XCTAssertTrue(app.staticTexts["playMessage"].label.contains("合法預覽"),hero)
             XCTAssertEqual(resources(app),before)
             tap(app,"playConfirm");ready(app)
@@ -302,6 +601,7 @@ import XCTest
         tap(app,"playConfirm");ready(app);fixedBoard(app,frames)
         XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
         tap(app,"playEndTurn");normalPoints(app,[(4,4)]);tap(app,"playConfirm");ready(app);fixedBoard(app,frames)
+        tap(app,"showLootAbilities");fixedBoard(app,frames)
         tap(app,"loot-stickyBounce");fixedBoard(app,frames);normalPoints(app,[(3,4),(4,4)])
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled);tap(app,"playConfirm");ready(app);fixedBoard(app,frames)
         XCTAssertTrue(app.buttons["play-cell-5-4"].label.contains("士兵"));XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
@@ -310,6 +610,44 @@ import XCTest
         tap(app,"resumeExpansion");ready(app);fixedBoard(app,frames)
         XCTAssertTrue(app.buttons["play-cell-5-4"].label.contains("士兵"))
         tap(app,"undoOrCancel");XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("士兵"))
+    }
+    func testHuntOverridesUsedHeroSkillPromptAndCancelRestoresIt() {
+        let app = integrated();XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        let picker = app.buttons["matchMonsters"]
+        for _ in 0..<4 { if picker.isHittable { break };app.swipeDown() }
+        picker.tap();app.buttons["史萊姆"].tap()
+        tap(app,"choose-warrior");tap(app,"startMatch");ready(app)
+        let frames = boardFrames(app)
+        normalPoints(app,[(4,6)]);tap(app,"playConfirm");ready(app)
+        normalPoints(app,[(0,0)]);tap(app,"playConfirm");ready(app);tap(app,"playEndTurn")
+        tap(app,"mode-summon");normalPoints(app,[(4,5)]);tap(app,"playConfirm");ready(app)
+        tap(app,"mode-soldier");normalPoints(app,[(3,5)]);tap(app,"playConfirm");ready(app);tap(app,"playEndTurn")
+        tap(app,"mode-skill");normalPoints(app,[(3,4),(5,5)]);tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本回合已施法"))
+        let before = resources(app)
+        XCTAssertTrue(app.buttons["huntMenu"].isHittable)
+        XCTAssertGreaterThanOrEqual(app.buttons["huntMenu"].frame.width,44)
+        tap(app,"huntMenu");tap(app,"hunt-4-4")
+        shot(app,"p28c-hunt-after-bastion")
+        // The selected action is a hunt, although the skill rail remains correctly locked.
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.staticTexts["tacticalActionTitle"].label.contains("討伐"))
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("黏彈"))
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("1 AP／0 能量"))
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("我2：敵0"))
+        XCTAssertTrue(app.buttons["mode-skill"].value as? String == "本回合已施法，下一回合才能再用")
+        XCTAssertEqual(resources(app),before);fixedBoard(app,frames)
+        tap(app,"tacticalHelp")
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format:"label CONTAINS %@","不占施法次數")).firstMatch.exists)
+        shot(app,"p28c-hunt-explained");tap(app,"tacticalHelpDone")
+        tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本回合已施法"))
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
+        normalPoints(app,[(4,4)]);tap(app,"playConfirm");ready(app);fixedBoard(app,frames)
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("空點"))
+        tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before);fixedBoard(app,frames)
+        XCTAssertTrue(app.buttons["play-cell-4-4"].label.contains("史萊姆"))
+        tap(app,"mode-skill");XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本回合已施法"))
     }
     func testPhoneNineLargerCellsAllCornersHelpAndUndo() {
         let app = integrated("mage");ready(app);tap(app,"mode-soldier")
@@ -345,7 +683,7 @@ import XCTest
         tap(app,"undoOrCancel")
         XCTAssertTrue(app.buttons["play-cell-8-8"].label.contains("空點"));XCTAssertEqual(resources(app),before)
         tap(app,"mode-skill");normalPoints(app,[(4,5)])
-        tap(app,"push-Right");XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        normalPoints(app,[(5,5)]);XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
         tap(app,"playConfirm")
         XCTAssertTrue(app.buttons["play-cell-5-5"].label.contains("士兵"))
         XCTAssertTrue(app.buttons["play-cell-4-5"].label.contains("空點"))
@@ -363,6 +701,7 @@ import XCTest
             if b.frame.minY < app.windows.firstMatch.frame.minY+30 { app.swipeDown() } else { app.swipeUp() }
         }
         XCTAssertTrue(b.isHittable,id); if b.isHittable { b.tap() }
+        if id.hasPrefix("mode-") { XCTAssertTrue(b.isSelected, "The tapped card must select its own mode: \(id)") }
     }
     private func toggle(_ app: XCUIApplication,_ id: String) {
         let s = app.switches[id]
