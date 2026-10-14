@@ -1,0 +1,119 @@
+# INTEG-DESIGN-01｜1.0／1.1 整合設計（草案，待 Owner 審）
+
+> 狀態：**Draft，只設計，不實作、不合併、不發布。** 日期：2026-10-14。
+> 目的：把兩條已完成的開發線整合成一份可持續維護、能重新建置、不遺失 1.0 功能的 TacticalGo。
+> 範圍外：新英雄、怪物、動畫、框架；Apple 審查與發布決策；遊戲性調整。
+
+## 1. 固定輸入（不可變）
+
+| 線 | 分支 | SHA | 性質 | 與基底 `cdab133` 的關係 |
+|---|---|---|---|---|
+| 基底 | `origin/main` | `cdab133` | PR #4：Swift 核心、R3 技能、5 步教學 | — |
+| **1.0／1025** | `safety/1.0-1025-source-snapshot-20261014` | `d13fdfa` | 送審中；256 項簽署輸入逐一吻合；**未經重建驗證** | 規則核心與存檔**未修改** |
+| **1.1／1112** | `safety/1.1-source-snapshot-20261014` | `8c80ceb` | TestFlight 候選；279 項來源清單吻合；乾淨建置與 310 項 Swift 測試通過 | 規則核心**加法且預設關閉** |
+
+Apple 狀態（2026-10-14 18:4x 唯讀查證）：1.0／1025 等待審查、手動發佈；1.1／1112 Ready to Test，尚未加入 Owner 群組。Apple 結果**不阻擋本設計**，只阻擋實際合併與發布。
+
+## 2. 兩條線各自擁有什麼
+
+| 面向 | 只在 1.0 | 只在 1.1 | 兩邊都動過 |
+|---|---|---|---|
+| 規則核心 | — | 牧師（`HeroClass.priest`）、第二技能（奉獻／聖所／雙拉／重整／連鎖換位）、兩種魔物與戰利能力、`expansionSkills`／`monsterBattlefield` 選項 | — |
+| 存檔 | — | 獨立 `ExpansionMatchRecord`；正式 `MatchRecord` 只加 16 行並限制只收三個原始職業 | — |
+| 商業 | `TacticalGoAccess` 帳本、StoreKit 2 永久解鎖（NT$60）、獎勵廣告、UMP、`PlayAccess`／`UnlockView` | — | — |
+| 內容 | 教學、9 個挑戰、`ChallengesView` | 擴充練習、牧師聖所挑戰、魔物練習、戰術提示、討伐預覽 | `BotPlanner`、Content 目錄 |
+| 呈現 | Cozy／sell 介面、剪紙動畫、三職 VFX、原型語音（Release 已排除） | `GameInterface`、`PhoneMatchLayout`、PresentationLab 54 素材、英文語音 B、魔物素材 | `MagePerformance`、`Anim01*`、`CombatFeedbackPlan` |
+| 依賴 | Google Mobile Ads、UMP（2 個 SPM pin） | 無第三方依賴 | `Package.swift` |
+| 建置 | Release／`Release.1025.xcconfig`、封存與預檢腳本 | `TacticalGoBeta`／`TACTICALGO_V11` 編譯旗標 | `project.pbxproj` |
+
+## 3. 真實衝突地圖（兩份完整快照的三方合併模擬，唯讀）
+
+兩邊都改過 17 個檔案；12 個有文字衝突，共 59 個區塊；5 個可自動合併。
+
+| 區塊數 | 檔案 | 說明 |
+|---|---|---|
+| **29** | `ios/TacticalGo/PlayableGameView.swift` | 基底 603 行；1.0 +990／−178；1.1 +658／−134。兩邊都重寫了對局與大廳流程 |
+| **10** | `ios/TacticalGo/GameStore.swift` | 基底 576 行；1.0 +128／−31；1.1 +212／−19 |
+| 4 | `project.pbxproj`、`PlayableGameTests.swift`、`MagePerformance.swift` | 專案檔屬機械式；測試檔兩邊各自大幅擴充 |
+| 各 1 | `TacticalGoApp.swift`、`Package.swift`、`CombatFeedbackPlan.swift`、`Anim01Geometry.swift` | 小 |
+| 4 | `docs/PLAN.md`、`memory/*` | 文件 |
+| 0（自動合併） | `BoardViews`、`CombatAudio`、`IntegratedAudioAudit`、`RecordLibraryView`、`BotPlanner` | **文字乾淨不代表行為正確**，其中 `BotPlanner` 必須以測試驗證 |
+
+**結論：** 規則、存檔、商業三層幾乎沒有衝突；真正的整合成本集中在**兩個 UI 檔案**與**呈現層的取捨**。
+
+## 4. 必須不退化的清單（1.0 基線）
+
+1. 原始規則不變：`tests/ios-golden` 的 38 組／99 步／137 快照與 C#／Swift 逐步等價。
+2. 既有 1.0 存局可開啟、可續玩；舊局保持原規則。
+3. 付費機制：前 3 場完整對局免費、獎勵廣告換 1 場、永久解鎖與恢復購買；教學與 9 個挑戰免費；帳本損毀時不吃掉存局。
+4. Release 排除未通過的英文語音、3D 模型與研究入口；BGM／SFX 保留。
+5. Release 預檢（`archive-release.sh`／`check-release-readiness.py`，26 項）、隱私清單、`Info.plist` 契約。
+6. 簽名與 Bundle：`com.tacticalgo.prototype.herobody`；build 號只能遞增（1.1 已用到 1112，下一版必須大於 1112）。
+
+## 5. 建議策略（可被 Owner 推翻）
+
+**以 1.0 為主幹，1.1 分層嫁接。** 理由：
+
+- 1.0 是出貨線，它的來源必須保持為祖先，這樣審查若被退件，修補可在同一條線上前向合併。
+- 1.1 的規則層是加法且預設關閉，風險可由自動化測試承擔。
+- 反方案「1.1 為主幹、移植 1.0 商業」也可行（商業程式約 5 個 App 檔案＋`TacticalGoAccess`，閘門只有 `canStartMatch` 一個呼叫點），但會讓出貨線與主幹分叉。**這是設計取捨，不是已定案。**
+
+### 嫁接分層（每層一個獨立 PR 與驗收，不一次合併）
+
+| 層 | 內容 | 衝突 | 驗收（自動） |
+|---|---|---|---|
+| **L0 凍結** | 固定輸入 SHA、建立整合分支、跑基線 | 無 | 兩邊各自的測試與 Golden 先全綠 |
+| **L1 規則／存檔／內容／Bot**（無 UI） | 嫁接 `ExpansionSkills`、`GameEngine`、`Model`、`MatchRecord` 增量、`ExpansionMatchRecord`、Content 擴充、Motion 擴充 | 低（`Package.swift`、`BotPlanner`、`Tutorial`） | 合併後 Swift 全套＋兩邊 Golden＋1.0 存檔讀取測試 |
+| **L2 UI 接線** | 把牧師選角、第二技能、魔物討伐、solo 規則接進 1.0 的大廳／對局 | **高（39 個區塊）** | 兩邊原有 UI 測試改寫後全綠；原生 iPhone／iPad 流程 |
+| **L3 呈現與音效** | 在剪紙／VFX 與 PresentationLab 之間取捨並接線 | 中（`MagePerformance` 等） | 同局面聲畫錄影比較；Owner 看片 |
+| **L4 付費與存檔對映** | 擴充對局如何計入額度、`reconcileCompletedMatches` 是否納入 `ExpansionMatchRecord` | 低但需產品決策 | 帳本邊界測試（中斷、重複、損毀） |
+| **L5 發布準備** | 版本號、Release 預檢、隱私、素材大小、審查備註 | 低 | 封存預檢與乾淨建置 |
+
+> 順序理由：L1 風險最低且可完全自動驗證，先做可把「規則是否退化」的疑慮一次排除；L2 是唯一高成本，放在規則已穩定之後。
+
+## 6. 需要 Owner 決定的事（會改變設計）
+
+| # | 決策 | 影響 |
+|---|---|---|
+| D1 | **介面方向**：1.0 的 Cozy／sell 與 1.1 的暖色固定棋盤（`GameInterface`）選哪個為主？ | 決定 L2 衝突怎麼解；兩邊都被 Owner 反覆調整過 |
+| D2 | **呈現線**：剪紙動畫／VFX（1.0 線）與 PresentationLab（1.1 線）如何取捨？法師 D 動畫 Owner 已接受，戰士氣勢與 VFX 尚未接受 | 決定 L3 範圍 |
+| D3 | **擴充內容是否計入免費額度／是否屬於付費解鎖**（牧師、魔物、solo 新規則） | 決定 L4；並影響商店文案與 IAP 審查說明 |
+| D4 | **發布順序**：1.0 先公開、1.1 作為更新？或兩者合併為單一版本？ | 影響版本號、審查次數、是否可在審查中替換 build（必須先將 1.0 自審查移除） |
+| D5 | **語音**：1.0 Release 已排除原型語音；1.1 的英文語音 B 是否納入？聽感尚未驗收 | 影響素材與 App 大小 |
+| D6 | **1.1 的第二技能與魔物是否預設開啟**（1.1 的 UI 預設新規則、無版別切換） | 影響舊局與新局的規則一致性、教學內容 |
+
+## 7. 風險登錄
+
+| 風險 | 嚴重度 | 緩解 |
+|---|---|---|
+| 兩個 UI 檔案手動合併造成流程回歸 | 高 | L2 前先把兩邊的 UI 測試納入單一套件；分段嫁接，每段原生驗證 |
+| `BotPlanner` 文字自動合併但行為改變 | 中 | L1 後以兩邊的 Bot 測試（含 1.0 的 material fixture 與 1.1 的 UpdatedSkillProfile）交叉驗證 |
+| 1.1 的 build 號在專案檔仍是 1106、靠指令列覆寫 | 中 | L5 把版本策略固定下來（xcconfig 或明確腳本），不依賴人工覆寫 |
+| 1.0 的簽名資料與 1.1 Beta 設定並存 | 中 | 整合後只保留一套 Release 設定；Beta 僅作內部測試 |
+| 廣告 SDK 進入 1.1 後的隱私申報與 UMP | 中 | 沿用 1.0 的 App Privacy 答案；若擴充內容不新增資料類型則不需變更，須逐項確認 |
+| 把「測試通過」當成「好玩」 | 高 | 見第 8 節，驗收必須含真人項目 |
+| 治理 hooks／記憶衝突（`memory/*`、`PLAN.md` 兩邊皆大幅修改） | 中 | 治理 PR #7 先處理；整合時以 canonical writer 補記，不手動合併 memory |
+
+## 8. 驗收（工程與真人分開）
+
+**工程（自動化）**：Swift 全套測試、兩邊 Golden 與逐步等價、1.0 存檔讀取、帳本邊界、乾淨建置、Release 預檢、UI 測試（iPhone 17／SE／iPad）。
+
+**真人（不可由測試取代，須 Owner 或試玩者）**：
+
+1. 玩家能否在不看說明的情況下理解各職業第二技能做什麼、何時可用（含盜賊「只有一招」的回報）。
+2. 牧師是否「好用」：奉獻值得用的局面是否存在（Owner 先前回報不好用）。
+3. 包圍魔物時是否有明確回饋（Owner 先前回報沒有反應）。
+4. 戰鬥演出是否清楚、有重量感；聲音與動作是否同步。
+5. 連續遊玩數局後是否仍想再玩。
+
+## 9. 不在本設計內，也不自動做
+
+- 合併 PR #7、關閉 #1／#5／#6、同步其他 worktree。
+- 任何 App Store Connect 變更或新的建置上傳。
+- 新增英雄、怪物、動畫、框架或 AI agent。
+- 支援網站推送遠端、簽名 IPA／archive 的異地備份（另列保全待辦）。
+
+## 10. 下一步
+
+1. Owner 審本文件並回覆 D1–D6（可先回 D4、D3，這兩項最影響範圍）。
+2. 通過後進入 **INTEG-CORE-01**，**僅做 L0＋L1**，完成並驗收後再討論 L2。
