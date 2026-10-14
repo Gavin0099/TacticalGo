@@ -10,7 +10,7 @@
 | 線 | 分支 | SHA | 性質 | 與基底 `cdab133` 的關係 |
 |---|---|---|---|---|
 | 基底 | `origin/main` | `cdab133` | PR #4：Swift 核心、R3 技能、5 步教學 | — |
-| **1.0／1025** | `safety/1.0-1025-source-snapshot-20261014` | `d13fdfa` | 送審中；256 項簽署輸入逐一吻合；**未經重建驗證** | 規則核心與存檔**未修改** |
+| **1.0／1025** | `safety/1.0-1025-source-snapshot-20261014` | `d13fdfa` | 送審中；256 項簽署輸入逐一吻合；**來源可由 Git 重建**（模擬器、不簽名；與已送審 IPA 位元等價仍未驗證） | 規則核心與存檔**未修改** |
 | **1.1／1112** | `safety/1.1-source-snapshot-20261014` | `8c80ceb` | TestFlight 候選；279 項來源清單吻合；乾淨建置與 310 項 Swift 測試通過 | 規則核心**加法且預設關閉** |
 
 ### L0 基線結果（兩條線各自從「純 Git 匯出的乾淨樹」重建，2026-10-14）
@@ -20,7 +20,17 @@
 | 1.0／1025 `d13fdfa` | `xcodebuild`（scheme `TacticalGo`、Release、iOS Simulator、不簽名）**BUILD SUCCEEDED** | 239 項，0 失敗 | 不證明與已送審 IPA 位元相同（未做簽名建置比對）；不含 UI 測試與真機 |
 | 1.1／1112 `8c80ceb` | `xcodebuild`（scheme `TacticalGoBeta`、Beta、iOS Simulator、`CURRENT_PROJECT_VERSION=1112`、不簽名）**BUILD SUCCEEDED** | 310 項，0 失敗 | 同上；專案檔本身仍是 build 1106，須外部覆寫 |
 
-兩條線的「來源可由 Git 重建」已成立；「與已送審／已上傳二進位等價」仍未驗證。
+**Golden 與等價證據（逐項對照 L0 的完成條件）：**
+
+| 項目 | 狀態 | 依據 |
+|---|---|---|
+| Swift 端重播共用 Golden | **通過（兩條線）** | `CoreTests.testSharedGoldenFixtures` 在兩份日誌皆 passed；`tests/ios-golden` 樹雜湊在 base／1.0／1.1 **完全相同**（`a276c94`） |
+| C# 參考引擎 | 三方**未被修改** | `src/TacticalGo.Domain`、`tests/TacticalGo.Domain.Tests` 樹雜湊在 base／1.0／1.1 相同 |
+| C# 端 Golden 重播 | **本輪未執行** | 這台機器沒有 `dotnet` |
+| C#／Swift 逐步與快照等價（先前記錄 38 組／99 步／137 快照） | **本輪未重跑**；僅有 10/9 其他 agent 的文件記錄 | 引用而非重驗；需 dotnet 才能重現 |
+| 1.1 的相容性單元測試 | 通過 | `testLegacyRecordRejectsPriestAndAllUnknownExpansionActions`、`testSoloMetadataRoundtripLegacyDefaultAndInvalidMetadataReject` 等（單元層，**不是**由出貨二進位產生的真實存檔） |
+
+因此 L0 狀態應寫為：**來源可由 Git 重建、Swift 全套與 Swift 端 Golden 通過；C# 端與跨語言等價為引用既有記錄、尚未重現。** 不為補表格而重跑整套，缺哪項才補哪項。「與已送審／已上傳二進位等價」仍未驗證，且**不應卡住整合工作**。
 
 Apple 狀態（2026-10-14 18:4x 唯讀查證）：1.0／1025 等待審查、手動發佈；1.1／1112 Ready to Test，尚未加入 Owner 群組。Apple 結果**不阻擋本設計**，只阻擋實際合併與發布。
 
@@ -149,9 +159,10 @@ Apple 審查與 Git 整合是兩件事：**審查結果不應阻擋整合分支�
 ## 10. 下一步
 
 1. Owner 審本文件並回覆 D1–D6（可先回 D4、D3，這兩項最影響範圍）。
-2. 通過後進入 **INTEG-CORE-01**，**僅做 L0＋L1**，完成並驗收後再討論 L2。
+2. 通過後先進 **C0 契約**（見 `C0_MATCH_ACCESS_SAVE_CONTRACT.md`），關閉後才進 L1；**不把 C0 與 L1 打包成一個工程**。L2 以後各自驗收。
 
 ## 11. 修訂紀錄
 
+- v2.2（2026-10-14）：同步狀態（1.0 來源可重建、下一步改為 C0）；L0 加入 Golden 對照表；新增 C0 契約草案。
 - v2.1（2026-10-14）：寫入 L0 基線結果（1.0：239 項測試；1.1：310 項測試，皆自乾淨樹重建）。
 - v2（2026-10-14）：納入獨立審查——策略理由改為可追溯／可重建／可獨立修補（不再主張祖先必要性）；D3 拆成兩個問題；D4、D6 改寫並標明「建議待確認」；新增「三個看起來安全的前提」；把付費與存檔對映契約提前為 **C0**；L0 加入可重建驗證；新增 L0 基線結果表（見 §1）。
