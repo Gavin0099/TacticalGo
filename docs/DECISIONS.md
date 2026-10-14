@@ -137,7 +137,7 @@ Owner 補充的技術更正：Windows 可以用 Swift 官方 Windows toolchain �
 | 範圍凍結 | 整合底定前，不新增英雄、怪物、動畫、框架或 AI agent。 |
 | 驗收原則 | 驗收須包含玩家能否理解技能、戰鬥演出是否清楚、連續遊玩後是否想再玩；自動化測試通過不等於真人驗收。 |
 | AI 工具 | 研究 Claude-Code-Game-Studios（抽 4–6 個 skills 並與既有治理去重）、HunyuanVideo-Foley（戰鬥音效試作）、ACE-Step 1.5（配樂候選）；godot-mcp 僅用於 Owner 另外的 Godot 專案；Unreal／Unity／世界生成類工具不導入。工具能力與授權為 Owner 的研究結論，未經獨立查證。 |
-| 治理導入 | 以 PR #1 內容併入現行 main，並經框架受管更新（F-7）至 `2a09d54`。hooks 為各 clone 本機設定，框架拒絕從連結 worktree 套用（共用 hooks），故其他 worktree／clone 須各自安裝。導入不證明 runtime 或 CI 強制執行。 |
+| 治理導入 | 以 PR #1 內容併入現行 main，並經框架受管更新（F-7）至 `2a09d54`。hooks 存在 Git 共用目錄：每個獨立 clone 安裝一次，同一 clone 的 linked worktree 共用（先以 `git rev-parse --git-path hooks` 與 `core.hooksPath` 確認實際路徑，不要逐個 worktree 重複安裝）；F-7 apply 須在 clone 的主 worktree 執行。VS Code 的 `Stop` 事件不是 session 結束，受管的 VS Code Stop hook 先不隨本 repo 發布，結案維持手動（暫行措施，框架範本修正前需在框架更新後複查）。GitHub Actions 在此 repo 為停用狀態，導入不證明 runtime 或 CI 強制執行。 |
 | 後續待辦 | 支援／隱私網站（僅本機 repo）推送到遠端；簽名 IPA／archive 的異地備份；是否將 1112 加入 Owner 1.1 測試群組由 Owner 決定。 |
 
 證據：`memory/2026-10-14.md`（canonical 記錄）、`docs/save-1.0/`、`docs/save-1.1/`（位於各自的安全分支）。

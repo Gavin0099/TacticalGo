@@ -6,7 +6,7 @@ must only name things the C# reference engine actually defines (illegal-reason n
 Why this exists: the fixtures are the contract the future Swift port must pass. If a fixture names a reason or event
 that the engine does not define (typo, rename, removed rule), the port would be checked against a nonsense expectation.
 
-Scope and limits: this validates structure and vocabulary only. It does NOT replay the fixtures (the C# test
+Scope and limits: this validates structure, vocabulary and the required argument shape of every action. It does NOT replay the fixtures (the C# test
 `GoldenReplayTests` does that) and says nothing about game balance, fun, or whether a player understands anything.
 """
 
@@ -41,10 +41,31 @@ except ImportError:  # standalone run: minimal stand-ins with the same shape
         def validate(self, payload): ...
 
 
-ACTION_TYPES = {"PlaceSoldier", "SummonHero", "CastBastion", "CastSeal", "CastSwap", "EndTurn"}
+# Required argument names per action type. Source of truth: GoldenReplayTests.ParseAction in the C# test project
+# (tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs), which reads exactly these properties. Point arguments are
+# JSON arrays of two integers ([x, y]). Board bounds are NOT checked here: out-of-board coordinates are legitimate
+# illegal-move fixtures that the engine, not this validator, must reject.
+ACTION_FIELDS = {
+    "PlaceSoldier": ("at",),
+    "SummonHero": ("at",),
+    "CastBastion": ("first", "second"),
+    "CastSeal": ("at",),
+    "CastSwap": ("target",),
+    "EndTurn": (),
+}
+ACTION_TYPES = set(ACTION_FIELDS)
 CONFIG_KEYS = {"boardSize", "apPerTurn", "firstTurnAp", "maxPlies", "manaCap", "allowResummon"}
 EXPECT_KEYS = {"ok", "reason", "cells", "current", "ply", "ap", "mana", "status", "winner", "seals", "events"}
 TOP_KEYS = {"name", "description", "config", "setup", "steps", "expectInitial"}
+
+
+def _is_point(value: object) -> bool:
+    """True for a JSON array of exactly two integers (bool is not an integer here)."""
+    return (
+        isinstance(value, list)
+        and len(value) == 2
+        and all(isinstance(v, int) and not isinstance(v, bool) for v in value)
+    )
 
 
 def _enum_members(source: str, enum_name: str) -> set[str]:
@@ -125,9 +146,33 @@ class GoldenFixtureValidator(DomainValidator):
             if not doc.get("steps"):
                 violations.append(f"{tag}: has no steps")
             for index, step in enumerate(doc.get("steps", []), start=1):
-                action_type = step.get("action", {}).get("type")
+                if not isinstance(step, dict):
+                    violations.append(f"{tag} step {index}: step is not an object")
+                    continue
+                action = step.get("action")
+                if not isinstance(action, dict):
+                    violations.append(f"{tag} step {index}: 'action' is missing or not an object")
+                    action = {}
+                action_type = action.get("type")
                 if action_type not in ACTION_TYPES:
                     violations.append(f"{tag} step {index}: unknown action type '{action_type}'")
+                else:
+                    required = ACTION_FIELDS[action_type]
+                    for field_name in required:
+                        if field_name not in action:
+                            violations.append(
+                                f"{tag} step {index}: {action_type} is missing required field '{field_name}'"
+                            )
+                        elif not _is_point(action[field_name]):
+                            violations.append(
+                                f"{tag} step {index}: {action_type}.{field_name} must be [x, y] integers, "
+                                f"got {action[field_name]!r}"
+                            )
+                    for field_name in action:
+                        if field_name != "type" and field_name not in required:
+                            violations.append(
+                                f"{tag} step {index}: {action_type} has unexpected field '{field_name}'"
+                            )
                 if "expect" not in step:
                     violations.append(f"{tag} step {index}: no expectation (a step must assert something)")
                 else:
@@ -139,9 +184,9 @@ class GoldenFixtureValidator(DomainValidator):
             violations=violations,
             evidence_summary=(
                 f"Checked {len(files)} golden fixtures against {len(reasons)} engine illegal reasons and "
-                f"{len(events)} event types; structure and vocabulary only, no replay."
+                f"{len(events)} event types; structure, vocabulary and action arguments only, no replay."
             ),
-            metadata={"fixtures": len(files), "mode": "structure_and_vocabulary"},
+            metadata={"fixtures": len(files), "mode": "structure_vocabulary_and_action_arguments"},
         )
 
 
