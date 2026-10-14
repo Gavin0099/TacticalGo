@@ -43,6 +43,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Record which SHA was actually checked out
+        run: |
+          echo "checked-out HEAD : $(git rev-parse HEAD)"
+          echo "github.sha       : ${{ github.sha }}"
+          echo "pull request head: ${{ github.event.pull_request.head.sha || 'n/a (not a pull_request event)' }}"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"

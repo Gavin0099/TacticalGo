@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ci_evidence_receipt import evaluate_run  # noqa: E402
+from ci_evidence_receipt import check_producer_head, check_receipt_binding, evaluate_run  # noqa: E402
 
 SHA = "a0adfef7f3cd9455614c33281d6b20584726d22f"
 
@@ -51,6 +51,42 @@ class EvaluateRunTests(unittest.TestCase):
         self.assertTrue(any("did not run" in p for p in problems), problems)
         failed = _run(jobs=[{"steps": [{"name": "Check managed hook wiring", "conclusion": "failure"}]}])
         self.assertTrue(evaluate_run(failed, SHA, ["Check managed hook wiring"]))
+
+
+class EmptyStepSetTests(unittest.TestCase):
+    def test_no_expected_steps_is_refused_instead_of_silently_passing(self):
+        problems = evaluate_run(_run(), SHA, [])
+        self.assertTrue(any("no expected steps" in p for p in problems), problems)
+
+
+class ProducerHeadTests(unittest.TestCase):
+    """The writer records the LOCAL HEAD; a remote run for A must not be receipted from a checkout of B."""
+
+    def test_matching_local_head_is_accepted(self):
+        self.assertEqual(check_producer_head(SHA, SHA[:8]), [])
+
+    def test_a_different_local_head_is_refused(self):
+        other = "122e00056529" + "0" * 28
+        problems = check_producer_head(other, SHA[:8])
+        self.assertTrue(any("not the commit under test" in p for p in problems), problems)
+
+    def test_unreadable_head_or_short_sha_is_refused(self):
+        self.assertTrue(check_producer_head("", SHA))
+        self.assertTrue(check_producer_head(SHA, "a0adf"))
+
+
+class ReceiptReadBackTests(unittest.TestCase):
+    def test_bound_receipt_with_exit_zero_is_accepted(self):
+        self.assertEqual(check_receipt_binding({"linked_commit": SHA, "exit_code": 0}, SHA[:8]), [])
+
+    def test_receipt_bound_to_another_commit_is_rejected(self):
+        problems = check_receipt_binding({"linked_commit": "122e0005" + "0" * 32, "exit_code": 0}, SHA[:8])
+        self.assertTrue(any("linked_commit" in p for p in problems), problems)
+
+    def test_nonzero_exit_or_garbage_is_rejected(self):
+        self.assertTrue(check_receipt_binding({"linked_commit": SHA, "exit_code": 1}, SHA))
+        self.assertTrue(check_receipt_binding({"exit_code": 0}, SHA))
+        self.assertTrue(check_receipt_binding([], SHA))
 
 
 if __name__ == "__main__":
