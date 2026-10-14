@@ -1,0 +1,109 @@
+{
+  "schema": "tacticalgo-sdk-privacy-review-v1",
+  "reviewedAt": "2026-10-11T13:45:29.418686+00:00",
+  "status": "DRAFT_REVIEWED_OWNER_LEGAL_CONFIRMATION_PENDING",
+  "published": false,
+  "appStoreConnectTypes": [
+    {
+      "name": "Coarse Location",
+      "linked": true,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics",
+        "App Functionality"
+      ]
+    },
+    {
+      "name": "Product Interaction",
+      "linked": true,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics",
+        "App Functionality"
+      ]
+    },
+    {
+      "name": "Advertising Data",
+      "linked": true,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics"
+      ]
+    },
+    {
+      "name": "Crash Data",
+      "linked": false,
+      "tracking": false,
+      "purposes": [
+        "Analytics"
+      ]
+    },
+    {
+      "name": "Performance Data",
+      "linked": true,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics",
+        "App Functionality"
+      ]
+    },
+    {
+      "name": "Other Diagnostic Data",
+      "linked": false,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics"
+      ]
+    },
+    {
+      "name": "Device ID",
+      "linked": true,
+      "tracking": false,
+      "purposes": [
+        "Third Party Advertising",
+        "Developer Advertising or Marketing",
+        "Analytics"
+      ]
+    }
+  ],
+  "sourceManifests": "artifacts/monetization-02/sdk-privacy-manifests.json",
+  "runtimeConfiguration": {
+    "minimumIOS": "17.0",
+    "attRequested": false,
+    "publisherFirstPartyIDEnabled": false,
+    "publisherPrivacyPersonalizationState": "disabled",
+    "requestExtras": {
+      "npa": "1"
+    },
+    "initialization": "Only after voluntary Watch Ad action and UMP canRequestAds",
+    "mediationAdaptersAdded": false
+  },
+  "interpretation": {
+    "performanceLinkage": "Conservative Yes because official Google data-disclosure describes user-associated performance despite generic SDK manifest being unlinked.",
+    "deviceTracking": "Configured-app inference: no ATT authorization/IDFA access, PFID disabled, PPT disabled and explicit NPA. Google generic manifest marks DeviceID tracking true for configurations using IDFA. Remaining app/vendor scoped identifiers disclosed as linked. This is not a measurement or proof about every served creative.",
+    "nonPersonalizedBoundary": "NPA/PPT do not imply zero collection or prove all SDK/creative behavior. Optional rewarded-ad collection is included."
+  },
+  "sources": [
+    "https://developers.google.com/admob/ios/privacy/data-disclosure",
+    "https://developers.google.com/admob/ios/privacy/strategies",
+    "https://developers.google.com/admob/ios/targeting",
+    "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+    "https://developer.apple.com/app-store/app-privacy-details/"
+  ],
+  "notVerified": [
+    "production network/creative behavior",
+    "newly published UMP native runtime",
+    "production StoreKit transaction"
+  ],
+  "ownerStatement": "Apple publishing dialog confirms legal correctness and obligation to update; awaiting explicit confirmation."
+}

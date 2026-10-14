@@ -14,7 +14,7 @@ struct RecordLibraryView: View {
                 ForEach(store.savedRecords) { record in
                     VStack(alignment: .leading, spacing: 10) {
                         Text("\(record.one.title) vs \(record.two.title) · \(record.size)×\(record.size)").bold()
-                        Text(record.rules == .original ? "原版規則" : record.rules == .redeployment ? "候選技能" : "R2 " + record.rules.variant).font(.caption).foregroundStyle(.secondary)
+                        Text(record.rules == .original ? "舊版規則" : record.rules == .redeployment ? "新版技能" : "R2 " + record.rules.variant).font(.caption).foregroundStyle(.secondary)
                         Text(record.updated, format: .dateTime.month().day().hour().minute()).font(.caption).foregroundStyle(.secondary)
                         Text("\(record.computer == nil ? "本機雙人" : "單人・你執\(record.computer == .one ? "白" : "黑")") · \(record.difficulty == "easy" ? "簡單" : "標準") · \(record.steps.count) 步")
                             .font(.caption)

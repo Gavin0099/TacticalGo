@@ -43,12 +43,18 @@ import TacticalGoMotion
 @MainActor enum CozyAudit {
     static func run(store: GameStore) async -> String {
         let audio = store.audio
-        let savedMute = audio.muted, savedSFX = audio.sfxVolume
-        defer { store.cancelPresentation(); audio.muted = savedMute; audio.sfxVolume = savedSFX }
+        let saved = (audio.muted, audio.sfxVolume, audio.musicEnabled, audio.musicVolume, audio.voiceEnabled)
+        defer {
+            store.cancelPresentation(); audio.muted = saved.0; audio.sfxVolume = saved.1
+            audio.musicEnabled = saved.2; audio.musicVolume = saved.3; audio.voiceEnabled = saved.4
+        }
         audio.muted = false; audio.sfxVolume = 0.65
+        audio.musicEnabled = true; audio.musicVolume = 0.30; audio.voiceEnabled = false
         store.setSceneAudioActive(true); store.setMatchAudioActive(true)
         var rows: [[String: Any]] = []
-        func check(_ name: String, _ pass: Bool) { rows.append(["check": name, "pass": pass]) }
+        func check(_ name: String, _ pass: Bool) {
+            rows.append(["check": name, "pass": pass, "audioState": audio.auditState])
+        }
         func reset(capture: Bool = true) {
             store.leaveMatch(); store.computer = nil; store.recordErrorMessage = nil
             store.session = GameSession(try! Anim01Fixture.state(capture: capture))
@@ -57,7 +63,19 @@ import TacticalGoMotion
         }
         func prepare() { store.select(Point(4, 3)); store.chooseDirection(.up) }
         func wait(_ seconds: Double) async { try? await Task.sleep(for: .seconds(seconds)) }
-        reset(); prepare()
+        reset(); await wait(0.25)
+        check("normal_game_owner_B_music_started", audio.musicIntegrationAllowed && audio.musicIsPlaying && audio.musicPlayerDurations.count == 3 && audio.lastError == nil)
+        audio.musicEnabled = false; audio.play("place")
+        check("music_disabled_keeps_owner_SFX", !audio.musicIsPlaying && audio.activeEffectCount > 0)
+        audio.cancelEffects(); audio.musicEnabled = true; audio.sfxVolume = 0
+        await wait(0.25)
+        check("SFX_disabled_keeps_owner_music", audio.musicIsPlaying && audio.activeEffectCount == 0)
+        audio.sfxVolume = 0.65
+        audio.muted = true
+        check("mute_stops_both_channels", !audio.musicIsPlaying && audio.activeEffectCount == 0)
+        audio.muted = false; await wait(0.25)
+        check("unmute_resumes_music", audio.musicIsPlaying)
+        prepare()
         let before = store.state, count = audio.playbackObservations.count
         check("preview_unchanged_resources_and_source", store.state == before && store.preview?.success == true)
         check("preview_no_success_cues", !audio.playbackObservations.dropFirst(count).contains { $0["key"] != "selection" })
@@ -72,7 +90,7 @@ import TacticalGoMotion
         let cues = audio.playbackObservations.dropFirst(count).filter { $0["key"] != "selection" }
         check("success_real_owner_mage_place_capture_victory", cues.map { $0["key"] ?? "" } == ["mage", "place", "capture", "victory"] && cues.allSatisfy { $0["playing"] == "true" })
         check("settled_domain_result", store.state == GameEngine.apply(before, Anim01Fixture.action).state && !store.isPresenting)
-        check("music_hold_sfx_active", !audio.musicIntegrationAllowed && !audio.musicIsPlaying && audio.lastError == nil)
+        check("music_and_SFX_owner_no_audio_error", audio.musicIntegrationAllowed && audio.lastError == nil)
         let observations = Array(cues)
         reset(capture: false); prepare(); let noCaptureCount = audio.playbackObservations.count
         store.confirm(); await wait(1.05)
@@ -231,7 +249,7 @@ import TacticalGoMotion
                      "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
                      "heroBody":receipt.heroPerformance.map { p in ["class":p.heroClass.rawValue,"summon":p.isSummon,"release":p.timing.release,"moveStart":p.timing.moveStart,"arrival":p.timing.arrival,"captureStart":p.timing.captureStart,"recoveryEnd":p.timing.recoveryEnd] as [String:Any] } ?? [:],
                      "skillVFX":receipt.skillVFX.map{ p in ["kind":p.kind.rawValue,"hero":[p.hero.x,p.hero.y],"sources":p.sources.map{[$0.x,$0.y]},"destinations":p.destinations.map{[$0.x,$0.y]},"release":p.release,"moveStart":p.moveStart,"arrival":p.arrival,"captureStart":p.captureStart,"end":p.end] as [String:Any]} ?? [:],
-                     "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : "m3",
+                     "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : ProcessInfo.processInfo.arguments.contains("--mage-m3-reference") ? "m3" : "r1",
                      "effectsEnabled": !ProcessInfo.processInfo.arguments.contains("--mage-no-effects"),
                      "events": receipt.outcome.events.map { String(describing: $0) },"size": receipt.before.board.size])
         if rows.count > 64 { rows.removeFirst() }

@@ -1,0 +1,67 @@
+{
+  "schema": "tacticalgo-distribution-1025-v1",
+  "recordedAt": "2026-10-11T15:27:30.632888+00:00",
+  "archivePath": "artifacts/release-submission-1025/CrownTactics-1.0-1025-run03.xcarchive",
+  "archiveExitCode": 0,
+  "archiveLog": "archive-run03/archive-xcodebuild.log",
+  "exportExitCode": 0,
+  "exportLog": "export-1025.log",
+  "ipaPath": "artifacts/release-submission-1025/Export1025/TacticalGo.ipa",
+  "ipaSHA256": "ebdd072710f3e1ab7e10a8337e33ab863aefc5a75d591b8f57946c99b5d0d578",
+  "ipaBytes": 59960239,
+  "marketingVersion": "1.0",
+  "build": "1025",
+  "bundleIdentifier": "com.tacticalgo.prototype.herobody",
+  "platform": "iphoneos",
+  "exportedInfoMatchesArchive": true,
+  "localPreflight": {
+    "report": "archive-run03/ARCHIVE_PREFLIGHT.json",
+    "passed": 26,
+    "failed": 0,
+    "externalGatesStillRequired": true
+  },
+  "uploadAttempt": {
+    "exitCode": 70,
+    "log": "upload-1025.log",
+    "error": "Failed to Use Accounts",
+    "result": "BLOCKED_XCODE_ACCOUNT"
+  },
+  "uploaded": true,
+  "submittedForReview": true,
+  "publicAppReleased": false,
+  "earlierArchiveFailuresRetained": [
+    {
+      "attempt": "archive-run01",
+      "exitCode": 65,
+      "reason": "Global provisioning profile applied to Swift Package targets"
+    },
+    {
+      "attempt": "archive-run02",
+      "exitCode": 70,
+      "reason": "Explicit SYMROOT/OBJROOT incompatible with Xcode archive BuildProductsPath"
+    }
+  ],
+  "codeScope": "Build script and App Release target signing mapping only; no Swift runtime, Domain, AI, resources or gameplay edits",
+  "claimBoundary": "Official upload and App/IAP submission confirmed; waiting for Apple review; not approved, publicly released, production ad or Sandbox purchase validated.",
+  "uploadAttempts": [
+    {
+      "exitCode": 70,
+      "log": "upload-1025.log",
+      "error": "Failed to Use Accounts",
+      "result": "BLOCKED_XCODE_ACCOUNT"
+    },
+    {
+      "exitCode": 0,
+      "log": "upload-1025-02.log",
+      "result": "UPLOAD_SUCCEEDED",
+      "appleProcessingStarted": true,
+      "completedAtLocal": "2026-10-11 23:22:34",
+      "warnings": [
+        "GoogleMobileAds framework dSYM missing",
+        "UserMessagingPlatform framework dSYM missing"
+      ],
+      "warningsBlockUpload": false
+    }
+  ],
+  "submissionEvidence": "APP_REVIEW_SUBMITTED_1025.json"
+}

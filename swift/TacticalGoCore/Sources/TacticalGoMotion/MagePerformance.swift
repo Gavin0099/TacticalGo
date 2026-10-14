@@ -35,7 +35,7 @@ public struct MageTiming: Equatable, Sendable {
 
 /// Angles in degrees, offsets in the immutable 512px source-art coordinates.
 /// Shoulder and elbow transforms are nested; hand and staff share the same grip transform.
-public enum MageArtRevision: String, Sendable, CaseIterable { case m2, m3 }
+public enum MageArtRevision: String, Sendable, CaseIterable { case m2, m3, r1 }
 
 public struct MageBodyPose: Equatable, Sendable {
     public var torso = 0.0
@@ -82,6 +82,7 @@ public struct MageBodyPose: Equatable, Sendable {
         return mix(stable,.rest,(t-0.72)/0.28)
     }
     public static func cast(at time: Double, timing: MageTiming, reduced: Bool = false, revision: MageArtRevision = .m3) -> Self {
+        if revision == .r1 { return revisedCast(at: time, timing: timing, reduced: reduced) }
         if revision == .m2 { return m2Cast(at: time, timing: timing, reduced: reduced) }
         guard !reduced, time >= 0, time < timing.recoveryEnd else { return .rest }
         // More readable weight shift, not scaling/rotating the whole token.
@@ -104,6 +105,7 @@ public struct MageBodyPose: Equatable, Sendable {
         return pose
     }
     public static func summon(at time: Double, timing: MageTiming, reduced: Bool = false, revision: MageArtRevision = .m3) -> Self {
+        if revision == .r1 { return revisedSummon(at: time, timing: timing, reduced: reduced) }
         if revision == .m2 { return m2Summon(at: time, timing: timing, reduced: reduced) }
         guard !reduced, time >= 0, time < timing.summonEnd else { return .rest }
         let t = time / timing.summonEnd
@@ -113,6 +115,44 @@ public struct MageBodyPose: Equatable, Sendable {
         if t < 0.35 { return mix(approach,grounded,t/0.35) }
         if t < 0.70 { return mix(grounded,stable,(t-0.35)/0.35) }
         return mix(stable,.rest,(t-0.70)/0.30)
+    }
+
+    /// Preserve the release silhouette until the receipt's flight reaches the target.
+    /// The old M3 already started pulling back during this interval. R1 separates the
+    /// leading hand, committed release and follow-through without changing any cue time.
+    private static func revisedCast(at time: Double, timing: MageTiming, reduced: Bool) -> Self {
+        guard !reduced, time >= 0, time < timing.recoveryEnd else { return .rest }
+        let lead = Self(torso: 2, torsoX: 12, heldX: -4, torsoY: 4, shoulder: -3, elbow: -9, head: -1)
+        let coil = Self(torso: 4, torsoX: 34, heldX: -3, torsoY: 10, shoulder: -9, elbow: -5, head: -3, cape: -4)
+        let release = Self(torso: -5, torsoX: -44, heldX: -30, torsoY: -5, shoulder: 18, elbow: 5, head: 3, cape: 7)
+        let followThrough = Self(torso: -3, torsoX: -24, heldX: -17, shoulder: 12, elbow: 5, head: 2, cape: -6)
+        let bodyEnd = timing.recoveryEnd - 0.10
+        let keys: [(Double,Self)] = [(0,.rest),(timing.anticipationEnd * 0.60,lead),
+            (timing.anticipationEnd,coil),(timing.release,release),(timing.moveStart,release),
+            (timing.arrival,followThrough),(bodyEnd,.rest),(timing.recoveryEnd,.rest)]
+        func sample(_ t: Double) -> Self {
+            for i in 1..<keys.count where t <= keys[i].0 {
+                let a = keys[i-1], b = keys[i]
+                return mix(a.1,b.1,(t-a.0)/(b.0-a.0))
+            }
+            return .rest
+        }
+        var pose = sample(time)
+        pose.head = sample(max(0,time-0.07)).head
+        pose.cape = sample(max(0,time-0.09)).cape
+        return pose
+    }
+    private static func revisedSummon(at time: Double, timing: MageTiming, reduced: Bool) -> Self {
+        guard !reduced, time >= 0, time < timing.summonEnd else { return .rest }
+        let t = time / timing.summonEnd
+        let approach = Self(heldX: -10, shoulder: -8, elbow: -4, cape: -4, lift: -14, opacity: 0)
+        let grounded = Self(torso: 3, torsoX: 12, heldX: -18, torsoY: 14, shoulder: 10, elbow: 5, head: -2, cape: -6)
+        let planted = Self(torso: -1, torsoX: -8, heldX: -10, shoulder: 4, elbow: -2, head: 1, cape: 5)
+        let handStable = Self(head: 1, cape: 3)
+        if t < 0.35 { return mix(approach,grounded,t/0.35) }
+        if t < 0.65 { return mix(grounded,planted,(t-0.35)/0.30) }
+        if t < 0.82 { return mix(planted,handStable,(t-0.65)/0.17) }
+        return mix(handStable,.rest,(t-0.82)/0.18)
     }
 
 }

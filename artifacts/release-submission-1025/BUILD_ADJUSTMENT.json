@@ -1,0 +1,6 @@
+{
+  "stoppedOwnBuildPID": 42427,
+  "reason": "Re-run only arm64 Simulator and use explicit isolated build products/intermediates; no unrelated processes touched.",
+  "firstLog": "build-formal-simulator.log",
+  "firstRun": "INTERRUPTED_NOT_PASS"
+}

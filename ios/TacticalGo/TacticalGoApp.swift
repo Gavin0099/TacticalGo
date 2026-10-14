@@ -1,4 +1,5 @@
 import SwiftUI
+import TacticalGoContent
 @main struct TacticalGoApp: App {
     @State private var ready = false
     @State private var failed = false
@@ -13,7 +14,9 @@ import SwiftUI
         WindowGroup {
             Group {
                 #if DEBUG
-                if ProcessInfo.processInfo.arguments.contains("--hero-pose-review") { HeroPoseReview() }
+                if ProcessInfo.processInfo.arguments.contains("--advanced-challenges") { ChallengesView(campaign: .advanced) {} }
+                else if ProcessInfo.processInfo.arguments.contains("--intro-challenges") { ChallengesView {} }
+                else if ProcessInfo.processInfo.arguments.contains("--hero-pose-review") { HeroPoseReview() }
                 else if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
                 else { normalContent }
                 #else

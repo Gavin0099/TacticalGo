@@ -1,3 +1,59 @@
+## 2026-10-11 23:31 更新：1.0／1025 已送審，未公開
+
+正式 Xcode upload exit0；App 1.0（1025）與 NT$60 永久解鎖在同一 submission 正式提交，Apple 兩項均等待審查。Owner 已確認英雄原图自行生成，內容版權及出口合規完成。維持台灣免費下載＋前三場完整對局＋自願獎勵廣告／永久解鎖，審核後手動公開。沒有 runtime、規則、資料格式、聲音偏好或遊戲 repo merge 變更。256 個簽名來源輸入核對一致。
+
+下一階段：Apple 審查與正式交易／廣告／雙機 RC 實測；不宣稱公開、核准或 production 服務已可用。證據：`artifacts/release-submission-1025/APP_REVIEW_SUBMITTED_1025.json`、`REPORT.md`、`submitted-waiting-review-1025.jpg`。以下舊阻擋為歷史。
+
+---
+
+## 1.0／1025 正式封存與商店媒體里程碑
+
+審核電話已保存，Apple 隱私由 Owner 本人發布；Apple Distribution archive、26 項本機核對及 IPA export 全部成功。五張 1025 原生 Release Simulator 商店截圖已上傳並重載確認。此輪僅修改封存腳本及 App Release target 簽名範圍，未改 runtime／棋規／玩法；先前封存失敗和舊證據保留。
+
+上傳 exit70：Failed to Use Accounts，等待 Xcode 既有 Developer 帳戶登入／驗證；最早 B-v01 原圖來源亦待 Owner。正式 Sandbox／production UMP和廣告／最終真機RC未驗。繼續保持台灣首發、手動公開、原存局與穩定版本，未提交審查／merge／公開 App。證據：artifacts/release-submission-1025/BUILD_1025_DISTRIBUTION.json、STORE_SCREENSHOTS_SAVED_1025.json、MANUAL_UI_1025.json；以下為歷史。
+
+## 1.0／1025 配置驗證里程碑
+
+Release arm64 Simulator 已建置、配置核對及首頁啟動；正式簽名/交易/真機/上傳/送審未完成。Mac 鎖定及 Owner 的隱私發布確認、審核電話、英雄原始圖源為當前阻擋。保留 Apple 草稿、素材證據及手動發布，未 merge。詳見 artifacts/release-submission-1025/BUILD_1025_SIMULATOR.json 與 REPORT.md。
+
+## 上架準備最新進度（2026-10-11）
+
+Apple 商務有效、台灣免費下載與 NT$60 永久解鎖、公開政策及 UMP 訊息已備妥。內購審核圖已存 Apple；1.0/1025 正式配置及來源 hash 已準備。隱私發布法律確認、Apple 審核電話、英雄最早圖源待 Owner；正式 archive／外部 Sandbox／最終媒體／送審尚未完成。不以本機測試替代公開上架。
+
+## 2026-10-11 發行帳戶啟用里程碑
+
+Owner 明確確認上架；Apple付費協議／銀行已有效、三稅務完成。公開支援與政策匿名可達；免費App＋台灣TWD60非消耗解鎖＋台灣供應已保存。UMP訊息與內購審核圖已保存，隱私草稿／實際服務驗證／正式RC及審核聯絡仍需完成。保持手動發布、1023穩定真機與1024凍結來源；未上傳或送審。證據：`artifacts/release-submission-1025/REPORT.md`及`docs/release-01/account-release-evidence.json`。
+
+## 2026-10-11 21:11｜三份稅務完成，協議與銀行待處理
+
+Owner 回覆「都簽完了」後，實際 App Store Connect 商務表確認台灣、US Certificate 與 W-8BEN 均「已完成」；付費協議及銀行均「正在處理」，不再要求本人重填。Apple 提示銀行更新可能24小時後顯示；尚不能宣稱協議有效、收款或首版可發布。保存去識別化狀態於 artifacts/release-submission-1025/BUSINESS_TAX_COMPLETE.json，沒有保存表格答案或銀行資料。網站公開範圍、NT$60解鎖與台灣供應已重新提出兩項具體問題，仍待答覆；不假填正式URL或擅定商品地區。後續瀏覽器分頁被關閉／CDP連線逾時，沒有新增ASC表單儲存、build或送審。現有發行profile與已通過限定原生測試保留，不重跑或重複累計；遊戲未commit/push/merge/發布。
+
+## 2026-10-11 18:42｜AdMob App／獎勵廣告已建立
+
+已在登入的 AdMob UI 建立 iOS、尚未上架的「皇冠戰略」App，及自願觀看的獎勵廣告；重新開啟設定確認獎勵為 1 場對戰。公開識別已同步至帳戶證據及 Release.accounts-draft.xcconfig，沒有接到 Xcode 預設配置，也沒有修改或重建凍結1024包。AdMob帳戶驗證仍待完成，App需上架後連結商店並接受審查；建立單元不是可正式放送的證據。Apple商務重載後付費協議仍為「新」，頁面要求本人在簽署前更新法律實體。未調查或提交銀行／稅務、未接受契約。接續完成此遊戲policy/support與UMP、商品定價metadata、Sandbox、發行簽名／雙機及產品權利驗收；未上傳、送審或發布。實際證據見 artifacts/release-accounts-1024/ADMOB_APP_UNIT.json。
+
+## 2026-10-11 AdMob 付款診斷更新
+
+Owner 已完成 AdMob 註冊；首頁任務確認「付款資料設定完成，您的帳戶已就緒，可送交審核」。原紅色未完成提示在重新載入後消失。姓名／地址已有值，電話明確標為選填；身分驗證目前未要求。帳戶仍審核中，銀行／稅務未查，遊戲 App／rewarded unit／UMP 尚未建立；Apple 商務仍依前次未完成狀態，不能視為全部帳戶 Gate 通過。僅查看與重新載入，沒有填寫／儲存／提交收款資料。[診斷證據](../artifacts/release-accounts-1024/ADMOB_PAYMENT_DIAGNOSIS.json)。
+
+## 2026-10-11 帳戶接續：App 與永久解鎖草稿已建立
+
+Owner 已登入；已核對 Team P358EB3X9H 並登記既有真機 bundle com.tacticalgo.prototype.herobody。ASC「皇冠戰略」App ID 6821588889、SKU CROWNTACTICS-IOS-01；non-consumable com.tacticalgo.crowntactics.unlock（IAP ID 6821589396）及中文說明已建立。版本1.0草稿已核對手動發布、不要求遊戲登入；不是已上傳1.0 build。
+
+Apple 付費協議顯示「新」；法律實體／稅務銀行由 Owner 完成。AdMob 仍停註冊條款頁，未接受或建立帳戶。定價／地區、正式廣告IDs／UMP、公開頁面、Sandbox、簽名封存及產品／權利 Gate 未完成。本次只有帳戶草稿與交接文件，沒有程式、真機、commit／push／merge、上傳或發布。[實際帳戶紀錄](../artifacts/release-accounts-1024/REPORT.md)。
+
+以下1024工程證據與更早決策保留為歷史，不把「ASC待登入／商品尚未建立」當最新狀態。
+
+## 2026-10-11 最新進度：1024 商業接線候選
+
+Owner 核准持續做到可上架，免費額度前三場完整對局。1024 已實作獨立 ledger、StoreKit 2 永久解鎖／恢復、真正 Google rewarded／UMP 接線；舊付費下載與「無 SDK」盤點僅適用歷史 1023。
+
+教學／九個挑戰免費、舊局可續玩；不改棋规、AI、存局格式、已接受 UI 或聲音偏好。Release 排除未通過英文語音／3D model／研究入口，BGM／SFX 保留。不以 fake reward 或 paid 布林解鎖。新測試／限制見 [1024 報告](../artifacts/monetization-02/REPORT.md) 及 [方案](release-01/FREEMIUM_PLAN.md)。
+
+正式商品／AdMob IDs／遊戲公開 policy/support URLs 尚缺，Release 不回退 sample。ASC 待 Owner 登入；已核字樹花園公開 Email／Copyright，工程 Team 不等於契約就緒。Sandbox、distribution archive、雙機、產品與權利 Gate 未結案。沒有 commit／push／merge、TestFlight、送審或發布；不覆蓋既有 1023 真機。
+
+以下保留歷史；現行狀態以上段與 1024 報告為準。
+
 > 2026-10-10 Owner 最新回饋：三職細線／光圈 VFX「有點弱」，視覺不通過。依據 Vortex 有限多段粒子及 Pow 分層研究，製作更清楚的蓄能／方向傳遞／局部撞擊強化候選；不增加音樂、語音、規則或第二技能。唯一法師演出時間表調整，但總長仍950/760ms。研究及驗證：artifacts/ios/vfx-three-classes-01/research/DECISION.md；Native/Owner Gate 分開回報。
 
 # Tactical Go｜職業導向戰術原型 PLAN
@@ -464,3 +520,200 @@ Owner 授權主要 Agent 協調 Visual 只讀檢視及 SwiftUI 整合，隔離 c
 2026-10-10 Owner進一步決定：先續修戰士獨立本體動作及盾牌遮罩接縫；三職動作全部經Owner確認後才可進VFX。英雄語音仍未通過產品聽感／情緒表演，保留HOLD。本輪不做特效、語音或規則變動。
 
 ANIM-W1續修候選交付：codex/anim-warrior-body-02，單次蓄勢停拍／連續下擊／雙兵480ms同拍落定及原畫盾邊、完整握劍手遮罩；法師／盜賊本體保持。170 Swift、137 Golden快照、4原生Simulator測試與108狀態檢查通過；正常速度靜音完整棋盤與同局面對照見artifacts/ios/anim-warrior-body-02/REPORT.md。iPad Wi-Fi build1005安裝與OS啟動接受；真機UI認證取消、iPhone unavailable，實機驗收未通過。Owner氣勢／表演Pending；三職Owner確認前VFX未開始；英雄語音HOLD／關閉，情緒／人耳聽感／同步仍待核准。
+
+
+### 2026-10-10 SELL-01A｜原生對局質感樣板
+
+Owner 授權單一 SwiftUI 對局候選：桌面全畫面環境、HUD 與木棋盤分層、依選取／預覽切換操作重點、就地展開說明、iPad 側欄及較大字級上下排列。保持人物、現有 CozyBoard／投影／成功收據／三職動畫；不開 SELL-02、大廳、選角或結算改版，不改規則、Bot、存檔、聲音偏好。
+
+基線為 cozy-02-integration 的 codex/brand-01 HEAD 4986805 加未提交 iOS 差異及 AppIcon，不是假設 main 最新；157 個來源檔逐一驗證，原目錄保持不動。新隔離分支 codex/ui-sell-01a。Apple 官方遊戲布局指引、dickwu／AvdLee／twostraws 三份 Skill 只讀參考並鎖 commit，未安裝或執行第三方腳本。
+
+交付與實際證據見 artifacts/ui-sell-01a/REPORT.md、COMPARE.md。產品吸引力、真機觸控舒適度與完整輔助使用仍 Pending；Simulator 工程檢查不能代替 Owner 及真機驗收。未 commit／push／merge／發布。完成單一候選後停止。
+
+### 2026-10-10 SELL-01B｜對局美術方向草稿
+
+Owner 要求保留 SELL-01A 操作基底、先看同一七路局面的單一美術目標；將兩張原生一般／技能預覽圖片直接顯示於對話。使用既有素材與 Owner 的 Stormbound 圖作參考，內建 imagegen 產出暖木／深青桌布／羊皮紙操作台草稿及素材拆分清單，不新增 SwiftUI Skill 或改遊戲程式。
+
+草稿可供方向審閱，但生成圖未達精確格線／ground anchor 配準、人物仍有生成重畫偏差，不能直接整屏或裁切接入，也不能宣稱商業美術驗收通過。原生整合須沿用核准角色原像素、原 BoardProjection／命中與成功收據。等待 Owner 決定方向後才製作獨立素材及接線，不展開其他頁。
+
+詳 artifacts/ui-sell-01b/REPORT.md、COMPARE.md；SELL-01A 凍結交付及兩個程式檔 SHA 保持。本輪沒有新執行測試、安裝、commit／push／merge／發布。
+
+### 2026-10-10 SELL-01C｜原生對局美術完成度候選
+
+Owner 授權保留 SELL-01A 原生操作，將同一對局的底座、主將、戰鬥 HUD、確認層級及場景材質補強。隔離 codex/ui-sell-01c，從 4986805 加 SELL-01A 真實 iOS 差異／AppIcon 保存 158 檔基線。新增獨立桌面與透明木盤，不將生成整屏或人物接入；投影、命中、角色原像素、Domain／Bot／Motion／Records／音訊與存局保持。
+
+四狀態實際 Simulator 截圖及同局面前後比較，覆蓋 390、375、iPad 直向。375 首輪 footer 被擠出畫面，改短版標題與操作區後新測；控制項至少44pt，較大字級另用可捲動版。177 Swift、38 Golden／99 steps、6最終原生UI執行與unsigned Release通過；真機／商業美術／完整輔助使用與效能尚未驗收。詳 artifacts/ui-sell-01c/REPORT.md、COMPARE.md。完成單一對局候選後停止；不自動開SELL-02、大廳／選角／結算，不commit／push／merge／發布。
+
+
+### 2026-10-10 SELL-01C 限定修整（revision-01）
+
+Owner 已看原生媒體並接受保留方向，本輪只補預覽效果／費用摘要、四狀態底部留白、操作台紙張／小圖示及 iPad 橫向場景。摘要讀 Core 成功預覽的 resourcesSpent／推動／部署／提子事件，不用 state 差額推算費用；沒有更動 apply、棋盤投影、GameStore、音訊、人物、動畫、AI 或存局。修改前來源与媒體另凍結，歷史 REPORT／包保持。
+
+新執行 177 Swift 測試、38 Golden／99 steps、最終 7 次原生 UI 測試（390 四項／375 兩項／iPad 一項）與 unsigned Release 通過。375 首輪確認距底端僅11.15pt，補保留高度及共用行動鍵高度後，四狀態同為20.65pt；390四狀態同為50.15pt。取消／非法／重複確認／復原／背景／召喚與候選調度成本、較大字級／Reduced Motion及旋轉選取保留已驗。
+
+交付 artifacts/ui-sell-01c/revision-01/REPORT.md、COMPARE.md、原始完整 Simulator PNG及正常速度無聲影片。375正常視窗為375×667pt，320局部九路另標壓力模式；不拿 Simulator 或影片證明真機觸控／聲畫同步或美術核准。完成本次限定候選後停止；未安裝實機、commit／push／merge／TestFlight／發布，未開始下一Slice。
+
+### 2026-10-10 SELL-01C revision-01｜真機試玩交付 1011
+
+Owner 授權停止美術追加，安裝同一 revision-01 至 iPhone／iPad。33個凍結來源SHA及45檔ZIP保持；只新增限定媒體查證與签名／裝置證據，不宣稱新美術修正或新測試數。既有Simulator影片的確認文字只在轉場短暫疊合，13.8667秒後與14.3／14.8秒停定畫面清楚；可能涉及enabled隱式動畫，但未以A/B證明根因，保留候選供真機判斷。
+
+Release簽名建置／strict codesign通過；相同bundle com.tacticalgo.prototype.herobody、build1011，透過Wi-Fi更新iPhone16Pro（iOS27.0）與iPadmini6（iPadOS26.6.1）。兩機均已由OS接受正常啟動；iPad首次因Locked拒絕，Owner解鎖後重試成功。原iPhone5筆／iPad9筆棋局、進度與音訊偏好在更新前後逐檔雜湊核對，未卸載／重設，私人備份只存本機。仍待Owner完整對局、觸控、閱讀、聲音與產品體驗驗收；不開始下一Slice，不commit／push／merge／TestFlight／發布。詳 artifacts/ui-sell-01c/device-review-01/REPORT.md、evidence/delivery-summary.json及data-preservation.json；歷史177／38／7結果不重複累計。
+
+
+### 2026-10-11 SELL-03｜開頭與對戰風格接續
+
+Owner 在 build1011 真機回饋對戰畫面已改、開頭仍是舊版；本輪將既有SELL-01C桌面、紙張與按鈕帶入原生大廳，保留同一人物／規則／流程。有存局優先續玩，對戰設定可展開、黑白選角常駐、同一聲音設定入口，手機開始鍵與捲動內容分開，iPad橫向分欄。
+
+隔離 codex/ui-sell03-lobby，HEAD4986805加原候選未提交來源222檔逐檔保存；不以HEAD冒充完整候選revision。不修改原ui-sell-01c或主checkout。產品差異只在PlayableGameView；原GameStore、Swift Domain/Bot/Motion/Records、投影／命中、動畫與音檔保持。UI測試依新設定展開方式更新。
+
+最終7項聚焦原生測試通過：390大廳／續玩、對戰四狀態及白方人機；375設定／續玩及最大字級Reduced Motion教學；iPad直向流程及橫向開局。初次失敗保留：375設定可能落在固定開始鍵後方，改獨立上下區域；iPad測試在系統Home恢復縮放期間點擊，增加穩定畫面等待；最大字級測試改為小段捲動以避免越過目標。沒有重跑Domain或Golden，不重複累計177／38。正式美術／完整輔助使用／真機體驗未驗收。
+
+簽名Release build1012，iOS17與相同bundle保持。Wi-Fi裝置交付及存局／偏好對照以artifacts/ui-sell03-lobby/REPORT.md、evidence/data-preservation.json及各device JSON為準。未commit／push／merge／TestFlight／正式發布；完成本輪候選後等待Owner，不自動開其他頁改版。
+
+1012裝置交付補記：Owner解鎖iPad後，OS已接受正常啟動；兩機均可開啟新版。既有原局保留；快照間有新對局與續步，不能宣稱所有檔案逐位元一致。兩機BGM/SFX及靜音偏好一致；iPad語音開關快照間變動而本輪未覆寫，產品聽感仍未驗收。
+
+
+### 2026-10-11 SELL-03 revision-02／03｜封面保留，開局分步
+
+Owner肯定1013封面，但進入後仍選項太多；原revision-02保留歷史證據，未算產品通過。1014保留封面，先選電腦／本機雙人，再選英雄。單人只選自己的英雄可直接開始；雙人按黑方、白方兩步，前一步不建立棋局。黑白先後手／難度／棋盤／原版候選及可選電腦英雄移至原生設定sheet；技能说明預設收起，原選項語意與選擇保留。
+
+本輪222來源比較，產品僅PlayableGameView改動，另更新UITest；Core／Bot／GameStore／投影／音訊／素材不變。九個最終裝置／測試組合通過（390六、375一、iPad二），首輪harness失敗與後續修正保留，不累計重跑次數。沒有重跑歷史177 Swift／38 Golden；簽名Release1014及strict codesign通過，iOS17保持。
+
+Wi-Fi更新相同bundle至iPhone／iPad，兩機驗到1014；iPhone正常啟動，iPad因Locked尚未自動啟動。原iPhone8／iPad16紀錄完整相同保留，手機快照間新增1局。聲音偏好沒有程式修改／reset，iPad偏好copy逾時，完整比對未能取得。Owner否決既有Piper TTS演技，語音仍HOLD，沒有新配音，表演需求見revision-02/VOICE_REVIEW.md。
+
+詳artifacts/ui-sell03-lobby/revision-03/REPORT.md、COMPARE.md、evidence/test-executions.json、delivery-summary.json及data-preservation.json；完整原生Simulator圖與正常速度無聲操作影片保留，不能替代真機觸控／聽感／產品驗收。完成分步候選後停止，不擴其他頁或新研究，不commit／push／merge／TestFlight／發布；main及原美術worktree保持。revision-02磁碟滿事故及失敗錄影明記，清理只限可重建暫存，初期結果逐檔SHA驗證封存。
+
+### 2026-10-11 自主五項 Slice｜隔離工程候選
+
+Owner授權台北01:08:14–11:08:14自主推進附件五份合約；可逆問題自行處理、待決事項留到窗口結束。主線及實際1014來源保持原狀。工作於 `codex/autonomous-slices-1011`，基底4986805加實際1014未提交來源；PR5／6必要來源逐檔匯入，兩PR仍未合併。
+
+| Slice | 本輪交付／狀態 | 仍需獨立驗收 |
+|---|---|---|
+| BOT-P2 | 單一opt-in強制續攻候選、40／55完整歷史、六場Release對局；實際決策未改善，改善Gate HOLD，預設baseline不變 | 真實安全進度、整體真機成本、Owner完整兩局 |
+| CONTENT-03 | 原版三關、多回合棋形反制、12條獨立Core分支、新舊章／正式存局隔離、三職與iPad原生影片 | 不看提示的策略取捨、Owner與另兩名玩家、實機觸控 |
+| ANIM-01R | 既有法師分層姿勢／收勢精修；同收據、同時鐘M3／R1影片、32／48／64樣本及原生生命週期 | 小尺寸演技、固定portrait的方向限制、Owner與真機觀看 |
+| BOSS-00 | 五份文件、成對回合與四個紙上例；沒有Boss程式或美術 | Owner選定效果及另授權BOSS-01 |
+| 3D-00 | 五份身份／來源／視角／路線／Gate文件；沒有Mesh或模型製作 | 1254master缺口、身份／側背面規格與另授權3D-01 |
+
+本輪206 Swift零失敗、重新C#/Swift38組／99步／137快照一致、離線實驗9項通過；原生證據按各實際執行列出，不累加重跑次數。未簽名Release候選1015保持iOS17、實際1014交付的bundle `com.tacticalgo.prototype.herobody` 與0.10.11版本族；未安裝真機。第一個通用未簽名建置僅作編譯證據，不當作1014設備升級包。
+
+來源、scope稽核、日誌、影片與Gate見 `docs/autonomous-1011/`、`artifacts/autonomous-1011/`。不改Core棋規、聲音／語音素材及偏好、正式存檔或原版預設；不commit/push/merge/發布。完成已授權候選後凍結範圍，在窗口截止後統一交付待驗收事項，不追加新Slice。
+
+### 2026-10-11 窗口後｜既有合約缺口續行（不新增 Slice）
+
+原十小時窗口與封存包保持凍結。本輪只補既有合約缺口及已授權手機更新，新證據另列，不改寫原窗口結果。
+
+- CONTENT-03：第一關增加 E6、D7 貌似救援、遭合法 C7、E5 反制後未达六氣目標的分支；Core 沒有虛構主將死亡。同起手 E6、F6 替代路線可完成。三關現在十三條可重播路線，舊十二條分支保持。
+- ANIM-01R：直接勝利收據發現 HUD 過早呈現結果，只延後演出層終局資訊，不改 Core 判勝或扣費。SE、390 iPhone、iPad 各十六情境，共三十二支援版面及十六手機旋轉後直向穩定性檢查；手機橫向未開放，不宣稱已通過橫向版面。
+- BOT-P2：正式 Rogue／Mage 四十三手來源 baseline Pass→候選 G7，三十五完整敵方回應均有安全實際提兵見證；敵方 Pass 後下一 planner 真正走 G5、F6 提 G6。可關閉 material 候選放在對戰選單 AI 研究；正式預設、簡單難度與存檔格式不變。40 防守 Pass 及 55 未判定保留，六場新 policy 對照仍和局，不宣稱全部停滯修好。本機候選成本增加，真機成本及 Owner 接受 Pending。
+- 本輪完整 Swift Package 212 項零失敗；fresh Swift Golden 38 組、99 步。C# 137 快照比較是較早固定來源結果，不當成此次新執行。新候選五個不同原生生命週期方法通過，十一張照片、四份收據中僅一份是候選 G7，其餘為人類測試落子。限定工程正例可檢查；成本中位 +452.32% 超過規劃 25%，Owner 接受／真機效能與真人趣味仍 Pending。
+- 手機同屏修正保留 44 pt 按鈕；正常字級棋盤與控制同屏，大輔助字級保留可捲動替代。已簽名 Release 1017 並同 bundle 更新 iPhone，裝置確認 1017；二十三個既有資料檔案及六項聲音偏好保持。正常啟動因螢幕 Locked 被 OS 拒絕，Owner 解鎖後再確認；不以安裝成功宣稱實機操作或音訊驗收。
+
+詳 `artifacts/autonomous-1011/CONTINUATION_07.md`。BOSS-00／3D-00 仍純文件，沒有紅龍或新 Mesh。身份、演技、完整對局趣味及聽感待 Owner；未 commit、push、merge、TestFlight 或發布。
+
+1017 交付後 Owner 直接回覆「確認過畫面已經正常」。保留先前 Locked 自動啟動收據，另記手機正常畫面確認；不將其當作完整對局、AI 成本／平衡或語音驗收。Source v1 封存包凍結在此回饋前，程式無變更。
+
+Owner 隨後確認已實際玩過、操作順手，記為 1017 真機操作正面回饋；沒有將未指定的模式／職業／整局覆蓋推論成全面驗收。此輪只整理十一小時改動說明，無新程式或遊戲測試。
+
+### 2026-10-11｜1017 後驗收優先
+
+Owner提出先PLAYTEST-03、再BOSS-01最小原型，聲音小幅品質改善、BOT-P3根因分析與暫緩3D量產。已核對並保留1017封存來源，補上三關真人記錄表；目前順手回饋只對實際操作，不將它代簽三關取捨、AI或聲音。
+
+BOSS-00既有推薦是三格暫時限制落子，與「推動／直接清除」龍息不同；已整理BOSS01_PREFLIGHT_1017並提出效果選擇問題。待龍息效果與三關回饋，不先寫未知結算或修改自由對戰。新方向、依賴與回復基線見 `docs/autonomous-1011/NEXT_1017_PLAYTEST.md`。本輪只文件／核對，不重跑遊戲測試、改聲音偏好、開新模型或合併發布。
+
+### 2026-10-11｜1018 挑戰入口與現行棋子呈現修正
+
+Owner 回覆尚未試三關，並指出三關選不到、六關仍呈現舊版。已在實際首頁路由重現首次選進階卻開入門；對局選單確實沒有先前文件說的挑戰入口。採單一 chapter item 的原生 cover 路由，補對局共用入口及選關頁兩章切換；進入／退出只暫停或恢復既有對局工作，不另建原局。新舊章仍以既有獨立 Repository 保存，原版規則維持。
+
+挑戰的 CozyBoard 啟用現行商業棋盤／底座，同 8:9 容器與投影，保留既有兵卒、B-v02 三職身份及演出。對照凍結 1017 的 236 個來源／資源，僅三個 UI 檔與一個 UI 測試改動；Core／Bot／資料格式／音檔與圖片未變。原生 6 方法、10 設備方法組合零失敗（390 五、SE 二、iPad 三含橫向），含舊 Bot 決策真正晚到而作廢，本輪 Content 34 項零失敗、Swift Golden 38／99；不累計歷史完整測試。
+
+簽名 1018 同 bundle Wi-Fi 更新兩機；iPhone 原 1017、iPad 實際原 1014。各 25 既有資料檔案與 6 聲音偏好更新前後相同。iPhone 正常啟動，iPad 自動 launch 因 Locked 待 Owner 解鎖；安裝不當作完整真機挑戰／趣味驗收。見 `artifacts/challenge-fix-1018/REPORT.md`、`RESULTS.json`、`SOURCE.json`；未 commit／push／merge／發布。
+
+另保留 Owner 龍息選擇「直接清除線上棋子，另定提子與勝負規則」；新的原子清除、單／雙主將勝負與 Ko 候選只寫文件，不改寫 BOSS-00 歷史 OPEN 決策表或開始 Boss runtime。先讓三關可試，趣味回饋仍待 Owner。
+
+### 2026-10-11｜RELEASE-01 首版內容凍結與上架收尾盤點
+
+Owner 提出以現有內容準備首版，停止擴充玩法；保留既有好玩／操作順手回饋，補陌生玩家、完整對局、三進階關與雙機一致候選的驗收，不把1018升格可發布。紅龍實作、新英雄／第二技能／章節、3D與大型AI改寫移出首版範圍，歷史文件保留。仍不替候選技能或研究AI作正式採納。
+
+本輪同隔離分支唯讀核對實際1018：236檔來源與前輪SOURCE零差異，既有已簽名App執行檔SHA相同；另存282檔來源／Golden／必要比較腳本與歷史證據ZIP，逐檔雜湊／ZIP完整性通過，沒有原局、偏好或簽名App。遠端main唯讀核到cdab133，候選分支尚未上傳；未用Git HEAD代表所有未提交來源。
+
+具體收尾缺口：首頁主要入口仍只有開始／續玩、教學與棋譜，兩章挑戰藏在齒輪／對局選單；1018 App無PrivacyInfo.xcprivacy，但App使用UserDefaults／AppStorage及systemUptime；未找到政策／支援連結；音樂／圖像／動畫／語音及舊包內模型有candidate／pending紀錄。實際Release使用開發profile（get-task-allow=true，兩台設備），不是distribution archive。靜態59檔查詢未發現網路／追蹤關鍵字，不能因此替Owner宣告零收集或商用权利通过。
+
+交付 `docs/release-01/` 的固定收尾合約、六局三職黑白抽測／雙機／新人表、隱私與權利缺口、商店文案和截圖草稿；盤點 `artifacts/release-01/PREFLIGHT.json`、来源ZIP／SNAPSHOT。建議首頁直接教學／挑戰、首版隔離研究入口與未接受語音，均未在本輪實作或視為已批准移除；舊候選存局兼容仍要保留。開發者、支援URL／Email與價格已提出單一缺少資料問題，未填假資料。
+
+本輪僅文件／本機封存與盤點，不修改UI／Core／Bot／資源／存檔或偏好，不建置／安裝新版本、不跑新遊戲測試，不重複累計1018或更早數字。未commit／push／merge／TestFlight／送審／發布。R1內容可發現性及正式RC尚未開始；iPad解鎖／真人試玩與權利仍待確認，工程收尾与正式发布各自驗收。
+
+### 2026-10-11｜RELEASE-01 R1候選1019與R2工程補測
+
+Owner核准繼續首版收尾。保留封面，首頁直接開始對戰／新手入門／戰術挑戰，續玩保持優先，存局與棋譜收進既有工具選單。使用現行單一章節路由，兩章皆可達；不修改規則、AI、技能、資源、存檔、聲音偏好或新增內容。
+
+新增PrivacyInfo.xcprivacy與Resources接線；UserDefaults自身偏好CA92.1、systemUptime事件間隔與timer35F9.1已核對Apple原文與實際用途。沒有政策URL／商用权利／ASC申報完成宣稱；維持iOS17最低版本。
+
+新執行212項Swift、38組Golden／99步／137完整狀態，9次原生UI（8不同method，390／375較大字級／iPad直橫；包含兩章九關入口、續局／棋譜／偏好，以及三進階關完成）通過。Golden首次系統.NET8與一次SDK路徑錯誤保留失敗紀錄；改用已存在9.0.318重新匯出比對通過，未改fixture／reference target或安裝SDK。
+
+237來源／資源／測試輸入鎖定；相對1018僅兩個shipping檔、兩個UI測試及新增plist。1019／0.10.11／相同bundle開發簽名建置、隱私資源hash、嚴格codesign通過，證據artifacts/release-01/r1-native/。不是distribution archive，未commit／push／merge／TestFlight／送審／發布。
+
+iPhone經Wi-Fi已更新1019，安裝前後26舊資料檔、6聲音偏好相同；因Locked未正常啟動，解鎖／完整操作仍待。整個Library的SplashBoard快照不可讀，改為只備份App自己的資料與偏好後驗證；原始資料只留/private/tmp。iPad本輪info逾時，未更新，保持其1018不冒稱新安裝。
+
+六場原版baseline Bot對Bot從正式開局合法結束、完整state重播一致；簡單三場13回合獲勝，標準三場100回合和局，各61純等待／58最長連續。這是新測仍停滯的風險，不推論整體和局率或人機樂趣，不新增Pass懲罰／規則。本輪只作R2工程補測，真人三關、完整局、新人、雙機／聲畫、公開資料與權利仍待驗收；下片只修阻擋項，不重開美術／Boss／3D／大AI工程。
+
+
+## 2026-10-11 Owner 決策：新版技能直接用於新對局（1020）
+
+Owner 明確要求「技能規則改成新版，設定那邊不用選擇」。此決策取代先前 R3 不升格新局預設的限制：新 iOS 自由對戰／本機雙人／人機對戰採用既有 `RecordRules.redeployment`，戰士沿施放前相連棋群築壘、法師保留一格推動並可調度己兵，盜賊換位不變；費用、AP、結算、Ko 與 AI 邏輯不變。移除新局技能規則 Picker，說明依實際 config。
+
+舊存局保留 rules／id／歷史；從舊局重新開始仍沿用其 rules，首頁新開或終局再玩使用新版。旧局可另建新版續玩副本。固定六關／三關仍使用已標示的原版規則，未在本輪擴充關卡、未宣稱新版已通過全職業平衡驗收。
+
+1020 使用原隔離 worktree；1019 凍結包與證據不改寫。新來源、驗證及裝置結果在 `artifacts/release-01/skills-default-1020/`。iPad 安裝先備份 App 自有存局與六項聲音偏好，再以同 bundle 更新；正式發布、合併及權利驗收仍待另行核准。
+
+## 2026-10-11 UI 結算候選1021：保留場景，操作隨對局階段改變
+
+Owner 回報目前 UI 還可以更符合遊戲 App 風格，附上終局仍保留失效戰鬥表單的實機截圖。本輪僅修對局／結算：終局集中勝負、提將原因與勝方既有角色，主要入口再玩一局，次層棋譜與復原；收起終局 AP、行動方底線、重複結果橫條與技能表單。沿用 presentedResult 等成功動畫結束，不提前替換演出。另發現終局仍可點盤產生選取／非法預覽，僅 UI callback 和格點清單限制終局只讀，仍可閱讀棋子。
+
+以完整1020來源凍結為基線，比對237項輸入僅兩個UI shipping檔與一個UITest檔不同；Domain、AI、資源、動畫、素材、聲音、存檔輸入 hash 不變。保留三檔原始副本與 scoped patch。新來源／畫面／建置在 artifacts/ui-result-1021/，未commit、push、merge、發布或裝到實體裝置。
+
+首輪390模擬器五項執行：四PASS；法師終局附件helper直接讀已隱藏AP而FAIL，已修先檢查存在再讀值，保留失敗證據。加入終局只讀及棋譜前後D2／D3核對後重跑受Mac鎖定／系統idle等待阻擋，保留中斷收據，不宣稱最終原生回歸通過。最終來源1021未簽名iOS Release建置PASS、iOS17與隱私資源維持一致。小手機、iPad橫向／大字級、最終只讀行為及真機驗收Pending；解鎖後只補有限測試與正常速度錄影，不擴大廳／選角／新風格。
+
+
+### 2026-10-11｜Owner 核准 1021 雙機更新
+
+Owner「好，幫我更新」授權將結算候選安裝 iPhone／iPad，仍無 merge／發布授權。最終 UI 生產檔不再改動；UITest 因 Lazy Grid 的 D3 尚未實現而補捲動，保留盤面結果與終局只讀斷言，focused retry 通過。390 六不同方法滿足，375 三、iPad 一方法含橫向／accessibility XXXL，共十次成功設備方法執行、七不同方法；本輪390一failed、歷史FAIL與鎖定INTERRUPTED完整保留。沒有重跑或重複累計先前212 Swift／38 Golden。
+
+237 輸入比对仍只有兩UI與一UITest差異；開發簽名Release1021、iOS17／bundle／隱私hash／profile未過期及兩設備／team檢查通過。iPhone原1019、iPad原1020均Wi-Fi同bundle覆蓋更新至1021；各27舊資料檔以及六聲音偏好欄位含缺省狀態一致，原始資料只留/private/tmp。兩台自動啟動均遭OS Locked拒絕，已提出單一雙機解鎖問題；正常啟動與啟動後比對待Owner。
+
+新證據 artifacts/ui-result-1021/install/REPORT.md、RESULTS.json 與上層VALIDATION.json；本輪完整原生Simulator照片已匯出，沒有新增真機影片或聲畫同步證據。保留1020與所有原工作；不commit／push／merge／TestFlight／發布，不開始新Slice。
+
+
+## 2026-10-11｜1022 棋盤主導畫面與 Owner 實機回饋
+
+Owner 要求字更少、板面比例更高。1022 保留單一回合標題／AP／能量／氣數，把重複規則與操作說明收進44pt資訊入口，空閒下方只保留行動／確認。390板面由374×420.75增為390×439（面積+8.8%），短手機idle曾增大但預覽會縮小／移動，Owner兩張實機照片指出此問題。1022兩台Wi-Fi已裝，iPhone正常啟動，iPadLocked；1022原證據保留，不改成已修正。
+
+## 2026-10-11｜1023 選取／取消棋盤固定與付費首版文件
+
+選取文字造成控制區增高，MatchViewportLayout再置中／縮板；固定38pt隨字級摘要槽，效果／費用／結果或非法原因共用。行動圖示與名稱一行、費用一行，法師操作列保留槽。XXXL還抓到模式兩行與方向一行列高差、板面移動1.67pt，改兩種按鍵共用可縮放高度並clamp最小44pt，XXXL／XS重驗。只修正常手機呈現，iPad既有label、renderer、投影／命中、Domain、AI、技能、素材、音訊與存檔相較1022输入hash不變。
+
+237凍結輸入仅UI View與UITest兩檔不同；本機可恢复来源ZIP239項通过hash與CRC，不是Git提交。最終來源390兩／375兩／iPad旋轉一方法，5成功0失敗；此前各階段合計17成功、1真實字級失敗已保留與修正。無效Simulator destination於測試前中斷；一次iPhone啟動CLI參數順序在啟動前遭拒，改正後成功，不重新安裝。沒有重跑或重複累計212Swift／38Golden。
+
+開發簽名Release1023／version0.10.11／同bundle／iOS17／237source／PrivacyInfo／profile兩機檢查通過。Wi-Fi更新兩台，iPhone正常啟動，更新及啟動後30舊檔與六聲音偏好保持；iPad27舊檔與六偏好保持但啟動Locked，正常啟動待解鎖。390各正常狀態板面390×439，375固定328×369.5（比1021面積+40.5%），不再以1022idle+75%宣稱所有狀態。
+
+買斷方案已定：1.0付費下載、台灣目標NT$60、無廣告／訂閱／內購，TestFlight作免費測試。完成本機計畫／商店草稿／權利與隱私清單更新，4文件11相對連結核對；未存取AppStoreConnect、接受契約、設定價格、邀請、上傳、送審。Owner的好玩／順手回饋保留，1023實機選取／取消、完整局、新人、聲畫、語音與素材權利未冒稱通過。
+
+證據 artifacts/ui-board-focus-1023/REPORT.md／VALIDATION.json／GEOMETRY_COMPARE.json／install/RESULTS.json／paid-doc-validation-final.json。原1022與所有隔離成果保留；未commit、push、merge、TestFlight或發布。下一步僅Owner實機選取／取消驗收與固定首版收尾，不再加玩法或大美術。
+## 2026-10-11 19:20｜送審草稿、免費價格及支援頁準備
+
+ASC 1.0 已儲存繁體中文介紹、關鍵字、副標題「英雄棋盤對戰，兩步安排攻守」、遊戲／策略遊戲／桌上遊戲分類及免費下載價格。年齡問卷依實際廣告、奇幻戰鬥、武器與競賽填寫，Apple 計算一般 13+；地區差異另記。仍採手動發布，沒有上傳 build 或提交審核。
+
+Owner 已簽付費協議，但目前實際頁面為「使用者資訊待完成」，兩份問卷仍「缺少稅務資訊」。已交本人商務頁連結；不填寫、推測或保存稅務／銀行答案。永久解鎖 NT$60 與台灣首發仍待 Owner 明確決定。
+
+皇冠戰略專屬支援、隱私政策及 app-ads.txt 已以独立 Sites 專案部署為私人候選，來源提交 49b8703；公開存取待 Owner 授權，尚不能填入正式 App 或 AdMob。這不是遊戲 repo 的 commit／push，1024 凍結包保持不變。新原生截圖及限定回歸另存 artifacts/release-submission-1025/，1025 只是送審準備目錄，不代表已有 1025 App。
+
+首次手機擷取四方法為三通過、一失敗：iOS 26 的 SwiftUI 離場 alert 將同一動作呈現為巢狀同名按鈕，XCTest 全域 selector 不唯一。僅將測試限於具名 alert 並取 firstMatch；不修改正式離場流程、棋規或偏好。新執行結果另記，不把原失敗抹去。正式商品 metadata、UMP、隱私申報、權利確認、Sandbox、發行封存及雙機產品驗收仍待完成。
+## 2026-10-11｜本人稅務回覆後的送審續辦
+
+Owner 表示填寫完成後已重新核對 Apple 商務：台灣稅務「已完成」，銀行「正在處理」，美國 Certificate 與 W-8BEN 仍「缺少稅務資訊」，付費協議仍未生效。已打開美國聲明供本人填寫；Agent 不代填或提交財務／稅務答案。支援網站公開、永久解鎖 NT$60 與首發地區的先前問題仍待具體回覆。
+
+已建立並下載「Crown Strategy App Store 20261011」發行 profile，沿用現有 Distribution 憑證，核對相同 Bundle ID、get-task-allow=false、無裝置名單及憑證指紋後安裝至本機。正式設定仍為 draft，公開 URLs、商品／UMP／帳戶 Gate 未通過，沒有封存或上傳。ASC 已儲存關閉 Mac／Vision Pro 供應，首版限現行 iPhone／iPad 範圍；不改免費下載價格或自行設定國家供應。
+
+首頁限定回歸已完成：第一次重跑選錯測試類別、實際零測試，不計通過；接著一次真實執行仍失敗，查明前次 selector 修正在另一個 legacy-resume 方法。已還原該處並只修實際失敗的首頁方法，重新建置成功；03執行1方法PASS／0FAIL、exit0，保留存局／偏好／續玩斷言。iPad Pro 13 M4／iOS18橫向兩章與棋盤／控制項方法亦1PASS／0FAIL、exit0。正式 runtime、Domain、AI、資源及存檔不變。原失敗／零測試日誌保留，最新結果追加至 `artifacts/release-submission-1025/`，不覆寫1024凍結包。
+
+五張未修改原生候選圖已準備，均來自1024 Debug Simulator，不冒充最後1.0真機。iPad原生PNG為2064×2752、EXIF orientation8，呈現2752×2064橫向；保留原檔與此差異，正式RC上傳時再核。profile補齊後pre-archive仍因公開URL、IAP／UMP與本人帳戶Gate拒絕執行，沒有以輸入草稿繞過封存限制。

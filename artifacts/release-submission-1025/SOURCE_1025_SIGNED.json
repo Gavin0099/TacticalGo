@@ -1,0 +1,1054 @@
+{
+  "schema": "tacticalgo-signed-source-1025-v1",
+  "recordedAt": "2026-10-11T15:10:23.880285+00:00",
+  "head": "4986805316ee99576d9f4b933eec6e557134027e",
+  "branch": "codex/autonomous-slices-1011",
+  "uncommitted": true,
+  "parentManifest": "SOURCE_1025.json",
+  "marketingVersion": "1.0",
+  "build": "1025",
+  "files": [
+    {
+      "path": "ios/TacticalGo.xcodeproj/project.pbxproj",
+      "sha256": "48e53c1c8410b48b7a7d08b077773f25ac438afb33502e1c485986d9c2805877"
+    },
+    {
+      "path": "ios/TacticalGo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "sha256": "3c62d130b9aa5765646d5e323f1a560b96765d9143506e3c017574f8cf818300"
+    },
+    {
+      "path": "ios/TacticalGo.xcodeproj/xcshareddata/xcschemes/TacticalGo.xcscheme",
+      "sha256": "42bd2c0d0ce75c51b0ac86481deec9511c06fa2a0f5f7b55dd57f9eb7c8237c3"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-000.png",
+      "sha256": "a2fc83e0d9e54bb8e50830d35fdd1cdf600422be833b6b66fe2cdffff5c3e264"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-001.png",
+      "sha256": "eb53357eff751c60df6f19d0d90d13586a09db4fce24fa68d3301f5eccda284d"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-002.png",
+      "sha256": "845ee2f9d4d8258d123e767362273516bedfa24a512b344b7234a8c78c1546ca"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-003.png",
+      "sha256": "af89879a72739e746f2b34cad012e37aafeed195a8261aab35f06464cea7ee7d"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-004.png",
+      "sha256": "4ecd1a87045f883af2fc766826b9c158fe9b144213110c2d9ac53023164d43b5"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-005.png",
+      "sha256": "74a85fcc28a077c2da277ea9359e566b4fd23b4ac364259521548a9d8da75fa3"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-006.png",
+      "sha256": "4ba902e84a089b40b54fc5b7ecafba1158cb02d0abc256be138fa408b6b0ec3e"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-007.png",
+      "sha256": "f91e722ab49ad6db4d8a7fe58684317e59a7b94f50db265a44bc3e63295c3e69"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-capture-008.png",
+      "sha256": "98d0691f08882e77561524e73b76dc1003bc6868aa4371c4844a6e2182e520b8"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-cast-000.png",
+      "sha256": "4250fee72396ff48c32d33863a8ed63a0becdfd0524fe2304da9275518363996"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-cast-001.png",
+      "sha256": "e9d141a6cb8ad3e265b7529582c931425172ad0d35e8006e29826ece5985cae8"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-cast-002.png",
+      "sha256": "5c1d24bb6c9afc62884f269d875d4a2460eed248ba9591ce5acab6bb581d4d33"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-cast-003.png",
+      "sha256": "60ea21662e1f0af233f288ed3fd3e8710d7691ec114e80892299964e163cf91e"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-landing-000.png",
+      "sha256": "c2b201c8d68ea52cda6bf0242531bec4966eafc1f41d1d2230e233ff83d171c8"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-landing-001.png",
+      "sha256": "8fa96d5d5cef0ab372a54ecac320c9920996b5f21367b965eeda554b02f5a542"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-landing-002.png",
+      "sha256": "7b6416391a13fb99c65fca867e9cffb043dfffff077bdfe3b5c029b8669ee0a3"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-landing-003.png",
+      "sha256": "7d77672541f14115bbccdfd883e93a83eff769bef3667cfeedeab53241af1108"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-landing-004.png",
+      "sha256": "8e356e4bb80c310a30269b8d3ffef4f868f32e988efbed83c429edb0ea80eebd"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-000.png",
+      "sha256": "b50007887c0625b43c4cf19b45f54bf5ef3495758e56024ec59ea9b63d532190"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-001.png",
+      "sha256": "d5099e309be5b618feaf723fc02841f43d7baa2dfec33fd41beef21a2ba502a2"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-002.png",
+      "sha256": "684c9c540d5acf2a374ea7e3bbd5acf2fce5104c2881956b746213d906a567dd"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-003.png",
+      "sha256": "5a63c66daba00472c41f5d3123739fb62c4a0053f45a8a818078d2a44d2f59b3"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-004.png",
+      "sha256": "391843b47a4fee47ec1eae32b756afb42c8141aff7d90101f406e51179bb2d42"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-005.png",
+      "sha256": "545d9fd6925a8c732aa6615ab5c6a597bd0d825f1d7f1fa4333c0ef02e6f081e"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-006.png",
+      "sha256": "391843b47a4fee47ec1eae32b756afb42c8141aff7d90101f406e51179bb2d42"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-007.png",
+      "sha256": "5a63c66daba00472c41f5d3123739fb62c4a0053f45a8a818078d2a44d2f59b3"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-008.png",
+      "sha256": "684c9c540d5acf2a374ea7e3bbd5acf2fce5104c2881956b746213d906a567dd"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-009.png",
+      "sha256": "d5099e309be5b618feaf723fc02841f43d7baa2dfec33fd41beef21a2ba502a2"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-fx-push-010.png",
+      "sha256": "b50007887c0625b43c4cf19b45f54bf5ef3495758e56024ec59ea9b63d532190"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-manifest.json",
+      "sha256": "aba34f80bdab822edcc1b7d5d8e3ee4a195427226af179606490b4a32f75ae6b"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-portrait-mage.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-soldier-black.png",
+      "sha256": "81eaa98bd3d254a87135daecc85db5741b0ac81d733a56e729a846a53201807d"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-soldier-white.png",
+      "sha256": "a13da615b970da280bfe9757f229a1cdd09bff2926964a289e3e9f546bd188d1"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01/anim01-token-mage.png",
+      "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd"
+    },
+    {
+      "path": "ios/TacticalGo/Anim01Assets.swift",
+      "sha256": "d3a60cfb7a28b9236ed7868f78906c9bab4060c7a0cfec3d6b0dade0707c1a4f"
+    },
+    {
+      "path": "ios/TacticalGo/AnimationGallery.swift",
+      "sha256": "929342015d30378a39626e692119863fe279ecfe314b3a5960d6d8fbd769bc48"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "b5e00f18ade75c0529ac65e60a8fb8355dd92c5a314768389f9b1c3c862e5497"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "852920cb36e95beb53771138a4b8195a16fcce1cc31250632f246081cc638f9a"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/Contents.json",
+      "sha256": "10e3b5dc202f1cd9fad1f688c8fc9fe9e9669bf3f8295e67d216b10fd99b6f49"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-mage.imageset/Contents.json",
+      "sha256": "6043f7e32a1c38af800ebcbac5b2d78a51583d8d2c334a8f635b09c01d3bf5d8"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-mage.imageset/reference.png",
+      "sha256": "fa6dca952fe6029550e53cb9c04ef7ae6eb33249c69331fec772ddeb4594bacd"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-rogue.imageset/Contents.json",
+      "sha256": "6043f7e32a1c38af800ebcbac5b2d78a51583d8d2c334a8f635b09c01d3bf5d8"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-rogue.imageset/reference.png",
+      "sha256": "64f795e866d6a13ec39b60252cef941274829c5e4912e1a1610c080ca6e5e814"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-warrior.imageset/Contents.json",
+      "sha256": "6043f7e32a1c38af800ebcbac5b2d78a51583d8d2c334a8f635b09c01d3bf5d8"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/identity-reference-warrior.imageset/reference.png",
+      "sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/mage-3d.imageset/Contents.json",
+      "sha256": "4c5b70f05e4fe65d5929b2d23f0e462efdfd84cb3dd23745b6d2e8859729ee3f"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/mage-3d.imageset/portrait.png",
+      "sha256": "b8ea99174d9c4f30f467a77d13d9795fa9fbd5e100c5fffad2ba9904d1af2002"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/mage.imageset/Contents.json",
+      "sha256": "ce8e62be2799886ff11a434790f0230c4f44b106b95c25e49fb6a7d808845fd3"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/mage.imageset/portrait.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-mage.imageset/Contents.json",
+      "sha256": "4ac2a1e2c63263729115bc4b67df9b269911f33c253654ea44afbc548dc1d545"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-mage.imageset/miniature.png",
+      "sha256": "16422bf06a05b4c27e4b6dc38d6aee32ef70720566cd2ba04b5e6a0861181f01"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-rogue.imageset/Contents.json",
+      "sha256": "4ac2a1e2c63263729115bc4b67df9b269911f33c253654ea44afbc548dc1d545"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-rogue.imageset/miniature.png",
+      "sha256": "3dbb54998a0288168be45eb006c4d0fa4ced51c027d420c4f9cef17abe3afe3f"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-warrior.imageset/Contents.json",
+      "sha256": "4ac2a1e2c63263729115bc4b67df9b269911f33c253654ea44afbc548dc1d545"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/miniature-warrior.imageset/miniature.png",
+      "sha256": "68b58340b14864a62112aac84ac4f9ba7ae2758947f5536b65fad226ec04c637"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/rogue-3d.imageset/Contents.json",
+      "sha256": "4c5b70f05e4fe65d5929b2d23f0e462efdfd84cb3dd23745b6d2e8859729ee3f"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/rogue-3d.imageset/portrait.png",
+      "sha256": "e60c17cecf8a4230f2aeaab8927795a563572789b759d5dc35db6d0558fdb414"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/rogue.imageset/Contents.json",
+      "sha256": "ce8e62be2799886ff11a434790f0230c4f44b106b95c25e49fb6a7d808845fd3"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/rogue.imageset/portrait.png",
+      "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-board.imageset/Contents.json",
+      "sha256": "32d676c4d148b0924083c7acd305f05ff8a23fc32a664c04d9159e86c1f7242e"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-board.imageset/art.png",
+      "sha256": "46ac3efba25eb7a9c63b9e7651f7b9a1b4387869d58d8dbf575bc83177ccadb3"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-paper-r1.imageset/Contents.json",
+      "sha256": "32d676c4d148b0924083c7acd305f05ff8a23fc32a664c04d9159e86c1f7242e"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-paper-r1.imageset/art.png",
+      "sha256": "8a242d9d5e584a1381d0928fc977e0b3a85fce5dcc896e40c52f385e4067189f"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-tabletop-wide-r1.imageset/Contents.json",
+      "sha256": "32d676c4d148b0924083c7acd305f05ff8a23fc32a664c04d9159e86c1f7242e"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-tabletop-wide-r1.imageset/art.png",
+      "sha256": "a8fe7f9d82d6d56f8dee31d10475e1298416893dd5aefc3b5f9d706aa7c81349"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-tabletop.imageset/Contents.json",
+      "sha256": "32d676c4d148b0924083c7acd305f05ff8a23fc32a664c04d9159e86c1f7242e"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/sell-tabletop.imageset/art.png",
+      "sha256": "16e6dc4337287b720dbffd4620480de69ecf8b73428839cb0f8367a79425654d"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-mage.imageset/Contents.json",
+      "sha256": "4452d1100a490bbbaa7065e1ae0ade405224d740dc47a5abfe8669d0d0f4387c"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-mage.imageset/token.png",
+      "sha256": "45d7e5b88adcc20a1234d990adb2d28d2eea588ce966610fde1ca1a3f5b57cbd"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-rogue.imageset/Contents.json",
+      "sha256": "4452d1100a490bbbaa7065e1ae0ade405224d740dc47a5abfe8669d0d0f4387c"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-rogue.imageset/token.png",
+      "sha256": "3b54a6ae6ce8c9276259398c23b796dc27fb7b1c373eb03d5a7dd7f60e1c9c1b"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-warrior.imageset/Contents.json",
+      "sha256": "4452d1100a490bbbaa7065e1ae0ade405224d740dc47a5abfe8669d0d0f4387c"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/token-warrior.imageset/token.png",
+      "sha256": "66bffd664cc6935be140a523bbe071e65ff79d8c3fb3638bd13d860e5fc1e599"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/warrior-3d.imageset/Contents.json",
+      "sha256": "4c5b70f05e4fe65d5929b2d23f0e462efdfd84cb3dd23745b6d2e8859729ee3f"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/warrior-3d.imageset/portrait.png",
+      "sha256": "4448fdbedcdcee8974bb6506f1876b88ed08892df4ae4fd58c9c63c6bbb6aa41"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/warrior.imageset/Contents.json",
+      "sha256": "ce8e62be2799886ff11a434790f0230c4f44b106b95c25e49fb6a7d808845fd3"
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/warrior.imageset/portrait.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/CREDITS.md",
+      "sha256": "9dbdcfbb34774fd19c4d62b051a0671c46b76cdc7a1e400ecec8e6790e70e57f"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/LIBRITTS-MODEL_CARD.txt",
+      "sha256": "c478d826aae8a6332f69509271a56083b9ece014a993e16fc79cb94968106a5f"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/PIPER-VOICES-README.txt",
+      "sha256": "33e93643fce5180886300f9f0070eeeab8af148efb8e84361f8904def80fd9fb"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/manifest.json",
+      "sha256": "e00b7abd91fc76f551d7c0b78d4d59ef6dfe3902b15f0c20f7d263c9da52081a"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-mage-skill.wav",
+      "sha256": "2bbd34720a082975bd44e7f81d80a77a7edd8a135824e72c57e7a13a99d57e78"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-mage-summon.wav",
+      "sha256": "683bd58ae0ef1c8e64e0df842793a790b9e8b7e7f6d0764b06939db3b7f376a9"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-rogue-skill.wav",
+      "sha256": "66a195604ced5a02dc763cfe571d6476acc2282fab51114952a70ddc9c02b1c1"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-rogue-summon.wav",
+      "sha256": "9bbaba995bb8b5e0a225bc36961bf54fed9e60fc81170c3e7add7ffc30057853"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-warrior-skill.wav",
+      "sha256": "ab99d66720ccaa3f99578f568df3f6eb66374bd8da2f97f87b3e4f8e0590ee58"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/Voice/voice-warrior-summon.wav",
+      "sha256": "492295bdd9d91e33d78d857c5c0cde18ecf2a20fd8f09a223587e05fe83ce369"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-danger.wav",
+      "sha256": "1b64d323ae1aa6fd218693d2c68fd18adc18034c380fbec5ba11a5358fbe1c49"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-defeat.wav",
+      "sha256": "b21ffc611f95e91b1b98ca1a8774f1194573a062a2ecda57f6c9ca5580eb7b46"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-focus.wav",
+      "sha256": "4b8d1d2470ef2741fb8539c48d6edc9ee2f00c2711a66493ee1e07344831d1c3"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-manifest.json",
+      "sha256": "d1b7b9b7fb06e3c3e0f1ebc0acc4880064cbfc2612ef83b83df1b58d2212679f"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-normal.wav",
+      "sha256": "ab565b9d891242a589859c4001d1c65634edafb5a718ea7d6365e7872945bc1e"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/b-victory.wav",
+      "sha256": "f973b34fc6e4dc57d331dc3f9210884672a42e8dd5d9295d4e32d7b4dc50dff3"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/capture.wav",
+      "sha256": "c2c09bbe38e7a92f7e561785730afe584da5c1f973c99a7131bb793507aca202"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/danger.wav",
+      "sha256": "0c44b59ff49c440e8198d45257dd4182b12436a9aa20dbbdd6b6ee18315b566b"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/defeat.wav",
+      "sha256": "58608d21380623effb2bb92afc38ce2a1235c18e4187e370326490d3368cb103"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/draw.wav",
+      "sha256": "62d2578c82b54103a1f9750e322ccf4db46b59a753db49239dab759ede059d78"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/mage.wav",
+      "sha256": "ed12c7bc9e62477842344b24f1203e07f474b36b6fa64ec7cc4ca6e56cdbcdaa"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/manifest.json",
+      "sha256": "ae9f62aecd061bc43ab3f39bbac9b76a2e43beba99bd04e181999ed8f6a54d90"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/place.wav",
+      "sha256": "c67d86e2777472f2569f66e6a5596a3e2654a827dec7cf19a126ae88d2f12ade"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/rogue.wav",
+      "sha256": "2b6366a1bb20c5b7fab55094a545d8136bb67238ff686685bed0d6be6a3e36b7"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/selection.wav",
+      "sha256": "05ae9f343cada0e9b72c3b247bbf0213978f2cc235b271b6363acc6dffbdd615"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/summon.wav",
+      "sha256": "bb6c08df6d89c926b714b6ba243eafb320e01a61a6333f1f055a800996eb870b"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/tabletop-loop.wav",
+      "sha256": "bf9032085d073e1b5e0cda147a2940e78e719542485948129a01f9f123f41d73"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/victory.wav",
+      "sha256": "a751f8b3a4d39b8e8d792a9f66ab07f155bed32fe9bc8bc24d9222b59e7aaa2f"
+    },
+    {
+      "path": "ios/TacticalGo/Audio/warrior.wav",
+      "sha256": "0cc83f854436a9f4f193fc00fd9fbc61775d66c3217bd72e265b808f0dfea7e3"
+    },
+    {
+      "path": "ios/TacticalGo/BoardPlayback.swift",
+      "sha256": "284e1952bacd4666c3251536d0224b8450d0e8f5724fb514597941af1185e66d"
+    },
+    {
+      "path": "ios/TacticalGo/BoardViews.swift",
+      "sha256": "5b732627bcd29cb2ab3cf47138d3b9cfe9a1ff0678e3636581283a4435ed5dae"
+    },
+    {
+      "path": "ios/TacticalGo/ChallengesView.swift",
+      "sha256": "867dfe4f8d0f53c2c97850a98646b1cb54c17a2bb60f9daa69fdbca7d8d8807f"
+    },
+    {
+      "path": "ios/TacticalGo/CombatAudio.swift",
+      "sha256": "ee9ad7bf802a6297dcd87dcc822540272124db5852d575ead6c5f47961f9b4bd"
+    },
+    {
+      "path": "ios/TacticalGo/ContentView.swift",
+      "sha256": "576fbec6659e351eca0f88dda4e5e893350d2c82d4bfe6a4e821c2685ed81b9c"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-mage-v02.png",
+      "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-rogue-v02.png",
+      "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/B-warrior-v02.png",
+      "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/scenes.json",
+      "sha256": "97b4c39925f513aa22f68aa78aec5a09c4add3f2030bd5a82ad4a96077dfc173"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/source-pins.json",
+      "sha256": "e69baf6af53b07fe6f3a0f5bda67982d586472467cd53b08eb3592b8e62e8434"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/theme-tokens.json",
+      "sha256": "d53db4f53d82bee811d2b703cad6e40f51b6a78974af0ff2f49ec75e66576882"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/v3-b-board-shadow.png",
+      "sha256": "f4f6b755a512cbddcac64c1865e565b8fe9d563b96549b392dd0be80998be72d"
+    },
+    {
+      "path": "ios/TacticalGo/Cozy/v3-b-board-surface.png",
+      "sha256": "33215434418b98efad677bbd992d59a6435213f9d24f29212c873796def0f16c"
+    },
+    {
+      "path": "ios/TacticalGo/CozyAudit.swift",
+      "sha256": "5547e5a5a38ceb46f949108c169ac05ecf73074e2d5e780752bf220f84c6acf8"
+    },
+    {
+      "path": "ios/TacticalGo/CozyBoard.swift",
+      "sha256": "c8459c158ee02b770b4aa00ebec662a143328130ed99028f616a8bbee5542e8a"
+    },
+    {
+      "path": "ios/TacticalGo/CozyStyle.swift",
+      "sha256": "431e608e4dce8139c9f4ce9bb255d0dc030337e2bb7260c6b2adbd95ad97570b"
+    },
+    {
+      "path": "ios/TacticalGo/GameStore.swift",
+      "sha256": "80bf57edcd8d1a1b594cbacd2c87318f75b53c19d6e7c839d9da1826533ed3e5"
+    },
+    {
+      "path": "ios/TacticalGo/GameVisualAssets.swift",
+      "sha256": "86570fd7de5237082419143a7501b16052e8d5906453db47a89c1fdf858be0c3"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/rogue-clean-plate.png",
+      "sha256": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/source-pins.json",
+      "sha256": "ebb66673c1867a70265cfeea9db2e0548615c89e9c4c0e11ec64e3a541a70063"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBody/warrior-clean-plate.png",
+      "sha256": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBodyReview.swift",
+      "sha256": "05f9b4190ab2fed51e38eaa69e0d6de43c5e835032746add836658667425efba"
+    },
+    {
+      "path": "ios/TacticalGo/HeroBodyView.swift",
+      "sha256": "19d05c5972a7375c4bfa43a2fc2f0fca0dbd7ce4c569b121d72cb42c833dee52"
+    },
+    {
+      "path": "ios/TacticalGo/Info.plist",
+      "sha256": "66b283e9103a9fd4ae2233e6d24fb3e072e05a14a1e6e1f8cd399dd1e2606c5d"
+    },
+    {
+      "path": "ios/TacticalGo/IntegratedAudioAudit.swift",
+      "sha256": "44b5a904211665159b9098489a4844e8632995d18332e1d29be29d1af69ac5d6"
+    },
+    {
+      "path": "ios/TacticalGo/MageBody/clean-plate.png",
+      "sha256": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d"
+    },
+    {
+      "path": "ios/TacticalGo/MageBodyView.swift",
+      "sha256": "1cfea3972a62bf285a8659714fe864df7ead8431592966ff559bf922a374069a"
+    },
+    {
+      "path": "ios/TacticalGo/MagePoseReview.swift",
+      "sha256": "18a339c724c2cfa8891572259d8c7ed88e7c0994a3322ddc6cd85152e8eeaef4"
+    },
+    {
+      "path": "ios/TacticalGo/MatchGallery.swift",
+      "sha256": "1d3a97f4884a30af329fbd4e34a1ace44a2da8012ba44b90da599cd5ade81161"
+    },
+    {
+      "path": "ios/TacticalGo/ModelArena.swift",
+      "sha256": "f1d978de8fb46ef1a88228d771861e3278b21185d5cf831af3b1828de517edd6"
+    },
+    {
+      "path": "ios/TacticalGo/ModelBoard.swift",
+      "sha256": "c601514ee8fd1d2be33ebbe055b379ea31fa4f2bed38807a7c16924eb2fbab0e"
+    },
+    {
+      "path": "ios/TacticalGo/ModelCamera.swift",
+      "sha256": "b93331618eb2c1e1d9201928fd1973f1a7847a7dbb8e51f1a8bdeab27704d516"
+    },
+    {
+      "path": "ios/TacticalGo/ModelEffects.swift",
+      "sha256": "904a26d4fcde1e4336aa2b5ed8c8f50898d692f63f73ce38ecb4692a25a0c92f"
+    },
+    {
+      "path": "ios/TacticalGo/ModelExport.swift",
+      "sha256": "85f51a3f55e1bce8341ce9aefdd89f7167755fa59542dc441995982c04501db8"
+    },
+    {
+      "path": "ios/TacticalGo/ModelGeometry.swift",
+      "sha256": "7e3b762b19f6e482cf4c33ba3c5484bd6382098628ea2445e9c2fb870109c21f"
+    },
+    {
+      "path": "ios/TacticalGo/ModelLibrary.swift",
+      "sha256": "35acf6a79316a0ff58146cdf1ce08e6eca9fec6f80362219905f64aaf930a506"
+    },
+    {
+      "path": "ios/TacticalGo/ModelMotion.swift",
+      "sha256": "02e0918791e2ae38956cc55640f46e0a9e02fa8952f23459c03da7877208a9b0"
+    },
+    {
+      "path": "ios/TacticalGo/Models/KayKit-CC0-License.txt",
+      "sha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58"
+    },
+    {
+      "path": "ios/TacticalGo/Models/bluecommander.usdz",
+      "sha256": "9975ddfd0c94dc89850aeee22ed6cb2b562ce85c30bf240977ac9555f1b919d2"
+    },
+    {
+      "path": "ios/TacticalGo/Models/bluesoldier.usdz",
+      "sha256": "1692c4aa446650eb954b31c2fd22fc8ce6208f90471ebfca1d8da4d08b9756d7"
+    },
+    {
+      "path": "ios/TacticalGo/Models/identity-mage.usdz",
+      "sha256": "ac59f169683196df0cfffeddac0c279f24344b60779cc27da691ac08aa05638d"
+    },
+    {
+      "path": "ios/TacticalGo/Models/identity-rogue.usdz",
+      "sha256": "5894fe60e9f00d3eea13ef712c39b61eaf5b0db38ceca013d9667488481c88df"
+    },
+    {
+      "path": "ios/TacticalGo/Models/identity-warrior.usdz",
+      "sha256": "f2b67f571d028902ed68cd3bad69a8eec2673db1479add768e3e7da5d13066ad"
+    },
+    {
+      "path": "ios/TacticalGo/Models/mage.usdz",
+      "sha256": "8fbd9d8ffb97174662f921f9033becd81acccaa3a73e5ceabb484a13b4051fa1"
+    },
+    {
+      "path": "ios/TacticalGo/Models/magic-halo.usdz",
+      "sha256": "2715eeb91ecb02f8391fb5f262ce6888d775982bb7bffe9b1680d8d1a85d1f57"
+    },
+    {
+      "path": "ios/TacticalGo/Models/manifest.json",
+      "sha256": "76284be6886acce34b20b88eff286aa71751601733607200fb2cf6587b6e0a1a"
+    },
+    {
+      "path": "ios/TacticalGo/Models/redcommander.usdz",
+      "sha256": "5b2ee5acd51e9f663f2cbbcb760dbf064df62efd47c334ce6ae436af72092426"
+    },
+    {
+      "path": "ios/TacticalGo/Models/redsoldier.usdz",
+      "sha256": "c137091e11d4d9cf0057cbe27dd2f86ac8530d94591014a8bc8d7d2a66b9dea7"
+    },
+    {
+      "path": "ios/TacticalGo/Models/rogue.usdz",
+      "sha256": "79844f0c4f5b248c68992153a549aa2e49fc1e4ed9b27856aed7b360fc665f4f"
+    },
+    {
+      "path": "ios/TacticalGo/Models/warrior.usdz",
+      "sha256": "41b7061ce7b6f8d301964c328b0d677850cfc4f7108628daa5e4d99f6c58684a"
+    },
+    {
+      "path": "ios/TacticalGo/Monetization.storekit",
+      "sha256": "dfdf966216bd984eeb5b8b7e1d22e2fc25c6da064c815bf09ca93df32fa4147e"
+    },
+    {
+      "path": "ios/TacticalGo/OnboardingView.swift",
+      "sha256": "dc5f263861788f2d9de6bfad16b463310efc0b38d62c78c3db00098dc1b38b68"
+    },
+    {
+      "path": "ios/TacticalGo/PlayAccess.swift",
+      "sha256": "4f835651014a2830a49f5ca7f96a2414c5b53e750525d7cdc2bbbc49e2eac382"
+    },
+    {
+      "path": "ios/TacticalGo/PlayableGameView.swift",
+      "sha256": "b7510d1a580a306b0a5a640953167c61141ed015caf80e687def5ee97a9fad9c"
+    },
+    {
+      "path": "ios/TacticalGo/PrivacyInfo.xcprivacy",
+      "sha256": "be1439f113d59c3ae237991c2116aa2019c19ec859acc5efd121f43fcbecbee4"
+    },
+    {
+      "path": "ios/TacticalGo/R2LabView.swift",
+      "sha256": "22be96641c12b18435d9b8da5a8d54bc44c2705b19cea129aef14e4e4936622e"
+    },
+    {
+      "path": "ios/TacticalGo/R2Positions.json",
+      "sha256": "6f9423096d48e0bcf6e619ea41a8ae3eb7fed4ba8b5e56f1b4c1f929f6a4011c"
+    },
+    {
+      "path": "ios/TacticalGo/RecordLibraryView.swift",
+      "sha256": "64e1a44c0e01f3286b981873722029cae330f824125ef241e4827beb1c193b95"
+    },
+    {
+      "path": "ios/TacticalGo/ReleaseInformationView.swift",
+      "sha256": "a078dd94b5ef76bf011d90e14ac0e2d708bbe64d26560bcde5fc9b798e43525a"
+    },
+    {
+      "path": "ios/TacticalGo/RewardedAdService.swift",
+      "sha256": "73ed9e69a471bef95a4b40ccc6e183332fd2b674dd31c731c2bf2bbc5a791035"
+    },
+    {
+      "path": "ios/TacticalGo/SellMatchStyle.swift",
+      "sha256": "c5f457819b37b00357f65e931dbb69d5d5b30937d038a56ee9634ea865262194"
+    },
+    {
+      "path": "ios/TacticalGo/SkillVFXView.swift",
+      "sha256": "d68c09db13c5e124fdef395a8220cef8e018351828193690ffcc8110f7efd478"
+    },
+    {
+      "path": "ios/TacticalGo/TacticalGoApp.swift",
+      "sha256": "eddbf8441d048c68567e9856d15430b7d27bae3bef6c8004945426a9ca34f0ac"
+    },
+    {
+      "path": "ios/TacticalGo/UnlockPurchase.swift",
+      "sha256": "5c6fd3e6141564503ac690c8aecf075ca807fdaa4b1efca4e9c16d7760caeffe"
+    },
+    {
+      "path": "ios/TacticalGo/UnlockView.swift",
+      "sha256": "85d002bc8fc4471dc38f22b794ded4fbd835d0ef7105e2e47d411c99b9c6ac64"
+    },
+    {
+      "path": "ios/TacticalGoUITests/AdvancedChallengeUITests.swift",
+      "sha256": "8f4315c6f586c9c8f0d23d7f9d1dbebffa42f7198997ee7dc8a7a7ce535d9102"
+    },
+    {
+      "path": "ios/TacticalGoUITests/BoardInteractionTests.swift",
+      "sha256": "b2fd1a4a6756354ab40baed521bbd2cdfbc70a923b25776afb6465b0174efcfb"
+    },
+    {
+      "path": "ios/TacticalGoUITests/MonetizationUITests.swift",
+      "sha256": "9a4f46aebbe3d1995b5bb3e918189424700d5e29c185bf3cccc0042ba5ca5517"
+    },
+    {
+      "path": "ios/TacticalGoUITests/PlayableGameTests.swift",
+      "sha256": "82dc72536baabbcdba6cb632d8caf4573feec8310dab54a0a1c1c87249366306"
+    },
+    {
+      "path": "ios/TacticalGoUITests/RewardedAdNetworkUITests.swift",
+      "sha256": "7a61eb9c59d80fd290d078168d4e42429f1e0ad1d20513319cd69bbba39c32e4"
+    },
+    {
+      "path": "scripts/archive-release.sh",
+      "sha256": "3095f900dded0948d1ea5fa2a378c679f9b39fc13adf72d675f9dbbea74a4f4a"
+    },
+    {
+      "path": "scripts/check-release-readiness.py",
+      "sha256": "f46715b6e1ade0bbd073da2fbf425b537ba762588c9f55d00c1ac5d138f86d45"
+    },
+    {
+      "path": "scripts/package-release-assets.sh",
+      "sha256": "213c2c58cd4cdbd66826d08c6850f62593fef7a9b4deba9c11fa76c5bd2376a1"
+    },
+    {
+      "path": "swift/TacticalGoCore/Package.swift",
+      "sha256": "7bc9d6839891fa66c3a75e562a10658808e9c5c088555a29635c4d2b4d7a7a3f"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/BotRunner/main.swift",
+      "sha256": "bd16ccd60cdac77c961c59223d23c090767b498315c011870ad4d5b6a88e6dd4"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/ContentRunner/main.swift",
+      "sha256": "beb2eae27fc26b9dd6e1c0a5e6ea5064bb4a6a5115c79490782c189f3ddb5d93"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/GoldenRunner/main.swift",
+      "sha256": "d8525ffc54ce04148c7b07e423e55e60d5438018fc23a8059e5a06eb60c1462a"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/R2Runner/main.swift",
+      "sha256": "17f73b19fe0ba6f30a4fccd97235da302713c682c8d32bda64c61ffaea2cfcc1"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/RecordsRunner/main.swift",
+      "sha256": "8ce268bcafc89e3944c2051fed9b17f4779ba5023fc103dfa1f6dbbacd1b54c8"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoAccess/AccessLedger.swift",
+      "sha256": "73f49cdda3cf09b626d1731fd555ddb0cff204935e06637450d2df5c7c2a27db"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/BotContinuation.swift",
+      "sha256": "af975d8a29e3f1cffd8b3d78a772abbe76868b23a20fdc19bfdf2697a6dec0f1"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/BotPlanner.swift",
+      "sha256": "94a2420d850d69d7210e03b036cdff6a5ab2aeb38ccb64db9812163324df7341"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/AdvancedCatalog.swift",
+      "sha256": "a7a77c93615881884faf408a0d7eb6e5aa7e9b75bb4b040fac96474d76b19a39"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/AdvancedOpponent.swift",
+      "sha256": "8ddf06be816d259ae6671aeb6401d93aeb7bb4dcec8a5db7123ceba20bc85b77"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/ChallengeController.swift",
+      "sha256": "d831956ea8b811d87ffd8ec198ea865c38c2bf5ccf090927604b2854d185a5ad"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/Tutorial.swift",
+      "sha256": "4b9d413e996def547b4c7fa3fbe22f2412ca8a0dc52f124e818423b017c378ff"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/TutorialCatalog.swift",
+      "sha256": "2dfb2f58267054373c4edda673135b2dbab2ccfa3c7f070c912100c7bfbc8bb9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/BoardProjection.swift",
+      "sha256": "4e12a1583ec7b98c5db3a0b0bde7009f4c1f19c75bdded2e13c2b61633f2a161"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/GameEngine.swift",
+      "sha256": "459648dddc477876799e0b57d58aae69b340d58157209e35983df3ecd4d56f73"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/Model.swift",
+      "sha256": "0cd56ee33bba30d5f181001ed954eb898049898844a73556d4c883a1fb4c380d"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoGolden/GoldenReplay.swift",
+      "sha256": "2193a21663c5b6082ac607fa6c32c15d5bab20cd5ed18b21fed9372296045b27"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/Anim01MagicHand.swift",
+      "sha256": "d2d999f36ef72aaff7b3a2ac6f23005ef554e5d9bc9d5df5e84c93a1e1f2948f"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/BattleMusicMix.swift",
+      "sha256": "b83baa8ef1a120bcdbd1778d2f19f1bef6120e7615099a7d8c0d66f90306df29"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/CombatFeedbackPlan.swift",
+      "sha256": "4dfc85a2eacb7ab3300002c6d11e2bfc47ec68d5b68c05efac277c3f739f770b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/GroundedLegPose.swift",
+      "sha256": "3b1651bc7ede6e40d5c79555beb508040151236077f134de5087aa9009d3847b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroPerformance.swift",
+      "sha256": "136f135db82c0e2553555cd182cd1061751f58f90766db36b7d0a1831aacd118"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/HeroVoiceCue.swift",
+      "sha256": "839c5bff5240fab3b5cec9fe7149f93111e1d207fb76aca84bce41ac647b047a"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/IdleHeroPose.swift",
+      "sha256": "830cee7e4599f9ebae5b7c72c53b60d4baecc8c79e22fe5cda76adb48b31cc41"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift",
+      "sha256": "c9f9ce275b8fd618b904d75e0d2df6059156f5f371fcd5e52d9cf16d4ff636f3"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MatchExamples.swift",
+      "sha256": "cc6114cf8b54e5e195c141f7edf1ae696dc4a083d7ff2a687d21c9c166ce432e"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MotionExamples.swift",
+      "sha256": "445a78c9542cfb09e4a9d39b00bcae41c0d4de0194d365a1e0b636e00216d351"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MotionPlan.swift",
+      "sha256": "17267f63366695a90625ceed3463c07c3306d72bc878fa3c72e529b93e5e34b6"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoMotion/SkillVFX.swift",
+      "sha256": "13f505f748b4bcdc616b1f48df9a5e57cbdb8b6f9468c05b7b602dd460b252a3"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoOnboarding/Fixtures/onboard-v1.json",
+      "sha256": "ab82015b22074873404a71c3b0072e6393952f2bf070cb783a7f9e91542571cb"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoOnboarding/Onboarding.swift",
+      "sha256": "e0cadffd1520e1ab0a22da473e3ab9d17b2a6b80a6eedd8703d466f0a6575233"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoRecords/MatchRecord.swift",
+      "sha256": "6b52237233e63910d24022306ea89fc05eb6581b781255f9168771f2247efb42"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoVisuals/Anim01Geometry.swift",
+      "sha256": "197ff67a59e201dfebb3932a9fe83eb5be0f31546c75fc65d90387d82ac38ba1"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoVisuals/VisualPack.swift",
+      "sha256": "0ef21beff178945846a8d486f1fa43489981fd7c6e90e8e5e3161fb9f1bc88ae"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoAccessTests/AccessLedgerTests.swift",
+      "sha256": "19d7aa8bb7dfec947a06a22ec0867212f77165c46c09408317096f9deb568760"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/BotPlannerTests.swift",
+      "sha256": "6c6d8cdcdb0dac16deeb0f93ab94d95e510547dbf2ae1a48293c6c17494e71ff"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/ContinuationTests.swift",
+      "sha256": "a9a3f89fbdb4612e43290aa8525cac1eb5e609ef0dc93faf5a5174d69f566ad9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/Fixtures/history-fixtures.json",
+      "sha256": "aeee2d4ffe4e5ba4ad0ce720cdc1773dde3b5572deef6a8a69f2a25d988b0a9e"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/Fixtures/material-reviewed-source.json",
+      "sha256": "06bd1920c1af19c50a141fe879df9757d3382395c0651ca786c2d248f115a214"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/Fixtures/material-reviewed-witnesses.json",
+      "sha256": "fd596a3b031e9d70c3f86b2436001fdf465fd833e903ed3781f9a7454ad96ca4"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/Fixtures/material-rogue-source.json",
+      "sha256": "032b811f92e7db3f5c37859a6fcc6c185e4953b543dc96ca0608e9f6f751df61"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/MaterialContinuationTests.swift",
+      "sha256": "fdb54f1e52da0c6821956cf9d36636cee7a476f021bedce55efdde569b9f3864"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/PassHistoryTests.swift",
+      "sha256": "58ea33436e9f129177d4bfa5c1213cca096ee2d96418f9201403300ea613e512"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/SearchTraceTests.swift",
+      "sha256": "a52806f2692156be24142bcf7aa6ec2e7da8a025ce1e105c72c60301979b0584"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoContentTests/AdvancedChallengeTests.swift",
+      "sha256": "5785cdc684fb8428380a5b131de747b29913583015520e5fcc669143117812ff"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoContentTests/ChallengeControllerTests.swift",
+      "sha256": "531795521ec294ae2ad68e1bda01597b19e57a6badd3820eaf16f455d0c45292"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoContentTests/TutorialTests.swift",
+      "sha256": "096a2b04632058077fd1cdc7bc78482ae6c6b8c3b5cbaddcb44ec546a19ed5ce"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoCoreTests/CoreTests.swift",
+      "sha256": "0536fb597341fd7c1d63e6cc55c4a9588278f83673198bd86e35e90fc941fc54"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoCoreTests/MagicHandTests.swift",
+      "sha256": "b56a85f7c93c5c3534a6dcd2b9c51ca5521cf3221f19c6e8df3ee4ae9d07f1f9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoCoreTests/R2Tests.swift",
+      "sha256": "684298b5547f3d6f421edf9a17c679691318ebf1426b10a5c091d9db9925172a"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoCoreTests/R3PlayableTests.swift",
+      "sha256": "fb31a6e58d0f37c9422a35d4c1afad0dadb2041b9e8ce032d43abbb4e6aef4c0"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoCoreTests/R3Tests.swift",
+      "sha256": "9be37a13c0354b95248986f735f5f163fb7f7330747a77ac311bad0bf3e1f636"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/Anim01Tests.swift",
+      "sha256": "ae9a3e9f2ebe63336ce54b04f8c80acb6399f38e68bc7a495a3f54d40e6f92ca"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/BattleMusicTests.swift",
+      "sha256": "16c90979a88d138188e8a648c6f05d05dd3b32edb34a953cf60a712b797764dd"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/CombatFeedbackTests.swift",
+      "sha256": "c19e89d08ac4b230c272b512a7e02944559ba18118d468ef43792cf6c9d043b7"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/GroundedLegPoseTests.swift",
+      "sha256": "c837fd74759777756d6b1ebda45ff59fe0c91d58a5edd5d0e6bd6f6c4edd3cd8"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/HeroPerformanceTests.swift",
+      "sha256": "56fad905b5ba067c49f110b99e2e2b6f2dacab922fcd0da589bdf52cb22edab5"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/HeroVoiceTests.swift",
+      "sha256": "e793dc1f0986dd1fbae877ff880605610b652067ad27e5d5390a64aa6e29d943"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/IdlePoseTests.swift",
+      "sha256": "507f77386f18e19368c1a23f333cc08f77fcbe64cf40c957cfeb1338de154d7a"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MagePerformanceTests.swift",
+      "sha256": "07786905c99f6824cbe8bcfbdede328178df0bfa8f016a87d0442d29da20db52"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MageRevisionTests.swift",
+      "sha256": "0bdaabc153cb80063a28dd36ab6907482184ff694aa7c73c65576e4ce1afe3e0"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MatchExampleTests.swift",
+      "sha256": "b5912b061cb8141ee4f810012e487378f646bd5ec4fc002cf8d0071b76fdd65b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MotionPlanTests.swift",
+      "sha256": "c2ce442b717677e8a15cac6f69317d997662308efe8b9eef5d830b0367bf81a9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoMotionTests/SkillVFXTests.swift",
+      "sha256": "fa0231bc8b9143fcb8d2163c74a4a63fec0518f358bd0d9fa37396cbd856ff53"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoOnboardingTests/OnboardingTests.swift",
+      "sha256": "cb4800ddcf8f51f644a471954d173c655ba4276b32e91418f3db9469a83cfeeb"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoRecordsTests/CandidateRecordTests.swift",
+      "sha256": "410868977f0d77008e4b4695c87d0c986999a0123612c9d9dae88de20a4a43a7"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoRecordsTests/RecordTests.swift",
+      "sha256": "3a163e86b471e526bf14b6c9ae4008e5f02fc39dffa2374e711a76d4b6f6d043"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoVisualsTests/Anim01GeometryTests.swift",
+      "sha256": "839201e616136631eeb74ba1154f67ad53b47e52a5e597b00a4b57c72c21c829"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoVisualsTests/VisualPackTests.swift",
+      "sha256": "b8c86c67f2459227cc410da9c1c184bd7ae339b084088f3efc068f7147c3905d"
+    },
+    {
+      "path": "docs/release-01/Release.1025.xcconfig",
+      "sha256": "3d037bcb87f711dc6c3b48249782170f7ee1bc59e3155d7d83a3669d886d1355"
+    }
+  ],
+  "buildAndDeliveryFiles": [
+    {
+      "path": "scripts/archive-release.sh",
+      "sha256": "3095f900dded0948d1ea5fa2a378c679f9b39fc13adf72d675f9dbbea74a4f4a"
+    },
+    {
+      "path": "docs/release-01/ExportOptions.1025.plist",
+      "sha256": "f5bce55705768ba4ec9fe5f682ad2d7c3a6b7b1511a29de3e33009df35c2166c"
+    },
+    {
+      "path": "docs/release-01/UploadOptions.1025.plist",
+      "sha256": "f63a17a5d9cf5b8b73c34f28ad680fbbd1aa526a61afa50705e3406e53c26830"
+    }
+  ],
+  "changesFromPreviousManifest": [
+    {
+      "path": "ios/TacticalGo.xcodeproj/project.pbxproj",
+      "previousSHA256": "9daae699a067541ff12b41c263a2e34bcffa5e308aba2cd1ce54b95947239a8b",
+      "currentSHA256": "48e53c1c8410b48b7a7d08b077773f25ac438afb33502e1c485986d9c2805877"
+    },
+    {
+      "path": "scripts/archive-release.sh",
+      "previousSHA256": "3b0e7fe09a323f131eb0f570900dacc0219a02354e7fcfe80b80e28a26f53acd",
+      "currentSHA256": "3095f900dded0948d1ea5fa2a378c679f9b39fc13adf72d675f9dbbea74a4f4a"
+    }
+  ],
+  "signingChange": "App Release target maps PROVISIONING_PROFILE_SPECIFIER to CROWN_ARCHIVE_PROFILE; global xcconfig profile rewritten by build script for App-only scope",
+  "runtimeSwiftUnchanged": true,
+  "archive": "BUILD_1025_DISTRIBUTION.json",
+  "oldManifestPreserved": true
+}

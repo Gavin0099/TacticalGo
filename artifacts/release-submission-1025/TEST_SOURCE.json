@@ -1,0 +1,10 @@
+{
+  "scope": "test-only iOS 26 nested alert button selector",
+  "runtimeSourceChanged": false,
+  "source": "ios/TacticalGoUITests/PlayableGameTests.swift",
+  "sha256": "82dc72536baabbcdba6cb632d8caf4573feec8310dab54a0a1c1c87249366306",
+  "baselineFailure": "store-phone-02.xcresult / testSell03HomeHierarchyNavigationAndResume / line 457 multiple matching elements",
+  "assertionScope": "Alert appears, exit action succeeds, saved match resumes, audio preferences remain",
+  "fixIteration": 2,
+  "previousFixLocation": "Wrong legacy-resume test location; restored before correcting actual failed home method"
+}

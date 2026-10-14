@@ -5,6 +5,9 @@ import TacticalGoBot
 import TacticalGoRecords
 
 @MainActor @Observable final class GameStore {
+    // Owner adopted these existing rules on 2026-10-11. Persisted records
+    // continue to rebuild from their own rule identifier, without migration.
+    static let defaultMatchRules: RecordRules = .redeployment
     enum Review: String, CaseIterable { case normal = "一般", skill = "技能預覽", danger = "危險" }
     enum Mode: String, CaseIterable { case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能" }
     var savedRecords: [MatchRecord] = []
@@ -13,6 +16,7 @@ import TacticalGoRecords
     var r2Fixture: R2PracticeFixture?
     var r2Rules: RecordRules = .original
     private var activeRecord: MatchRecord?
+    var onMatchCompleted: ((UUID) -> Void)?
     private let records: RecordRepository
     var resumableRecord: MatchRecord? { savedRecords.first { $0.steps.last?.after.status == .ongoing || $0.steps.isEmpty } }
     func refreshRecords() {
@@ -28,6 +32,7 @@ import TacticalGoRecords
         do {
             try records.save(record)
             savedRecords.removeAll { $0.id == record.id }; savedRecords.insert(record, at: 0)
+            if state.status != .ongoing { onMatchCompleted?(record.id) }
         } catch { recordErrorMessage = "這次存局未成功；先前存局已保留。" }
     }
     func resume(_ record: MatchRecord) -> Bool {
@@ -38,6 +43,7 @@ import TacticalGoRecords
             r2Fixture = nil
             size = record.size; computer = record.computer; recordRules = record.rules
             botDifficulty = BotDifficulty(rawValue: record.difficulty) ?? .easy
+            botPolicy = .baseline
             botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
             playback = nil; selected = []; pushDirection = nil; mageOperation = .push; mode = .soldier; review = .normal
             message = "已恢復對戰；輪到\(state.current == .one ? "黑方" : "白方")。"
@@ -55,9 +61,12 @@ import TacticalGoRecords
     var session: GameSession
     var playback: BoardPlayback?
     #if DEBUG
-    let audio = CombatAudio(musicIntegrationAllowed: ProcessInfo.processInfo.arguments.contains("--voice-bgm-audit"))
+    // Silent body reviews are launch-local; they must not overwrite saved music preferences.
+    let audio = CombatAudio(musicIntegrationAllowed:
+        !ProcessInfo.processInfo.arguments.contains("--hero-body-review") &&
+        !ProcessInfo.processInfo.arguments.contains("--mage-body-review"))
     #else
-    let audio = CombatAudio(musicIntegrationAllowed: false)
+    let audio = CombatAudio()
     #endif
     var isPresenting = false
     var presentationReducedMotion = false
@@ -149,6 +158,7 @@ import TacticalGoRecords
     var size = 7
     var computer: Player?
     var botDifficulty: BotDifficulty = .easy
+    private(set) var botPolicy: BotPolicy = .baseline
     var isBotThinking = false
     var isBotActing = false
     var botAction: GameAction?
@@ -358,7 +368,7 @@ import TacticalGoRecords
         botWorker = nil; botDelivery = nil; isBotThinking = false
         isBotActing = false; botAction = nil; botMotionStartedAt = nil
     }
-    func leaveMatch() { cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil }
+    func leaveMatch() { cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline }
     func startR2(_ fixture: R2PracticeFixture, rules: RecordRules) -> Bool {
         do {
             let initial = try GameSetup.fromDiagram(config:rules.config(size:7),diagram:fixture.diagram,
@@ -373,8 +383,18 @@ import TacticalGoRecords
         guard difficulty != botDifficulty else { return }
         cancelBotWork()
         botDifficulty = difficulty
+        if difficulty == .easy { botPolicy = .baseline }
         saveRecord()
         message = "電腦難度已改為\(difficulty == .easy ? "簡單" : "標準")。"
+        scheduleComputerTurn()
+    }
+    // Launch-local research choice: no record format or saved preference changes.
+    func setBotPolicy(_ policy: BotPolicy) {
+        guard computer != nil, policy != botPolicy,
+              policy == .baseline || (policy == .materialThreatContinuation && botDifficulty == .standard) else { return }
+        cancelBotWork()
+        botPolicy = policy
+        message = policy == .baseline ? "已使用原版 AI。" : "安全續攻候選已開啟；正式預設仍為原版 AI。"
         scheduleComputerTurn()
     }
     private func waitForBotPresentationPhase(minimumDuration: Double = 0) async throws {
@@ -395,6 +415,7 @@ import TacticalGoRecords
         let snapshot = state, generation = botGeneration, actor = state.current
         let delay = botDelayNanoseconds, deliverLate = deliverCancelledBotResult
         let difficulty = botDifficulty
+        let policy = botPolicy
         let planningStart = Date()
         isBotThinking = true; selected = []; pushDirection = nil
         message = "電腦思考中，你可以復原或重新開始。"
@@ -408,7 +429,7 @@ import TacticalGoRecords
                 } else { try? await Task.sleep(nanoseconds: delay) }
             }
             guard deliverLate || !Task.isCancelled else { return nil }
-            return BotPlanner.planTurn(snapshot, difficulty: difficulty, cancelled: { !deliverLate && Task.isCancelled })
+            return BotPlanner.planTurn(snapshot, difficulty: difficulty, policy: policy, cancelled: { !deliverLate && Task.isCancelled })
         }
         botWorker = worker
         botDelivery = Task { [weak self] in
@@ -442,6 +463,7 @@ import TacticalGoRecords
                 self.botLastDecision = "拒絕不完整電腦回合。"; self.commit(.endTurn); return
             }
             self.botLastDecision = "難度：\(difficulty == .easy ? "簡單" : "標準")\n" + plan.actions.map(botActionDescription).joined(separator: " → ") + "\n"
+                + "策略：\(policy == .materialThreatContinuation ? "安全續攻候選" : "原版 AI")\n"
                 + plan.reasons.joined(separator: "\n")
                 + "\n顯式結算 \(plan.stats.domainTransitions)，合法枚舉 \(plan.stats.legalEnumerations)。"
                 + "\n背景規劃耗時 \(Int(Date().timeIntervalSince(planningStart) * 1000)) ms。"
@@ -490,6 +512,19 @@ import TacticalGoRecords
         }
     }
     #if DEBUG
+    func loadBotMaterialWitness(policy: BotPolicy) {
+        activeRecord = nil
+        cancelBotWork(); computer = .one; size = 7; botDifficulty = .standard; botPolicy = policy; recordRules = .original
+        // Official newGame + 43 reviewed Core actions; no diagram/resource injection.
+        let positions = [Point(0,3),Point(1,0),Point(2,0),Point(1,3),Point(2,3),Point(3,0),Point(4,0),Point(3,3),Point(4,3),Point(5,0),Point(0,1),Point(5,3),Point(6,3),Point(1,1),Point(2,1),Point(0,4),Point(1,4),Point(4,1),Point(5,1),Point(2,4),Point(3,4),Point(6,1),Point(0,2),Point(4,4),Point(0,5),Point(1,2),Point(2,2),Point(1,5),Point(2,5),Point(3,2),Point(4,2),Point(4,5),Point(1,6),Point(5,2),Point(6,2),Point(3,6),Point(4,6),Point(6,5)]
+        var replay = GameSession(try! GameSetup.newGame(config: .board(size: 7), classOne: .rogue, classTwo: .mage))
+        let actions = positions.map(GameAction.placeSoldier) + [.endTurn, .placeSoldier(Point(5,6)), .summonHero(Point(5,4)), .endTurn, .placeSoldier(Point(0,6))]
+        for action in actions { precondition(replay.apply(action).success, "Reviewed material source must replay legally") }
+        precondition(replay.state.ply == 23 && replay.state.apRemaining == 1 && replay.state.current == .one && replay.state.mana(of: .one) == 5 && replay.state.mana(of: .two) == 6)
+        precondition(replay.state.board.diagram == ".ooooo.\noooOooo\nooooooo\nxxxxxxx\nxxxxxH.\nxxxXx.o\nxx.xxx.")
+        session = replay; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
+        playback = nil; selected = []; pushDirection = nil; mode = .soldier; scheduleComputerTurn()
+    }
     func loadBotMageMotionReview() {
         activeRecord = nil
         cancelBotWork(); computer = .two; size = 7
@@ -520,16 +555,29 @@ import TacticalGoRecords
         playback = nil; selected = []; mode = .soldier; message = "最後一回合：結束後依既有規則判定和局。"
     }
     #endif
-    func newMatch(classOne: HeroClass = .warrior, classTwo: HeroClass = .mage, computer: Player? = nil, rules: RecordRules = .original) {
-        recordRules = rules; r2Fixture = nil
-        cancelBotWork(); self.computer = computer; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
+    @discardableResult func newMatch(classOne: HeroClass = .warrior, classTwo: HeroClass = .mage, computer: Player? = nil, rules: RecordRules = GameStore.defaultMatchRules, requestedSize: Int? = nil, authorize: ((UUID) throws -> Void)? = nil) -> Bool {
+        let nextSize = requestedSize ?? size
+        let nextRecord = MatchRecord(size: nextSize, one: classOne, two: classTwo, computer: computer, difficulty: botDifficulty.rawValue, rules: rules)
+        // Prepare and persist the new record before spending an advertising credit.
+        // Neither board size nor the live session changes on either failure path.
+        do { try records.save(nextRecord) }
+        catch { recordErrorMessage = "無法保存新局，尚未消耗遊玩資格；原局保留。"; return false }
+        do { try authorize?(nextRecord.id) }
+        catch {
+            do { try FileManager.default.removeItem(at: records.url(nextRecord.id)) }
+            catch { recordErrorMessage = "額度保存與新局清理未完成；原局保持不變，請稍後重試。"; return false }
+            recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false
+        }
+        size = nextSize; recordRules = rules; r2Fixture = nil
+        cancelBotWork(); self.computer = computer; botPolicy = .baseline; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
         session = GameSession(try! GameSetup.newGame(config: recordRules.config(size: size), classOne: classOne, classTwo: classTwo))
-        activeRecord = MatchRecord(size: size, one: classOne, two: classTwo, computer: computer, difficulty: botDifficulty.rawValue, rules: recordRules)
-        saveRecord()
+        activeRecord = nextRecord
+        savedRecords.insert(nextRecord, at: 0); recordErrorMessage = nil
         audio.resetBattle(); audio.updateState(state)
         playback = nil; review = .normal
         selected = []; pushDirection = nil; mageOperation = .push; mode = .soldier
         message = computer == nil ? "本機雙人：黑方先手，首回合 1 次行動。" : "你執\(humanPlayer == .one ? "黑" : "白")、電腦執\(computer == .one ? "黑" : "白")；黑方首回合 1 次行動。"
+        return true
     }
     var canCreateCandidateCopy: Bool {
         activeRecord != nil && recordRules != .redeployment && state.status == .ongoing && !isComputerTurn
@@ -543,10 +591,10 @@ import TacticalGoRecords
             guard resume(candidate) else { return false }
             refreshRecords(); audio.resetBattle(); audio.updateState(state)
             mageOperation = .push
-            message = "已建立候選技能副本；原局保留在存局與棋譜。"
+            message = "已建立新版技能續玩副本；原局保留在存局與棋譜。"
             scheduleComputerTurn()
             return true
-        } catch { recordErrorMessage = "候選副本無法驗證或儲存；原局仍保留。"; return false }
+        } catch { recordErrorMessage = "新版技能副本無法驗證或儲存；原局仍保留。"; return false }
     }
     func changeMageOperation(_ operation: MageOperation) {
         guard !isComputerTurn else { return }

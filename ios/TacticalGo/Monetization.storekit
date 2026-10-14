@@ -1,0 +1,39 @@
+{
+  "identifier": "CF116368-8553-4A66-BBC9-1306D6B7A254",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "60",
+      "familyShareable": false,
+      "internalID": "6400102401",
+      "localizations": [
+        {
+          "description": "永久去廣告並遊玩首版完整對戰內容。",
+          "displayName": "皇冠戰略完整解鎖",
+          "locale": "zh_TW"
+        },
+        {
+          "description": "Permanent ad-free access to the initial game.",
+          "displayName": "Full Game Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.tacticalgo.crowntactics.unlock",
+      "referenceName": "Crown Tactics Full Unlock",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "",
+    "_developerTeamID": "",
+    "_failTransactionsEnabled": false,
+    "_locale": "zh_TW",
+    "_storefront": "TWN",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

@@ -2,6 +2,7 @@ import TacticalGoCore
 
 public enum TutorialGoal: String, Sendable, CaseIterable {
     case warriorRescue, warriorCounterattack, mageSplit, mageRescue, rogueShape, rogueFinish
+    case advancedRescue, advancedCounterattack, advancedTiming
 }
 public enum TutorialAssessment: Equatable, Sendable {
     case incomplete(String), completed, failed(String)
@@ -39,6 +40,9 @@ public struct TutorialScenario: Sendable {
         case .mageRescue: .castMagicHand(Point(2, 2), .down)
         case .rogueShape: .castSwap(Point(4, 3))
         case .rogueFinish: .castSwap(Point(3, 2))
+        case .advancedRescue: .castBastion(Point(4, 5), Point(3, 6))
+        case .advancedCounterattack: .castMagicHand(Point(4, 2), .down)
+        case .advancedTiming: .castSwap(Point(4, 3))
         }
     }
 }
@@ -70,6 +74,8 @@ public struct TutorialSession: Sendable {
     private let initialFriendlyOutpost: Set<Point>
     private let threatenedFriendlyRegion: Set<Point>
     private var skillOccurred = false
+    public private(set) var opponentActionCount = 0
+    public private(set) var plannedOpponentActions: [GameAction] = []
     private var capturedEnemySoldiers: [CapturedPiece] = []
     private var leftInitialTurn = false
     private var actedOutsideInitialTurn = false
@@ -97,6 +103,7 @@ public struct TutorialSession: Sendable {
         let actor = state.current, actorPly = state.ply
         let result = GameEngine.apply(state, action)
         if result.success {
+            if actor == .two && action != .endTurn { opponentActionCount += 1 }
             if actor == .one {
                 if action == .endTurn { leftInitialTurn = true }
                 else {
@@ -114,6 +121,13 @@ public struct TutorialSession: Sendable {
                 }
             }
             actions.append(action); events += result.events; state = result.state
+            if [.advancedRescue, .advancedCounterattack, .advancedTiming].contains(scenario.goal) {
+                if actor == .one && state.current == .two && state.status == .ongoing, case .incomplete = assessment {
+                    plannedOpponentActions = AdvancedOpponent.planTurn(state, goal: scenario.goal).actions
+                } else if actor == .two && plannedOpponentActions.first == action {
+                    plannedOpponentActions.removeFirst()
+                }
+            }
         }
         return result
     }
@@ -122,6 +136,9 @@ public struct TutorialSession: Sendable {
         guard board.find(.one, .commander) != nil, state.winner != .two else { return .failed("己方主將被捕獲") }
         guard let hero = board.find(.one, .hero) else { return .failed("教學英雄被捕獲") }
         let heroGroup = Set(board.group(at: hero)), heroLiberties = board.liberties(at: hero)
+        if [.advancedRescue, .advancedCounterattack, .advancedTiming].contains(scenario.goal) {
+            return advancedAssessment(hero: hero, heroLiberties: heroLiberties.count)
+        }
         let goalReached: Bool
         switch scenario.goal {
         case .warriorRescue:
@@ -142,11 +159,36 @@ public struct TutorialSession: Sendable {
                 && capturedEnemySoldiers.count >= 2
         case .rogueFinish:
             goalReached = state.status == .won && state.winner == .one
+        case .advancedRescue, .advancedCounterattack, .advancedTiming:
+            preconditionFailure("Advanced objectives are assessed before this switch")
         }
         if leftInitialTurn || actedOutsideInitialTurn { return .failed("已離開教學起始回合，未在原本兩個行動內完成") }
         if playerActionCount == 2 && skillOccurred && goalReached { return .completed }
         if state.status != .ongoing { return .failed("對局已結束，未完成指定目標") }
         if playerActionCount >= 2 { return .failed("已使用兩個行動，未完成本職技能與局面目標") }
         return .incomplete("在教學起始回合完成兩個行動，包含本職技能，達成局面目標")
+    }
+
+    private func advancedAssessment(hero: Point, heroLiberties: Int) -> TutorialAssessment {
+        guard let commander = state.board.find(.one, .commander) else { return .failed("己方主將已被提走。敵方利用剩餘生存空格完成包圍。") }
+        let commanderLiberties = state.board.liberties(at: commander).count
+        let counterPlayed = opponentActionCount > 0
+        if scenario.goal == .advancedTiming, counterPlayed, state.current == .one,
+           state.ply >= initialPlayerPly + 2, capturedEnemySoldiers.count >= 2,
+           commanderLiberties >= 3, heroLiberties >= 2 { return .completed }
+        let secondTurnFinished = state.ply >= initialPlayerPly + 3 || state.status != .ongoing
+        guard secondTurnFinished else {
+            if state.current == .two { return .incomplete("敵方正在反制；回應完成後再調整你的計畫。") }
+            return .incomplete(counterPlayed ? "敵方已回應。完成第二回合的救援或反打，再檢查棋群與資源。" : "先制定兩次行動的計畫；敵方會根據棋形反擊。")
+        }
+        guard counterPlayed, playerActionCount >= 3 else { return .failed("尚未完成攻防循環：需要敵方實際反擊，並在下一回合完成計畫。") }
+        if state.winner == .two { return .failed("主將被敵方連續兩次行動包圍。第一回合暫時補氣，仍需保留下一回合的出口。") }
+        let requiredLiberties = scenario.goal == .advancedRescue ? 6 : 3
+        guard commanderLiberties >= requiredLiberties else { return .failed("主將棋群只剩 \(commanderLiberties) 氣；反擊後仍未建立足夠的逃生空間。") }
+        let requiredHeroLiberties = scenario.goal == .advancedTiming ? 2 : requiredLiberties
+        guard heroLiberties >= requiredHeroLiberties else { return .failed("英雄棋群只剩 \(heroLiberties) 氣。進攻雖有效，但忽略了敵方對英雄的包圍。") }
+        let required = scenario.goal == .advancedRescue ? 0 : 2
+        guard capturedEnemySoldiers.count >= required else { return .failed("已提走 \(capturedEnemySoldiers.count) 名敵兵；敵方補回連線後，需要改變計畫取得兩名敵兵的戰果。") }
+        return .completed
     }
 }

@@ -73,10 +73,10 @@ import TacticalGoMotion
 
     init(defaults: UserDefaults = .standard, bundle: Bundle = .main, musicIntegrationAllowed: Bool = true) {
         self.musicIntegrationAllowed = musicIntegrationAllowed
-        musicEnabled = defaults.object(forKey: "combatAudio.musicEnabled") as? Bool ?? false
+        musicEnabled = defaults.object(forKey: "combatAudio.musicEnabled") as? Bool ?? true
         self.defaults = defaults
         self.bundle = bundle
-        voiceEnabled = defaults.object(forKey: "combatAudio.voiceEnabled") as? Bool ?? true
+        voiceEnabled = defaults.object(forKey: "combatAudio.voiceEnabled") as? Bool ?? false
         voiceVolume = Self.clamp(defaults.object(forKey: "combatAudio.voiceVolume") as? Double ?? 0.75)
         muted = defaults.bool(forKey: "combatAudio.muted")
         sfxVolume = Self.clamp(defaults.object(forKey: "combatAudio.sfxVolume") as? Double ?? 0.65)
@@ -174,12 +174,19 @@ import TacticalGoMotion
         try? JSONSerialization.data(withJSONObject: rows,options: [.prettyPrinted,.sortedKeys]).write(to:url,options:.atomic)
         #endif
     }
+    private var voiceIntegrationAllowed: Bool {
+        #if DEBUG
+        true
+        #else
+        false
+        #endif
+    }
     private func prepareVoices() {
-        guard matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
+        guard voiceIntegrationAllowed, matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
         for key in Self.voiceKeys.sorted() where voices[key] == nil { voices[key] = makeVoicePlayer(key) }
     }
     func playVoice(_ cue: HeroVoiceCue) {
-        guard matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
+        guard voiceIntegrationAllowed, matchActive, sceneActive, !interrupted, !muted, voiceEnabled, voiceVolume > 0, activateSession() else { return }
         prepareVoices()
         guard let player = voices[cue.key] else { return }
         // One hero line globally, retained per key; no voice layering or queued replay.
@@ -243,6 +250,15 @@ import TacticalGoMotion
     }
 
     #if DEBUG
+    var auditState: [String: Any] {
+        ["uptime": now, "integrationAllowed": musicIntegrationAllowed,
+         "enabled": musicEnabled, "muted": muted, "musicVolume": musicVolume,
+         "matchActive": matchActive, "sceneActive": sceneActive,
+         "interrupted": interrupted, "sessionActive": sessionActive,
+         "ended": mix.ended, "playing": musicIsPlaying,
+         "playerTimes": musicPlayerTimes, "playerDurations": musicPlayerDurations,
+         "activeSFX": activeEffectCount, "lastError": lastError as Any? ?? NSNull()]
+    }
     var musicIsPlaying: Bool { music.contains { $0.isPlaying } }
     var musicPlayerTimes: [Double] { music.map(\.currentTime) }
     var musicPlayerVolumes: [Float] { music.map(\.volume) }

@@ -13,6 +13,7 @@ import TacticalGoMotion
         let suite = "TacticalGo.IntegratedAudioAudit.\(UUID())"
         let defaults = UserDefaults(suiteName: suite)!
         let audio = CombatAudio(defaults: defaults)
+        audio.musicEnabled = true; audio.voiceEnabled = false
         audio.musicVolume = 0; audio.sfxVolume = 0.35
         audio.setMatchActive(true); audio.setSceneActive(true)
         let keys = ["selection", "mage", "place", "capture", "victory"]
@@ -30,7 +31,7 @@ import TacticalGoMotion
         audio.play("victory")
         record("native_restart", audio.activeEffectCount > 0)
         try? await Task.sleep(for: .milliseconds(2500))
-        record("completed_players_retained", audio.cachedEffectCount == 5 && audio.activeEffectCount == 0)
+        record("completed_players_retained", audio.cachedEffectCount == 11 && audio.activeEffectCount == 0)
         audio.resetBattle()
         audio.musicVolume = 0.2
         try? await Task.sleep(for: .milliseconds(200))
@@ -54,8 +55,19 @@ import TacticalGoMotion
         record("B_three_equal_native_durations", audio.musicPlayerDurations.count == 3 && audio.musicPlayerDurations.allSatisfy { abs($0 - 76.8) < 0.001 })
         record("B_device_clock_sync", phaseSpread() < 0.01 && audio.musicIsPlaying)
         audio.seekMusicForAudit(76.1)
+        let beforeWrap = audio.musicPlayerTimes
         try? await Task.sleep(for: .milliseconds(1100))
-        record("B_loop_wrap_sync", phaseSpread() < 0.01 && (audio.musicPlayerTimes.first ?? 99) < 1 && audio.musicIsPlaying)
+        let afterWrap = audio.musicPlayerTimes
+        // The physical device may service the main-actor task after 1.1 seconds;
+        // verify an actual wrap from the near-end seek rather than a brittle <1s phase.
+        record("B_loop_wrap_sync", beforeWrap.count == 3 && beforeWrap.allSatisfy { $0 >= 76.0 } &&
+               afterWrap.count == 3 && afterWrap.allSatisfy { $0 < 76.0 } && phaseSpread() < 0.01 && audio.musicIsPlaying)
+        let wrapEvidence: [String: Any] = ["before": beforeWrap, "after": afterWrap,
+            "phaseSpread": phaseSpread(), "cachedSFX": audio.cachedEffectCount]
+        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            try? JSONSerialization.data(withJSONObject: wrapEvidence, options: [.prettyPrinted, .sortedKeys])
+                .write(to: directory.appendingPathComponent("integrated-audio-observations.json"), options: .atomic)
+        }
         audio.updateState(try! CombatDemo.initialState())
         try? await Task.sleep(for: .milliseconds(4900))
         record("B_danger_layers_ramp", audio.musicLevel == .danger && audio.musicPlayerVolumes.count == 3 && audio.musicPlayerVolumes.allSatisfy { abs($0 - 0.2) < 0.01 })

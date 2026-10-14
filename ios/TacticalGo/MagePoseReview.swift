@@ -3,6 +3,22 @@ import SwiftUI
 import TacticalGoCore
 import TacticalGoMotion
 
+/// Debug evidence uses the same clock as the real receipt. Historical hard-coded
+/// times could label a frame "land" while the soldier was still in flight.
+private enum MageReviewCues {
+    static func keyPoses(_ timing: MageTiming) -> [(String, Double)] {
+        [("rest", 0), ("anticipation", timing.anticipationEnd), ("release", timing.release)]
+    }
+    static func checkpoints(_ timing: MageTiming) -> [(String, Double)] {
+        [("anticipation", timing.anticipationEnd), ("release", timing.release),
+         ("release-hold", (timing.release + timing.moveStart) / 2),
+         ("push", (timing.moveStart + timing.arrival) / 2),
+         ("land", timing.arrival), ("capture-start", timing.captureStart),
+         ("recover", (timing.captureStart + timing.recoveryEnd) / 2),
+         ("final", timing.recoveryEnd)]
+    }
+}
+
 /// Visual inspection only. This screen never pretends to apply a game action.
 struct MagePoseReview: View {
     @State private var assets = try? CozyAssets.load()
@@ -17,17 +33,17 @@ struct MagePoseReview: View {
                     Text("法師本體 · 無語音／無光效").font(.headline)
                     Text("原畫分層造型檢查；此頁不結算棋局").font(.caption)
                     HStack {
-                        ForEach([0.0,0.18,0.28],id: \.self) { t in
+                        ForEach(MageReviewCues.keyPoses(MageTempo.full.timing),id: \.0) { name, t in
                             VStack {
-                                MageBodyView(original: original,plate: assets.mageBody.cleanPlate,pose: MageBodyPose.cast(at:t,timing:MageTempo.full.timing),width:100)
-                                Text(t == 0 ? "原姿" : t == 0.18 ? "蓄勢" : "出手").font(.caption)
+                                MageBodyView(original: original,plate: assets.mageBody.cleanPlate,pose: MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:.r1),width:100)
+                                Text(name == "rest" ? "原姿" : name == "anticipation" ? "蓄勢" : "出手").font(.caption)
                             }
                         }
                     }
                     TimelineView(.animation(paused: start == nil)) { context in
                         let timing = (compact ? MageTempo.compact : .full).timing
                         let t = start.map { max(0,context.date.timeIntervalSince($0)) } ?? poseTime
-                        let pose = summon ? MageBodyPose.summon(at:t,timing:timing) : MageBodyPose.cast(at:t,timing:timing)
+                        let pose = summon ? MageBodyPose.summon(at:t,timing:timing,revision:.r1) : MageBodyPose.cast(at:t,timing:timing,revision:.r1)
                         MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:pose,width:280)
                             .frame(height:280).background(Cozy.card,in:RoundedRectangle(cornerRadius:16))
                     }
@@ -58,7 +74,7 @@ struct MagePoseReview: View {
             sheet.scale = 1
             try? sheet.uiImage?.pngData()?.write(to:m3.appendingPathComponent("markers-poses-\(Int(pitch)).png"))
             for revision in MageArtRevision.allCases { for owner in Player.allCases {
-                for (name,time) in [("rest",0.0),("anticipation",0.18),("release",0.28)] {
+                for (name,time) in MageReviewCues.keyPoses(MageTempo.full.timing) {
                     let pose = MageBodyPose.cast(at:time,timing:MageTempo.full.timing,revision:revision)
                     let token = CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:pose,markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
                         .frame(width:pitch*1.7,height:pitch*2.0)
@@ -68,8 +84,8 @@ struct MagePoseReview: View {
             }}
         }
         for width in [32,48,64,128,512] {
-            for (name,t) in [("rest",0.0),("anticipation",0.18),("release",0.28),("recover",0.75)] {
-                let renderer = ImageRenderer(content: MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing),width:CGFloat(width)).frame(width:CGFloat(width),height:CGFloat(width)))
+            for (name,t) in [("rest",0.0)] + MageReviewCues.checkpoints(MageTempo.full.timing) {
+                let renderer = ImageRenderer(content: MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:.r1),width:CGFloat(width)).frame(width:CGFloat(width),height:CGFloat(width)))
                 renderer.scale = 1
                 try? renderer.uiImage?.pngData()?.write(to:directory.appendingPathComponent("\(name)-\(width).png"))
             }
@@ -83,13 +99,13 @@ private struct MageM3SizeSheet: View {
     let pitch: CGFloat
     var body: some View {
         VStack(spacing:8) {
-            Text("M2 / M3 · pitch \(Int(pitch)) pt · native 1px/pt").font(.caption.bold())
+            Text("M2 / M3 / R1 · pitch \(Int(pitch)) pt · native 1px/pt").font(.caption.bold())
             Text("原姿 / 蓄勢 / 出手 · 同原畫、同時刻；不是對局結算").font(.caption2)
             ForEach(MageArtRevision.allCases,id:\.self) { revision in
                 ForEach(Player.allCases,id:\.self) { owner in
                     HStack(spacing:6) {
                         Text("\(revision.rawValue)\n\(owner == .one ? "黑" : "白")").font(.caption).frame(width:26)
-                        ForEach([0.0,0.18,0.28],id:\.self) { t in
+                        ForEach(MageReviewCues.keyPoses(MageTempo.full.timing),id:\.0) { _, t in
                             CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:revision),markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
                                 .frame(width:100,height:96)
                         }
@@ -104,6 +120,7 @@ private struct MageM3SizeSheet: View {
 @MainActor enum MageBodyAudit {
     static func run(store: GameStore, assets: CozyAssets) async -> String {
         var rows: [[String:Any]] = []
+        var checkpoints: [[String:Any]] = []
         func check(_ name: String,_ pass: Bool) { rows.append(["check":name,"pass":pass]) }
         func wait(_ t: Double) async { try? await Task.sleep(for:.seconds(t)) }
         func load(_ capture: Bool = false,_ owner: Player = .one,_ tempo: MageTempo = .full,_ reduced: Bool = false) {
@@ -129,10 +146,13 @@ private struct MageM3SizeSheet: View {
                     store.confirm(); check(prefix+"-confirm-once",store.state == after && store.playback?.id == receipt.id)
                     check(prefix+"-successful-receipt",receipt.magicHand != nil && receipt.mageTempo == tempo && store.isPresenting)
                     if tempo == .full && owner == .one {
-                        for (name,t) in [("anticipation",0.18),("release",0.28),("push",0.42),("land",0.54),("recover",0.75)] {
+                        for (name,t) in MageReviewCues.checkpoints(tempo.timing) {
                             let content = CozyBoard(presentation:BoardPresentation(state:store.state,selected:[],legal:[],preview:nil),assets:assets,playback:receipt,botPlayback:nil,botStartedAt:nil,animating:true,reducedMotion:false,checkpoint:t,effectsEnabled:false,select:{_ in}).frame(width:390,height:438.75)
                             let renderer = ImageRenderer(content:content); renderer.scale = 1
                             try? renderer.uiImage?.pngData()?.write(to:screens.appendingPathComponent("\(captured)-\(name).png"))
+                            checkpoints.append(["file":"\(captured)-\(name).png", "time":t,
+                                "phase":tempo.timing.phase(at:t), "captured":captured,
+                                "width":390, "height":438.75, "scale":1])
                         }
                     }
                     await wait(receipt.visualDuration+0.22)
@@ -171,7 +191,7 @@ private struct MageM3SizeSheet: View {
         store.undo(); check("reduced-undo",store.state == before && store.playback == nil)
         MagePoseReview.export(assets)
         let passed = rows.allSatisfy { $0["pass"] as? Bool == true }
-        try? JSONSerialization.data(withJSONObject:["status":passed ? "PASS":"FAIL","checks":rows,"voice":"disabled","renderer":"actual SwiftUI CozyBoard; ImageRenderer receipt checkpoints","deviceBoundary":"Simulator checks do not prove physical-device or human acting acceptance"],options:[.prettyPrinted,.sortedKeys]).write(to:docs.appendingPathComponent("mage-body-audit.json"),options:.atomic)
+        try? JSONSerialization.data(withJSONObject:["status":passed ? "PASS":"FAIL","checks":rows,"checkpoints":checkpoints,"voice":"disabled","renderer":"actual SwiftUI CozyBoard; ImageRenderer receipt checkpoints","deviceBoundary":"Simulator checks do not prove physical-device or human acting acceptance"],options:[.prettyPrinted,.sortedKeys]).write(to:docs.appendingPathComponent("mage-body-audit.json"),options:.atomic)
         return passed ? "PASS \(rows.count)/\(rows.count)" : "FAIL"
     }
 }

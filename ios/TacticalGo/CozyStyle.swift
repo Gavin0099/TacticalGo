@@ -87,13 +87,15 @@ struct CozyToken: View {
     var magePose: MageBodyPose = .rest
     var heroPose: HeroBodyPose = .rest
     var markers: HeroMarkerStyle = .thinRing
+    var commercialStyle = false
     let heroClass: HeroClass
     private var black: Bool { piece.owner == .one }
     private var diameter: CGFloat { pitch * (piece.kind == .commander ? 0.73 : piece.kind == .hero ? 0.74 : 0.62) }
     private var classColor: Color { heroClass == .mage ? Cozy.mage : heroClass == .warrior ? Cozy.sage : Cozy.coordinate }
     private var symbol: String { heroClass == .warrior ? "shield.fill" : heroClass == .mage ? "sparkle" : "bolt.fill" }
     @ViewBuilder var body: some View {
-        if markers == .thinRing && piece.kind == .hero { readableHero }
+        if commercialStyle && piece.kind != .hero { commercialUnit }
+        else if markers == .thinRing && piece.kind == .hero { readableHero }
         else { legacyToken }
     }
     private var legacyToken: some View {
@@ -129,11 +131,30 @@ struct CozyToken: View {
             }
         }.allowsHitTesting(false)
     }
+    private var commercialUnit: some View {
+        ZStack {
+            SellUnitBase(black:black,commander:piece.kind == .commander,width:diameter)
+            if piece.kind == .soldier {
+                Anim01Sprite(asset:assets.anim.manifest.soldiers[black ? "black" : "white"]!,assets:assets.anim,pitch:pitch)
+                    .scaleEffect(x:1,y:squash,anchor:.bottom)
+            } else {
+                Image(systemName:"crown.fill").font(.system(size:pitch*0.30,weight:.black))
+                    .foregroundStyle(black ? Cozy.confirm : Cozy.coordinate)
+                    .shadow(color:black ? Color.black.opacity(0.4) : Color.white.opacity(0.6),radius:0,y:1)
+                    .offset(y:-pitch*0.04)
+                Text(black ? "黑" : "白").font(.system(size:max(7,pitch*0.13),weight:.bold))
+                    .foregroundStyle(black ? Cozy.card : Cozy.coordinate)
+                    .offset(x:-diameter*0.31,y:diameter*0.12)
+            }
+        }.allowsHitTesting(false)
+    }
     private var readableHero: some View {
         let canvas = pitch * (heroClass == .mage ? 0.92 : 0.88)
         let ground = 448.0
         return ZStack {
             // All base layers are behind the character. The intersection is unchanged.
+            if commercialStyle { SellUnitBase(black:black,commander:false,width:pitch*0.74).offset(y:pitch*0.03) }
+            else {
             Ellipse().fill(Cozy.ink.opacity(0.17)).frame(width: pitch * 0.81,height: pitch * 0.37).offset(y: pitch * 0.06)
             Ellipse().fill(black ? Cozy.color(0x263C50) : Cozy.color(0xF1E7D3))
                 .frame(width: pitch * 0.74,height: pitch * 0.36).offset(y: pitch * 0.03)
@@ -141,6 +162,7 @@ struct CozyToken: View {
                 .frame(width: pitch * 0.76,height: pitch * 0.38).offset(y: pitch * 0.03)
             Ellipse().stroke(black ? Cozy.card : Cozy.ink,lineWidth: max(0.65,pitch * 0.012))
                 .frame(width: pitch * 0.70,height: pitch * 0.32).offset(y: pitch * 0.03)
+            }
             if let image = assets.heroes[heroClass] {
                 Group {
                     if heroClass == .mage { MageBodyView(original: image,plate:assets.mageBody.cleanPlate,pose:magePose,width:canvas) }

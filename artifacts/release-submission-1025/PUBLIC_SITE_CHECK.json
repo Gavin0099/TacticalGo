@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-11T13:15:54.348734+00:00",
+  "checks": [
+    {
+      "url": "https://crown-strategy-support.gavin0099.chatgpt.site/",
+      "finalURL": "https://crown-strategy-support.gavin0099.chatgpt.site/",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 3330,
+      "sha256": "5b66ac301eea9756a1729860bbdd7f6aee84f66bb623f8fad143f7b3daddd42d",
+      "expectedContentPresent": true,
+      "anonymous": true
+    },
+    {
+      "url": "https://crown-strategy-support.gavin0099.chatgpt.site/privacy.html",
+      "finalURL": "https://crown-strategy-support.gavin0099.chatgpt.site/privacy",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 5640,
+      "sha256": "cf845b928153566216ff51a371a4cdecb57f9d10f11673d0a9f5b7773ecbdec8",
+      "expectedContentPresent": true,
+      "anonymous": true
+    },
+    {
+      "url": "https://crown-strategy-support.gavin0099.chatgpt.site/app-ads.txt",
+      "finalURL": "https://crown-strategy-support.gavin0099.chatgpt.site/app-ads.txt",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytes": 59,
+      "sha256": "44626dcb886e894b37de7741ff82faf0c5df58fe93023bf1c620605c3e7112b0",
+      "expectedContentPresent": true,
+      "anonymous": true
+    }
+  ],
+  "passed": true
+}

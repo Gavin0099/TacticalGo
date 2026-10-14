@@ -1,0 +1,244 @@
+{
+  "schema": "submission-preparation-validation-v1",
+  "initialPhoneCapture": {
+    "result": "3_PASS_1_FAIL",
+    "resultBundle": "store-phone-02.xcresult",
+    "summary": "store-phone-summary.json",
+    "passed": 3,
+    "failed": 1,
+    "failure": "Nested iOS 26 SwiftUI alert action exposes duplicate exitMatchConfirmed identifiers"
+  },
+  "obsoleteTestRun": {
+    "exitCode": 70,
+    "result": "no test bundles",
+    "log": "store-phone.log"
+  },
+  "selectorFix": {
+    "scope": "test-only",
+    "source": "TEST_SOURCE.json",
+    "buildStatus": "PASS",
+    "log": "build-testing-selector-02.log",
+    "rerun": "PASS",
+    "resultBundle": "store-phone-rerun-03.xcresult",
+    "summary": "store-phone-rerun-summary.json",
+    "executed": 1,
+    "failures": 0,
+    "processExitCode": 0
+  },
+  "iPad13MediaCapture": {
+    "result": "PASS",
+    "executed": 1,
+    "failed": 0,
+    "processExitCode": 0,
+    "resultBundle": "store-ipad13.xcresult",
+    "summary": "store-ipad13-summary.json",
+    "device": "iPad Pro 13-inch M4 / iOS 18.0 Simulator",
+    "orientation": "landscape"
+  },
+  "storeMedia": {
+    "prepared": 5,
+    "provenance": "store-media/PROVENANCE.json",
+    "uploaded": false,
+    "finalRCCaptureRequired": true
+  },
+  "archivePreflight": {
+    "exitCode": 1,
+    "result": "EXPECTED_BLOCK_MISSING_REQUIRED_INPUTS",
+    "report": "ARCHIVE_PREFLIGHT.json",
+    "xcodeArchiveInvoked": false
+  },
+  "runtimeSourceDelta": "SOURCE_DELTA.json",
+  "siteResponsiveQA": {
+    "desktop": "DOM_and_screenshot_reviewed",
+    "mobile": "NOT_VERIFIED_override_not_reflected_in_actual_1470_DOM_width"
+  },
+  "physicalDeviceTestsThisPreparation": false,
+  "releaseReady": false,
+  "emptySelectorRerun": {
+    "result": "ZERO_TESTS_EXECUTED_NOT_PASS_EVIDENCE",
+    "log": "store-phone-rerun.log",
+    "resultBundle": "store-phone-rerun.xcresult",
+    "reason": "Command selected PlayableGameUITests; source class is PlayableGameTests"
+  },
+  "firstRealSelectorRerun": {
+    "executed": 1,
+    "failed": 1,
+    "processExitCode": 65,
+    "resultBundle": "store-phone-rerun-02.xcresult",
+    "reason": "Fix was at wrong legacy-resume method; restored and corrected actual failing home test"
+  },
+  "distributionProfile": {
+    "result": "VERIFIED_AND_INSTALLED",
+    "evidence": "DISTRIBUTION_PROFILE.json",
+    "archiveCreated": false
+  },
+  "archivePreflightAfterProfile": {
+    "exitCode": 1,
+    "report": "ARCHIVE_PREFLIGHT_AFTER_PROFILE.json",
+    "result": "EXPECTED_BLOCK_REMAINING_RELEASE_INPUTS",
+    "xcodeArchiveInvoked": false
+  },
+  "memoryWorkflow": {
+    "canonicalWriterExitCode": 0,
+    "guardExitCode": 0,
+    "guardRan": true,
+    "currentDiffB0Blockers": 0,
+    "repoStateB0Blockers": 0,
+    "preExistingWarningsRetained": true,
+    "recordIdentity": "6a33d7ddce717a94a57a8ed83132ebef9be4dcae840626caafa5b182d9cd7023",
+    "writerLog": "memory-record-tax-profile.log",
+    "guardLog": "memory-guard-tax-profile.log"
+  },
+  "taxCompletionUpdate": {
+    "accountObservation": "BUSINESS_TAX_COMPLETE.json",
+    "programTestsRun": false,
+    "reason": "No runtime source change",
+    "jsonAndDiffCheck": "PASS",
+    "memoryWriterExitCode": 0,
+    "memoryGuardExitCode": 0,
+    "currentDiffB0Blockers": 0,
+    "repoStateB0Blockers": 0,
+    "recordIdentity": "5e1ba1748433429ae54c0bdc8b8e8123c95b8cb1c95fa08f2964243d873f9d1e",
+    "writerLog": "memory-record-tax-complete.log",
+    "guardLog": "memory-guard-tax-complete.log",
+    "guardWarningsRetained": {
+      "missingCanonical": 2,
+      "provenanceNotFound": 12,
+      "artifactMetadataMissing": 1
+    },
+    "provenanceBoundary": "Business observation is a documentary UI record, not a canonical test receipt; it adds one provenance warning, not a failed runtime test. No full memory coverage or release-ready claim."
+  },
+  "formal1025Simulator": {
+    "build": "PASS",
+    "exitCode": 0,
+    "configurationContract": "10_PASS",
+    "rejectedResources": 0,
+    "launch": "PASS",
+    "sourceChangedDuringBuild": false,
+    "evidence": "BUILD_1025_SIMULATOR.json",
+    "interactive": "MANUAL_UI_1025.json observed preview/cancel/confirm/Bot reply and chapter selection; not full final-device QA",
+    "physicalDevice": false,
+    "storeKitSandbox": false,
+    "archive": true,
+    "upload": true
+  },
+  "formalBuildAttempts": [
+    {
+      "log": "build-formal-simulator.log",
+      "exitCode": 75,
+      "result": "INTERRUPTED_BY_AGENT",
+      "reason": "Reduce architecture and isolate output paths"
+    },
+    {
+      "log": "build-formal-simulator-arm64.log",
+      "exitCode": 70,
+      "result": "FAILED_COMMAND_CONFIGURATION",
+      "reason": "Explicit -arch plus architecture-implying destination rejected by Xcode"
+    },
+    {
+      "log": "build-formal-simulator-arm64-02.log",
+      "exitCode": 0,
+      "result": "BUILD_SUCCEEDED",
+      "architecture": "arm64",
+      "outputIsolated": true
+    }
+  ],
+  "formalArchivePreflight": {
+    "result": "BLOCKED",
+    "report": "ARCHIVE_PREFLIGHT_FORMAL.json",
+    "missing": "owner privacy declaration review/publish confirmation",
+    "xcodeArchiveInvoked": false,
+    "historical": true
+  },
+  "formalConfigMemory": {
+    "writerExitCode": 0,
+    "guardExitCode": 0,
+    "currentDiffB0Blockers": 0,
+    "repoStateB0Blockers": 0,
+    "recordIdentity": "c29f58119319ce8e22fc46f168c8fdf4896f8bad35778225a2a8b62e4bf1a490",
+    "writerLog": "memory-record-formal-config.log",
+    "guardLog": "memory-guard-formal-config.log",
+    "warnings": {
+      "missingCanonicalMemory": 2,
+      "provenanceNotFound": 12,
+      "artifactMetadataMissing": 2
+    },
+    "claimBoundary": "Canonical entry was written and guard invoked; no full repository memory-coverage or release-readiness claim."
+  },
+  "jsonAndWhitespaceCheck": "PASS",
+  "ownScreenshotSimulatorShutdown": true,
+  "formal1025Distribution": {
+    "archiveExitCode": 0,
+    "exportExitCode": 0,
+    "localChecksPassed": 26,
+    "localChecksFailed": 0,
+    "receipt": "BUILD_1025_DISTRIBUTION.json",
+    "uploadExitCode": 0,
+    "uploadResult": "UPLOAD_SUCCEEDED",
+    "AppleUploaded": true,
+    "submittedForReview": true
+  },
+  "finalStoreMedia": {
+    "prepared": 5,
+    "uploaded": 5,
+    "verifiedAfterReload": true,
+    "provenance": "store-media/PROVENANCE_1025.json",
+    "receipt": "STORE_SCREENSHOTS_SAVED_1025.json",
+    "physicalDevice": false
+  },
+  "memoryCurrentUpdate": {
+    "writer": "governance_tools.memory_record",
+    "frameworkRuntime": "/Users/pc49-58/Desktop/english-vocab-trainer/ai-governance-framework",
+    "writerLog": "memory-record-signed-screens.log",
+    "guardLog": "memory-guard-signed-screens.log",
+    "recordIdentity": "a282d3ecaffe1073f0a3c96047b885807deed40d353b775b429a72e94ce2bfa8",
+    "guardRan": true,
+    "completionClaimAllowed": true,
+    "currentDiffB0Blockers": 0,
+    "repoStateB0Blockers": 0,
+    "warnings": {
+      "repoLocalCanonicalWriterNotFound": true,
+      "repoLocalGuardNotFound": true,
+      "missingCanonicalMemory": 2,
+      "provenanceNotFound": 12,
+      "artifactMetadataMissing": 3
+    },
+    "claimBoundary": "Canonical writer invoked from existing external framework runtime, guard checked current memory changes; not full local governance/memory coverage. Documentary build/account/UI evidence is not a canonical test-run receipt."
+  },
+  "archiveScriptSyntaxCheck": "PASS_bash_n",
+  "appleSubmission": {
+    "receipt": "APP_REVIEW_SUBMITTED_1025.json",
+    "result": "WAITING_FOR_REVIEW",
+    "items": 2,
+    "manualRelease": true,
+    "approved": false,
+    "publicReleased": false
+  },
+  "sourceUploadCheck": {
+    "receipt": "SOURCE_UPLOAD_CHECK.json",
+    "verifiedInputCount": 256,
+    "changed": 0,
+    "result": "PASS"
+  },
+  "newRuntimeTestsThisTurn": false,
+  "releaseReadyBoundary": "Submission accepted; public launch remains pending Apple approval and actual commerce/ad/final device verification.",
+  "memorySubmittedUpdate": {
+    "writerExitCode": 0,
+    "guardExitCode": 0,
+    "guardRan": true,
+    "completionClaimAllowed": true,
+    "currentDiffB0Blockers": 0,
+    "repoStateB0Blockers": 0,
+    "recordIdentity": "6843982b6dc32f686228c1d1279d8bf2b065c6bd299b4b359dff945f3ce4e56e",
+    "writerLog": "memory-record-submitted.log",
+    "guardLog": "memory-guard-submitted.log",
+    "preExistingWarnings": {
+      "repoLocalWriterGuardNotFound": true,
+      "missingCanonicalMemory": 2,
+      "provenanceNotFound": 12,
+      "artifactMetadataMissing": 3
+    },
+    "claimBoundary": "Canonical milestone record and current memory guard passed; not full repository governance adoption or complete test provenance coverage."
+  },
+  "submissionRecordJSONAndWhitespaceCheck": "PASS"
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "tacticalgo-manual-ui-1025-v1",
+  "recordedAt": "2026-10-11T15:13:52.793816+00:00",
+  "build": "1.0/1025 Release Simulator",
+  "automatedTestExecution": false,
+  "method": "Actual CUA native UI actions and accessible grid selection; no direct board fixture or ledger injection",
+  "iPhone": {
+    "device": "iPhone 17 Pro / iOS26.5 Simulator",
+    "initialFreeMatches": "3/3",
+    "summonPreview": {
+      "coordinate": "D5",
+      "cost": "1 AP / 2 energy",
+      "beforeAP": 1,
+      "beforeEnergy": 4
+    },
+    "cancel": {
+      "AP": 1,
+      "energy": 4,
+      "noCommittedSummon": true
+    },
+    "confirm": {
+      "blackEnergy": 2,
+      "turnChangedToWhite": true,
+      "whiteAP": 2
+    },
+    "botReplyObserved": {
+      "blackTurnReturned": true,
+      "blackAP": 2,
+      "blackEnergy": 3,
+      "controlsEnabled": true
+    }
+  },
+  "iPad": {
+    "device": "iPad Pro13 M5 / iOS26.5 Simulator",
+    "orientation": "landscape",
+    "sixIntroAndThreeAdvancedSelectable": true,
+    "openedAdvancedChallenge": "法師：引出回應，再反打",
+    "challengeCompleted": false
+  },
+  "notVerified": [
+    "full match on final distribution build",
+    "physical-device acceptance",
+    "ASC StoreKit Sandbox purchase/restore",
+    "production rewarded ad availability/UMP",
+    "sound or voice human acceptance"
+  ],
+  "evidence": "store-media/PROVENANCE_1025.json",
+  "ownSimulatorsShutdownAfterCapture": true
+}

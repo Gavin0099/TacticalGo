@@ -1,0 +1,12 @@
+{
+  "schema": "tacticalgo-pre-archive-config-v1",
+  "checkedAt": "2026-10-11T13:52:04.275043+00:00",
+  "status": "PRE_ARCHIVE_CONFIG_FAIL",
+  "config": "/Users/pc49-58/.codex/worktrees/autonomous-slices-1011/TacticalGo/docs/release-01/Release.1025.xcconfig",
+  "archive": "/Users/pc49-58/.codex/worktrees/autonomous-slices-1011/TacticalGo/artifacts/release-submission-1025/CrownTactics-1.0-1025.xcarchive",
+  "failures": [
+    "owner_account_checks_incomplete"
+  ],
+  "releaseReadyClaimAllowed": false,
+  "claimBoundary": "Local inputs and Owner declarations only; no account login or archive exists yet."
+}

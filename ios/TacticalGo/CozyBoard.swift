@@ -14,8 +14,9 @@ struct CozyBoard: View {
     let reducedMotion: Bool
     let checkpoint: Double?
     var effectsEnabled = true
-    var mageRevision: MageArtRevision = .m3
+    var mageRevision: MageArtRevision = .r1
     var markerStyle: HeroMarkerStyle = .thinRing
+    var commercialStyle = false
     let select: (Point) -> Void
     private var receipt: BoardPlayback? {
         guard let playback, playback.outcome.success, playback.outcome.state == presentation.state else { return nil }
@@ -67,7 +68,7 @@ struct CozyBoard: View {
             "available": [available.width, available.height], "fitted": [fit.x, fit.y, fit.width, fit.height],
             "pitch": fit.pitch, "boardSize": board.size, "units": units,
             "heroRepresentation": "B-v02 original head/hand/staff pixels + masked garment clean plate; articulated mage",
-            "effectsEnabled": effectsEnabled, "mageRevision":mageRevision.rawValue, "markerStyle":markerStyle == .legacy ? "legacy" : "thinRing",
+            "effectsEnabled": effectsEnabled, "mageRevision":mageRevision.rawValue, "markerStyle":markerStyle == .legacy ? "legacy" : "thinRing", "commercialStyle": commercialStyle,
             "mageCanvas":fit.pitch * (mageRevision == .m2 ? 0.70 : 0.92), "mageGroundSource":mageRevision == .m2 ? 420 : 448, "reducedMotion": reducedMotion, "checkpointMs": checkpoint.map { $0 * 1000 } ?? -1]
         if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
            let data = try? JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]) {
@@ -96,7 +97,8 @@ struct CozyBoard: View {
         let progress = clip?.progress(at: elapsed, reducedMotion: reducedMotion) ?? 1
         ZStack {
             Image(uiImage: assets.shadow).resizable().frame(width: size.width, height: size.height)
-            Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height)
+            if commercialStyle { Image("sell-board").resizable().frame(width:size.width,height:size.height) }
+            else { Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height) }
             ArenaGrid(boardSize: presentation.state.board.size).stroke(Color.ink.opacity(0.30), lineWidth: 1)
             if effectsEnabled, let receipt, let fx = receipt.skillVFX {
                 SkillVFXLayer(receipt:receipt,plan:fx,elapsed:elapsed,pitch:pitch,size:size,reduced:reducedMotion,foreground:false,center:{point($0,size:size)})
@@ -230,7 +232,7 @@ struct CozyBoard: View {
         return HeroBodyPose.skill(p.heroClass,at:elapsed,direction:direction)
     }
     private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest,heroPose: HeroBodyPose = .rest) -> some View {
-        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, heroClass: presentation.state.heroClass(of: piece.owner))
+        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, commercialStyle:commercialStyle, heroClass: presentation.state.heroClass(of: piece.owner))
     }
 }
 
