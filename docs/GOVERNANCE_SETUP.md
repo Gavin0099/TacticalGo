@@ -61,9 +61,10 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
 
 ## Known limits (do not over-claim)
 
-- **GitHub Actions is disabled for this repository** (API `actions/permissions` returned `enabled=false`, checked
-  2026-10-14). `governance-drift.yml` therefore does not run on GitHub and a PR shows 0 checks. Local command output is
-  the only evidence until an administrator enables Actions.
+- **GitHub Actions had been disabled at repository level** (API `actions/permissions` returned `enabled=false` on
+  2026-10-14, so PR #7 showed 0 checks). A `pull_request` run of `governance-drift.yml` did succeed on 2026-10-08, so it
+  was switched off afterwards. It was re-enabled on 2026-10-14 with `allowed_actions=selected` (GitHub-owned actions
+  only) and read-only default workflow permissions. Evidence: `artifacts/governance/ci-run-38574137791.json`.
 - **The managed VS Code `Stop` hook is deliberately not shipped** (`.github/hooks/ai-governance-vscode.json` removed,
   manifest entry dropped). VS Code documents `Stop` as "the current agent execution is about to stop" and lists no
   session-end event, but the framework template maps it to `session_end`, which would close out a session after every
@@ -79,7 +80,7 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
   uncommitted worktrees).
 
 - Hooks are local and advisory (a memory-workflow warning does not block a commit).
-- The drift workflow runs only manually or on pull requests touching governance files or the golden-fixture validator's inputs, and has never been observed running on GitHub.
+- The drift workflow runs only manually or on pull requests touching governance files or the golden-fixture validator's inputs, and has run on GitHub only for the 2026-10-08 and 2026-10-14 runs recorded in `artifacts/governance/`.
 - `readiness` still shows three `framework_version` warnings: a submodule consumer does not write `framework.lock.json`.
 - `.governance/baseline.yaml` and `governance/.update-receipt.json` are tool-generated and contain this machine's absolute paths.
 - Governance does not prove domain correctness, runtime enforcement, memory completeness or release readiness.

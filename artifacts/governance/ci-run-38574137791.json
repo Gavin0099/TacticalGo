@@ -1,0 +1,50 @@
+{
+  "conclusion": "success",
+  "created_at": "2026-10-14T13:43:04Z",
+  "event": "workflow_dispatch",
+  "head_branch": "chore/governance-full-20261014",
+  "head_sha": "f88a19b048abd2594cf080c5d8985e62d37e6b9b",
+  "run_id": 38574137791,
+  "runner": "ubuntu-latest",
+  "status": "completed",
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/setup-python@v5"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run governance drift check"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run repo-specific validator (golden fixtures)"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run validator unit tests (negative cases)"
+    }
+  ],
+  "url": "https://github.com/Gavin0099/TacticalGo/actions/runs/38574137791",
+  "recorded_by": "gh run view, 2026-10-14",
+  "claim_boundary": "One workflow_dispatch run of governance-drift.yml on the PR #7 branch at head_sha. It does not prove runtime enforcement, C# replay correctness or any later commit.",
+  "earlier_run": {
+    "run_id": 37741378903,
+    "event": "pull_request",
+    "head_branch": "chore/governance-full",
+    "conclusion": "success",
+    "created_at": "2026-10-08T07:06:03Z"
+  },
+  "repository_actions_settings_after_enable": {
+    "enabled": true,
+    "allowed_actions": "selected",
+    "github_owned_allowed": true,
+    "verified_allowed": false,
+    "patterns_allowed": [],
+    "default_workflow_permissions": "read"
+  }
+}
