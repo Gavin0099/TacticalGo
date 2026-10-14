@@ -35,6 +35,8 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 | New `IntegrationUITests` on iPhone 16 simulator | 4 / 4 passed: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
 | Existing `MonetizationUITests` (1.0 paywall) | 9 / 9 passed |
 | Existing `RewardedAdNetworkUITests` | 2 / 2 passed |
+| 1.1 `MonsterLabTests` / `PresentationLabTests` | 7 / 7 and 8 / 8 passed |
+| 1.1 `ExpansionLabTests` (driven against `ExpansionGameView`) | 26 passed, 7 skipped by the tests themselves (DEBUG-only fixtures), 1 failed: `testIntegratedCastingMuteReducedMotionAndBackgroundCancelPlayers`, which fails identically on the 1.1 snapshot `8c80ceb` (same missing `audioSettings` element) - pre-existing |
 | Existing `PlayableGameTests` / `AdvancedChallengeUITests` / `BoardInteractionTests` (119 run) | 37 failed on the first run. The same 34 that exist in 1.0 were re-run on the clean 1.0 snapshot (`d13fdfa`, same simulator): 32 fail there too (pre-existing, e.g. tablet-sized tests on an iPhone simulator, stale expectations) and 2 passed there but failed here - both were real integration defects, fixed (below). The 3 remaining failures were 1.1-only tests that need the 1.1 shell: routed to `ExpansionGameView` via the DEBUG-only `--integrated-*` launch arguments, 3 / 3 now pass |
 
 ## Defects found by the regression run (fixed on this branch)
@@ -55,7 +57,6 @@ integration neither fixes nor worsens them. No iPad simulator run was made.
 
 - C# replay and C#/Swift step-by-step equivalence were not re-run (no `dotnet` on this machine). The Swift side of the
   shared Golden fixtures passes in both lines and the fixture trees are identical.
-- `ExpansionLabTests`, `MonsterLabTests`, `PresentationLabTests` were not run on the integrated build.
 - The 1.1-only tests were not re-run on the 1.1 snapshot as a baseline (they pass here).
 - No physical device, no iPad, no signed archive, no TestFlight, no App Store action.
 - The expansion single save slot: starting a new expansion match replaces an unfinished saved expansion match (existing

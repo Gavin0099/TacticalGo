@@ -8,9 +8,10 @@ import XCTest
     private func integrated(_ hero: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
         #if DEBUG
-        app.launchArguments = hero.map { ["--integrated-practice",$0] } ?? []
+        app.expansionShellArguments = hero.map { ["--integrated-practice",$0] } ?? []
         app.launch()
         #else
+        app.expansionShellArguments = []
         app.launch()
         if let hero {
             let title = (hero == "mage" ? "法師":hero == "warrior" ? "戰士":hero == "rogue" ? "盜賊":"牧師") + " · 擴充技能"
@@ -214,7 +215,7 @@ import XCTest
         XCTAssertTrue(app.staticTexts["skillStepPrompt"].label.contains("本回合已施法"))
         tap(app,"undoOrCancel");XCTAssertEqual(resources(app),before)
         XCTAssertEqual(app.staticTexts["localActionStatus"].label,"本機雙人 · 黑方行動")
-        app.terminate();app.launchArguments = [];app.launch();tap(app,"resumeExpansion");ready(app)
+        app.terminate();app.expansionShellArguments = [];app.launch();tap(app,"resumeExpansion");ready(app)
         tap(app,"mode-skill");XCTAssertTrue(app.buttons["mode-skill"].label.contains("調度己兵"))
         XCTAssertEqual(app.buttons["play-cell-4-5"].value as? String,"可選下一點")
     }
@@ -261,7 +262,7 @@ import XCTest
     }
     func testPolishAutoplayBackgroundNeverCommitsOnReturn() throws {
         #if DEBUG
-        let app = XCUIApplication();app.launchArguments = ["--integrated-practice","warrior","--polish-autoplay","--polish-basic"]
+        let app = XCUIApplication();app.expansionShellArguments = ["--integrated-practice","warrior","--polish-autoplay","--polish-basic"]
         app.launch();XCTAssertTrue(app.buttons["play-cell-6-6"].waitForExistence(timeout:10))
         XCUIDevice.shared.press(.home)
         // Exceeds the authored 3s preparation + .8s preview window.
@@ -282,7 +283,7 @@ import XCTest
     func testConfirmedChainFrameUsesExactPhaseAndUndoDiscardsIt() throws {
         #if DEBUG
         let app = XCUIApplication()
-        app.launchArguments = ["--integrated-practice","rogue","--polish-autoplay","--polish-frame","0.275","--integrated-review-audit"]
+        app.expansionShellArguments = ["--integrated-practice","rogue","--polish-autoplay","--polish-frame","0.275","--integrated-review-audit"]
         app.launch()
         let audit = app.staticTexts["integratedExpansionAudit"]
         XCTAssertTrue(audit.waitForExistence(timeout:10))
@@ -303,7 +304,7 @@ import XCTest
         #if DEBUG
         for scene in ["slime-hunt","wolf-hunt"] {
             let app = XCUIApplication()
-            app.launchArguments = ["--polish-monster",scene,"--polish-autoplay","--polish-frame","0.50","--integrated-review-audit"]
+            app.expansionShellArguments = ["--polish-monster",scene,"--polish-autoplay","--polish-frame","0.50","--integrated-review-audit"]
             app.launch();let audit = app.staticTexts["integratedExpansionAudit"]
             XCTAssertTrue(audit.waitForExistence(timeout:10))
             let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
@@ -318,7 +319,7 @@ import XCTest
             XCTAssertTrue(audit.label.contains("frozen=false"));app.terminate()
         }
         let app = XCUIApplication()
-        app.launchArguments = ["--polish-monster","slime-hunt","--polish-autoplay","--polish-frame","0.50","--polish-reduced","--integrated-review-audit"]
+        app.expansionShellArguments = ["--polish-monster","slime-hunt","--polish-autoplay","--polish-frame","0.50","--polish-reduced","--integrated-review-audit"]
         app.launch();let audit = app.staticTexts["integratedExpansionAudit"]
         XCTAssertTrue(audit.waitForExistence(timeout:10))
         let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
@@ -371,7 +372,7 @@ import XCTest
     }
     func testFixedSevenSoloPriestComputerMageEveryPrepareLandingAndUndo() throws {
         #if DEBUG
-        let app = XCUIApplication();app.launchArguments = ["--bot-step-review"];app.launch()
+        let app = XCUIApplication();app.expansionShellArguments = ["--bot-step-review"];app.launch()
         XCTAssertTrue(app.segmentedControls["matchMode"].waitForExistence(timeout:15))
         app.segmentedControls["matchMode"].buttons["電腦對戰"].tap();tap(app,"choose-priest");tap(app,"startMatch");ready(app)
         let frames = boardFrames(app)
@@ -396,7 +397,7 @@ import XCTest
     }
     func testFixedBoardTerminalBannerAfterComputerCapture() throws {
         #if DEBUG
-        let app = XCUIApplication();app.launchArguments = ["--solo-warrior-review","--bot-step-review"];app.launch()
+        let app = XCUIApplication();app.expansionShellArguments = ["--solo-warrior-review","--bot-step-review"];app.launch()
         XCTAssertTrue(app.buttons["botReviewAdvance"].waitForExistence(timeout:25));let frames = boardFrames(app)
         tap(app,"botReviewAdvance")
         let hit = XCTNSPredicateExpectation(predicate:NSPredicate(format:"value == %@","1/1 落定"),object:app.staticTexts["playMessage"])
@@ -424,7 +425,7 @@ import XCTest
     }
     func testComputerReformationUsesConfirmedWeightedBodyAndEnglishBReceipt() throws {
         #if DEBUG
-        let app = XCUIApplication();app.launchArguments = ["--solo-warrior-review","--integrated-review-audit","--bot-step-review"]
+        let app = XCUIApplication();app.expansionShellArguments = ["--solo-warrior-review","--integrated-review-audit","--bot-step-review"]
         app.launch();XCTAssertTrue(app.buttons["botReviewAdvance"].waitForExistence(timeout:20))
         XCTAssertFalse(app.buttons["mode-soldier"].isEnabled)
         app.buttons["play-cell-8-8"].tap();XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
@@ -445,7 +446,7 @@ import XCTest
     }
     func testExpandedThinkingUndoRejectsNonCooperativeLateDecision() throws {
         #if DEBUG
-        let app = XCUIApplication();app.launchArguments = ["--play-bot","--bot-late-result"]
+        let app = XCUIApplication();app.expansionShellArguments = ["--play-bot","--bot-late-result"]
         app.launch();XCTAssertTrue(app.staticTexts["currentTurn"].waitForExistence(timeout:15));ready(app)
         normalPoints(app,[(0,0)]);tap(app,"playConfirm")
         XCTAssertFalse(app.buttons["mode-soldier"].isEnabled)
@@ -561,7 +562,7 @@ import XCTest
         }
     }
     func testIntegratedCastingMuteReducedMotionAndBackgroundCancelPlayers() {
-        let app = XCUIApplication();app.launchArguments = ["--integrated-practice","mage","--integrated-review-audit"];app.launch()
+        let app = XCUIApplication();app.expansionShellArguments = ["--integrated-practice","mage","--integrated-review-audit"];app.launch()
         XCTAssertTrue(app.staticTexts["currentTurn"].waitForExistence(timeout:15));ready(app)
         app.buttons["對戰選單"].tap();tap(app,"audioSettings")
         if app.switches["audioMute"].value as? String == "1" {
@@ -691,7 +692,7 @@ import XCTest
         XCTAssertTrue(app.buttons["play-cell-4-5"].label.contains("士兵"))
     }
     private func launch(_ args: [String] = ["--expansion-lab"]) -> XCUIApplication {
-        let app = XCUIApplication(); app.launchArguments = args; app.launch()
+        let app = XCUIApplication(); app.expansionShellArguments = args; app.launch()
         XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:15)); return app
     }
     private func tap(_ app: XCUIApplication,_ id: String) {
@@ -793,7 +794,7 @@ import XCTest
         points(app,[(4,5)]);tap(app,"exp-confirm");settled(app)
         let saved = app.staticTexts["exp-status"].label
         app.terminate()
-        app.launchArguments = ["--expansion-lab","--exp-review","Rogue","--exp-review-time","0.12"]
+        app.expansionShellArguments = ["--expansion-lab","--exp-review","Rogue","--exp-review-time","0.12"]
         app.launch();XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:15))
         XCTAssertTrue(app.staticTexts["exp-audit"].label.contains("frozen=true"))
         tap(app,"exp-resume");XCTAssertEqual(app.staticTexts["exp-status"].label,saved)
@@ -836,7 +837,7 @@ import XCTest
         tap(app,"exp-undo")
     }
     func testHomeHasPlayableAndBothExistingLabsWithoutChangingOriginalEntry() {
-        let app = XCUIApplication(); app.launchArguments = ["--v11-home"]; app.launch()
+        let app = XCUIApplication(); app.expansionShellArguments = ["--v11-home"]; app.launch()
         XCTAssertTrue(app.buttons["v11-play"].waitForExistence(timeout:15)); shot(app,"v11-unified-home")
         app.buttons["v11-play"].tap(); XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:5))
         tap(app,"exp-practice-priest"); shot(app,"v11-priest-board")
@@ -846,7 +847,16 @@ import XCTest
         app.navigationBars.buttons.element(boundBy:0).tap()
         tap(app,"v11-presentation"); XCTAssertTrue(app.buttons["present-play"].waitForExistence(timeout:5))
         app.buttons["lab-warrior"].tap(); XCTAssertTrue(app.buttons["warrior-play"].waitForExistence(timeout:5))
-        app.terminate(); app.launchArguments = []; app.launch()
+        app.terminate(); app.expansionShellArguments = []; app.launch()
         XCTAssertFalse(app.buttons["v11-play"].exists)
+    }
+}
+
+/// In the integrated app the 1.1 shell is `ExpansionGameView`; these tests drive it directly (DEBUG-only routing in
+/// `TacticalGoApp` for any `--integrated-*` argument). Arguments the original tests pass are kept as they are.
+private extension XCUIApplication {
+    var expansionShellArguments: [String] {
+        get { launchArguments }
+        set { launchArguments = ["--integrated-shell"] + newValue }
     }
 }
