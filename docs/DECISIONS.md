@@ -2,6 +2,17 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 (full governance adoption) — Owner asked for a complete import
+
+- Owner：「先幫我完整導入」。依框架文件（`docs/INTEGRATION_GUIDE.md` §4–5、F-7）在分支 `chore/governance-full`：
+  - `additional/ai-governance-framework` 加為 **submodule，釘在 `b74bbde`**（遠端 canonical main；Owner 本機的框架 checkout 在另一個分支 `be5734cc`，不是 canonical）。
+  - 重新 adopt（框架根目錄改指向 submodule）、安裝本機 pre-commit / pre-push hooks、執行 F-7 `--apply`（`AGENTS.md` 加框架管理區塊、新增 `CLAUDE.md`／`GEMINI.md`／Copilot hooks、更新回執）。
+  - 新增 repo 專屬驗證器 `validators/golden_fixture_validator.py`（黃金測資的結構與用詞必須與 C# 引擎定義的非法原因／事件／動作一致），並修正 `contract.yaml`（PLAN 路徑、宣告驗證器）。
+- 結果（框架自己的報告）：`partial` → **`full_candidate`**，缺少的表面為空；readiness `ready=True`；drift `severity=ok`；hooks 驗證 `valid=True`。
+- **仍然不能宣稱**：runtime enforcement、hook／CI 強制、記憶完整、版本鎖定（`framework.lock.json` 對 submodule consumer 為 not_present，readiness 仍有 3 項 framework_version 警告）、domain 正確性、release readiness。hooks 是本機、建議性的（記憶工作流警告不擋 commit）；CI 工作流只在手動或「動到治理檔的 PR」觸發，**尚未在 GitHub 上實際跑過**。
+- 影響之後的工作：根目錄新增的 `CLAUDE.md`／`AGENTS.md` 管理區塊要求 agent 在任務開始、里程碑、範圍改變等時點輸出 `[Governance Contract]` 區塊，並規範 session 結束的 closeout；之後在此 repo 開新 session 的 agent 會載入它們（美術 agent 也一樣）。這和 Owner 先前「不擴張治理流程」的原則有張力，Owner 已明確要求完整導入；若覺得負擔太重，可以回退這個分支。
+- 未推送：此分支只在本機；是否推送、以及如何與 `feature/ui-3c` 合併，等 Owner 決定。
+
 ## 2026-10-08 (design confirmation) — soldiers + commander + one hero; pick a class at the start (Owner)
 
 - Owner 認為「普通士兵 + 主將 + 每方最多 1 個英雄，開局選一個職業」值得採用，比增加職業數量更有機會好玩。**這正是目前引擎的設計**（士兵／主將／英雄三種單位、開局選職業、英雄用 Mana 召喚、被提後本版不可重召），不需要規則改動。

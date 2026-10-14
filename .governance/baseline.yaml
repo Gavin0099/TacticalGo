@@ -11,9 +11,9 @@
 # ── PROVENANCE ────────────────────────────────────────────────────────────────
 schema_version: "1"
 baseline_version: 1.0.0
-source_commit: 1831c10d68f657366980d3f25d8bc26929e8af1d
-framework_root: E:\BackUp\Git_EE\TacticalGo
-initialized_at: 2026-10-08T04:16:58Z
+source_commit: f42f3bac162bb6eac7d56243d88b2f6e26d72050
+framework_root: E:\BackUp\Git_EE\TacticalGo\additional\ai-governance-framework
+initialized_at: 2026-10-08T06:41:47Z
 initialized_by: governance_tools/adopt_governance.py
 plan_path: docs/PLAN.md
 

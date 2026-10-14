@@ -5,7 +5,7 @@ framework_compatible: ">=1.0.0,<2.0.0"
 domain: tacticalgo
 documents:
   - AGENTS.base.md
-  - PLAN.md
+  - docs/PLAN.md
   - governance/TESTING.md
   - governance/ARCHITECTURE.md
 ai_behavior_override:
@@ -13,3 +13,4 @@ ai_behavior_override:
 rule_roots:
   - governance/rules
 validators:
+  - validators/golden_fixture_validator.py
