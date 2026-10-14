@@ -89,12 +89,12 @@ python governance_tools/f7_full_update.py --repo ../.. --framework-root . \
   closed: it does not check the value types of `config` entries or of `expect` entries (e.g. `{"ok": "true"}`);
   `GoldenReplayTests` is the authority. Adding more strictness only moves the line; it does not make `ok=True` mean
   "replayable". Decide strictness by whether a claim changes, not by review count.
-- **Candidate head vs the SHA the job actually checked out.** A `pull_request` run is reported against the PR head,
-  but the job checks out the PR *merge ref* by default. Observed on run 38595511730: checked-out HEAD
-  `4455508` (a merge commit, parents `cdab133` = main and `7b81332` = PR head) while the PR head was `7b81332`. The
-  workflow's first step now logs `git rev-parse HEAD`, `github.sha` and the PR head SHA. When the base is already an
-  ancestor of the head the two trees are identical (checked for this PR), but evidence must still name which SHA was
-  tested instead of saying "CI passed on the head".
+- **Candidate head vs the SHA the job checks out (decided: test the candidate head).** A `pull_request` job checks
+  out the synthetic *merge ref* by default (observed: run 38595511730 checked out `4455508`, parents `cdab133` and
+  `7b81332`, while the PR head was `7b81332`), but the run is reported against the PR head and the receipt helper binds
+  to the PR head. The workflow therefore checks out `github.event.pull_request.head.sha` explicitly and fails if
+  `git rev-parse HEAD` differs. Consequence, stated plainly: this check no longer exercises the merge result with a
+  moved `main`; if that is wanted, bind receipts to the merge SHA instead. Do not mix the two.
 - **Do not turn a CI run into a success receipt on exit code alone.** `gh run view --exit-status` exits 0 for a run
   that is still queued or in progress. Use `scripts/ci_evidence_receipt.py`, which requires `completed`, `success`, the
   expected head SHA, at least one named expected step that succeeded, and that the producing checkout's local HEAD is

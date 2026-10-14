@@ -39,15 +39,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # Check out the candidate commit itself. A pull_request job checks out the synthetic merge ref by default, which
+      # is not the commit the run is reported against (run.headSha) and not the commit evidence receipts bind to.
+      # Testing the candidate head directly keeps run.headSha == tested commit == receipt linked_commit.
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - name: Record which SHA was actually checked out
+      - name: Verify the checked-out commit is the candidate head
         run: |
-          echo "checked-out HEAD : $(git rev-parse HEAD)"
-          echo "github.sha       : ${{ github.sha }}"
-          echo "pull request head: ${{ github.event.pull_request.head.sha || 'n/a (not a pull_request event)' }}"
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "expected (candidate head): $expected"
+          echo "checked-out HEAD         : $actual"
+          echo "github.sha (event)       : ${{ github.sha }}"
+          test "$expected" = "$actual"
 
       - uses: actions/setup-python@v5
         with:

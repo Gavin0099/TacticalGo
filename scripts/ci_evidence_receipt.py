@@ -15,9 +15,9 @@ evidence of success. This helper checks, before any receipt is written:
 Only then does a receipt survive. The receipt writer guarantees the receipt shape, not that the input facts are
 true; these checks are the facts.
 
-Candidate head vs checked-out SHA: for `pull_request` runs GitHub's `headSha` is the PR head, while the job checks
-out the PR merge ref by default. The receipt binds the PR head; the workflow logs both SHAs in its first step so the
-two are never conflated.
+Candidate head vs checked-out SHA: the governance workflow checks out the pull request HEAD explicitly (and fails
+if HEAD differs), so run.headSha, the tested tree and the receipt's linked_commit are the same commit. A workflow that
+tests the synthetic merge ref instead would need receipts bound to that merge SHA; the two must not be mixed.
 
 Usage:
   python scripts/ci_evidence_receipt.py --run 123 --sha a0adfef7 --step "Run governance drift check" \
