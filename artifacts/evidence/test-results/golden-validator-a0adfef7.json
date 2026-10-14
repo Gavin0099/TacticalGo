@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python3 validators/golden_fixture_validator.py .",
+  "exit_code": 0,
+  "started_at": "2026-10-14T14:58:36Z",
+  "finished_at": "2026-10-14T14:58:36Z",
+  "runner": "local:macos:python3.9.6",
+  "linked_commit": "a0adfef7f3cd9455614c33281d6b20584726d22f",
+  "output_artifacts": [
+    "artifacts/evidence/test-results/golden-validator-a0adfef7.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

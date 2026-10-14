@@ -1,0 +1,2 @@
+ok=True
+Checked 24 golden fixtures against 18 engine illegal reasons and 10 event types; structure, vocabulary, setup and action arguments only, no replay.
