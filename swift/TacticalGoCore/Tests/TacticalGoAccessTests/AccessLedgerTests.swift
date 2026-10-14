@@ -392,4 +392,108 @@ final class AccessLedgerTests: XCTestCase {
         XCTAssertEqual(try Data(contentsOf: blockedDirectory), existingBytes)
         XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directory.path), ["access"])
     }
+
+    // MARK: C0 / M6 option (a): a playable copy continues its parent's single admission.
+
+    func testTrialCopyIsTheSameAdmissionAndItsCompletionSettlesTheParentExactlyOnce() async throws {
+        let storage = MemoryPersistence()
+        let store = try AccessLedgerStore(storage: storage)
+        let parent = UUID(), copy = UUID()
+        XCTAssertEqual(try store.beginMatch(id: parent, isUnlocked: false), .trial)
+        XCTAssertTrue(try store.beginContinuation(id: copy, of: parent))
+        XCTAssertEqual(store.snapshot.completedTrialMatches, 0)
+        XCTAssertEqual(store.snapshot.remainingTrialMatches, 3, "creating the copy must not use the allowance")
+        XCTAssertTrue(try store.completeMatch(id: copy))
+        XCTAssertEqual(store.snapshot.completedTrialMatches, 1, "one match, one admission")
+        // Finishing the original too, or reloading, cannot charge a second time.
+        XCTAssertFalse(try store.completeMatch(id: parent))
+        let reloaded = try AccessLedgerStore(storage: storage)
+        XCTAssertEqual(reloaded.snapshot.completedTrialMatches, 1)
+        XCTAssertThrowsError(try reloaded.beginMatch(id: parent, isUnlocked: false)) {
+            XCTAssertEqual($0 as? AccessLedgerError, .completedMatchCannotRestart)
+        }
+    }
+
+    func testRewardedParentCopyNeverReservesASecondReward() async throws {
+        let storage = MemoryPersistence()
+        let store = try exhaustedStore(storage)
+        let request = UUID()
+        XCTAssertTrue(try store.grantReward(requestID: request))
+        let parent = UUID(), copy = UUID()
+        XCTAssertEqual(try store.beginMatch(id: parent, isUnlocked: false), .rewarded)
+        XCTAssertEqual(store.snapshot.rewardCredits, 0)
+        XCTAssertTrue(try store.grantReward(requestID: UUID()))            // an unrelated, later reward
+        XCTAssertTrue(try store.beginContinuation(id: copy, of: parent))
+        XCTAssertEqual(store.snapshot.rewardCredits, 1, "the copy must not spend the later reward")
+        XCTAssertEqual(try store.beginMatch(id: copy, isUnlocked: false), .rewarded, "same authorization as its parent")
+        XCTAssertTrue(try store.completeMatch(id: copy))
+        XCTAssertEqual(store.snapshot.rewardCredits, 1)
+        XCTAssertEqual(store.snapshot.completedTrialMatches, 3)
+    }
+
+    func testCopyOfAnUnregisteredParentStaysUnmeteredAndWritesNothing() async throws {
+        let storage = MemoryPersistence()
+        let store = try exhaustedStore(storage)
+        let before = storage.data
+        XCTAssertFalse(try store.beginContinuation(id: UUID(), of: UUID()))
+        XCTAssertEqual(storage.data, before)
+    }
+
+    func testCopyOfACompletedParentIsRejected() async throws {
+        let store = try AccessLedgerStore(storage: MemoryPersistence())
+        let parent = UUID()
+        try finishTrial(store, id: parent)
+        XCTAssertThrowsError(try store.beginContinuation(id: UUID(), of: parent)) {
+            XCTAssertEqual($0 as? AccessLedgerError, .completedMatchCannotRestart)
+        }
+    }
+
+    func testContinuationIsIdempotentAndChainsCollapseToTheOriginalAdmission() async throws {
+        let storage = MemoryPersistence()
+        let store = try AccessLedgerStore(storage: storage)
+        let parent = UUID(), copy = UUID(), copyOfCopy = UUID()
+        XCTAssertEqual(try store.beginMatch(id: parent, isUnlocked: false), .trial)
+        XCTAssertTrue(try store.beginContinuation(id: copy, of: parent))
+        let saved = storage.saveCount
+        XCTAssertTrue(try store.beginContinuation(id: copy, of: parent))
+        XCTAssertEqual(storage.saveCount, saved, "repeating the link must not write")
+        XCTAssertThrowsError(try store.beginContinuation(id: copy, of: UUID()))
+        XCTAssertTrue(try store.beginContinuation(id: copyOfCopy, of: copy))
+        XCTAssertTrue(try store.completeMatch(id: copyOfCopy))
+        XCTAssertEqual(store.snapshot.completedTrialMatches, 1)
+        XCTAssertFalse(try store.completeMatch(id: parent), "the root was settled by the last copy")
+    }
+
+    func testFailedContinuationWriteLeavesNothingRegistered() async throws {
+        let storage = MemoryPersistence()
+        let store = try AccessLedgerStore(storage: storage)
+        let parent = UUID(), copy = UUID()
+        XCTAssertEqual(try store.beginMatch(id: parent, isUnlocked: false), .trial)
+        storage.failWrite = true
+        XCTAssertThrowsError(try store.beginContinuation(id: copy, of: parent))
+        XCTAssertFalse(store.isRegistered(id: copy))
+        storage.failWrite = false
+        XCTAssertTrue(try store.beginContinuation(id: copy, of: parent), "retry succeeds exactly once")
+    }
+
+    func testStoredContinuationWithoutAMatchingParentFailsClosed() async throws {
+        let matchID = "00000000-0000-0000-0000-000000000001"
+        let orphan = "00000000-0000-0000-0000-000000000009"
+        let fixtures: [[String: Any]] = [
+            ["schemaVersion": 1, "matches": [[
+                "id": matchID, "kind": "battle", "authorization": "trial", "completed": false, "continuationOf": orphan
+            ]], "rewardRequests": []],
+            ["schemaVersion": 1, "matches": [
+                ["id": orphan, "kind": "battle", "authorization": "trial", "completed": false],
+                ["id": matchID, "kind": "battle", "authorization": "unlocked", "completed": false, "continuationOf": orphan]
+            ], "rewardRequests": []]
+        ]
+        for fixture in fixtures {
+            let storage = MemoryPersistence()
+            storage.data = try JSONSerialization.data(withJSONObject: fixture)
+            XCTAssertThrowsError(try AccessLedgerStore(storage: storage)) {
+                XCTAssertEqual($0 as? AccessLedgerError, .corruptData)
+            }
+        }
+    }
 }

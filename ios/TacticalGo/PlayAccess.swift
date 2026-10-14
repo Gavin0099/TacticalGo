@@ -55,6 +55,13 @@ import TacticalGoAccess
         return ledger.isRegistered(id: id)
     }
 
+    /// C0 / M6 (a): a playable copy continues its parent's admission; it never takes a second one.
+    func continueMatch(copy id: UUID, of parent: UUID) throws {
+        guard let ledger else { throw AccessLedgerError.corruptData }
+        _ = try ledger.beginContinuation(id: id, of: parent)
+        updateSnapshot()
+    }
+
     func completedMatch(id: UUID) {
         guard let ledger else { return }
         do { _ = try ledger.completeMatch(id: id); updateSnapshot() }

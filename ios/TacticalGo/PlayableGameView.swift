@@ -291,6 +291,11 @@ struct PlayableGameView: View {
         }
         .onAppear {
             store.onMatchCompleted = { id in access.completedMatch(id: id) }
+            store.authorizeContinuation = { copy, parent in
+                // A verified owner is never metered, and an unrelated damaged trial file must not block a copy.
+                if access.purchase.isUnlocked { return }
+                try access.continueMatch(copy: copy, of: parent)
+            }
             store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
             access.reconcileCompletedMatches(ids: store.savedRecords.compactMap {
                 guard let status = $0.steps.last?.after.status, status != .ongoing else { return nil }

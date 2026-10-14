@@ -76,4 +76,21 @@ import XCTest
         XCTAssertTrue(app.buttons["resumeMatch"].waitForExistence(timeout: 5), "records without a marker are legacy and untouched")
         XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
     }
+
+    // C0 / M6 (a): creating a playable copy of an admitted match must not use another admission.
+    func testCandidateCopyOfAnAdmittedMatchDoesNotTakeAnotherAdmission() {
+        let app = launch(extra: ["--original-rules"])
+        app.buttons["lobbyNewGame"].tap()
+        XCTAssertTrue(app.buttons["setupLocal"].waitForExistence(timeout: 5))
+        app.buttons["setupLocal"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 5))
+        if app.buttons["startMatch"].label.contains("下一步") { app.buttons["startMatch"].tap() }
+        app.buttons["startMatch"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        app.buttons["對戰選單"].tap()
+        XCTAssertTrue(app.buttons["candidateCopy"].waitForExistence(timeout: 5))
+        app.buttons["candidateCopy"].tap()
+        XCTAssertEqual(app.staticTexts["currentTurn"].value as? String, "新版技能", "the copy is a playable new branch")
+        XCTAssertFalse(app.staticTexts["unlockTitle"].exists, "a copy is never gated")
+    }
 }

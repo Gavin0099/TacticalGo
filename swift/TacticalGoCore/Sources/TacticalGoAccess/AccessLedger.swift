@@ -66,6 +66,9 @@ private struct AccessMatchEntry: Codable, Equatable {
     let authorization: AccessMatchAuthorization
     let rewardRequestID: UUID?
     var completed: Bool
+    /// C0 / M6: a playable copy of an admitted match. It keeps its own identity but is the SAME admission:
+    /// it never adds a counted trial, never reserves a second reward, and its completion settles its parent.
+    var continuationOf: UUID?
 }
 
 private struct AccessLedger: Codable, Equatable {
@@ -77,7 +80,7 @@ private struct AccessLedger: Codable, Equatable {
     static let trialLimit = 3
 
     var completedTrialMatches: Int {
-        matches.filter { $0.authorization == .trial && $0.completed }.count
+        matches.filter { $0.authorization == .trial && $0.completed && $0.continuationOf == nil }.count
     }
 
     var availableRewards: [UUID] {
@@ -96,6 +99,14 @@ private struct AccessLedger: Codable, Equatable {
             let isMetered = match.kind == .battle
             guard (match.authorization == .notMetered) == !isMetered else {
                 throw AccessLedgerError.corruptData
+            }
+            if let parentID = match.continuationOf {
+                guard let parent = matches.first(where: { $0.id == parentID }), parent.continuationOf == nil,
+                      parent.kind == match.kind, parent.authorization == match.authorization,
+                      match.rewardRequestID == nil, parentID != match.id else {
+                    throw AccessLedgerError.corruptData
+                }
+                continue
             }
             if match.authorization == .rewarded {
                 guard let requestID = match.rewardRequestID,
@@ -183,10 +194,36 @@ public final class AccessLedgerStore {
         var candidate = ledger
         candidate.matches.append(AccessMatchEntry(
             id: id, kind: kind, authorization: authorization,
-            rewardRequestID: rewardID, completed: false
+            rewardRequestID: rewardID, completed: false, continuationOf: nil
         ))
         try commit(candidate)
         return authorization
+    }
+
+    /// C0 / M6 option (a): a playable copy continues its parent's admission.
+    /// - parent never registered (legacy, or an unlocked-only start): the copy is not metered either, nothing is written;
+    /// - parent registered and unfinished: the copy is recorded as its continuation (no new quota use, no new reward);
+    /// - parent already completed: the copy cannot be a continuation and throws, so the caller must not offer it.
+    /// Idempotent for the same copy/parent pair. Returns whether the copy is now registered.
+    @discardableResult
+    public func beginContinuation(id: UUID, of parentID: UUID) throws -> Bool {
+        if let existing = ledger.matches.first(where: { $0.id == id }) {
+            guard existing.continuationOf == parentID else { throw AccessLedgerError.matchKindMismatch }
+            return true
+        }
+        guard let parent = ledger.matches.first(where: { $0.id == parentID }) else { return false }
+        guard !parent.completed else { throw AccessLedgerError.completedMatchCannotRestart }
+        // A copy of a copy continues the original admission, never a chain.
+        let rootID = parent.continuationOf ?? parent.id
+        guard let root = ledger.matches.first(where: { $0.id == rootID }) else { throw AccessLedgerError.corruptData }
+        guard !root.completed else { throw AccessLedgerError.completedMatchCannotRestart }
+        var candidate = ledger
+        candidate.matches.append(AccessMatchEntry(
+            id: id, kind: root.kind, authorization: root.authorization,
+            rewardRequestID: nil, completed: false, continuationOf: rootID
+        ))
+        try commit(candidate)
+        return true
     }
 
     /// Only the game's real terminal result calls this. Undoing/replaying cannot erase its history.
@@ -197,6 +234,11 @@ public final class AccessLedgerStore {
               !ledger.matches[index].completed else { return false }
         var candidate = ledger
         candidate.matches[index].completed = true
+        // Finishing a continuation settles the one admission it shares with its parent (exactly once).
+        if let parentID = candidate.matches[index].continuationOf,
+           let parentIndex = candidate.matches.firstIndex(where: { $0.id == parentID }) {
+            candidate.matches[parentIndex].completed = true
+        }
         try commit(candidate)
         return true
     }

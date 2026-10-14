@@ -29,10 +29,10 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 
 | Check | Result |
 |---|---|
-| Swift package, all targets | 417 tests (405 from the union of both lines + 5 identity + 7 pending-admission), 0 failures |
+| Swift package, all targets | 424 tests (405 from the union of both lines + 5 identity + 7 pending-admission + 7 continuation), 0 failures |
 | App build, Debug / iOS Simulator | succeeded |
 | App build, Beta (V11 flag, expansion assets) / iOS Simulator | succeeded |
-| New `IntegrationUITests` on iPhone 16 simulator | 6 / 6 passed (two are the R1 recovery cases); the first four: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
+| New `IntegrationUITests` on iPhone 16 simulator | 7 / 7 passed (two are the R1 recovery cases, one is the M6 copy case); the first four: explicit entry and return, expansion start gated by the same ledger when the trial is exhausted, start admitted while a trial remains, original shell still starts the original match |
 | Existing `MonetizationUITests` (1.0 paywall) | 9 / 9 passed |
 | Existing `RewardedAdNetworkUITests` | 2 / 2 passed |
 | 1.1 `MonsterLabTests` / `PresentationLabTests` | 7 / 7 and 8 / 8 passed |
@@ -53,6 +53,15 @@ explicit lobby entry behind the same access ledger. Nothing here changes the com
 longer matches, `testNineBoardAccessibleGridWinAndDraw`, ...). They are listed so a later cleanup can decide; the
 integration neither fixes nor worsens them. No iPad simulator run was made.
 
+## Match copies (C0 M6, option (a) as recommended by the owner; not yet formally decided)
+
+A playable "new-version-skills" copy keeps its own match identity but continues its parent's single admission:
+creating it uses no allowance and no reward, finishing it settles the parent's admission exactly once, a copy of a
+copy collapses to the original admission, and a copy of a never-registered match stays unmetered. Implemented in the
+access ledger as an optional `continuationOf` link (same ledger schema version; an entry without it reads exactly as
+before). The link is written before the copy file exists, so a stop leaves at most an unused ledger entry.
+If the owner chooses option (b) instead (a copy is a new full match) this is the one place to change.
+
 ## Not verified / known gaps
 
 - C# replay and C#/Swift step-by-step equivalence were not re-run (no `dotnet` on this machine). The Swift side of the
@@ -61,6 +70,8 @@ integration neither fixes nor worsens them. No iPad simulator run was made.
 - No physical device, no iPad, no signed archive, no TestFlight, no App Store action.
 - The expansion single save slot: starting a new expansion match replaces an unfinished saved expansion match (existing
   1.1 behaviour). The replaced match was never charged because the trial is consumed at completion.
+- A copy made while the player owns the unlock is not linked (nothing is metered for owners); if the entitlement is later
+  revoked, such a copy is treated like an unregistered legacy match.
 - Real 1.0-produced save files (S5) have not been obtained; compatibility is covered at unit level only.
 - C0 R1 (the crash window between "record saved" and "ledger written" for ORIGINAL matches) is handled by a sidecar
   marker (`<id>.pending`, `PendingAdmissionJournal`) instead of a new field in the match record, so the 1.0 save schema

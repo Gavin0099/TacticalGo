@@ -63,6 +63,8 @@ import TacticalGoContent
     var r2Rules: RecordRules = .original
     private var activeRecord: MatchRecord?
     var onMatchCompleted: ((UUID) -> Void)?
+    /// (copy, parent): wired by the shell to the access ledger.
+    var authorizeContinuation: ((UUID, UUID) throws -> Void)?
     private let records: RecordRepository
     var resumableRecord: MatchRecord? { savedRecords.first { $0.steps.last?.after.status == .ongoing || $0.steps.isEmpty } }
     private var pendingAdmissions: PendingAdmissionJournal { PendingAdmissionJournal(directory: records.directory) }
@@ -810,6 +812,10 @@ import TacticalGoContent
         guard canCreateCandidateCopy, let original = activeRecord else { return false }
         do {
             let candidate = try original.candidateCopy()
+            // C0 / M6 (a): link the copy to its parent's admission BEFORE the copy exists on disk. Nothing is
+            // consumed by linking, so a stop afterwards leaves at most an unused ledger entry, never a free match.
+            do { try authorizeContinuation?(candidate.id, original.id) }
+            catch { recordErrorMessage = "新版技能副本無法登記遊玩資格；原局仍保留。"; return false }
             // Validate and durably save the new identity before replacing the live session.
             try records.save(candidate)
             guard resume(candidate) else { return false }
