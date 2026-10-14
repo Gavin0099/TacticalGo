@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "gh run view 38579589159 --repo Gavin0099/TacticalGo --exit-status",
+  "exit_code": 0,
+  "started_at": "2026-10-14T14:21:29Z",
+  "finished_at": "2026-10-14T14:21:35Z",
+  "runner": "github-actions:ubuntu-latest:python3.11",
+  "linked_commit": "1ee8285a53a1fab1f55773b298ed86a064cb127a",
+  "output_artifacts": [
+    "artifacts/evidence/test-results/ci-governance-drift-run-38579589159.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}
