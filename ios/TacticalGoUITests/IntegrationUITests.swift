@@ -188,4 +188,72 @@ import XCTest
         app.buttons["lobbyNewGame"].tap()
         XCTAssertTrue(app.buttons["setupLocal"].waitForExistence(timeout: 5))
     }
+
+    // MARK: Owner decision 2026-10-15 ("use 1.1 for everything"): the 1.1 shell is the app root (`--full-game` in Debug).
+
+    private func launchFullGame(extra: [String] = []) -> XCUIApplication {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = .portrait
+        let app = XCUIApplication()
+        app.launchArguments = extra + ["--full-game", "--record-isolation", UUID().uuidString, "--cozy-reduced"]
+        app.launch()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 20), "the 1.1 lobby is the entry")
+        return app
+    }
+
+    func testFullGameRootShowsTheProductLayerAndTheFullGame() {
+        let app = launchFullGame()
+        XCTAssertFalse(app.buttons["lobbyNewGame"].exists, "no separate original-shell lobby")
+        XCTAssertTrue(app.staticTexts["皇冠戰略"].exists)
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
+        for id in ["lobbyChallenges", "purchaseSettings", "privacySupport", "startOnboarding"] {
+            XCTAssertTrue(app.buttons[id].exists || app.otherElements[id].exists || app.descendants(matching: .any)[id].exists, id)
+        }
+        XCTAssertTrue(app.segmentedControls["playStyle"].exists || app.descendants(matching: .any)["playStyle"].exists)
+        for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
+        XCTAssertTrue(app.buttons["choose-priest"].exists, "four heroes")
+        XCTAssertTrue(app.descendants(matching: .any)["matchMonsters"].exists, "monster battlefield")
+    }
+
+    func testOriginalRulesAreAnOptionInsideTheFullGameShell() {
+        let app = launchFullGame()
+        let style = app.segmentedControls["playStyle"]
+        XCTAssertTrue(style.waitForExistence(timeout: 5))
+        style.buttons["原版規則"].tap()
+        XCTAssertFalse(app.buttons["choose-priest"].exists, "original rules offer the three original heroes only")
+        XCTAssertFalse(app.descendants(matching: .any)["matchMonsters"].exists)
+        XCTAssertTrue(app.buttons["choose-warrior"].exists)
+        style.buttons["擴充玩法"].tap()
+        for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
+        XCTAssertTrue(app.buttons["choose-priest"].exists)
+    }
+
+    func testFullGameStartIsGatedBySharedLedgerAndPurchaseEntryDoesNotStartAMatch() {
+        let app = launchFullGame(extra: ["--monetization-exhausted"])
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 0／3")
+        // Purchase entry from the lobby bar: opens the sheet, must not start anything.
+        app.buttons["purchaseSettings"].tap()
+        XCTAssertTrue(app.staticTexts["unlockTitle"].waitForExistence(timeout: 10))
+        app.buttons["unlockDismiss"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.otherElements["playArena"].exists)
+        // Starting a match is gated by the same ledger.
+        app.buttons["startMatch"].tap()
+        XCTAssertTrue(app.staticTexts["unlockTitle"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["watchRewardedAd"].exists)
+        app.buttons["unlockDismiss"].tap()
+        XCTAssertFalse(app.otherElements["playArena"].exists)
+    }
+
+    func testFullGameStartWithTrialRemainingOpensTheMatchAndChallengesAreReachable() {
+        let app = launchFullGame()
+        app.buttons["lobbyChallenges"].tap()
+        XCTAssertTrue(app.buttons["英雄技能入門 · 六關"].waitForExistence(timeout: 5))
+        app.buttons["英雄技能入門 · 六關"].tap()
+        XCTAssertTrue(app.buttons["challengeBack"].waitForExistence(timeout: 10))
+        app.buttons["challengeBack"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 10))
+        app.buttons["startMatch"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+    }
 }

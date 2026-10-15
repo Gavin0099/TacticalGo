@@ -1,0 +1,27 @@
+// Integrated 1.0 + 1.1 build for INTERNAL TestFlight only (Owner group). Not a Release/App Review configuration.
+// Use with the `TacticalGoBeta` scheme / `Beta` configuration:
+//   xcodebuild archive -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta
+//   -destination generic/platform=iOS -xcconfig docs/release-01/Beta.integrated-1114.xcconfig (see TESTFLIGHT_INTEGRATED.md)
+// Signing (manual, Apple Distribution, profile "Crown Strategy App Store 20261011", team P358EB3X9H) and the
+// TACTICALGO_V11 expansion flag come from the project's Beta configuration, NOT from this file: a command-line
+// xcconfig also reaches the Swift package targets, which must not receive a provisioning profile.
+// Only version, build number and the CROWN_* values that the Beta target leaves empty are set here.
+//
+// Build number: must be higher than every build already uploaded for this app (1112 is the last one known).
+// Re-check App Store Connect before using it; raise it if a higher build exists.
+MARKETING_VERSION = 1.1
+CURRENT_PROJECT_VERSION = 1114
+
+// In-app purchase: the NT$60 non-consumable unlock (same product the 1.0 submission uses).
+CROWN_UNLOCK_PRODUCT_ID = com.tacticalgo.crowntactics.unlock
+CROWN_PRIVACY_URL = https:/$()/crown-strategy-support.gavin0099.chatgpt.site/privacy
+CROWN_SUPPORT_URL = https:/$()/crown-strategy-support.gavin0099.chatgpt.site/
+
+// Advertising: the AdMob APPLICATION id is mandatory. The Google Mobile Ads SDK is linked into every build and
+// itself throws GADInvalidInitializationException at launch when Info.plist has no valid application id (verified on
+// the simulator: an empty id terminates the app right after launch). The REWARDED UNIT id is deliberately left empty:
+// non-DEBUG builds then report "廣告尚未設定", the SDK is never started and no ad request is made, so the Owner's
+// internal build never shows or clicks the production ad unit. To test real ads on purpose, also set
+//   CROWN_REWARDED_AD_UNIT_ID = ca-app-pub-4399068253512867/2224519212
+CROWN_ADMOB_APP_ID = ca-app-pub-4399068253512867~8970810838
+CROWN_REWARDED_AD_UNIT_ID =
