@@ -204,6 +204,7 @@ import XCTest
     func testFullGameRootShowsTheProductLayerAndTheFullGame() {
         let app = launchFullGame()
         XCTAssertFalse(app.buttons["lobbyNewGame"].exists, "no separate original-shell lobby")
+        XCTAssertFalse(app.buttons["r2Lab"].exists, "the skill lab (技能試驗) is an engineering tool, not part of the product lobby")
         XCTAssertTrue(app.staticTexts["皇冠戰略"].exists)
         XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
         for id in ["lobbyChallenges", "purchaseSettings", "privacySupport", "startOnboarding"] {

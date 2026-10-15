@@ -568,7 +568,9 @@ struct ExpansionGameView: View {
                         }.accessibilityIdentifier("priestChallenge")
                         #endif
                     } label: { Label("玩法練習", systemImage: "graduationcap") }
-                    Spacer(); Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab")
+                    Spacer()
+                    // The skill lab is an engineering tool; the product lobby (Owner request 2026-10-16) does not offer it.
+                    if !productMode { Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab") }
                     Button("遊戲規則") { showRules = true }
                 }.font(.system(size: 14)).frame(minHeight: 44)
         }
