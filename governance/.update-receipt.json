@@ -1,0 +1,35 @@
+{
+  "receipt_version": "0.1",
+  "receipt_type": "ai_governance_update",
+  "tool": "external_governance_submodule_updater",
+  "tool_mode": "apply",
+  "repo_root": "/Users/pc49-58/TacticalGo-safety/clone-governance",
+  "framework_root": "/Users/pc49-58/TacticalGo-safety/clone-governance/additional/ai-governance-framework",
+  "framework_before": "b74bbde22727391dadfdc017cb1bad9c20169ad6",
+  "framework_after": "2a09d542900579e9527e3e08ce18b1d34e056e96",
+  "lock_adopted_commit": null,
+  "lock_matches_checkout": false,
+  "update_status": "updated",
+  "generated_at_utc": "2026-10-14T11:01:36Z",
+  "claim_boundary": [
+    "receipt is review evidence, not proof",
+    "no fetch truth is implied unless explicitly recorded",
+    "consumer repo adoption is not proven complete"
+  ],
+  "not_claimed": [
+    "full governance adoption",
+    "hook/CI enforcement",
+    "memory completeness",
+    "domain correctness",
+    "release readiness"
+  ],
+  "remote_evidence": {
+    "target_ref": "origin/main",
+    "fetch_remote": "origin",
+    "fetch_ref": "main",
+    "target_source": "fresh_remote_fetch_head",
+    "target_fresh_upstream_verified": true,
+    "target_claim_boundary": "fresh upstream target verified; already_current/updated claims are allowed",
+    "target_head": "2a09d542900579e9527e3e08ce18b1d34e056e96"
+  }
+}

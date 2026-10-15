@@ -2,6 +2,17 @@
 
 Owner decisions, newest first. A decision here overrides any conflicting Draft text elsewhere; `docs/RULES_DRAFT.md` is updated to match.
 
+## 2026-10-08 (full governance adoption) — Owner asked for a complete import
+
+- Owner：「先幫我完整導入」。依框架文件（`docs/INTEGRATION_GUIDE.md` §4–5、F-7）在分支 `chore/governance-full`：
+  - `additional/ai-governance-framework` 加為 **submodule，釘在 `b74bbde`**（遠端 canonical main；Owner 本機的框架 checkout 在另一個分支 `be5734cc`，不是 canonical）。
+  - 重新 adopt（框架根目錄改指向 submodule）、安裝本機 pre-commit / pre-push hooks、執行 F-7 `--apply`（`AGENTS.md` 加框架管理區塊、新增 `CLAUDE.md`／`GEMINI.md`／Copilot hooks、更新回執）。
+  - 新增 repo 專屬驗證器 `validators/golden_fixture_validator.py`（黃金測資的結構與用詞必須與 C# 引擎定義的非法原因／事件／動作一致），並修正 `contract.yaml`（PLAN 路徑、宣告驗證器）。
+- 結果（框架自己的報告）：`partial` → **`full_candidate`**，缺少的表面為空；readiness `ready=True`；drift `severity=ok`；hooks 驗證 `valid=True`。
+- **仍然不能宣稱**：runtime enforcement、hook／CI 強制、記憶完整、版本鎖定（`framework.lock.json` 對 submodule consumer 為 not_present，readiness 仍有 3 項 framework_version 警告）、domain 正確性、release readiness。hooks 是本機、建議性的（記憶工作流警告不擋 commit）；CI 工作流只在手動或「動到治理檔的 PR」觸發，**尚未在 GitHub 上實際跑過**。
+- 影響之後的工作：根目錄新增的 `CLAUDE.md`／`AGENTS.md` 管理區塊要求 agent 在任務開始、里程碑、範圍改變等時點輸出 `[Governance Contract]` 區塊，並規範 session 結束的 closeout；之後在此 repo 開新 session 的 agent 會載入它們（美術 agent 也一樣）。這和 Owner 先前「不擴張治理流程」的原則有張力，Owner 已明確要求完整導入；若覺得負擔太重，可以回退這個分支。
+- 未推送：此分支只在本機；是否推送、以及如何與 `feature/ui-3c` 合併，等 Owner 決定。
+
 ## 2026-10-08 (design confirmation) — soldiers + commander + one hero; pick a class at the start (Owner)
 
 - Owner 認為「普通士兵 + 主將 + 每方最多 1 個英雄，開局選一個職業」值得採用，比增加職業數量更有機會好玩。**這正是目前引擎的設計**（士兵／主將／英雄三種單位、開局選職業、英雄用 Mana 召喚、被提後本版不可重召），不需要規則改動。
@@ -116,3 +127,17 @@ Owner decisions, newest first. A decision here overrides any conflicting Draft t
 | 範圍 | 不擴充卷軸、神器、紅龍完整系統或大量美術；自動化 PASS 不取代真人遊戲性驗收 |
 
 Owner 補充的技術更正：Windows 可以用 Swift 官方 Windows toolchain 開發並執行純 Swift Package；SwiftUI 與完整 iOS App 的建置、模擬器除錯仍需 macOS/Xcode。
+
+## 2026-10-14 — 來源保全、整合順序與工具導入限制
+
+| 項目 | 決策 |
+|---|---|
+| 來源保全 | 1.0／1025 送審來源與 1.1／1112 候選來源已各自推送為獨立安全分支（`safety/1.0-1025-source-snapshot-20261014`、`safety/1.1-source-snapshot-20261014`）。標示為 source snapshot，不宣稱為經獨立重建驗證的精確 release source；1.0 的 256 項簽署輸入與 1.1 的 279 項來源清單皆逐項吻合。 |
+| 整合順序 | REL-STATUS → INTEG-DESIGN-01（設計 1.0／1.1 如何整合且不遺失 1.0 功能）→ INTEG-CORE-01（設計驗收後才實作）。Apple 審查結果只阻擋實際合併與發布決策，不阻擋整合設計。 |
+| 範圍凍結 | 整合底定前，不新增英雄、怪物、動畫、框架或 AI agent。 |
+| 驗收原則 | 驗收須包含玩家能否理解技能、戰鬥演出是否清楚、連續遊玩後是否想再玩；自動化測試通過不等於真人驗收。 |
+| AI 工具 | 研究 Claude-Code-Game-Studios（抽 4–6 個 skills 並與既有治理去重）、HunyuanVideo-Foley（戰鬥音效試作）、ACE-Step 1.5（配樂候選）；godot-mcp 僅用於 Owner 另外的 Godot 專案；Unreal／Unity／世界生成類工具不導入。工具能力與授權為 Owner 的研究結論，未經獨立查證。 |
+| 治理導入 | 以 PR #1 內容併入現行 main，並經框架受管更新（F-7）至 `2a09d54`。hooks 存在 Git 共用目錄：每個獨立 clone 安裝一次，同一 clone 的 linked worktree 共用（先以 `git rev-parse --git-path hooks` 與 `core.hooksPath` 確認實際路徑，不要逐個 worktree 重複安裝）；F-7 apply 須在 clone 的主 worktree 執行。VS Code 的 `Stop` 事件不是 session 結束，受管的 VS Code Stop hook 先不隨本 repo 發布，結案維持手動（暫行措施，框架範本修正前需在框架更新後複查）。GitHub Actions 原為停用，已於 2026-10-14 重新啟用（僅允許 GitHub 官方 actions）；雲端 CI 結果見 `artifacts/governance/ci-run-38574137791.json`。導入不證明 runtime 強制執行。 |
+| 後續待辦 | 支援／隱私網站（僅本機 repo）推送到遠端；簽名 IPA／archive 的異地備份；是否將 1112 加入 Owner 1.1 測試群組由 Owner 決定。 |
+
+證據：`memory/2026-10-14.md`（canonical 記錄）、`docs/save-1.0/`、`docs/save-1.1/`（位於各自的安全分支）。
