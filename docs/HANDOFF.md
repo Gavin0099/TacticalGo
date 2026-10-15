@@ -34,13 +34,13 @@
 
 ---
 
-## 2. 版本與分支地圖（2026-10-15 09:57 以 `gh`／`git ls-remote` 核對）
+## 2. 版本與分支地圖（2026-10-15 09:57–10:10 以 `gh`／`git ls-remote` 核對；目前 **6 個 PR 全部 OPEN**：#1、#2、#5、#6、#7、#8，皆 mergeable／clean）
 
 | 分支／PR | SHA | 性質 | 狀態 |
 |---|---|---|---|
 | `main` | `cdab133` | PR #4 已合併：Swift 核心、R3 技能、5 步教學、Windows 第 1 關 | 現行基底 |
 | **PR #7** `chore/governance-full-20261014` → main | `3c8207b` | 完整 AI Governance 導入（取代 #1）；46 檔 | OPEN，`mergeStateStatus=CLEAN`；`governance-drift` 成功；Codex 對 `3c8207b` 審查「沒有重大問題」；**等 Owner 決策**（見 §3.1） |
-| **PR #8** `integration/1.0-1.1` → main | `5a826fa` | 1.0＋1.1 整合候選；30 commits、100 檔 | OPEN，`CLEAN`，**沒有任何 CI 檢查**；PR 本文寫「Do not merge without a human review」 |
+| **PR #8** `integration/1.0-1.1` → main | `5a826fa` | 1.0＋1.1 整合候選；30 commits、**1,655 個變動檔案**（`gh api …/pulls/8` 的 `changed_files`；`gh pr view --json files` 最多只回 100 筆，不要拿它當總數） | OPEN，`CLEAN`，**沒有任何 CI 檢查**；PR 本文寫「Do not merge without a human review」 |
 | `safety/1.0-1025-source-snapshot-20261014` | `d13fdfa` | 1.0／1025 來源保全 | 遠端存在；固定輸入，**不可改** |
 | `safety/1.1-source-snapshot-20261014` | `8c80ceb` | 1.1／1112 來源保全 | 遠端存在；固定輸入，**不可改** |
 | `docs/integ-design-01` | `99e55b5` | 整合設計草稿的分支 | 遠端存在 |

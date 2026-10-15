@@ -16,7 +16,7 @@
 | PR #1 OPEN、已被 #7 取代 | `gh pr list`：#1 OPEN；#7 本文自稱「supersedes #1」 | 成立 |
 | PR #2 OPEN、Windows 盜賊換位 UI、基於舊治理分支 | #2 base=`chore/governance-full`、head=`feature/ui-3c` | 成立 |
 | PR #7 OPEN、CI 成功、Codex 最後審查無重大發現 | head `3c8207b`；run `38597615544` 等皆 success；Codex 對 `3c8207b`「Didn't find any major issues」 | 成立；**但 PR 本文的 `HEAD cff31e8` 已過期** |
-| PR #8 OPEN、1.0／1.1 整合候選 | head `5a826fa`，CLEAN，**無 CI 檢查** | 成立；補充：無 CI；PR 本文測試數字（405+5）已被報告（424）取代 |
+| PR #8 OPEN、1.0／1.1 整合候選 | head `5a826fa`，CLEAN，**無 CI 檢查**；30 commits、**1,655 個變動檔案**（API `changed_files`） | 成立；補充：無 CI；PR 本文測試數字（405+5）已被報告（424）取代 |
 | `AGENTS.md` main 與 #7 都有四個 `N/A` | `git show origin/main:AGENTS.md` 與 #7 的檔案各 4 處 | 成立 |
 | `docs/handoff` GitHub 找不到遠端分支 | `git ls-remote --heads origin` 無此分支 | 成立 |
 | 本機 `docs/handoff` 為 `c55a2e1` | **本機實際為 `e3a78fc`**（比 `c55a2e1` 多一個 commit，2026-10-08 16:39，修改 AGENTS.md、HANDOFF.md，新增 `docs/evidence/handoff-2026-10-08.json`） | **與題目前提不同**：我先讀了兩者；本次修復吸收的是 `e3a78fc` 的內容 |
@@ -90,3 +90,7 @@
 ## 8. 提交時的 pre-commit 建議性輸出（2026-10-15）
 
 提交 `f015a72` 時本機 hook 輸出 `warning_codes=missing_canonical_memory,test_evidence_artifact_metadata_missing`，`completion_claim_allowed=True`，明寫「commit is not blocked」。兩者都在 #7 本文的已知警告清單內（記憶缺口、舊記錄證據來源）；本次沒有寫 canonical memory，**這些警告未被解除**。若要消除，需 Owner 決定是否補寫 session 記錄（用 `governance_tools.memory_record`，且 `--test-evidence` 必須是實際執行結果）。
+
+## 9. 更正（2026-10-15 10:10）
+
+首次提交的 HANDOFF 把 PR #8 寫成「100 檔」：那是 `gh pr view --json files` 的上限，不是實際數字。以 `gh api repos/Gavin0099/TacticalGo/pulls/8` 核對為 **1,655 個變動檔案**（30 commits）；#7 為 46 檔／22 commits，與先前一致。已更正 `docs/HANDOFF.md`。另外，目前 6 個 PR（#1、#2、#5、#6、#7、#8）全部 OPEN。
