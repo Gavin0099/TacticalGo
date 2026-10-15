@@ -101,7 +101,7 @@
 
 ### 3.3 合併後狀態
 
-`main` = `a3c1867`（#8 的 merge commit）。合併前驗證針對 `ecfa95b`（其後到 `5a7d8b8` 只改文件）。**合併後對乾淨 `main` 的完整驗證（POSTMERGE-01）：見 `docs/integration/POSTMERGE_01.md`；未見該檔或其中標示未完成者，視為尚未驗證。** 整合版 TestFlight（需高於 1112 的新 build）**尚未製作，也尚未有任何人在 iPhone／iPad 上玩過整合版**；這是下一個工程之外的 Gate，需要 Owner 另行授權任何上傳。**準備度分析見 `docs/integration/TESTFLIGHT_READINESS.md`：不能直接封存現有 `Beta` 設定（缺計費設定鍵，只能玩 3 場），需先決定設定選項。**
+`main` = `a3c1867`（#8 的 merge commit）。合併前驗證針對 `ecfa95b`（其後到 `5a7d8b8` 只改文件）。**合併後對乾淨 `main` 的完整驗證（POSTMERGE-01）：見 `docs/integration/POSTMERGE_01.md`；未見該檔或其中標示未完成者，視為尚未驗證。** 整合版 TestFlight（需高於 1112 的新 build）**尚未製作，也尚未有任何人在 iPhone／iPad 上玩過整合版**；這是下一個工程之外的 Gate，需要 Owner 另行授權任何上傳。**準備度分析見 `docs/integration/TESTFLIGHT_READINESS.md`：不能直接封存現有 `Beta` 設定（缺 AdMob 應用程式 ID，實測啟動即崩潰）。Owner 已選選項 A，設定與檢查腳本在 PR #10（`chore/testflight-integrated-config`，未合併），封存與上傳仍待授權。**
 
 ---
 

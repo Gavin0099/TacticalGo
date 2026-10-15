@@ -1,6 +1,8 @@
 # 整合版 TestFlight 準備度分析
 
 日期：2026-10-15。依據：`main` = `a3c1867`、本機簽署前置檢查（唯讀）、`docs/release-01`、`docs/save-1.1`。
+> **更新（2026-10-15，Owner 選擇選項 A）：** 設定已備妥於 PR #10（`chore/testflight-integrated-config`），見 `docs/release-01/TESTFLIGHT_INTEGRATED.md`。**實測更正下表：現有 `Beta` 設定不是「只能玩 3 場」，而是啟動即崩潰**（見 B1 更正）。仍未封存、未上傳。
+
 **這是分析，不是授權。** 上傳到 App Store Connect／TestFlight 屬 Owner 決定；我沒有做任何上傳、簽署封存或 App Store Connect 變更，也沒有重新查 Apple 端狀態。
 
 ## 結論（一句話）
@@ -19,8 +21,8 @@
 
 | 選項 | 內容 | 優點 | 代價／風險 |
 |---|---|---|---|
-| **A（建議）** | 為整合版 TestFlight 建立審過的 xcconfig：沿用 `Beta` 的簽署與擴充旗標，補上 `INFOPLIST_FILE`、`GENERATE_INFOPLIST_FILE = NO` 與 `CROWN_*`（解鎖商品識別碼、隱私／支援網址）；build 號 > 1112 | 付費牆、沙盒購買、擴充把關都能真實驗證 | 廣告單元：非 DEBUG 建置**只接受正式 AdMob ID**（Google 範例 ID 會被程式拒絕）。內部測試用正式廣告單元有「自己點擊自己的廣告」的政策風險；可選擇**不填廣告鍵**（廣告顯示「尚未設定」，只測購買），或由 Owner 接受風險 |
-| B | 照現有 `Beta` 封存，不補鍵 | 最快 | 只能玩 3 場；等於無法驗證整合最重要的部分（擴充與額度共存） |
+| **A（建議）** | 為整合版 TestFlight 建立審過的 xcconfig：沿用 `Beta` 的簽署與擴充旗標，補上 `INFOPLIST_FILE`、`GENERATE_INFOPLIST_FILE = NO` 與 `CROWN_*`（解鎖商品識別碼、隱私／支援網址）；build 號 > 1112 | 付費牆、沙盒購買、擴充把關都能真實驗證 | 廣告單元：非 DEBUG 建置**只接受正式 AdMob ID**（Google 範例 ID 會被程式拒絕）。**「完全不填廣告鍵」不可行（會崩潰）**；採用的折衷是：只填 AdMob **應用程式** ID、廣告**單元** ID 留空 → 廣告顯示「尚未設定」、SDK 不啟動、不發廣告請求，只測購買與把關；要測真廣告需 Owner 另外填單元 ID 並接受政策風險 |
+| B | 照現有 `Beta` 封存，不補鍵 | — | **更正（實測）：啟動即崩潰**。Google Mobile Ads SDK 連結在每個 build 內，`GADApplicationIdentifier` 為空時會丟出 `GADInvalidInitializationException`，App 在啟動後立即終止（模擬器，`main` @ `a3c1867`）。原先寫的「只能玩 3 場」是我沒有實際啟動就下的推論，是錯的 |
 | C | 加「測試者無限額度」開關 | 測試最方便 | **新增計費語意與功能**，違反目前「不改商業額度政策」的界線，需獨立決定與風險評估，不建議 |
 
 ## 必做前置（不論選哪個選項）
