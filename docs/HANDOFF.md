@@ -34,6 +34,13 @@
 
 ---
 
+> **更新 2026-10-15 10:3x（本節以下的表是 10:10 的快照，此處是之後的變化）**
+> - **PR #7 已由 Owner 手動合併**：merge commit `dca10d2`，`2026-10-15T02:19:47Z`（`gh`／`git ls-remote` 核對）。`main` 現在含完整治理。
+> - **PR #1 已顯示為 merged**（其 commits 因 #7 以其為來源而進入 `main`），無需另外關閉；`chore/governance-full` 分支仍在，因 #2 疊在它上面。
+> - **本檔所在的 PR #9 已改指 `main`**（原疊在 #7 的分支上），7 個檔案、`CLEAN`；#9 沒有 CI run（它的路徑不觸發 `governance-drift`），驗證是本機跑的。
+> - #8 對新 `main` 的 `git merge-tree`：無內容衝突（`CLEAN`）。
+> - #8 的程式碼層風險分析見 [`docs/handoff/PR8_BLOCKER_ANALYSIS.md`](handoff/PR8_BLOCKER_ANALYSIS.md)（唯讀，未改程式）。
+
 ## 2. 版本與分支地圖（2026-10-15 09:57–10:10 以 `gh`／`git ls-remote` 核對；目前 **6 個 PR 全部 OPEN**：#1、#2、#5、#6、#7、#8，皆 mergeable／clean）
 
 | 分支／PR | SHA | 性質 | 狀態 |
