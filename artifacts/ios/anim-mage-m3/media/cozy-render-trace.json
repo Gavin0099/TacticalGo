@@ -1,0 +1,58 @@
+[
+  {
+    "elapsed" : 0.032392024993896484,
+    "observedUptime" : 62416.189032291673,
+    "phase" : "anticipation",
+    "progress" : 0,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.18239188194274902,
+    "observedUptime" : 62416.351263000004,
+    "phase" : "release",
+    "progress" : 0,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.28239178657531738,
+    "observedUptime" : 62416.451314875005,
+    "phase" : "release-hold",
+    "progress" : 0,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.31572508811950684,
+    "observedUptime" : 62416.48449641667,
+    "phase" : "push",
+    "progress" : 0.012316514484800667,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.56572484970092773,
+    "observedUptime" : 62416.726451541668,
+    "phase" : "settle",
+    "progress" : 1,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.68239140510559082,
+    "observedUptime" : 62416.843788333339,
+    "phase" : "recover",
+    "progress" : 1,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  },
+  {
+    "elapsed" : 0.94999999999999996,
+    "observedUptime" : 62417.143782791667,
+    "phase" : "final",
+    "progress" : 1,
+    "receipt" : "B1E0C8EA-6C16-4F09-8921-2FCCAF4B608B",
+    "receiptUptime" : 62416.156528000007
+  }
+]

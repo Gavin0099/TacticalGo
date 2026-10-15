@@ -1,0 +1,9 @@
+{
+  "beforeRecordRequestUptime": 13070.725722875,
+  "surface": "iPhone 390 pt Simulator / real SwiftUI / XCTest gesture input",
+  "voiceVersion": "VO-01-prototype-v3-piper-seeded",
+  "recordReadyUptime": 13070.885443708334,
+  "testExitCode": 0,
+  "recordStopUptime": 13086.667655708334,
+  "recorderExitCode": 0
+}

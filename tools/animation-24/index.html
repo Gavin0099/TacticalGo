@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>TacticalGo 四職動畫 AV24</title><link rel="stylesheet" href="../animation-22/style.css"></head>
+<body><header><span>TACTICAL GO · AV24</span><h1>施法清楚，接觸有份量</h1><p>瀏覽器演出比較 · 使用當前原画與共用拍點；不是 iOS 錄影或規則引擎。</p></header>
+<nav id="skills" aria-label="選擇技能"></nav>
+<div class="controls"><button id="select">選取目標</button><button id="confirm" class="primary">確認施法</button><button id="cancel">取消／復原</button><button id="replay">重播</button><button id="sequence">依序播放七技能</button><label><input id="reduced" type="checkbox">降低動態</label><label><input id="sound" type="checkbox">聲音</label><label><input id="dense" type="checkbox">密集盤面</label><label><input id="detail" type="checkbox">演出細節放大</label><label>尺寸 <select id="width"><option>375</option><option selected>402</option></select></label><label>進度 <input id="scrub" type="range" min="0" max="1200" value="0"></label></div>
+<main><article><h2>AV23 比較基線</h2><p>相同 AV22 素材與 AV23 時長，本輪前的接觸形狀</p><canvas id="before" width="804" height="844" aria-label="前版動畫比較"></canvas></article><article><h2>本輪候選</h2><p id="intent"></p><canvas id="after" width="804" height="844" aria-label="本輪動畫比較"></canvas></article></main>
+<section class="receipt"><strong id="status" aria-live="polite">載入素材</strong><p id="beats"></p><p>選取不扣資源、不播放成功音；取消、重播和背景會清除本工具舊排程。實際規則與原生生命週期另由Swift回歸驗證。</p></section>
+<details><summary>七技能落定前的對照</summary><div id="sheet"></div></details>
+<details id="art-review" open><summary>角色原畫維持一致 · 32 / 48 / 64 px</summary><div id="poses"></div></details><footer><a href="../game-interface-20/">UI20 主畫面</a> · <a href="../../docs/v11/ANIMATION_24.md">實作與驗證界線</a></footer>
+<script src="../animation-22/motion.js"></script><script src="../animation-22/rig.js"></script><script src="../animation-22/accents.js"></script><script src="accents.js"></script><script src="contacts.js"></script><script src="preview.js"></script></body></html>

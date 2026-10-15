@@ -1,0 +1,60 @@
+{
+  "engineeringStatus": "PASS",
+  "package": {
+    "executed": 169,
+    "failures": 0,
+    "log": "package-warrior-impact.log",
+    "logSHA256": "942af42eaab0c94798043f776c9bb731257af4866196cda353cdcaf9f15b5163"
+  },
+  "simulatorReceiptAndSecondAP": {
+    "executed": 2,
+    "failures": 0,
+    "log": "native-warrior-impact.log",
+    "logSHA256": "988c0755896d4856c0ac18ea00a5153470793f707422395724064e4d901bd8e8"
+  },
+  "simulatorRecording": {
+    "executed": 1,
+    "failures": 0,
+    "log": "media-warrior-impact/native-record-test.log",
+    "logSHA256": "9b7daf2566da7c2471f513d79094697e7e553e4af64fe0c3e5744bddc45e0e24"
+  },
+  "simulatorSmallDense": {
+    "executed": 1,
+    "failures": 0,
+    "log": "native-warrior-impact-small.log",
+    "logSHA256": "c6442488467508f29f19c040dd140bb3cb0c2721dbde5954d3dd31f8a573296f"
+  },
+  "physicalIPhone": {
+    "executed": 2,
+    "failures": 0,
+    "log": "native-iphone-warrior-impact.log",
+    "logSHA256": "4b941b410f3d26539f24c1240219846eadf1a5947d872542901e27913dcd7145"
+  },
+  "stateChecks": {
+    "simulator": 108,
+    "physicalIPhone": 108
+  },
+  "golden": {
+    "fixtures": 38,
+    "actions": 99,
+    "snapshots": 137,
+    "CSharp": "cached evidence; not rerun",
+    "Swift": "fresh replay"
+  },
+  "physicalIPad": "1003 installed and launched over Wi-Fi; UI runner authentication canceled, NOT PASS",
+  "ownerFeedback": "Rogue body motion liked; warrior initial only okay. Warrior contact refinement: Owner reports improved movement but insufficient force; skill atmosphere NOT PASS.",
+  "limits": [
+    "No human acting/final art acceptance inferred",
+    "No VFX-01/VFX-02, new voice or haptics",
+    "Silent native Simulator movies, not physical-device video",
+    "No gameplay/Bot/projection changes"
+  ],
+  "rawPhysicalLogs": "Local evidence retains diagnostics; public summary omits device identifiers",
+  "identitySHA256": {
+    "ios/TacticalGo/Cozy/B-warrior-v02.png": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+    "ios/TacticalGo/Cozy/B-rogue-v02.png": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+    "ios/TacticalGo/HeroBody/warrior-clean-plate.png": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63",
+    "ios/TacticalGo/HeroBody/rogue-clean-plate.png": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+  },
+  "maskSHA256": "35d73e19856f421f8372d849b7bb0c2236f20bb02ea8c34f0f2a6c3be491a79b"
+}

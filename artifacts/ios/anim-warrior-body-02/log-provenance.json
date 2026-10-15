@@ -1,0 +1,44 @@
+[
+  {
+    "path": "package-final.log",
+    "rawSHA256": "a37bc3674c13842e4e2013ffd5213bbc79055c5294f9f6ae85a2bc8ae0fd900b",
+    "publishedSHA256": "a37bc3674c13842e4e2013ffd5213bbc79055c5294f9f6ae85a2bc8ae0fd900b",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "golden-compare.log",
+    "rawSHA256": "0ca5321a85d8b16dc270541f409108090ef6f0c438d190c845c8bc76a6f88185",
+    "publishedSHA256": "0ca5321a85d8b16dc270541f409108090ef6f0c438d190c845c8bc76a6f88185",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "golden-replay.log",
+    "rawSHA256": "d50a6082dd00781b97468aea183259f0a6e26306f32b2f717ff45806ab5b4f3b",
+    "publishedSHA256": "d50a6082dd00781b97468aea183259f0a6e26306f32b2f717ff45806ab5b4f3b",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "native-audit-rim-final.log",
+    "rawSHA256": "237e72ba0f0ecec5b1df9a76f82068907a76e7d841528f5d1b5ff55a849faed9",
+    "publishedSHA256": "237e72ba0f0ecec5b1df9a76f82068907a76e7d841528f5d1b5ff55a849faed9",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "native-se-rim-final.log",
+    "rawSHA256": "f23b798b9b4f242df5e7c3584cfa5469419cd5337614e76193896dfd3cfeae20",
+    "publishedSHA256": "f23b798b9b4f242df5e7c3584cfa5469419cd5337614e76193896dfd3cfeae20",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "release-rim-final.log",
+    "rawSHA256": "25eea756b5a6ea4ba98abdedd380fa7fce6d246b8aab3188988e82f3bcb581b1",
+    "publishedSHA256": "d7995daec17c9fb5ffb5da8ab43a8f3a8ffc20ef8fe3210e2125beebaf744406",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  },
+  {
+    "path": "media/native-record-test.log",
+    "rawSHA256": "245e9ebe1a32e504ec4145ecfb1bd446d79101a7922b090d4b3fae5f4c941dac",
+    "publishedSHA256": "245e9ebe1a32e504ec4145ecfb1bd446d79101a7922b090d4b3fae5f4c941dac",
+    "transformation": "Only trailing whitespace normalized; complete log lines/counts retained; raw copy local"
+  }
+]

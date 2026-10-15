@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/scripts/validate-mage-m3-evidence.py", line 12, in <module>
+    for log in ['release-build.log','native-final-build.log','device-build.log']:assert '** BUILD' in read(log) and 'SUCCEEDED **' in read(log),log
+AssertionError: native-final-build.log
+[test_evidence_receipt] receipt=artifacts/ios/anim-mage-m3/test-evidence-receipt.json exit_code=1
+  test_evidence: FAIL: artifacts/ios/anim-mage-m3/test-evidence-receipt.json -> exit_code=1

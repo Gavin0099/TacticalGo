@@ -1,0 +1,13 @@
+{
+  "baseline": "artifacts/monetization-02/SOURCE.json",
+  "inputsChecked": 252,
+  "changes": [
+    {
+      "path": "ios/TacticalGoUITests/PlayableGameTests.swift",
+      "baselineSha256": "0bb4fac9d2fe5fdb03d3736b32747df5998901992cb1e4ae87a572de38f2233e",
+      "currentSha256": "82dc72536baabbcdba6cb632d8caf4573feec8310dab54a0a1c1c87249366306"
+    }
+  ],
+  "frozenZipSha256": "524953c94811077d22ca4c0a7247b76cf3a1ed47966ebbd8cc0acd2be0465b0f",
+  "runtimeSourceChanged": false
+}

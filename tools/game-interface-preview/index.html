@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TacticalGo · 遊戲介面候選 19</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="review-header"><div><span class="eyebrow">TACTICAL GO / INTERFACE 19</span><h1>把每次行動，做成一張戰術牌。</h1><p>v11 介面候選 · 瀏覽器排版與操作示意；棋盤使用現行素材，不執行遊戲規則。</p></div><a href="../../docs/v11/GAME_INTERFACE_19.md">實作與驗證範圍 ↗</a></header>
+<main>
+<aside class="review-controls"><fieldset><legend>職業</legend><div id="heroes" class="control-grid"></div></fieldset><fieldset><legend>畫面</legend><div id="states" class="control-grid"></div></fieldset><fieldset><legend>尺寸</legend><div id="sizes" class="control-grid"></div></fieldset><p>可點技能、棋盤預覽點、確認與取消。上方切換的是設計測試情境。</p><p id="inspection" aria-live="polite"></p></aside>
+<section class="stage" aria-label="候選介面"><div id="device" class="device"><div id="game"></div></div></section>
+<section class="comparison"><span class="eyebrow">THE SAME LANGUAGE</span><h2>四職共用同一套操作語言</h2><p>插畫技能、能量寶石、選取底線；確認後才執行動作。</p><div id="class-gallery"></div><h2>原版操作區</h2><img class="before" src="../../artifacts/game-interface-19/owner-before.png" alt="使用者提供的原版淡色圓角操作區，未修改"><p>保留使用者原圖作比較；不是本輪原生截圖。</p></section>
+</main><dialog id="help"><h2>技能說明</h2><p id="help-copy"></p><p>先點選棋盤目標，查看預覽，再按確認。取消不扣資源。</p><form method="dialog"><button class="command primary">完成</button></form></dialog>
+<script src="preview.js"></script></body></html>

@@ -1,0 +1,289 @@
+{
+  "evidence": "Source/WAV timing only; no native latency measurement",
+  "voiceTake": "B",
+  "specimens": "Seven nonterminal specimens without captures; terminal stays held separately",
+  "rows": [
+    {
+      "id": "bastion",
+      "hero": "warrior",
+      "title": "築壘",
+      "visualEnd": 1.02,
+      "baselineInputEnd": 1.28,
+      "candidateInputEnd": 1.02,
+      "audioEnd": 1.28,
+      "savedWait": 0.26,
+      "cues": [
+        {
+          "file": "P07/w7-brace.wav",
+          "at": 0.2,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-strike.wav",
+          "at": 0.58,
+          "duration": 0.33,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-land.wav",
+          "at": 0.58,
+          "duration": 0.24,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-voice-B.wav",
+          "at": 0.08,
+          "duration": 1.2,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "reformation",
+      "hero": "warrior",
+      "title": "戰線重整",
+      "visualEnd": 1.02,
+      "baselineInputEnd": 1.28,
+      "candidateInputEnd": 1.02,
+      "audioEnd": 1.28,
+      "savedWait": 0.26,
+      "cues": [
+        {
+          "file": "P07/w7-brace.wav",
+          "at": 0.2,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-strike.wav",
+          "at": 0.58,
+          "duration": 0.33,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-land.wav",
+          "at": 0.58,
+          "duration": 0.24,
+          "kind": "effect"
+        },
+        {
+          "file": "P07/w7-voice-B.wav",
+          "at": 0.08,
+          "duration": 1.2,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "magic",
+      "hero": "mage",
+      "title": "魔法之手",
+      "visualEnd": 1.08,
+      "baselineInputEnd": 1.1197083333333333,
+      "candidateInputEnd": 1.08,
+      "audioEnd": 1.1197083333333333,
+      "savedWait": 0.039708333333333234,
+      "cues": [
+        {
+          "file": "P05/p5-conjure.wav",
+          "at": 0.08,
+          "duration": 0.39501133786848075,
+          "kind": "effect"
+        },
+        {
+          "file": "P05/p5-push.wav",
+          "at": 0.46,
+          "duration": 0.26,
+          "kind": "effect"
+        },
+        {
+          "file": "P05/p5-contact.wav",
+          "at": 0.68,
+          "duration": 0.3680045351473923,
+          "kind": "effect"
+        },
+        {
+          "file": "P06/mage-cast-B.wav",
+          "at": 0.08,
+          "duration": 1.0397083333333332,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "double",
+      "hero": "mage",
+      "title": "雙重牽引",
+      "visualEnd": 1.08,
+      "baselineInputEnd": 1.1197083333333333,
+      "candidateInputEnd": 1.08,
+      "audioEnd": 1.1197083333333333,
+      "savedWait": 0.039708333333333234,
+      "cues": [
+        {
+          "file": "P05/p5-conjure.wav",
+          "at": 0.08,
+          "duration": 0.39501133786848075,
+          "kind": "effect"
+        },
+        {
+          "file": "P05/p5-push.wav",
+          "at": 0.46,
+          "duration": 0.26,
+          "kind": "effect"
+        },
+        {
+          "file": "P05/p5-contact.wav",
+          "at": 0.68,
+          "duration": 0.3680045351473923,
+          "kind": "effect"
+        },
+        {
+          "file": "P06/mage-cast-B.wav",
+          "at": 0.08,
+          "duration": 1.0397083333333332,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "swap",
+      "hero": "rogue",
+      "title": "換位",
+      "visualEnd": 0.7,
+      "baselineInputEnd": 1.2785416666666667,
+      "candidateInputEnd": 0.7,
+      "audioEnd": 1.2785416666666667,
+      "savedWait": 0.5785416666666667,
+      "cues": [
+        {
+          "file": "P08/p8-rogue-coil.wav",
+          "at": 0.04,
+          "duration": 0.24,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-rogue-dash.wav",
+          "at": 0.16,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-rogue-land.wav",
+          "at": 0.36,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-voice-rogue-B.wav",
+          "at": 0.06,
+          "duration": 1.2185416666666666,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "chain",
+      "hero": "rogue",
+      "title": "連鎖換位",
+      "visualEnd": 0.7,
+      "baselineInputEnd": 1.2785416666666667,
+      "candidateInputEnd": 0.7,
+      "audioEnd": 1.2785416666666667,
+      "savedWait": 0.5785416666666667,
+      "cues": [
+        {
+          "file": "P08/p8-rogue-coil.wav",
+          "at": 0.04,
+          "duration": 0.24,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-rogue-dash.wav",
+          "at": 0.16,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-rogue-land.wav",
+          "at": 0.36,
+          "duration": 0.2,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-voice-rogue-B.wav",
+          "at": 0.06,
+          "duration": 1.2185416666666666,
+          "kind": "voice"
+        }
+      ]
+    },
+    {
+      "id": "offering",
+      "hero": "priest",
+      "title": "奉獻",
+      "visualEnd": 0.94,
+      "baselineInputEnd": 0.94,
+      "candidateInputEnd": 0.94,
+      "audioEnd": 0.94,
+      "savedWait": 0.0,
+      "cues": [
+        {
+          "file": "P08/p8-priest-prayer.wav",
+          "at": 0.06,
+          "duration": 0.25,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-priest-bless.wav",
+          "at": 0.32,
+          "duration": 0.42,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-priest-land.wav",
+          "at": 0.58,
+          "duration": 0.22,
+          "kind": "effect"
+        },
+        {
+          "file": "P08/p8-voice-priest-B.wav",
+          "at": 0.06,
+          "duration": 0.88,
+          "kind": "voice"
+        }
+      ]
+    }
+  ],
+  "wav_sha256": {
+    "ios/TacticalGo/PresentationLab/P07/w7-brace.wav": "140cb9a9047363c58ffd1d6a7db5f5ea3aea977b1f90581a902b033d8fcbc7eb",
+    "ios/TacticalGo/PresentationLab/P07/w7-strike.wav": "9198097da95fc412354b83536949bec051a5280cd72d702af6231baca98f88be",
+    "ios/TacticalGo/PresentationLab/P07/w7-land.wav": "d51ab8b8dd12b2d7650abd8b4042f5a4ee9f12f60cf710463adfe43019543c1f",
+    "ios/TacticalGo/PresentationLab/P07/w7-voice-B.wav": "f3c9dd9d10b4286b8da19bf15d504b2863984177a0201b5686c7142ba7b8f465",
+    "ios/TacticalGo/PresentationLab/P05/p5-conjure.wav": "579e01623cf7919cabba51fa5d89b8f9562d6633c4a2cd647a32211b7860bd90",
+    "ios/TacticalGo/PresentationLab/P05/p5-push.wav": "c278893f11b0d1ea93cdfd6f631ddcca98fe6c482e96c8fb085958bdb14eb8be",
+    "ios/TacticalGo/PresentationLab/P05/p5-contact.wav": "5ecb6d908f6410b041d60e2c277c0d5cf34705ffdba891a81f9b2eb21bf83444",
+    "ios/TacticalGo/PresentationLab/P06/mage-cast-B.wav": "96ec462ba1119e1714219a0d747d091ffc6be57c2fca6411db13f420fcd69ec4",
+    "ios/TacticalGo/PresentationLab/P08/p8-rogue-coil.wav": "7103ea81b6e6a74a6238ddc04e230c7fc0c49efc76c0495acc6a3d70f61cc06a",
+    "ios/TacticalGo/PresentationLab/P08/p8-rogue-dash.wav": "bdb949ed60238eeccb9aa2d4ab99ed5d6621f4ac74cd71295acae2d0dfc2d0e0",
+    "ios/TacticalGo/PresentationLab/P08/p8-rogue-land.wav": "ca1569c41edab56abad1ce521665657c68dc48c6c26c4971986a8ceca28cdf21",
+    "ios/TacticalGo/PresentationLab/P08/p8-voice-rogue-B.wav": "27ff4cd2711489e5941645d0461a0c16458414c36548ddba5a8016f35c4c68de",
+    "ios/TacticalGo/PresentationLab/P08/p8-priest-prayer.wav": "bce512b27878b06b006cb22e8c2effcb7c9474e764591d70ebc617d6190884fa",
+    "ios/TacticalGo/PresentationLab/P08/p8-priest-bless.wav": "67b799b4014f680c368fcdace82f964cb9a5079464ff728b4fb62d0486d96241",
+    "ios/TacticalGo/PresentationLab/P08/p8-priest-land.wav": "581c5f33811e0139b94281bd25b3161c7b9566f468ec6f3092a238a4926460f6",
+    "ios/TacticalGo/PresentationLab/P08/p8-voice-priest-B.wav": "cca68df93e96d64613522ba134962e9f3df28f3e8c4218323c76ec0f3d6835a7"
+  },
+  "source_sha256": {
+    "ios/TacticalGo/ExpansionLabView.swift": "6879a2f7b977af73cd7eb6334365df8a6d25b289515439dc047f5d124b02b00b",
+    "ios/TacticalGo/PresentationLabView.swift": "d7e6e2a49ebcaa394418e61ef33bd364f2b747d74d0869710d3f63293f72ce02",
+    "ios/TacticalGo/GameStore.swift": "af99de436dd7798bfc8ed1f61686ad51c2855d1a3925ecfa0676ae1d5c925167",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "0439b412646d546f7e98f10403df20a29fb87f4841d4bea1b5a5996a22cd7034"
+  },
+  "source_text_sha256_lf": {
+    "ios/TacticalGo/ExpansionLabView.swift": "9e0225eed5af0a2f661407d21e1f2b6687a640950be2f382ed24fce0a1c57fed",
+    "ios/TacticalGo/PresentationLabView.swift": "c3f8cfca93b563ff2d26fb50ccf82275061197a3d0eac9d5fb21ff9b4f37ebdd",
+    "ios/TacticalGo/GameStore.swift": "580da5bb2993bdba6e54b10c493b1d9d2438016bd5e07402406ba7d387a5602d",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "613bc9cd672ca56c1c666edbe3f5d0b8b0eab1d0d3e20f46422a13753d824878"
+  }
+}

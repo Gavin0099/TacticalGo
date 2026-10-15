@@ -1,0 +1,269 @@
+{
+  "scope": "AV22 candidate",
+  "UI20_source_sha256": "unchanged",
+  "portraits_and_clean_plates": "byte-identical to HEAD",
+  "Domain_Content_Bot_Records_diff": "empty",
+  "atlas_integrity": "PASS",
+  "browser": {
+    "evidence": "browser motion study",
+    "nativeBuild": "NOT RUN",
+    "nativeTests": "NOT RUN",
+    "checks": [
+      {
+        "width": 375,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 0,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 1,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 2,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 3,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 4,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 5,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "skill": 6,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 0,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 1,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 2,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 3,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 4,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 5,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "width": 402,
+        "skill": 6,
+        "scene": "dense",
+        "pass": true
+      },
+      {
+        "interaction": "cancel before cues clears sound schedule",
+        "pass": true
+      },
+      {
+        "interaction": "background-style stop freezes and cancels RAF",
+        "pass": true
+      },
+      {
+        "interaction": "media reduced motion shows final board without donor or trail",
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 0,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 1,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 2,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 3,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 4,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 5,
+        "pass": true
+      },
+      {
+        "interaction": "normal-speed playback reaches landed",
+        "skill": 6,
+        "pass": true
+      },
+      {
+        "interaction": "seven-skill sequence plays continuously to final offering",
+        "pass": true
+      },
+      {
+        "interaction": "24 source-rig samples and second chain windup",
+        "pass": true
+      },
+      {
+        "width": 375,
+        "interaction": "review page fits phone",
+        "pass": true
+      }
+    ],
+    "invariants": [],
+    "errors": [],
+    "video": "Silent browser motion recording; not native rig or device performance"
+  },
+  "source_sha256": {
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "bcf73a8eb85a35613346ba252c49b327117e4a7336a73c71b8ed53448b0c74bc",
+    "ios/TacticalGo/ExpansionLabView.swift": "540b953423e829f2fe7f957f4a5f92deeff0efc2d29ea5ce6ebc808cb3b0cebb",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionHeroPose.swift": "732e1ff8c1a280d3cd6953d112b00c07bf418fd93a93f4f806b572902f58b2cc",
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionFeedback.swift": "ae8f4f93381639fa2513ed0b05fb631d6b7a42b0cbc4b4225ec7b51fbf97767e",
+    "swift/TacticalGoCore/Tests/TacticalGoMotionTests/SpellAccentTests.swift": "ed925e0056743133db25627d33b26ef1bcdc90e8ccea30f1a835266b5dda188f",
+    "tools/animation-22/rig.js": "b09f6cb55257627dcdf6719a1b031c81d0b8f7aa0db342627891646962a6be10",
+    "tools/animation-22/accents.js": "dbffc91eaefdfde44998072f2d23acabf54a6e265352fb8e6dce88601b2af8ad",
+    "tools/animation-22/preview.js": "87dfc3d6c8d03a6564e327ba1616d9c781a48306496fd446bb7423491aee57b0",
+    "tools/animation-22/rigs.json": "b7842224ef3402e47b3936bdf48bba8a814e7c41d693c6dbaf8a65e1dbe819e6"
+  },
+  "artifacts_sha256": {
+    "candidate-overview.png": "0c03beb4a4ea38492ee392ec3c6cb58d7090fb41f520cb0d366015b423a87269",
+    "chain-first.png": "cf48746ae461dea1f1de4261f650fa48ea0e8f591e8ca2ecb87b965902418c33",
+    "dense-detail.png": "08c7da9b773d9d8a54faf1e86b917728c9aca0ec86f4e5a5dd39ea336d33a518",
+    "failed-locator-browser.webm": "90fd728e8d78b90068de6d740d2aa0082e8f4af11e4f551a9079528c9b2c5588",
+    "mage-impact.png": "7b64d7131fad3c8156af4021b0789388cba49083c892e58e51f156d688570cce",
+    "offering-first.png": "67013a081e6eb48c4dce965ff6d69113179c85ca9e4e613b5265ba5680e446eb",
+    "offering-reduced.png": "2942b7379b6b0c651aea18fdfde3e27a69264fa2bfc5d3b3685ac546349866f7",
+    "offering-release.png": "4b5a9cd2052868e951adb84fc98014eeaa6b85230b2a6df7a5a9e139f8fd8ae9",
+    "poses-32-48-64.png": "ea903f5fddc8cc24dc0db72fd7b62a304e664eb4fd6f55daf88077ef584472d9",
+    "poses-first.png": "36dea726227b26763201a2ce090127a4115a3ea8a4ed76558a08715a4b615f1d",
+    "seven-skill-sheet.png": "8d09d3f57b41bd0b506d548fb247abcc7a5af440491891aeec3737348f7acffb",
+    "seven-skills-browser.webm": "08a0cd5e86191c64b33084efdb686ffed839f7aa09ac6f532d62cbb3a06727e4",
+    "skill-0-midpoint.png": "45c756ff1ab6e12fecac84210fd96988ab7bd0e103e070785e43f0c240e01061",
+    "skill-1-midpoint.png": "70120233862f8d7a97f1b90a591e4c2d84a3ce9fbf60ad33d580ce3879830cf8",
+    "skill-2-midpoint.png": "c5dea4018aa5a234806046609d613b8f00248e188902df5f0899b7d07633394f",
+    "skill-3-midpoint.png": "feedf7ec9f0dd818c379a2da5e21cca8b11a91b7358f8b6217a3f364dd1ab2db",
+    "skill-4-midpoint.png": "6d768e44bfa2e8f565e243e84ca684ed2e2c5bbface3cbf45e6cbda076739b94",
+    "skill-5-midpoint.png": "9f41a58548ecc710ecea95e7fe61a53eb925a1bed99e06e5586d11f1c29d7010",
+    "skill-6-midpoint.png": "d9bceff2be43800af96dbb558d20f16679336eb180aa562ac26f3e4298bd7098",
+    "warrior-impact.png": "faa3396ea02b5a874006bb65593b6e616481105cec1d71eb3752e3346f87ca92"
+  },
+  "native_build": "NOT RUN",
+  "three_new_Swift_tests": "NOT RUN",
+  "native_audio_performance_input_latency": "NOT RUN",
+  "quality_verdict": "Local material and two acting beats improved in candidate review; full Hearthstone quality unestablished",
+  "reason": "Windows has no Swift compiler or Xcode/iOS SDK; no native video or listening evidence"
+}

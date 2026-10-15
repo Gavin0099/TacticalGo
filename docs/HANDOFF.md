@@ -9,9 +9,9 @@
 
 ## 0. 三十秒版本
 
-1. **要維護的是 iOS／Swift 產品線**（對外名稱《皇冠戰略》；repo 名 TacticalGo）：1.0（已送審）與 1.1（TestFlight 候選）正在以 **PR #8** 整合成同一條發行線，並放在同一個存取帳本（ledger）之後。
+1. **要維護的是 iOS／Swift 產品線**（對外名稱《皇冠戰略》；repo 名 TacticalGo）：1.0（已送審）與 1.1（TestFlight 候選）已由 **PR #8**（2026-10-15 13:33 台灣時間，`a3c1867`）整合進 `main`，擴充玩法放在同一個存取帳本（ledger）之後；Release 建置仍只含 1.0 功能。
 2. **Windows／C# 線是參考實作與歷史**：`src/TacticalGo.Domain`、黃金測資 `tests/golden` 仍是 Swift 的規格參考；不要因為舊手冊寫著 G0／G1 Pending 就重新開啟那些 slice。
-3. **現況**：**#7**（AI Governance）已合併為 `dca10d2`，`main` 已含完整治理；#1 因此顯示 merged。**#8**（1.0／1.1 整合）是 **HOLD**：無 CI，且有兩個 Codex 已指出、原始碼仍可見的計費缺口（P1／P2，見 §3.2），要修正後才再審。
+3. **現況**：**#7**（AI Governance）已合併為 `dca10d2`，`main` 已含完整治理；#1 因此顯示 merged。**#8**（1.0／1.1 整合）已於 Owner 要求下合併為 `a3c1867`；合併前修掉兩個計費缺口（P1／P2）與一個 Release 編譯錯誤，見 §3.2。**合併不等於發布**；合併後完整驗證（POSTMERGE-01）與整合版 TestFlight 試玩尚未完成，見 §3.3。
 4. **不要做**：自行合併／推送／發布、清掉含未保全變更的 worktree、動 Apple 或 AdMob 設定、改計費語意、`--no-verify`、替 Owner 通過任何 Gate。完整清單：[`AGENTS.md`](../AGENTS.md)「Repo-Specific Forbidden Behaviors」。
 
 ---
@@ -34,13 +34,13 @@
 
 ---
 
-## 2. 版本與分支地圖（2026-10-15 10:45 核對；OPEN 的 PR：#2、#5、#6、#8、#9）
+## 2. 版本與分支地圖（2026-10-15 核對；OPEN 的 PR：#2、#5、#6、#9；`main` = `a3c1867`）
 
 | 分支／PR | SHA | 性質 | 狀態 |
 |---|---|---|---|
 | `main` | `dca10d2` | #7 的 merge commit；其下是 `cdab133`（PR #4：Swift 核心、R3 技能、5 步教學） | 現行基底，已含治理 hooks／workflow／驗證器 |
 | PR #7 `chore/governance-full-20261014` | `3c8207b` | 完整 AI Governance 導入（取代 #1） | **MERGED** `dca10d2`，2026-10-15 02:19 UTC，由 Owner 手動合併 |
-| **PR #8** `integration/1.0-1.1` → main | `5a826fa` | 1.0＋1.1 整合候選；30 commits、**1,655 個變動檔案**（`gh api …/pulls/8` 的 `changed_files`；`gh pr view --json files` 最多只回 100 筆，不要拿它當總數） | OPEN，`CLEAN`，**沒有任何 CI 檢查**；PR 本文寫「Do not merge without a human review」；**HOLD**：Codex 的 P1／P2 帳本問題未修（見 §3.2） |
+| **PR #8** `integration/1.0-1.1` → main | `5a7d8b8`（merge commit `a3c1867`） | 1.0＋1.1 整合；**1,655 個變動檔案**（`gh api …/pulls/8` 的 `changed_files`） | **MERGED** 2026-10-15 05:33 UTC，Owner 明確要求「看 review 沒問題就 MR」；CI：`Swift Core (Linux)` 433 項通過；Codex 串有兩則仍顯示 OPEN 但已書面處置（誤報一則、1.0 既有行為一則），見 §3.2 |
 | `safety/1.0-1025-source-snapshot-20261014` | `d13fdfa` | 1.0／1025 來源保全 | 遠端存在；固定輸入，**不可改** |
 | `safety/1.1-source-snapshot-20261014` | `8c80ceb` | 1.1／1112 來源保全 | 遠端存在；固定輸入，**不可改** |
 | `docs/integ-design-01` | `99e55b5` | 整合設計草稿的分支 | 遠端存在 |
@@ -49,7 +49,7 @@
 | PR #1 `chore/governance-full` | `761af5d` | 舊治理分支，被 #7 取代 | **顯示 merged**（#7 含其 commits），不需處理；分支保留（#2 疊在它上面） |
 | PR #2 `feature/ui-3c` | `a4ca293` | **Windows** 第 2 關（盜賊換位）UI，疊在舊治理分支上 | OPEN；Windows 舊線，暫時保留，**不阻擋 iOS** |
 | 本機 `docs/handoff` | `e3a78fc`（`c55a2e1` 的下一個 commit） | 舊交接手冊＋AGENTS.md 草稿＋R1 更正；**只在本機，GitHub 沒有** | 內容已由本分支吸收（見 §9 的差異報告） |
-| PR #9 `docs/handoff-recovery-01`（本檔） | 見 `gh pr view 9` | 本次交接修復；base=`main` | OPEN，CI `governance-drift` 成功，待 Owner 審核合併 |
+| PR #9 `docs/handoff-recovery-01`（本檔） | 見 `gh pr view 9` | 本次交接修復；已併入 `main`（`a3c1867`）更新並改寫 #8 相關章節 | OPEN，待 Owner 審核合併（合併 #9 需要 Owner 另行明確同意） |
 
 **舊的「先合 #1 再合 #2」已不是目前順序。** #1 已隨 #7 進 `main`；#2 只與 Windows 線有關。**合併 `main` 與發布一律由 Owner 決定**（見 `AGENTS.md`）。
 
@@ -65,43 +65,43 @@
 - CI 範圍：治理 drift、測資結構／詞彙／動作參數、驗證器測試、hook 接線檢查。**不含 Swift 遊戲測試與完整棋局 replay**，不可延伸為「1.0／1.1 整合通過」。
 - 引用 #7 的證據時注意：其 PR 本文寫的「HEAD `cff31e8`」已過期，實際最終 head 是 `3c8207b`。
 
-### 3.2 PR #8（1.0／1.1 整合）— HOLD，待修兩個計費缺口
+### 3.2 PR #8（1.0／1.1 整合）— 已合併（`a3c1867`）
 
-來源：PR #8 本文與 `integration/1.0-1.1:docs/integration/INTEGRATION_RESULT.md`（日期 2026-10-15）。
+來源：`docs/integration/INTEGRATION_RESULT.md`（合併後在 `main`）、PR #8 討論串。
 
 | 層 | 結果 |
 |---|---|
 | 策略 | 保留 1.0 外殼與計量語意；1.1 外殼從大廳明確入口「擴充玩法」開啟，並在**同一個存取帳本**之後（C0 契約：`docs/integration/C0_MATCH_ACCESS_SAVE_CONTRACT.md`） |
 | 規則 | 兩條線都合併；**原規則仍是預設（`expansionSkills` 關閉）** |
-| 不變 | Release 設定與 Release 資源腳本不動：**Release 建置仍是 1.0 產品**（擴充入口被編譯排除）。啟用擴充是 `RELEASE_ENABLE_EXPANSION.md` 的「準備但未套用」 |
+| 不變 | Release 設定與 Release 資源腳本不動：Release 建置只含 1.0 功能（擴充入口被編譯排除；合併前實測建置成功且 App 內沒有擴充入口字串）。啟用擴充是 `RELEASE_ENABLE_EXPANSION.md` 的「準備但未套用」 |
 | 計量 | 不改商業規則：試玩於完成時扣、獎勵額度於開始時保留、重新開始＝新局新身份、無步數門檻、無單場限制、無認輸 |
 
-PR #8 本文自己記錄的驗證結果（**最新的是 INTEGRATION_RESULT.md，PR 本文的數字已過期**：本文寫 405+5，報告寫 424）：
+**合併前修掉的問題（INTEG-ACCESS-01，皆有失敗在前的測試）：**
 
-| 檢查 | 結果（模擬器、未簽名；在別台有 Xcode 的機器上） |
-|---|---|
-| Swift package 全部 target | 424 項、0 失敗 |
-| App 建置 Debug／Beta | 成功 |
-| 新增 `IntegrationUITests` | 7／7 |
-| `MonetizationUITests`／`RewardedAdNetworkUITests` | 9／9、2／2 |
-| 既有 UI 套件（`PlayableGameTests` 等） | **33 個失敗名稱**：與乾淨 1.0 快照同樣失敗者視為既有問題；另有 1 個一次性崩潰、重跑單獨通過，**未解釋，不算通過** |
-
-**已知阻擋（Codex 於 `748d3e4` 審查提出，行內留言目前仍錨定在 `5a826fa`，原始碼閱讀仍可見；我只讀程式碼，未重現）：**
-
-| 編號 | 位置 | 問題 | 影響 |
+| 編號 | 問題 | 修正 | 證據 |
 |---|---|---|---|
-| **P1** | `ios/TacticalGo/GameStore.swift:19–34` `startExpansion` | 先呼叫 `authorize`（保留獎勵額度），之後只在記憶體建立棋局；`restart(keepIdentity:)` 不存檔，第一次成功行動才 `saveCandidate`（`ExpansionLabView.swift:355/374/389`）。 | 用獎勵額度開局後、落子前關閉 App：沒有任何紀錄含該 UUID 可續玩，獎勵卻已被保留 → **額度損失**。舊存檔也還在單一槽位。 |
-| **P2** | `ios/TacticalGo/ExpansionGameView.swift:150–153` vs `PlayableGameView.swift:293–304` | 擴充終局對帳只在進入 `ExpansionGameView` 時執行；主畫面只對帳 `store.savedRecords`（原版紀錄）。 | 擴充終局存檔成功但帳本寫入中斷，且之後只進原版對局 → 帳本不更新，試玩場數不一致，可能持續多授權原版對局。 |
-| 另 | `RewardedAdService.swift:227–240`、`UnlockView.swift` | 廣告 callback 已完成但額度寫入失敗，requestID 不被保留。 | 獨立、**尚未實測**的既有風險，不與 P1 混為一談。 |
+| **P1** | 擴充開局先保留獎勵額度、落子前終止 App → 額度損失、無可續玩紀錄 | 新局先暫存完整零步數紀錄，帳本接受後才原子替換單一存檔槽；啟動恢復補完或丟棄暫存（`ExpansionStartJournal`）；被拒絕的開局不動舊存檔 | UI 測試於未修正程式碼失敗、修正後通過；9 項套件測試，三個變異皆被抓到 |
+| **P2** | 擴充終局對帳只在重新進入擴充畫面時執行 | 同一個對帳也在原版外殼啟動時執行；`completeMatch` 冪等 | UI 測試未修正時失敗（額度停 3/3），修正後 2/3 |
+| Release | `ExpansionGameView.swift` 在編譯旗標外使用 `ExpansionLabStore`，**`5a826fa` 的 Release 建置編譯不過**（先前「Release 仍是 1.0」從未被實際建置驗證） | 已加編譯保護 | Release 與 Beta 建置成功 |
+| 審查回饋 | 擁有者資格尚未驗證就執行恢復，可能誤刪擁有者的未下子開局；Linux `replaceItemAt` 差異 | 恢復等 `isChecking == false`；晉升改為原子寫入；新增窄版 Linux 套件 CI | 擁有者測試移除修正後 3/3 失敗；Linux CI 433 項通過 |
 
-修正責任與範圍見 `docs/handoff/PR8_BLOCKER_ANALYSIS.md` 與 Owner 的 `INTEG-ACCESS-01` 指示：只修帳本缺口，不改商業額度政策，**需要 Mac／Xcode 驗證**，Windows 端不能修。
+**合併時的驗證數字（模擬器、未簽名；不是實機）：** Swift package 433 項（macOS 與 Linux 皆 0 失敗）；`IntegrationUITests` 9/9；`MonetizationUITests` 10/10；`RewardedAdNetworkUITests` 2/2；`MonsterLabTests` 7/7；`PresentationLabTests` 8/8；`ExpansionLabTests` 34 項／7 略過／0 失敗（其中一個音訊稽核測試在 1.1 快照與較早的整合版曾失敗，視為與時間相關，不算已修）。既有大型 UI 套件仍有 **33 個失敗名稱，與乾淨 1.0 快照同樣失敗**（既有問題，另案）；曾有 1 個一次性崩潰，後來通過，**根因未解**。
 
-**未驗（報告自己列的）：** C# replay 與 C#／Swift 逐步等價沒有重跑（那台機器沒有 `dotnet`）；沒有實機、沒有 iPad、沒有簽署 archive、沒有 TestFlight／App Store 動作；真實 1.0 產生的存檔樣本沒取得（只有單元層級相容）。
+**已知風險（刻意留在獨立追蹤項目，不擴大這次範圍）：**
 
-**需要人眼判斷（測試無法決定）：** 兩套視覺系統並存（D1）；1.1 法師動畫 `r2` 改用 1.0 共用時序（release 0.26／moveStart 0.38／arrival 0.60，原 0.28／0.30／0.54）需看過；英文英雄語音首版不隨 Release 出貨，聽感審查未結（D5）；擴充是否出現在出貨版及版本（D3／D4／D6）。**複本是否沿用父局 admission（M6）採 option (a) 實作，但「尚未正式決定」，若 Owner 選 (b) 只需改一處。**
+| 風險 | 說明 |
+|---|---|
+| 單存檔槽邊界 | 終局存檔的帳本補登失敗後，同一次執行中、未重啟就開下一場擴充局，會覆蓋那份終局存檔，補登證據消失。提案（未實作）：開新局前先重試已完成對局的補登 |
+| 資格驗證前准入 | `PlayAccess.authorizeNewMatch` 在 StoreKit 回應前把擁有者視為未解鎖；**1.0 既有行為**，改它是商業語意變更，需 Owner 決定 |
+| 廣告完成但額度寫入失敗 | `RewardedAdService.swift`：requestID 不被保留，需重看廣告；不會多給額度。獨立、尚未實測 |
 
-### 3.3 #8 與已合併的 `main`
-2026-10-15 對 `dca10d2`（`main`）與 `5a826fa` 執行 `git merge-tree --write-tree`：**無內容衝突**；GitHub 顯示 #8 為 `CLEAN`。這只表示文字層面能合併，**不代表合併後測試通過**；#8 需要用已合併治理的 `main` 重新整合並跑 Swift 套件與 UI 測試。
+**未驗：** C# replay 與 C#／Swift 逐步等價沒有重跑（沒有 `dotnet`）；沒有實機、沒有 iPad、沒有簽署 archive、沒有 TestFlight／App Store 動作；真實 1.0 產生的存檔樣本沒取得。
+
+**需要人眼判斷（測試無法決定）：** 兩套視覺系統並存（D1）；1.1 法師動畫 `r2` 改用 1.0 共用時序（release 0.26／moveStart 0.38／arrival 0.60，原 0.28／0.30／0.54）需看過；英文英雄語音首版不隨 Release 出貨，聽感審查未結（D5）；擴充是否出現在出貨版及版本（D3／D4／D6）。**複本是否沿用父局 admission（M6）採 option (a) 實作，但「尚未正式決定」，若 Owner 選 (b) 只需改帳本中的一處。**
+
+### 3.3 合併後狀態
+
+`main` = `a3c1867`（#8 的 merge commit）。合併前驗證針對 `ecfa95b`（其後到 `5a7d8b8` 只改文件）。**合併後對乾淨 `main` 的完整驗證（POSTMERGE-01）：見 `docs/integration/POSTMERGE_01.md`；未見該檔或其中標示未完成者，視為尚未驗證。** 整合版 TestFlight（需高於 1112 的新 build）**尚未製作，也尚未有任何人在 iPhone／iPad 上玩過整合版**；這是下一個工程之外的 Gate，需要 Owner 另行授權任何上傳。
 
 ---
 
@@ -169,7 +169,7 @@ App：`ios/TacticalGo/`（SwiftUI）；UI 測試：`ios/TacticalGoUITests/`；Go
 | # | 事項 | 來源 |
 |---|---|---|
 | 1 | 框架端修正（VS Code `Stop` 範本、`hook_install_validator`、`session_end_hook` 在 Python 3.9 崩潰）是否列為有範圍的後續工作？ | PR #7 本文 |
-| 2 | #8：P1／P2 修正後的審查與是否合併；兩套視覺系統（D1） | PR #8 Codex 審查、INTEGRATION_RESULT |
+| 2 | 兩套視覺系統（D1）；整合版 TestFlight 試玩與是否授權製作新 build | INTEGRATION_RESULT |
 | 3 | 擴充是否隨出貨版出現與版本號（D3／D4／D6）；`RELEASE_ENABLE_EXPANSION.md` 是否套用 | INTEGRATION_RESULT |
 | 4 | 複本 admission：option (a)（現行實作）或 (b)（M6） | INTEGRATION_RESULT |
 | 5 | 英文英雄語音聽感審查（D5）；Release 目前排除 | INTEGRATION_RESULT、`docs/release-01/RELEASE_GAPS_1024.md` |

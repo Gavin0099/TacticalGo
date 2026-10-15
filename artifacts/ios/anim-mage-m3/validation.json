@@ -1,0 +1,28 @@
+{
+  "engineeringEvidence": "PASS",
+  "swiftTests": 164,
+  "golden": {
+    "fixtures": 38,
+    "actions": 99,
+    "snapshots": 137,
+    "swift": "fresh replay",
+    "csharp": "cached reviewed baseline; not rerun"
+  },
+  "nativeAuditChecks": 97,
+  "sameFixtureReceipts": 10,
+  "identityPins": {
+    "ios/TacticalGo/Cozy/B-mage-v02.png": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+    "ios/TacticalGo/MageBody/clean-plate.png": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d"
+  },
+  "visualGate": "Owner Pending",
+  "physicalDynamic": "blocked by lock; installation only",
+  "limitations": [
+    "32pt and 28.52pt dense board glyph readability needs human check",
+    "fixed art staff direction; no multi-direction authored pose",
+    "not all orthogonally packed neighbor arrangements tested"
+  ],
+  "initialFailuresRetained": [
+    "AP assertion assumed 0 AP, corrected against Core auto end turn then fresh PASS",
+    "ffmpeg optional tpad duration syntax, removed extra frozen frame; final composition PASS"
+  ]
+}

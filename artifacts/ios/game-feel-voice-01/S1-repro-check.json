@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "engine": "Piper1.8.0 / ONNXRuntime1.31.0 CPU macOSarm64",
+  "seed_before_session_load": 1710,
+  "six_SHA_match_in_two_independent_processes": true,
+  "scope": "same pinned runtime/model/config; no cross-platform bit identity claim"
+}

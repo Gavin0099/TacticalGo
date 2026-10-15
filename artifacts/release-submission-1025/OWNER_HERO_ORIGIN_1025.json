@@ -1,0 +1,17 @@
+{
+  "schema": "tacticalgo-owner-source-confirmation-v1",
+  "recordedAt": "2026-10-11T15:20:47.315881+00:00",
+  "source": "Direct human message in this chat",
+  "ownerStatement": "以登入 圖片是自行生成的",
+  "questionAnswered": "最早戰士、法師、盜賊英雄原圖來源",
+  "heroOriginalSource": "owner_self_generated",
+  "scope": "Owner confirmation resolves missing upstream origin; already recorded built-in imagegen derivatives remain linked",
+  "relatedSourceInventory": "artifacts/monetization-02/release-audit/ASSET_PROVENANCE.json",
+  "historicalManifestsPreserved": true,
+  "commercialReleaseAuthorization": "Existing explicit instruction to upload/submit App Store; no merge or automatic public App release",
+  "notClaimed": [
+    "independent uniqueness/copyright opinion",
+    "new voice or 3D approval",
+    "all product acceptance or Apple approval"
+  ]
+}

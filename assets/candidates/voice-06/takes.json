@@ -1,0 +1,36 @@
+[
+  {
+    "hero": "mage",
+    "take": "A",
+    "text": "Move aside!",
+    "instruct": "A young adult female fantasy mage, clear warm bright midrange voice, confident and lightly mischievous. Natural fluent English, clean dry studio voice acting. Deliver a short decisive spellcasting command to push an enemy aside. A playful smile with real breath support and assertive energy. Connect the phrase, stress MOVE, then land ASIDE crisply with a falling finish. Spoken, not narration, not sung, no extra words.",
+    "seed": 20261020,
+    "file": "mage-A-dry.wav",
+    "raw_file": "raw/mage-A-unprocessed.wav",
+    "duration_seconds": 0.8615833333333334,
+    "sample_rate": 24000,
+    "gain": 1.3433607792527218,
+    "rms_dbfs": -18.000000436554874,
+    "peak_dbfs": -4.393977658087763,
+    "generation_seconds": 3.1921489238739014,
+    "sha256": "ea36f100aa5e37f45d2c63fed69ceafcc133a030065c10706cab5c19f4b4b698",
+    "raw_sha256": "32e4b806a9af97971fa3101046d93be3b3188d3f8f705327f17d5c7b95f4b814"
+  },
+  {
+    "hero": "mage",
+    "take": "B",
+    "text": "Move aside!",
+    "instruct": "A young adult female fantasy mage, clear warm bright midrange voice, confident and lightly mischievous. Natural fluent English, clean dry studio voice acting. A cheeky quick spellcasting quip, a smiling voice with confident projection. Give MOVE a firm attack then an amused ASIDE with lively pitch movement and a clean decisive ending. Energetic natural acting, not a whisper or narration, no extra words.",
+    "seed": 20261021,
+    "file": "mage-B-dry.wav",
+    "raw_file": "raw/mage-B-unprocessed.wav",
+    "duration_seconds": 1.0397083333333332,
+    "sample_rate": 24000,
+    "gain": 0.9433698649127689,
+    "rms_dbfs": -18.000000436554874,
+    "peak_dbfs": -4.0961794279324835,
+    "generation_seconds": 0.6711750030517578,
+    "sha256": "96ec462ba1119e1714219a0d747d091ffc6be57c2fca6411db13f420fcd69ec4",
+    "raw_sha256": "2efab2ac6bfb41685698e303fea2c9799ccef06ce57b62142c902341185102f7"
+  }
+]

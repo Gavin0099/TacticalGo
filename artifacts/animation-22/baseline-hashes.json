@@ -1,0 +1,8 @@
+{
+  "ios/TacticalGo/ExpansionSpellEffects.swift": "dbdd62d0d1f7f1a0443fb9acf5bbd9242120a6e5d5566997e4e4d7ab269163a0",
+  "ios/TacticalGo/ExpansionLabView.swift": "353bea8333d8d098b3dd12f20da8d3694516b998c848e8c50befe4df411280bc",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionFeedback.swift": "30b20a3ea06d004f914602f146d852a6f2168bc2c4f4ed1632c0db55d345eee0",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/WarriorPresentationPlan.swift": "c62d5301483b8a087f7e8b06392af7bc04fdcefcf23a8595970f4447512c5f16",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift": "1efbcdc25c6b8ded6144bed2f15e4af1823e43e22fdf7dbb33468c9c1b404b50",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionHeroPose.swift": "dfbb4f6e87ebd0014c446e5f63b2e83b06ae60d9e4c2d56d38983785dd977754"
+}

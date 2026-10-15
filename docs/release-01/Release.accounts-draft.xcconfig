@@ -1,0 +1,20 @@
+// Public account identifiers verified in the signed-in UI on 2026-10-11.
+// DRAFT: missing public URLs and external release checks.
+// Not attached to the Xcode project; archive-release.sh must reject this draft.
+// This does not relabel or change the frozen 1024 binary/source evidence.
+MARKETING_VERSION = 1.0
+CURRENT_PROJECT_VERSION = 1024
+PRODUCT_BUNDLE_IDENTIFIER = com.tacticalgo.prototype.herobody
+DEVELOPMENT_TEAM = P358EB3X9H
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = Apple Distribution
+PROVISIONING_PROFILE_SPECIFIER = Crown Strategy App Store 20261011
+
+CROWN_UNLOCK_PRODUCT_ID = com.tacticalgo.crowntactics.unlock
+CROWN_ADMOB_APP_ID = ca-app-pub-4399068253512867~8970810838
+CROWN_REWARDED_AD_UNIT_ID = ca-app-pub-4399068253512867/2224519212
+
+// Fill only after publishing this game's reviewed pages. Keep missing values empty.
+// HTTPS syntax in xcconfig: https:/$()/host/path
+CROWN_PRIVACY_URL =
+CROWN_SUPPORT_URL =

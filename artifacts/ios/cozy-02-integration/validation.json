@@ -1,0 +1,46 @@
+{
+  "engineering_integration": "PASS",
+  "human_art_identity_small_scale": "HOLD",
+  "speaker_headphone_listening": "HOLD",
+  "formal_bgm": "HOLD",
+  "phone_gesture_automation": "BLOCK: CoreDevice worker launch; no phone XCTest gesture executed",
+  "ipad_latest_relaunch": "BLOCK: Locked after latest install",
+  "phone_final_normal_relaunch": "BLOCK: wireless connection invalidated",
+  "swift_tests": 151,
+  "golden": {
+    "fixtures": 38,
+    "steps": 99,
+    "fresh_csharp_export": false
+  },
+  "native_ui_tests": {
+    "390_sim": 5,
+    "SE_320_constrained": 1,
+    "ipad_physical": 2,
+    "iphone_physical_passed": 0
+  },
+  "retained_real_owner_audits": {
+    "phone": "PASS",
+    "phone_checks": 17,
+    "sim": "PASS",
+    "sim_checks": 17
+  },
+  "device_product": {
+    "info": {
+      "CFBundleIdentifier": "com.tacticalgo.prototype.cozy02",
+      "CFBundleDisplayName": "TacticalGo Cozy-02",
+      "CFBundleVersion": "702",
+      "CFBundleShortVersionString": "0.7.0"
+    },
+    "sha256": "9aca15ca2967e4a4ad3efdc2027b39caf8859d266c8d1bbb3cb213eefce7d941"
+  },
+  "original_owner_app_replaced": false,
+  "video_audio": "explicitly postmixed; not system/device capture",
+  "memory_guard": "no blocking item; local writer/guard and missing canonical memory warnings retained",
+  "delivery": {
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "release": false
+  },
+  "snapshot_sha256": "6bf5681fc60c2ce8fcc794699cda88cd5cde86d2c7ca0a213e68ede6031b16fa"
+}

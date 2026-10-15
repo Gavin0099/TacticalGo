@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "scope": "PCM/content prerequisites only; human expression Gate Pending",
+  "checks": [
+    {
+      "file": "warrior-A-dry.wav",
+      "sha256": "fc56a20b482aff80a9dc67775b4a57261c83174c72f2af9d5247565d8651bb7f",
+      "duration_seconds": 1.04,
+      "clipped_samples": 0,
+      "RMS_dbfs": -20.000259938402007,
+      "peak_dbfs": -5.307921308758376,
+      "pitch_median_Hz": 131.86813186813185,
+      "pitch_p10_p90_Hz": [
+        90.94365710335292,
+        219.78675923630053
+      ],
+      "pitch_scope": "rough acoustic descriptor, not performance/identity approval"
+    },
+    {
+      "file": "warrior-B-dry.wav",
+      "sha256": "2e39c4e189bce86b46a3f16142267462ab38dd05fd66415bfc5964bde22290b6",
+      "duration_seconds": 0.8,
+      "clipped_samples": 0,
+      "RMS_dbfs": -20.000264983010993,
+      "peak_dbfs": -6.138559240565695,
+      "pitch_median_Hz": 242.42424242424244,
+      "pitch_p10_p90_Hz": [
+        169.1094890510949,
+        327.9279279279279
+      ],
+      "pitch_scope": "rough acoustic descriptor, not performance/identity approval"
+    },
+    {
+      "file": "mage-A2-dry.wav",
+      "sha256": "3c17b3796d6d62bcefc2657c49e4cff22274d19d861cbb63ae6d0688c4db1745",
+      "duration_seconds": 1.1185833333333333,
+      "clipped_samples": 0,
+      "RMS_dbfs": -20.000265702475303,
+      "peak_dbfs": -7.635027776878829,
+      "pitch_median_Hz": 289.198606271777,
+      "pitch_p10_p90_Hz": [
+        240.0,
+        428.57142857142856
+      ],
+      "pitch_scope": "rough acoustic descriptor, not performance/identity approval"
+    },
+    {
+      "file": "mage-B3-dry.wav",
+      "sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950",
+      "duration_seconds": 1.36,
+      "clipped_samples": 0,
+      "RMS_dbfs": -20.000265702514014,
+      "peak_dbfs": -5.6694181625642734,
+      "pitch_median_Hz": 298.14814814814815,
+      "pitch_p10_p90_Hz": [
+        181.85993111366247,
+        347.82608695652175
+      ],
+      "pitch_scope": "rough acoustic descriptor, not performance/identity approval"
+    }
+  ],
+  "comparison_order": "old rejected Piper -> new A -> new B (mage B3); 0.8sec silent gaps; approximate matched RMS -20dBFS, peak capped -3",
+  "effects": "none"
+}

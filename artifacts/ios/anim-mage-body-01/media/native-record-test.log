@@ -1,0 +1,463 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testMageBodyNativeRecordingWalkthrough" -resultBundlePath /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/media/native-record.xcresult
+
+2026-10-10 12:17:23.024 xcodebuild[72666:935753] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/media/native-record.xcresult
+
+2026-10-10 12:17:23.029 xcodebuild[72666:935753] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 12:17:24.219 xcodebuild[72666:935753] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 12:17:25.541843+0800 TacticalGoUITests-Runner[72684:936024] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 12:17:26.058.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 12:17:26.061.
+Test Suite 'PlayableGameTests' started at 2026-10-10 12:17:26.061.
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBodyNativeRecordingWalkthrough]' started.
+    t =     0.00s Start Test at 2026-10-10 12:17:26.062
+    t =     0.02s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+2026-10-10 12:17:26.330 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:17:26.330 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.76s         Setting up automation session
+    t =     1.46s         Wait for com.tacticalgo.prototype to idle
+    t =     3.38s Waiting 10.0s for "2 AP" StaticText to exist
+    t =     4.44s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =     4.44s         Checking existence of `"2 AP" StaticText`
+    t =     4.56s Waiting 10.0s for "playArena" Other to exist
+    t =     5.62s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     5.62s         Checking existence of `"playArena" Other`
+    t =     5.67s Tap "playArena" Other[0.50, 0.61]
+    t =     5.67s     Wait for com.tacticalgo.prototype to idle
+    t =     5.67s     Find the "playArena" Other
+    t =     5.71s     Check for interrupting elements affecting "playArena" Other
+    t =     5.74s     Synthesize event
+    t =     5.74s         Find the "playArena" Other
+    t =     5.77s         Find the "playArena" Other
+    t =     5.80s         Find the "playArena" Other
+    t =     6.12s     Wait for com.tacticalgo.prototype to idle
+    t =     6.12s Find the "playConfirm" Button
+    t =     6.17s Find the "playConfirm" Button
+    t =     6.20s Tap "playConfirm" Button
+    t =     6.20s     Wait for com.tacticalgo.prototype to idle
+    t =     6.20s     Find the "playConfirm" Button
+    t =     6.24s     Check for interrupting elements affecting "playConfirm" Button
+    t =     6.26s     Synthesize event
+    t =     6.55s     Wait for com.tacticalgo.prototype to idle
+    t =     7.86s Checking existence of `"1 AP" StaticText`
+    t =     8.01s Added attachment named 'MAGE-summon-no-fx-false'
+    t =     8.01s Tap "undoOrCancel" Button
+    t =     8.01s     Wait for com.tacticalgo.prototype to idle
+    t =     8.01s     Find the "undoOrCancel" Button
+    t =     8.04s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =     8.06s     Synthesize event
+    t =     8.35s     Wait for com.tacticalgo.prototype to idle
+    t =     8.36s Checking existence of `"2 AP" StaticText`
+    t =     8.40s Terminate com.tacticalgo.prototype:72699
+    t =     9.50s Open com.tacticalgo.prototype
+    t =     9.50s     Launch com.tacticalgo.prototype
+2026-10-10 12:17:35.564 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:17:35.564 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     9.71s         Setting up automation session
+    t =    10.32s         Wait for com.tacticalgo.prototype to idle
+    t =    11.70s Waiting 10.0s for "playArena" Other to exist
+    t =    12.75s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    12.75s         Checking existence of `"playArena" Other`
+    t =    12.83s Tap "playArena" Other[0.63, 0.51]
+    t =    12.83s     Wait for com.tacticalgo.prototype to idle
+    t =    12.83s     Find the "playArena" Other
+    t =    12.86s     Check for interrupting elements affecting "playArena" Other
+    t =    12.88s     Synthesize event
+    t =    12.89s         Find the "playArena" Other
+    t =    12.92s         Find the "playArena" Other
+    t =    12.95s         Find the "playArena" Other
+    t =    13.26s     Wait for com.tacticalgo.prototype to idle
+    t =    13.26s Find the "push-Up" Button
+    t =    13.30s Tap "push-Up" Button
+    t =    13.30s     Wait for com.tacticalgo.prototype to idle
+    t =    13.31s     Find the "push-Up" Button
+    t =    13.34s     Check for interrupting elements affecting "push-Up" Button
+    t =    13.36s     Synthesize event
+    t =    13.65s     Wait for com.tacticalgo.prototype to idle
+    t =    13.76s Added attachment named 'MAGE-preview-original-no-fx'
+    t =    13.76s Tap "undoOrCancel" Button
+    t =    13.77s     Wait for com.tacticalgo.prototype to idle
+    t =    13.77s     Find the "undoOrCancel" Button
+    t =    13.80s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    13.83s     Synthesize event
+    t =    14.11s     Wait for com.tacticalgo.prototype to idle
+    t =    14.12s Checking existence of `"2 AP" StaticText`
+    t =    14.16s Swipe down Target Application 'com.tacticalgo.prototype'
+    t =    14.16s     Wait for com.tacticalgo.prototype to idle
+    t =    14.16s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    14.18s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    14.20s     Synthesize event
+    t =    14.63s     Wait for com.tacticalgo.prototype to idle
+    t =    15.09s Waiting 10.0s for "playArena" Other to exist
+    t =    16.15s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    16.16s         Checking existence of `"playArena" Other`
+    t =    16.21s Tap "playArena" Other[0.63, 0.51]
+    t =    16.21s     Wait for com.tacticalgo.prototype to idle
+    t =    16.21s     Find the "playArena" Other
+    t =    16.24s     Check for interrupting elements affecting "playArena" Other
+    t =    16.27s     Synthesize event
+    t =    16.27s         Find the "playArena" Other
+    t =    16.30s         Find the "playArena" Other
+    t =    16.33s         Find the "playArena" Other
+    t =    16.64s     Wait for com.tacticalgo.prototype to idle
+    t =    16.65s Find the "push-Up" Button
+    t =    16.70s Tap "push-Up" Button
+    t =    16.70s     Wait for com.tacticalgo.prototype to idle
+    t =    16.70s     Find the "push-Up" Button
+    t =    16.74s     Check for interrupting elements affecting "push-Up" Button
+    t =    16.76s     Synthesize event
+    t =    17.06s     Wait for com.tacticalgo.prototype to idle
+    t =    17.06s Find the "playConfirm" Button
+    t =    17.12s Find the "playConfirm" Button
+    t =    17.16s Tap "playConfirm" Button
+    t =    17.16s     Wait for com.tacticalgo.prototype to idle
+    t =    17.16s     Find the "playConfirm" Button
+    t =    17.19s     Check for interrupting elements affecting "playConfirm" Button
+    t =    17.22s     Synthesize event
+    t =    17.51s     Wait for com.tacticalgo.prototype to idle
+    t =    18.82s Checking existence of `"1 AP" StaticText`
+    t =    18.97s Added attachment named 'MAGE-push-no-fx-false-false'
+    t =    18.97s Tap "undoOrCancel" Button
+    t =    18.97s     Wait for com.tacticalgo.prototype to idle
+    t =    18.97s     Find the "undoOrCancel" Button
+    t =    19.00s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    19.02s     Synthesize event
+    t =    19.31s     Wait for com.tacticalgo.prototype to idle
+    t =    19.31s Checking existence of `"2 AP" StaticText`
+    t =    19.36s Pressing Home button
+    t =    19.84s Open com.tacticalgo.prototype
+    t =    19.84s     Activate com.tacticalgo.prototype
+    t =    20.32s         Wait for com.tacticalgo.prototype to idle
+    t =    20.35s Checking existence of `"2 AP" StaticText`
+    t =    20.39s Terminate com.tacticalgo.prototype:72727
+    t =    21.48s Open com.tacticalgo.prototype
+    t =    21.48s     Launch com.tacticalgo.prototype
+2026-10-10 12:17:47.542 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:17:47.542 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    21.69s         Setting up automation session
+    t =    22.18s         Wait for com.tacticalgo.prototype to idle
+    t =    23.49s Waiting 10.0s for "playArena" Other to exist
+    t =    24.55s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    24.56s         Checking existence of `"playArena" Other`
+    t =    24.66s Tap "playArena" Other[0.63, 0.51]
+    t =    24.66s     Wait for com.tacticalgo.prototype to idle
+    t =    24.66s     Find the "playArena" Other
+    t =    24.69s     Check for interrupting elements affecting "playArena" Other
+    t =    24.72s     Synthesize event
+    t =    24.72s         Find the "playArena" Other
+    t =    24.75s         Find the "playArena" Other
+    t =    24.78s         Find the "playArena" Other
+    t =    25.10s     Wait for com.tacticalgo.prototype to idle
+    t =    25.10s Find the "push-Up" Button
+    t =    25.14s Tap "push-Up" Button
+    t =    25.14s     Wait for com.tacticalgo.prototype to idle
+    t =    25.15s     Find the "push-Up" Button
+    t =    25.18s     Check for interrupting elements affecting "push-Up" Button
+    t =    25.20s     Synthesize event
+    t =    25.49s     Wait for com.tacticalgo.prototype to idle
+    t =    25.60s Added attachment named 'MAGE-preview-original-no-fx'
+    t =    25.60s Tap "undoOrCancel" Button
+    t =    25.60s     Wait for com.tacticalgo.prototype to idle
+    t =    25.61s     Find the "undoOrCancel" Button
+    t =    25.64s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    25.67s     Synthesize event
+    t =    25.96s     Wait for com.tacticalgo.prototype to idle
+    t =    25.97s Checking existence of `"2 AP" StaticText`
+    t =    26.02s Swipe down Target Application 'com.tacticalgo.prototype'
+    t =    26.02s     Wait for com.tacticalgo.prototype to idle
+    t =    26.02s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    26.04s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    26.06s     Synthesize event
+    t =    26.48s     Wait for com.tacticalgo.prototype to idle
+    t =    26.96s Waiting 10.0s for "playArena" Other to exist
+    t =    28.03s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    28.03s         Checking existence of `"playArena" Other`
+    t =    28.09s Tap "playArena" Other[0.63, 0.51]
+    t =    28.09s     Wait for com.tacticalgo.prototype to idle
+    t =    28.09s     Find the "playArena" Other
+    t =    28.12s     Check for interrupting elements affecting "playArena" Other
+    t =    28.15s     Synthesize event
+    t =    28.15s         Find the "playArena" Other
+    t =    28.18s         Find the "playArena" Other
+    t =    28.21s         Find the "playArena" Other
+    t =    28.53s     Wait for com.tacticalgo.prototype to idle
+    t =    28.54s Find the "push-Up" Button
+    t =    28.59s Tap "push-Up" Button
+    t =    28.59s     Wait for com.tacticalgo.prototype to idle
+    t =    28.59s     Find the "push-Up" Button
+    t =    28.63s     Check for interrupting elements affecting "push-Up" Button
+    t =    28.65s     Synthesize event
+    t =    28.94s     Wait for com.tacticalgo.prototype to idle
+    t =    28.95s Find the "playConfirm" Button
+    t =    29.00s Find the "playConfirm" Button
+    t =    29.04s Tap "playConfirm" Button
+    t =    29.04s     Wait for com.tacticalgo.prototype to idle
+    t =    29.04s     Find the "playConfirm" Button
+    t =    29.07s     Check for interrupting elements affecting "playConfirm" Button
+    t =    29.10s     Synthesize event
+    t =    29.38s     Wait for com.tacticalgo.prototype to idle
+    t =    30.70s Checking existence of `"1 AP" StaticText`
+    t =    30.75s Checking existence of `"黑方獲勝" StaticText`
+    t =    30.87s Added attachment named 'MAGE-push-no-fx-true-false'
+    t =    30.87s Tap "undoOrCancel" Button
+    t =    30.87s     Wait for com.tacticalgo.prototype to idle
+    t =    30.87s     Find the "undoOrCancel" Button
+    t =    30.91s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    31.04s     Synthesize event
+    t =    31.32s     Wait for com.tacticalgo.prototype to idle
+    t =    31.33s Checking existence of `"2 AP" StaticText`
+    t =    31.37s Pressing Home button
+    t =    31.84s Open com.tacticalgo.prototype
+    t =    31.84s     Activate com.tacticalgo.prototype
+    t =    32.31s         Wait for com.tacticalgo.prototype to idle
+    t =    32.35s Checking existence of `"2 AP" StaticText`
+    t =    32.38s Terminate com.tacticalgo.prototype:72738
+    t =    33.47s Open com.tacticalgo.prototype
+    t =    33.47s     Launch com.tacticalgo.prototype
+2026-10-10 12:17:59.537 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:17:59.537 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    33.68s         Setting up automation session
+    t =    34.28s         Wait for com.tacticalgo.prototype to idle
+    t =    35.60s Waiting 10.0s for "2 AP" StaticText to exist
+    t =    36.62s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =    36.62s         Checking existence of `"2 AP" StaticText`
+    t =    36.73s Waiting 10.0s for "playArena" Other to exist
+    t =    37.79s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    37.79s         Checking existence of `"playArena" Other`
+    t =    37.84s Tap "playArena" Other[0.50, 0.61]
+    t =    37.84s     Wait for com.tacticalgo.prototype to idle
+    t =    37.84s     Find the "playArena" Other
+    t =    37.88s     Check for interrupting elements affecting "playArena" Other
+    t =    37.90s     Synthesize event
+    t =    37.90s         Find the "playArena" Other
+    t =    37.93s         Find the "playArena" Other
+    t =    37.96s         Find the "playArena" Other
+    t =    38.27s     Wait for com.tacticalgo.prototype to idle
+    t =    38.28s Find the "playConfirm" Button
+    t =    38.32s Find the "playConfirm" Button
+    t =    38.35s Tap "playConfirm" Button
+    t =    38.35s     Wait for com.tacticalgo.prototype to idle
+    t =    38.36s     Find the "playConfirm" Button
+    t =    38.39s     Check for interrupting elements affecting "playConfirm" Button
+    t =    38.41s     Synthesize event
+    t =    38.69s     Wait for com.tacticalgo.prototype to idle
+    t =    40.01s Checking existence of `"1 AP" StaticText`
+    t =    40.15s Added attachment named 'MAGE-summon-no-fx-true'
+    t =    40.15s Tap "undoOrCancel" Button
+    t =    40.15s     Wait for com.tacticalgo.prototype to idle
+    t =    40.15s     Find the "undoOrCancel" Button
+    t =    40.18s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    40.20s     Synthesize event
+    t =    40.50s     Wait for com.tacticalgo.prototype to idle
+    t =    40.50s Checking existence of `"2 AP" StaticText`
+    t =    40.55s Terminate com.tacticalgo.prototype:72750
+    t =    41.64s Open com.tacticalgo.prototype
+    t =    41.64s     Launch com.tacticalgo.prototype
+2026-10-10 12:18:07.703 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:18:07.703 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    41.85s         Setting up automation session
+    t =    42.57s         Wait for com.tacticalgo.prototype to idle
+    t =    44.16s Waiting 10.0s for "playArena" Other to exist
+    t =    45.21s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    45.21s         Checking existence of `"playArena" Other`
+    t =    45.32s Tap "playArena" Other[0.63, 0.51]
+    t =    45.32s     Wait for com.tacticalgo.prototype to idle
+    t =    45.32s     Find the "playArena" Other
+    t =    45.36s     Check for interrupting elements affecting "playArena" Other
+    t =    45.38s     Synthesize event
+    t =    45.38s         Find the "playArena" Other
+    t =    45.42s         Find the "playArena" Other
+    t =    45.45s         Find the "playArena" Other
+    t =    45.77s     Wait for com.tacticalgo.prototype to idle
+    t =    45.77s Find the "push-Up" Button
+    t =    45.82s Tap "push-Up" Button
+    t =    45.82s     Wait for com.tacticalgo.prototype to idle
+    t =    45.82s     Find the "push-Up" Button
+    t =    45.85s     Check for interrupting elements affecting "push-Up" Button
+    t =    45.88s     Synthesize event
+    t =    46.16s     Wait for com.tacticalgo.prototype to idle
+    t =    46.26s Added attachment named 'MAGE-preview-original-no-fx'
+    t =    46.26s Tap "undoOrCancel" Button
+    t =    46.26s     Wait for com.tacticalgo.prototype to idle
+    t =    46.27s     Find the "undoOrCancel" Button
+    t =    46.30s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    46.33s     Synthesize event
+    t =    46.62s     Wait for com.tacticalgo.prototype to idle
+    t =    46.62s Checking existence of `"2 AP" StaticText`
+    t =    46.67s Swipe down Target Application 'com.tacticalgo.prototype'
+    t =    46.67s     Wait for com.tacticalgo.prototype to idle
+    t =    46.67s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    46.68s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    46.71s     Synthesize event
+    t =    47.12s     Wait for com.tacticalgo.prototype to idle
+    t =    47.61s Waiting 10.0s for "playArena" Other to exist
+    t =    48.67s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    48.67s         Checking existence of `"playArena" Other`
+    t =    48.72s Tap "playArena" Other[0.63, 0.51]
+    t =    48.72s     Wait for com.tacticalgo.prototype to idle
+    t =    48.72s     Find the "playArena" Other
+    t =    48.75s     Check for interrupting elements affecting "playArena" Other
+    t =    48.78s     Synthesize event
+    t =    48.78s         Find the "playArena" Other
+    t =    48.81s         Find the "playArena" Other
+    t =    48.84s         Find the "playArena" Other
+    t =    49.16s     Wait for com.tacticalgo.prototype to idle
+    t =    49.17s Find the "push-Up" Button
+    t =    49.21s Tap "push-Up" Button
+    t =    49.21s     Wait for com.tacticalgo.prototype to idle
+    t =    49.21s     Find the "push-Up" Button
+    t =    49.25s     Check for interrupting elements affecting "push-Up" Button
+    t =    49.27s     Synthesize event
+    t =    49.56s     Wait for com.tacticalgo.prototype to idle
+    t =    49.56s Find the "playConfirm" Button
+    t =    49.62s Find the "playConfirm" Button
+    t =    49.65s Tap "playConfirm" Button
+    t =    49.65s     Wait for com.tacticalgo.prototype to idle
+    t =    49.66s     Find the "playConfirm" Button
+    t =    49.69s     Check for interrupting elements affecting "playConfirm" Button
+    t =    49.71s     Synthesize event
+    t =    50.01s     Wait for com.tacticalgo.prototype to idle
+    t =    51.32s Checking existence of `"1 AP" StaticText`
+    t =    51.46s Added attachment named 'MAGE-push-no-fx-false-true'
+    t =    51.46s Tap "undoOrCancel" Button
+    t =    51.46s     Wait for com.tacticalgo.prototype to idle
+    t =    51.46s     Find the "undoOrCancel" Button
+    t =    51.50s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    51.52s     Synthesize event
+    t =    51.81s     Wait for com.tacticalgo.prototype to idle
+    t =    51.82s Checking existence of `"2 AP" StaticText`
+    t =    51.87s Pressing Home button
+    t =    52.33s Open com.tacticalgo.prototype
+    t =    52.33s     Activate com.tacticalgo.prototype
+    t =    52.80s         Wait for com.tacticalgo.prototype to idle
+    t =    52.84s Checking existence of `"2 AP" StaticText`
+    t =    52.88s Terminate com.tacticalgo.prototype:72759
+    t =    53.96s Open com.tacticalgo.prototype
+    t =    53.96s     Launch com.tacticalgo.prototype
+2026-10-10 12:18:20.025 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:18:20.025 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    54.17s         Setting up automation session
+    t =    54.80s         Wait for com.tacticalgo.prototype to idle
+    t =    56.13s Waiting 10.0s for "playArena" Other to exist
+    t =    57.17s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    57.17s         Checking existence of `"playArena" Other`
+    t =    57.27s Tap "playArena" Other[0.63, 0.51]
+    t =    57.27s     Wait for com.tacticalgo.prototype to idle
+    t =    57.28s     Find the "playArena" Other
+    t =    57.31s     Check for interrupting elements affecting "playArena" Other
+    t =    57.33s     Synthesize event
+    t =    57.33s         Find the "playArena" Other
+    t =    57.36s         Find the "playArena" Other
+    t =    57.40s         Find the "playArena" Other
+    t =    57.71s     Wait for com.tacticalgo.prototype to idle
+    t =    57.71s Find the "push-Up" Button
+    t =    57.76s Tap "push-Up" Button
+    t =    57.76s     Wait for com.tacticalgo.prototype to idle
+    t =    57.76s     Find the "push-Up" Button
+    t =    57.79s     Check for interrupting elements affecting "push-Up" Button
+    t =    57.81s     Synthesize event
+    t =    58.10s     Wait for com.tacticalgo.prototype to idle
+    t =    58.20s Added attachment named 'MAGE-preview-original-no-fx'
+    t =    58.21s Tap "undoOrCancel" Button
+    t =    58.21s     Wait for com.tacticalgo.prototype to idle
+    t =    58.21s     Find the "undoOrCancel" Button
+    t =    58.24s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    58.27s     Synthesize event
+    t =    58.56s     Wait for com.tacticalgo.prototype to idle
+    t =    58.56s Checking existence of `"2 AP" StaticText`
+    t =    58.61s Swipe down Target Application 'com.tacticalgo.prototype'
+    t =    58.61s     Wait for com.tacticalgo.prototype to idle
+    t =    58.61s     Find the Target Application 'com.tacticalgo.prototype'
+    t =    58.63s     Check for interrupting elements affecting "TacticalGo" Application
+    t =    58.65s     Synthesize event
+    t =    59.07s     Wait for com.tacticalgo.prototype to idle
+    t =    59.56s Waiting 10.0s for "playArena" Other to exist
+    t =    60.62s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    60.62s         Checking existence of `"playArena" Other`
+    t =    60.67s Tap "playArena" Other[0.63, 0.51]
+    t =    60.67s     Wait for com.tacticalgo.prototype to idle
+    t =    60.67s     Find the "playArena" Other
+    t =    60.71s     Check for interrupting elements affecting "playArena" Other
+    t =    60.73s     Synthesize event
+    t =    60.73s         Find the "playArena" Other
+    t =    60.76s         Find the "playArena" Other
+    t =    60.80s         Find the "playArena" Other
+    t =    61.11s     Wait for com.tacticalgo.prototype to idle
+    t =    61.12s Find the "push-Up" Button
+    t =    61.17s Tap "push-Up" Button
+    t =    61.17s     Wait for com.tacticalgo.prototype to idle
+    t =    61.17s     Find the "push-Up" Button
+    t =    61.21s     Check for interrupting elements affecting "push-Up" Button
+    t =    61.23s     Synthesize event
+    t =    61.52s     Wait for com.tacticalgo.prototype to idle
+    t =    61.52s Find the "playConfirm" Button
+    t =    61.57s Find the "playConfirm" Button
+    t =    61.60s Tap "playConfirm" Button
+    t =    61.60s     Wait for com.tacticalgo.prototype to idle
+    t =    61.60s     Find the "playConfirm" Button
+    t =    61.63s     Check for interrupting elements affecting "playConfirm" Button
+    t =    61.66s     Synthesize event
+    t =    61.95s     Wait for com.tacticalgo.prototype to idle
+    t =    63.26s Checking existence of `"1 AP" StaticText`
+    t =    63.31s Checking existence of `"黑方獲勝" StaticText`
+    t =    63.44s Added attachment named 'MAGE-push-no-fx-true-true'
+    t =    63.44s Tap "undoOrCancel" Button
+    t =    63.44s     Wait for com.tacticalgo.prototype to idle
+    t =    63.44s     Find the "undoOrCancel" Button
+    t =    63.47s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    63.50s     Synthesize event
+    t =    63.79s     Wait for com.tacticalgo.prototype to idle
+    t =    63.80s Checking existence of `"2 AP" StaticText`
+    t =    63.84s Pressing Home button
+    t =    64.30s Open com.tacticalgo.prototype
+    t =    64.30s     Activate com.tacticalgo.prototype
+    t =    64.77s         Wait for com.tacticalgo.prototype to idle
+    t =    64.81s Checking existence of `"2 AP" StaticText`
+    t =    64.85s Terminate com.tacticalgo.prototype:72792
+    t =    65.93s Open com.tacticalgo.prototype
+    t =    65.93s     Launch com.tacticalgo.prototype
+2026-10-10 12:18:31.995 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 12:18:31.995 xcodebuild[72666:935753] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =    66.14s         Setting up automation session
+    t =    66.76s         Wait for com.tacticalgo.prototype to idle
+    t =    68.22s Waiting 10.0s for "magePoseSummon" Button to exist
+    t =    69.26s     Checking `Expect predicate `existsNoRetry == 1` for object "magePoseSummon" Button`
+    t =    69.26s         Checking existence of `"magePoseSummon" Button`
+    t =    69.32s Tap "magePoseSummon" Button
+    t =    69.32s     Wait for com.tacticalgo.prototype to idle
+    t =    69.33s     Find the "magePoseSummon" Button
+    t =    69.34s     Check for interrupting elements affecting "magePoseSummon" Button
+    t =    69.35s     Synthesize event
+    t =    69.64s     Wait for com.tacticalgo.prototype to idle
+    t =    70.84s Tap "magePoseCast" Button
+    t =    70.84s     Wait for com.tacticalgo.prototype to idle
+    t =    70.85s     Find the "magePoseCast" Button
+    t =    70.88s     Check for interrupting elements affecting "magePoseCast" Button
+    t =    70.89s     Synthesize event
+    t =    71.18s     Wait for com.tacticalgo.prototype to idle
+    t =    72.50s Added attachment named 'MAGE-closeup-no-fx-pose-gallery'
+    t =    72.50s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageBodyNativeRecordingWalkthrough]' passed (72.722 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 12:18:38.785.
+	 Executed 1 test, with 0 failures (0 unexpected) in 72.722 (72.724) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 12:18:38.787.
+	 Executed 1 test, with 0 failures (0 unexpected) in 72.722 (72.725) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 12:18:38.788.
+	 Executed 1 test, with 0 failures (0 unexpected) in 72.722 (72.729) seconds
+2026-10-10 12:18:39.184 xcodebuild[72666:935753] [MT] IDETestOperationsObserverDebug: 74.963 elapsed -- Testing started completed.
+2026-10-10 12:18:39.184 xcodebuild[72666:935753] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 12:18:39.185 xcodebuild[72666:935753] [MT] IDETestOperationsObserverDebug: 74.963 sec, +74.963 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-body-01/media/native-record.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

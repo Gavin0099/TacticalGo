@@ -1,0 +1,20 @@
+{
+  "schema": "tacticalgo-git-source-delivery-v1",
+  "sourceSnapshot": "git checkout-index --all of prepared index; no build/cache/signing files",
+  "swiftTests": {
+    "passed": 252,
+    "failed": 0,
+    "logSHA256": "6fe01210dee935b1999def3e53a51e7f4f966d9007d57e885521733edda36e33"
+  },
+  "betaCleanSourceBuild": "passed_unsigned_simulator",
+  "build": "1106",
+  "packagedPresentationFilesByteEqual": 54,
+  "twoMonsterResourcesPresent": true,
+  "nativeUIEvidence": "interface-18: previous actual Beta5+smallDebug3 with unchanged inputs; not rerun for packaging",
+  "sourcePin": "artifacts/v11/interface-18/SOURCE_PIN.json",
+  "privateKeyTokenScan": "no findings in selected files; not comprehensive security audit",
+  "signingArchivesExportAndCachesExcluded": true,
+  "historicalVendorWhitespacePreserved": true,
+  "mainMerge": false,
+  "physical1106Acceptance": false
+}

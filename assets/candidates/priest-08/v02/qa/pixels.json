@@ -1,0 +1,20 @@
+[
+  {
+    "file": "assets/candidates/priest-08/v02/priest-v02.png",
+    "fileSHA256": "d04afa8acbe5b070cf54511cb629ef1ac5fd79efdf13dcb64fa7989ea1308cdd",
+    "rgbaSHA256": "e0fd53cff85840a8843b4f9dabb5f350edc1443d5c72073e83e0548c5acf200a",
+    "width": 1254,
+    "height": 1254,
+    "alpha": true,
+    "transparentPixels": 898503
+  },
+  {
+    "file": "assets/candidates/priest-08/v02/priest-clean-plate-v02.png",
+    "fileSHA256": "21a693328353cae4f7d29a045dc61fd001d3de840e254ec427f69f39d8c67f4e",
+    "rgbaSHA256": "facd370ce825fc29faa648b9c1ef89e551736cf3c926efb77308fc8a33c055bc",
+    "width": 1254,
+    "height": 1254,
+    "alpha": true,
+    "transparentPixels": 1156691
+  }
+]

@@ -1,0 +1,20 @@
+AV22 candidate, 2026-10-13
+Source fetch: origin/codex/v11-monster-battlefield == 004ed4cdc661bc20261a587e11d91e54dc649b9d.
+Saved AV21 source snapshots and hashes before changes. Previous tools/evidence preserved.
+image_gen generated original transparent 4x2 FX atlas; runtime PNG byte-identical to generated source.
+Atlas dimensions 1774x887 RGBA; fractional render cells 443.5px, transparent gutters; row/column boundary alpha maxima 1,1,1,1; global alpha 0..255.
+First diagnostic selector failed because [data-skill=5] was not valid CSS; corrected to nth(5), diagnostic screenshots then saved.
+First AV22 harness failed because details matched two elements after adding pose review; corrected to first details. failed-locator-browser.webm retained.
+Final browser run: PASS, 41 cases including 375/402 seven ordinary and fourteen dense layout smoke cases, cancellation, background-style stop, reduced motion, seven normal-speed actions, continuous sequence, 24 cutout-rig pose samples, phone review page fit. Endpoint/separation/invalid-time/Offering-tail invariants pass. No browser errors.
+Prior 27-case run is superseded and not added to final counts.
+Read-only candidate comparison at Warrior contact: differences visible in local rendered pixels; this is not a quality score or native performance measurement.
+Visual inspection: source-rig 32/48/64 samples; dense/detail Offering; Warrior/Mage contact and Offering release. Static inspection does not establish normal-speed weight or player acceptance.
+build-animation22.py: PASS, exported original cutout polygons and actual before/after Swift keyed poses.
+verify-animation22.py: PASS, asset bytes/gutters/Contents.json, UI20 source unchanged, original portraits/clean plates byte-identical to HEAD, Domain/Content/Bot/Records diff empty, source export hashes current.
+Node syntax checks preview.js/rig.js/accents.js: PASS.
+Skill 1.5 quick_validate: PASS; installed skill synchronized.
+git diff --check: PASS, expected LF/CRLF warnings only.
+Three new Swift regression methods: NOT RUN. Previous AV21 Swift/native UI/audio tests also remain NOT RUN.
+Native baseline/modified build, actual SwiftUI compositing, physical-device audio/frames/input latency, VoiceOver/Dynamic Type: NOT RUN; Windows/WSL lack Swift and Windows lacks Xcode/iOS SDK.
+open_in_codex AV22 workbench: queued, visibility not confirmed.
+No commit/push/merge/install/TestFlight/release. Hearthstone full quality unestablished.

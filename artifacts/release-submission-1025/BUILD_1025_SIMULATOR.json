@@ -1,0 +1,101 @@
+{
+  "schema": "tacticalgo-formal-simulator-build-v1",
+  "recordedAt": "2026-10-11T13:58:14.481042+00:00",
+  "status": "PASS",
+  "version": "1.0",
+  "build": "1025",
+  "configuration": "Release",
+  "architecture": "arm64",
+  "app": "artifacts/release-submission-1025/ReleaseSimulatorDerivedData/Build/Products/Release-iphonesimulator/TacticalGo.app",
+  "buildLog": "build-formal-simulator-arm64-02.log",
+  "checks": [
+    {
+      "field": "CFBundleShortVersionString",
+      "expected": "1.0",
+      "actual": "1.0",
+      "pass": true
+    },
+    {
+      "field": "CFBundleVersion",
+      "expected": "1025",
+      "actual": "1025",
+      "pass": true
+    },
+    {
+      "field": "CFBundleIdentifier",
+      "expected": "com.tacticalgo.prototype.herobody",
+      "actual": "com.tacticalgo.prototype.herobody",
+      "pass": true
+    },
+    {
+      "field": "CrownTacticsUnlockProductID",
+      "expected": "com.tacticalgo.crowntactics.unlock",
+      "actual": "com.tacticalgo.crowntactics.unlock",
+      "pass": true
+    },
+    {
+      "field": "GADApplicationIdentifier",
+      "expected": "ca-app-pub-4399068253512867~8970810838",
+      "actual": "ca-app-pub-4399068253512867~8970810838",
+      "pass": true
+    },
+    {
+      "field": "CrownTacticsRewardedAdUnitID",
+      "expected": "ca-app-pub-4399068253512867/2224519212",
+      "actual": "ca-app-pub-4399068253512867/2224519212",
+      "pass": true
+    },
+    {
+      "field": "CrownTacticsPrivacyURL",
+      "expected": "https://crown-strategy-support.gavin0099.chatgpt.site/privacy",
+      "actual": "https://crown-strategy-support.gavin0099.chatgpt.site/privacy",
+      "pass": true
+    },
+    {
+      "field": "CrownTacticsSupportURL",
+      "expected": "https://crown-strategy-support.gavin0099.chatgpt.site/",
+      "actual": "https://crown-strategy-support.gavin0099.chatgpt.site/",
+      "pass": true
+    },
+    {
+      "field": "MinimumOSVersion",
+      "expected": "17.0",
+      "actual": "17.0",
+      "pass": true
+    },
+    {
+      "field": "DTPlatformName",
+      "expected": "iphonesimulator",
+      "actual": "iphonesimulator",
+      "pass": true
+    }
+  ],
+  "forbiddenResources": [],
+  "privacyManifests": [
+    "PrivacyInfo.xcprivacy",
+    "Frameworks/GoogleMobileAds.framework/PrivacyInfo.xcprivacy",
+    "Frameworks/UserMessagingPlatform.framework/PrivacyInfo.xcprivacy"
+  ],
+  "runtimeInputChangedDuringBuild": [],
+  "executableSHA256": "96c7e002c0e75d1e448266ba3b143d5da672f10fd319fed435cf4679879d5ee3",
+  "codesigningAllowed": false,
+  "distributionArchive": false,
+  "uploaded": false,
+  "runtimeLaunched": true,
+  "productionTransactionVerified": false,
+  "launchExitCode": 0,
+  "launchLog": "release-simulator-launch.log",
+  "launchScreenshot": "1025-release-simulator-home.png",
+  "screenshotSHA256": "eac19a5794b75231149ffa10b2eab1a179f32ce0fb1dbcb1cb255d36af63192d",
+  "simulator": {
+    "name": "Crown Release Screenshot 1025",
+    "udid": "CE20AD4D-0047-4094-AA08-A9DC1AD31DFF",
+    "system": "iOS26.5",
+    "pixels": [
+      1206,
+      2622
+    ]
+  },
+  "interactiveVerification": "NOT_RUN_MAC_LOCKED",
+  "homeObservation": "Game title, Start Match, Tutorial, Challenges, and remaining three of three free matches visible in actual Release screenshot"
+}

@@ -1,0 +1,395 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testHeroVoiceActualOwnerSixEventsSettingsAndCancellation" "-only-testing:TacticalGoUITests/PlayableGameTests/testCozyActualVisibleAudioOwnerCancellationAudit" -resultBundlePath artifacts/ios/game-feel-voice-01/S1-native.xcresult
+
+2026-10-10 01:56:39.037 xcodebuild[26077:254636] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/S1-native.xcresult
+
+2026-10-10 01:56:39.043 xcodebuild[26077:254636] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 01:56:40.309 xcodebuild[26077:254636] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 01:56:41.636709+0800 TacticalGoUITests-Runner[26104:254938] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 01:56:42.172.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 01:56:42.172.
+Test Suite 'PlayableGameTests' started at 2026-10-10 01:56:42.172.
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozyActualVisibleAudioOwnerCancellationAudit]' started.
+    t =     0.00s Start Test at 2026-10-10 01:56:42.173
+    t =     0.02s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+    t =     0.03s         Terminate com.tacticalgo.prototype:23652
+2026-10-10 01:56:43.442 xcodebuild[26077:254636] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 01:56:43.442 xcodebuild[26077:254636] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.68s         Setting up automation session
+    t =     2.18s         Wait for com.tacticalgo.prototype to idle
+    t =     3.51s Waiting 10.0s for "cozyAudit" StaticText to exist
+    t =     4.55s     Checking `Expect predicate `existsNoRetry == 1` for object "cozyAudit" StaticText`
+    t =     4.55s         Checking existence of `"cozyAudit" StaticText`
+    t =     4.70s Waiting 10.0s for "cozyAudit" StaticText to exist
+    t =     5.73s     Checking `Expect predicate `existsNoRetry == 1` for object "cozyAudit" StaticText`
+    t =     5.73s         Checking existence of `"cozyAudit" StaticText`
+    t =     6.82s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =     6.82s     Find the "cozyAudit" StaticText
+    t =     6.88s     Capturing element debug description
+    t =     6.91s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     7.02s         Find: Descendants matching type StaticText
+    t =     7.02s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =     7.03s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     7.08s         Find: Descendants matching type StaticText
+    t =     7.08s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     7.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =     7.81s     Find the "cozyAudit" StaticText
+    t =     7.86s     Capturing element debug description
+    t =     7.89s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     7.94s         Find: Descendants matching type StaticText
+    t =     7.94s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =     7.95s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     8.00s         Find: Descendants matching type StaticText
+    t =     8.00s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     8.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =     8.88s     Find the "cozyAudit" StaticText
+    t =     8.94s     Capturing element debug description
+    t =     8.96s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     9.07s         Find: Descendants matching type StaticText
+    t =     9.07s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =     9.07s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     9.16s         Find: Descendants matching type StaticText
+    t =     9.16s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     9.83s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =     9.83s     Find the "cozyAudit" StaticText
+    t =     9.89s     Capturing element debug description
+    t =     9.92s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =     9.97s         Find: Descendants matching type StaticText
+    t =     9.97s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =     9.97s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    10.02s         Find: Descendants matching type StaticText
+    t =    10.03s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    10.87s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    10.87s     Find the "cozyAudit" StaticText
+    t =    10.93s     Capturing element debug description
+    t =    10.95s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    11.01s         Find: Descendants matching type StaticText
+    t =    11.01s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    11.01s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    11.06s         Find: Descendants matching type StaticText
+    t =    11.06s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    11.80s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    11.80s     Find the "cozyAudit" StaticText
+    t =    11.86s     Capturing element debug description
+    t =    11.88s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    11.93s         Find: Descendants matching type StaticText
+    t =    11.93s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    11.94s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    11.99s         Find: Descendants matching type StaticText
+    t =    11.99s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    12.86s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    12.86s     Find the "cozyAudit" StaticText
+    t =    12.91s     Capturing element debug description
+    t =    12.94s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    12.99s         Find: Descendants matching type StaticText
+    t =    12.99s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    12.99s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    13.04s         Find: Descendants matching type StaticText
+    t =    13.04s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    13.88s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    13.89s     Find the "cozyAudit" StaticText
+    t =    13.93s     Capturing element debug description
+    t =    13.95s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    14.01s         Find: Descendants matching type StaticText
+    t =    14.01s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    14.01s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    14.07s         Find: Descendants matching type StaticText
+    t =    14.07s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    14.81s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    14.81s     Find the "cozyAudit" StaticText
+    t =    14.86s     Capturing element debug description
+    t =    14.89s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    14.94s         Find: Descendants matching type StaticText
+    t =    14.94s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    14.94s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    14.99s         Find: Descendants matching type StaticText
+    t =    15.00s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    15.80s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    15.80s     Find the "cozyAudit" StaticText
+    t =    15.84s     Capturing element debug description
+    t =    15.87s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    15.92s         Find: Descendants matching type StaticText
+    t =    15.93s         Find: Elements matching predicate '"cozyAudit" IN identifiers'
+    t =    15.93s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    15.98s         Find: Descendants matching type StaticText
+    t =    15.99s         Requesting snapshot of accessibility hierarchy for app with pid 26113
+    t =    16.86s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "cozyAudit" StaticText`
+    t =    16.86s     Find the "cozyAudit" StaticText
+    t =    17.01s Added attachment named 'cozy-real-owner-audit'
+    t =    17.01s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testCozyActualVisibleAudioOwnerCancellationAudit]' passed (17.224 seconds).
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroVoiceActualOwnerSixEventsSettingsAndCancellation]' started.
+    t =     0.00s Start Test at 2026-10-10 01:56:59.398
+    t =     0.03s Set Up
+    t =     0.03s Open com.tacticalgo.prototype
+    t =     0.03s     Launch com.tacticalgo.prototype
+    t =     0.03s         Terminate com.tacticalgo.prototype:26113
+2026-10-10 01:57:00.492 xcodebuild[26077:254636] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 01:57:00.493 xcodebuild[26077:254636] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.30s         Setting up automation session
+    t =     1.84s         Wait for com.tacticalgo.prototype to idle
+    t =     3.15s Waiting 10.0s for "voiceAudit" StaticText to exist
+    t =     4.18s     Checking `Expect predicate `existsNoRetry == 1` for object "voiceAudit" StaticText`
+    t =     4.18s         Checking existence of `"voiceAudit" StaticText`
+    t =     5.36s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     5.36s     Find the "voiceAudit" StaticText
+    t =     5.40s     Capturing element debug description
+    t =     5.43s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     5.48s         Find: Descendants matching type StaticText
+    t =     5.49s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     5.49s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     5.54s         Find: Descendants matching type StaticText
+    t =     5.55s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     6.33s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     6.33s     Find the "voiceAudit" StaticText
+    t =     6.38s     Capturing element debug description
+    t =     6.41s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     6.46s         Find: Descendants matching type StaticText
+    t =     6.46s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     6.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     6.51s         Find: Descendants matching type StaticText
+    t =     6.52s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     7.30s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     7.30s     Find the "voiceAudit" StaticText
+    t =     7.35s     Capturing element debug description
+    t =     7.38s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     7.43s         Find: Descendants matching type StaticText
+    t =     7.43s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     7.43s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     7.48s         Find: Descendants matching type StaticText
+    t =     7.48s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     8.37s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     8.37s     Find the "voiceAudit" StaticText
+    t =     8.43s     Capturing element debug description
+    t =     8.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     8.50s         Find: Descendants matching type StaticText
+    t =     8.50s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     8.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     8.56s         Find: Descendants matching type StaticText
+    t =     8.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     9.34s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =     9.34s     Find the "voiceAudit" StaticText
+    t =     9.39s     Capturing element debug description
+    t =     9.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     9.55s         Find: Descendants matching type StaticText
+    t =     9.55s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =     9.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =     9.60s         Find: Descendants matching type StaticText
+    t =     9.61s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    10.39s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    10.39s     Find the "voiceAudit" StaticText
+    t =    10.44s     Capturing element debug description
+    t =    10.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    10.51s         Find: Descendants matching type StaticText
+    t =    10.51s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    10.52s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    10.57s         Find: Descendants matching type StaticText
+    t =    10.57s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    11.36s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    11.36s     Find the "voiceAudit" StaticText
+    t =    11.41s     Capturing element debug description
+    t =    11.44s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    11.49s         Find: Descendants matching type StaticText
+    t =    11.49s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    11.49s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    11.54s         Find: Descendants matching type StaticText
+    t =    11.54s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    12.32s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    12.32s     Find the "voiceAudit" StaticText
+    t =    12.36s     Capturing element debug description
+    t =    12.40s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    12.45s         Find: Descendants matching type StaticText
+    t =    12.45s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    12.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    12.50s         Find: Descendants matching type StaticText
+    t =    12.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    13.32s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    13.32s     Find the "voiceAudit" StaticText
+    t =    13.38s     Capturing element debug description
+    t =    13.40s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    13.46s         Find: Descendants matching type StaticText
+    t =    13.46s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    13.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    13.51s         Find: Descendants matching type StaticText
+    t =    13.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    14.31s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    14.32s     Find the "voiceAudit" StaticText
+    t =    14.37s     Capturing element debug description
+    t =    14.40s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    14.45s         Find: Descendants matching type StaticText
+    t =    14.45s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    14.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    14.51s         Find: Descendants matching type StaticText
+    t =    14.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    15.39s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    15.39s     Find the "voiceAudit" StaticText
+    t =    15.45s     Capturing element debug description
+    t =    15.47s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    15.52s         Find: Descendants matching type StaticText
+    t =    15.52s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    15.53s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    15.57s         Find: Descendants matching type StaticText
+    t =    15.58s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    16.36s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    16.37s     Find the "voiceAudit" StaticText
+    t =    16.48s     Capturing element debug description
+    t =    16.54s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    16.59s         Find: Descendants matching type StaticText
+    t =    16.59s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    16.59s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    16.65s         Find: Descendants matching type StaticText
+    t =    16.65s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    17.37s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    17.37s     Find the "voiceAudit" StaticText
+    t =    17.42s     Capturing element debug description
+    t =    17.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    17.50s         Find: Descendants matching type StaticText
+    t =    17.50s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    17.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    17.55s         Find: Descendants matching type StaticText
+    t =    17.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    18.32s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    18.32s     Find the "voiceAudit" StaticText
+    t =    18.37s     Capturing element debug description
+    t =    18.39s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    18.44s         Find: Descendants matching type StaticText
+    t =    18.45s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    18.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    18.50s         Find: Descendants matching type StaticText
+    t =    18.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    19.39s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    19.39s     Find the "voiceAudit" StaticText
+    t =    19.43s     Capturing element debug description
+    t =    19.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    19.55s         Find: Descendants matching type StaticText
+    t =    19.55s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    19.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    19.61s         Find: Descendants matching type StaticText
+    t =    19.61s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    20.37s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    20.37s     Find the "voiceAudit" StaticText
+    t =    20.43s     Capturing element debug description
+    t =    20.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    20.50s         Find: Descendants matching type StaticText
+    t =    20.50s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    20.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    20.55s         Find: Descendants matching type StaticText
+    t =    20.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    21.32s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    21.32s     Find the "voiceAudit" StaticText
+    t =    21.37s     Capturing element debug description
+    t =    21.40s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    21.51s         Find: Descendants matching type StaticText
+    t =    21.51s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    21.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    21.60s         Find: Descendants matching type StaticText
+    t =    21.60s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    22.37s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    22.37s     Find the "voiceAudit" StaticText
+    t =    22.43s     Capturing element debug description
+    t =    22.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    22.50s         Find: Descendants matching type StaticText
+    t =    22.51s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    22.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    22.56s         Find: Descendants matching type StaticText
+    t =    22.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    23.31s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    23.31s     Find the "voiceAudit" StaticText
+    t =    23.36s     Capturing element debug description
+    t =    23.39s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    23.44s         Find: Descendants matching type StaticText
+    t =    23.44s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    23.44s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    23.49s         Find: Descendants matching type StaticText
+    t =    23.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    24.36s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    24.36s     Find the "voiceAudit" StaticText
+    t =    24.43s     Capturing element debug description
+    t =    24.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    24.50s         Find: Descendants matching type StaticText
+    t =    24.51s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    24.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    24.56s         Find: Descendants matching type StaticText
+    t =    24.56s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    25.34s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    25.34s     Find the "voiceAudit" StaticText
+    t =    25.39s     Capturing element debug description
+    t =    25.42s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    25.47s         Find: Descendants matching type StaticText
+    t =    25.47s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    25.47s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    25.53s         Find: Descendants matching type StaticText
+    t =    25.53s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    26.38s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    26.38s     Find the "voiceAudit" StaticText
+    t =    26.42s     Capturing element debug description
+    t =    26.44s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    26.49s         Find: Descendants matching type StaticText
+    t =    26.49s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    26.49s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    26.54s         Find: Descendants matching type StaticText
+    t =    26.55s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    27.31s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    27.32s     Find the "voiceAudit" StaticText
+    t =    27.37s     Capturing element debug description
+    t =    27.39s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    27.45s         Find: Descendants matching type StaticText
+    t =    27.45s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    27.45s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    27.50s         Find: Descendants matching type StaticText
+    t =    27.50s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    28.36s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    28.36s     Find the "voiceAudit" StaticText
+    t =    28.44s     Capturing element debug description
+    t =    28.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    28.51s         Find: Descendants matching type StaticText
+    t =    28.51s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    28.51s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    28.56s         Find: Descendants matching type StaticText
+    t =    28.57s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    29.38s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    29.38s     Find the "voiceAudit" StaticText
+    t =    29.44s     Capturing element debug description
+    t =    29.46s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    29.51s         Find: Descendants matching type StaticText
+    t =    29.52s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    29.52s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    29.57s         Find: Descendants matching type StaticText
+    t =    29.57s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    30.34s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    30.34s     Find the "voiceAudit" StaticText
+    t =    30.39s     Capturing element debug description
+    t =    30.42s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    30.47s         Find: Descendants matching type StaticText
+    t =    30.47s         Find: Elements matching predicate '"voiceAudit" IN identifiers'
+    t =    30.47s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    30.52s         Find: Descendants matching type StaticText
+    t =    30.52s         Requesting snapshot of accessibility hierarchy for app with pid 26144
+    t =    31.31s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "voiceAudit" StaticText`
+    t =    31.31s     Find the "voiceAudit" StaticText
+    t =    31.45s Added attachment named 'VO-01-actual-owner-six-events-and-settings'
+    t =    31.45s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testHeroVoiceActualOwnerSixEventsSettingsAndCancellation]' passed (31.665 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 01:57:31.063.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 48.888 (48.891) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 01:57:31.064.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 48.888 (48.892) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 01:57:31.065.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 48.888 (48.893) seconds
+2026-10-10 01:57:31.403 xcodebuild[26077:254636] [MT] IDETestOperationsObserverDebug: 51.091 elapsed -- Testing started completed.
+2026-10-10 01:57:31.403 xcodebuild[26077:254636] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 01:57:31.403 xcodebuild[26077:254636] [MT] IDETestOperationsObserverDebug: 51.091 sec, +51.091 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/game-feel-voice-01/S1-native.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

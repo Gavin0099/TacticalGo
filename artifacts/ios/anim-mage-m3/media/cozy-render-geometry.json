@@ -1,0 +1,98 @@
+{
+  "available" : [
+    382,
+    429.75
+  ],
+  "boardSize" : 7,
+  "checkpointMs" : -1,
+  "effectsEnabled" : true,
+  "fitted" : [
+    0,
+    0,
+    382,
+    429.75
+  ],
+  "heroRepresentation" : "B-v02 original head\/hand\/staff pixels + masked garment clean plate; articulated mage",
+  "mageCanvas" : 42.831750000000007,
+  "mageGroundSource" : 448,
+  "mageRevision" : "m3",
+  "markerStyle" : "thinRing",
+  "pack" : "anim-01-magic-hand-v01",
+  "pitch" : 46.556250000000006,
+  "reducedMotion" : false,
+  "renderer" : "native SwiftUI CozyBoard",
+  "units" : [
+    {
+      "center" : [
+        191,
+        123.91125
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        3,
+        1
+      ]
+    },
+    {
+      "center" : [
+        141.34,
+        170.4675
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        2,
+        2
+      ]
+    },
+    {
+      "center" : [
+        191,
+        170.4675
+      ],
+      "kind" : "commander",
+      "owner" : "white",
+      "point" : [
+        3,
+        2
+      ]
+    },
+    {
+      "center" : [
+        191,
+        217.02375000000001
+      ],
+      "kind" : "hero",
+      "owner" : "black",
+      "point" : [
+        3,
+        3
+      ]
+    },
+    {
+      "center" : [
+        241.93333333333331,
+        217.02375000000001
+      ],
+      "kind" : "soldier",
+      "owner" : "black",
+      "point" : [
+        4,
+        3
+      ]
+    },
+    {
+      "center" : [
+        191,
+        310.13625000000002
+      ],
+      "kind" : "commander",
+      "owner" : "black",
+      "point" : [
+        3,
+        5
+      ]
+    }
+  ]
+}

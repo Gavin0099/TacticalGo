@@ -1,5 +1,8 @@
 # PR #8 合併阻擋項的程式碼層分析（唯讀）
 
+> **狀態更新（2026-10-15）：已解決。** P1／P2 於合併前修正並有測試證據；PR #8 已合併為 `a3c1867`。本檔保留為當時的分析紀錄，現況以 `docs/HANDOFF.md` §3.2 與 `docs/integration/INTEGRATION_RESULT.md` 為準。
+
+
 > 日期：2026-10-15（Asia/Taipei；2026-10-15 10:45 修訂）。對象：`origin/integration/1.0-1.1` @ `5a826fa`。
 > **方法：只讀原始碼、已發表的整合報告與 PR #8 的 Codex 行內審查留言；沒有建置、沒有執行任何測試**（Windows 機器，無 Xcode／Swift）。
 > **沒有修改任何程式碼。** 帳本、存檔、付費屬 L2；修復與驗證交給有 Mac 的 Agent（任務 `INTEG-ACCESS-01`）。

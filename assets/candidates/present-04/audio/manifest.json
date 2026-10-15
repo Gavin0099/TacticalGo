@@ -1,0 +1,252 @@
+{
+  "status": "owner_listening_pending",
+  "sample_rate": 44100,
+  "channels": 1,
+  "voice": false,
+  "bgm": false,
+  "sources": [
+    {
+      "author": "qubodup",
+      "license": "CC0",
+      "page": "https://opengameart.org/content/sand-spell",
+      "note": "Mouth-made air recording, author processed; not our recording",
+      "sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab"
+    },
+    {
+      "author": "Kenney",
+      "license": "CC0",
+      "page": "https://kenney.nl/assets/impact-sounds",
+      "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+      "license_sha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db"
+    }
+  ],
+  "processing": [
+    {
+      "id": "inhale",
+      "raw": "assets/candidates/present-04/audio/raw/sand-spell.flac",
+      "raw_sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+      "filter": "atrim=start=0.12:end=0.50,asetpts=PTS-STARTPTS,areverse,highpass=f=260,lowpass=f=4600",
+      "duration": 0.38,
+      "fade_in": 0.1,
+      "fade_out": 0.025,
+      "target_rms": -20
+    },
+    {
+      "id": "overtone",
+      "raw": "assets/candidates/present-04/audio/raw/impactBell_heavy_002.ogg",
+      "raw_sha256": "a4171ed1a4a17fb858a38de1c59b5b42e50d8f046c525706c0e3ac8671f189f5",
+      "filter": "atrim=end=0.38,areverse,highpass=f=1400,lowpass=f=4500",
+      "duration": 0.38,
+      "fade_in": 0.18,
+      "fade_out": 0.04,
+      "target_rms": -31
+    },
+    {
+      "id": "flick",
+      "raw": "assets/candidates/present-04/audio/raw/sand-spell.flac",
+      "raw_sha256": "8fc234df81c43469f8f9183391d74eccb89a6b2298e69aba9c754c8494ef48ab",
+      "filter": "atrim=start=0.10:end=0.36,asetpts=PTS-STARTPTS,highpass=f=180,lowpass=f=6000",
+      "duration": 0.26,
+      "fade_in": 0.008,
+      "fade_out": 0.08,
+      "target_rms": -18
+    },
+    {
+      "id": "knock",
+      "raw": "assets/candidates/present-04/audio/raw/impactWood_medium_001.ogg",
+      "raw_sha256": "15271dbe8e2872dbb0ff1aeb7b12b2d2b92b7c1951c88532b9ab9158c36dfc73",
+      "filter": "atrim=end=0.22,highpass=f=100,lowpass=f=3400",
+      "duration": 0.22,
+      "fade_in": 0.002,
+      "fade_out": 0.06,
+      "target_rms": -18
+    },
+    {
+      "id": "body",
+      "raw": "assets/candidates/present-04/audio/raw/impactPlank_medium_003.ogg",
+      "raw_sha256": "0602a7b3eab5f53484f10fe775ee4204e7a2ba9703c886b302e012f7f6fab8de",
+      "filter": "atrim=end=0.22,highpass=f=70,lowpass=f=850",
+      "duration": 0.22,
+      "fade_in": 0.002,
+      "fade_out": 0.08,
+      "target_rms": -25
+    }
+  ],
+  "recipes": {
+    "p4-conjure": [
+      [
+        "inhale",
+        1
+      ],
+      [
+        "overtone",
+        1
+      ]
+    ],
+    "p4-push": [
+      [
+        "flick",
+        1
+      ]
+    ],
+    "p4-contact": [
+      [
+        "knock",
+        1
+      ],
+      [
+        "body",
+        1
+      ]
+    ]
+  },
+  "files": [
+    {
+      "file": "assets/candidates/present-04/audio/stems/inhale.wav",
+      "sha256": "5e496e7d73e20a01ae86342f645468ef83670ca27cfed7bad1b4df455db78de7",
+      "duration": 0.38,
+      "peak_dbfs": -8.25734263446373,
+      "rms_dbfs": -20.000000000000085,
+      "first": -0.0,
+      "last": 0.0,
+      "dc": 1.1256478524178132e-07
+    },
+    {
+      "file": "assets/candidates/present-04/audio/stems/overtone.wav",
+      "sha256": "c7d9a52685064b33f93855cf5b5c597a9b286e9b7dc3bd5670fad7fd66d2301f",
+      "duration": 0.38,
+      "peak_dbfs": -14.06114100521502,
+      "rms_dbfs": -30.999999999999982,
+      "first": -0.0,
+      "last": -0.0,
+      "dc": 2.613994935184118e-06
+    },
+    {
+      "file": "assets/candidates/present-04/audio/stems/flick.wav",
+      "sha256": "8c33e0cbd4bbc34250c008f4f5bc0a1adf933e17a6b26ff008d8e61b43838b2c",
+      "duration": 0.26,
+      "peak_dbfs": -5.614937250577744,
+      "rms_dbfs": -18.000000000000068,
+      "first": 0.0,
+      "last": -0.0,
+      "dc": 8.201686151936767e-06
+    },
+    {
+      "file": "assets/candidates/present-04/audio/stems/knock.wav",
+      "sha256": "1258bbecc98bc8e32c842757c76f8d675522e699e5298e23043ed625eddf1bf9",
+      "duration": 0.22,
+      "peak_dbfs": -2.8533500713746314,
+      "rms_dbfs": -21.559158621774333,
+      "first": -0.0,
+      "last": 0.0,
+      "dc": -0.001314999958803958
+    },
+    {
+      "file": "assets/candidates/present-04/audio/stems/body.wav",
+      "sha256": "e2357072fc383803ad96cc1a7f23ecd0ce73d390035b5a67fb813b0fc02bbb1f",
+      "duration": 0.22,
+      "peak_dbfs": -9.307666958930533,
+      "rms_dbfs": -25.000000000000018,
+      "first": 0.0,
+      "last": -0.0,
+      "dc": -1.2833304660523349e-05
+    },
+    {
+      "file": "assets/candidates/present-04/audio/p4-conjure.wav",
+      "sha256": "3be5f9d09c994f9bfbbd743e7947f89bb9b9add34918b90725e9784acc0ac5c1",
+      "duration": 0.38,
+      "peak_dbfs": -7.681541511272558,
+      "rms_dbfs": -19.507324026751384,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": 2.726559720426823e-06
+    },
+    {
+      "file": "assets/candidates/present-04/audio/p4-push.wav",
+      "sha256": "8c33e0cbd4bbc34250c008f4f5bc0a1adf933e17a6b26ff008d8e61b43838b2c",
+      "duration": 0.26,
+      "peak_dbfs": -5.614937250577744,
+      "rms_dbfs": -18.000000000000068,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": 8.201686151936767e-06
+    },
+    {
+      "file": "assets/candidates/present-04/audio/p4-contact.wav",
+      "sha256": "e30f6e34673b09f377a793b6ea3261a0f3831816f88d7e6905d57c61e1d5cce8",
+      "duration": 0.22,
+      "peak_dbfs": -2.933853833887126,
+      "rms_dbfs": -19.42456464312378,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": -0.001327833263464487
+    }
+  ],
+  "previews": [
+    {
+      "file": "assets/candidates/present-04/audio/A-sfx.wav",
+      "sha256": "1f59292735745989f06026a4424f74d36576aba7131f888f27e1da1c908923be",
+      "duration": 1.65,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -20.897851015839827,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": -6.71822869067145e-05
+    },
+    {
+      "file": "assets/candidates/present-04/audio/A-capture-sfx.wav",
+      "sha256": "4637762beb6488ee3448b1a2efbc3446524499dfcedc7b8a08e16c691e334274",
+      "duration": 3.4,
+      "peak_dbfs": -4.502454798559193,
+      "rms_dbfs": -19.859616664276622,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": -3.6316153329037525e-05
+    },
+    {
+      "file": "assets/candidates/present-04/audio/D-sfx.wav",
+      "sha256": "af497f9ec9a9d2f5e1dbe9dd8a6a032bc18c97bdec71d21b083b3bfa3b38cfaa",
+      "duration": 1.65,
+      "peak_dbfs": -6.814784380937084,
+      "rms_dbfs": -25.536287121036555,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": -0.00011383067361503089
+    },
+    {
+      "file": "assets/candidates/present-04/audio/D-capture-sfx.wav",
+      "sha256": "afd7a346337a7ab4b64c8243fd77614a385391202a8c8046f6d87ea38b955eac",
+      "duration": 3.4,
+      "peak_dbfs": -6.462932704323549,
+      "rms_dbfs": -21.17576623892748,
+      "first": 0.0,
+      "last": 0.0,
+      "dc": -5.8954340996308784e-05
+    }
+  ],
+  "timing": {
+    "conjure": 0.08,
+    "push": 0.46,
+    "contact": 0.68,
+    "capture": 0.8,
+    "victory": 1.08
+  },
+  "original_samples": [
+    {
+      "key": "mage",
+      "sha256": "ed12c7bc9e62477842344b24f1203e07f474b36b6fa64ec7cc4ca6e56cdbcdaa"
+    },
+    {
+      "key": "place",
+      "sha256": "c67d86e2777472f2569f66e6a5596a3e2654a827dec7cf19a126ae88d2f12ade"
+    },
+    {
+      "key": "capture",
+      "sha256": "c2c09bbe38e7a92f7e561785730afe584da5c1f973c99a7131bb793507aca202"
+    },
+    {
+      "key": "victory",
+      "sha256": "a751f8b3a4d39b8e8d792a9f66ab07f155bed32fe9bc8bc24d9222b59e7aaa2f"
+    }
+  ]
+}

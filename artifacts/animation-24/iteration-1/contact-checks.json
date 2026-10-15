@@ -1,0 +1,398 @@
+{
+  "evidence": "browser-only Canvas rendering; no native receipt/Swift/audio execution",
+  "checks": [
+    {
+      "check": "chain has two exchanges at four actual sockets, .26 and .36",
+      "passed": true
+    },
+    {
+      "check": "contact has no late/invalid/reduced residue",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "bastion",
+      "changed": 791,
+      "points": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "timing": [
+        0.58,
+        1.02
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "bastion",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "reformation",
+      "changed": 788,
+      "points": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "timing": [
+        0.58,
+        1.02
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "reformation",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "magic",
+      "changed": 1713,
+      "points": [
+        [
+          5,
+          3
+        ]
+      ],
+      "timing": [
+        0.68,
+        1.08
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "magic",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "double",
+      "changed": 2549,
+      "points": [
+        [
+          5,
+          5
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "timing": [
+        0.68,
+        1.08
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "double",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "swap",
+      "changed": 709,
+      "points": [
+        [
+          5,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "timing": [
+        0.36,
+        0.7
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "swap",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "chain",
+      "changed": 718,
+      "points": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "timing": [
+        0.36,
+        0.7
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "chain",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "offering",
+      "changed": 535,
+      "points": [
+        [
+          4,
+          5
+        ]
+      ],
+      "timing": [
+        0.58,
+        0.94
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "id": "offering",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "bastion",
+      "changed": 928,
+      "points": [
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "timing": [
+        0.58,
+        1.02
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "bastion",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "reformation",
+      "changed": 937,
+      "points": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "timing": [
+        0.58,
+        1.02
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "reformation",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "magic",
+      "changed": 2046,
+      "points": [
+        [
+          5,
+          3
+        ]
+      ],
+      "timing": [
+        0.68,
+        1.08
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "magic",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "double",
+      "changed": 3002,
+      "points": [
+        [
+          5,
+          5
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "timing": [
+        0.68,
+        1.08
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "double",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "swap",
+      "changed": 847,
+      "points": [
+        [
+          5,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "timing": [
+        0.36,
+        0.7
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "swap",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "chain",
+      "changed": 857,
+      "points": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "timing": [
+        0.36,
+        0.7
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "chain",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "offering",
+      "changed": 676,
+      "points": [
+        [
+          4,
+          5
+        ]
+      ],
+      "timing": [
+        0.58,
+        0.94
+      ],
+      "check": "contact changes visible pixels at normal phone scale",
+      "passed": true
+    },
+    {
+      "width": 402,
+      "id": "offering",
+      "check": "exact same resting canvas after end",
+      "passed": true
+    },
+    {
+      "check": "reduced motion has identical final board and no new accent",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "nativeBuild": "NOT RUN",
+  "quality90Percent": "NOT ESTABLISHED"
+}

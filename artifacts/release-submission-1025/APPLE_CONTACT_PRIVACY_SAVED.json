@@ -1,0 +1,14 @@
+{
+  "observedAt": "2026-10-11T14:35:14.964604+00:00",
+  "verificationMethod": "Visible App Store Connect UI; contact fields verified after reload; privacy page says published by Owner",
+  "phoneSaved": true,
+  "phoneValueRetained": false,
+  "contactNameAndEmailSaved": true,
+  "notesSaved": true,
+  "signInRequired": false,
+  "manualRelease": true,
+  "privacyPublishedByOwner": true,
+  "privacyLegalActionPerformedByAgent": false,
+  "macNativeUIAvailable": true,
+  "evidenceImage": "privacy-published-by-owner.jpg"
+}

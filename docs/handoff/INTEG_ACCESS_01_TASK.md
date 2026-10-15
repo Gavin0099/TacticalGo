@@ -1,5 +1,8 @@
 # INTEG-ACCESS-01｜PR #8 計費缺口修正（給有 Mac／Xcode 的 Agent）
 
+> **狀態更新（2026-10-15）：已完成。** 修正與驗證結果在 `docs/integration/INTEGRATION_RESULT.md`（INTEG-ACCESS-01 一節）；PR #8 已合併為 `a3c1867`。以下為原任務書，僅供追溯。
+
+
 > 來源：Owner 指示（2026-10-15）。本檔只是把指示與已定位的證據放在 repo 裡，讓另一台電腦的 session 不依賴對話記憶。
 > 背景與證據：[`PR8_BLOCKER_ANALYSIS.md`](PR8_BLOCKER_ANALYSIS.md)、[`../HANDOFF.md`](../HANDOFF.md) §3.2。
 

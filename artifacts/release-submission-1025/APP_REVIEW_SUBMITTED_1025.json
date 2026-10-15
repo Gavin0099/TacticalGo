@@ -1,0 +1,52 @@
+{
+  "schema": "tacticalgo-app-review-submission-v1",
+  "recordedAt": "2026-10-11T15:31:59.616305+00:00",
+  "method": "Actual App Store Connect browser UI via CUA; official Xcode upload log",
+  "appID": "6821588889",
+  "version": "1.0",
+  "build": "1025",
+  "buildID": "e0f67359-4ed2-4ed7-b61b-2febeb0f3b6b",
+  "submissionID": "9d652212-eb28-44bc-a991-2901bd0942f8",
+  "submissionURL": "https://appstoreconnect.apple.com/apps/6821588889/distribution/reviewsubmissions/details/9d652212-eb28-44bc-a991-2901bd0942f8",
+  "submittedAtLocal": "2026-10-11 23:31 Asia/Taipei",
+  "AppleConfirmation": "已提交 2 個項目",
+  "submissionStatus": "WAITING_FOR_REVIEW",
+  "visibleStatus": "等待審查",
+  "items": [
+    {
+      "type": "IOS_APP_VERSION",
+      "version": "1.0",
+      "build": "1025"
+    },
+    {
+      "type": "NON_CONSUMABLE_IAP",
+      "appleID": "6821589396",
+      "productID": "com.tacticalgo.crowntactics.unlock",
+      "name": "皇冠戰略完整解鎖"
+    }
+  ],
+  "manualPublicRelease": true,
+  "publicReleased": false,
+  "approved": false,
+  "downloadPriceTWD": 0,
+  "unlockPriceTWD": 60,
+  "territories": [
+    "TWN"
+  ],
+  "newRuntimeEditsThisTurn": false,
+  "newCommitPushMerge": false,
+  "notClaimed": [
+    "Apple approval",
+    "public App availability",
+    "actual ASC Sandbox purchase/restore validation",
+    "production ads or UMP validation",
+    "final physical-device RC acceptance"
+  ],
+  "evidenceImage": "submitted-waiting-review-1025.jpg",
+  "related": [
+    "BUILD_1025_DISTRIBUTION.json",
+    "RIGHTS_AND_COMPLIANCE_1025.json",
+    "OWNER_HERO_ORIGIN_1025.json",
+    "SOURCE_UPLOAD_CHECK.json"
+  ]
+}

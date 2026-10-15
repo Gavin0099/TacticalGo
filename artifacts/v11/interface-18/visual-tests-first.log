@@ -1,0 +1,49 @@
+[0/1] Planning build
+Building for debugging...
+[0/17] Write sources
+[2/17] Write swift-version--58304C5D6DBC2206.txt
+[4/8] Compiling TacticalGoVisuals PhoneMatchLayout.swift
+[5/8] Compiling TacticalGoVisuals Anim01Geometry.swift
+[6/8] Emitting module TacticalGoVisuals
+[7/11] Compiling TacticalGoVisualsTests VisualPackTests.swift
+[8/11] Compiling TacticalGoVisualsTests PhoneBoardGeometryTests.swift
+[9/11] Emitting module TacticalGoVisualsTests
+[9/11] Write Objects.LinkFileList
+[10/11] Linking TacticalGoCorePackageTests
+Build complete! (1.46s)
+Test Suite 'Selected tests' started at 2026-10-12 13:11:23.545.
+Test Suite 'TacticalGoCorePackageTests.xctest' started at 2026-10-12 13:11:23.547.
+Test Suite 'PhoneBoardGeometryTests' started at 2026-10-12 13:11:23.547.
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testFixedSlotsReserveExactly332PointsAndDependOnlyOnViewport]' started.
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testFixedSlotsReserveExactly332PointsAndDependOnlyOnViewport]' passed (0.002 seconds).
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testFocusedNineEnlargesGridAndKeepsEdgeFiguresAndHitCellsVisible]' started.
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testFocusedNineEnlargesGridAndKeepsEdgeFiguresAndHitCellsVisible]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testPhoneSevenAndNineAllCellHitAndUprightFigureExtentsInsideFixedViewport]' started.
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testPhoneSevenAndNineAllCellHitAndUprightFigureExtentsInsideFixedViewport]' passed (0.001 seconds).
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testSevenAndOriginalFramingRemainUnchanged]' started.
+Test Case '-[TacticalGoVisualsTests.PhoneBoardGeometryTests testSevenAndOriginalFramingRemainUnchanged]' passed (0.000 seconds).
+Test Suite 'PhoneBoardGeometryTests' passed at 2026-10-12 13:11:23.550.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'VisualPackTests' started at 2026-10-12 13:11:23.550.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testConflictingMetadataForSameResourceIsRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testConflictingMetadataForSameResourceIsRejected]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testInvalidSizesAnchorsAndPathNamesAreRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testInvalidSizesAnchorsAndPathNamesAreRejected]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testManifestRoundTripWithBoardAndSeparateFactionSprites]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testManifestRoundTripWithBoardAndSeparateFactionSprites]' passed (0.001 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testOriginalTokenAnchorRetainsExistingOffset]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testOriginalTokenAnchorRetainsExistingOffset]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testRectangularCanvasAnchorUsesHeightAndPreservesAspectRatio]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testRectangularCanvasAnchorUsesHeightAndPreservesAspectRatio]' passed (0.000 seconds).
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testUnknownSchemaProjectionAndIncompleteClassesAreRejected]' started.
+Test Case '-[TacticalGoVisualsTests.VisualPackTests testUnknownSchemaProjectionAndIncompleteClassesAreRejected]' passed (0.000 seconds).
+Test Suite 'VisualPackTests' passed at 2026-10-12 13:11:23.552.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'TacticalGoCorePackageTests.xctest' passed at 2026-10-12 13:11:23.552.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'Selected tests' passed at 2026-10-12 13:11:23.552.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.005 (0.007) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

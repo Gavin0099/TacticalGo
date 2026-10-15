@@ -1,0 +1,16 @@
+{
+  "retrieved": "2026-10-12 Asia/Taipei",
+  "sha256": {
+    "water-splash-slime-sfx.zip": "7cd39abb49d4362a37ba18dc0e454c7dc1d08029d4e5b683149046bc237b2eba",
+    "wolf_monster_6.mp3": "ae5fe120c3e6e39f77af6f340e0ca2a93b27eb62884959e47eae9357c3556252",
+    "slime-page.html": "786a32e89889a83eb286cac79f0a9c76f8e231322f4af99fb6a81604e9a325de",
+    "wolf-page.html": "c6bbef114390b4eee4f090a0e0d29d4cff2559bb3fd03508070d05d7fc94854b",
+    "rogue-clean-plate.png": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+  },
+  "pages": [
+    "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
+    "https://opengameart.org/content/wolf-monster-sound"
+  ],
+  "wolf_note": "CC0 author processed creature sound, not real wolf recording",
+  "rogue_plate": "Copied read-only approved1.0 agent donor original matching its pinned SHA; no original art changed; Owner rights/availability statuses retained"
+}

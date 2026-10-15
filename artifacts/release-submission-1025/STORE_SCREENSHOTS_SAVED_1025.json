@@ -1,0 +1,34 @@
+{
+  "schema": "tacticalgo-store-upload-1025-v1",
+  "verifiedAt": "2026-10-11T15:13:52.793816+00:00",
+  "appID": "6821588889",
+  "version": "1.0",
+  "locale": "zh-Hant",
+  "method": "Native file picker via CUA; exact filenames checked; no extension file URL permission expansion",
+  "verifiedAfterReload": true,
+  "iPhone": {
+    "count": 3,
+    "displayGroup": "iPhone 6.1/6.3 inch",
+    "files": [
+      "iphone-01-home.png",
+      "iphone-02-heroes.png",
+      "iphone-03-match.png"
+    ],
+    "evidenceImage": "iphone-store-screenshots-saved.jpg"
+  },
+  "iPad": {
+    "count": 2,
+    "displayGroup": "iPad 13 inch",
+    "files": [
+      "ipad-01-challenges.png",
+      "ipad-02-tactics.png"
+    ],
+    "evidenceImage": "ipad-store-screenshots-saved.jpg"
+  },
+  "provenance": "store-media/PROVENANCE_1025.json",
+  "source": "Release Simulator 1.0/1025",
+  "physicalDevice": false,
+  "draftOnly": true,
+  "AppleReviewAcceptanceClaimed": false,
+  "allRequiredDisplayGroupsClaimed": false
+}

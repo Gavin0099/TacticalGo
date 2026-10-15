@@ -1,0 +1,40 @@
+{
+  "tool": "imagegen",
+  "original": "/Users/pc49-58/.codex/generated_images/01a12a76-7b6b-7e61-b59a-58b25bbff41b/exec-edca4f3b-78af-4a69-bbac-c87441913d42.png",
+  "sha256": "86f337d202aaadd6c102bfe7f25bf31e8fe77cbf8926b5dfcfa96929f9c78ae8",
+  "size": [
+    2172,
+    724
+  ],
+  "mode": "RGBA",
+  "transparent": true,
+  "original_retained": true,
+  "processing": "Lossless file copy; runtime CGImage atlas windows prepared before playback, no exported image edits",
+  "poses": [
+    "reach",
+    "brace",
+    "push"
+  ],
+  "alpha_bounds": [
+    [
+      42,
+      39,
+      724,
+      700
+    ],
+    [
+      0,
+      39,
+      718,
+      706
+    ],
+    [
+      25,
+      53,
+      660,
+      704
+    ]
+  ],
+  "owner_quality": "pending",
+  "prompt": "PROMPT.txt"
+}

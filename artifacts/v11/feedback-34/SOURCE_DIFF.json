@@ -1,0 +1,13 @@
+{
+  "baseline": "1110 TestFlight",
+  "candidate": "1111",
+  "sourceFiles": 274,
+  "changedPaths": [
+    "ios/TacticalGo/ExpansionLabView.swift",
+    "ios/TacticalGo/PlayableGameView.swift",
+    "ios/TacticalGoUITests/ExpansionLabTests.swift",
+    "swift/TacticalGoCore/Sources/TacticalGoContent/TacticalHuntPreview.swift",
+    "swift/TacticalGoCore/Tests/TacticalGoContentTests/TacticalHuntPreviewTests.swift"
+  ],
+  "preservedFailure": "Main.xcresult; loot accessibility frame 42.67x13.33; contentShape restored full target"
+}

@@ -1,0 +1,203 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=97B346CB-21D7-41DB-AE79-4B667C3B1566" "-only-testing:TacticalGoUITests/PlayableGameTests/testThreeClassVFXReceiptAndNativeAudit" -resultBundlePath artifacts/ios/vfx-three-classes-01/native-strong-03-audit.xcresult
+
+2026-10-10 18:27:27.143 xcodebuild[30647:1546623] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/vfx-three-classes-01/native-strong-03-audit.xcresult
+
+2026-10-10 18:27:27.197 xcodebuild[30647:1546623] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+{ platform:iOS Simulator, arch:x86_64, id:97B346CB-21D7-41DB-AE79-4B667C3B1566, OS:18.0, name:TacticalGo BOT-01 SE3 }
+2026-10-10 18:27:28.425 xcodebuild[30647:1546623] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 18:27:28.732 xcodebuild[30647:1546623] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 18:27:29.641598+0800 TacticalGoUITests-Runner[30676:1546911] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 18:27:30.075.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 18:27:30.075.
+Test Suite 'PlayableGameTests' started at 2026-10-10 18:27:30.075.
+Test Case '-[TacticalGoUITests.PlayableGameTests testThreeClassVFXReceiptAndNativeAudit]' started.
+    t =     0.00s Start Test at 2026-10-10 18:27:30.076
+    t =     0.04s Set Up
+    t =     0.04s Open com.tacticalgo.prototype
+    t =     0.04s     Launch com.tacticalgo.prototype
+2026-10-10 18:27:30.408 xcodebuild[30647:1546623] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 18:27:30.408 xcodebuild[30647:1546623] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.74s         Setting up automation session
+    t =     1.42s         Wait for com.tacticalgo.prototype to idle
+    t =     2.83s Waiting 10.0s for "skillVFXAudit" StaticText to exist
+    t =     3.88s     Checking `Expect predicate `existsNoRetry == 1` for object "skillVFXAudit" StaticText`
+    t =     3.88s         Checking existence of `"skillVFXAudit" StaticText`
+    t =     5.05s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =     5.05s     Find the "skillVFXAudit" StaticText
+    t =     5.09s     Capturing element debug description
+    t =     5.13s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     5.18s         Find: Descendants matching type StaticText
+    t =     5.19s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =     5.19s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     5.26s         Find: Descendants matching type StaticText
+    t =     5.26s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     6.00s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =     6.00s     Find the "skillVFXAudit" StaticText
+    t =     6.03s     Capturing element debug description
+    t =     6.07s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     6.15s         Find: Descendants matching type StaticText
+    t =     6.15s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =     6.16s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     6.22s         Find: Descendants matching type StaticText
+    t =     6.22s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     6.98s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =     6.98s     Find the "skillVFXAudit" StaticText
+    t =     7.02s     Capturing element debug description
+    t =     7.06s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     7.11s         Find: Descendants matching type StaticText
+    t =     7.12s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =     7.12s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     7.18s         Find: Descendants matching type StaticText
+    t =     7.18s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     8.05s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =     8.05s     Find the "skillVFXAudit" StaticText
+    t =     8.08s     Capturing element debug description
+    t =     8.51s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     8.57s         Find: Descendants matching type StaticText
+    t =     8.57s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =     8.57s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     8.63s         Find: Descendants matching type StaticText
+    t =     8.64s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =     9.98s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =     9.98s     Find the "skillVFXAudit" StaticText
+    t =    10.03s     Capturing element debug description
+    t =    10.08s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    10.14s         Find: Descendants matching type StaticText
+    t =    10.14s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    10.14s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    10.20s         Find: Descendants matching type StaticText
+    t =    10.21s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    11.00s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    11.00s     Find the "skillVFXAudit" StaticText
+    t =    11.07s     Capturing element debug description
+    t =    11.10s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    11.16s         Find: Descendants matching type StaticText
+    t =    11.16s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    11.17s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    11.22s         Find: Descendants matching type StaticText
+    t =    11.22s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    12.01s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    12.01s     Find the "skillVFXAudit" StaticText
+    t =    12.05s     Capturing element debug description
+    t =    12.09s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    12.15s         Find: Descendants matching type StaticText
+    t =    12.15s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    12.16s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    12.22s         Find: Descendants matching type StaticText
+    t =    12.22s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    13.01s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    13.01s     Find the "skillVFXAudit" StaticText
+    t =    13.30s     Capturing element debug description
+    t =    13.39s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    13.46s         Find: Descendants matching type StaticText
+    t =    13.46s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    13.46s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    13.52s         Find: Descendants matching type StaticText
+    t =    13.52s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    14.00s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    14.00s     Find the "skillVFXAudit" StaticText
+    t =    14.29s     Capturing element debug description
+    t =    14.32s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    14.38s         Find: Descendants matching type StaticText
+    t =    14.38s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    14.38s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    14.44s         Find: Descendants matching type StaticText
+    t =    14.44s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    16.07s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    16.07s     Find the "skillVFXAudit" StaticText
+    t =    16.11s     Capturing element debug description
+    t =    16.16s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    16.22s         Find: Descendants matching type StaticText
+    t =    16.22s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    16.23s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    16.29s         Find: Descendants matching type StaticText
+    t =    16.29s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    16.98s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    16.98s     Find the "skillVFXAudit" StaticText
+    t =    17.03s     Capturing element debug description
+    t =    17.06s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    17.12s         Find: Descendants matching type StaticText
+    t =    17.12s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    17.12s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    17.18s         Find: Descendants matching type StaticText
+    t =    17.19s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    18.04s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    18.04s     Find the "skillVFXAudit" StaticText
+    t =    19.23s     Capturing element debug description
+    t =    19.28s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    19.34s         Find: Descendants matching type StaticText
+    t =    19.34s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    19.34s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    19.39s         Find: Descendants matching type StaticText
+    t =    19.39s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    19.99s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    19.99s     Find the "skillVFXAudit" StaticText
+    t =    20.03s     Capturing element debug description
+    t =    20.08s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    20.13s         Find: Descendants matching type StaticText
+    t =    20.14s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    20.14s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    20.19s         Find: Descendants matching type StaticText
+    t =    20.19s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    21.08s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    21.08s     Find the "skillVFXAudit" StaticText
+    t =    21.12s     Capturing element debug description
+    t =    21.14s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    21.19s         Find: Descendants matching type StaticText
+    t =    21.19s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    21.19s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    21.24s         Find: Descendants matching type StaticText
+    t =    21.24s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    22.02s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    22.02s     Find the "skillVFXAudit" StaticText
+    t =    22.05s     Capturing element debug description
+    t =    22.08s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    22.12s         Find: Descendants matching type StaticText
+    t =    22.13s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    22.13s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    22.18s         Find: Descendants matching type StaticText
+    t =    22.18s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    23.09s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    23.09s     Find the "skillVFXAudit" StaticText
+    t =    23.13s     Capturing element debug description
+    t =    23.15s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    23.20s         Find: Descendants matching type StaticText
+    t =    23.21s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    23.21s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    23.26s         Find: Descendants matching type StaticText
+    t =    23.26s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    24.05s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    24.05s     Find the "skillVFXAudit" StaticText
+    t =    24.10s     Capturing element debug description
+    t =    24.12s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    24.17s         Find: Descendants matching type StaticText
+    t =    24.17s         Find: Elements matching predicate '"skillVFXAudit" IN identifiers'
+    t =    24.18s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    24.23s         Find: Descendants matching type StaticText
+    t =    24.23s         Requesting snapshot of accessibility hierarchy for app with pid 30691
+    t =    25.05s Checking `Expect predicate `label BEGINSWITH "PASS"` for object "skillVFXAudit" StaticText`
+    t =    25.05s     Find the "skillVFXAudit" StaticText
+    t =    25.14s Added attachment named 'VFX-receipt-render-safety-audit'
+    t =    25.14s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testThreeClassVFXReceiptAndNativeAudit]' passed (25.372 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 18:27:55.449.
+	 Executed 1 test, with 0 failures (0 unexpected) in 25.372 (25.374) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 18:27:55.450.
+	 Executed 1 test, with 0 failures (0 unexpected) in 25.372 (25.375) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 18:27:55.451.
+	 Executed 1 test, with 0 failures (0 unexpected) in 25.372 (25.376) seconds
+2026-10-10 18:27:55.839 xcodebuild[30647:1546623] [MT] IDETestOperationsObserverDebug: 27.399 elapsed -- Testing started completed.
+2026-10-10 18:27:55.839 xcodebuild[30647:1546623] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 18:27:55.839 xcodebuild[30647:1546623] [MT] IDETestOperationsObserverDebug: 27.399 sec, +27.399 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/vfx-three-classes-01/native-strong-03-audit.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

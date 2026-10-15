@@ -1,0 +1,115 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=176A7ED7-D56A-41F7-B56C-CBEB9B9774A3" "-only-testing:TacticalGoUITests/PlayableGameTests/testMageM3TwoAPRemainsPlayableAfterPresentation" -resultBundlePath artifacts/ios/anim-mage-m3/native-two-ap-corrected.xcresult
+
+2026-10-10 16:19:50.694 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/native-two-ap-corrected.xcresult
+
+2026-10-10 16:19:50.701 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+{ platform:iOS Simulator, arch:x86_64, id:176A7ED7-D56A-41F7-B56C-CBEB9B9774A3, OS:18.0, name:TacticalGo ANIM-01 390 }
+2026-10-10 16:19:52.204 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:52.536 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:52.646 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:53.705296+0800 TacticalGoUITests-Runner[1299:1261909] [Default] Running tests...
+Test Suite 'Selected tests' started at 2026-10-10 16:19:54.222.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 16:19:54.223.
+Test Suite 'PlayableGameTests' started at 2026-10-10 16:19:54.223.
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageM3TwoAPRemainsPlayableAfterPresentation]' started.
+    t =     0.00s Start Test at 2026-10-10 16:19:54.223
+    t =     0.04s Set Up
+    t =     0.04s Open com.tacticalgo.prototype
+    t =     0.04s     Launch com.tacticalgo.prototype
+2026-10-10 16:19:54.532 xcodebuild[1232:1261283] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 16:19:54.532 xcodebuild[1232:1261283] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.72s         Setting up automation session
+    t =     1.36s         Wait for com.tacticalgo.prototype to idle
+    t =     2.72s Waiting 10.0s for "playArena" Other to exist
+    t =     3.76s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     3.77s         Checking existence of `"playArena" Other`
+    t =     3.91s Tap "playArena" Other[0.63, 0.51]
+    t =     3.91s     Wait for com.tacticalgo.prototype to idle
+    t =     3.91s     Find the "playArena" Other
+    t =     3.96s     Check for interrupting elements affecting "playArena" Other
+    t =     4.00s     Synthesize event
+    t =     4.00s         Find the "playArena" Other
+    t =     4.04s         Find the "playArena" Other
+    t =     4.19s         Find the "playArena" Other
+    t =     4.53s     Wait for com.tacticalgo.prototype to idle
+    t =     4.53s Tap "push-Up" Button
+    t =     4.53s     Wait for com.tacticalgo.prototype to idle
+    t =     4.53s     Find the "push-Up" Button
+    t =     4.57s     Check for interrupting elements affecting "push-Up" Button
+    t =     4.59s     Synthesize event
+    t =     4.89s     Wait for com.tacticalgo.prototype to idle
+    t =     4.89s Find the "playConfirm" Button
+    t =     4.95s Find the "playConfirm" Button
+    t =     4.99s Tap "playConfirm" Button
+    t =     4.99s     Wait for com.tacticalgo.prototype to idle
+    t =     4.99s     Find the "playConfirm" Button
+    t =     5.03s     Check for interrupting elements affecting "playConfirm" Button
+    t =     5.06s     Synthesize event
+    t =     5.35s     Wait for com.tacticalgo.prototype to idle
+    t =     5.36s Waiting 5.0s for "1 AP" StaticText to exist
+    t =     6.39s     Checking `Expect predicate `existsNoRetry == 1` for object "1 AP" StaticText`
+    t =     6.39s         Checking existence of `"1 AP" StaticText`
+    t =     7.50s Checking `Expect predicate `enabled == 1` for object "mode-soldier" Button`
+    t =     7.50s     Find the "mode-soldier" Button
+    t =     7.54s Tap "mode-soldier" Button
+    t =     7.54s     Wait for com.tacticalgo.prototype to idle
+    t =     7.54s     Find the "mode-soldier" Button
+    t =     7.57s     Check for interrupting elements affecting "mode-soldier" Button
+    t =     7.60s     Synthesize event
+    t =     7.89s     Wait for com.tacticalgo.prototype to idle
+    t =     7.90s Waiting 10.0s for "playArena" Other to exist
+    t =     8.93s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     8.93s         Checking existence of `"playArena" Other`
+    t =     8.98s Tap "playArena" Other[0.13, 0.18]
+    t =     8.98s     Wait for com.tacticalgo.prototype to idle
+    t =     8.99s     Find the "playArena" Other
+    t =     9.02s     Check for interrupting elements affecting "playArena" Other
+    t =     9.07s     Synthesize event
+    t =     9.07s         Find the "playArena" Other
+    t =     9.11s         Find the "playArena" Other
+    t =     9.17s         Find the "playArena" Other
+    t =     9.58s     Wait for com.tacticalgo.prototype to idle
+    t =     9.58s Find the "playConfirm" Button
+    t =     9.66s Find the "playConfirm" Button
+    t =     9.76s Tap "playConfirm" Button
+    t =     9.76s     Wait for com.tacticalgo.prototype to idle
+    t =     9.76s     Find the "playConfirm" Button
+    t =     9.80s     Check for interrupting elements affecting "playConfirm" Button
+    t =     9.84s     Synthesize event
+    t =    10.13s     Wait for com.tacticalgo.prototype to idle
+    t =    10.13s Waiting 5.0s for "2 AP" StaticText to exist
+2026-10-10 16:20:05.354 xcodebuild[1232:1261283] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =    11.16s     Checking `Expect predicate `existsNoRetry == 1` for object "2 AP" StaticText`
+    t =    11.16s         Checking existence of `"2 AP" StaticText`
+    t =    11.21s Find the "currentTurn" StaticText
+    t =    11.41s Added attachment named 'M3-second-ap-after-mage-recovery'
+    t =    11.41s Tap "undoOrCancel" Button
+    t =    11.41s     Wait for com.tacticalgo.prototype to idle
+    t =    11.41s     Find the "undoOrCancel" Button
+    t =    11.47s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    11.50s     Synthesize event
+    t =    11.79s     Wait for com.tacticalgo.prototype to idle
+    t =    11.79s Checking existence of `"1 AP" StaticText`
+    t =    11.84s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testMageM3TwoAPRemainsPlayableAfterPresentation]' passed (12.081 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 16:20:06.305.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.081 (12.082) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 16:20:06.306.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.081 (12.083) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 16:20:06.306.
+	 Executed 1 test, with 0 failures (0 unexpected) in 12.081 (12.084) seconds
+2026-10-10 16:20:06.654 xcodebuild[1232:1261283] [MT] IDETestOperationsObserverDebug: 14.447 elapsed -- Testing started completed.
+2026-10-10 16:20:06.654 xcodebuild[1232:1261283] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 16:20:06.654 xcodebuild[1232:1261283] [MT] IDETestOperationsObserverDebug: 14.447 sec, +14.447 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/native-two-ap-corrected.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

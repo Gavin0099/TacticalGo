@@ -1,0 +1,18 @@
+{
+  "evidence": "Authored Canvas contact study; current envelope numbers exported, no Swift execution",
+  "tail": 0.18,
+  "radius": 0.38,
+  "radiusDelta": 0.08,
+  "holdFraction": 0.16,
+  "fadeFraction": 0.84,
+  "rise": 0.22,
+  "source_text_sha256_lf": {
+    "swift/TacticalGoCore/Sources/TacticalGoMotion/ExpansionContact.swift": "694a4cf0d8ac5676921e44d8d70df6f50e3c7e5356b6240b43752cb3f03400ba",
+    "ios/TacticalGo/ExpansionContactEffects.swift": "431d085b61a1be2c6e47ef1b22b4748085349024efbdab657a4484385b890b2f",
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "8f0853d8622987736df384911ad3640f7ae35fba80096239659bd5758277c3b6",
+    "ios/TacticalGo/ExpansionLabView.swift": "91f8893444eeb5a34b9ce7a0f5d4596ff1c07afe2480f353d490b0cf8dbbbb92",
+    "ios/TacticalGo/PresentationLabView.swift": "5179c585af8c881ef9b0e131fe5a4d7d8987add6c051c5975b74e95620565853",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "f02c0614f2d36a660fa1a1ab35798156e84d61c2186652afa62b04dd6f179524",
+    "ios/TacticalGo.xcodeproj/project.pbxproj": "3cc0b61b8ebead11807b0ea5c51426f4d573069aefe993496720be5987e8b97f"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-13",
+  "source_branch": "origin/codex/v11-monster-battlefield",
+  "source_commit": "004ed4cdc661bc20261a587e11d91e54dc649b9d",
+  "assets": [
+    {
+      "asset": "ios/TacticalGo/Assets.xcassets/game-action-atlas.imageset/game-action-atlas.png",
+      "generator": "image_gen.imagegen",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-5ce4519b-68c8-4636-85ac-5d53d22439cd.png",
+      "prompt_summary_not_verbatim": "Original premium fantasy tabletop inventory icons, 4 columns x 2 rows, transparent equal cells: soldier helmet, cyan summon portal, warrior shield, magic hand, rogue daggers, priest book/leaf, mint slime, violet wolf paw. No text, logos or frames. Warm upper-left light and readable small silhouettes.",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "sha256": "275006be16fb987b355eed3ce8758fd90167d04eb37aaec33692ed81c0032cd1",
+      "original_pixels_preserved": true,
+      "source_type": "original_generated_candidate"
+    },
+    {
+      "asset": "ios/TacticalGo/Assets.xcassets/game-table-material.imageset/game-table-material.png",
+      "generator": "image_gen.imagegen",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-5537bae4-3d79-4afe-9e01-65647662f1ae.png",
+      "prompt_summary_not_verbatim": "Original full-bleed overhead warm walnut and brown leather surface; subtle grain, quiet center, dark teal edges, amber upper-left lighting; no frames, buttons, objects, text or logos.",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_extrema": null,
+      "sha256": "e77de751b49fd9433e577e758383f824224fbef55c419cd4820bc94104506c96",
+      "original_pixels_preserved": true,
+      "source_type": "original_generated_candidate"
+    }
+  ],
+  "existing_hero_assets": "Retained current repository portraits; not generated in this slice",
+  "competitor_media_imported": false
+}

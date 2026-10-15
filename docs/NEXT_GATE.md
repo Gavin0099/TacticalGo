@@ -1,4 +1,58 @@
-# 下一個 Gate：iOS A0 試玩與操作驗收
+## 2026-10-11 18:42｜AdMob App／獎勵廣告已建立
+
+已在登入的 AdMob UI 建立 iOS、尚未上架的「皇冠戰略」App，及自願觀看的獎勵廣告；重新開啟設定確認獎勵為 1 場對戰。公開識別已同步至帳戶證據及 Release.accounts-draft.xcconfig，沒有接到 Xcode 預設配置，也沒有修改或重建凍結1024包。AdMob帳戶驗證仍待完成，App需上架後連結商店並接受審查；建立單元不是可正式放送的證據。Apple商務重載後付費協議仍為「新」，頁面要求本人在簽署前更新法律實體。未調查或提交銀行／稅務、未接受契約。接續完成此遊戲policy/support與UMP、商品定價metadata、Sandbox、發行簽名／雙機及產品權利驗收；未上傳、送審或發布。實際證據見 artifacts/release-accounts-1024/ADMOB_APP_UNIT.json。
+
+## 2026-10-11 AdMob 付款診斷更新
+
+Owner 已完成 AdMob 註冊；首頁任務確認「付款資料設定完成，您的帳戶已就緒，可送交審核」。原紅色未完成提示在重新載入後消失。姓名／地址已有值，電話明確標為選填；身分驗證目前未要求。帳戶仍審核中，銀行／稅務未查，遊戲 App／rewarded unit／UMP 尚未建立；Apple 商務仍依前次未完成狀態，不能視為全部帳戶 Gate 通過。僅查看與重新載入，沒有填寫／儲存／提交收款資料。[診斷證據](../artifacts/release-accounts-1024/ADMOB_PAYMENT_DIAGNOSIS.json)。
+
+## 2026-10-11 帳戶接續：App 與永久解鎖草稿已建立
+
+Owner 已登入；已核對 Team P358EB3X9H 並登記既有真機 bundle com.tacticalgo.prototype.herobody。ASC「皇冠戰略」App ID 6821588889、SKU CROWNTACTICS-IOS-01；non-consumable com.tacticalgo.crowntactics.unlock（IAP ID 6821589396）及中文說明已建立。版本1.0草稿已核對手動發布、不要求遊戲登入；不是已上傳1.0 build。
+
+Apple 付費協議顯示「新」；法律實體／稅務銀行由 Owner 完成。AdMob 仍停註冊條款頁，未接受或建立帳戶。定價／地區、正式廣告IDs／UMP、公開頁面、Sandbox、簽名封存及產品／權利 Gate 未完成。本次只有帳戶草稿與交接文件，沒有程式、真機、commit／push／merge、上傳或發布。[實際帳戶紀錄](../artifacts/release-accounts-1024/REPORT.md)。
+
+以下1024工程證據與更早決策保留為歷史，不把「ASC待登入／商品尚未建立」當最新狀態。
+
+## 2026-10-11 最新進度：1024 商業接線候選
+
+Owner 核准持續做到可上架，免費額度前三場完整對局。1024 已實作獨立 ledger、StoreKit 2 永久解鎖／恢復、真正 Google rewarded／UMP 接線；舊付費下載與「無 SDK」盤點僅適用歷史 1023。
+
+教學／九個挑戰免費、舊局可續玩；不改棋规、AI、存局格式、已接受 UI 或聲音偏好。Release 排除未通過英文語音／3D model／研究入口，BGM／SFX 保留。不以 fake reward 或 paid 布林解鎖。新測試／限制見 [1024 報告](../artifacts/monetization-02/REPORT.md) 及 [方案](release-01/FREEMIUM_PLAN.md)。
+
+正式商品／AdMob IDs／遊戲公開 policy/support URLs 尚缺，Release 不回退 sample。ASC 待 Owner 登入；已核字樹花園公開 Email／Copyright，工程 Team 不等於契約就緒。Sandbox、distribution archive、雙機、產品與權利 Gate 未結案。沒有 commit／push／merge、TestFlight、送審或發布；不覆蓋既有 1023 真機。
+
+以下保留歷史；現行狀態以上段與 1024 報告為準。
+
+## 最新 Gate：1023 實機選取／取消與付費首版收尾（2026-10-11）
+
+1023 已修正新增預覽文字與模式／方向按鈕高度改變造成棋盤移动；最終來源五次限定原生UI執行通過，保留真實XXXL失敗／重驗記錄。iPhone與iPad皆Wi-Fi同bundle更新；iPhone正常啟動、30舊檔與六聲音偏好保持；iPad27舊檔與六偏好保持但Locked，啟動待解鎖。實機選取／取消／確認是否順手待Owner，安裝不代表產品驗收。
+
+390正常各操作狀態390×439，较1021面積+8.8%，與1022同尺寸；375短手機固定328×369.5，较1021+40.5%，不能用1022空閒時+75%宣稱全程放大。各狀態逐邊測量、來源ZIP、最終簽名與設備結果見 `artifacts/ui-board-focus-1023/REPORT.md`。
+
+Owner已定首版付費下載完整買斷、台灣目標NT$60、無廣告／訂閱／內購；免費測試使用TestFlight。僅本機文件完成：`docs/release-01/PAID_LAUNCH_PLAN.md`，帳戶價格／契約／稅務銀行／群組與公開資料未查，沒有上傳、邀請、送審或發布。真人完整局／三進階關、新人、包內素材權利及語音發布配置未結案，仍依首版固定收尾，不擴Boss／3D／AI大改。
+
+以下保留歷史決策與證據，不代表舊候選仍是最新安裝。
+
+## 現行決策：1020 新局採用新版技能（2026-10-11）
+
+Owner 已要求「技能規則改成新版，設定那邊不用選擇」。新自由對戰／本機雙人／人機對戰直接使用沿棋群築壘＋法師己兵調度；法師原本一格推動及盜賊換位保留。選角與規則說明跟實際 config，設定不再選原版／候選。原存局規則與歷史不遷移，舊局可另建新版續玩副本；固定原版挑戰不在本輪重做。
+
+1020 保持原隔離分支、同 App bundle、iOS17最低版本與聲音偏好；原1019凍結包保留。新來源／新執行驗證及設備更新結果見 `artifacts/release-01/skills-default-1020/REPORT.md`。核心好玩、1017操作順手等Owner既有正面回饋仍有效；新版完整對局／三關／新人與權利驗收另列，沒有合併或發布。
+
+下方為歷史收尾 Gate 與當時裝置結果，不代表1020安裝狀態。
+
+# 下一個 Gate：首版發行收尾
+
+## 2026-10-11 現行方向：RELEASE-01
+
+Owner 要求以現有內容準備首版、停止擴充玩法；保留已確認的好玩與順手回饋，將首版內容凍結與發布驗收分開。1018 是實際雙機安裝的基線，不是已核准發布版。最小收尾為首頁內容可發現性、同一 RC 的三職／黑白完整局與三關、3–5 位陌生玩家、雙機生命週期、名稱／icon與真實商店畫面、隱私／支援與包內素材權利。
+
+R1 已完成1019本機候選：首頁直接開始對戰／新手入門／戰術挑戰、續玩保持優先，棋譜留在工具選單；已補實際包內PrivacyInfo。212項Swift、38組Golden、9次原生UI執行通過，包含三進階關操作完成。iPhone已安裝1019、26舊資料檔及6聲音偏好相同，但啟動Locked待解鎖；iPad本輪Wi-Fi連線逾時，未更新。新人／三關樂趣／完整雙機對局仍未通過；權利、公開政策／支援資訊、正式配置與distribution archive待確認，不以工程測試代替上架。
+
+詳細範圍、實際缺口、試玩表与商店／政策草稿見 `docs/release-01/README.md`。1019來源／App雜湊與本輪新證據見 `artifacts/release-01/r1-native/`；原1018的282檔來源ZIP不改寫。BOSS-01、新英雄／第二技能／章節、3D與大規模AI改寫暫停；歷史候選文件與存局保留。正式公開配置、commit／push／merge、TestFlight、送審與發布尚未執行或因此取得授權。
+
+以下為歷史 Gate，不覆蓋上述現行方向。
 
 ## 當前 Gate：BOT-01 玩家試玩（2026-10-09）
 
@@ -144,3 +198,11 @@ Owner 要求先試現有 R3，不再增加功能、美術／3D、第二技能或
 成果在本地 codex/onboard-01 隔離分支，沒有上傳、合併或發布。工程測試與模擬器操作不能證明零經驗玩家已在五分鐘內理解。
 
 Specification: docs/onboarding/ONBOARD_01.md. Evidence: artifacts/onboard-01/REPORT.md and validation.json.
+## 2026-10-11 送審準備目前缺口
+
+免費下載及繁體商店文案／分類已儲存，年齡問卷一般 13+，版本仍準備提交且手動發布。支援／隱私／app-ads.txt 已私人部署；等 Owner 公開授權後才可驗證公開 URL、配置 UMP 及正式 build。Owner 本人需完成商務台灣與美國稅務問卷、核對收款資料；目前付費協議未啟用。NT$60 永久解鎖與供應地區待決，不依舊買斷方案自動設定。
+
+1024 程式與凍結來源包保持原樣；目前新增的是帳戶草稿、網站及原生媒體準備。新的擷取首輪三方法通過、一方法因 alert selector 不唯一失敗，局部測試修正及結果分開保留。尚未上傳、送審、公開發布、合併，沒有宣稱廣告可正式放送或 Sandbox／真機收費通過。最新證據目錄：artifacts/release-submission-1025/。
+## 2026-10-11｜發行簽名已備妥，帳戶及正式流程尚未通過
+
+Apple Distribution profile 已建立、核對並本機安裝，相同 Bundle ID 與既有憑證；沒有 archive／upload。台灣稅務完成、銀行處理中；兩份美國稅務仍未完成，已交本人處理。網站公開、永久解鎖價格與地區先前問題仍待決。本輪限定首頁／iPad橫向已各1PASS。下一步完成公開政策與 UMP／隱私、IAP 真實 metadata 與 Sandbox，再以同一正式候選驗雙機。首版 App Store 供應已限 iPhone／iPad，其他玩法與1024凍結證據不改。
