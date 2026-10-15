@@ -141,3 +141,13 @@ any relaunch, the player starts another gated expansion match, the finished matc
 can no longer be re-established from disk. The shared launch reconciliation closes the common case (relaunch before the
 next start) but not this one. Proposed, not done: retry the completion of the saved finished match immediately before
 promoting a new start.
+
+### Codex re-review of `ecfa95b` (2026-10-15)
+
+CI evidence on this head: workflow `Swift Core (Linux)` passed (`swift test` in a `swift:6.0` container, 433 tests,
+0 failures, including the promotion test Codex reported failing on Linux).
+
+| Comment | Judgement | Disposition |
+|---|---|---|
+| P2 "reconcile expansion completions at app startup" (repeat of the earlier comment) | False positive, again | `PlayableGameView.onAppear` (the app root) appends the validated expansion terminal identity to the ids it reconciles; the UI test `testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell` fails without it and passes with it |
+| P2 "defer match admission until entitlement verification" (`PlayAccess.authorizeNewMatch` passes `isUnlocked: false` while `isChecking` is still true) | Valid but **pre-existing** (unchanged 1.0 code and 1.0 behaviour); not introduced by this integration | Not changed here: it would change when a start is admitted, i.e. commercial semantics, which this slice must not touch. Effect: an owner who starts a match in the first moments before StoreKit answers is recorded as a trial/reward admission; it only matters if the entitlement is later revoked. Tracked as a separate item for an Owner decision |
