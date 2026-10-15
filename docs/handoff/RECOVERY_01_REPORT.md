@@ -86,3 +86,7 @@
 1. 審核本分支；同意後再決定是否推送、開 PR（目標分支與 #7 的關係見 §1）。
 2. 決定 `docs/handoff` 本機分支（`e3a78fc`）的去留；其中含個人本機路徑的證據 JSON 不應推送。
 3. 若 #7 先合併，本分支可直接以 #7 合併後的 `main` 為基底重新對齊。
+
+## 8. 提交時的 pre-commit 建議性輸出（2026-10-15）
+
+提交 `f015a72` 時本機 hook 輸出 `warning_codes=missing_canonical_memory,test_evidence_artifact_metadata_missing`，`completion_claim_allowed=True`，明寫「commit is not blocked」。兩者都在 #7 本文的已知警告清單內（記憶缺口、舊記錄證據來源）；本次沒有寫 canonical memory，**這些警告未被解除**。若要消除，需 Owner 決定是否補寫 session 記錄（用 `governance_tools.memory_record`，且 `--test-evidence` 必須是實際執行結果）。
