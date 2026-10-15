@@ -116,3 +116,28 @@ was before at the first move.
 
 Not in this change (tracked separately, per the task): a completed ad whose reward write fails does not keep its
 request ID (`RewardedAdService`); the M6 (a)/(b) final decision.
+
+### Review follow-up on `1de6e3a` (Codex, three comments)
+
+| Comment | Judgement | Change |
+|---|---|---|
+| P1 recovery ran before the StoreKit entitlement check finished, so an owner's unplayed start could be deleted/discarded | Valid | Recovery (both the original `<id>.pending` markers and the expansion staging) waits for `isChecking == false`, on first appear and when the check completes; still idempotent. Test `testOwnerInterruptedStartIsKeptNotDiscardedByLaunchRecovery` fails 3/3 with the guard removed |
+| P2 `replaceItemAt` can leave the slot missing on swift-corelibs | Valid; no Linux machine was available | Promotion is a plain atomic write of the staged bytes followed by removing the staging (a stop in between is harmless: the next recovery sees the same identity in the slot). Evidence on Linux comes from the new narrow workflow `swift-core-linux.yml` (`swift test` in a `swift:6.0` container; package only, nothing Apple-specific) |
+| P2 expansion completions reconciled only when the expansion shell opens | False positive | Already done in the shared launch layer; covered by `testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell` |
+
+Also: `testIntegratedSoundSheetIndependentVolumesPersist` depended on a saved expansion match leaked by another test
+(a practice board is never saved); with the slot isolated per test it now re-enters the practice board itself.
+
+Final run on the last code: Release and Beta build; package 433 tests; `IntegrationUITests` 10/10 incl. the owner
+case (9 + 1 in `MonetizationUITests`), `MonetizationUITests` 10/10, `RewardedAdNetworkUITests` 2/2,
+`ExpansionLabTests` 34 executed / 7 skipped / 0 failures (the previously failing audit test passed this time; it
+failed on both the 1.1 snapshot and earlier runs, so it is treated as timing-dependent, not as fixed),
+`MonsterLabTests` 7/7, `PresentationLabTests` 8/8.
+
+### Known risk kept out of this slice
+
+The expansion save is a single slot. If a finished match's ledger completion fails and, in the same session and before
+any relaunch, the player starts another gated expansion match, the finished match's save is replaced and its completion
+can no longer be re-established from disk. The shared launch reconciliation closes the common case (relaunch before the
+next start) but not this one. Proposed, not done: retry the completion of the saved finished match immediately before
+promoting a new start.

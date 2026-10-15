@@ -2104,8 +2104,11 @@ import XCTest
         XCTAssertEqual(arena.frame,frame)
         app.terminate();app.launch()
         #if !DEBUG
-        XCTAssertTrue(app.buttons["resumeExpansion"].waitForExistence(timeout:15))
-        app.buttons["resumeExpansion"].tap()
+        // A practice board is not a saved match (and the expansion slot is isolated per test), so re-enter it:
+        // only the persisted sound preferences are under test here.
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:15))
+        app.buttons["玩法練習"].tap();app.buttons["法師 · 擴充技能"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout:10))
         #endif
         open()
         XCTAssertEqual(app.staticTexts["sfxVolumeValue"].label,changedSFX)

@@ -150,8 +150,11 @@ struct ExpansionGameView: View {
             if let access {
                 store.onMatchCompleted = { id in access.completedMatch(id: id) }
                 #if DEBUG || TACTICALGO_V11
-                // Same settlement as the original shell's launch (idempotent): interrupted start, then unwritten completion.
-                GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+                // Same settlement as the original shell's launch (idempotent). A start is only settled once the
+                // entitlement check is done; the original shell (underneath) settles it when that finishes.
+                if !access.purchase.isChecking {
+                    GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+                }
                 if let saved = ExpansionLabStore.savedTerminalIdentity() { access.reconcileCompletedMatches(ids: [saved]) }
                 #endif
             }

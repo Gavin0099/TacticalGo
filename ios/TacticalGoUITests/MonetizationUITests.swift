@@ -139,6 +139,19 @@ import XCTest
         try waitForPlayableBattle(game, timeout: 15)
     }
 
+    /// INTEG-ACCESS-01 review P1: interrupted-start recovery discards unadmitted, unplayed starts. An owner is never
+    /// metered, so for an owner it must wait for the StoreKit check instead of reading "not verified yet" as "not an owner".
+    func testOwnerInterruptedStartIsKeptNotDiscardedByLaunchRecovery() async throws {
+        let session = try storeKitSession()
+        defer { session.clearTransactions(); session.resetToDefaultState() }
+        _ = try await session.buyProduct(identifier: productID)
+        let game = launch(extra: ["--seed-interrupted-start"])
+        defer { game.terminate() }
+        try waitForAccessLabel(game, "已永久解鎖")
+        XCTAssertTrue(game.buttons["resumeMatch"].waitForExistence(timeout: 5),
+                      "the owner's unplayed start must survive launch recovery")
+    }
+
     func testRealRestoreUpdatesEntitlementAndPermitsAnActualBattle() async throws {
         let session = try storeKitSession()
         defer { session.clearTransactions(); session.resetToDefaultState() }

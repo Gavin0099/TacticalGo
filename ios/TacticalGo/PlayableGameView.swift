@@ -198,6 +198,9 @@ struct PlayableGameView: View {
             #endif
         }
          .task { await access.purchase.start() }
+        // Recovery deletes or discards unadmitted, unplayed starts, so it must know whether the player owns the unlock:
+        // it waits for the StoreKit entitlement check instead of treating "not verified yet" as "not an owner".
+        .onChange(of: access.purchase.isChecking) { _, _ in settleInterruptedStarts() }
         .sheet(isPresented: $showUnlock, onDismiss: { RewardedAdService.shared.cancelPendingRequest(); pendingMatchRules = nil }) {
             UnlockView(access: access, continueGame: {
                 if let rules = pendingMatchRules { startMatch(rules: rules) }
@@ -296,15 +299,14 @@ struct PlayableGameView: View {
                 if access.purchase.isUnlocked { return }
                 try access.continueMatch(copy: copy, of: parent)
             }
-            store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+            settleInterruptedStarts()
             var terminalIDs = store.savedRecords.compactMap { record -> UUID? in
                 guard let status = record.steps.last?.after.status, status != .ongoing else { return nil }
                 return record.id
             }
             #if DEBUG || TACTICALGO_V11
-            // INTEG-ACCESS-01: expansion starts and finished expansion matches are settled here, in the app's shared
-            // layer, not only when the expansion shell happens to be opened again.
-            GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+            // INTEG-ACCESS-01: a finished expansion match is reconciled here, in the app's shared layer, not only when
+            // the expansion shell happens to be opened again.
             if let saved = ExpansionLabStore.savedTerminalIdentity() { terminalIDs.append(saved) }
             #endif
             access.reconcileCompletedMatches(ids: terminalIDs)
@@ -1386,6 +1388,15 @@ struct PlayableGameView: View {
     private func cellDescription(_ p: Point) -> String {
         guard let piece = store.state.board[p] else { return "空點" }
         return (piece.owner == .one ? "黑方 " : "白方 ") + (piece.kind == .hero ? store.state.heroClass(of: piece.owner).title : piece.kind == .commander ? "主將" : "士兵")
+    }
+    /// Settles starts that stopped between "saved" and "ledger written" (original: `<id>.pending`; expansion: staged
+    /// record). Idempotent; does nothing until the entitlement check has finished.
+    private func settleInterruptedStarts() {
+        guard !access.purchase.isChecking else { return }
+        store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+        #if DEBUG || TACTICALGO_V11
+        GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+        #endif
     }
     private func resumeRecord(_ record: MatchRecord) {
         if store.resume(record) {

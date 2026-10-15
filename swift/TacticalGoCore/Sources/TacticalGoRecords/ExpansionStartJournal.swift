@@ -50,11 +50,11 @@ public struct ExpansionStartJournal: Sendable {
             discard(); return .alreadySaved
         }
         try FileManager.default.createDirectory(at: slot.deletingLastPathComponent(), withIntermediateDirectories: true)
-        if FileManager.default.fileExists(atPath: slot.path) {
-            _ = try FileManager.default.replaceItemAt(slot, withItemAt: staging)
-        } else {
-            try FileManager.default.moveItem(at: staging, to: slot)
-        }
+        // An atomic write (temp file + rename) replaces the slot on every platform, including swift-corelibs where
+        // `replaceItemAt` can leave the destination missing. A stop before the staging removal is harmless: the next
+        // recovery sees the same identity in the slot and only removes the staging.
+        try stagedData.write(to: slot, options: .atomic)
+        discard()
         return .promoted
     }
 

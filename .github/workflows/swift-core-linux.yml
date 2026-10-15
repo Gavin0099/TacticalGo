@@ -1,0 +1,26 @@
+name: Swift Core (Linux)
+
+# Evidence for the platform-neutral part of the Swift package only (rules, records, access ledger). It does NOT
+# cover the iOS app, UI tests, StoreKit, audio or any Apple-only framework. Narrow triggers on purpose (Owner wants
+# to avoid wasteful CI): manual, or a pull request touching the package.
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "swift/TacticalGoCore/**"
+      - ".github/workflows/swift-core-linux.yml"
+
+jobs:
+  swift-test-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: swift test (package)
+        working-directory: swift/TacticalGoCore
+        run: swift test 2>&1 | tail -n 60
