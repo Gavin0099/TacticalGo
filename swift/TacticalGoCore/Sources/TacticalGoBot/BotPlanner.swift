@@ -23,7 +23,19 @@ public struct BotLimits: Sendable {
     public static let easy = BotLimits(maxDomainTransitions: 1_600, ownBeamWidth: 4,
                                        replyBeamWidth: 1, replyCandidates: 4)
 }
+/// Optional, observational search trace. Rank is within the stated stage/context only.
+public struct BotCandidateTrace: Codable, Equatable, Sendable {
+    public let stage: String
+    public let context: String
+    public let rank: Int?
+    public let actionKey: String
+    public let score: Int?
+    public let retained: Bool
+    public let reason: String
+}
 public struct BotSearchStats: Sendable {
+    public internal(set) var candidateTrace: [BotCandidateTrace] = []
+    public internal(set) var traceTruncated = false
     public internal(set) var difficulty: BotDifficulty = .standard
     /// Whether this strategy includes bounded opponent-turn search; not a claim every reply completed.
     public internal(set) var searchesOpponentTurn = true
@@ -50,7 +62,7 @@ public struct BotTurnPlan: Sendable {
 }
 public enum BotPlanner {
     public static func planTurn(_ state: GameState, limits: BotLimits = .standard,
-                                difficulty: BotDifficulty = .standard,
+                                difficulty: BotDifficulty = .standard, diagnostics: Bool = false,
                                 cancelled: @Sendable () -> Bool = { false }) -> BotTurnPlan? {
         guard state.status == .ongoing, !cancelled() else { return nil }
         let effectiveLimits = difficulty == .easy
@@ -59,7 +71,7 @@ public enum BotPlanner {
                         replyBeamWidth: 1, replyCandidates: 4)
             : limits
         return withoutActuallyEscaping(cancelled) { callback in
-            var search = Search(root: state, limits: effectiveLimits, difficulty: difficulty, cancelled: callback)
+            var search = Search(root: state, limits: effectiveLimits, difficulty: difficulty, diagnostics: diagnostics, cancelled: callback)
             return search.run()
         }
     }
@@ -75,6 +87,7 @@ private struct Search {
     let root: GameState
     let limits: BotLimits
     let difficulty: BotDifficulty
+    let diagnostics: Bool
     let cancelled: @Sendable () -> Bool
     var stats = BotSearchStats()
     var interrupted = false
@@ -90,18 +103,39 @@ private struct Search {
         let result = GameEngine.apply(state, action)
         return result.success ? result : nil
     }
-    mutating func ranked(_ state: GameState, perspective: Player) -> [Node] {
+    mutating func ranked(_ state: GameState, perspective: Player, stage: String, context: String) -> [Node] {
         if cancelled() { interrupted = true; return [] }
         guard stats.domainTransitions < limits.maxDomainTransitions else { stats.budgetExhausted = true; return [] }
         // Core is the sole source of move legality, including suicide, ko, resources and skill gates.
         stats.legalEnumerations += 1
         let legal = GameEngine.legalActions(state)
         var nodes: [Node] = []
-        for action in legal {
-            guard let result = apply(state, action) else { break }
+        for (index, action) in legal.enumerated() {
+            guard let result = apply(state, action) else {
+                if diagnostics {
+                    for pending in legal[index...] {
+                        if stats.candidateTrace.count >= 50_000 { stats.traceTruncated = true; break }
+                        stats.candidateTrace.append(BotCandidateTrace(stage: stage, context: context, rank: nil,
+                            actionKey: actionKey(pending), score: nil, retained: false,
+                            reason: interrupted ? "cancelled-before-evaluation" : "transition-budget-before-evaluation"))
+                    }
+                }
+                break
+            }
             nodes.append(Node(state: result.state, actions: [action], score: evaluate(result.state, for: perspective)))
         }
         return nodes.sorted(by: better)
+    }
+    mutating func trace(_ nodes: [Node], retained: [Node], stage: String, context: String,
+                        kept: String, dropped: String) {
+        guard diagnostics else { return }
+        let keys = Set(retained.map(\.key))
+        for (index, node) in nodes.enumerated() {
+            guard stats.candidateTrace.count < 50_000 else { stats.traceTruncated = true; return }
+            let included = keys.contains(node.key)
+            stats.candidateTrace.append(BotCandidateTrace(stage: stage, context: context, rank: index + 1,
+                actionKey: node.key, score: node.score, retained: included, reason: included ? kept : dropped))
+        }
     }
     func better(_ a: Node, _ b: Node) -> Bool {
         a.score == b.score ? a.key < b.key : a.score > b.score
@@ -133,11 +167,14 @@ private struct Search {
         stats.searchesOpponentTurn = difficulty == .standard
         // Reserve a verified fallback inside the transition budget, including a one-node budget.
         guard let fallback = apply(root, .endTurn) else { return nil }
-        let first = ranked(root, perspective: me)
+        let first = ranked(root, perspective: me, stage: "own-first", context: "root")
         stats.rootActionComparisons = first.map { "\($0.key) own=\($0.score)" }
         if interrupted { return nil }
         // Direct victories always outrank heuristic scores and candidate pruning.
-        if let won = first.first(where: { $0.state.winner == me }) { return plan(won, worstReply: nil) }
+        if let won = first.first(where: { $0.state.winner == me }) {
+            trace(first, retained: [won], stage: "own-first", context: "root", kept: "direct-victory", dropped: "not-expanded-after-direct-victory")
+            return plan(won, worstReply: nil)
+        }
         var completed: [Node] = []
         var ownFirst = beam(first, width: limits.ownBeamWidth)
         // Do not let the ordinary beam discard a cut/first placement that leaves a one-liberty
@@ -148,13 +185,18 @@ private struct Search {
                !ownFirst.contains(where: { $0.actions == node.actions }) { ownFirst.append(node) }
         }
         ownFirst.sort(by: better)
+        trace(first, retained: ownFirst, stage: "own-first", context: "root",
+              kept: "beam-or-summon-skill-diversity-or-commander-threat", dropped: "outside-first-beam")
         for node in ownFirst {
             if terminal(node.state, player: me) { completed.append(node); continue }
-            let seconds = ranked(node.state, perspective: me)
+            let seconds = ranked(node.state, perspective: me, stage: "own-second", context: node.key)
             if interrupted { return nil }
             if let won = seconds.first(where: { $0.state.winner == me }) {
+                trace(seconds, retained: [won], stage: "own-second", context: node.key, kept: "direct-victory", dropped: "not-expanded-after-direct-victory")
                 return plan(Node(state: won.state, actions: node.actions + won.actions, score: win), worstReply: nil)
             }
+            trace(seconds, retained: Array(seconds.prefix(limits.ownBeamWidth)), stage: "own-second", context: node.key,
+                  kept: "within-second-beam", dropped: "outside-second-beam")
             for second in seconds.prefix(limits.ownBeamWidth) {
                 let combined = Node(state: second.state, actions: node.actions + second.actions, score: second.score)
                 if let finished = finish(combined, player: me) { completed.append(finished) }
@@ -185,6 +227,9 @@ private struct Search {
             stats.passDiagnostics = ["已評估非pass首手 \(first.filter { $0.actions.contains { $0 != .endTurn } }.count)，完整己方候選 \(completed.count)",
                 "pass己方分數 \(pass.score)，最佳非pass己方分數 \(nonPass.map { String($0.score) } ?? "無已完成候選")；反擊分數另列"]
         }
+        trace(completed, retained: Array(completed.prefix(difficulty == .easy ? completed.count : limits.replyCandidates)),
+              stage: "complete-turn", context: "root", kept: difficulty == .easy ? "own-only-difficulty" : "selected-for-reply-search",
+              dropped: "outside-complete-turn-reply-cap")
         if difficulty == .easy {
             guard !cancelled() else { return nil }
             stats.candidateComparisons = completed.prefix(limits.ownBeamWidth).map { "\($0.key) own=\($0.score)" }
@@ -206,14 +251,16 @@ private struct Search {
         var best: Node?
         var bestValue = Int.min
         var bestReply: Int?
+        var compared: [Node] = []
         for node in completed.prefix(limits.replyCandidates) {
-            guard let reply = worstReply(after: node.state) else {
+            guard let reply = worstReply(after: node.state, context: node.key) else {
                 if interrupted { return nil }; break
             }
             if interrupted { return nil }
             // An opponent win dominates all material or resource preferences.
             let value = reply <= -win ? -win : (node.score * 2 + reply) / 3
             stats.candidateComparisons.append("\(node.key) own=\(node.score) reply=\(reply) combined=\(value)")
+            if diagnostics { compared.append(Node(state: node.state, actions: node.actions, score: value)) }
             if value > bestValue || (value == bestValue && (best == nil || node.key < best!.key)) {
                 best = node; bestValue = value; bestReply = reply
             }
@@ -222,20 +269,33 @@ private struct Search {
         guard let best else {
             return plan(completed[0], worstReply: nil)
         }
+        trace(compared.sorted(by: better), retained: [best], stage: "reply-comparison", context: "root",
+              kept: "selected-after-fully-evaluated-reply", dropped: "lower-combined-score-or-tie-break")
         return plan(Node(state: best.state, actions: best.actions, score: bestValue), worstReply: bestReply)
     }
-    mutating func worstReply(after state: GameState) -> Int? {
+    mutating func worstReply(after state: GameState, context: String) -> Int? {
         if state.status != .ongoing { return evaluate(state, for: me) }
         let enemy = me.opponent
-        let first = ranked(state, perspective: enemy)
-        if first.contains(where: { $0.state.winner == enemy }) { return -win }
+        let first = ranked(state, perspective: enemy, stage: "reply-first", context: context)
+        if let won = first.first(where: { $0.state.winner == enemy }) {
+            trace(first, retained: [won], stage: "reply-first", context: context, kept: "opponent-direct-victory", dropped: "not-expanded-after-opponent-victory")
+            return -win
+        }
         if stats.budgetExhausted || interrupted { return nil }
         var worst = evaluate(state, for: me)
-        for node in beam(first, width: limits.replyBeamWidth) {
+        let replyFirst = beam(first, width: limits.replyBeamWidth)
+        trace(first, retained: replyFirst, stage: "reply-first", context: context, kept: "reply-beam-or-diversity", dropped: "outside-reply-first-beam")
+        for node in replyFirst {
             if terminal(node.state, player: enemy) { worst = min(worst, evaluate(node.state, for: me)); continue }
-            let seconds = ranked(node.state, perspective: enemy)
-            if seconds.contains(where: { $0.state.winner == enemy }) { return -win }
+            let seconds = ranked(node.state, perspective: enemy, stage: "reply-second", context: context + " | " + node.key)
+            if let won = seconds.first(where: { $0.state.winner == enemy }) {
+                trace(seconds, retained: [won], stage: "reply-second", context: context + " | " + node.key,
+                      kept: "opponent-direct-victory", dropped: "not-expanded-after-opponent-victory")
+                return -win
+            }
             if stats.budgetExhausted || interrupted { return nil }
+            trace(seconds, retained: Array(seconds.prefix(limits.replyBeamWidth)), stage: "reply-second", context: context + " | " + node.key,
+                  kept: "within-reply-second-beam", dropped: "outside-reply-second-beam")
             for second in seconds.prefix(limits.replyBeamWidth) {
                 stats.replyCandidates += 1
                 worst = min(worst, evaluate(second.state, for: me))

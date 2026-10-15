@@ -1,0 +1,1450 @@
+{
+  "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+  "completeOwnTurns" : 96,
+  "ply" : 55,
+  "replyApplyChecks" : 3936,
+  "rows" : [
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxx.x",
+      "commanderLiberties" : 4,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxx.x",
+      "commanderLiberties" : 4,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxx.x",
+      "commanderLiberties" : 4,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxx.x",
+      "commanderLiberties" : 4,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxxxx",
+      "commanderLiberties" : 4,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 1, y: 5))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 4), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 6, y: 5))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 1, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\nxxxxx.x",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 5, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 0, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxx.x",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxxx\n.xxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 6))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 6, y: 5), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\n.xxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 0, y: 4))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\nxxxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 1, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nxxxXxx.\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.placeSoldier(TacticalGoCore.Point(x: 6, y: 5))"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxxx\nxxxxxxx",
+      "commanderLiberties" : 2,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.castBastion(TacticalGoCore.Point(x: 0, y: 6), TacticalGoCore.Point(x: 5, y: 6))",
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\nxxxxxxx",
+      "commanderLiberties" : 3,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 4,
+      "ownHeroPresent" : true
+    },
+    {
+      "actions" : [
+        "TacticalGoCore.GameAction.endTurn"
+      ],
+      "board" : ".ooxxxx\noo.Oxxx\nxooQxxx\nxxoxxxx\n.xxHxxx\nx.xXxx.\n.xxxx.x",
+      "commanderLiberties" : 5,
+      "enemyWinWitness" : [
+
+      ],
+      "eventsEndState" : "TacticalGoCore.GameStatus.ongoing",
+      "immediateOwnWin" : false,
+      "mana" : 6,
+      "ownHeroPresent" : true
+    }
+  ],
+  "scope" : "All legal own turns of up to two actions, including voluntary endTurn; for every turn all enemy up-to-two-action replies until first win witness. No heuristic pruning. No witness is only absence of a next-turn commander capture, not proof of safety or strategic quality.",
+  "source" : "artifacts\/r3-p1\/standard-candidate.json",
+  "withoutEnemyNextTurnWinWitness" : 96
+}

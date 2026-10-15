@@ -5,6 +5,9 @@ import TacticalGoBot
 @main struct BotRunner {
     static func main() throws {
         let arguments = CommandLine.arguments
+        if arguments.count > 4, arguments[1] == "--layer-trace" {
+            try layerTrace(arguments[2], ply: Int(arguments[3])!, out: arguments[4]); return
+        }
         if arguments.count > 3, arguments[1] == "--pass-audit" {
             try passAudit(arguments[2], out: arguments[3]); return
         }
@@ -399,4 +402,71 @@ extension BotRunner {
         try JSONSerialization.data(withJSONObject:["formalSource":path,"sourceSteps":steps,"ply":ply,"rows":rows,"scope":"First action followed by voluntary endTurn; exhaustive enemy up-to-two legal actions, first win witness only; does not exclude a better two-action own plan"],options:[.prettyPrinted,.sortedKeys]).write(to:URL(fileURLWithPath:out))
         print("PASS independent Core witnesses ply \(ply), \(rows.count) first actions")
     }
+    static func layerTrace(_ path: String, ply: Int, out: String) throws {
+        func summary(_ state: GameState) -> [String:Any] {
+            ["board":state.board.diagram,"ply":state.ply,"current":state.current.rawValue,
+             "ap":state.apRemaining,"status":String(describing:state.status)]
+        }
+        let data = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: path))) as! [String:Any]
+        let setup = data["setup"] as! [String:Any]
+        var state = try GameSetup.newGame(config: p1Config(setup["rules"] as? String ?? "original"),
+            classOne: HeroClass(rawValue: setup["classOne"] as! String)!, classTwo: HeroClass(rawValue: setup["classTwo"] as! String)!)
+        var steps = 0
+        for turn in data["turns"] as! [[String:Any]] {
+            if state.ply == ply { break }
+            for item in turn["actions"] as! [[String:Any]] {
+                let result = GameEngine.apply(state, try decoded(item["action"] as! [String:Any]))
+                guard result.success, result.state.board.diagram == item["boardAfter"] as! String,
+                      result.events.map({String(reflecting:$0)}) == item["eventPayloads"] as! [String] else { throw RunnerError.replay }
+                state = result.state; steps += 1
+            }
+        }
+        guard state.ply == ply else { throw RunnerError.replay }
+        let modes: [(String,BotLimits)] = [
+            ("baseline", .standard),
+            ("own-width-only", BotLimits(maxDomainTransitions:30_000,ownBeamWidth:32,replyBeamWidth:3,replyCandidates:8)),
+            ("complete-cap-only", BotLimits(maxDomainTransitions:30_000,ownBeamWidth:10,replyBeamWidth:3,replyCandidates:32)),
+            ("reply-width-only", BotLimits(maxDomainTransitions:30_000,ownBeamWidth:10,replyBeamWidth:8,replyCandidates:8)),
+            ("wide-all", BotLimits(maxDomainTransitions:30_000,ownBeamWidth:32,replyBeamWidth:8,replyCandidates:32))]
+        var runs: [[String:Any]] = []
+        for (name, limits) in modes {
+            guard let plain = BotPlanner.planTurn(state, limits:limits),
+                  let plan = BotPlanner.planTurn(state, limits:limits,diagnostics:true) else { throw RunnerError.noPlan }
+            guard plain.actions == plan.actions, plain.score == plan.score, plain.reasons == plan.reasons,
+                  plain.stats.domainTransitions == plan.stats.domainTransitions,
+                  plain.stats.candidateComparisons == plan.stats.candidateComparisons else { throw RunnerError.replay }
+            var after = state; var accepted: [[String:Any]] = []
+            for action in plan.actions {
+                guard after.current == state.current, after.status == .ongoing else { throw RunnerError.crossedTurn }
+                let result = GameEngine.apply(after,action); guard result.success else {throw RunnerError.illegal}
+                accepted.append(["action":encoded(action),"events":result.events.map{String(reflecting:$0)},"result":summary(result.state)])
+                after = result.state
+            }
+            var witness: [GameAction] = []; var replyChecks = 0
+            if after.status == .ongoing {
+                for first in GameEngine.legalActions(after) {
+                    let a = GameEngine.apply(after,first); replyChecks += 1
+                    if a.state.winner == state.current.opponent { witness=[first]; break }
+                    if a.state.status == .ongoing && a.state.current == state.current.opponent {
+                        for second in GameEngine.legalActions(a.state) {
+                            let b = GameEngine.apply(a.state,second); replyChecks += 1
+                            if b.state.winner == state.current.opponent { witness=[first,second];break }
+                        }
+                    }
+                    if !witness.isEmpty {break}
+                }
+            }
+            let trace = try JSONSerialization.jsonObject(with:JSONEncoder().encode(plan.stats.candidateTrace))
+            runs.append(["mode":name,"limits":["own":limits.ownBeamWidth,"reply":limits.replyBeamWidth,"complete":limits.replyCandidates,"transitions":limits.maxDomainTransitions],
+                "actions":accepted,"score":plan.score,"comparisons":plan.stats.candidateComparisons,"reason":plan.reasons,
+                "transitions":plan.stats.domainTransitions,"budgetExhausted":plan.stats.budgetExhausted,"traceTruncated":plan.stats.traceTruncated,
+                "trace":trace,"traceDoesNotChangeDecision":true,"enemyUpToTwoActionWin":witness.map(encoded),"independentReplyChecks":replyChecks])
+            print("\(name) ply \(ply): \(plan.actions.map(botActionDescription)), score \(plan.score), trace \(plan.stats.candidateTrace.count)")
+        }
+        let report:[String:Any] = ["source":path,"sourceSteps":steps,"rules":setup["rules"] as? String ?? "original","ply":ply,
+            "board":state.board.diagram,"runs":runs,"classification":"undetermined-pending-complete-turn-comparison",
+            "scope":"Fixed production evaluation; only configured widths differ. Independent enemy up-to-two-turn-actions wins enumerated; no absence-of-witness absolute safety claim."]
+        try JSONSerialization.data(withJSONObject:report,options:[.prettyPrinted,.sortedKeys]).write(to:URL(fileURLWithPath:out))
+    }
+
 }
