@@ -21,7 +21,7 @@
 # TacticalGo 交接手冊（給 Codex）
 
 > 撰寫日期：2026-10-08（Owner：Gavin0099）。原始快照為 `docs/handoff` @ `c55a2e1`，本次續接已更正 R1 授權與幾何假設。數字請區分原始快照、本次重驗與歷史探針；過時時以當前授權、Git 與實測為準。
-> 本次實測回執：[handoff-2026-10-08.json](evidence/handoff-2026-10-08.json)。R1 在隔離的 `codex/r1-magic-hand`，不是本 UI／文件分支的程式。
+> 本次實測回執：`handoff-2026-10-08.json`（含本機路徑，未納入本 repo；僅在原作者本機的 `docs/handoff` 分支）。R1 在隔離的 `codex/r1-magic-hand`，不是本 UI／文件分支的程式。
 > 先讀本文件的 §0、§1、§6，再讀 `AGENTS.md`（含框架管理區塊）、`docs/DECISIONS.md`（由上而下，最新在最上面）、`docs/RULES_DRAFT.md`。
 
 ---

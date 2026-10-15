@@ -94,3 +94,27 @@
 ## 9. 更正（2026-10-15 10:10）
 
 首次提交的 HANDOFF 把 PR #8 寫成「100 檔」：那是 `gh pr view --json files` 的上限，不是實際數字。以 `gh api repos/Gavin0099/TacticalGo/pulls/8` 核對為 **1,655 個變動檔案**（30 commits）；#7 為 46 檔／22 commits，與先前一致。已更正 `docs/HANDOFF.md`。另外，目前 6 個 PR（#1、#2、#5、#6、#7、#8）全部 OPEN。
+
+## 10. CLOSEOUT-09 變更（2026-10-15 10:5x，依 Owner 指示）
+
+| 變更 | 檔案 | 依據 |
+|---|---|---|
+| HANDOFF 狀態表直接改正（#7、#1 已 merged；`main`=`dca10d2`；#9 已推送、base=`main`；#8 HOLD；移除追加式更新區塊） | `docs/HANDOFF.md` | `gh api`／`git ls-remote`，2026-10-15 10:45 |
+| `PR8_BLOCKER_ANALYSIS.md` 重寫：補 P1（開局預留額度但棋局未保存）、P2（終局對帳只在進入擴充畫面時執行）；廣告 callback 寫入失敗另列為 R；**更正首版低估與漏讀行內審查** | `docs/handoff/PR8_BLOCKER_ANALYSIS.md` | `gh api …/pulls/8/comments`（Codex 行內審查，review `@748d3e4`）；原始碼 `GameStore.swift:19–34`、`ExpansionLabView.swift:196/355/374/382–388`、`ExpansionGameView.swift:150–153`、`PlayableGameView.swift:293–304` |
+| **AGENTS.md 授權規則拆成兩層**（供 Owner 審核；見下方差異） | `AGENTS.md`（Forbidden Behaviors 第一項） | Owner 指示；原規則造成每次 commit／push 都需重新請示 |
+
+### AGENTS.md 規則差異（待 Owner 審核）
+
+```diff
+- - 未經本次明確授權，不 push、merge、開／改／關閉 PR、刪分支、發布或提交審查；不自行將 Owner Gate（G0／G5、試玩、美術、聽感、審查）標為通過。
++ - **授權分兩層，不要混用：**
++   - **日常工程授權**：Owner 核准某個 slice 後，在**該 slice 指定的分支**內可修改、測試、commit、push，並建立或更新該 slice 對應的 Draft PR，不需逐次請示；持續有效至該 slice 完成或 Owner 撤回。範圍僅限指定分支與其對應 PR，不含 force push 他人分支、刪分支。
++   - **產品與主線授權（每次都需 Owner 明確同意）**：合併 `main`、關閉或改動非自己建立的 PR、刪分支、修改計費語意或商業額度政策、正式發布設定、App Store Connect／AdMob、提交審查或發布。
++   - 不自行將 Owner Gate（G0／G5、試玩、美術、聽感、審查）標為通過。
++   - 本規則不改變 Claude Code 等工具自身的權限分類器；被工具拒絕的動作，不以改規則或換工具繞過，回報後由 Owner 決定。
+```
+
+注意：
+- 這個規則只約束 agent 的行為契約，**不能**取代工具自身的權限分類器（先前 `gh pr merge` 即被分類器拒絕）。
+- 「持續有效至 slice 完成」把授權綁在 slice 而非單次對話；若 Owner 希望更窄（例如每個 PR 一次），可改為「於該 PR 範圍內」。
+- 此變更屬治理規則，**未經 Owner 審核不應視為生效**；它在 PR #9 內，合併即生效。

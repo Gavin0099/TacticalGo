@@ -399,7 +399,11 @@ NOT CLAIMED unless separately implemented and validated:
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->
 
-- 未經本次明確授權，不 push、merge、開／改／關閉 PR、刪分支、發布或提交審查；不自行將 Owner Gate（G0／G5、試玩、美術、聽感、審查）標為通過。
+- **授權分兩層，不要混用：**
+  - **日常工程授權**：Owner 核准某個 slice 後，在**該 slice 指定的分支**內可修改、測試、commit、push，並建立或更新該 slice 對應的 Draft PR，不需逐次請示；持續有效至該 slice 完成或 Owner 撤回。範圍僅限指定分支與其對應 PR，不含 force push 他人分支、刪分支。
+  - **產品與主線授權（每次都需 Owner 明確同意）**：合併 `main`、關閉或改動非自己建立的 PR、刪分支、修改計費語意或商業額度政策、正式發布設定、App Store Connect／AdMob、提交審查或發布。
+  - 不自行將 Owner Gate（G0／G5、試玩、美術、聽感、審查）標為通過。
+  - 本規則不改變 Claude Code 等工具自身的權限分類器；被工具拒絕的動作，不以改規則或換工具繞過，回報後由 Owner 決定。
 - 不執行 `--no-verify`；hook 或檢查失敗先讀診斷找根因，不停用、不繞過。
 - **不在載入 agent hooks 的工作目錄直接做 F-7 apply 或 `hook_installer`（不帶 `--hooks-only`）**：框架範本可能把 VS Code `Stop` 接成 `session_end`。先在不載入 agent hooks 的隔離 clone 執行，並跑 `python validators/hook_wiring_check.py .` 確認無 Stop 接線。
 - 不清除、移動或覆寫含未保全變更的 worktree；刪除前先確認內容已保全到 Git 並取得 Owner 同意。不在有 submodule 的既有工作目錄來回切分支，用隔離 worktree。
