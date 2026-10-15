@@ -151,3 +151,26 @@ CI evidence on this head: workflow `Swift Core (Linux)` passed (`swift test` in 
 |---|---|---|
 | P2 "reconcile expansion completions at app startup" (repeat of the earlier comment) | False positive, again | `PlayableGameView.onAppear` (the app root) appends the validated expansion terminal identity to the ids it reconciles; the UI test `testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell` fails without it and passes with it |
 | P2 "defer match admission until entitlement verification" (`PlayAccess.authorizeNewMatch` passes `isUnlocked: false` while `isChecking` is still true) | Valid but **pre-existing** (unchanged 1.0 code and 1.0 behaviour); not introduced by this integration | Not changed here: it would change when a start is admitted, i.e. commercial semantics, which this slice must not touch. Effect: an owner who starts a match in the first moments before StoreKit answers is recorded as a trial/reward admission; it only matters if the entitlement is later revoked. Tracked as a separate item for an Owner decision |
+
+
+## 1113 playtest (Owner, 2026-10-15) and the two changes it caused
+
+The Owner installed 1.1 (1113) from TestFlight and reported: a hero missing, the match screen's values and descriptions not
+visible, old-looking settings, no monster feature.
+
+| Report | Cause | Change |
+|---|---|---|
+| Match screen: five squeezed tabs ("放…", "召…", 築壘, "第…", "戰…"), values and descriptions truncated | **Defect of this integration.** `GameStore.Mode` gained `advanced` and `loot`; the original shell iterated `Mode.allCases` and so showed two dead tabs and narrowed every label | The original shell (and the legacy review picker) iterate `Mode.originalCases` (3 modes). Test `testOriginalShellOffersOnlyTheThreeOriginalModes` fails without the change |
+| Three heroes, old settings, no monsters | The Owner played through "開始對戰", which was the original shell by design (D6); the priest, second skills and monsters live in the expansion shell, which was only reachable through the smaller "擴充玩法" link | **Owner decision (option C):** the full game is the default start path. The big "開始對戰" button opens the expansion shell; "原版規則" (original start flow, id `lobbyNewGame`) is a small link beside "新手入門" and "戰術挑戰". Both paths use the same access ledger. Only compiled under `DEBUG || TACTICALGO_V11`, so a Release build keeps the original-only lobby |
+
+What did not change: original rules and their defaults, existing original saves (still resumed from "續玩上局"), metering, the
+Release configuration.
+
+Consequence worth stating: if the Owner later enables the expansion in Release (`RELEASE_ENABLE_EXPANSION.md`), the full game
+becomes the default start path there too.
+
+Verification of these two changes (simulator): `IntegrationUITests`, `MonetizationUITests`, `PlayableGameTests` re-run
+(109 tests): 23 failing names, all in the known pre-existing list except `testSell01CFourStatesAndInputSafety`, which is an
+intermittent timing assertion (it also fails 1 of 5 runs on the clean 1.0 snapshot `d13fdfa`). New tests pass:
+`testOriginalShellOffersOnlyTheThreeOriginalModes`, `testExpansionLobbyOffersPriestAndMonsters`,
+`testPrimaryStartOpensTheFullGameAndOriginalRulesAreAnOption`.

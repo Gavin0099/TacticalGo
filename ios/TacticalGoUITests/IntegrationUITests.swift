@@ -139,4 +139,53 @@ import XCTest
         expectation(for: settled, evaluatedWith: app.staticTexts["accessStatus"])
         waitForExpectations(timeout: 8)
     }
+
+    // Tester report 2026-10-15 (build 1113): the ORIGINAL shell showed two extra tabs (第二技能 / 戰利能力) that only exist in
+    // the expansion shell, which squeezed every tab label ("放…", "召…") and hid the AP/description line.
+    func testOriginalShellOffersOnlyTheThreeOriginalModes() {
+        let app = launch()
+        app.buttons["lobbyNewGame"].tap()
+        XCTAssertTrue(app.buttons["setupLocal"].waitForExistence(timeout: 5))
+        app.buttons["setupLocal"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 5))
+        if app.buttons["startMatch"].label.contains("下一步") { app.buttons["startMatch"].tap() }
+        app.buttons["startMatch"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["mode-soldier"].exists)
+        XCTAssertTrue(app.buttons["mode-summon"].exists)
+        XCTAssertTrue(app.buttons["mode-skill"].exists)
+        XCTAssertFalse(app.buttons["mode-advanced"].exists, "第二技能 belongs to the expansion shell only")
+        XCTAssertFalse(app.buttons["mode-loot"].exists, "戰利能力 belongs to the expansion shell only")
+    }
+
+    // The expansion entry carries what the original shell deliberately does not: the priest and the monster battlefield.
+    func testExpansionLobbyOffersPriestAndMonsters() {
+        let app = launch()
+        app.buttons["lobbyExpansion"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 10))
+        for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
+        XCTAssertTrue(app.buttons["choose-priest"].exists, "four heroes incl. the priest")
+        XCTAssertTrue(app.buttons["matchMonsters"].exists || app.segmentedControls["matchMonsters"].exists
+                      || app.otherElements["matchMonsters"].exists || app.descendants(matching: .any)["matchMonsters"].exists,
+                      "monster battlefield option")
+    }
+
+    // Owner decision 2026-10-15: the full game is the default start path; the original rules are an option.
+    func testPrimaryStartOpensTheFullGameAndOriginalRulesAreAnOption() {
+        let app = launch()
+        let primary = app.buttons["lobbyExpansion"]
+        XCTAssertTrue(primary.exists)
+        XCTAssertEqual(primary.label, "開始對戰", "the big start button is the full game")
+        XCTAssertEqual(app.buttons["lobbyNewGame"].label, "原版規則", "original rules stay one tap away")
+        // Primary -> full game lobby with the priest and the monster battlefield.
+        primary.tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 10))
+        for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
+        XCTAssertTrue(app.buttons["choose-priest"].exists)
+        app.buttons["closeExpansion"].tap()
+        // Option -> the original setup, three heroes, no expansion tabs.
+        XCTAssertTrue(app.buttons["lobbyNewGame"].waitForExistence(timeout: 10))
+        app.buttons["lobbyNewGame"].tap()
+        XCTAssertTrue(app.buttons["setupLocal"].waitForExistence(timeout: 5))
+    }
 }
