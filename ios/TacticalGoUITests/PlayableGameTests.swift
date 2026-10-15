@@ -1,6 +1,133 @@
 import XCTest
 
 @MainActor final class PlayableGameTests: XCTestCase {
+    private func challengeButton(_ app: XCUIApplication, _ id: String) {
+        let button = app.buttons[id]
+        for _ in 0..<4 { if button.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(button.waitForExistence(timeout: 5)); XCTAssertTrue(button.isHittable); button.tap()
+    }
+    private func challengePoint(_ app: XCUIApplication, _ x: Int, _ y: Int) {
+        let arena = app.otherElements["challengeArena"]
+        for _ in 0..<3 { if arena.isHittable && arena.frame.minY >= 0 && arena.frame.maxY <= app.frame.maxY { break }; app.swipeDown() }
+        XCTAssertTrue(arena.waitForExistence(timeout: 10))
+        let row = Double(y) / 6, inset = 0.13 - 0.06 * row
+        arena.coordinate(withNormalizedOffset: CGVector(dx: inset + (1 - inset * 2) * Double(x) / 6, dy: 0.18 + 0.65 * row)).tap()
+    }
+    func testChallengeSixRealSolutionsAndImmediateCompletionLock() {
+        let app = app(["--challenges"])
+        XCTAssertTrue(app.staticTexts["challengeCatalog"].waitForExistence(timeout: 10))
+        let ids = ["warrior-rescue", "warrior-counterattack", "mage-split", "mage-rescue", "rogue-shape", "rogue-finish"]
+        let targets = [[(0,1),(1,0),(2,0)],[(3,2),(4,3),(5,3)],[(4,2),(4,2)],[(2,2),(2,2)],[(4,3),(5,2)],[(3,2),(4,1)]]
+        for i in 0..<6 {
+            challengeButton(app, "challenge-" + ids[i])
+            XCTAssertTrue(app.staticTexts["challengeResources"].label.contains("黑方 · 2 AP"))
+            XCTAssertFalse(app.descendants(matching: .any)["botStatus"].exists)
+            challengeButton(app, "challengeSkill")
+            challengePoint(app, targets[i][0].0, targets[i][0].1)
+            if i < 2 { challengePoint(app, targets[i][1].0, targets[i][1].1) }
+            if i == 2 || i == 3 { challengeButton(app, "challengeDirection-Down") }
+            let before = app.staticTexts["challengeResources"].label
+            XCTAssertTrue(app.buttons["challengeConfirm"].isEnabled)
+            shot(app, "challenge-" + ids[i] + "-core-preview")
+            XCTAssertEqual(app.staticTexts["challengeResources"].label, before)
+            challengeButton(app, "challengeConfirm")
+            XCTAssertTrue(app.staticTexts["challengeResources"].label.contains("已用 1／2"))
+            challengeButton(app, "challengeSoldier")
+            challengePoint(app, targets[i].last!.0, targets[i].last!.1)
+            challengeButton(app, "challengeConfirm")
+            XCTAssertTrue(app.staticTexts["challengeResult"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["challengeResult"].label.hasPrefix("挑戰完成"))
+            XCTAssertTrue(app.staticTexts["challengeResources"].label.hasPrefix("本關已結束 · 黑方"))
+            XCTAssertFalse(app.staticTexts["challengeResources"].label.contains("白方"))
+            XCTAssertFalse(app.buttons["challengeConfirm"].exists)
+            let done = app.staticTexts["challengeResources"].label
+            challengePoint(app, 6, 6)
+            XCTAssertEqual(app.staticTexts["challengeResources"].label, done)
+            shot(app, "challenge-" + ids[i] + "-completed-lock")
+            app.buttons["challengeBack"].tap()
+        }
+        XCTAssertEqual(app.staticTexts["challengeProgress"].label, "6／6 已完成")
+    }
+    func testChallengeFailureUndoRetryAndHintsAreOptional() {
+        let app = app(["--challenges"])
+        challengeButton(app, "challenge-rogue-finish")
+        let initial = app.staticTexts["challengeResources"].label
+        challengeButton(app, "challengeSoldier")
+        challengePoint(app, 3, 3) // Occupied hero is not a legal placement.
+        XCTAssertFalse(app.buttons["challengeConfirm"].isEnabled)
+        XCTAssertEqual(app.staticTexts["challengeResources"].label, initial)
+        challengeButton(app, "challengeCancel")
+        challengeButton(app, "challengeSkill"); challengePoint(app, 3, 2); challengeButton(app, "challengeConfirm")
+        challengeButton(app, "challengeSoldier"); challengePoint(app, 6, 6); challengeButton(app, "challengeConfirm")
+        XCTAssertTrue(app.staticTexts["challengeResult"].label.hasPrefix("挑戰失敗"))
+        XCTAssertFalse(app.buttons["challengeConfirm"].exists)
+        shot(app, "challenge-failed-lock-no-opponent")
+        challengeButton(app, "challengeUndo")
+        XCTAssertFalse(app.staticTexts["challengeResult"].exists)
+        XCTAssertTrue(app.staticTexts["challengeResources"].label.contains("已用 1／2"))
+        challengePoint(app, 4, 1); challengeButton(app, "challengeConfirm")
+        XCTAssertTrue(app.staticTexts["challengeResult"].label.hasPrefix("挑戰完成"))
+        challengeButton(app, "challengeRetry")
+        XCTAssertEqual(app.staticTexts["challengeResources"].label, initial)
+        challengeButton(app, "challengeHint")
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "切斷它與主將的連接")).firstMatch.exists)
+        shot(app, "challenge-retry-optional-hint")
+    }
+    func testChallengeResumeReplaysJournalAndAccessiblePicker() {
+        let app = app(["--challenges"])
+        challengeButton(app, "challenge-rogue-finish")
+        challengeButton(app, "challengeSkill"); challengePoint(app, 3, 2); challengeButton(app, "challengeConfirm")
+        let one = app.staticTexts["challengeResources"].label
+        app.terminate(); app.launch()
+        XCTAssertTrue(app.staticTexts["challengeTitle"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.staticTexts["challengeResources"].label, one)
+        challengeButton(app, "challengeSoldier"); challengeButton(app, "challengePoints")
+        let point = app.buttons["challengePoint-4-1"]
+        XCTAssertTrue(point.waitForExistence(timeout: 5)); XCTAssertGreaterThanOrEqual(point.frame.height, 44)
+        point.tap(); XCTAssertEqual(app.staticTexts["challengeResources"].label, one)
+        challengeButton(app, "challengeCancel"); XCTAssertFalse(app.buttons["challengeConfirm"].isEnabled)
+        challengePoint(app, 4, 1); challengeButton(app, "challengeConfirm")
+        app.terminate(); app.launch()
+        XCTAssertTrue(app.staticTexts["challengeResult"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["challengeResult"].label.hasPrefix("挑戰完成"))
+        challengeButton(app, "challengeUndo")
+        XCTAssertEqual(app.staticTexts["challengeResources"].label, one)
+        shot(app, "challenge-relaunch-completion-undo-replay")
+    }
+    func testChallengesKeepOriginalSavedMatchAndTabletRotationOperable() {
+        XCUIDevice.shared.orientation = .portrait
+        defer { XCUIDevice.shared.orientation = .portrait }
+        let app = app()
+        challengeButton(app, "startMatch")
+        tap(app, 2, 5); app.buttons["playConfirm"].tap()
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, "輪到白方法師")
+        app.buttons["返回選角"].tap(); app.buttons["exitMatchConfirmed"].tap()
+        challengeButton(app, "startChallenges")
+        challengeButton(app, "challenge-warrior-rescue")
+        challengeButton(app, "challengeSkill")
+        challengePoint(app, 0, 1); challengePoint(app, 1, 0)
+        let resources = app.staticTexts["challengeResources"].label
+        if app.frame.width > 600 {
+            XCUIDevice.shared.orientation = .landscapeLeft
+            let rotated = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height }, object: app)
+            XCTAssertEqual(XCTWaiter.wait(for: [rotated], timeout: 10), .completed)
+            XCTAssertEqual(app.staticTexts["challengeResources"].label, resources)
+            let arena = app.otherElements["challengeArena"]
+            XCTAssertGreaterThan(arena.frame.height / arena.frame.width, 0.75) // Dense rows must not be flattened into each other.
+            shot(app, "challenge-iPad-landscape-preview")
+        }
+        challengeButton(app, "challengeConfirm")
+        challengeButton(app, "challengeSoldier"); challengePoint(app, 2, 0); challengeButton(app, "challengeConfirm")
+        XCTAssertTrue(app.staticTexts["challengeResult"].label.hasPrefix("挑戰完成"))
+        app.buttons["challengeBack"].tap(); app.buttons["challengeBack"].tap()
+        for _ in 0..<5 { if app.buttons["resumeMatch"].isHittable { break }; app.swipeDown() }
+        challengeButton(app, "resumeMatch")
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, "輪到白方法師")
+        XCTAssertTrue(app.staticTexts["2 AP"].exists)
+        tap(app, 2, 5)
+        XCTAssertFalse(app.buttons["playConfirm"].isEnabled) // Original occupied C6 remains occupied.
+        shot(app, "challenge-original-match-still-retained")
+    }
     private func tapTutorial(_ app: XCUIApplication, _ x: Int, _ y: Int) {
         let arena = app.otherElements["onboardArena"]
         XCTAssertTrue(arena.waitForExistence(timeout: 10))

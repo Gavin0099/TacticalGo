@@ -16,3 +16,5 @@
 - Before any push of the public repo: resolve `governance/MEMORY_PROTOCOL.md` (framework working tree has an uncommitted edit that was copied) and add Apache-2.0 attribution for copied framework files.
 - Owner reviews the remaining pending items in `docs/RULES_DRAFT.md` section 8 one by one.
 - Swift Package + manual-trigger macOS workflow only once Package.swift exists; it must pass `tests/golden`.
+
+- CONTENT-02 six original-rule tactical challenges ready for independent Draft PR; physical-device and human skill-transfer acceptance remain pending. <!-- memory_record_projection:active-task-summary:40766927aa076bf2eaafcc0c26cc5faaeedf19df42bdfbecf5eefa630e9d4781 -->

@@ -72,6 +72,7 @@ struct PlayableGameView: View {
     @State private var showSoundSettings = false
     @State private var showRecords = false
     @State private var showOnboarding = false
+    @State private var showChallenges = false
     @State private var showR2 = false
     @State private var selectedRules: RecordRules = .original
     #if DEBUG
@@ -100,6 +101,7 @@ struct PlayableGameView: View {
         .foregroundStyle(.white).preferredColorScheme(.dark)
         .sheet(isPresented: $showRules) { rules }
         .fullScreenCover(isPresented: $showOnboarding) { OnboardingView { showOnboarding = false } }
+        .fullScreenCover(isPresented: $showChallenges) { ChallengesView { showChallenges = false } }
         .sheet(isPresented: $showGrid) { accessibleGrid }
         .alert("離開目前對戰？", isPresented: $confirmExit) {
             Button("返回選角", role: .destructive) { store.leaveMatch(); inMatch = false; lesson = nil }.accessibilityIdentifier("exitMatchConfirmed")
@@ -144,6 +146,7 @@ struct PlayableGameView: View {
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if args.contains("--onboard") { showOnboarding = true }
+            if args.contains("--challenges") { showChallenges = true }
             if args.contains("--integrated-audio-audit") { Task { audioAuditStatus = await IntegratedAudioAudit.run() } }
             if args.contains("--bot-delayed") { store.botDelayNanoseconds = 2_500_000_000 }
             // Leave enough time to open the native menu on a small/loaded simulator.
@@ -208,6 +211,9 @@ struct PlayableGameView: View {
     }
     private var lobbySettings: some View {
         VStack(spacing: 18) {
+                Button { showChallenges = true } label: {
+                    Label("英雄戰術挑戰 · 六關", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44)
+                }.buttonStyle(.bordered).accessibilityIdentifier("startChallenges")
                 Picker("對戰模式", selection: $singlePlayer) {
                     Text("本機雙人").tag(false); Text("電腦對戰").tag(true)
                 }.pickerStyle(.segmented).accessibilityIdentifier("matchMode")
