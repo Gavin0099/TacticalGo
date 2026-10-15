@@ -360,68 +360,58 @@ NOT CLAIMED unless separately implemented and validated:
 ## Repo-Specific Risk Levels
 <!-- governance:key=risk_levels -->
 
-<!-- Define what makes a change HIGH / MEDIUM / LOW risk in this repo.
-Example:
-- HIGH: any change to auth, payment, or data migration paths
-- MEDIUM: adding a new API endpoint or external dependency
-- LOW: documentation, config comments, test-only changes
+適用兩條線：**Windows/C# 參考線**（`src/TacticalGo.Domain`、`src/TacticalGo.Play`）與 **iOS/Swift 產品線**（`swift/TacticalGoCore`、`ios/`）。分類不確定時向上升級。
 
-Prompt yourself:
-- What changes in this repo can corrupt state, break compatibility, or cause production downtime?
-- What changes are review-heavy but still reversible?
-- What changes are safe enough to keep in a fast path?
--->
+- **HIGH / L2**
+  - 規則核心：棋串、生存空格、提子、自殺、superko、原子回滾、AP／Mana、技能／召喚、勝負（C# `src/TacticalGo.Domain/`、Swift `swift/TacticalGoCore/` 的對應模組），以及 `RuleConfig`／預設規則與 `tests/golden/`、`tests/ios-golden/` 契約。
+  - 付費與存取帳本：`TacticalGoAccess`、`PlayAccess`、StoreKit／獎勵廣告接線、試玩場數與 ledger、`PendingAdmissionJournal`。
+  - 存檔相容：對局紀錄、match identity、`ExpansionMatchRecord`、既有存檔的讀寫與遷移。
+  - 發布設定：`docs/release-01/*.xcconfig`、`*.plist`、`scripts/archive-release.sh`、Release target 的簽署／資源排除／Info.plist／PrivacyInfo、App Store Connect／AdMob／帳戶相關設定。
+  - 治理基礎設施：`.github/hooks/**`、`.github/workflows/governance-drift.yml`、`validators/`、框架 submodule 指標與 `.governance/`。
+- **MEDIUM / L1**：UI 接線與操作流程（確認／取消／復原、模式切換、技能預覽）、Bot／教學／挑戰內容、動畫／音效／VFX 的整合程式、文件中的規格或驗收表。若同時改到規則核心、帳本或存檔，升為 L2。
+- **LOW / L0**：行為不變的文件、註解與排版；不含規則、預設、授權、Gate、帳戶狀態或驗收狀態的宣稱變更。
 
-N/A
+素材（`assets/`、`ios/**/Assets*`、`Audio/`）的修改至少 L1：必須附來源／生成紀錄與雜湊，並與 Owner 驗收分開記錄；不得因舊 HOLD 紀錄就視為禁止，也不得因「已入庫」就視為已通過驗收。
 
 ## Must-Test Paths
 <!-- governance:key=must_test_paths -->
 
-<!-- List modules or code paths that require tests before merge.
-Example:
-- src/auth/       any change here needs integration tests
-- src/migrations/ schema changes need a rollback test
-
-Prompt yourself:
-- Which files or directories would you never want changed without a test?
-- Which paths are easy to break with static changes alone?
-- Which user-visible or hardware-facing flows need explicit coverage?
--->
-
-N/A
+- **C# 規則核心與 Golden**（`src/TacticalGo.Domain/`、`tests/golden/`）：`dotnet test TacticalGo.sln`，含實際 Golden replay；非法行動須驗證狀態完整回滾、無資源消耗、無事件。預期值依規格、Owner 驗收或手寫棋形，**不得**從引擎輸出倒填。
+- **Swift Core 與跨語言等價**（`swift/TacticalGoCore/`、`tests/ios-golden/`）：`swift test --package-path swift/TacticalGoCore`；C#／Swift 完整狀態與有序事件 parity 用 `scripts/verify-ios-parity.py`（需要 .NET SDK）。只有 Swift 測試通過時，須明說「C# replay／parity 未驗」。
+- **商業機制 UI 與帳本**：`MonetizationUITests`、`RewardedAdNetworkUITests`、`IntegrationUITests` 及帳本單元測試；涵蓋三場完整對局、購買／恢復／退款／ask-to-buy、取消不多扣、啟動中斷復原。需要 Xcode 與模擬器。
+- **存檔**：既有存檔的讀取不變、舊檔不被補寫身份、複本與原局的 admission 關係；真實 1.0 產生的存檔樣本未取得前，只能宣稱「單元層級相容」。
+- **Release 預檢**：改動 Release target、xcconfig、資源排除或 `scripts/archive-release.sh` 時，須做 Release 建置與資源／entitlements／PrivacyInfo 核對；Debug 建置成功不能代替。
+- **治理驗證器**：`python validators/golden_fixture_validator.py .`、`python -m unittest discover -s validators -p "test_*.py"`、`python validators/hook_wiring_check.py .`；結構接受不等於棋形重播正確，分開回報。
+- 新增 critical-path／回歸測試須以聚焦變異確認會失敗；測試數量不替代行為證據。每次回報附指令、實際計數與**未執行項目**。
 
 ## L1 → L2 Escalation Triggers
 <!-- governance:key=escalation_triggers -->
 
-<!-- When does this repo's work need the full L2 evidence checklist?
-Example:
-- Changing shared database schema
-- Modifying public API contracts
-- Any change touching >3 modules simultaneously
-
-Prompt yourself:
-- What kinds of changes cross system boundaries?
-- What changes would require a reviewer to ask for stronger evidence than normal?
-- What changes become risky mainly because they are broad, not because they touch one file?
--->
-
-N/A
+- 改動提子、自殺、superko、資源、技能／召喚、原子回滾、勝負，或 C#／Swift 任一端的共享規格：**升 L2**，先有可審查的規格、失敗路徑與驗證計畫。
+- 跨 Core／UI／存檔三者之一以上的變更，或需要同時改規則與 Golden：升 L2。
+- 修改計費語意（試玩場數、何時扣除、獎勵廣告額度、永久解鎖權限、複本是否另計）：升 L2，且須 Owner 明確決定；不得由執行端代為選擇選項。
+- 任何發布路徑：Release 設定、簽署、資源排除、版本／build 號、App Store Connect、AdMob、TestFlight 或審查相關動作：升 L2；Apple／AdMob 帳戶設定屬 Owner。
+- 治理 Hook／workflow／框架 pin 變更，或 F-7 更新：升 L2，並遵守 PR #7 的隔離更新邊界（見下一節）。
+- 規則缺口、預設／效果／費用變更、授權或素材來源決策、下一個 slice，超出既有核准範圍：先向 Owner 提出，不自行補規則。
+- 需要人類試玩、聽感或美術判定的 Gate：不以自動測試、搜尋或截圖代替 Owner。
+- 無法與其他 worktree 的未提交變更隔離時：停下並回報，不覆寫。
 
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->
 
-<!-- Add restrictions beyond the framework baseline.
-Example:
-- Do not write directly to the production database from tests
-- Do not commit .env files even if .gitignored
-
-Prompt yourself:
-- What are the easy-to-make mistakes that are specific to this repo?
-- Are there tool, environment, hardware, or deployment actions that should never happen casually?
-- What "cleanup" or "shortcut" behaviors have already caused pain here?
--->
-
-N/A
+- **授權分兩層，不要混用：**
+  - **日常工程授權**：Owner 核准某個 slice 後，在**該 slice 指定的分支**內可修改、測試、commit、push，並建立或更新該 slice 對應的 Draft PR，不需逐次請示；持續有效至該 slice 完成或 Owner 撤回。範圍僅限指定分支與其對應 PR，不含 force push 他人分支、刪分支。
+  - **產品與主線授權（每次都需 Owner 明確同意）**：合併 `main`、關閉或改動非自己建立的 PR、刪分支、修改計費語意或商業額度政策、正式發布設定、App Store Connect／AdMob、提交審查或發布。
+  - 不自行將 Owner Gate（G0／G5、試玩、美術、聽感、審查）標為通過。
+  - 本規則不改變 Claude Code 等工具自身的權限分類器；被工具拒絕的動作，不以改規則或換工具繞過，回報後由 Owner 決定。
+- 不執行 `--no-verify`；hook 或檢查失敗先讀診斷找根因，不停用、不繞過。
+- **不在載入 agent hooks 的工作目錄直接做 F-7 apply 或 `hook_installer`（不帶 `--hooks-only`）**：框架範本可能把 VS Code `Stop` 接成 `session_end`。先在不載入 agent hooks 的隔離 clone 執行，並跑 `python validators/hook_wiring_check.py .` 確認無 Stop 接線。
+- 不清除、移動或覆寫含未保全變更的 worktree；刪除前先確認內容已保全到 Git 並取得 Owner 同意。不在有 submodule 的既有工作目錄來回切分支，用隔離 worktree。
+- 不改未核准的規則／技能／預設／費用／召喚限制，不把 Draft 或提案當 Accepted；不為了讓測試通過把 Golden 預期改成引擎輸出。
+- 不改動計費語意、不接受 Apple／AdMob 契約或變更其設定、不輸入或保存憑證與金鑰；`DISTRIBUTION_PROFILE.json` 等含簽署／帳戶識別的檔案不進 Git。
+- 素材可以修改，但每次須附來源／生成紀錄與雜湊並與驗收分開記錄；不得把 AI 生成素材的權利、品質或名稱可用性宣稱為已清查。
+- 不將測試、弱機器人、搜尋或治理檢查宣稱為好玩、新手理解、職業平衡、runtime enforcement、release readiness 或「已通過 Apple 審查」。
+- 不修改 `AGENTS.base.md` 或框架管理 BEGIN/END 區塊；不把填寫本檔當成治理框架更新完成。
 
 <!-- AI Governance Framework: agent-contract BEGIN -->
 <!-- AI Governance Framework: agent-contract v1.0 -->

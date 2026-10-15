@@ -11,9 +11,9 @@
 # ── PROVENANCE ────────────────────────────────────────────────────────────────
 schema_version: "1"
 baseline_version: 1.0.0
-source_commit: d716d084abcbf613729e0329661420fd6ca0a95a
-framework_root: /Users/pc49-58/TacticalGo-safety/clone-governance/additional/ai-governance-framework
-initialized_at: 2026-10-14T11:02:05Z
+source_commit: bac5da577fbd40748874364d844e87a08ff266c9
+framework_root: /Users/pc49-58/TacticalGo-safety/handoff-update/additional/ai-governance-framework
+initialized_at: 2026-10-15T06:39:57Z
 initialized_by: governance_tools/adopt_governance.py
 plan_path: docs/PLAN.md
 
@@ -21,9 +21,9 @@ plan_path: docs/PLAN.md
 # sha256.<file>: canonical-LF hash recorded at init/refresh time; "protected" files are hash-verified
 # overridable.<file>: protected = must not change | overridable = repo may extend freely
 sha256.AGENTS.base.md: 20f247a26575cc0e2e9f09be68ea057ac9a8f5d81ab56717e21a94e43ee3043b
-sha256.PLAN.md: 982d5a4b21fcdcc38ea3f870eb3a933df88fb1639b64f03dfb5d6dae1daaa6cf
-sha256.contract.yaml: 409470323f50fae095f2304d931e2ab9531379efd8562694cb364b2c110554bc
-sha256.AGENTS.md: 0b199195d0f3e7a2894faf39f24f05eee2fd9aad59ba76b18238f28d5da3b567
+sha256.PLAN.md: ee88cd524a64d1b0fa4fd94650dc7a0c3b29e4616064d566af55113c3c9072a0
+sha256.contract.yaml: 8c93c9a835a4c5a66b461ead02739f6dfd67a5941e352bc154176a52e1054c16
+sha256.AGENTS.md: 5bc1cd39cedbca431fbb8873740db7bddc8f1fdf2736699e770ef7b957771c7a
 overridable.AGENTS.base.md: protected
 overridable.PLAN.md: overridable
 overridable.contract.yaml: overridable
@@ -47,6 +47,22 @@ contract_required_fields:
 # plan_section_inventory: ## headings detected in PLAN.md at adoption/refresh time.
 #   Drift checker surfaces these for visibility but never fails on missing inventory items.
 plan_section_inventory:
+  - "## 2026-10-11 23:31 更新：1.0／1025 已送審，未公開"
+  - "## 1.0／1025 正式封存與商店媒體里程碑"
+  - "## 1.0／1025 配置驗證里程碑"
+  - "## 上架準備最新進度（2026-10-11）"
+  - "## 2026-10-11 發行帳戶啟用里程碑"
+  - "## 2026-10-11 21:11｜三份稅務完成，協議與銀行待處理"
+  - "## 2026-10-11 18:42｜AdMob App／獎勵廣告已建立"
+  - "## 2026-10-11 AdMob 付款診斷更新"
+  - "## 2026-10-11 帳戶接續：App 與永久解鎖草稿已建立"
+  - "## 2026-10-11 最新進度：1024 商業接線候選"
+  - "## 2026-10-10 — 三職 VFX 開工授權（取代先等全部本體核准的啟動限制）"
+  - "## 2026-10-10 — 角色動作與特效順序（最新 Owner 決定）"
+  - "## 2026-10-14 最新TestFlight交付1110"
+  - "## 2026-10-14 八Slice品質計畫核對／UI首修"
+  - "## 2026-10-14 持續聲畫優化窗口"
+  - "## 最新交付：2026-10-13 Mac整理與UX26手機1108"
   - "## 目前工作：BOT-01 單人電腦對戰（2026-10-09）"
   - "## 2026-10-09 — iOS／Visual雙軌：IOS-V2-ASSET-01"
   - "## 最新 UI 工作：V1 A0 靜態畫面與技能資訊層級（2026-10-09）"
@@ -74,3 +90,38 @@ plan_section_inventory:
   - "## 2026-10-09 — Owner 戰士 G5／G7 截圖追加"
   - "## 2026-10-09 — R3 候選完整對局（取代固定試驗限定）"
   - "## 2026-10-09 ONBOARD-01 交付範圍"
+  - "## 2026-10-11 Owner 決策：新版技能直接用於新對局（1020）"
+  - "## 2026-10-11 UI 結算候選1021：保留場景，操作隨對局階段改變"
+  - "## 2026-10-11｜1022 棋盤主導畫面與 Owner 實機回饋"
+  - "## 2026-10-11｜1023 選取／取消棋盤固定與付費首版文件"
+  - "## 2026-10-11 19:20｜送審草稿、免費價格及支援頁準備"
+  - "## 2026-10-11｜本人稅務回覆後的送審續辦"
+  - "## 2026-10-11 — 1.1 魔物戰場獨立原型"
+  - "## 2026-10-11 怪物圖樣 v02 預覽里程碑"
+  - "## 2026-10-11 v02 圖樣載入測試版"
+  - "## PRESENT-01 — 魔法之手聲畫候選"
+  - "## PRESENT-01 Owner 品質驗收退回（最新狀態）"
+  - "## PRESENT-02 — 手機 1.0 基準已確認"
+  - "## PRESENT-03 — 依手機原版製作法師候選 C"
+  - "## PRESENT-03 退回／PRESENT-04 新方向"
+  - "## VOICE-06 — prioritize English casting voice"
+  - "## WARRIOR-07 — English Bastion and visible shield effects"
+  - "## 2026-10-12 1.1 十小時候選開發"
+  - "## 2026-10-12 08:31 Owner 要求安裝"
+  - "## 2026-10-12 08:46 同一手機App的1.1整合"
+  - "## 2026-10-12 09:22 Owner 修正：完整接入原對戰（進行中）"
+  - "## 2026-10-12 09:28 同一選角／棋盤候選完成，手機待連線"
+  - "## 2026-10-12 09:53 Owner授權TestFlight（15）"
+  - "## 2026-10-12 10:28 TestFlight登入界線"
+  - "## 2026-10-12 10:39 TestFlight 1103 已交付"
+  - "## 2026-10-12 11:09 Owner回饋：iPhone 9×9太小（16）"
+  - "## 2026-10-12 11:18 手機9×9放大版1104已交付"
+  - "## 2026-10-12 11:56 Owner新回饋：電腦對戰1.1與戰士重量（17）"
+  - "## 2026-10-12 12:12 17完整工程候選1105已上傳"
+  - "## 2026-10-12 12:20 17完成：1105已TestFlight可測"
+  - "## 2026-10-13 Owner 授權全遊戲介面重做（19）"
+  - "## 2026-10-13 UI20：主畫面與 icon 先完成"
+  - "## 2026-10-13 AV21：Owner 明確授權開始四職動畫"
+  - "## 2026-10-13 AV22：Owner 要求持續逼近爐石品質"
+  - "## 2026-10-13 先推送，再做 AV23 節奏"
+  - "## 2026-10-13 AV24：90%品質目標仍未完成"
