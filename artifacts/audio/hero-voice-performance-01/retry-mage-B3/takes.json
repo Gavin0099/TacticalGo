@@ -1,0 +1,19 @@
+[
+  {
+    "hero": "mage",
+    "take": "B",
+    "text": "Off you go!",
+    "instruct": "A young adult female fantasy mage, clear bright midrange voice, warm smile and a lightly mischievous personality. Natural English, animated game character, clean dry studio recording. A short, playful spoken phrase with clear English diction. Bright smiling voice, light quick rhythm and a cheeky upward inflection before a crisp finish. Lively natural speech.",
+    "seed": 20261015,
+    "file": "mage-B-dry.wav",
+    "raw_file": "raw/mage-B-unprocessed.wav",
+    "duration_seconds": 1.36,
+    "sample_rate": 24000,
+    "gain": 0.9337892944136095,
+    "rms_dbfs": -19.99999987057016,
+    "peak_dbfs": -5.669254086525884,
+    "generation_seconds": 1.55983304977417,
+    "sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950",
+    "raw_sha256": "477290a2f75cbfc2b5d80013388fd79d700fe6f2b7f7105aa5b3edf9775ce708"
+  }
+]

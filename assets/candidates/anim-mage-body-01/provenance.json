@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "anim-mage-body-01",
+  "approval": "candidate_pending_owner",
+  "productionAvailable": false,
+  "rights": "pending",
+  "tool": "built-in image_gen",
+  "model": "unknown",
+  "sourceReference": {
+    "path": "ios/TacticalGo/Cozy/B-mage-v02.png",
+    "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+  },
+  "generated": {
+    "path": "clean-plate-original.png",
+    "sha256": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d",
+    "width": 1254,
+    "height": 1254,
+    "rgbaInspection": "Native UIImage alpha channel checked; decoded hash recorded in asset-inspection.json"
+  },
+  "prompt": "Use case: precise-object-edit.\nAsset type: TacticalGo mage B-v02 2D animation clean plate, same 512-square composition as reference.\nImage 1 is the ONLY identity reference and edit target. Keep the same purple-haired young smiling female mage, exact face, eyes, hair, pointed plum hat, turquoise clasp, plum cloak, cream blouse, brown chest strap and warm brown line art. Preserve original canvas framing, placement and scale.\nChange ONLY the occlusion area occupied by the crystal wooden staff and gripping anatomical RIGHT hand on the viewer's LEFT. Remove the entire staff and that foreground gripping hand, and reconstruct the previously hidden purple sleeve and cloak/blouse silhouette underneath as a clean animation backing plate. The hand and staff will be restored by exact original-pixel layers in the app. Do not draw a replacement hand or another staff. The sleeve may end naturally below the chest crop. Preserve the original torso shape and position; no new lower body.\nKeep the rest of the image as unchanged as possible. No pose change, no new identity, no facial expression change, no palette change, no re-render to 3D, no particles, no glow, no pedestal, no floor, no shadow, no text, no watermark. True transparent background. This is a local occlusion-reconstruction plate, not a new hero design.",
+  "usage": "Only masked disoccluded garment/hat backing; untouched original face, hair majority, main hat, hand and staff. Source originals never overwritten. Editable SwiftUI masks/pivots; not 3D mesh or hand-drawn full pose animation.",
+  "qa": "Pending native key-pose review; generation does not grant identity/animation acceptance"
+}

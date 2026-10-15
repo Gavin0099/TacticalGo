@@ -1,0 +1,31 @@
+Building for debugging...
+[0/14] Write sources
+[2/14] Write swift-version--58304C5D6DBC2206.txt
+[4/6] Emitting module TacticalGoMotion
+[5/6] Compiling TacticalGoMotion HeroVoiceCue.swift
+[6/9] Compiling TacticalGoMotionTests HeroVoiceTests.swift
+[7/9] Emitting module TacticalGoMotionTests
+[7/9] Write Objects.LinkFileList
+[8/9] Linking TacticalGoCorePackageTests
+Build complete! (1.00s)
+Test Suite 'Selected tests' started at 2026-10-10 01:54:02.930.
+Test Suite 'TacticalGoCorePackageTests.xctest' started at 2026-10-10 01:54:02.931.
+Test Suite 'HeroVoiceTests' started at 2026-10-10 01:54:02.931.
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testEachSummonUsesActualPrecommitClassAndNotOpponent]' started.
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testEachSummonUsesActualPrecommitClassAndNotOpponent]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testIllegalAndOrdinaryActionsNeverSpeak]' started.
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testIllegalAndOrdinaryActionsNeverSpeak]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testMagePushesEitherTeamWithOneAPSelectMageAfterTurnChanges]' started.
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testMagePushesEitherTeamWithOneAPSelectMageAfterTurnChanges]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testWarriorAndRogueSuccessfulSkillsHaveOwnLines]' started.
+Test Case '-[TacticalGoMotionTests.HeroVoiceTests testWarriorAndRogueSuccessfulSkillsHaveOwnLines]' passed (0.000 seconds).
+Test Suite 'HeroVoiceTests' passed at 2026-10-10 01:54:02.934.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'TacticalGoCorePackageTests.xctest' passed at 2026-10-10 01:54:02.934.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 01:54:02.934.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

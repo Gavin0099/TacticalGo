@@ -1,0 +1,29 @@
+{
+  "build": "1007",
+  "bundle": "com.tacticalgo.prototype.herobody",
+  "display": "TacticalGo Heroes",
+  "voice": "disabled in review launch; no voice acceptance",
+  "music": "disabled in review launch; music HOLD",
+  "SFX": "existing sounds enabled; no hearing/sync acceptance",
+  "devices": {
+    "iphone": {
+      "install": "PASS",
+      "nativeInput": "PASS:2 executed tests; native push/capture/undo + 3 classes x normal/reduced 320/9 background and second AP"
+    },
+    "ipad": {
+      "install": "PASS",
+      "nativeInput": "NOT RUN for this revision; prior UI authorization canceled",
+      "freshAudit": "NOT AVAILABLE: initial launch failed remote XPC; copied report lacks revision/runID, cached old FAIL not current evidence",
+      "historicalAudit": "1006 old rogue-leave-no-stale failed; no new reproduction/root-cause claim",
+      "latestRetest": {
+        "request": "Owner: 再測一次",
+        "log": "ipad-retest-launch.log",
+        "tunnel": "PASS: acquired tunnel and developer image services",
+        "launch": "BLOCKED: FBSOpenApplicationErrorDomain7 Locked; CoreDevice10002",
+        "newNativeTests": 0,
+        "freshAudit": "NOT RUN; no new report claimed",
+        "required": "Unlock and keep screen on; question pending"
+      }
+    }
+  }
+}

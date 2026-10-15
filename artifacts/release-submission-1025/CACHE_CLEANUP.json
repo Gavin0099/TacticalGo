@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-10-11T13:45:26.768278+00:00",
+  "preserved": "Sources, artifacts including xcresults/logs/media, Build/Products and frozen 1024 source ZIP",
+  "removed": [
+    {
+      "path": "ios/Build/Intermediates.noindex",
+      "kind": "rebuildable_compilation_cache",
+      "files": 2114,
+      "bytes": 232020687
+    },
+    {
+      "path": "swift/TacticalGoCore/.build/arm64-apple-macosx",
+      "kind": "rebuildable_compilation_cache",
+      "files": 3364,
+      "bytes": 484104480
+    }
+  ],
+  "afterSuccessfulSimulatorBuild": [
+    {
+      "recordedAt": "2026-10-11T13:59:18.420877+00:00",
+      "preserved": "Build/Products final Release app, dSYM, logs, source manifest and all evidence",
+      "removed": [
+        {
+          "path": "artifacts/release-submission-1025/ReleaseSimulatorDerivedData/ModuleCache.noindex",
+          "kind": "completed_simulator_rebuildable_cache",
+          "bytes": 268586664
+        },
+        {
+          "path": "artifacts/release-submission-1025/ReleaseSimulatorDerivedData/Build/Intermediates.noindex",
+          "kind": "completed_simulator_rebuildable_cache",
+          "bytes": 59770760
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "path": "ios/Build/Intermediates.noindex",
+      "bytes": 175184064,
+      "reason": "Completed own archive rebuildable cache; final xcarchive/IPA/Simulator app and evidence preserved",
+      "at": "2026-10-11T14:44:01.350343+00:00"
+    },
+    {
+      "path": "artifacts/release-submission-1025/ArchiveDerivedData/Build/Intermediates.noindex",
+      "bytes": 67056272,
+      "reason": "Completed own archive rebuildable cache; final xcarchive/IPA/Simulator app and evidence preserved",
+      "at": "2026-10-11T14:44:04.218530+00:00"
+    },
+    {
+      "path": "artifacts/release-submission-1025/ArchiveDerivedData/ModuleCache.noindex",
+      "bytes": 146160270,
+      "reason": "Completed own archive rebuildable cache; final xcarchive/IPA/Simulator app and evidence preserved",
+      "at": "2026-10-11T14:44:05.042976+00:00"
+    },
+    {
+      "path": "ios/Build/Products",
+      "bytes": 429570221,
+      "at": "2026-10-11T14:46:27.930213+00:00",
+      "reason": "Historical rebuildable outputs; final 1025 xcarchive, IPA, dedicated ReleaseSimulator App, source and evidence retained"
+    },
+    {
+      "path": "ios/DerivedData/TacticalGo/ModuleCache.noindex",
+      "bytes": 178885776,
+      "reason": "Own historical rebuildable module/index cache; signed archive, IPA, Release simulator app and source/evidence preserved",
+      "at": "2026-10-11T15:02:40.693448+00:00"
+    },
+    {
+      "path": "ios/DerivedData/TacticalGo/Index.noindex",
+      "bytes": 27386184,
+      "reason": "Own historical rebuildable module/index cache; signed archive, IPA, Release simulator app and source/evidence preserved",
+      "at": "2026-10-11T15:02:42.580480+00:00"
+    }
+  ]
+}

@@ -1,0 +1,1037 @@
+{
+  "boundary" : "Real Core\/GameStore + native SwiftUI snapshots; not physical FPS or human VFX acceptance",
+  "checks" : [
+    {
+      "check" : "warrior-one-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-one-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-two-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "mage-one-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "mage-two-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-one-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-targets",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-false-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-preview",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-cancel",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-once",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-targets",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-resources",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-actual-capture",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-voice-off",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-no-lock",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-undo",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-two-true-illegal",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-dense-one",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-dense-two",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "mage-dense-one",
+      "pass" : true
+    },
+    {
+      "check" : "mage-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "mage-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "mage-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "mage-dense-two",
+      "pass" : true
+    },
+    {
+      "check" : "mage-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "mage-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "mage-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-dense-one",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-dense-two",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-interrupt",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-reduced-final",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-background-clear",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-restart-clear",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-restart-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-leave-clear",
+      "pass" : true
+    },
+    {
+      "check" : "warrior-leave-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "mage-restart-clear",
+      "pass" : true
+    },
+    {
+      "check" : "mage-restart-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "mage-leave-clear",
+      "pass" : true
+    },
+    {
+      "check" : "mage-leave-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-restart-clear",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-restart-no-stale",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-leave-clear",
+      "pass" : true
+    },
+    {
+      "check" : "rogue-leave-no-stale",
+      "pass" : true
+    }
+  ],
+  "completedUnix" : 1791628074.6442208,
+  "renders" : [
+    {
+      "checkpoint" : 0.23799999999999999,
+      "file" : "warrior-one-false-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 557.03850000281818,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.34500000000000003,
+      "file" : "warrior-one-false-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 62.5960833276622,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.41499999999999998,
+      "file" : "warrior-one-false-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 54.996291670249775,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.495,
+      "file" : "warrior-one-false-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 144.51545833435375,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.56499999999999995,
+      "file" : "warrior-one-false-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 26.290708323358558,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.78000000000000003,
+      "file" : "warrior-one-false-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 23.916499994811602,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.23799999999999999,
+      "file" : "warrior-one-true-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 72.041291670757346,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.34500000000000003,
+      "file" : "warrior-one-true-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 26.275416661519557,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.41499999999999998,
+      "file" : "warrior-one-true-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.190208333195187,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.495,
+      "file" : "warrior-one-true-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 28.823874992667697,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.56499999999999995,
+      "file" : "warrior-one-true-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.143250001245178,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.59000000000000008,
+      "file" : "warrior-one-true-capture.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.504208323080093,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 1.3999999999999999,
+      "file" : "warrior-one-true-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 22.105500000179745,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.182,
+      "file" : "mage-one-false-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 77.702833325020038,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.26500000000000001,
+      "file" : "mage-one-false-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 67.807708328473382,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.48999999999999999,
+      "file" : "mage-one-false-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 23.885250004241243,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.61499999999999999,
+      "file" : "mage-one-false-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 63.800041665672325,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.68499999999999994,
+      "file" : "mage-one-false-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 23.83883333823178,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.94999999999999996,
+      "file" : "mage-one-false-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 22.145249997265637,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.182,
+      "file" : "mage-one-true-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 71.666166666545905,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.26500000000000001,
+      "file" : "mage-one-true-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 25.948416674509645,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.48999999999999999,
+      "file" : "mage-one-true-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 26.382416661363095,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.61499999999999999,
+      "file" : "mage-one-true-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 24.556916658184491,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.68499999999999994,
+      "file" : "mage-one-true-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 24.025958337006159,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.75,
+      "file" : "mage-one-true-capture.png",
+      "reduced" : false,
+      "renderAndPNGms" : 24.955499990028329,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.94999999999999996,
+      "file" : "mage-one-true-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 22.439250009483658,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.13999999999999999,
+      "file" : "rogue-one-false-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 78.722249993006699,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.20500000000000002,
+      "file" : "rogue-one-false-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 70.288125003571622,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.32000000000000001,
+      "file" : "rogue-one-false-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 26.798000006237999,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.435,
+      "file" : "rogue-one-false-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 25.532125000609085,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.505,
+      "file" : "rogue-one-false-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.333083329722285,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.71999999999999997,
+      "file" : "rogue-one-false-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 22.36533333780244,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.13999999999999999,
+      "file" : "rogue-one-true-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 85.364500002469867,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.20500000000000002,
+      "file" : "rogue-one-true-release.png",
+      "reduced" : false,
+      "renderAndPNGms" : 29.117583326296881,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.32000000000000001,
+      "file" : "rogue-one-true-move.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.825458339066245,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.435,
+      "file" : "rogue-one-true-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 25.726374995429069,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.505,
+      "file" : "rogue-one-true-impact.png",
+      "reduced" : false,
+      "renderAndPNGms" : 27.818874994409271,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.53000000000000003,
+      "file" : "rogue-one-true-capture.png",
+      "reduced" : false,
+      "renderAndPNGms" : 25.587500000256114,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 1.3399999999999999,
+      "file" : "rogue-one-true-final.png",
+      "reduced" : false,
+      "renderAndPNGms" : 21.911874995566905,
+      "width" : 390
+    },
+    {
+      "checkpoint" : 0.255,
+      "file" : "warrior-dense-one-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 105.48662500514183,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.56499999999999995,
+      "file" : "warrior-dense-one-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 103.22912500123493,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "warrior-reduced-one.png",
+      "reduced" : true,
+      "renderAndPNGms" : 37.52583333698567,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.255,
+      "file" : "warrior-dense-two-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 60.091083330917172,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.56499999999999995,
+      "file" : "warrior-dense-two-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 41.842624996206723,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "warrior-reduced-two.png",
+      "reduced" : true,
+      "renderAndPNGms" : 36.950458335923031,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.19500000000000001,
+      "file" : "mage-dense-one-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 56.15612500696443,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.68499999999999994,
+      "file" : "mage-dense-one-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 49.461916671134531,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "mage-reduced-one.png",
+      "reduced" : true,
+      "renderAndPNGms" : 35.631749997264706,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.19500000000000001,
+      "file" : "mage-dense-two-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 55.19087499123998,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.68499999999999994,
+      "file" : "mage-dense-two-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 40.169416679418646,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "mage-reduced-two.png",
+      "reduced" : true,
+      "renderAndPNGms" : 36.609791670343839,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.15000000000000002,
+      "file" : "rogue-dense-one-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 55.389624991221353,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.505,
+      "file" : "rogue-dense-one-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 63.148000001092441,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "rogue-reduced-one.png",
+      "reduced" : true,
+      "renderAndPNGms" : 34.028541660518385,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.15000000000000002,
+      "file" : "rogue-dense-two-charge.png",
+      "reduced" : false,
+      "renderAndPNGms" : 51.562291671871208,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0.505,
+      "file" : "rogue-dense-two-landing.png",
+      "reduced" : false,
+      "renderAndPNGms" : 40.08645833528135,
+      "width" : 320
+    },
+    {
+      "checkpoint" : 0,
+      "file" : "rogue-reduced-two.png",
+      "reduced" : true,
+      "renderAndPNGms" : 36.12412499205675,
+      "width" : 320
+    }
+  ],
+  "revision" : "finite-bursts-03",
+  "runID" : "E92C7C46-5B65-40F2-A399-DD0F9C682E71",
+  "startedUnix" : 1791628052.177032,
+  "status" : "PASS",
+  "vfx" : "on",
+  "voice" : "off"
+}

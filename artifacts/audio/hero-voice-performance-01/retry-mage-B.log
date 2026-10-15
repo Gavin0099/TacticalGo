@@ -1,0 +1,6 @@
+Loading local model; no reference voice or remote inference
+[transformers] You are using a model of type `qwen3_tts` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+  Initialized encoder codebooks
+Loaded speech tokenizer from /tmp/tacticalgo-expressive-model/speech_tokenizer
+GENERATED mage B 2.372916666666667 sec
+PILOT GENERATED; expression quality is not automated PASS

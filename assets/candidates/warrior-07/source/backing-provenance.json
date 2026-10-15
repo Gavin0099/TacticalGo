@@ -1,0 +1,17 @@
+{
+  "identity": "B-v02; unchanged original pixels used for face/head/held equipment/emblem",
+  "method": "built-in image_gen edit; only hidden garment backing consumed via SwiftUI mask",
+  "generatedOutput": "true alpha; native file copied unchanged",
+  "approval": "candidate",
+  "rights": "pending; inherits source rights boundary",
+  "modelVersion": "unknown",
+  "inputOutputSHA": {
+    "ios/TacticalGo/Cozy/B-warrior-v02.png": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+    "ios/TacticalGo/Cozy/B-rogue-v02.png": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+    "ios/TacticalGo/HeroBody/warrior-clean-plate.png": "64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63",
+    "ios/TacticalGo/HeroBody/rogue-clean-plate.png": "3fb0d19330e3830c97790208ac875ed6cb41fe5e5119f0289c8625138e5273da"
+  },
+  "renderer": "Editable SwiftUI cutout masks/pivots; not a 3D mesh or generated acting frames",
+  "backingUsage": "Generated plates sampled only in hand/cloth/old-shield occlusion, restricted to original alpha; original face/head/held equipment/shield-emblem pixels retained",
+  "knownArtBoundary": "Fine original prop-edge and neck/cape seams remain closeup review Pending; no final rights or acting approval"
+}

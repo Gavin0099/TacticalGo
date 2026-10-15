@@ -1,0 +1,9 @@
+{
+  "sameBeforeAfterEvents": true,
+  "baseline": "eb7be20 / previous native skill clip1",
+  "candidate": "ANIM warrior body02 / native skill clip1",
+  "speed": 1,
+  "alignment": "Both clips start450ms before actual successful receipt uptime; no retiming. Frame scheduling is not exact motion capture. Only final still extended to match duration.",
+  "noAudio": true,
+  "sha256": "7c312614971e8fadd9dc0fadc25e98b54ebe1fb48cf195d88725c8a1a06ed46c"
+}

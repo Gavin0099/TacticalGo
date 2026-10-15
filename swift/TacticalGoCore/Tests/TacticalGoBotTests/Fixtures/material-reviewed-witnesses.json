@@ -1,0 +1,1168 @@
+[
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "direction": "Left",
+        "kind": "push",
+        "points": [
+          {
+            "x": 6,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "direction": "Up",
+        "kind": "push",
+        "points": [
+          {
+            "x": 6,
+            "y": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  },
+  {
+    "capture": [
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      }
+    ],
+    "enemy": [
+      {
+        "kind": "end",
+        "points": []
+      }
+    ]
+  }
+]

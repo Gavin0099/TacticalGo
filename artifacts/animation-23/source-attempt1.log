@@ -1,0 +1,1 @@
+Initial source verifier assumed rounded rogue/mage WAV durations were exact to 0.1ms. Pinned PCM headers actually contain 29245/24000 and 24953/24000 seconds. Export was accurate; verifier now uses independently inspected sample counts/rates. This failed assertion is not a native test or a PASS.

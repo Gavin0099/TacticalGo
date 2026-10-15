@@ -44,6 +44,8 @@ public struct MotionPlan: Equatable, Sendable {
         case .placeSoldier: captureStart = 0.30
         case .castMagicHand: captureStart = 0 // A0 uses static committed state; no new motion production.
         case .castFriendlyRedeploy: captureStart = 0.62
+        case .huntMonster, .useStickyBounce, .useShadowStep: captureStart = 0
+        case .castSanctuary, .castOffering, .castDoublePull, .castReformation, .castChainSwap: captureStart = 0
         case .endTurn: captureStart = 0
         }
         for event in outcome.events {
@@ -60,7 +62,7 @@ public struct MotionPlan: Equatable, Sendable {
                 let captures = outcome.events.contains { if case .piecesCaptured(_, let pieces) = $0 { return !pieces.isEmpty }; return false }
                 cues.append(MotionCue(.draw, start: captureStart + (captures ? 0.28 : 0), duration: 0.28))
             case .turnStarted(let player, _, _, _): cues.append(MotionCue(.turn(player), start: 0, duration: 0.22))
-            case .resourcesSpent, .sealPlaced, .turnEnded, .piecePushed: break
+            case .pieceSacrificed, .monsterLootGranted, .monsterAbilityUsed, .monsterHunted, .resourcesSpent, .sealPlaced, .turnEnded, .piecePushed: break
             }
         }
         return MotionPlan(cues: cues, duration: cues.map { $0.start + $0.duration }.max() ?? 0)

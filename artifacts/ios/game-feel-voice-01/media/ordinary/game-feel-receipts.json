@@ -1,0 +1,1005 @@
+[
+  {
+    "action" : "summonHero(TacticalGoCore.Point(x: 2, y: 5))",
+    "after" : {
+      "ap" : 2,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "two",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            2,
+            5
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 1,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        3
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 5), TacticalGoCore.PieceKind.hero)",
+      "turnEnded(TacticalGoCore.Player.one, ply: 1)",
+      "turnStarted(TacticalGoCore.Player.two, ply: 2, ap: 2, mana: 4)"
+    ],
+    "id" : "9C46F50E-0ECC-427D-9B86-27BCDCC67DD6",
+    "receiptUptime" : 12602.842677500001,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-warrior-summon"
+  },
+  {
+    "action" : "placeSoldier(TacticalGoCore.Point(x: 0, y: 0))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "two",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            0,
+            0
+          ],
+          "kind" : "soldier",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            2,
+            5
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "two",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            2,
+            5
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+      "piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 0, y: 0), TacticalGoCore.PieceKind.soldier)"
+    ],
+    "id" : "B52C090A-63BB-4E35-8FD2-569D0585D992",
+    "receiptUptime" : 12608.803530416668,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "none"
+  },
+  {
+    "action" : "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            4
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+    ],
+    "id" : "52DF96FB-5229-4656-8131-FFA1AB58F57B",
+    "receiptUptime" : 12736.65377825,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-warrior-summon"
+  },
+  {
+    "action" : "castBastion(TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.Point(x: 4, y: 3))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            2,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Warrior",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 3), TacticalGoCore.PieceKind.soldier)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)"
+    ],
+    "id" : "400DF578-DFC1-4D17-A362-F587F3310883",
+    "receiptUptime" : 12746.639719250001,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-warrior-skill"
+  },
+  {
+    "action" : "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Mage",
+        "Mage"
+      ],
+      "current" : "one",
+      "mana" : [
+        1,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            4
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Mage",
+        "Mage"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 3)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+    ],
+    "id" : "1AC3339B-5EC2-4796-B30D-5E579578D26C",
+    "receiptUptime" : 12755.053760291667,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-mage-summon"
+  },
+  {
+    "action" : "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Mage",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            4,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Mage",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))"
+    ],
+    "id" : "522A554E-A765-45B2-82B2-4AFA34A67C82",
+    "receiptUptime" : 12764.004066875001,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-mage-skill"
+  },
+  {
+    "action" : "summonHero(TacticalGoCore.Point(x: 3, y: 4))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Rogue",
+        "Rogue"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            4
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Rogue",
+        "Rogue"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 4), TacticalGoCore.PieceKind.hero)"
+    ],
+    "id" : "772C239C-6F80-4F67-BBC5-E30B2FE5151A",
+    "receiptUptime" : 12772.304198166667,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-rogue-summon"
+  },
+  {
+    "action" : "castSwap(TacticalGoCore.Point(x: 4, y: 3))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Rogue",
+        "Rogue"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            4,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Rogue",
+        "Rogue"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            0
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecesSwapped(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.Point(x: 4, y: 3))"
+    ],
+    "id" : "228CAF4A-8A89-4D08-9207-FCDC4D1126AB",
+    "receiptUptime" : 12780.738406375001,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-rogue-skill"
+  },
+  {
+    "action" : "castMagicHand(TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PushDirection.up)",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Mage",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        2,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            2,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "won"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Mage",
+        "Warrior"
+      ],
+      "current" : "one",
+      "mana" : [
+        4,
+        4
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            2,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            2
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "hero",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 2)",
+      "piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 4, y: 3), to: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.one, kind: TacticalGoCore.PieceKind.soldier))",
+      "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+      "gameWon(TacticalGoCore.Player.one)"
+    ],
+    "id" : "C9D81391-2FF2-4F60-8DD7-EEB50A7FFF58",
+    "receiptUptime" : 12788.620098791667,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "voice-mage-skill"
+  },
+  {
+    "action" : "placeSoldier(TacticalGoCore.Point(x: 3, y: 3))",
+    "after" : {
+      "ap" : 1,
+      "classes" : [
+        "Warrior",
+        "Mage"
+      ],
+      "current" : "one",
+      "mana" : [
+        6,
+        6
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            2,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            4,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            3
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "won"
+    },
+    "before" : {
+      "ap" : 2,
+      "classes" : [
+        "Warrior",
+        "Mage"
+      ],
+      "current" : "one",
+      "mana" : [
+        6,
+        6
+      ],
+      "pieces" : [
+        {
+          "at" : [
+            3,
+            1
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            2,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            2
+          ],
+          "kind" : "commander",
+          "owner" : "two"
+        },
+        {
+          "at" : [
+            4,
+            2
+          ],
+          "kind" : "soldier",
+          "owner" : "one"
+        },
+        {
+          "at" : [
+            3,
+            5
+          ],
+          "kind" : "commander",
+          "owner" : "one"
+        }
+      ],
+      "status" : "ongoing"
+    },
+    "events" : [
+      "resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+      "piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 3), TacticalGoCore.PieceKind.soldier)",
+      "piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 3, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander))])",
+      "gameWon(TacticalGoCore.Player.one)"
+    ],
+    "id" : "F2C8DEB5-0C8A-485E-9E5F-5F3841A88471",
+    "receiptUptime" : 13081.155015125001,
+    "reducedMotion" : false,
+    "size" : 7,
+    "voice" : "none"
+  }
+]

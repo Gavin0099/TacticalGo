@@ -1,0 +1,62 @@
+[
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift",
+    "local_path": "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift",
+    "source_sha256": "d26f9600b2538ef4d08c10cc25973313a9eca472ff34cfcc0b30f09944b879c9"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "swift/TacticalGoCore/Sources/TacticalGoMotion/Anim01MagicHand.swift",
+    "local_path": "swift/TacticalGoCore/Sources/TacticalGoMotion/Anim01MagicHand.swift",
+    "source_sha256": "d2d999f36ef72aaff7b3a2ac6f23005ef554e5d9bc9d5df5e84c93a1e1f2948f"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "ios/TacticalGo/MageBodyView.swift",
+    "local_path": "ios/TacticalGo/PresentationMageBody.swift",
+    "source_sha256": "1cfea3972a62bf285a8659714fe864df7ead8431592966ff559bf922a374069a"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "ios/TacticalGo/MageBody/clean-plate.png",
+    "local_path": "assets/candidates/present-01/sources/clean-plate.png",
+    "source_sha256": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "assets/candidates/anim-mage-body-01/provenance.json",
+    "local_path": "assets/candidates/present-01/sources/m3-art-provenance.json",
+    "source_sha256": "9028f109863455f6fce6da59d86314105b6998d7c39ab0a8be085f77c460dd2f"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "artifacts/audio/hero-voice-performance-01/retry-mage-B3/manifest.json",
+    "local_path": "assets/candidates/present-01/sources/voice-source-manifest.json",
+    "source_sha256": "d8a6818917b94e4b4622ff3219ff9db96196882f195c96d6155862bc0ed97581"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "artifacts/audio/hero-voice-performance-01/mage-B3-dry.wav",
+    "local_path": "assets/candidates/present-01/sources/mage-voice-english.wav",
+    "source_sha256": "1cb368035f8d61f1463a9c195e0edb7c37522264dda91a2529a92aef0b7a9950"
+  },
+  {
+    "source_commit": "cdab133cd469dd185fd8ca3f47fea2e217cfb139",
+    "source_path": "assets/candidates/vis-feel-01/tokens/B-mage-v02.png",
+    "local_path": "assets/candidates/present-01/sources/mage-original.png",
+    "source_sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "artifacts/audio/hero-voice-performance-01/retry-mage-B3/raw/mage-B-unprocessed.wav",
+    "local_path": "assets/candidates/present-01/sources/mage-voice-raw.wav",
+    "source_sha256": "477290a2f75cbfc2b5d80013388fd79d700fe6f2b7f7105aa5b3edf9775ce708"
+  },
+  {
+    "source_commit": "c13f23e019eef6d5492a511c93e55df6dd6007f7",
+    "source_path": "scripts/generate-hero-voice-performance-pilot.py",
+    "local_path": "assets/candidates/present-01/sources/original-voice-generator.py",
+    "source_sha256": "02860676affccc443e7d56410a53dc68db98f1fca979f68b71cfd35174337ae9"
+  }
+]

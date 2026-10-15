@@ -1,0 +1,18 @@
+{
+  "model": "mlx-community/whisper-tiny.en-mlx",
+  "revision": "5f4dafbb28e62a53c1b10426ff7eed36ca733bf7",
+  "target_prompt": null,
+  "checks": [
+    {
+      "take": "A",
+      "recognized": "Hold the line.",
+      "match": true
+    },
+    {
+      "take": "B",
+      "recognized": "Hold the line.",
+      "match": true
+    }
+  ],
+  "scope": "word recognition only; acting quality Owner pending"
+}

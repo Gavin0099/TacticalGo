@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-11T15:28:31.066385+00:00",
+  "appID": "6821588889",
+  "build": "1025",
+  "buildID": "e0f67359-4ed2-4ed7-b61b-2febeb0f3b6b",
+  "ownerOriginalArt": "owner_self_generated",
+  "contentRightsSavedAndReloaded": true,
+  "contentRightsSelection": "contains third-party content with necessary rights",
+  "thirdPartyScope": "voluntary Google rewarded ad content and linked vendor SDK; original hero art self generated",
+  "standardEULAUnchanged": true,
+  "exportCompliance": {
+    "archivedInfoKey": "ITSAppUsesNonExemptEncryption absent",
+    "ASCAnswer": "notProprietaryOrStandardEncryption",
+    "basis": "Only Apple CryptoKit SHA256 used for resource integrity; no app implemented AES/RSA/proprietary encryption found; system networking and StoreKit",
+    "saved": true,
+    "missingComplianceBadgeCleared": true,
+    "source": "https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations",
+    "thirdPartyNetworkSource": "https://developers.google.com/admob/ios/privacy/us-states"
+  },
+  "claimBoundary": "Routine ASC metadata declarations, not acceptance of new contract, legal opinion, independent vendor binary audit, production ad or purchase verification",
+  "evidenceImage": "content-rights-saved.jpg"
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "D32176A1-AFA8-42A8-8362-091837B58E3E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "VO-01-actual-owner-six-events-and-settings_0_BE74469D-F54B-4C79-9CF7-925927A99C6B.png",
+        "timestamp": 1791570568.797
+      }
+    ],
+    "testIdentifier": "PlayableGameTests/testHeroVoiceActualOwnerSixEventsSettingsAndCancellation()",
+    "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/PlayableGameTests/testHeroVoiceActualOwnerSixEventsSettingsAndCancellation"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "BC489D59-2576-4004-B49B-9BA5B431FCCE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-landscape-lobby_0_85AA7455-DD4F-4FF2-BC24-38A17C235B41.png",
+        "timestamp": 1791570573.757
+      }
+    ],
+    "testIdentifier": "PlayableGameTests/testTabletLandscapeLobbyStartsMatch()",
+    "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/PlayableGameTests/testTabletLandscapeLobbyStartsMatch"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "A96979E5-4F53-41BE-9D60-734F7761BA7B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-rotation-commit-undo_0_4089A20A-384B-454B-A2A3-F966B001A5E6.png",
+        "timestamp": 1791570589.958
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "11F20241-359D-40F1-BCD5-06F50E10C970.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-landscape-match_0_6507AF17-E07A-478D-9E12-806A3C9A5A89.png",
+        "timestamp": 1791570587.883
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "7CDB95FA-4DC5-425F-8D8A-1B75F5D1E674.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-portrait-match_0_A154927A-2C49-470C-9E17-A0D270C647AF.png",
+        "timestamp": 1791570584.836
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "744FB6D3-CCD5-4DE3-8771-FC30AF691042.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-portrait-lobby_0_DB13A923-B4BA-4446-86E5-247B4E2E564B.png",
+        "timestamp": 1791570582.043
+      }
+    ],
+    "testIdentifier": "PlayableGameTests/testTabletNativePortraitLandscapeAndSelectionSurviveRotation()",
+    "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/PlayableGameTests/testTabletNativePortraitLandscapeAndSelectionSurviveRotation"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "02C992A0-BD7A-416B-B2FB-C3EA63410C94.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-sound-sheet_0_0086CEAD-5F67-4BFB-B0CA-9CF5912F3EA5.png",
+        "timestamp": 1791570602.58
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "9838EAA7-25BA-40F6-BCEA-42BD3871A2BE",
+        "deviceName": "TacticalGo iPad mini layout",
+        "exportedFileName": "FDA48CBF-07A9-4D78-87B9-D458A4FD4A99.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "iPad-native-nine-landscape_0_39A7D645-55E1-4A15-93F4-FC674BDD01A2.png",
+        "timestamp": 1791570597.219
+      }
+    ],
+    "testIdentifier": "PlayableGameTests/testTabletNineBoardLandscapeTouchAndSoundSettings()",
+    "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/PlayableGameTests/testTabletNineBoardLandscapeTouchAndSoundSettings"
+  }
+]

@@ -1,0 +1,136 @@
+{
+  "evidence": "browser motion study",
+  "nativeBuild": "NOT RUN",
+  "nativeTests": "NOT RUN",
+  "checks": [
+    {
+      "width": 375,
+      "skill": 0,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 1,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 2,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 3,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 4,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 5,
+      "pass": true
+    },
+    {
+      "width": 375,
+      "skill": 6,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 0,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 1,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 2,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 3,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 4,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 5,
+      "pass": true
+    },
+    {
+      "width": 402,
+      "skill": 6,
+      "pass": true
+    },
+    {
+      "interaction": "cancel before cues clears sound schedule",
+      "pass": true
+    },
+    {
+      "interaction": "background-style stop freezes and cancels RAF",
+      "pass": true
+    },
+    {
+      "interaction": "media reduced motion shows final board without donor or trail",
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 0,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 1,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 2,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 3,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 4,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 5,
+      "pass": true
+    },
+    {
+      "interaction": "normal-speed playback reaches landed",
+      "skill": 6,
+      "pass": true
+    },
+    {
+      "interaction": "seven-skill sequence plays continuously to final offering",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "interaction": "review page fits phone",
+      "pass": true
+    }
+  ],
+  "invariants": [],
+  "errors": [],
+  "video": "Silent browser motion recording; not native rig or device performance"
+}

@@ -1,0 +1,36 @@
+{
+  "base": {
+    "bg": "#CCDCCE",
+    "card": "#F4EAD8",
+    "wood": "#CFA572",
+    "ink": "#243F43",
+    "gold": "#D9B46C",
+    "sage": "#6C9276",
+    "confirm": "#F1D394",
+    "danger": "#CF665A",
+    "mage": "#9277B6",
+    "black": "#344C5B",
+    "white": "#F3E8CF"
+  },
+  "derived": {
+    "selected": "#DCE7D5",
+    "disabled": "#DFE7DB",
+    "muted": "#496454",
+    "danger-surface": "#F1DED3",
+    "mage-deep": "#59446F",
+    "shadow-gold": "#B79B60",
+    "shadow-sage": "#A5B49C",
+    "highlight": "#FFF9ED",
+    "card-mist": "#F4EAD833",
+    "coordinate-ink": "#183438",
+    "danger-deep": "#6E302B",
+    "ink-shadow": "#243F4321",
+    "ink-hint": "#183438"
+  },
+  "referenceOnly": [
+    "wood",
+    "black",
+    "white"
+  ],
+  "approval": "cozy02_limited_ui_candidate_not_native_or_asset_approved"
+}

@@ -1,0 +1,1 @@
+First browser attempt: reduction checkbox assertion ran before asynchronous matchMedia event. Assertion false !== true at review-animation23.cjs:71. Earlier real WAV / unlock / follow-up / cancellation checks reached this point. These partial checks are not counted as PASS. Harness now waits for observable checkbox update; native NOT RUN.

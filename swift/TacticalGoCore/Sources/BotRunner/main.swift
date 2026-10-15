@@ -197,7 +197,7 @@ import TacticalGoBot
                 "legalSkillCount": skills.count, "legalSkills": skills.map(encoded), "board": state.board.diagram]
     }
     static func skillSummary(_ rows: [[String: Any]]) -> [[String: Any]] {
-        HeroClass.allCases.filter { $0 != .none }.map { hero in
+        HeroClass.originalClasses.map { hero in
             let turns = rows.filter { $0["heroClass"] as! String == hero.rawValue }
             let present = turns.filter { $0["heroPresent"] as! Bool }
             let unavailable = present.filter { $0["manaEnough"] as! Bool && $0["skillUnused"] as! Bool && $0["ap"] as! Int > 0 && $0["legalSkillCount"] as! Int == 0 }
@@ -248,7 +248,15 @@ import TacticalGoBot
         case .castMagicHand(let at, let direction): return ["kind": "castMagicHand", "at": p(at), "direction": direction.rawValue]
         case .castFriendlyRedeploy(let source, let destination): return ["kind": "castFriendlyRedeploy", "from": p(source), "to": p(destination)]
         case .castSwap(let at): return ["kind": "castSwap", "at": p(at)]
+        case .castSanctuary(let a,let b): return ["kind":"sanctuary", "points":[p(a),p(b)]]
+        case .castOffering(let a): return ["kind":"offering", "points":[p(a)]]
+        case .castDoublePull(let a,let b): return ["kind":"doublePull", "points":[p(a.from),p(a.to),p(b.from),p(b.to)]]
+        case .castReformation(let a,let b): return ["kind":"reformation", "points":[p(a.from),p(a.to),p(b.from),p(b.to)]]
+        case .castChainSwap(let a,let b): return ["kind":"chainSwap", "points":[p(a),p(b)]]
         case .castSeal(let at): return ["kind": "castSeal", "at": p(at)]
+        case .useStickyBounce(let a, let b): return ["kind": "stickyBounce", "anchor": [a.x,a.y], "target": [b.x,b.y]]
+        case .useShadowStep(let p): return ["kind": "shadowStep", "at": [p.x,p.y]]
+        case .huntMonster(let p): return ["kind": "huntMonster", "at": [p.x, p.y]]
         case .endTurn: return ["kind": "endTurn"]
         }
     }

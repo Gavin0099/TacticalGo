@@ -1,0 +1,15 @@
+{
+  "schema": "tacticalgo-business-status-v1",
+  "recordedAt": "2026-10-11T13:39:28.273694+00:00",
+  "method": "Visible ASC business table",
+  "paidAppsAgreement": "ACTIVE",
+  "freeAppsAgreement": "ACTIVE",
+  "bank": "ACTIVE",
+  "taxForms": {
+    "Taiwan": "COMPLETE",
+    "USCertificate": "COMPLETE",
+    "USW8BEN": "COMPLETE"
+  },
+  "containsFinancialAccountDetails": false,
+  "claimBoundary": "Account readiness only, not build uploaded or app submitted."
+}

@@ -1,0 +1,273 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "list",
+      "devices",
+      "--json-output",
+      "artifacts/ios/anim-mage-m3/devices-initial.json"
+    ],
+    "commandType" : "devicectl.list.devices",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "518.33"
+  },
+  "result" : {
+    "devices" : [
+      {
+        "capabilities" : [
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.acquireusageassertion",
+            "name" : "Acquire Usage Assertion"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.connectdevice",
+            "name" : "Connect to Device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.tags",
+            "name" : "Modify Tags"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.default.user.credentials",
+            "name" : "Modify credentials for default users for a device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.unpairdevice",
+            "name" : "Unpair Device"
+          }
+        ],
+        "connectionProperties" : {
+          "authenticationType" : "manualPairing",
+          "isMobileDeviceOnly" : false,
+          "lastConnectionDate" : "2026-10-09T18:36:00.000Z",
+          "pairingState" : "paired",
+          "potentialHostnames" : [
+            "GavinWu0099.coredevice.local",
+            "0F60A459-7EE8-5B1B-BDF6-6B4D6047FAB8.coredevice.local",
+            "00008140-001A055C0E93001C.coredevice.local"
+          ],
+          "transportType" : "localNetwork",
+          "tunnelState" : "disconnected",
+          "tunnelTransportProtocol" : "tcp"
+        },
+        "deviceProperties" : {
+          "bootedFromSnapshot" : true,
+          "bootedSnapshotName" : "com.apple.os.update-FB3BBCA580F76F563A99F44A97AA7CD4A739E8A71FFB8581FA7195146EE61053",
+          "ddiServicesAvailable" : false,
+          "developerModeStatus" : "enabled",
+          "hasInternalOSBuild" : false,
+          "name" : "GavinWu0099",
+          "osBuildUpdate" : "24A437",
+          "osVersionNumber" : "27.0",
+          "rootFileSystemIsWritable" : false,
+          "screenViewingURL" : "devices://device/open?id=0F60A459-7EE8-5B1B-BDF6-6B4D6047FAB8",
+          "supportsCheckedAllocations" : false
+        },
+        "hardwareProperties" : {
+          "cpuType" : {
+            "name" : "arm64e",
+            "subType" : 2,
+            "type" : 16777228
+          },
+          "deviceType" : "iPhone",
+          "ecid" : 7324242334122012,
+          "hardwareModel" : "D93AP",
+          "internalStorageCapacity" : 256000000000,
+          "isProductionFused" : true,
+          "marketingName" : "iPhone 16 Pro",
+          "platform" : "iOS",
+          "productType" : "iPhone17,1",
+          "reality" : "physical",
+          "serialNumber" : "HQ9KR6VH4C",
+          "supportedCPUTypes" : [
+            {
+              "name" : "arm64e",
+              "subType" : 2,
+              "type" : 16777228
+            },
+            {
+              "name" : "arm64",
+              "subType" : 0,
+              "type" : 16777228
+            }
+          ],
+          "supportedDeviceFamilies" : [
+            1
+          ],
+          "thinningProductType" : "iPhone17,1",
+          "udid" : "00008140-001A055C0E93001C"
+        },
+        "identifier" : "0F60A459-7EE8-5B1B-BDF6-6B4D6047FAB8",
+        "tags" : [
+
+        ],
+        "visibilityClass" : "default"
+      },
+      {
+        "capabilities" : [
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.acquireusageassertion",
+            "name" : "Acquire Usage Assertion"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.connectdevice",
+            "name" : "Connect to Device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.tags",
+            "name" : "Modify Tags"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.default.user.credentials",
+            "name" : "Modify credentials for default users for a device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.unpairdevice",
+            "name" : "Unpair Device"
+          }
+        ],
+        "connectionProperties" : {
+          "authenticationType" : "manualPairing",
+          "isMobileDeviceOnly" : false,
+          "lastConnectionDate" : "2026-08-02T03:08:00.000Z",
+          "pairingState" : "paired",
+          "potentialHostnames" : [
+            "wuruiyideAppleWatch.coredevice.local",
+            "AF8615AF-B1A2-5A40-BBF9-6488C8912BB4.coredevice.local",
+            "00008310-000568800AA0E01E.coredevice.local"
+          ],
+          "transportType" : "localNetwork",
+          "tunnelState" : "disconnected",
+          "tunnelTransportProtocol" : "tcp"
+        },
+        "deviceProperties" : {
+          "ddiServicesAvailable" : false,
+          "developerModeStatus" : "disabled",
+          "hasInternalOSBuild" : false,
+          "name" : "吳瑞益的Apple Watch",
+          "osBuildUpdate" : "23S620",
+          "osVersionNumber" : "26.3",
+          "screenViewingURL" : "devices://device/open?id=AF8615AF-B1A2-5A40-BBF9-6488C8912BB4"
+        },
+        "hardwareProperties" : {
+          "cpuType" : {
+            "name" : "arm64e",
+            "subType" : -2147483646,
+            "type" : 16777228
+          },
+          "deviceType" : "appleWatch",
+          "ecid" : 1522274026971166,
+          "hardwareModel" : "N227bAP",
+          "isProductionFused" : true,
+          "marketingName" : "Apple Watch Series 11",
+          "platform" : "watchOS",
+          "productType" : "Watch7,18",
+          "reality" : "physical",
+          "serialNumber" : "H2R9MDFX40",
+          "thinningProductType" : "Watch7,18",
+          "udid" : "00008310-000568800AA0E01E"
+        },
+        "identifier" : "AF8615AF-B1A2-5A40-BBF9-6488C8912BB4",
+        "tags" : [
+
+        ],
+        "visibilityClass" : "default"
+      },
+      {
+        "capabilities" : [
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.acquireusageassertion",
+            "name" : "Acquire Usage Assertion"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.connectdevice",
+            "name" : "Connect to Device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.tags",
+            "name" : "Modify Tags"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.default.user.credentials",
+            "name" : "Modify credentials for default users for a device"
+          },
+          {
+            "featureIdentifier" : "com.apple.coredevice.feature.unpairdevice",
+            "name" : "Unpair Device"
+          }
+        ],
+        "connectionProperties" : {
+          "authenticationType" : "manualPairing",
+          "isMobileDeviceOnly" : false,
+          "lastConnectionDate" : "2026-10-10T04:25:00.000Z",
+          "pairingState" : "paired",
+          "potentialHostnames" : [
+            "wuruiyideiPad.coredevice.local",
+            "1DEC8AEB-8B27-5D1C-8505-6C39A408C7C3.coredevice.local",
+            "00008110-0012183E2E86801E.coredevice.local"
+          ],
+          "transportType" : "localNetwork",
+          "tunnelState" : "disconnected",
+          "tunnelTransportProtocol" : "tcp"
+        },
+        "deviceProperties" : {
+          "bootedFromSnapshot" : true,
+          "bootedSnapshotName" : "com.apple.os.update-97DE8FAA7F71DEBA4D5C46F2BC584B2F25650368968678CD02D8134EDB230A04",
+          "ddiServicesAvailable" : false,
+          "developerModeStatus" : "enabled",
+          "hasInternalOSBuild" : false,
+          "name" : "吳瑞益的iPad",
+          "osBuildUpdate" : "23G83",
+          "osVersionNumber" : "26.6.1",
+          "rootFileSystemIsWritable" : false,
+          "screenViewingURL" : "devices://device/open?id=1DEC8AEB-8B27-5D1C-8505-6C39A408C7C3",
+          "supportsCheckedAllocations" : false
+        },
+        "hardwareProperties" : {
+          "cpuType" : {
+            "name" : "arm64e",
+            "subType" : 2,
+            "type" : 16777228
+          },
+          "deviceType" : "iPad",
+          "ecid" : 5093204928397342,
+          "hardwareModel" : "J310AP",
+          "internalStorageCapacity" : 64000000000,
+          "isProductionFused" : true,
+          "marketingName" : "iPad mini (6th generation)",
+          "platform" : "iOS",
+          "productType" : "iPad14,1",
+          "reality" : "physical",
+          "serialNumber" : "VT2MX4T6TQ",
+          "supportedCPUTypes" : [
+            {
+              "name" : "arm64e",
+              "subType" : 2,
+              "type" : 16777228
+            },
+            {
+              "name" : "arm64",
+              "subType" : 0,
+              "type" : 16777228
+            }
+          ],
+          "supportedDeviceFamilies" : [
+            1,
+            2
+          ],
+          "thinningProductType" : "iPad14,1",
+          "udid" : "00008110-0012183E2E86801E"
+        },
+        "identifier" : "1DEC8AEB-8B27-5D1C-8505-6C39A408C7C3",
+        "tags" : [
+
+        ],
+        "visibilityClass" : "default"
+      }
+    ]
+  }
+}

@@ -14,13 +14,25 @@ func action(_ a: GameAction) -> [String: Any] {
     case .castMagicHand(let p, let d): ["type": "castMagicHand", "point": point(p), "direction": d.rawValue]
     case .castFriendlyRedeploy(let from, let to): ["type": "castFriendlyRedeploy", "from": point(from), "to": point(to)]
     case .castSwap(let p): ["type": "castSwap", "point": point(p)]
+    case .castSanctuary(let a,let b): ["type":"sanctuary", "points":[point(a),point(b)]]
+    case .castOffering(let a): ["type":"offering", "points":[point(a)]]
+    case .castDoublePull(let a,let b): ["type":"doublePull", "points":[point(a.from),point(a.to),point(b.from),point(b.to)]]
+    case .castReformation(let a,let b): ["type":"reformation", "points":[point(a.from),point(a.to),point(b.from),point(b.to)]]
+    case .castChainSwap(let a,let b): ["type":"chainSwap", "points":[point(a),point(b)]]
     case .castSeal(let p): ["type": "castSeal", "point": point(p)]
+    case .useStickyBounce(let a, let b): ["type": "stickyBounce", "anchor": point(a), "target": point(b)]
+    case .useShadowStep(let p): ["type": "shadowStep", "at": point(p)]
+    case .huntMonster(let p): ["type": "huntMonster", "at": [p.x, p.y]]
     case .endTurn: ["type": "endTurn"]
     }
 }
 func event(_ e: ActionEvent) -> [String: Any] {
     var row: [String: Any] = ["type": e.name]
     switch e {
+    case .pieceSacrificed(let p,let at): row.merge(["player":p.rawValue,"at":point(at)]) { _,new in new }
+    case .monsterLootGranted(let p, let ability, let unlock): row.merge(["player": p.rawValue, "ability": ability.rawValue, "unlockPly": unlock]) { _, new in new }
+    case .monsterAbilityUsed(let p, let ability): row.merge(["player": p.rawValue, "ability": ability.rawValue]) { _, new in new }
+    case .monsterHunted(let p, let at): row.merge(["player": p.rawValue, "at": point(at)]) { _, new in new }
     case .resourcesSpent(let p, let ap, let mana): row.merge(["player": p.rawValue, "ap": ap, "mana": mana]) { _, new in new }
     case .piecePlaced(let p, let at, let kind): row.merge(["player": p.rawValue, "at": point(at), "kind": kind.rawValue]) { _, new in new }
     case .piecesSwapped(let p, let a, let b): row.merge(["player": p.rawValue, "from": point(a), "to": point(b)]) { _, new in new }

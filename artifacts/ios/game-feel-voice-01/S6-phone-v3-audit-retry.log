@@ -1,0 +1,14 @@
+02:36:02  Acquired tunnel connection to device.
+02:36:02  Enabling developer disk image services.
+02:36:03  Acquired usage assertion.
+ERROR: The application failed to launch. (com.apple.dt.CoreDeviceError error 10002 (0x2712))
+       BundleIdentifier = com.tacticalgo.prototype.gamefeel
+       ----------------------------------------
+           The request to open "com.tacticalgo.prototype.gamefeel" failed. (FBSOpenApplicationServiceErrorDomain error 1 (0x01))
+           BSErrorCodeDescription = RequestDenied
+           NSLocalizedFailureReason = The request was denied by service delegate (SBMainWorkspace) for reason: Locked ("Unable to launch com.tacticalgo.prototype.gamefeel because the device was not, or could not be, unlocked").
+           FBSOpenApplicationRequestID = 0x8b18
+       ----------------------------------------
+               The operation couldn’t be completed. Unable to launch com.tacticalgo.prototype.gamefeel because the device was not, or could not be, unlocked. (FBSOpenApplicationErrorDomain error 7 (0x07))
+               NSLocalizedFailureReason = Unable to launch com.tacticalgo.prototype.gamefeel because the device was not, or could not be, unlocked.
+               BSErrorCodeDescription = Locked

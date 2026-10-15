@@ -1,0 +1,25 @@
+{
+  "evidence": "browser HTMLAudioElement scheduling/gain only",
+  "first": [
+    {
+      "src": "http://127.0.0.1:8771/ios/TacticalGo/PresentationLab/P08/p8-rogue-land.wav",
+      "volume": 0.22799999999999998,
+      "paused": false
+    }
+  ],
+  "cues": [
+    {
+      "file": "P08/p8-rogue-land.wav",
+      "scheduled": 0.26,
+      "started": 0.2669000000953674
+    },
+    {
+      "file": "P08/p8-rogue-land.wav",
+      "scheduled": 0.36,
+      "started": 0.3708000000715256
+    }
+  ],
+  "passed": true,
+  "listening": "NOT RUN",
+  "native": "NOT RUN"
+}

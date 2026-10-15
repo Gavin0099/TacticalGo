@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-13",
+  "source_branch": "origin/codex/v11-monster-battlefield",
+  "source_commit": "004ed4cdc661bc20261a587e11d91e54dc649b9d",
+  "assets": [
+    {
+      "asset": "ios/TacticalGo/Assets.xcassets/game-ability-atlas-v20.imageset/game-ability-atlas-v20.png",
+      "generator": "image_gen.imagegen",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-b1a22e84-29d5-4bae-b65e-786a515f9900.png",
+      "prompt_verbatim_file": "prompts/atlas-v2.txt",
+      "sha256": "14a6eb056fd941d9fbfaf45b21f9307a7d076ad338ea025432dc54b318892cef",
+      "size": [
+        1448,
+        1086
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "original_pixels_preserved": true,
+      "source_type": "original_generated_candidate",
+      "grid": [
+        4,
+        3
+      ],
+      "row_boundary_alpha_max": [
+        0,
+        1
+      ]
+    },
+    {
+      "asset": "ios/TacticalGo/Assets.xcassets/game-tray-frame-v20.imageset/game-tray-frame-v20.png",
+      "generator": "image_gen.imagegen",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-236000cf-0e8d-4a1a-a2be-93d074d4c909.png",
+      "prompt_verbatim_file": "prompts/frame-v2.txt",
+      "sha256": "9aaf4a9123df1c3535cd3a830f218305abae10e32f4a643f6226ad01a064f629",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "original_pixels_preserved": true,
+      "source_type": "original_generated_candidate"
+    }
+  ],
+  "competitor_media_imported": false,
+  "existing_hero_assets": "Retained current portraits; no character redraw",
+  "iterations": [
+    {
+      "asset": "atlas-v1",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-048046cf-3e05-417e-9674-2be01a0eae5f.png",
+      "prompt": "prompts/atlas-v1.txt",
+      "issue": "Priest leaf leaked into mage cell; preserved iteration-1 screenshots and atlas",
+      "sha256": "72b1e77a10c2e8b698a7f84bdec83cc29291f968d3538e58315e81c2090980e5",
+      "archived_source": "iteration-1/atlas-v1.png"
+    },
+    {
+      "asset": "frame-v1",
+      "generation_source": "C:\\Users\\reiko\\.codex\\generated_images\\01a13339-d8c4-7ac0-8260-f100653a791b\\exec-a3c18846-9d2d-4a30-a544-f7fedb700059.png",
+      "prompt": "prompts/frame-v1.txt",
+      "issue": "Thick rail and outer margin consumed content area; regenerated thinner frame",
+      "sha256": "15eed3a55e815cc518056d8c1c57ed3c4674e9b3dfbf7a800fd1f714901cd718",
+      "archived_source": "iteration-1/frame-v1.png"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "audio": "event-timed postmix; AVAudioPlayer actual start and volume; not recorded system audio",
+  "timingBoundary": "capture-ready acknowledgement used as zero; no hardware audiovisual synchronization claim",
+  "clips": [
+    {
+      "title": "Ordinary drop / commander captured / undo verified",
+      "receipt": "F2C8DEB5-0C8A-485E-9E5F-5F3841A88471",
+      "before": {
+        "ap": 2,
+        "classes": [
+          "Warrior",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          6,
+          6
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              2
+            ],
+            "kind": "commander",
+            "owner": "two"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "ongoing"
+      },
+      "after": {
+        "ap": 1,
+        "classes": [
+          "Warrior",
+          "Mage"
+        ],
+        "current": "one",
+        "mana": [
+          6,
+          6
+        ],
+        "pieces": [
+          {
+            "at": [
+              3,
+              1
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              2,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              4,
+              2
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              3
+            ],
+            "kind": "soldier",
+            "owner": "one"
+          },
+          {
+            "at": [
+              3,
+              5
+            ],
+            "kind": "commander",
+            "owner": "one"
+          }
+        ],
+        "status": "won"
+      },
+      "windowUptime": [
+        13079.905015125001,
+        13083.205015125
+      ],
+      "audioEvents": [
+        {
+          "key": "selection",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 13080.685670916668,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "place",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 13081.388864416667,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "capture",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 13081.474236208334,
+          "volume": 0.6499999761581421
+        },
+        {
+          "key": "victory",
+          "kind": "sfx",
+          "playing": true,
+          "uptime": 13082.179695708333,
+          "volume": 0.6499999761581421
+        }
+      ],
+      "mixPeak": 0.35763090729233227
+    }
+  ]
+}

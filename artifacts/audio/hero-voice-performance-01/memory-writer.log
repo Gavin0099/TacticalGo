@@ -1,0 +1,16 @@
+[memory_record] advisory: test_evidence claims success without an existing artifacts/ path; the memory authority guard will flag this entry as test_evidence_provenance_not_found. Wrap the validation command in governance_tools.test_evidence_receipt_writer and cite the receipt path inside --test-evidence.
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/2026-10-10.md (surface identity=1691a57f3dc78f21574036872386ce3d48bdb78d8358a1ce12aff550b6013847)
+[memory_record] Written: /Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/memory/01_active_task.md (surface identity=1691a57f3dc78f21574036872386ce3d48bdb78d8358a1ce12aff550b6013847)
+- memory_type: session-derived
+  record_format_version: 1.0
+  writer: governance_tools.memory_record
+  what_changed: VO-PERF-01 Owner-authorized two-line performance pilot generated locally with instruction-directed Qwen VoiceDesign, dev-only MLX, no voice-clone reference or paid service. Final warriorA/B and mageA2/B3 dry candidates with original-A-B comparison. Retained3 prior length/ASR-HOLD attempts; no trim-to-fake dialogue. App/Core/Bot/assets/BGM unchanged.
+  commit: c5cde5d
+  commit_hash: c5cde5d
+  session_id: cli-20261010-094008
+  memory_binding: bound
+  test_evidence: ASR-CHECK.json4/4 expected words using independent offline Whisper, no text prompt; PCM-CHECK.json4/4 mono24k0clipping; selected-manifest/source snapshotSHA assertions PASS; git diff --check PASS. New audio not integrated, no Swift/Golden rerun or human-quality PASS claimed. Runtime pip declared unusedTorch dependency warning retained.
+  next_step: Owner selects actual acting/voice direction from dry auditions; current rejected V3 still placeholder. Only after listening Gate proceed to two-line native playback and consistency, no full six-line casting or new gameplay yet. FormalBGM/art/release-rights Pending.
+  plan_reconciliation: updated
+  record_identity: 1691a57f3dc78f21574036872386ce3d48bdb78d8358a1ce12aff550b6013847
+

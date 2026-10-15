@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-10",
+  "branch": "codex/anim-mage-body-01",
+  "base": "005fba4bc2634c743a711a5b41011057e507dc42",
+  "implementation": "local uncommitted",
+  "status": {
+    "engineering": "PASS",
+    "acting_art": "HOLD",
+    "physical_animation": "HOLD",
+    "production_rights": "Pending",
+    "formal_bgm": "HOLD"
+  },
+  "package": {
+    "tests": 162,
+    "failures": 0,
+    "evidence": "package-all-verified.log"
+  },
+  "golden": {
+    "fixtures": 38,
+    "steps": 99,
+    "snapshots": 137,
+    "fresh_swift": true,
+    "fresh_csharp": false,
+    "cached_reference_match": true,
+    "evidence": "golden-evidence.json"
+  },
+  "native_runs": [
+    {
+      "surface": "390pt Simulator",
+      "executions": 3,
+      "failures": 0,
+      "evidence": "native-focused-verified.xcresult",
+      "revision": "before final mask-only clipping adjustment"
+    },
+    {
+      "surface": "SE320pt Simulator",
+      "executions": 2,
+      "failures": 0,
+      "evidence": "native-se.xcresult",
+      "revision": "final"
+    },
+    {
+      "surface": "390pt real gesture recording",
+      "executions": 1,
+      "failures": 0,
+      "evidence": "media/native-record.xcresult",
+      "revision": "final"
+    },
+    {
+      "surface": "SE320pt real gesture recording; repeat of dense/reduced test",
+      "executions": 1,
+      "failures": 0,
+      "evidence": "media/safety/native-safety.xcresult",
+      "revision": "final"
+    }
+  ],
+  "visible_owner_audit": {
+    "checks": 97,
+    "passed": 97,
+    "evidence": "mage-body-audit.json"
+  },
+  "builds": {
+    "debug": true,
+    "release": true,
+    "signed_device": true,
+    "codesign": true
+  },
+  "devices": {
+    "ipad": "0.9.0 (903) separate candidate installed via Wi-Fi; locked; no foreground verification",
+    "iphone": "unavailable; no installation/operation claim for new body candidate"
+  },
+  "media": {
+    "source": "native SwiftUI Simulator real XCTest gestures",
+    "speed": 1.0,
+    "audio": "none; no postmix",
+    "board_receipts": 6,
+    "closeup": "separately labelled art inspection, not Domain settlement",
+    "checkpoints": "native frozen successful-receipt samples, not live animation",
+    "fps": "output30; no device performance benchmark"
+  },
+  "limitations": [
+    "small layer seams / occlusion boundary near close-up staff",
+    "no new facial expression animation",
+    "cutout articulation, not hand-drawn full poses or 3D mesh",
+    "no human acting gate",
+    "no physical animation, acoustic synchronization or frame pacing evidence",
+    "cached C# reference; exporter SDK unavailable"
+  ],
+  "scope": {
+    "Domain_changed": false,
+    "Bot_changed": false,
+    "rules_changed": false,
+    "voice_assets_changed": false,
+    "warrior_rogue_expansion": false,
+    "candidate_redeployment_push_animation": false
+  },
+  "delivery": {
+    "new_commit": false,
+    "push": false,
+    "merge": false,
+    "publish": false,
+    "primary_checkout_changed": false
+  },
+  "memory": {
+    "writer": "external existing canonical governance_tools.memory_record",
+    "plan": "updated",
+    "guard": "ran; completion_claim_allowed=true; no blockers",
+    "warnings": {
+      "missing_canonical_memory": 2,
+      "test_evidence_provenance_not_found": 5,
+      "repo_local_writer_guard": "not found"
+    },
+    "citation_correction": "evidence-ledger-receipt.json; existing evidence validation only",
+    "claim": "not entire repo memory completeness, not governance update"
+  }
+}

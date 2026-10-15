@@ -1,0 +1,132 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun ios/Build/Products/TacticalGo_iphonesimulator26.5-arm64.xctestrun -destination "platform=iOS Simulator,id=9838EAA7-25BA-40F6-BCEA-42BD3871A2BE" "-only-testing:TacticalGoUITests/PlayableGameTests/testTabletNativePortraitLandscapeAndSelectionSurviveRotation" -resultBundlePath artifacts/ios/anim-mage-m3/native-ipad.xcresult
+
+2026-10-10 16:19:50.694 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/native-ipad.xcresult
+
+2026-10-10 16:19:50.726 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:9838EAA7-25BA-40F6-BCEA-42BD3871A2BE, OS:18.0, name:TacticalGo iPad mini layout }
+{ platform:iOS Simulator, arch:x86_64, id:9838EAA7-25BA-40F6-BCEA-42BD3871A2BE, OS:18.0, name:TacticalGo iPad mini layout }
+2026-10-10 16:19:52.203 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:52.536 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:52.646 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:19:58.077204+0800 TacticalGoUITests-Runner[1337:1262396] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-10 16:20:01.168.
+Test Suite 'TacticalGoUITests.xctest' started at 2026-10-10 16:20:01.169.
+Test Suite 'PlayableGameTests' started at 2026-10-10 16:20:01.169.
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNativePortraitLandscapeAndSelectionSurviveRotation]' started.
+    t =     0.00s Start Test at 2026-10-10 16:20:01.173
+    t =     0.29s Set Up
+    t =     0.29s Setting device orientation to Portrait
+    t =     0.29s     Device orientation changed to Portrait
+    t =     0.32s     Wait for com.apple.springboard to idle
+    t =     0.36s Open com.tacticalgo.prototype
+    t =     0.36s     Launch com.tacticalgo.prototype
+2026-10-10 16:20:01.759 xcodebuild[1234:1261282] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-10 16:20:01.759 xcodebuild[1234:1261282] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.41s         Setting up automation session
+    t =     2.19s         Wait for com.tacticalgo.prototype to idle
+    t =     4.05s Find the Window (First Match)
+    t =     4.11s Tap "電腦對戰" Button
+    t =     4.11s     Wait for com.tacticalgo.prototype to idle
+    t =     4.11s     Find the "電腦對戰" Button
+2026-10-10 16:20:05.354 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+    t =     4.19s     Check for interrupting elements affecting "電腦對戰" Button
+    t =     4.21s     Synthesize event
+    t =     4.62s     Wait for com.tacticalgo.prototype to idle
+    t =     4.84s Tap "白方後手" Button
+    t =     4.84s     Wait for com.tacticalgo.prototype to idle
+    t =     4.85s     Find the "白方後手" Button
+    t =     4.87s     Check for interrupting elements affecting "白方後手" Button
+    t =     4.89s     Synthesize event
+    t =     5.18s     Wait for com.tacticalgo.prototype to idle
+    t =     5.39s Find the "簡單" Button
+    t =     5.50s Added attachment named 'iPad-native-portrait-lobby'
+    t =     5.50s Find the "startMatch" Button
+    t =     5.53s Tap "startMatch" Button
+    t =     5.53s     Wait for com.tacticalgo.prototype to idle
+    t =     5.53s     Find the "startMatch" Button
+    t =     5.55s     Check for interrupting elements affecting "startMatch" Button
+    t =     5.66s     Synthesize event
+    t =     5.95s     Wait for com.tacticalgo.prototype to idle
+    t =     6.28s Waiting 5.0s for "botStatus" Any to exist
+    t =     7.31s     Checking `Expect predicate `existsNoRetry == 1` for object "botStatus" Any`
+    t =     7.31s         Checking existence of `"botStatus" Any`
+    t =     8.41s Checking `Expect predicate `value == "已完成1電腦回合"` for object "botStatus" Any`
+    t =     8.41s     Find the "botStatus" Any
+    t =     8.46s Find the "currentTurn" StaticText
+    t =     8.50s Find the "playConfirm" Button
+    t =     8.54s Find the "playArena" Other
+    t =     8.66s Added attachment named 'iPad-native-portrait-match'
+    t =     8.66s Setting device orientation to Landscape Left
+    t =     8.67s     Device orientation changed to Landscape Left
+    t =     8.79s     Interface orientation changed to Landscape Right
+    t =     8.79s     Wait for com.tacticalgo.prototype to idle
+    t =     8.83s Waiting 10.0s for "playArena" Other to exist
+    t =     9.86s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =     9.86s         Checking existence of `"playArena" Other`
+    t =     9.91s Find the "playArena" Other
+    t =     9.95s Find the "playConfirm" Button
+    t =     9.98s Find the "playEndTurn" Button
+    t =    10.06s Checking existence of `"2 AP" StaticText`
+    t =    10.12s Waiting 10.0s for "playArena" Other to exist
+    t =    11.15s     Checking `Expect predicate `existsNoRetry == 1` for object "playArena" Other`
+    t =    11.15s         Checking existence of `"playArena" Other`
+    t =    11.24s Tap "playArena" Other[0.13, 0.18]
+    t =    11.24s     Wait for com.tacticalgo.prototype to idle
+    t =    11.24s     Find the "playArena" Other
+    t =    11.30s     Check for interrupting elements affecting "playArena" Other
+    t =    11.34s     Synthesize event
+    t =    11.35s         Find the "playArena" Other
+    t =    11.39s         Find the "playArena" Other
+    t =    11.47s         Find the "playArena" Other
+    t =    11.86s     Wait for com.tacticalgo.prototype to idle
+    t =    11.87s Find the "playConfirm" Button
+    t =    11.92s Find the "playArena" Other
+    t =    12.14s Added attachment named 'iPad-native-landscape-match'
+    t =    12.15s Setting device orientation to Portrait
+    t =    12.15s     Device orientation changed to Portrait
+    t =    12.21s     Interface orientation changed to Portrait
+    t =    12.21s     Wait for com.tacticalgo.prototype to idle
+    t =    13.28s Find the Window (First Match)
+    t =    13.29s Find the Window (First Match)
+    t =    13.30s Find the "playArena" Other
+    t =    13.36s Tap "playConfirm" Button
+    t =    13.36s     Wait for com.tacticalgo.prototype to idle
+    t =    13.36s     Find the "playConfirm" Button
+    t =    13.42s     Check for interrupting elements affecting "playConfirm" Button
+    t =    13.46s     Synthesize event
+    t =    13.76s     Wait for com.tacticalgo.prototype to idle
+    t =    13.76s Checking existence of `"1 AP" StaticText`
+    t =    13.81s Tap "undoOrCancel" Button
+    t =    13.81s     Wait for com.tacticalgo.prototype to idle
+    t =    13.81s     Find the "undoOrCancel" Button
+    t =    13.85s     Check for interrupting elements affecting "undoOrCancel" Button
+    t =    13.90s     Synthesize event
+    t =    14.19s     Wait for com.tacticalgo.prototype to idle
+    t =    14.19s Checking existence of `"2 AP" StaticText`
+    t =    14.35s Added attachment named 'iPad-rotation-commit-undo'
+    t =    14.35s Setting device orientation to Portrait
+    t =    14.35s     Wait for com.tacticalgo.prototype to idle
+    t =    14.36s Tear Down
+Test Case '-[TacticalGoUITests.PlayableGameTests testTabletNativePortraitLandscapeAndSelectionSurviveRotation]' passed (14.623 seconds).
+Test Suite 'PlayableGameTests' passed at 2026-10-10 16:20:15.796.
+	 Executed 1 test, with 0 failures (0 unexpected) in 14.623 (14.627) seconds
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-10 16:20:15.798.
+	 Executed 1 test, with 0 failures (0 unexpected) in 14.623 (14.628) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 16:20:15.799.
+	 Executed 1 test, with 0 failures (0 unexpected) in 14.623 (14.631) seconds
+2026-10-10 16:20:15.990 xcodebuild[1234:1261282] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-10 16:20:16.134 xcodebuild[1234:1261282] [MT] IDETestOperationsObserverDebug: 23.927 elapsed -- Testing started completed.
+2026-10-10 16:20:16.134 xcodebuild[1234:1261282] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 16:20:16.134 xcodebuild[1234:1261282] [MT] IDETestOperationsObserverDebug: 23.927 sec, +23.927 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo/artifacts/ios/anim-mage-m3/native-ipad.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

@@ -1,0 +1,19 @@
+{
+  "schema": "crown-business-status-observation-v1",
+  "recordedAt": "2026-10-11T13:11:54.067354+00:00",
+  "observationDate": "2026-10-11",
+  "source": "Visible App Store Connect business table, Chrome tab 960224549, read during this turn",
+  "paidAgreement": "PROCESSING",
+  "bankStatus": "PROCESSING",
+  "taxForms": {
+    "TaiwanTax": "COMPLETE",
+    "USCertificate": "COMPLETE",
+    "USW8BEN": "COMPLETE"
+  },
+  "appleNotice": "Bank information is updating; changes may appear after 24 hours and further updates are unavailable in the interim.",
+  "financialAnswersEnteredByAgent": false,
+  "privateFinancialDataPersisted": false,
+  "subsequentBrowserRecovery": "Original tab closed; CDP focus emulation timed out for remaining business tab and new version tab. No subsequent form mutation claimed.",
+  "agreementActive": false,
+  "releaseReady": false
+}

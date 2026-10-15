@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python3 -c \"import json,pathlib; p=pathlib.Path(\\\"artifacts/ios/anim-mage-body-01\\\"); v=json.loads((p/\\\"validation.json\\\").read_text()); assert v[\\\"visible_owner_audit\\\"] == {\\\"checks\\\":97,\\\"passed\\\":97,\\\"evidence\\\":\\\"mage-body-audit.json\\\"}; assert \\\"Executed 162 tests, with 0 failures\\\" in (p/\\\"package-all-verified.log\\\").read_text(); assert \\\"TEST EXECUTE SUCCEEDED\\\" in (p/\\\"media/native-record-test.log\\\").read_text(); assert \\\"TEST EXECUTE SUCCEEDED\\\" in (p/\\\"media/safety/native-safety.log\\\").read_text(); assert all((p/\\\"media\\\"/s).is_file() for s in [\\\"mage-body-board-demo.mp4\\\",\\\"mage-body-closeup.mp4\\\",\\\"mage-body-cancel-undo.mp4\\\",\\\"mage-body-reduced-motion.mp4\\\"]); print(\\\"PASS: existing native recordings, package log and97/97 audit agree with ledger; not a new run of162 tests\\\")\"",
+  "exit_code": 0,
+  "started_at": "2026-10-10T04:27:51Z",
+  "finished_at": "2026-10-10T04:27:51Z",
+  "runner": "mage-body-evidence-ledger",
+  "linked_commit": "005fba4bc2634c743a711a5b41011057e507dc42",
+  "output_artifacts": [
+    "artifacts/ios/anim-mage-body-01/evidence-ledger-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

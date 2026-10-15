@@ -1,0 +1,19 @@
+{
+  "ios/TacticalGo/MageBodyView.swift": "eb4f4958b0710cd85489dc402c96b649f2239eef57b7013279c9fa47848719db",
+  "ios/TacticalGo/MagePoseReview.swift": "f34ae3aec5aee0ebabd43f40cfb8f3abcb7772ee720b392b4753aeebba0324f3",
+  "ios/TacticalGo/MageBody/clean-plate.png": "9a633d497e0ce5baaa1f726312d87b49507df65b1c997c84374fa2f612be294d",
+  "ios/TacticalGo/CozyStyle.swift": "0b65069015032be0b8bc42499825e8451b93516eff36166d9be371885e31d54b",
+  "ios/TacticalGo/CozyBoard.swift": "75e81b4d5051cd907205557397199dbe469ad9866cfe03dea727f4ae12be6161",
+  "ios/TacticalGo/GameStore.swift": "5fe4d338a46f5a90c649d9509e4d33ef1d9aec7434876496b72966ca9adc8a14",
+  "ios/TacticalGo/BoardPlayback.swift": "ef4fd5517a2a4434ce06ff33ea99dac86a5343546303586c340a4c8db0b27b90",
+  "ios/TacticalGo/Anim01Assets.swift": "d3a60cfb7a28b9236ed7868f78906c9bab4060c7a0cfec3d6b0dade0707c1a4f",
+  "ios/TacticalGo/CozyAudit.swift": "40ac85bf46711136b1410eb23463f490aa9912e9b020c9809f1b71bc8d2752ba",
+  "ios/TacticalGo/PlayableGameView.swift": "61790b580e325f8d4e9cbde951c4374418462786506d3839d9bfdf02dce10ffa",
+  "ios/TacticalGo/TacticalGoApp.swift": "c2d911f543027ed5407eb0697f59ca8731637075cd3f60a6f87af3a28f325ace",
+  "ios/TacticalGoUITests/PlayableGameTests.swift": "201291e2eced661cf5cd86bf0fc48f6100081e2023f5600274d66b4de37839eb",
+  "ios/TacticalGo.xcodeproj/project.pbxproj": "3c5321459af18170bb38538d2494bbf0aa09e286724ead5fd3a9939f88706c7d",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/MagePerformance.swift": "611da2c5c7c55f48853c0cba539e83a33103fc49f36ae0f19e9e1af28dbe299f",
+  "swift/TacticalGoCore/Sources/TacticalGoMotion/Anim01MagicHand.swift": "d2d999f36ef72aaff7b3a2ac6f23005ef554e5d9bc9d5df5e84c93a1e1f2948f",
+  "swift/TacticalGoCore/Tests/TacticalGoMotionTests/MagePerformanceTests.swift": "c9d7b476459c47ee6f902e69f918b72ecc485a0d49bb0f8744c796ee5e83535d",
+  "swift/TacticalGoCore/Tests/TacticalGoMotionTests/Anim01Tests.swift": "c63f35bcec3c4d3d4054ce7a9b79d3b30a5a983d9916af3434d42993a84cc87d"
+}

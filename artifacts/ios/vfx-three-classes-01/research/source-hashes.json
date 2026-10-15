@@ -1,0 +1,42 @@
+[
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/DECISION.md",
+    "sha256": "91f13741e5b87fac1d50a2f2dd12c9828ba2bce3e32240bca1dd61512e5e2780"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Pow-Example_Pow Example_Examples_Change Effects_SprayExample.swift",
+    "sha256": "f8b6f4d4de0ea9827984d383a9375d1b7e0b14c7a7048ce6f54682bfbd76658f"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Pow-LICENSE",
+    "sha256": "bf8a18984e613f9a1d412cbf6ed6a2845447dd0ae9553ebfde6360aa518abd9b"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Pow-Sources_Pow_Effects_SprayEffect.swift",
+    "sha256": "be227f30a47f75e2b37922666b9e292a5eea28519574815202ded51d5ea89640"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Pow-Sources_Pow_Infrastructure_ParticleLayer.swift",
+    "sha256": "d21e323cb014f6496b7e9846372e054bc96629bae702a2c9aca5f44d72b568d2"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Vortex-LICENSE",
+    "sha256": "5ecac440fbe9e244840edb76b386403bfc0384f229383959c2a3423319bf0e5d"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Vortex-Sandbox_Sandbox_PreviewViews_FireworksView.swift",
+    "sha256": "b721b4b13822f5c5db3380873d0dc3310a3adb709eb89b153f92366dfc82e590"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Vortex-Sandbox_Sandbox_PreviewViews_MagicView.swift",
+    "sha256": "8c0eacc99014fd9923bbfe8941e7c8656fad3813b5275fe12005767eee236afd"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Vortex-Sources_Vortex_Presets_Fireworks.swift",
+    "sha256": "58bc5245b806055b73642583050c903209b4baed76d6fc318ab9c7918405a10a"
+  },
+  {
+    "file": "artifacts/ios/vfx-three-classes-01/research/Vortex-Sources_Vortex_Presets_Magic.swift",
+    "sha256": "0160204d0d0d2b199dd8ea2c5fbcdb0f62898f090f510f22f8f9a65f07cd0339"
+  }
+]

@@ -298,7 +298,7 @@ import TacticalGoMotion
             part(root, cape, navy, at: [0, 0.49, -0.19]).name = "cape-shell"
             // Hip-mounted pouch stays clear of the cloak's outward motion.
             tailoredPouch(on: root)
-        case .none: break
+        case .priest, .none: break
         }
         if let shell = root.findEntity(named: "cape-shell") {
             let cape = Entity(); cape.name = "cape"; cape.position = [0, 0.735, -0.18]

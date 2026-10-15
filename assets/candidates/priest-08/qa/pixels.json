@@ -1,0 +1,11 @@
+{
+  "source": "assets/candidates/priest-08/priest-v01.png",
+  "width": 1254,
+  "height": 1254,
+  "alpha": true,
+  "fileSHA256": "e38066b8a7c7f0817c3251898bb03b7aefc020fedb33fdfbc6a3834c66326ab9",
+  "rgbaSHA256": "5af7c79a5a2621f8334b2584306e5f877e7796f75f6833140005bd0091fabb2a",
+  "transparentPixels": 1026944,
+  "opaquePixels": 926,
+  "method": "sharp whole-canvas Lanczos3 resample for QA only; source preserved"
+}

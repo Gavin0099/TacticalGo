@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python3 scripts/verify-skill-vfx-delivery.py",
+  "exit_code": 0,
+  "started_at": "2026-10-10T10:38:52Z",
+  "finished_at": "2026-10-10T10:38:52Z",
+  "runner": "native-vfx-delivery",
+  "linked_commit": "60ffa998c4d31c23b05acc1bc2332f786c5784ae",
+  "output_artifacts": [
+    "artifacts/ios/vfx-three-classes-01/evidence-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

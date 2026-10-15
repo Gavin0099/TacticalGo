@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-13",
+  "target": "At least 90% overall Hearthstone presentation quality",
+  "quality_percent": null,
+  "target_reached": false,
+  "overall_quality_work": "OPEN",
+  "evidence_ceiling": "Current evidence is source and browser rendering/playback; no native build, device audio/FPS or independent human comparison",
+  "references": [
+    {
+      "url": "https://hearthstone.blizzard.com/en-us/news/22552047",
+      "type": "official 2018 design article",
+      "read": true
+    },
+    {
+      "url": "https://bnetcmsus-a.akamaihd.net/cms/gallery/9c/9CFRDO0LQVJ01538087188621.gif",
+      "browser_image_loaded": true,
+      "evidence": "static samples only; canvas drawImage samples not a reliable animated sequence"
+    },
+    {
+      "url": "https://bnetcmsus-a.akamaihd.net/cms/gallery/kq/KQVA4JRG6RJN1538005446563.gif",
+      "navigation": "timeout",
+      "initial_frame_visible": true,
+      "two_screenshots": "identical; no complete attack evidence"
+    }
+  ],
+  "iterations": [
+    {
+      "name": "contact-outline-first",
+      "verdict": "too subtle at phone scale; continue",
+      "evidence": "iteration-1"
+    },
+    {
+      "name": "painted-material-layering-and-two-contact-sound",
+      "verdict": "local contact/material and actor separation improved in self review; overall parity unestablished",
+      "evidence": "contact-*.png, dense-contact.png, browser-run3.log"
+    }
+  ],
+  "remaining": [
+    "Mac complete Swift tests and Debug/Beta builds",
+    "Native real audio/UI cancellation, input recovery and terminal checks",
+    "Four classes / seven skills 375 and 402 normal and dense matched native videos",
+    "Listening with matched loudness and actual music duck / overlap",
+    "Device FPS, touch, accessibility and sustained gameplay",
+    "Acting and secondary motion refinement from native evidence and independent comparison"
+  ],
+  "competitor_media_in_game_assets": false,
+  "research_screenshots": "local only; excluded from push"
+}

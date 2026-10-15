@@ -1,0 +1,139 @@
+{
+  "schema": "tacticalgo-solo-17-v1",
+  "version": "1.1",
+  "build": "1105",
+  "appID": "6821588889",
+  "bundle": "com.tacticalgo.prototype.herobody",
+  "archive": "artifacts/v11/solo-17/CrownTactics-1.1-1105.xcarchive",
+  "ipa": "artifacts/v11/solo-17/Distribution/TacticalGo.ipa",
+  "ipaSHA256": "ea64bfb3ddbf09dc5fb829924af0da1e706997068970cb5915f866d0bf89f2df",
+  "ipaBytes": 66526085,
+  "signature": "verified_distribution_getTaskAllow_false",
+  "privacyManifest": "present_local_settings_elapsed_animation_timers",
+  "presentationAssetsUnchanged": 54,
+  "fourClassSolo": true,
+  "newSkillsDefault": true,
+  "warriorWeightedCutout": true,
+  "heartbeatPaused": true,
+  "compiledMonsters": [
+    {
+      "name": "slime-token-v02.png",
+      "pixelsEqual": true,
+      "compiledSHA256": "22da04b61b7b67b8d66a319ab0fa5b7974b1b327948df575c649b21d4942299d"
+    },
+    {
+      "name": "shadow-wolf-preview-v02.png",
+      "pixelsEqual": true,
+      "compiledSHA256": "8f249cc11075b80f10d8d653369881b16d872d8bb7ea6a1b54db88f99887c2da"
+    }
+  ],
+  "nativeUI": [
+    {
+      "summary": "beta-summary.json",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "summary": "debug-summary.json",
+      "passed": 2,
+      "failed": 0
+    }
+  ],
+  "nativeRunCondition": "Beta6 actual lobby/practice menus; Debug2 explicitly engineering receipt and cancellation fixtures",
+  "swiftTests": {
+    "passed": 250,
+    "failed": 0,
+    "ref": "artifacts/v11/solo-17/swift-delivery.log"
+  },
+  "internalTestFlightOnly": true,
+  "uploaded": true,
+  "uploadExit": 0,
+  "uploadBlockedByAccount": false,
+  "appleProcessingVerified": true,
+  "ownerGroupAvailabilityVerified": true,
+  "publicRelease": false,
+  "submittedForAppReview": false,
+  "humanQualityAcceptance": false,
+  "sourceHashes": {
+    "ios/TacticalGo/ExpansionLabView.swift": "170c63b629c26dee75ff5f3e62401a10cebad9a23c539e734bb44c12e244fc66",
+    "ios/TacticalGo/PlayableGameView.swift": "54ac59244d07c57b6e5efb75b9de857c769e91347fba2a38d9e8243053b821d9",
+    "ios/TacticalGo/ModelGeometry.swift": "7e3b762b19f6e482cf4c33ba3c5484bd6382098628ea2445e9c2fb870109c21f",
+    "ios/TacticalGo/ExpansionSpellEffects.swift": "029c3632f3e1bd97cc30fede29205beaddd3975a0e7353b2fbbfe4741dd308be",
+    "ios/TacticalGo/WarriorBodyView.swift": "6409ef9c3ababfc61f76ae7a1dedb25a7d3c69153b97aacf4211576359291b44",
+    "ios/TacticalGo/ModelArena.swift": "f1d978de8fb46ef1a88228d771861e3278b21185d5cf831af3b1828de517edd6",
+    "ios/TacticalGo/GameVisualAssets.swift": "86570fd7de5237082419143a7501b16052e8d5906453db47a89c1fdf858be0c3",
+    "ios/TacticalGo/WarriorPresentationLab.swift": "f58f4f8f627022d94c514bf53587b263e91dcbe02f44f0832dbae1a7cd170d56",
+    "ios/TacticalGo/TacticalGoApp.swift": "1f9ed964184910d90e107fdde0bd92b026667480b7ffda4dc6ec38e6cc06d2dd",
+    "ios/TacticalGo/BoardViews.swift": "f11315000f1be95ecfd9e72650558594257e2098503d29675787e70a59ddd040",
+    "ios/TacticalGo/ModelCamera.swift": "b93331618eb2c1e1d9201928fd1973f1a7847a7dbb8e51f1a8bdeab27704d516",
+    "ios/TacticalGo/ModelEffects.swift": "904a26d4fcde1e4336aa2b5ed8c8f50898d692f63f73ce38ecb4692a25a0c92f",
+    "ios/TacticalGo/PresentationLabView.swift": "a8c78e4cc011102b034880c5075817a47140d21b5ca9c6b226c44b44aedf638a",
+    "ios/TacticalGo/RecordLibraryView.swift": "90bb90a3643a21e011040bf33b2cc0e58da10a179203309221a545df042cfeb4",
+    "ios/TacticalGo/CombatAudio.swift": "032cc54c476ec479dd7232e1e9dc34509503f7c6c11452c51c67f173832cd1da",
+    "ios/TacticalGo/IntegratedAudioAudit.swift": "fae7ad07f8ffdc8fb69f02a1fbfdc02ccdf8c74923f65a06ea2d756c415f0ca2",
+    "ios/TacticalGo/R2LabView.swift": "22be96641c12b18435d9b8da5a8d54bc44c2705b19cea129aef14e4e4936622e",
+    "ios/TacticalGo/GameStore.swift": "6dea7c6c983ce47a86adc4e2312e6756f499e363a89a076a667cc9be232b42b5",
+    "ios/TacticalGo/BoardPlayback.swift": "0e82c73bf8a8baa24e4a2d63187c22c04b2d607c427269792bcc7e07c541f80d",
+    "ios/TacticalGo/ExpansionHeroBody.swift": "33dbb8b6ee67bdf91efe480d79cb045b223cc813e2682168d5a89b10be671421",
+    "ios/TacticalGo/MonsterLabView.swift": "59444999fafb8bcc26efbc1c3c0a32138a5cd65b7817a521d6a2319369c7cdbf",
+    "ios/TacticalGo/ModelMotion.swift": "3883dbb4f00e2d10253fc2ab7b173d502146ebe7b2352340bb4a3d7705a8f6c6",
+    "ios/TacticalGo/ModelBoard.swift": "22b7b1dc28dad363ef7f6ee95a390893e0028f73ed4a844f3578f08c09619473",
+    "ios/TacticalGo/MatchGallery.swift": "aa2b8f6af109e5a0669ecf20d927dadab886e27c000ce74decef8427ef46249e",
+    "ios/TacticalGo/ModelLibrary.swift": "35acf6a79316a0ff58146cdf1ce08e6eca9fec6f80362219905f64aaf930a506",
+    "ios/TacticalGo/OnboardingView.swift": "dc5f263861788f2d9de6bfad16b463310efc0b38d62c78c3db00098dc1b38b68",
+    "ios/TacticalGo/ContentView.swift": "576fbec6659e351eca0f88dda4e5e893350d2c82d4bfe6a4e821c2685ed81b9c",
+    "ios/TacticalGo/ModelExport.swift": "85f51a3f55e1bce8341ce9aefdd89f7167755fa59542dc441995982c04501db8",
+    "ios/TacticalGo/AnimationGallery.swift": "929342015d30378a39626e692119863fe279ecfe314b3a5960d6d8fbd769bc48",
+    "ios/TacticalGo/PresentationMageBody.swift": "c644e9f758f2d4ebaa20647475d69477ee8d99dc40648af1262454f8b3435e2c"
+  },
+  "failureEvidenceRetained": [
+    "expanded-first.log",
+    "expanded-second.log",
+    "hunt-diagnostics.log",
+    "swift-full.log",
+    "swift-final.log",
+    "expanded-repaired.log",
+    "Debug-safety.xcresult",
+    "Debug-serial.xcresult",
+    "Debug-executed.xcresult",
+    "TEST_RUN_NOTES.md"
+  ],
+  "notes": [
+    "Final Beta6 and serial Debug2; earlier Beta4 is intermediate and not added to total. Earlier Debug build DB lock failed and is excluded.",
+    "1.0 submission/worktree/archive untouched.",
+    "1103/1104 remain available. 1105 physical phone/AI/weight acceptance not claimed."
+  ],
+  "appleBuild": {
+    "appID": "6821588889",
+    "version": "1.1",
+    "build": "1105",
+    "buildID": "0c69c29f-572f-46d9-a749-42356512a668",
+    "processingComplete": true,
+    "testingState": "testing",
+    "whatToTestSaved": true,
+    "groupName": "Owner 1.1",
+    "groupTesterCount": 1,
+    "evidence": "build1105-details-saved.png",
+    "source": "native Chrome visible App Store Connect UI",
+    "groupAvailabilityEvidence": "testflight1105-ready.png"
+  },
+  "ownerGroup": {
+    "groupID": "d4c66485-705a-45b7-8e5f-9aaf5bbefe54",
+    "groupName": "Owner 1.1",
+    "kind": "internal",
+    "distribution": "manual",
+    "ownerOnly": true,
+    "testerCount": 1,
+    "buildCount": 3,
+    "build1105Available": true,
+    "retainedBuilds": [
+      "1103",
+      "1104"
+    ],
+    "ownerInstalledPriorBuild": "1104",
+    "currentPhysicalInstallVerified": false,
+    "humanQualityAcceptance": false,
+    "evidence": "testflight1105-ready.png",
+    "source": "native Chrome visible group builds: 1105/1104/1103 testing"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "401DDDA0-8AA8-4A55-A61E-8FC9A7BB7C28",
+        "deviceName" : "TacticalGo Board16 iPhone SE",
+        "modelName" : "iPhone SE (3rd generation)",
+        "osBuildNumber" : "22A3351",
+        "osVersion" : "18.0",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 0,
+      "passedTests" : 2,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "TacticalGo · Built with macOS 26.6.2",
+  "expectedFailures" : 0,
+  "failedTests" : 0,
+  "finishTime" : 1791777839.727,
+  "passedTests" : 2,
+  "result" : "Passed",
+  "skippedTests" : 0,
+  "startTime" : 1791777786.108,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+
+  ],
+  "title" : "Test - TacticalGo",
+  "topInsights" : [
+
+  ],
+  "totalTestCount" : 2
+}

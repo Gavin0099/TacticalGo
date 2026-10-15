@@ -1,0 +1,37 @@
+{
+  "info" : {
+    "arguments" : [
+      "devicectl",
+      "device",
+      "install",
+      "app",
+      "--device",
+      "1DEC8AEB-8B27-5D1C-8505-6C39A408C7C3",
+      "ios/Build/Products/Debug-iphoneos/TacticalGo.app",
+      "--json-output",
+      "artifacts/ios/anim-mage-m3/ipad-install.json"
+    ],
+    "commandType" : "devicectl.device.install.app",
+    "environment" : {
+      "TERM" : "dumb"
+    },
+    "jsonVersion" : 3,
+    "outcome" : "success",
+    "version" : "518.33"
+  },
+  "result" : {
+    "deviceIdentifier" : "1DEC8AEB-8B27-5D1C-8505-6C39A408C7C3",
+    "installedApplications" : [
+      {
+        "bundleID" : "com.tacticalgo.prototype.magem3",
+        "databaseSequenceNumber" : 2304,
+        "databaseUUID" : "4318E5C7-8BC3-4504-A4FC-10E1A852CC0A",
+        "installationURL" : "file:///private/var/containers/Bundle/Application/81717A22-2674-4106-B8A7-131BBDC997B2/TacticalGo.app/",
+        "launchServicesIdentifier" : "unknown",
+        "options" : {
+
+        }
+      }
+    ]
+  }
+}

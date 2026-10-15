@@ -1,0 +1,49 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "F6EB8FAF-2132-4B82-829B-2EF917920AA1",
+        "deviceName" : "iPhone 17 Pro",
+        "modelName" : "iPhone 17 Pro",
+        "osBuildNumber" : "23F77",
+        "osVersion" : "26.5",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 1,
+      "passedTests" : 3,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "TacticalGo · Built with macOS 26.6.2",
+  "expectedFailures" : 0,
+  "failedTests" : 1,
+  "finishTime" : 1791717322.762,
+  "passedTests" : 3,
+  "result" : "Failed",
+  "skippedTests" : 0,
+  "startTime" : 1791716630.121,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+    {
+      "failureText" : "Failed to tap \"exitMatchConfirmed\" Button: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x1171280f0>.\nSparse tree of matches:\n→Application, pid: 9318, label: '皇冠戰略'\n  ↳Window (Main)\n    ↳Other\n      ↳Alert, label: '離開目前對戰？'\n        ↳Other\n          ↳Other\n            ↳Other\n              ↳ScrollView\n                ↳Other\n                  ↳Other\n                    ↳Button, identifier: 'exitMatchConfirmed', label: '返回選角'\n                      ↳Button, identifier: 'exitMatchConfirmed', label: '返回選角'\nPossibly caused by runtime issues:\nAutomation type mismatch: computed Button from legacy attributes vs PopUpButton from modern attribute. Input attributes and values: {\n    \"XC_kAXXCAttributeAutomationType\" = 14;\n    \"XC_kAXXCAttributeElementBaseType\" = UIResponder;\n    \"XC_kAXXCAttributeElementType\" = \"SwiftUI.AccessibilityNode\";\n    \"XC_kAXXCAttributeTraits\" = 1108101562369;\n}\nSee test report attachments for more detail.",
+      "targetName" : "TacticalGoUITests",
+      "testIdentifier" : 4,
+      "testIdentifierString" : "PlayableGameTests/testSell03HomeHierarchyNavigationAndResume()",
+      "testIdentifierURL" : "test://com.apple.xcode/TacticalGo/TacticalGoUITests/PlayableGameTests/testSell03HomeHierarchyNavigationAndResume",
+      "testName" : "testSell03HomeHierarchyNavigationAndResume()"
+    }
+  ],
+  "title" : "Test - TacticalGo",
+  "topInsights" : [
+
+  ],
+  "totalTestCount" : 4
+}

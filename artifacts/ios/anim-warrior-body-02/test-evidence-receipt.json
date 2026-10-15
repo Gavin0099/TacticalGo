@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python3 scripts/verify-warrior-body02-delivery.py",
+  "exit_code": 0,
+  "started_at": "2026-10-10T09:51:42Z",
+  "finished_at": "2026-10-10T09:51:43Z",
+  "runner": "focused-warrior-delivery-verifier",
+  "linked_commit": "06afb1cbad53de85b1421a7beef1570beaa711ac",
+  "output_artifacts": [
+    "artifacts/ios/anim-warrior-body-02/test-evidence-receipt.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

@@ -1,0 +1,35 @@
+Building for debugging...
+[0/14] Write sources
+[2/14] Write swift-version--58304C5D6DBC2206.txt
+[4/6] Emitting module TacticalGoMotion
+[5/6] Compiling TacticalGoMotion CombatFeedbackPlan.swift
+[6/9] Emitting module TacticalGoMotionTests
+[7/9] Compiling TacticalGoMotionTests CombatFeedbackTests.swift
+[7/9] Write Objects.LinkFileList
+[8/9] Linking TacticalGoCorePackageTests
+Build complete! (1.39s)
+Test Suite 'Selected tests' started at 2026-10-10 02:13:20.904.
+Test Suite 'TacticalGoCorePackageTests.xctest' started at 2026-10-10 02:13:20.906.
+Test Suite 'CombatFeedbackTests' started at 2026-10-10 02:13:20.906.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testCandidateRedeployUsesSuccessfulMovementCueAndRejectsWithoutSound]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testCandidateRedeployUsesSuccessfulMovementCueAndRejectsWithoutSound]' passed (0.002 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testDangerPlaysOnlyWhenCommanderEntersOneLiberty]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testDangerPlaysOnlyWhenCommanderEntersOneLiberty]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testIllegalAndInsufficientManaProduceNoSuccessSounds]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testIllegalAndInsufficientManaProduceNoSuccessSounds]' passed (0.000 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testMagicHandCommanderCaptureAndResourcesFromReviewedPosition]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testMagicHandCommanderCaptureAndResourcesFromReviewedPosition]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNativeContactTimingsFollowReviewedMotionContract]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNativeContactTimingsFollowReviewedMotionContract]' passed (0.001 seconds).
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNonCapturePushNeverPlaysCaptureOrVictoryAndReducedMotionKeepsSound]' started.
+Test Case '-[TacticalGoMotionTests.CombatFeedbackTests testNonCapturePushNeverPlaysCaptureOrVictoryAndReducedMotionKeepsSound]' passed (0.000 seconds).
+Test Suite 'CombatFeedbackTests' passed at 2026-10-10 02:13:20.911.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'TacticalGoCorePackageTests.xctest' passed at 2026-10-10 02:13:20.911.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'Selected tests' passed at 2026-10-10 02:13:20.911.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.004 (0.007) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,0 +1,10 @@
+{
+  "repo": "EmergeTools/Pow",
+  "sha": "1b4b1dda28c50b95f0872927ee2226fe8b58950e",
+  "files": [
+    "Example/Pow Example/Examples/Change Effects/SprayExample.swift",
+    "LICENSE",
+    "Sources/Pow/Effects/SprayEffect.swift",
+    "Sources/Pow/Infrastructure/ParticleLayer.swift"
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "evidence": "browser-design-fixture",
+  "nativeBuild": "NOT RUN",
+  "nativeTests": "NOT RUN",
+  "checks": [
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "warrior",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "rogue",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "priest",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 375,
+      "hero": "mage",
+      "screen": "directions",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "warrior",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "rogue",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "ready",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "preview",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "loot",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "locked",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "result",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "priest",
+      "screen": "lobby",
+      "pass": true
+    },
+    {
+      "width": 402,
+      "hero": "mage",
+      "screen": "directions",
+      "pass": true
+    }
+  ],
+  "interactions": [
+    "preview",
+    "cancel retains resources",
+    "confirm changes fixture resource display",
+    "undo restores fixture display",
+    "insufficient fixture resources reject confirm",
+    "loot scroll and unlock state",
+    "help and Escape",
+    "reduced motion",
+    "keyboard replay"
+  ],
+  "screenshots": [
+    "candidate-402-preview.png",
+    "candidate-375-ready.png",
+    "candidate-375-result.png",
+    "candidate-375-lobby.png",
+    "candidate-402-lobby.png",
+    "candidate-overview.png",
+    "candidate-four-classes.png",
+    "candidate-action-dock.png",
+    "seven-skills-32-48-64.png"
+  ],
+  "errors": []
+}

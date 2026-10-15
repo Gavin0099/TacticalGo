@@ -1,6 +1,7 @@
 import SwiftUI
 import SpriteKit
 import TacticalGoCore
+import TacticalGoMotion
 import TacticalGoVisuals
 
 extension Color {
@@ -75,6 +76,7 @@ struct ArenaGrid: Shape {
         case .warrior: CGPoint(x: 0.54, y: 0.93)
         case .mage: CGPoint(x: 0.54, y: 0.94)
         case .rogue: CGPoint(x: 0.55, y: 0.93)
+        case .priest: CGPoint(x: 0.5, y: 0.9)
         case .none: CGPoint(x: 0.5, y: 0.93)
         }
     }
@@ -260,10 +262,16 @@ struct SwiftBoard: View {
     private var botFocus: Set<Point> {
         guard let action = computerAction else { return [] }
         switch action {
+        case .castSanctuary(let a,let b), .castChainSwap(let a,let b): return [a,b]
+        case .castOffering(let p): return [p]
+        case .castDoublePull(let a,let b), .castReformation(let a,let b): return [a.from,a.to,b.from,b.to]
         case .placeSoldier(let p), .summonHero(let p), .castSeal(let p): return [p]
         case .castBastion(let a, let b), .castFriendlyRedeploy(let a, let b): return [a, b]
         case .castMagicHand(let p, let d): return [p, d.destination(from: p)]
         case .castSwap(let p): return Set([p] + (botArrow.map { [$0.0] } ?? []))
+        case .huntMonster(let p): return [p]
+        case .useStickyBounce(let a, let b): return [a, b]
+        case .useShadowStep(let p): return [p]
         case .endTurn: return []
         }
     }
@@ -279,7 +287,7 @@ struct SwiftBoard: View {
     }
 }
 /// Small A0 presentation adapter for committed Bot events; no game rules or new art.
-private struct BotBoardFrame {
+struct BotBoardFrame {
     struct Sprite: Identifiable {
         let id: Int
         let piece: Piece
@@ -289,9 +297,57 @@ private struct BotBoardFrame {
         let lift: Double
         let scale: Double
         let opacity: Double
+        var lateral = 0.0
     }
     var hidden: Set<Point> = []
     var sprites: [Sprite] = []
+    /// Reuses the existing sprite data and MotionPlan timing for committed native actions.
+    static func committed(_ receipt: BoardPlayback, elapsed: Double, pitch: Double, reducedMotion: Bool) -> BotBoardFrame {
+        let plan = receipt.plan
+        guard !reducedMotion, receipt.outcome.success, elapsed < plan.duration else { return BotBoardFrame() }
+        func fraction(_ start: Double, _ duration: Double) -> Double { min(1, max(0, (elapsed - start) / duration)) }
+        var result = BotBoardFrame(), animated: Set<Point> = []
+        let captures = plan.cues.filter { if case .capture = $0.kind { return true }; return false }
+        func opacity(_ at: Point) -> Double {
+            guard let cue = captures.first(where: { $0.points.contains(at) }) else { return 1 }
+            return 1 - fraction(cue.start, cue.duration)
+        }
+        for cue in plan.cues {
+            switch cue.kind {
+            case .drop(let kind):
+                for p in cue.points {
+                    result.hidden.insert(p); animated.insert(p)
+                    // The committed after-board already contains both soldiers.
+                    // Keep their destinations hidden until the body's release cue.
+                    guard elapsed >= cue.start else { continue }
+                    let t = fraction(cue.start,cue.duration)
+                    result.sprites.append(Sprite(id: result.sprites.count, piece: Piece(receipt.before.current,kind), from: p,to: p,progress: 1,
+                        lift: -pitch * 0.18 * MotionCurves.dropHeight(t),scale: kind == .hero ? 0.62 + 0.38 * MotionCurves.ease(min(1,t / 0.70)) : 1,
+                        opacity: (kind == .hero && receipt.heroPerformance?.isSummon != true ? min(1,t / 0.35) : 1) * opacity(p)))
+                }
+            case .swap:
+                guard cue.points.count == 2 else { continue }
+                for i in 0..<2 {
+                    let from = cue.points[i], to = cue.points[1-i]
+                    guard let piece = receipt.before.board[from] else { continue }
+                    let t = fraction(cue.start,cue.duration)
+                    result.hidden.insert(from); result.hidden.insert(to); animated.insert(to)
+                    result.sprites.append(Sprite(id: result.sprites.count,piece: piece,from: from,to: to,
+                        progress: MotionCurves.swapProgress(t),
+                        lift: from.x == to.x ? 0 : (piece.kind == .hero ? -pitch * 0.16 : pitch * 0.08) * sin(t * .pi),
+                        scale: 1,opacity: opacity(to),
+                        lateral: from.x == to.x ? (piece.kind == .hero ? -pitch * 0.16 : pitch * 0.08) * sin(t * .pi) : 0))
+                }
+            case .capture(let piece):
+                for p in cue.points where !animated.contains(p) {
+                    let t = fraction(cue.start,cue.duration); result.hidden.insert(p)
+                    result.sprites.append(Sprite(id: result.sprites.count,piece: piece,from: p,to: p,progress: 1,lift: -pitch * 0.12 * t,scale: 1 - 0.45 * t,opacity: 1 - t))
+                }
+            default: break
+            }
+        }
+        return result
+    }
     static func make(_ receipt: BoardPlayback?, startedAt: Date?, now: Date, reducedMotion: Bool) -> BotBoardFrame {
         guard !reducedMotion, let receipt, let startedAt else { return BotBoardFrame() }
         let elapsed = max(0, now.timeIntervalSince(startedAt))
