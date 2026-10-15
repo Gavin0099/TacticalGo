@@ -1,0 +1,2 @@
+ok=True
+Checked 2 hook config file(s) under .github/hooks for VS Code Stop -> closeout wiring.

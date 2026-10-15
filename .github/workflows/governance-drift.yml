@@ -1,21 +1,60 @@
 name: Governance Drift
 
-# Manual trigger only (Owner decision 2026-10-08: avoid ineffective CI).
-# This repo adopted governance copy-based (audit-only): governance/ holds documents, NOT governance_tools/.
-# The job below only works after the framework is added as a submodule at governance/ (docs/INTEGRATION_GUIDE.md sections 4-5).
-# Until then, run the drift check locally:
-#   python <framework>/governance_tools/governance_drift_checker.py --repo . --framework-root <framework>
+# The framework is a pinned submodule (additional/ai-governance-framework), so this job can run.
+# Triggers are deliberately narrow (Owner wants to avoid wasteful CI): manual, or a pull request that touches
+# governance files or the inputs of the golden-fixture validator. It is NOT run on every push.
+# NOTE (2026-10-14): Actions was disabled at repository level and was re-enabled the same day (GitHub-owned
+# actions only); see docs/GOVERNANCE_SETUP.md.
+# Least privilege stated in the file itself rather than relying on the repository's default token permissions.
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".governance/**"
+      - "AGENTS.base.md"
+      - "AGENTS.md"
+      - "contract.yaml"
+      - "validators/**"
+      - "governance/**"
+      - "additional/ai-governance-framework"
+      - ".gitmodules"
+      # inputs of validators/golden_fixture_validator.py: fixtures and the engine vocabulary it reads
+      - "tests/golden/**"
+      - "src/TacticalGo.Domain/Actions.cs"
+      - "src/TacticalGo.Domain/ActionEvent.cs"
+      - "src/TacticalGo.Domain/Primitives.cs"
+      - "tests/TacticalGo.Domain.Tests/GoldenReplayTests.cs"
+      - ".github/workflows/governance-drift.yml"
+      # managed hook configs: a re-deployed VS Code Stop -> session_end wiring must be caught here
+      - ".github/hooks/**"
+      - "scripts/ci_evidence_receipt.py"
+      - "scripts/test_ci_evidence_receipt.py"
 
 jobs:
   governance-drift:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # Check out the candidate commit itself. A pull_request job checks out the synthetic merge ref by default, which
+      # is not the commit the run is reported against (run.headSha) and not the commit evidence receipts bind to.
+      # Testing the candidate head directly keeps run.headSha == tested commit == receipt linked_commit.
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Verify the checked-out commit is the candidate head
+        run: |
+          expected="${{ github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "expected (candidate head): $expected"
+          echo "checked-out HEAD         : $actual"
+          echo "github.sha (event)       : ${{ github.sha }}"
+          test "$expected" = "$actual"
 
       - uses: actions/setup-python@v5
         with:
@@ -23,7 +62,19 @@ jobs:
 
       - name: Run governance drift check
         run: |
-          python governance/governance_tools/governance_drift_checker.py \
+          python additional/ai-governance-framework/governance_tools/governance_drift_checker.py \
             --repo . \
-            --framework-root governance \
+            --framework-root additional/ai-governance-framework \
             --format human
+
+      - name: Run repo-specific validator (golden fixtures)
+        run: python validators/golden_fixture_validator.py .
+
+      - name: Run validator unit tests (negative cases)
+        run: python -m unittest discover -s validators -p "test_*.py" -v
+
+      - name: Check managed hook wiring (VS Code Stop must not close out a session)
+        run: python validators/hook_wiring_check.py .
+
+      - name: Run evidence helper tests (success judgement)
+        run: python -m unittest discover -s scripts -p "test_*.py" -v

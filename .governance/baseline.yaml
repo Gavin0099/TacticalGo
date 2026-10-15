@@ -11,9 +11,9 @@
 # ── PROVENANCE ────────────────────────────────────────────────────────────────
 schema_version: "1"
 baseline_version: 1.0.0
-source_commit: 1831c10d68f657366980d3f25d8bc26929e8af1d
-framework_root: E:\BackUp\Git_EE\TacticalGo
-initialized_at: 2026-10-08T04:16:58Z
+source_commit: d716d084abcbf613729e0329661420fd6ca0a95a
+framework_root: /Users/pc49-58/TacticalGo-safety/clone-governance/additional/ai-governance-framework
+initialized_at: 2026-10-14T11:02:05Z
 initialized_by: governance_tools/adopt_governance.py
 plan_path: docs/PLAN.md
 
@@ -21,9 +21,9 @@ plan_path: docs/PLAN.md
 # sha256.<file>: canonical-LF hash recorded at init/refresh time; "protected" files are hash-verified
 # overridable.<file>: protected = must not change | overridable = repo may extend freely
 sha256.AGENTS.base.md: 20f247a26575cc0e2e9f09be68ea057ac9a8f5d81ab56717e21a94e43ee3043b
-sha256.PLAN.md: 69e48fdc9f7921064081fe6db6ab4b51f92e509f30eec887323ff1641609073a
-sha256.contract.yaml: ff050b3c8a3aede2b3545da5c007abd0877e4103850004beb8aaa1c72790d5d4
-sha256.AGENTS.md: 42990a0945be28265777c203facf420328bb4b08d7be2eb7abb9351d3b556275
+sha256.PLAN.md: 982d5a4b21fcdcc38ea3f870eb3a933df88fb1639b64f03dfb5d6dae1daaa6cf
+sha256.contract.yaml: 409470323f50fae095f2304d931e2ab9531379efd8562694cb364b2c110554bc
+sha256.AGENTS.md: 0b199195d0f3e7a2894faf39f24f05eee2fd9aad59ba76b18238f28d5da3b567
 overridable.AGENTS.base.md: protected
 overridable.PLAN.md: overridable
 overridable.contract.yaml: overridable
@@ -47,6 +47,11 @@ contract_required_fields:
 # plan_section_inventory: ## headings detected in PLAN.md at adoption/refresh time.
 #   Drift checker surfaces these for visibility but never fails on missing inventory items.
 plan_section_inventory:
+  - "## 目前工作：BOT-01 單人電腦對戰（2026-10-09）"
+  - "## 2026-10-09 — iOS／Visual雙軌：IOS-V2-ASSET-01"
+  - "## 最新 UI 工作：V1 A0 靜態畫面與技能資訊層級（2026-10-09）"
+  - "## 最新試玩後工作：R2 技能候選（2026-10-09）"
+  - "## 當前優先工作：iOS 可玩版（2026-10-09）"
   - "## 1. 產品目標與待驗證假設"
   - "## 2. 首個可玩版本：Tactical Go Lite"
   - "## 3. P0：先凍結可執行規則（未過不得加內容）"
@@ -54,3 +59,18 @@ plan_section_inventory:
   - "## 5. 工程與測試原則"
   - "## 6. Stop / Pivot 條件"
   - "## 7. 下一個最小行動"
+  - "## 2026-10-09 建模與動畫優先進度"
+  - "## 2026-10-09 09:50 — Owner 要求回到原角色身份"
+  - "## 2026-10-09 11:06 — 原圖身份候選與原生動作證據（品質尚未通過）"
+  - "## 2026-10-09 — Owner 戰士 B-v02 頭胸像限定修正"
+  - "## 2026-10-09 — Owner 新授權：Warrior Identity Recovery 頭部最小實驗"
+  - "## 2026-10-09 — Owner 正式否決 head-v02 身份；停止此建模方法"
+  - "## 2026-10-09 — A0 路線已決定；G0 Pending，G1 尚未開始"
+  - "## 2026-10-09 — 現行可玩 iOS 與 Owner 追加範圍（取代前述 G0 Pending／SwiftUI 未開始的歷史狀態）"
+  - "## 2026-10-09 — 原生 iPad 排版與雙裝置 Wi-Fi 更新"
+  - "## 2026-10-09 — 不等待建模：存局、棋譜與技能試驗"
+  - "## 2026-10-09 AUDIO-02 B integration (Owner authorized)"
+  - "## 2026-10-09 — B 音樂雙裝置交付、單人內容與後期技能候選（最新現況）"
+  - "## 2026-10-09 — Owner 戰士 G5／G7 截圖追加"
+  - "## 2026-10-09 — R3 候選完整對局（取代固定試驗限定）"
+  - "## 2026-10-09 ONBOARD-01 交付範圍"
