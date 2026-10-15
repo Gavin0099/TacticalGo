@@ -13,24 +13,40 @@ import TacticalGoContent
     enum Mode: String, CaseIterable { case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能", advanced = "第二技能", loot = "戰利能力" }
     #if DEBUG || TACTICALGO_V11
     var expansion: ExpansionLabStore?
-    /// Starts a full expansion match. `authorize` is the access gate: it runs BEFORE any state is changed, because the
-    /// expansion save is a single slot and must not be overwritten by a match that was never admitted.
+    /// Starts a full expansion match. `authorize` is the access gate: it runs BEFORE any live state changes and before the
+    /// single saved slot is touched. The complete zero-step record is staged first, so a start the ledger accepted
+    /// (possibly reserving a reward credit) is recoverable even if the process stops before the first move
+    /// (INTEG-ACCESS-01 / P1); a refused start discards the staging and keeps the previous match.
     @discardableResult
     func startExpansion(one: HeroClass, two: HeroClass, size: Int, monsters: ExpansionLabStore.Monsters, cost: Int = 4, computer: Player? = nil,
                         authorize: ((UUID) throws -> Void)? = nil) -> Bool {
         let match = ExpansionLabStore()
-        if let authorize, let id = match.matchID {
-            do { try authorize(id) }
-            catch { recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false }
-        }
-        leaveMatch()
         match.one = one; match.two = two; match.size = size; match.monsters = monsters; match.advancedCost = cost
         match.muted = audio.muted; match.computer = computer; match.difficulty = botDifficulty.rawValue
-        match.restart(keepIdentity: true); expansion = match; self.size = match.size; self.computer = computer
+        match.restart(keepIdentity: true)           // builds the opening in memory only
+        let journal = ExpansionLabStore.journal
+        if let authorize, let id = match.matchID {
+            do { try journal.stage(try match.initialRecord()) }
+            catch { recordErrorMessage = "無法保存新局，尚未消耗遊玩資格；原局保留。"; return false }
+            do { try authorize(id) }
+            catch { journal.discard(); recordErrorMessage = "無法保存遊玩額度，尚未開始新局；原局保留。"; return false }
+            #if DEBUG
+            // Test hook: the process stops right after the ledger accepted the start (reserved credit written).
+            if ProcessInfo.processInfo.arguments.contains("--expansion-stop-after-authorize") { exit(0) }
+            #endif
+            // Accepted: this match becomes the saved one. If this step fails, launch recovery completes it.
+            _ = try? journal.promote()
+        }
+        leaveMatch()
+        self.size = match.size; expansion = match; self.computer = computer
         match.onTerminal = { [weak self] id in self?.onMatchCompleted?(id) }
         botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
         bindExpansionAudio(match); match.scene(audioSceneActive)
         return true
+    }
+    /// Shared-layer recovery (original shell and expansion shell): settle a start interrupted around the ledger write.
+    static func recoverExpansionStart(isUnlocked: Bool, isRegistered: (UUID) -> Bool?) {
+        ExpansionLabStore.journal.recover(isUnlocked: isUnlocked, isRegistered: isRegistered)
     }
     func resumeExpansion() -> Bool {
         let match = ExpansionLabStore()

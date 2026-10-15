@@ -297,10 +297,17 @@ struct PlayableGameView: View {
                 try access.continueMatch(copy: copy, of: parent)
             }
             store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
-            access.reconcileCompletedMatches(ids: store.savedRecords.compactMap {
-                guard let status = $0.steps.last?.after.status, status != .ongoing else { return nil }
-                return $0.id
-            })
+            var terminalIDs = store.savedRecords.compactMap { record -> UUID? in
+                guard let status = record.steps.last?.after.status, status != .ongoing else { return nil }
+                return record.id
+            }
+            #if DEBUG || TACTICALGO_V11
+            // INTEG-ACCESS-01: expansion starts and finished expansion matches are settled here, in the app's shared
+            // layer, not only when the expansion shell happens to be opened again.
+            GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+            if let saved = ExpansionLabStore.savedTerminalIdentity() { terminalIDs.append(saved) }
+            #endif
+            access.reconcileCompletedMatches(ids: terminalIDs)
             store.presentationReducedMotion = reduceMotion || cozyReduced
             store.setSceneAudioActive(scenePhase == .active)
             store.setMatchAudioActive(inMatch)

@@ -93,3 +93,26 @@ If the owner chooses option (b) instead (a copy is a new full match) this is the
    instead of 0.28 / 0.30 / 0.54). Looks slightly different from the TestFlight 1.1 candidate; confirm by eye.
 3. English hero voices: not shipped in Release by policy; their listening review is still open (D5).
 4. Whether the expansion should be on in the shipping build and under which version (D3/D4/D6).
+
+
+## INTEG-ACCESS-01 (2026-10-15): billing gaps P1 / P2 and a Release build break
+
+Merged the governed `main` (`dca10d2`) into this branch first (no conflicts; 424 package tests and the Debug build were
+unchanged), then fixed:
+
+| Gap | Fix | Evidence |
+|---|---|---|
+| **P1** reward credit reserved, process stops before the first move, no match to resume | The new match is staged as a complete zero-step record (`pending-start.json` beside the saved slot) BEFORE the ledger is asked; after acceptance it atomically replaces the saved slot; launch recovery promotes a staged record the ledger knows and discards one it never accepted. A refused start keeps the previous match (the old slot is never touched before acceptance). | `ExpansionStartJournalTests` (9, three mutations each caught); UI test `testRewardAdmittedExpansionStartSurvivesAStopBeforeTheFirstMove` failed on the unfixed code (no resumable match) and passes now, including "no second free start" after relaunch |
+| **P2** finished expansion match reconciled only when the expansion shell is opened again | Recovery and reconciliation of the saved expansion slot now also run at the original shell's launch (shared layer); `completeMatch` stays idempotent | UI test `testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell` failed unfixed (allowance stayed 3/3), passes now (2/3) |
+| **Release build** `ExpansionGameView.swift` used `ExpansionLabStore` outside the compile flag, so a **Release build of this branch did not compile at `5a826fa`** (the earlier "Release is still the 1.0 product" statement had never been backed by a Release build) | The reference is now guarded | Release (simulator, unsigned) builds; the built app has no `lobbyExpansion`, `擴充玩法`, `ExpansionLabStore`, `closeExpansion`, `resumeExpansion` strings and no `PresentationLab` folder. The `ExpansionGameView` struct itself is still compiled in but unreachable |
+
+Test hooks added (DEBUG only, only inside per-test isolated namespaces): `--monetization-reward-credit`,
+`--expansion-stop-after-authorize`, `--seed-expansion-terminal-unreconciled`; the saved expansion slot now follows
+`--record-isolation` in DEBUG so UI tests cannot touch a real saved match.
+
+Behaviour change to be aware of: with a gated start, the new match becomes the saved expansion match at start (after the
+ledger accepted), not at its first move. An unfinished previous expansion match is therefore replaced at start, as it
+was before at the first move.
+
+Not in this change (tracked separately, per the task): a completed ad whose reward write fails does not keep its
+request ID (`RewardedAdService`); the M6 (a)/(b) final decision.

@@ -28,6 +28,22 @@ import TacticalGoAccess
                     _ = try ledger?.completeMatch(id: id)
                 }
             }
+            // Test hooks, same isolation rule: only in a per-test access namespace.
+            if directory.path.contains("/TestAccess/") {
+                if ProcessInfo.processInfo.arguments.contains("--monetization-reward-credit") {
+                    _ = try? ledger?.grantReward(requestID: UUID(uuidString: "00000000-0000-0000-0000-0000000000A1")!)
+                }
+                #if DEBUG || TACTICALGO_V11
+                if ProcessInfo.processInfo.arguments.contains("--seed-expansion-terminal-unreconciled"),
+                   ledger?.snapshot.registeredMatches == 0, let record = ExpansionLabStore.seedTerminalRecord(),
+                   let id = record.matchID, let bytes = try? record.data() {
+                    let url = ExpansionLabStore.savedURL
+                    try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                    try? bytes.write(to: url, options: .atomic)
+                    _ = try? ledger?.beginMatch(id: id, kind: .battle, isUnlocked: false)   // admitted, completion never written
+                }
+                #endif
+            }
             #endif
             updateSnapshot()
         } catch {

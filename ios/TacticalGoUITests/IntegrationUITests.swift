@@ -93,4 +93,50 @@ import XCTest
         XCTAssertEqual(app.staticTexts["currentTurn"].value as? String, "新版技能", "the copy is a playable new branch")
         XCTAssertFalse(app.staticTexts["unlockTitle"].exists, "a copy is never gated")
     }
+
+    // INTEG-ACCESS-01 / P1: the ledger accepted a reward-credit start; the process stops before the first move.
+    func testRewardAdmittedExpansionStartSurvivesAStopBeforeTheFirstMove() {
+        continueAfterFailure = false
+        let isolation = UUID().uuidString
+        let base = ["--record-isolation", isolation, "--cozy-reduced", "--monetization-exhausted", "--monetization-reward-credit"]
+        let first = XCUIApplication()
+        first.launchArguments = base + ["--expansion-stop-after-authorize"]
+        first.launch()
+        XCTAssertTrue(first.buttons["lobbyExpansion"].waitForExistence(timeout: 20))
+        XCTAssertEqual(first.staticTexts["accessStatus"].label, "免費完整對局剩餘 0／3")
+        first.buttons["lobbyExpansion"].tap()
+        XCTAssertTrue(first.buttons["startMatch"].waitForExistence(timeout: 10))
+        first.buttons["startMatch"].tap()
+        XCTAssertTrue(first.wait(for: .notRunning, timeout: 20), "the hook stops the app right after the ledger write")
+
+        let second = XCUIApplication()
+        second.launchArguments = base
+        second.launch()
+        XCTAssertTrue(second.buttons["lobbyExpansion"].waitForExistence(timeout: 20))
+        second.buttons["lobbyExpansion"].tap()
+        XCTAssertTrue(second.buttons["resumeExpansion"].waitForExistence(timeout: 10),
+                      "a start that already used the reward credit must leave a match the player can resume")
+        second.buttons["resumeExpansion"].tap()
+        XCTAssertTrue(second.otherElements["playArena"].waitForExistence(timeout: 15))
+        // The credit was used exactly once: after another relaunch a further start is gated again, not silently free,
+        // and the recovered match is still the one saved.
+        second.terminate()
+        let third = XCUIApplication()
+        third.launchArguments = base
+        third.launch()
+        XCTAssertTrue(third.buttons["lobbyExpansion"].waitForExistence(timeout: 20))
+        third.buttons["lobbyExpansion"].tap()
+        XCTAssertTrue(third.buttons["resumeExpansion"].waitForExistence(timeout: 10))
+        XCTAssertTrue(third.buttons["startMatch"].waitForExistence(timeout: 5))
+        third.buttons["startMatch"].tap()
+        XCTAssertTrue(third.staticTexts["unlockTitle"].waitForExistence(timeout: 15), "no second free start")
+    }
+
+    // INTEG-ACCESS-01 / P2: a finished expansion match whose completion never reached the ledger.
+    func testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell() {
+        let app = launch(extra: ["--seed-expansion-terminal-unreconciled"])
+        let settled = NSPredicate(format: "label == %@", "免費完整對局剩餘 2／3")
+        expectation(for: settled, evaluatedWith: app.staticTexts["accessStatus"])
+        waitForExpectations(timeout: 8)
+    }
 }

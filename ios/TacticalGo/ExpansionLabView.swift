@@ -374,17 +374,37 @@ import TacticalGoVisuals
         message = "已復原盤面、資源、技能與魔物庫存。"; saveCandidate(announce:false)
     }
     static var savedURL: URL {
-        FileManager.default.urls(for:.documentDirectory,in:.userDomainMask)[0].appendingPathComponent("ExpansionCandidate08",isDirectory:true).appendingPathComponent("latest.json")
+        var folder = "ExpansionCandidate08"
+        #if DEBUG
+        // UI tests must not read or overwrite the player's single saved expansion match (same isolation id as records).
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of:"--record-isolation"),args.indices.contains(i+1),UUID(uuidString:args[i+1]) != nil {
+            folder = "ExpansionCandidate08-Test-" + args[i+1]
+        }
+        #endif
+        return FileManager.default.urls(for:.documentDirectory,in:.userDomainMask)[0].appendingPathComponent(folder,isDirectory:true).appendingPathComponent("latest.json")
     }
+    #if DEBUG
+    /// Test hook: a finished expansion match as the single saved slot would hold it (real replay of a commander capture).
+    static func seedTerminalRecord() -> ExpansionMatchRecord? {
+        guard var s = try? GameSession(GameSetup.newGame(config:TacticalHints.updatedConfig(size:7,advancedCost:4),classOne:.warrior,classTwo:.mage)) else { return nil }
+        for a: GameAction in [.placeSoldier(Point(3,2)),.endTurn,.placeSoldier(Point(2,1)),.placeSoldier(Point(4,1)),.endTurn,.placeSoldier(Point(3,0))] {
+            guard s.apply(a).success else { return nil }
+        }
+        guard s.state.status != .ongoing else { return nil }
+        return try? ExpansionMatchRecord(session:s,matchID:UUID())
+    }
+    #endif
     private var candidateURL: URL { Self.savedURL }
+    /// Staging next to the single saved slot (INTEG-ACCESS-01 / P1): see `ExpansionStartJournal`.
+    static var journal: ExpansionStartJournal { ExpansionStartJournal(slot: savedURL) }
     /// Identity of the saved match when it is already finished; `nil` for no file, an unfinished match, a legacy file
     /// without an identity, or anything that fails validation (the file is never modified here).
-    static func savedTerminalIdentity() -> UUID? {
-        guard let data = try? Data(contentsOf: savedURL),
-              let record = try? ExpansionMatchRecord.read(data),
-              let id = record.matchID,
-              record.expected.status != .ongoing else { return nil }
-        return id
+    static func savedTerminalIdentity() -> UUID? { journal.savedTerminalIdentity() }
+    /// The complete zero-step record of the match as it starts (nothing is written here).
+    func initialRecord() throws -> ExpansionMatchRecord {
+        guard let session else { throw RecordError.invalidSetup }
+        return try ExpansionMatchRecord(session:session,computer:computer,difficulty:computer == nil ? nil:difficulty,matchID:matchID)
     }
     func saveCandidate(announce: Bool = true) {
         guard let session,!reviewFixture else { return }

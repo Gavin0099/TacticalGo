@@ -149,8 +149,11 @@ struct ExpansionGameView: View {
         .onAppear {
             if let access {
                 store.onMatchCompleted = { id in access.completedMatch(id: id) }
-                // A finished expansion match whose completion was not yet written to the ledger (interrupted launch).
+                #if DEBUG || TACTICALGO_V11
+                // Same settlement as the original shell's launch (idempotent): interrupted start, then unwritten completion.
+                GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
                 if let saved = ExpansionLabStore.savedTerminalIdentity() { access.reconcileCompletedMatches(ids: [saved]) }
+                #endif
             }
             store.setSceneAudioActive(scenePhase == .active)
             store.setMatchAudioActive(inMatch)
