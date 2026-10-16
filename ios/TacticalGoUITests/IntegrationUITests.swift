@@ -273,4 +273,16 @@ import XCTest
         XCTAssertTrue(app.buttons["mode-soldier"].waitForExistence(timeout: 5))
         XCTAssertFalse(app.buttons["mode-advanced"].exists, "restart keeps the original rules")
     }
+
+    // Codex review of PR #11 (P2): the original-rules option must default to the Owner-adopted rules, like the old shell.
+    func testOriginalRulesOptionDefaultsToTheAdoptedSkillRules() {
+        let app = launchFullGame()
+        let style = app.segmentedControls["playStyle"]
+        XCTAssertTrue(style.waitForExistence(timeout: 5))
+        style.buttons["原版規則"].tap()
+        let rules = app.segmentedControls["matchRules"]
+        XCTAssertTrue(rules.waitForExistence(timeout: 5))
+        XCTAssertTrue(rules.buttons["候選技能"].isSelected, "adopted default (.redeployment), not the legacy skills")
+        XCTAssertFalse(rules.buttons["原版"].isSelected)
+    }
 }

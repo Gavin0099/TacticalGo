@@ -203,6 +203,7 @@ struct ExpansionGameView: View {
             if let access {
                 store.onMatchCompleted = { id in access.completedMatch(id: id) }
                 if productMode {
+                    selectedRules = GameStore.defaultMatchRules
                     store.authorizeContinuation = { copy, parent in
                         // A verified owner is never metered, and an unrelated damaged trial file must not block a copy.
                         if access.purchase.isUnlocked { return }
@@ -441,6 +442,8 @@ struct ExpansionGameView: View {
                     }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("playStyle")
                         .onChange(of: useExpansion) { _, expanded in
                             if !expanded {
+                                // The original product started new matches with the Owner-adopted default rules.
+                                selectedRules = GameStore.defaultMatchRules
                                 monsters = .none
                                 if one == .priest { one = .warrior }
                                 if two == .priest { two = .mage }
