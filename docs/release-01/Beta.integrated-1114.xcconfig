@@ -7,7 +7,7 @@
 // xcconfig also reaches the Swift package targets, which must not receive a provisioning profile.
 // Only version, build number and the CROWN_* values that the Beta target leaves empty are set here.
 //
-// Build number: must be higher than every build already uploaded for this app (1112 is the last one known).
+// Build number: must be higher than every build already uploaded for this app (1113 is the last one known: uploaded 2026-10-15 and in the Owner 1.1 group).
 // Re-check App Store Connect before using it; raise it if a higher build exists.
 MARKETING_VERSION = 1.1
 CURRENT_PROJECT_VERSION = 1114

@@ -190,9 +190,14 @@ record switches the shell to original rules. `testResumedOriginalSaveRestartsWit
 without the fix (verified) and passes with it.
 
 Final verification of this change set (simulator): package 433 tests; Release and Beta builds succeed; `IntegrationUITests`
-17/17 and `MonetizationUITests` 10/10 after the last change; the earlier full run (115 tests over Integration, Monetization,
+18/18 (the last one added is `testOriginalRulesOptionDefaultsToTheAdoptedSkillRules`, which fails without its fix) and
+`MonetizationUITests` 10/10 after the previous change; the earlier full run (115 tests over Integration, Monetization,
 RewardedAd, PlayableGame) had 23 failing names: 22 are the known pre-existing/baseline ones (one is an intermittent timing
 assertion) and 1 was `testRealSDKAdvertisementCompletionOpensOneMatch` (a real Google test-ad network check), which passed 2/2
 when re-run alone, i.e. treated as a network/load flake, not a pass claim for the first attempt. A development-signed 1114
 build was installed on the Owner's iPhone over Wi-Fi (`com.tacticalgo.prototype`, not the TestFlight bundle id), so upgrade
 from the 1113 TestFlight app, its saves and purchases are NOT verified by that install.
+
+Second Codex round on PR #11 (P2/P3, all addressed): the original-rules option now defaults to the Owner-adopted rules
+(`GameStore.defaultMatchRules`); the 1114 runbook, checker and checker tests reference the 1114 configuration and treat 1113
+as the last uploaded build; the superseded 1113 configuration file was removed.
