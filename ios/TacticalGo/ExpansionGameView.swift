@@ -1111,6 +1111,11 @@ struct ExpansionGameView: View {
     }
     private func resumeRecord(_ record: MatchRecord) {
         if store.resume(record) {
+            #if DEBUG || TACTICALGO_V11
+            // A resumed original-rules record keeps its mode: "重新開始" must restart it with the same rules, not switch
+            // the player into an expansion match (and spend a new admission on it).
+            useExpansion = false; monsters = .none
+            #endif
             one = record.one; two = record.two; boardSize = record.size; selectedRules = record.rules
             singlePlayer = record.computer != nil; humanSide = record.computer?.opponent ?? .one
             lesson = nil; inMatch = true; store.setMatchAudioActive(true); store.scheduleComputerTurn()

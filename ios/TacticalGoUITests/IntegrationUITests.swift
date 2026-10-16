@@ -257,4 +257,20 @@ import XCTest
         app.buttons["startMatch"].tap()
         XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
     }
+
+    // Codex review of PR #11 (P2): resuming a 1.0 save inside the full-game shell must keep the original rules on restart.
+    func testResumedOriginalSaveRestartsWithOriginalRulesNotAnExpansionMatch() {
+        let app = launchFullGame(extra: ["--seed-unmarked-start"])
+        XCTAssertTrue(app.buttons["resumeMatch"].waitForExistence(timeout: 10), "the 1.0-style save is offered")
+        app.buttons["resumeMatch"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["mode-soldier"].exists)
+        XCTAssertFalse(app.buttons["mode-advanced"].exists, "resumed original match has no second skill")
+        app.buttons["對戰選單"].tap()
+        XCTAssertTrue(app.buttons["重新開始"].waitForExistence(timeout: 5))
+        app.buttons["重新開始"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["mode-soldier"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["mode-advanced"].exists, "restart keeps the original rules")
+    }
 }

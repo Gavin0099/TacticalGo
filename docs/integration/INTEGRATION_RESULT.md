@@ -174,3 +174,25 @@ Verification of these two changes (simulator): `IntegrationUITests`, `Monetizati
 intermittent timing assertion (it also fails 1 of 5 runs on the clean 1.0 snapshot `d13fdfa`). New tests pass:
 `testOriginalShellOffersOnlyTheThreeOriginalModes`, `testExpansionLobbyOffersPriestAndMonsters`,
 `testPrimaryStartOpensTheFullGameAndOriginalRulesAreAnOption`.
+
+
+## 1.1 shell as the product root (Owner: "use 1.1 for everything", 2026-10-15/16)
+
+Beta/TestFlight builds (`TACTICALGO_V11`, not `DEBUG`) now start in the 1.1 shell (`FullGameRoot` -> `ExpansionGameView` in
+product mode). It carries the 1.0 commercial layer: allowance status, purchase/restore, privacy/support (consent options),
+tactical challenges, the shared ledger gate, launch recovery/reconciliation, copy continuation, and the original rules as a
+play-style option ("原版規則") next to "擴充玩法". The skill lab (技能試驗) is not offered in the product lobby. Release is
+unchanged (original shell only); Debug keeps the original shell unless launched with `--full-game`.
+
+Codex review of PR #11 (P2): resuming a 1.0 save inside the 1.1 shell left `useExpansion = true`, so "重新開始" started an
+expansion match (and spent a new admission) instead of restarting with the saved record's rules. Fixed: resuming an original
+record switches the shell to original rules. `testResumedOriginalSaveRestartsWithOriginalRulesNotAnExpansionMatch` fails
+without the fix (verified) and passes with it.
+
+Final verification of this change set (simulator): package 433 tests; Release and Beta builds succeed; `IntegrationUITests`
+17/17 and `MonetizationUITests` 10/10 after the last change; the earlier full run (115 tests over Integration, Monetization,
+RewardedAd, PlayableGame) had 23 failing names: 22 are the known pre-existing/baseline ones (one is an intermittent timing
+assertion) and 1 was `testRealSDKAdvertisementCompletionOpensOneMatch` (a real Google test-ad network check), which passed 2/2
+when re-run alone, i.e. treated as a network/load flake, not a pass claim for the first attempt. A development-signed 1114
+build was installed on the Owner's iPhone over Wi-Fi (`com.tacticalgo.prototype`, not the TestFlight bundle id), so upgrade
+from the 1113 TestFlight app, its saves and purchases are NOT verified by that install.
