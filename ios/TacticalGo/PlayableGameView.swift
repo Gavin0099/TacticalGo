@@ -476,10 +476,20 @@ struct PlayableGameView: View {
                             .frame(maxWidth: .infinity, minHeight: 54)
                     }.buttonStyle(SellButton(confirm: true)).accessibilityIdentifier("resumeMatch")
                 }
+                #if DEBUG || TACTICALGO_V11
+                // Owner decision 2026-10-15 (after the 1113 playtest): the full game (priest, second skills, monsters) is
+                // the default start path; the original rules stay one tap away as "原版規則". Both go through the same
+                // access ledger. Release does not compile this branch, so a Release build keeps the original-only lobby.
+                Button { showExpansion = true } label: {
+                    Label("開始對戰", systemImage: "play.fill").font(.headline)
+                        .frame(maxWidth: .infinity, minHeight: 54)
+                }.buttonStyle(SellButton(confirm: store.resumableRecord == nil)).accessibilityIdentifier("lobbyExpansion")
+                #else
                 Button { lobbyShowsHeroes = false; choosing = singlePlayer ? humanSide : .one; showLobbySetup = true } label: {
                     Label("開始對戰", systemImage: "play.fill").font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 54)
                 }.buttonStyle(SellButton(confirm: store.resumableRecord == nil)).accessibilityIdentifier("lobbyNewGame")
+                #endif
                 let links = dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 16))
                 links {
                     Button { showOnboarding = true } label: {
@@ -489,10 +499,9 @@ struct PlayableGameView: View {
                         Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44)
                     }.accessibilityIdentifier("lobbyChallenges")
                     #if DEBUG || TACTICALGO_V11
-                    // Explicit entry (D6): the original rules stay the default; expansions are opened on purpose.
-                    Button { showExpansion = true } label: {
-                        Label("擴充玩法", systemImage: "sparkles").frame(maxWidth: .infinity, minHeight: 44)
-                    }.accessibilityIdentifier("lobbyExpansion")
+                    Button { lobbyShowsHeroes = false; choosing = singlePlayer ? humanSide : .one; showLobbySetup = true } label: {
+                        Label("原版規則", systemImage: "square.grid.3x3").frame(maxWidth: .infinity, minHeight: 44)
+                    }.accessibilityIdentifier("lobbyNewGame")
                     #endif
                 }.font(.subheadline.weight(.semibold)).foregroundStyle(SellTheme.paper)
             }.padding(.horizontal, tablet ? 32 : 22).padding(.vertical, 14)
@@ -981,7 +990,7 @@ struct PlayableGameView: View {
                 }
             } else {
                 tabletopActionLayout {
-                    ForEach(GameStore.Mode.allCases, id: \.self) { mode in
+                    ForEach(GameStore.Mode.originalCases, id: \.self) { mode in
                         Button { store.changeMode(mode) } label: {
                             Group {
                             if compact && sellLook {
@@ -1241,7 +1250,7 @@ struct PlayableGameView: View {
                 }
             } else {
                 HStack(spacing: 6) {
-                    ForEach(GameStore.Mode.allCases, id: \.self) { mode in
+                    ForEach(GameStore.Mode.originalCases, id: \.self) { mode in
                         Button { store.changeMode(mode) } label: {
                             Text(mode == .skill ? hero.skillTitle : mode.rawValue).font(.system(size: tablet ? 16 : 13, weight: .bold)).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
                         }.buttonStyle(CozyButton(selected: store.mode == mode))

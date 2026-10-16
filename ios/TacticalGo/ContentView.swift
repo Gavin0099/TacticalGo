@@ -127,7 +127,7 @@ struct ContentView: View {
                     Text(store.message).font(.system(size: 13, weight: .medium)).foregroundStyle(Color.gold)
                         .frame(maxWidth: .infinity, minHeight: showReviewTools ? 34 : 26, alignment: .leading).accessibilityIdentifier("message")
                     Picker("行動", selection: Binding(get: { store.mode }, set: { store.changeMode($0) })) {
-                        ForEach(GameStore.Mode.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        ForEach(GameStore.Mode.originalCases, id: \.self) { Text($0.rawValue).tag($0) }
                     }.pickerStyle(.segmented).accessibilityIdentifier("mode")
                     HStack(spacing: 8) {
                         Button { store.selected = [] } label: { Image(systemName: "xmark").frame(width: 38, height: 44) }

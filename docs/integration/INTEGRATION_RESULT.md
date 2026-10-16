@@ -151,3 +151,53 @@ CI evidence on this head: workflow `Swift Core (Linux)` passed (`swift test` in 
 |---|---|---|
 | P2 "reconcile expansion completions at app startup" (repeat of the earlier comment) | False positive, again | `PlayableGameView.onAppear` (the app root) appends the validated expansion terminal identity to the ids it reconciles; the UI test `testFinishedExpansionMatchIsReconciledWithoutOpeningTheExpansionShell` fails without it and passes with it |
 | P2 "defer match admission until entitlement verification" (`PlayAccess.authorizeNewMatch` passes `isUnlocked: false` while `isChecking` is still true) | Valid but **pre-existing** (unchanged 1.0 code and 1.0 behaviour); not introduced by this integration | Not changed here: it would change when a start is admitted, i.e. commercial semantics, which this slice must not touch. Effect: an owner who starts a match in the first moments before StoreKit answers is recorded as a trial/reward admission; it only matters if the entitlement is later revoked. Tracked as a separate item for an Owner decision |
+
+
+## 1113 playtest (Owner, 2026-10-15) and the two changes it caused
+
+The Owner installed 1.1 (1113) from TestFlight and reported: a hero missing, the match screen's values and descriptions not
+visible, old-looking settings, no monster feature.
+
+| Report | Cause | Change |
+|---|---|---|
+| Match screen: five squeezed tabs ("放…", "召…", 築壘, "第…", "戰…"), values and descriptions truncated | **Defect of this integration.** `GameStore.Mode` gained `advanced` and `loot`; the original shell iterated `Mode.allCases` and so showed two dead tabs and narrowed every label | The original shell (and the legacy review picker) iterate `Mode.originalCases` (3 modes). Test `testOriginalShellOffersOnlyTheThreeOriginalModes` fails without the change |
+| Three heroes, old settings, no monsters | The Owner played through "開始對戰", which was the original shell by design (D6); the priest, second skills and monsters live in the expansion shell, which was only reachable through the smaller "擴充玩法" link | **Owner decision (option C):** the full game is the default start path. The big "開始對戰" button opens the expansion shell; "原版規則" (original start flow, id `lobbyNewGame`) is a small link beside "新手入門" and "戰術挑戰". Both paths use the same access ledger. Only compiled under `DEBUG || TACTICALGO_V11`, so a Release build keeps the original-only lobby |
+
+What did not change: original rules and their defaults, existing original saves (still resumed from "續玩上局"), metering, the
+Release configuration.
+
+Consequence worth stating: if the Owner later enables the expansion in Release (`RELEASE_ENABLE_EXPANSION.md`), the full game
+becomes the default start path there too.
+
+Verification of these two changes (simulator): `IntegrationUITests`, `MonetizationUITests`, `PlayableGameTests` re-run
+(109 tests): 23 failing names, all in the known pre-existing list except `testSell01CFourStatesAndInputSafety`, which is an
+intermittent timing assertion (it also fails 1 of 5 runs on the clean 1.0 snapshot `d13fdfa`). New tests pass:
+`testOriginalShellOffersOnlyTheThreeOriginalModes`, `testExpansionLobbyOffersPriestAndMonsters`,
+`testPrimaryStartOpensTheFullGameAndOriginalRulesAreAnOption`.
+
+
+## 1.1 shell as the product root (Owner: "use 1.1 for everything", 2026-10-15/16)
+
+Beta/TestFlight builds (`TACTICALGO_V11`, not `DEBUG`) now start in the 1.1 shell (`FullGameRoot` -> `ExpansionGameView` in
+product mode). It carries the 1.0 commercial layer: allowance status, purchase/restore, privacy/support (consent options),
+tactical challenges, the shared ledger gate, launch recovery/reconciliation, copy continuation, and the original rules as a
+play-style option ("原版規則") next to "擴充玩法". The skill lab (技能試驗) is not offered in the product lobby. Release is
+unchanged (original shell only); Debug keeps the original shell unless launched with `--full-game`.
+
+Codex review of PR #11 (P2): resuming a 1.0 save inside the 1.1 shell left `useExpansion = true`, so "重新開始" started an
+expansion match (and spent a new admission) instead of restarting with the saved record's rules. Fixed: resuming an original
+record switches the shell to original rules. `testResumedOriginalSaveRestartsWithOriginalRulesNotAnExpansionMatch` fails
+without the fix (verified) and passes with it.
+
+Final verification of this change set (simulator): package 433 tests; Release and Beta builds succeed; `IntegrationUITests`
+18/18 (the last one added is `testOriginalRulesOptionDefaultsToTheAdoptedSkillRules`, which fails without its fix) and
+`MonetizationUITests` 10/10 after the previous change; the earlier full run (115 tests over Integration, Monetization,
+RewardedAd, PlayableGame) had 23 failing names: 22 are the known pre-existing/baseline ones (one is an intermittent timing
+assertion) and 1 was `testRealSDKAdvertisementCompletionOpensOneMatch` (a real Google test-ad network check), which passed 2/2
+when re-run alone, i.e. treated as a network/load flake, not a pass claim for the first attempt. A development-signed 1114
+build was installed on the Owner's iPhone over Wi-Fi (`com.tacticalgo.prototype`, not the TestFlight bundle id), so upgrade
+from the 1113 TestFlight app, its saves and purchases are NOT verified by that install.
+
+Second Codex round on PR #11 (P2/P3, all addressed): the original-rules option now defaults to the Owner-adopted rules
+(`GameStore.defaultMatchRules`); the 1114 runbook, checker and checker tests reference the 1114 configuration and treat 1113
+as the last uploaded build; the superseded 1113 configuration file was removed.

@@ -11,10 +11,22 @@ import TacticalGoContent
         #endif
     }
     @ViewBuilder private var normalRoot: some View {
-        if !legacyReview { PlayableGameView() }
+        if !legacyReview { productRoot }
         else if ready { ContentView() }
         else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
         else { ProgressView("準備棋盤…") }
+    }
+    /// Owner decision 2026-10-15: the TestFlight/Beta product runs the 1.1 shell for everything (the original rules are an
+    /// option inside it). Release keeps the original shell. Debug keeps it by default so the 1.0 UI suites keep their
+    /// subject; `--full-game` selects the new root there.
+    @ViewBuilder private var productRoot: some View {
+        #if TACTICALGO_V11 && !DEBUG
+        FullGameRoot()
+        #elseif DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--full-game") { FullGameRoot() } else { PlayableGameView() }
+        #else
+        PlayableGameView()
+        #endif
     }
     var body: some Scene {
         WindowGroup {

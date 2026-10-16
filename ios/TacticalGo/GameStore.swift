@@ -10,7 +10,12 @@ import TacticalGoContent
     // continue to rebuild from their own rule identifier, without migration.
     static let defaultMatchRules: RecordRules = .redeployment
     enum Review: String, CaseIterable { case normal = "一般", skill = "技能預覽", danger = "危險" }
-    enum Mode: String, CaseIterable { case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能", advanced = "第二技能", loot = "戰利能力" }
+    enum Mode: String, CaseIterable {
+        case soldier = "放士兵", summon = "召喚英雄", skill = "使用技能", advanced = "第二技能", loot = "戰利能力"
+        /// The three modes of the original game. `advanced` and `loot` exist only in the expansion shell; the original
+        /// shell must iterate THIS list, not `allCases` (it showed two dead tabs and squeezed every label before).
+        static let originalCases: [Mode] = [.soldier, .summon, .skill]
+    }
     #if DEBUG || TACTICALGO_V11
     var expansion: ExpansionLabStore?
     /// Starts a full expansion match. `authorize` is the access gate: it runs BEFORE any live state changes and before the

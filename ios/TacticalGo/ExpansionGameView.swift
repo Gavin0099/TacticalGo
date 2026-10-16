@@ -8,11 +8,23 @@ import TacticalGoVisuals
 /// The 1.1 expansion shell (priest, second skills, monsters, solo expansion, practice). The 1.0 shell keeps its own
 /// look and is the product entry; this view is opened from the 1.0 lobby through an explicit entry and shares the
 /// 1.0 PlayAccess gate so expansion matches are metered like any other full match.
+/// Challenge campaigns offered by the product-mode lobby (same content as the original shell's challenge entry).
+private enum ProductChallengeRoute: String, Identifiable {
+    case introduction, advanced
+    var id: String { rawValue }
+    var campaign: ChallengeCampaign { self == .advanced ? .advanced : .introduction }
+}
+
 struct ExpansionGameView: View {
     /// Shared with the 1.0 shell. `nil` only in previews and the DEBUG expansion lab, where nothing is metered.
     var access: PlayAccess? = nil
     var onClose: (() -> Void)? = nil
     @State private var showUnlock = false
+    @State private var showPrivacy = false
+    /// The unlock sheet opened from the lobby bar only manages purchases; it must not start a match.
+    @State private var unlockFromBar = false
+    @State private var challengeRoute: ProductChallengeRoute?
+    @State private var adIsPresented = false
     @State private var store = GameStore()
     @State private var visuals = GameVisualAssets.original
     @State private var visualFixture = false
@@ -64,6 +76,31 @@ struct ExpansionGameView: View {
         false
         #endif
     }
+    /// Launch settlement shared by both shells (idempotent): interrupted starts are only settled once the entitlement
+    /// check is done; completions of finished matches (original records and the expansion slot) are reconciled.
+    private func settleProductLaunch() {
+        guard let access else { return }
+        var terminalIDs: [UUID] = []
+        if productMode {
+            terminalIDs = store.savedRecords.compactMap { record -> UUID? in
+                guard let status = record.steps.last?.after.status, status != .ongoing else { return nil }
+                return record.id
+            }
+        }
+        if !access.purchase.isChecking {
+            if productMode { store.recoverInterruptedStarts(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) }) }
+            #if DEBUG || TACTICALGO_V11
+            GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+            #endif
+        }
+        #if DEBUG || TACTICALGO_V11
+        if let saved = ExpansionLabStore.savedTerminalIdentity() { terminalIDs.append(saved) }
+        #endif
+        if !terminalIDs.isEmpty { access.reconcileCompletedMatches(ids: terminalIDs) }
+    }
+    /// Product mode (Owner decision 2026-10-15, "use 1.1 for everything"): this shell is the app's root, carries the
+    /// 1.0 commercial layer (allowance, purchase, privacy/support, challenges) and offers the original rules as an option.
+    private var productMode: Bool { access != nil && onClose == nil }
     private var uiInk: Color { GameChrome.cream }
     private var uiSecondary: Color { GameChrome.muted }
     private var uiAccent: Color { GameChrome.gold }
@@ -84,14 +121,30 @@ struct ExpansionGameView: View {
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
         .sheet(isPresented: $showTacticalHelp) { tacticalHelp }
-        .sheet(isPresented: $showUnlock, onDismiss: { RewardedAdService.shared.cancelPendingRequest() }) {
+        .sheet(isPresented: $showUnlock, onDismiss: { RewardedAdService.shared.cancelPendingRequest(); unlockFromBar = false }) {
             if let access {
-                UnlockView(access: access, continueGame: { startMatch() }, continueTitle: "開始下一局", presentationChanged: { presented in
+                UnlockView(access: access, continueGame: { if !unlockFromBar { startMatch() } }, continueTitle: unlockFromBar ? "返回遊戲" : "開始下一局", presentationChanged: { presented in
                     store.setSceneAudioActive(!presented && scenePhase == .active)
                 })
             }
         }
         .fullScreenCover(isPresented: $showOnboarding) { OnboardingView { showOnboarding = false } }
+        .sheet(isPresented: $showPrivacy) {
+            if let access {
+                ReleaseInformationView(access: access, presentationChanged: { presented in
+                    adIsPresented = presented
+                    store.setSceneAudioActive(!presented && scenePhase == .active)
+                })
+            }
+        }
+        .fullScreenCover(item: $challengeRoute, onDismiss: {
+            store.setMatchAudioActive(inMatch)
+            if inMatch { store.scheduleComputerTurn() }
+        }) { route in
+            ChallengesView(campaign: route.campaign) { challengeRoute = nil }.id(route.id)
+        }
+        // Recovery discards unadmitted, unplayed starts, so it must know whether the player owns the unlock.
+        .onChange(of: access?.purchase.isChecking) { _, _ in settleProductLaunch() }
         .sheet(isPresented: $showGrid) { accessibleGrid }
         .alert("離開目前對戰？", isPresented: $confirmExit) {
             Button("返回選角", role: .destructive) { store.leaveMatch(); inMatch = false; lesson = nil }.accessibilityIdentifier("exitMatchConfirmed")
@@ -149,14 +202,15 @@ struct ExpansionGameView: View {
         .onAppear {
             if let access {
                 store.onMatchCompleted = { id in access.completedMatch(id: id) }
-                #if DEBUG || TACTICALGO_V11
-                // Same settlement as the original shell's launch (idempotent). A start is only settled once the
-                // entitlement check is done; the original shell (underneath) settles it when that finishes.
-                if !access.purchase.isChecking {
-                    GameStore.recoverExpansionStart(isUnlocked: access.purchase.isUnlocked, isRegistered: { access.registration(of: $0) })
+                if productMode {
+                    selectedRules = GameStore.defaultMatchRules
+                    store.authorizeContinuation = { copy, parent in
+                        // A verified owner is never metered, and an unrelated damaged trial file must not block a copy.
+                        if access.purchase.isUnlocked { return }
+                        try access.continueMatch(copy: copy, of: parent)
+                    }
                 }
-                if let saved = ExpansionLabStore.savedTerminalIdentity() { access.reconcileCompletedMatches(ids: [saved]) }
-                #endif
+                settleProductLaunch()
             }
             store.setSceneAudioActive(scenePhase == .active)
             store.setMatchAudioActive(inMatch)
@@ -294,6 +348,7 @@ struct ExpansionGameView: View {
         return ScrollView {
             VStack(spacing: tablet ? 22 : 18) {
                 lobbyTitle
+                if productMode { productBar }
                 #if DEBUG || TACTICALGO_V11
                 if FileManager.default.fileExists(atPath: ExpansionLabStore.savedURL.path) {
                     Button {
@@ -332,6 +387,34 @@ struct ExpansionGameView: View {
                 .frame(maxWidth: .infinity)
         }
     }
+    /// Allowance and the 1.0 commercial/compliance entries (all of them go through the shared `PlayAccess`).
+    @ViewBuilder private var productBar: some View {
+        if let access {
+            VStack(spacing: 8) {
+                Text(access.purchase.isUnlocked ? "已永久解鎖" : "免費完整對局剩餘 \(access.remainingTrialMatches)／3")
+                    .font(.caption).foregroundStyle(uiSecondary).accessibilityIdentifier("accessStatus")
+                HStack(spacing: 8) {
+                    Menu {
+                        Button("英雄技能入門 · 六關") { openProductChallenges(.introduction) }
+                        Button("邊境攻防 · 三關候選") { openProductChallenges(.advanced) }
+                    } label: { Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44) }
+                        .accessibilityIdentifier("lobbyChallenges")
+                    Button { unlockFromBar = true; showUnlock = true } label: {
+                        Label("購買與恢復", systemImage: "cart").frame(maxWidth: .infinity, minHeight: 44)
+                    }.accessibilityIdentifier("purchaseSettings")
+                    Button { showPrivacy = true } label: {
+                        Label("隱私與支援", systemImage: "hand.raised").frame(maxWidth: .infinity, minHeight: 44)
+                    }.accessibilityIdentifier("privacySupport")
+                }.font(.system(size: 13, weight: .semibold)).buttonStyle(GameButtonStyle())
+            }
+        }
+    }
+    private func openProductChallenges(_ route: ProductChallengeRoute) {
+        // Stop pending bot/presentation work without changing the current match or its journal.
+        store.cancelBotWork()
+        store.setMatchAudioActive(false)
+        challengeRoute = route
+    }
     private var lobbyTitle: some View {
                 VStack(spacing: 5) {
                     if let onClose {
@@ -340,7 +423,8 @@ struct ExpansionGameView: View {
                             Spacer()
                         }
                     }
-                    Text("TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2).foregroundStyle(uiAccent)
+                    Text(productMode ? "皇冠戰略" : "TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2).foregroundStyle(uiAccent)
+                    if productMode { Text("CROWN TACTICS").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(uiSecondary) }
                     Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(uiSecondary)
                 }.padding(.top, 14)
     }
@@ -351,6 +435,21 @@ struct ExpansionGameView: View {
                 }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("matchMode")
                     .onChange(of: singlePlayer) { _, solo in if solo { choosing = humanSide } }
                 #if DEBUG || TACTICALGO_V11
+                if productMode {
+                    // Original rules are an option inside the 1.1 shell (Owner decision 2026-10-15).
+                    Picker("玩法", selection: $useExpansion) {
+                        Text("擴充玩法").tag(true); Text("原版規則").tag(false)
+                    }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("playStyle")
+                        .onChange(of: useExpansion) { _, expanded in
+                            if !expanded {
+                                // The original product started new matches with the Owner-adopted default rules.
+                                selectedRules = GameStore.defaultMatchRules
+                                monsters = .none
+                                if one == .priest { one = .warrior }
+                                if two == .priest { two = .mage }
+                            }
+                        }
+                }
                 if useExpansion {
                     Picker("魔物戰場",selection:$monsters) { ForEach(ExpansionLabStore.Monsters.allCases,id:\.self) { Text($0.rawValue).tag($0) } }
                         .accessibilityIdentifier("matchMonsters")
@@ -472,7 +571,9 @@ struct ExpansionGameView: View {
                         }.accessibilityIdentifier("priestChallenge")
                         #endif
                     } label: { Label("玩法練習", systemImage: "graduationcap") }
-                    Spacer(); Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab")
+                    Spacer()
+                    // The skill lab is an engineering tool; the product lobby (Owner request 2026-10-16) does not offer it.
+                    if !productMode { Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab") }
                     Button("遊戲規則") { showRules = true }
                 }.font(.system(size: 14)).frame(minHeight: 44)
         }
@@ -1013,6 +1114,11 @@ struct ExpansionGameView: View {
     }
     private func resumeRecord(_ record: MatchRecord) {
         if store.resume(record) {
+            #if DEBUG || TACTICALGO_V11
+            // A resumed original-rules record keeps its mode: "重新開始" must restart it with the same rules, not switch
+            // the player into an expansion match (and spend a new admission on it).
+            useExpansion = false; monsters = .none
+            #endif
             one = record.one; two = record.two; boardSize = record.size; selectedRules = record.rules
             singlePlayer = record.computer != nil; humanSide = record.computer?.opponent ?? .one
             lesson = nil; inMatch = true; store.setMatchAudioActive(true); store.scheduleComputerTurn()
@@ -1020,7 +1126,7 @@ struct ExpansionGameView: View {
     }
     private func startMatch() {
         // Same gate as the 1.0 shell: the UI check only decides what to show, the ledger write is the permission.
-        if let access, !access.canStartMatch { showUnlock = true; return }
+        if let access, !access.canStartMatch { unlockFromBar = false; showUnlock = true; return }
         let authorize: ((UUID) throws -> Void)? = access.map { gate in { id in try gate.authorizeNewMatch(id: id) } }
         #if DEBUG || TACTICALGO_V11
         if useExpansion {
@@ -1107,3 +1213,14 @@ private struct CombatSoundSettings: View {
         }
     }
 }
+
+#if DEBUG || TACTICALGO_V11
+/// Root of the Beta/TestFlight product: owns the shared access gate and presents the 1.1 shell as the whole game.
+struct FullGameRoot: View {
+    @State private var access = PlayAccess()
+    var body: some View {
+        ExpansionGameView(access: access)
+            .task { await access.purchase.start() }
+    }
+}
+#endif
