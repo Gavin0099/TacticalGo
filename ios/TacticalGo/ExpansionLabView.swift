@@ -118,7 +118,7 @@ import TacticalGoVisuals
         }; return result
     }()
     @ObservationIgnored private let samples = PresentationSamples()
-    @ObservationIgnored private var voiceCadence = CharacterVoiceCadence()
+    @ObservationIgnored private var voiceCadence = CharacterVoiceCadence(profile: .everyCast)
     #if DEBUG
     var voiceClockForAudit: Double?
     var voiceKeyForAudit: String?
@@ -291,7 +291,7 @@ import TacticalGoVisuals
         case .advanced: needed = hero == .warrior || hero == .mage ? 4 : hero == .rogue ? 2 : 0
         case .loot: needed = ability == .stickyBounce ? 2 : 1
         }
-        guard needed > 0 else { message = "牧師目前使用奉獻救援；第二技能仍待玩法驗證。"; return }
+        guard needed > 0 else { message = SkillGuide.second(.priest); return }
         if selected.count >= needed { selected = [] }
         selected.append(p); pending = nil
         guard selected.count == needed else { return }
@@ -612,30 +612,31 @@ import TacticalGoVisuals
     }
     var help: String {
         if let hunt = huntPreview { return hunt.help }
+        let hero = state.heroClass(of:state.current)
         return switch mode {
-        case .soldier: state.board.monsters.isEmpty ? "選一個空點，確認後落子。" : "放兵仍需選空點再確認。魔物不會因包圍自動消失；點討伐選單或棋盤魔物，查看控制數、條件與AP，再按確認。己方英雄須站在狼的上下左右一格；戰利能力下個己方回合解鎖。"
+        case .soldier: state.board.monsters.isEmpty ? "選一個空點，確認後落子。" : "選一個空點，確認後落子。\n\n" + SkillGuide.monsters + "\n" + SkillGuide.loot
         case .summon: "選己方棋子正鄰空點。牧師和法師召喚3能量，其他2能量。"
         case .skill:
-            switch state.heroClass(of:state.current) {
-            case .warrior: state.config.bastionScope == .connectedGroup ? "依序選戰士相連棋群旁兩個不同空點。英雄可以透過相連士兵延伸築壘。" : "依序選戰士正鄰兩個空點。"
-            case .mage: state.config.experimentalFriendlyRedeploy ? "先選法師2格內、與法師相連的己方士兵，再選原棋群旁空點。只調度己兵，不增加棋子。" : "選距法師2格內的普通士兵，再選推動方向。"
-            case .rogue: "選盜賊正鄰的敵方普通士兵。"
-            case .priest: "選距牧師2格內的己方士兵。奉獻會移除它以打開氣或眼，不在別處補子。"
-            case .none: "尚未選職業。"
-            }
-        case .advanced:
-            switch state.heroClass(of:state.current) {
-            case .warrior: "依序選：己兵① → 外緣空點① → 己兵② → 外緣空點②。來源須與英雄相連，目的地距英雄最多4格。"
-            case .mage: "依序選：士兵① → 正鄰空點① → 士兵② → 正鄰空點②。來源距法師2格內，敵我皆可。"
-            case .rogue: "先選英雄正鄰敵兵，再選該敵兵正鄰的另一敵兵。一次連鎖換位。"
-            case .priest: "牧師先用奉獻救援驗證職業特色。"
-            case .none: "尚未選職業。"
-            }
-        case .loot: ability == .stickyBounce ? "黏彈：先選己方支點，再選正鄰普通士兵，沿接觸方向彈開一格。" : "影步：點英雄同列/同行、最多2格的空點，路徑不可有棋子或魔物。"
+            // Only the expansion rules describe these skills; a legacy resume keeps the original wording.
+            state.config.experimentalFriendlyRedeploy || hero == .priest || hero == .rogue
+                ? SkillGuide.basic(hero) + "\n" + SkillGuide.basicSteps(hero)
+                : hero == .warrior ? (state.config.bastionScope == .connectedGroup ? "依序選戰士相連棋群旁兩個不同空點。英雄可以透過相連士兵延伸築壘。" : "依序選戰士正鄰兩個空點。")
+                : "選距法師2格內的普通士兵，再選推動方向。"
+        case .advanced: SkillGuide.second(hero) + (SkillGuide.secondSteps(hero).isEmpty ? "" : "\n" + SkillGuide.secondSteps(hero))
+        case .loot: ability == .stickyBounce ? SkillGuide.stickyBounce : SkillGuide.shadowStep
+        }
+    }
+    /// Tap steps only, for the status line while targets are being picked (the full explanation is in 技能說明).
+    private var stepHelp: String {
+        let hero = state.heroClass(of:state.current)
+        switch mode {
+        case .skill where state.config.experimentalFriendlyRedeploy: return SkillGuide.basicSteps(hero)
+        case .advanced: return SkillGuide.secondSteps(hero)
+        default: return help
         }
     }
     var previewText: String {
-        guard let preview else { return selected.isEmpty ? help : "已選 \(selected.count) 個位置。\(help)" }
+        guard let preview else { return selected.isEmpty ? help : "已選 \(selected.count) 個位置。\(stepHelp)" }
         guard preview.success else {
             if case .castFriendlyRedeploy = pending {
                 if preview.reason == .invalidTarget { return "只能調度己方普通士兵，不能移敵兵或英雄" }
@@ -969,3 +970,4 @@ struct ExpansionBoard: View {
     }
 }
 #endif
+

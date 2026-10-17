@@ -3,9 +3,11 @@ import TacticalGoCore
 /// Transient presentation history. Nothing here changes rules or saved games.
 public struct CharacterVoiceCadence: Equatable, Sendable {
     public enum Profile: Sendable {
-        case balanced, calm
-        var castSpacing: Int { self == .balanced ? 3 : 4 }
-        var seconds: Double { self == .balanced ? 12 : 18 }
+        /// `everyCast`: Owner decision 2026-10-17 (TestFlight 1114) — a skipped line read as missing sound.
+        /// Only the 3 s global gap remains, so two heroes' lines never overlap.
+        case balanced, calm, everyCast
+        var castSpacing: Int { switch self { case .balanced: 3; case .calm: 4; case .everyCast: 1 } }
+        var seconds: Double { switch self { case .balanced: 12; case .calm: 18; case .everyCast: 0 } }
     }
     private struct Identity: Hashable, Sendable { let player: Int; let hero: String }
     private struct History: Equatable, Sendable {

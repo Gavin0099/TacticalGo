@@ -210,23 +210,41 @@ import XCTest
         for id in ["lobbyChallenges", "purchaseSettings", "privacySupport", "startOnboarding"] {
             XCTAssertTrue(app.buttons[id].exists || app.otherElements[id].exists || app.descendants(matching: .any)[id].exists, id)
         }
-        XCTAssertTrue(app.segmentedControls["playStyle"].exists || app.descendants(matching: .any)["playStyle"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["playStyle"].exists, "Owner 2026-10-17: no play-style choice")
         for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
         XCTAssertTrue(app.buttons["choose-priest"].exists, "four heroes")
         XCTAssertTrue(app.descendants(matching: .any)["matchMonsters"].exists, "monster battlefield")
     }
 
-    func testOriginalRulesAreAnOptionInsideTheFullGameShell() {
+    // Owner decision 2026-10-17 (TestFlight 1114): no play-style choice; new matches always use the latest rules.
+    func testFullGameHasNoPlayStyleChoiceAndAlwaysUsesTheLatestRules() {
         let app = launchFullGame()
-        let style = app.segmentedControls["playStyle"]
-        XCTAssertTrue(style.waitForExistence(timeout: 5))
-        style.buttons["原版規則"].tap()
-        XCTAssertFalse(app.buttons["choose-priest"].exists, "original rules offer the three original heroes only")
-        XCTAssertFalse(app.descendants(matching: .any)["matchMonsters"].exists)
-        XCTAssertTrue(app.buttons["choose-warrior"].exists)
-        style.buttons["擴充玩法"].tap()
+        XCTAssertFalse(app.descendants(matching: .any)["playStyle"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["matchRules"].exists, "no original/new skill picker either")
+        XCTAssertTrue(app.descendants(matching: .any)["matchMonsters"].exists)
         for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
-        XCTAssertTrue(app.buttons["choose-priest"].exists)
+        XCTAssertTrue(app.buttons["choose-priest"].exists, "four heroes")
+    }
+
+    // Owner TestFlight 1114: the priest's card was shorter than the other three (no second-skill line).
+    func testHeroCardsHaveTheSameHeight() {
+        let app = launchFullGame()
+        for _ in 0..<4 where !app.buttons["choose-priest"].isHittable { app.swipeUp() }
+        let heights = ["warrior", "mage", "rogue", "priest"].map { app.buttons["choose-" + $0].frame.height }
+        XCTAssertGreaterThan(heights[0], 0)
+        for h in heights { XCTAssertEqual(h, heights[0], accuracy: 0.5, "\(heights)") }
+    }
+
+    // Owner TestFlight 1114: 「怪物的技能不知道怎麼用」 — choosing a monster battlefield explains hunting and the reward.
+    func testMonsterChoiceExplainsHuntingAndTheReward() {
+        let app = launchFullGame()
+        XCTAssertFalse(app.staticTexts["monsterGuide"].exists)
+        app.descendants(matching: .any)["matchMonsters"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["雙怪"].waitForExistence(timeout: 5))
+        app.buttons["雙怪"].tap()
+        let guide = app.staticTexts["monsterGuide"]
+        XCTAssertTrue(guide.waitForExistence(timeout: 5))
+        for part in ["討伐", "黏彈", "影步", "暗影狼還要己方英雄"] { XCTAssertTrue(guide.label.contains(part), part) }
     }
 
     func testFullGameStartIsGatedBySharedLedgerAndPurchaseEntryDoesNotStartAMatch() {
@@ -274,16 +292,19 @@ import XCTest
         XCTAssertFalse(app.buttons["mode-advanced"].exists, "restart keeps the original rules")
     }
 
-    // Codex review of PR #11 (P2): the original-rules option must default to the Owner-adopted rules, like the old shell.
-    func testOriginalRulesOptionDefaultsToTheAdoptedSkillRules() {
-        let app = launchFullGame()
-        let style = app.segmentedControls["playStyle"]
-        XCTAssertTrue(style.waitForExistence(timeout: 5))
-        style.buttons["原版規則"].tap()
-        let rules = app.segmentedControls["matchRules"]
-        XCTAssertTrue(rules.waitForExistence(timeout: 5))
-        XCTAssertTrue(rules.buttons["新版技能"].isSelected, "adopted default (.redeployment), not the legacy skills")
-        XCTAssertFalse(rules.buttons["原版"].isSelected)
+    // A resumed original save restarts with its own rules, but the lobby afterwards is back on the latest rules.
+    func testLeavingAResumedOriginalSaveReturnsTheLobbyToTheLatestRules() {
+        let app = launchFullGame(extra: ["--seed-unmarked-start"])
+        XCTAssertTrue(app.buttons["resumeMatch"].waitForExistence(timeout: 10))
+        app.buttons["resumeMatch"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        app.buttons["返回選角"].tap()
+        XCTAssertTrue(app.buttons["exitMatchConfirmed"].waitForExistence(timeout: 5))
+        app.buttons["exitMatchConfirmed"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["matchMonsters"].exists, "back on the latest rules")
+        for _ in 0..<4 where !app.buttons["choose-priest"].exists { app.swipeUp() }
+        XCTAssertTrue(app.buttons["choose-priest"].exists)
     }
 
     // Owner TestFlight 1114 report: 「購買與恢復」 opened 「選擇繼續遊玩的方式」 with only 「返回遊戲」 while free matches remained.
@@ -313,5 +334,10 @@ import XCTest
         XCTAssertFalse(app.staticTexts["戰士 · 築壘"].exists)
         let heroes = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "法師與牧師需 3")).firstMatch
         XCTAssertTrue(heroes.exists, "the priest is a fourth hero in the expansion")
+        // The sheet is a lazy List: the monster section only exists once scrolled into view.
+        let monsters = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "黏彈")).firstMatch
+        for _ in 0..<8 where !monsters.exists { app.swipeUp() }
+        XCTAssertTrue(monsters.exists, "monster rewards are explained")
+        XCTAssertFalse(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "驗證職業特色")).firstMatch.exists, "no internal wording")
     }
 }
