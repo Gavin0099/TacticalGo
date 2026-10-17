@@ -19,10 +19,10 @@ struct ExpansionGameView: View {
     /// Shared with the 1.0 shell. `nil` only in previews and the DEBUG expansion lab, where nothing is metered.
     var access: PlayAccess? = nil
     var onClose: (() -> Void)? = nil
-    @State private var showUnlock = false
     @State private var showPrivacy = false
-    /// The unlock sheet opened from the lobby bar only manages purchases; it must not start a match.
-    @State private var unlockFromBar = false
+    /// Why the unlock sheet is open. The lobby bar's entry only manages purchases; it must not start a match.
+    /// Carried by `sheet(item:)`: a flag read only inside the sheet closure reached the first presentation stale.
+    @State private var unlockRequest: UnlockRequest?
     @State private var challengeRoute: ProductChallengeRoute?
     @State private var adIsPresented = false
     @State private var store = GameStore()
@@ -121,9 +121,10 @@ struct ExpansionGameView: View {
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
         .sheet(isPresented: $showTacticalHelp) { tacticalHelp }
-        .sheet(isPresented: $showUnlock, onDismiss: { RewardedAdService.shared.cancelPendingRequest(); unlockFromBar = false }) {
+        .sheet(item: $unlockRequest, onDismiss: { RewardedAdService.shared.cancelPendingRequest() }) { request in
             if let access {
-                UnlockView(access: access, continueGame: { if !unlockFromBar { startMatch() } }, continueTitle: unlockFromBar ? "返回遊戲" : "開始下一局", presentationChanged: { presented in
+                let fromBar = request == .store
+                UnlockView(access: access, continueGame: { if !fromBar { startMatch() } }, continueTitle: fromBar ? "返回遊戲" : "開始下一局", storeEntry: fromBar, presentationChanged: { presented in
                     store.setSceneAudioActive(!presented && scenePhase == .active)
                 })
             }
@@ -356,12 +357,12 @@ struct ExpansionGameView: View {
                             useExpansion = true; singlePlayer = store.computer != nil; humanSide = store.humanPlayer; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two); boardSize = store.size
                             inMatch = true; store.setMatchAudioActive(true); store.scheduleComputerTurn()
                         }
-                    } label: { Label("續玩 1.1 上局", systemImage: "play.circle").frame(maxWidth: .infinity, minHeight: 44) }
+                    } label: { Label("續玩擴充玩法上局", systemImage: "play.circle").frame(maxWidth: .infinity, minHeight: 44) }
                         .buttonStyle(GameButtonStyle()).accessibilityIdentifier("resumeExpansion")
                 }
                 #endif
                 if let record = store.resumableRecord {
-                    Button { resumeRecord(record) } label: { Label("續玩上局", systemImage: "play.circle").frame(maxWidth:.infinity,minHeight:44) }
+                    Button { resumeRecord(record) } label: { Label(productMode ? "續玩原版規則上局" : "續玩上局", systemImage: "play.circle").frame(maxWidth:.infinity,minHeight:44) }
                         .buttonStyle(GameButtonStyle()).accessibilityIdentifier("resumeMatch")
                 }
                 Button { store.refreshRecords(); showRecords = true } label: {
@@ -396,10 +397,10 @@ struct ExpansionGameView: View {
                 HStack(spacing: 8) {
                     Menu {
                         Button("英雄技能入門 · 六關") { openProductChallenges(.introduction) }
-                        Button("邊境攻防 · 三關候選") { openProductChallenges(.advanced) }
+                        Button("邊境攻防 · 三關") { openProductChallenges(.advanced) }
                     } label: { Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44) }
                         .accessibilityIdentifier("lobbyChallenges")
-                    Button { unlockFromBar = true; showUnlock = true } label: {
+                    Button { unlockRequest = .store } label: {
                         Label("購買與恢復", systemImage: "cart").frame(maxWidth: .infinity, minHeight: 44)
                     }.accessibilityIdentifier("purchaseSettings")
                     Button { showPrivacy = true } label: {
@@ -465,15 +466,15 @@ struct ExpansionGameView: View {
                         Text("簡單").tag(BotDifficulty.easy)
                         Text("標準").tag(BotDifficulty.standard)
                     }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("botDifficulty")
-                    Text(store.botDifficulty == .easy ? "適合先熟悉四職技能與主將攻守。" : "會預判你的反擊，適合挑戰。")
+                    Text(store.botDifficulty == .easy ? "適合先熟悉\(heroes.count == 4 ? "四" : "三")職技能與主將攻守。" : "會預判你的反擊，適合挑戰。")
                         .font(.system(size: 12)).foregroundStyle(uiSecondary)
                 }
                 if !useExpansion {
                 Picker("技能規則", selection: $selectedRules) {
                     Text("原版").tag(RecordRules.original)
-                    Text("候選技能").tag(RecordRules.redeployment)
+                    Text("新版技能").tag(RecordRules.redeployment)
                 }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("matchRules")
-                Text(selectedRules == .redeployment ? "戰士沿棋群築壘；法師可調度己兵。費用與每回合限制相同。" : "原版技能；你也可以保留原局，建立候選續玩副本。")
+                Text(selectedRules == .redeployment ? "戰士沿棋群築壘；法師可調度己兵。費用與每回合限制相同。" : "原版技能；對局中可從選單複製此局，改用新版技能續玩。")
                     .font(.caption).foregroundStyle(uiSecondary)
                 }
                 Picker("選擇哪一方", selection: $choosing) {
@@ -636,7 +637,7 @@ struct ExpansionGameView: View {
                 Spacer()
                 Menu {
                     if !store.state.config.expansionSkills {
-                        Button("複製此局測候選技能") {
+                        Button("複製此局改用新版技能") {
                             if store.createCandidateCopy() { selectedRules = .redeployment }
                         }.disabled(!store.canCreateCandidateCopy).accessibilityIdentifier("candidateCopy")
                     }
@@ -719,7 +720,7 @@ struct ExpansionGameView: View {
             }
             #endif
             if store.recordRules == .redeployment {
-                Text("候選技能 · 沿棋群築壘／法師調度己兵")
+                Text("新版技能 · 戰士沿棋群築壘／法師調度己兵")
                     .font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("candidateRulesBanner")
             }
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("r2Banner") }
@@ -1097,14 +1098,25 @@ struct ExpansionGameView: View {
             List {
                 Section("勝利") { Text("包圍敵方主將所在的棋串，使它沒有相鄰空點（氣），提走主將即可獲勝。斜角不算相鄰。") }
                 Section("回合與資源") { Text("首回合 1 AP，其後 2 AP。每次行動 1 AP；耗盡 AP 自動換手。每回合增加 1 能量，上限 6。也可提早結束回合。100 回合未分勝負則和局。") }
-                Section("英雄") { Text("召喚在任一己方棋子相鄰空點。戰士與盜賊需 2 能量，法師需 3。英雄被提走後，本局不能再召喚。") }
-                ForEach(heroes, id: \.self) { h in Section(h.title + " · " + h.skillTitle) { Text(h.skillHelp + "\n技能需 1 AP＋2 能量，每回合只能使用一次。") } }
+                Section("英雄") { Text("召喚在任一己方棋子相鄰空點。戰士與盜賊需 2 能量，\(heroes.contains(.priest) ? "法師與牧師需 3" : "法師需 3")。英雄被提走後，本局不能再召喚。") }
+                ForEach(heroes, id: \.self) { h in Section(h.title + " · " + ruleSkillTitle(h)) { Text(h.skillHelp(config: rulesConfig) + "\n技能需 1 AP＋2 能量，每回合只能使用一次。") } }
                 if useExpansion {
                     Section("第二技能與魔物") { Text("三職第二技能需要1 AP＋4能量。原技能、第二技能和戰利能力每回合共用一次；魔物能力要到下一個己方回合才解鎖。魔物占據交叉點、阻擋氣；正鄰己子至少兩格且多於對手，可花1 AP討伐。暗影狼還需要正鄰己方英雄。") }
                 }
                 Section("合法行動") { Text("先處理敵方提子，再檢查己方是否無氣。禁止自殺與重複任何先前盤面。預覽不扣資源；復原會還原完整盤面、回合、資源與歷史。") }
             }.gameSheetSurface().navigationTitle("遊戲規則").toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showRules = false } } }
         }
+    }
+    /// In a match the sheet describes that match's rules; in the lobby, the rules the next match would use.
+    private var rulesConfig: RuleConfig {
+        if inMatch { return store.state.config }
+        return useExpansion ? TacticalHints.updatedConfig(size: boardSize) : selectedRules.config(size: boardSize)
+    }
+    private func ruleSkillTitle(_ hero: HeroClass) -> String {
+        let config = rulesConfig
+        if hero == .warrior, config.bastionScope == .connectedGroup { return "沿棋群築壘" }
+        if hero == .mage, config.experimentalFriendlyRedeploy { return "調度己兵" }
+        return hero.skillTitle
     }
     private func coordinate(_ p: Point) -> String { String(UnicodeScalar(65 + p.x)!) + String(p.y + 1) }
     private func cellDescription(_ p: Point) -> String {
@@ -1126,7 +1138,7 @@ struct ExpansionGameView: View {
     }
     private func startMatch() {
         // Same gate as the 1.0 shell: the UI check only decides what to show, the ledger write is the permission.
-        if let access, !access.canStartMatch { unlockFromBar = false; showUnlock = true; return }
+        if let access, !access.canStartMatch { unlockRequest = .startGate; return }
         let authorize: ((UUID) throws -> Void)? = access.map { gate in { id in try gate.authorizeNewMatch(id: id) } }
         #if DEBUG || TACTICALGO_V11
         if useExpansion {
@@ -1212,6 +1224,11 @@ private struct CombatSoundSettings: View {
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() }.accessibilityIdentifier("audioSettingsDone") } }
         }
     }
+}
+
+private enum UnlockRequest: String, Identifiable {
+    case store, startGate
+    var id: String { rawValue }
 }
 
 #if DEBUG || TACTICALGO_V11

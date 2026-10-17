@@ -204,7 +204,7 @@ struct PlayableGameView: View {
         .sheet(isPresented: $showUnlock, onDismiss: { RewardedAdService.shared.cancelPendingRequest(); pendingMatchRules = nil }) {
             UnlockView(access: access, continueGame: {
                 if let rules = pendingMatchRules { startMatch(rules: rules) }
-            }, continueTitle: pendingMatchRules == nil ? "返回遊戲" : "開始下一局", presentationChanged: { presented in
+            }, continueTitle: pendingMatchRules == nil ? "返回遊戲" : "開始下一局", storeEntry: pendingMatchRules == nil, presentationChanged: { presented in
                 adIsPresented = presented
                 store.setSceneAudioActive(!presented && scenePhase == .active)
             })

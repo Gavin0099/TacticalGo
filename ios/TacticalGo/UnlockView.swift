@@ -6,6 +6,8 @@ struct UnlockView: View {
     @ObservedObject var ads = RewardedAdService.shared
     let continueGame: @MainActor () -> Void
     var continueTitle = "開始下一局"
+    /// Opened from the lobby's 「購買與恢復」 entry: the purchase is offered even while free matches remain.
+    var storeEntry = false
     let presentationChanged: @MainActor (Bool) -> Void
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
@@ -19,13 +21,10 @@ struct UnlockView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     Image(systemName: "crown.fill").font(.system(size: 46)).foregroundStyle(Cozy.confirm).accessibilityHidden(true)
-                    Text(access.purchase.isUnlocked ? "繼續你的戰局" : "選擇繼續遊玩的方式").font(.title2.bold()).accessibilityIdentifier("unlockTitle")
-                    Text("前 3 場完整對局免費。教學與戰術挑戰不消耗額度；既有存局可繼續。")
+                    Text(title).font(.title2.bold()).accessibilityIdentifier("unlockTitle")
+                    Text("前 3 場完整對局免費。新手教學、玩法練習與戰術挑戰不消耗額度；既有存局可繼續。")
                         .font(.subheadline).multilineTextAlignment(.center)
-                    if access.canStartMatch {
-                        Button(continueTitle) { readyToContinue = false; continueGame(); dismiss() }
-                            .buttonStyle(.borderedProminent).accessibilityIdentifier("accessContinue")
-                    } else {
+                    if offersPurchase {
                         Button { buy() } label: {
                             VStack(spacing: 4) {
                                 Text("一次購買，永久去廣告").font(.headline)
@@ -34,6 +33,16 @@ struct UnlockView: View {
                         }.buttonStyle(.borderedProminent)
                             .disabled(access.purchase.product == nil || access.purchase.isBusy || ads.isBusy)
                             .accessibilityIdentifier("unlockPurchase")
+                    }
+                    if access.canStartMatch {
+                        if storeEntry {
+                            Button(continueTitle) { readyToContinue = false; continueGame(); dismiss() }
+                                .buttonStyle(.bordered).accessibilityIdentifier("accessContinue")
+                        } else {
+                            Button(continueTitle) { readyToContinue = false; continueGame(); dismiss() }
+                                .buttonStyle(.borderedProminent).accessibilityIdentifier("accessContinue")
+                        }
+                    } else {
                         Button { watchAd() } label: {
                             Label("看廣告，再玩一局", systemImage: "play.rectangle")
                                 .frame(maxWidth: .infinity, minHeight: 48)
@@ -49,7 +58,10 @@ struct UnlockView: View {
                     HStack {
                         Button("恢復購買") { work = Task { await access.purchase.restore() } }.accessibilityIdentifier("restorePurchases")
                         Spacer()
-                        Button("重試商店") { work = Task { await access.purchase.loadProduct() } }
+                        // Only a failed product load needs a retry; a loaded store showed this as if it were an error.
+                        if !access.purchase.isUnlocked && access.purchase.product == nil {
+                            Button("重試商店") { work = Task { await access.purchase.loadProduct() } }
+                        }
                     }.disabled(access.purchase.isBusy || ads.isBusy)
                     if ads.privacyOptionsRequired {
                         Button("廣告隱私選擇") { work = Task { await ads.presentPrivacyOptions(onPresentationChanged: presentationChanged) } }
@@ -59,7 +71,7 @@ struct UnlockView: View {
                         .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("monetizationTestNotice")
                     #endif
                 }.padding(24).frame(maxWidth: 500).frame(maxWidth: .infinity)
-            }.navigationTitle("繼續遊玩").navigationBarTitleDisplayMode(.inline)
+            }.navigationTitle(storeEntry ? "購買與恢復" : "繼續遊玩").navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .cancellationAction) {
                     Button("稍後再說") { cancelWork(); dismiss() }.disabled(ads.isPresentingSDKContent).accessibilityIdentifier("unlockDismiss")
                 } }
@@ -72,6 +84,12 @@ struct UnlockView: View {
                 if phase == .active { continueWhenActive() }
             }
     }
+
+    private var title: String {
+        if access.purchase.isUnlocked { return storeEntry ? "已永久解鎖" : "繼續你的戰局" }
+        return storeEntry ? "購買與恢復" : "選擇繼續遊玩的方式"
+    }
+    private var offersPurchase: Bool { !access.purchase.isUnlocked && (storeEntry || !access.canStartMatch) }
 
     private func buy() {
         let current = generation
