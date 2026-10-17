@@ -356,11 +356,7 @@ import XCTest
     // The 7x7 lesson in the real shell: pick the sacrifice and the exit, see the liberty preview, confirm.
     func testSanctumPracticeIsPlayableWithALibertyPreview() {
         let app = launchFullGame()
-        let practice = app.buttons["玩法練習"]
-        for _ in 0..<6 where !practice.isHittable { app.swipeUp() }
-        practice.tap()
-        let lesson = app.buttons["牧師 · 聖所救援（7×7）"]
-        XCTAssertTrue(lesson.waitForExistence(timeout: 5)); lesson.tap()
+        openSanctumLesson(app, "聖所救援 · 角落（7×7）")
         XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.buttons["mode-advanced"].isSelected, "the lesson opens on the second skill")
         app.buttons["play-cell-1-5"].tap(); app.buttons["play-cell-3-6"].tap()
@@ -422,5 +418,67 @@ import XCTest
         XCTAssertTrue(app.buttons["play-cell-4-6"].label.contains("空點"))
         XCTAssertEqual(mana(), before)
         XCTAssertFalse((app.buttons["mode-advanced"].value as? String ?? "").contains("本回合已施法"))
+    }
+
+    private func openSanctumLesson(_ app: XCUIApplication, _ title: String) {
+        let practice = app.buttons["玩法練習"]
+        for _ in 0..<6 where !practice.isHittable { app.swipeUp() }
+        practice.tap()
+        let group = app.buttons["牧師 · 聖所課題"]
+        XCTAssertTrue(group.waitForExistence(timeout: 5)); group.tap()
+        let lesson = app.buttons[title]
+        XCTAssertTrue(lesson.waitForExistence(timeout: 5)); lesson.tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+    }
+    private func mana(_ app: XCUIApplication) -> String { app.descendants(matching: .any)["blueResources"].firstMatch.value as? String ?? "" }
+
+    // Review item 3: the two-step Sanctum flow when the player picks wrong, changes their mind or undoes.
+    func testSanctumTwoStepErrorsCancelSwitchAndUndoKeepStateConsistent() {
+        let app = launchFullGame()
+        openSanctumLesson(app, "聖所救援 · 角落（7×7）")
+        let prompt = app.staticTexts["skillStepPrompt"], confirm = app.buttons["playConfirm"], cancel = app.buttons["undoOrCancel"]
+        func step(_ text: String, _ line: UInt = #line) {
+            let e = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", text), object: prompt)
+            XCTAssertEqual(XCTWaiter.wait(for: [e], timeout: 5), .completed, "\(prompt.label)", line: line)
+        }
+        XCTAssertTrue(app.buttons["mode-advanced"].isSelected)
+        XCTAssertTrue(mana(app).contains("能量 4/"), mana(app))
+        step("①")
+        // 1. A wrong first point (an empty point is not an own soldier): accepted as step 1, rejected as a pair.
+        app.buttons["play-cell-5-5"].tap(); step("②")
+        app.buttons["play-cell-3-6"].tap()
+        XCTAssertFalse(confirm.isEnabled, "illegal pair cannot be confirmed")
+        XCTAssertTrue(mana(app).contains("能量 4/"), "no mana spent on a rejected preview")
+        // 2. Cancel clears the selection and returns to step 1.
+        cancel.tap(); step("①"); XCTAssertFalse(confirm.isEnabled)
+        // 3. Right sacrifice, illegal second point (far from priest and commander).
+        app.buttons["play-cell-1-5"].tap(); step("②")
+        XCTAssertEqual(app.buttons["play-cell-3-6"].value as? String, "可選下一點", "the exit is offered as the next point")
+        app.buttons["play-cell-6-0"].tap()
+        XCTAssertFalse(confirm.isEnabled)
+        cancel.tap(); step("①")
+        // 4. Switching skill mid-selection drops the half-picked Sanctum.
+        app.buttons["play-cell-1-5"].tap(); step("②")
+        app.buttons["mode-skill"].tap(); step("確認奉獻")
+        app.buttons["mode-advanced"].tap(); step("①")
+        // 5. Change the sacrifice: pick one, cancel, pick the taught one, then the exit.
+        app.buttons["play-cell-0-6"].tap(); step("②"); cancel.tap(); step("①")
+        app.buttons["play-cell-1-5"].tap(); app.buttons["play-cell-3-6"].tap()
+        let legal = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "犧牲後氣 1→3"), object: app.staticTexts["playMessage"])
+        XCTAssertEqual(XCTWaiter.wait(for: [legal], timeout: 5), .completed)
+        XCTAssertTrue(confirm.isEnabled)
+        // 6. Confirm, then undo: board and mana both come back.
+        confirm.tap()
+        let placed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-3-6"])
+        XCTAssertEqual(XCTWaiter.wait(for: [placed], timeout: 10), .completed)
+        XCTAssertTrue(app.buttons["play-cell-1-5"].label.contains("空點"))
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-1-5"])
+        let undo = app.buttons["undoOrCancel"]
+        let undoReady = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isEnabled == true"), object: undo)
+        XCTAssertEqual(XCTWaiter.wait(for: [undoReady], timeout: 10), .completed)
+        undo.tap()
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 10), .completed)
+        XCTAssertTrue(app.buttons["play-cell-3-6"].label.contains("空點"))
+        XCTAssertTrue(mana(app).contains("能量 4/"), mana(app))
     }
 }
