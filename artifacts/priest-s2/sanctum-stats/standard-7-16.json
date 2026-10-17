@@ -1,0 +1,262 @@
+{
+  "counts" : {
+    "games" : 16,
+    "priestTurns" : 474,
+    "sanctumBlockedByMana" : 1,
+    "sanctumCast" : 2,
+    "sanctumLegalNotCast" : 284,
+    "winner-none" : 9,
+    "winner-opponent" : 3,
+    "winner-priest" : 4
+  },
+  "games" : [
+    {
+      "game" : 0,
+      "opponent" : "Warrior",
+      "priestColour" : "black",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 1,
+      "opponent" : "Mage",
+      "priestColour" : "black",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 2,
+      "opponent" : "Rogue",
+      "priestColour" : "black",
+      "status" : "Won",
+      "turns" : 11,
+      "winner" : "priest"
+    },
+    {
+      "game" : 3,
+      "opponent" : "Priest",
+      "priestColour" : "black",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 4,
+      "opponent" : "Warrior",
+      "priestColour" : "white",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 5,
+      "opponent" : "Mage",
+      "priestColour" : "white",
+      "status" : "Won",
+      "turns" : 26,
+      "winner" : "priest"
+    },
+    {
+      "game" : 6,
+      "opponent" : "Rogue",
+      "priestColour" : "white",
+      "status" : "Won",
+      "turns" : 20,
+      "winner" : "priest"
+    },
+    {
+      "game" : 7,
+      "opponent" : "Priest",
+      "priestColour" : "white",
+      "status" : "Won",
+      "turns" : 5,
+      "winner" : "opponent"
+    },
+    {
+      "game" : 8,
+      "opponent" : "Warrior",
+      "priestColour" : "black",
+      "status" : "Won",
+      "turns" : 3,
+      "winner" : "priest"
+    },
+    {
+      "game" : 9,
+      "opponent" : "Mage",
+      "priestColour" : "black",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 10,
+      "opponent" : "Rogue",
+      "priestColour" : "black",
+      "status" : "Won",
+      "turns" : 10,
+      "winner" : "opponent"
+    },
+    {
+      "game" : 11,
+      "opponent" : "Priest",
+      "priestColour" : "black",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 12,
+      "opponent" : "Warrior",
+      "priestColour" : "white",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 13,
+      "opponent" : "Mage",
+      "priestColour" : "white",
+      "status" : "Won",
+      "turns" : 9,
+      "winner" : "opponent"
+    },
+    {
+      "game" : 14,
+      "opponent" : "Rogue",
+      "priestColour" : "white",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    },
+    {
+      "game" : 15,
+      "opponent" : "Priest",
+      "priestColour" : "white",
+      "status" : "Drawn",
+      "turns" : 96,
+      "winner" : "none"
+    }
+  ],
+  "notClaimed" : [
+    "balance",
+    "human fun",
+    "that the bot's choices are optimal"
+  ],
+  "samples" : {
+    "sanctumBlockedByMana" : [
+      {
+        "board" : "x.oo.o.\n.xxOo.o\nxx.Q.ox\n..xoox.\n.x.xxxo\nx.HXxo.\n.x...xo",
+        "chosen" : [
+          "1-place:3,6",
+          "1-place:6,4"
+        ],
+        "game" : 15,
+        "mana" : 3,
+        "player" : 1,
+        "ply" : 36,
+        "reasons" : [
+          "提掉敵方棋子 2 枚",
+          "敵主將生存空格 6 → 4",
+          "完整回合 2 次行動；攻守分數 -110",
+          "有限對手反應分數 -280"
+        ]
+      }
+    ],
+    "sanctumCast" : [
+      {
+        "board" : ".ox.o.o\no.oOoo.\noo.Q.oo\nxxoHo.o\nx.xxxox\nxxxXoo.\n..x.xoo",
+        "chosen" : [
+          "8-sanctum:4,4:6,3",
+          "1-place:2,2"
+        ],
+        "game" : 11,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 29,
+        "reasons" : [
+          "使用技能重組棋形",
+          "提掉敵方棋子 1 枚",
+          "敵主將生存空格 7 → 6",
+          "Mana 6 → 2",
+          "完整回合 2 次行動；攻守分數 -632",
+          "有限對手反應分數 -790"
+        ]
+      },
+      {
+        "board" : "x.o.xo.\n.xxOo.o\nxxoQ.ox\n..xoox.\n.x.xxxo\nx.HX.ox\n.xooo..",
+        "chosen" : [
+          "1-place:6,6",
+          "8-sanctum:2,2:0,3"
+        ],
+        "game" : 15,
+        "mana" : 6,
+        "player" : 1,
+        "ply" : 34,
+        "reasons" : [
+          "使用技能重組棋形",
+          "提掉敵方棋子 2 枚",
+          "Mana 6 → 2",
+          "完整回合 2 次行動；攻守分數 36",
+          "有限對手反應分數 -134"
+        ]
+      }
+    ],
+    "sanctumLegalNotCast" : [
+      {
+        "board" : ".......\n..xOo.x\n..oo...\n..Qx...\n..oH...\n..oX...\n.....ox",
+        "chosen" : [
+          "1-place:5,4",
+          "1-place:5,5"
+        ],
+        "game" : 0,
+        "mana" : 4,
+        "player" : 0,
+        "ply" : 7,
+        "reasons" : [
+          "完整回合 2 次行動；攻守分數 -139",
+          "有限對手反應分數 -380"
+        ]
+      },
+      {
+        "board" : ".......\n..xOo.x\n..oo...\n..Qx...\n..oH.o.\n..oXxxo\n.....o.",
+        "chosen" : [
+          "1-place:3,4",
+          "1-place:3,5"
+        ],
+        "game" : 0,
+        "mana" : 5,
+        "player" : 0,
+        "ply" : 9,
+        "reasons" : [
+          "完整回合 2 次行動；攻守分數 -214",
+          "有限對手反應分數 -426"
+        ]
+      },
+      {
+        "board" : ".......\n..xOo.x\n..ooo..\n..Qxxx.\n..oH.o.\n.ooXxxo\n...o.o.",
+        "chosen" : [
+          "1-place:4,6",
+          "1-place:6,6"
+        ],
+        "game" : 0,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 11,
+        "reasons" : [
+          "提掉敵方棋子 1 枚",
+          "完整回合 2 次行動；攻守分數 -226",
+          "有限對手反應分數 -468"
+        ]
+      }
+    ]
+  },
+  "setup" : {
+    "boardSize" : 7,
+    "difficulty" : "standard",
+    "games" : 16,
+    "opening" : "seeded random soldiers for plies 1-4 (seed = game index), then bot vs bot",
+    "rules" : "expansion, connected Bastion, friendly redeploy, second skill 4 mana"
+  }
+}
