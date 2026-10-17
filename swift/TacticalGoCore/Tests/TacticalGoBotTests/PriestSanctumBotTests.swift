@@ -53,33 +53,60 @@ final class PriestSanctumBotTests: XCTestCase {
     }
 
     // Owner 2026-10-17: the thrifty rule (do not spend Sanctum for a liberty the commander does not need), on its own.
-    private func position(_ stones: [(Point, Character)]) throws -> GameState {
+    private func position(_ stones: [(Point, Character)], whiteMana: Int = 0) throws -> GameState {
         var rows = Array(repeating: Array(repeating: Character("."), count: 9), count: 9)
         rows[7][4] = "X"; rows[1][4] = "O"
         for (p, c) in stones { rows[p.y][p.x] = c }
         return try GameSetup.fromDiagram(config: TacticalHints.updatedConfig(size: 9), diagram: rows.map { String($0) }.joined(separator: "\n"),
-                                         classOne: .priest, classTwo: .mage, manaOne: 4, manaTwo: 3, ap: 1, ply: 9)
+                                         classOne: .priest, classTwo: .mage, manaOne: 4, manaTwo: whiteMana, ap: 1, ply: 9)
     }
-    func testThriftyRuleKeepsManaOnlyWhenTheCommanderIsAlreadySafeAndTheGainIsOneLiberty() throws {
+    func testThriftyRuleNeedsRealSavingsASafeCommanderAndAOneLibertyGap() throws {
         let root = try position([])
-        let open = try position([])                                              // commander: 4 liberties
-        let squeezed = try position([(Point(3,7),"o"), (Point(5,7),"o")])          // 2 liberties
+        let spent = try position([]).withMana(0)                                   // the Sanctum turn's end: 0 mana
+        let open = try position([])                                                // 4 liberties, 4 mana kept
+        let squeezed = try position([(Point(3,7),"o"), (Point(5,7),"o")])         // 2 liberties
         let three = try position([(Point(3,7),"o")])                               // 3 liberties
-        let threeWithHero = try position([(Point(3,7),"o"), (Point(6,2),"Q")])    // 3 liberties, White hero on board
-        let fourWithHero = try position([(Point(6,2),"Q")])                        // 4 liberties, White hero on board
+        let threeHero = try position([(Point(3,7),"o"), (Point(6,2),"Q")])        // 3 liberties, White hero on board
+        let threeCanSummon = try position([(Point(3,7),"o")], whiteMana: 3)       // 3 liberties, White can summon next turn
+        let fourHero = try position([(Point(6,2),"Q")])
+        func keeps(_ final: GameState, gap: Int = 50, sanctum: GameState? = nil) -> Bool {
+            BotPlanner.keepsMana(root: root, sanctumScore: 1_000 + gap, alternativeScore: 1_000,
+                                 sanctumFinal: sanctum ?? spent, alternativeFinal: final)
+        }
         XCTAssertEqual(open.board.liberties(at: Point(4,7)).count, 4)
-        XCTAssertTrue(BotPlanner.keepsMana(root: root, sanctumScore: 1_050, alternativeScore: 1_000, alternativeFinal: open),
-                      "safe commander, Sanctum only 50 better: keep the mana")
-        XCTAssertTrue(BotPlanner.keepsMana(root: root, sanctumScore: 1_075, alternativeScore: 1_000, alternativeFinal: open),
-                      "exactly one liberty's worth is still only a buffer")
-        XCTAssertFalse(BotPlanner.keepsMana(root: root, sanctumScore: 1_076, alternativeScore: 1_000, alternativeFinal: open),
-                       "more than one liberty's worth: Sanctum buys something real")
-        XCTAssertFalse(BotPlanner.keepsMana(root: root, sanctumScore: 1_010, alternativeScore: 1_000, alternativeFinal: squeezed),
-                       "2 liberties is below the one-turn line of 3: not safe")
-        XCTAssertTrue(BotPlanner.keepsMana(root: root, sanctumScore: 1_010, alternativeScore: 1_000, alternativeFinal: three),
-                      "3 liberties meets the line when White's hero is not on the board")
-        XCTAssertFalse(BotPlanner.keepsMana(root: root, sanctumScore: 1_010, alternativeScore: 1_000, alternativeFinal: threeWithHero),
-                       "a White hero can fill two points with one AP: the line rises to 4")
-        XCTAssertTrue(BotPlanner.keepsMana(root: root, sanctumScore: 1_010, alternativeScore: 1_000, alternativeFinal: fourWithHero))
+        XCTAssertTrue(keeps(open), "safe commander, Sanctum only 50 better, 4 mana kept")
+        XCTAssertTrue(keeps(open, gap: 75), "exactly one liberty's worth is still only a spare liberty")
+        XCTAssertFalse(keeps(open, gap: 76), "more than one liberty's worth: Sanctum buys something real")
+        XCTAssertFalse(keeps(open, sanctum: open), "an alternative that ends with no more mana is not 'keeping mana'")
+        XCTAssertFalse(keeps(squeezed), "2 liberties is below the line of 3")
+        XCTAssertTrue(keeps(three), "3 liberties meets the line when White has no hero and cannot summon one")
+        XCTAssertFalse(keeps(threeHero), "a White hero can fill two points with one AP: the line rises to 4")
+        XCTAssertFalse(keeps(threeCanSummon), "White can summon then use a two-point skill: the line rises to 4")
+        XCTAssertTrue(keeps(fourHero))
+    }
+
+    // The whole path, not just the condition: search → Sanctum chosen → own-Sanctum-free re-search → compare → replace.
+    // A wide gap forces the replacement deterministically; the 75 threshold itself is covered above.
+    func testFullPlanReplacesASanctumTurnWhenTheRuleAccepts() throws {
+        let practice = PriestSanctumPractice.wideExitNine
+        var c = TacticalHints.updatedConfig(size: 9); c.boardSize = 9
+        let start = try GameSetup.fromDiagram(config: c, diagram: practice.diagram, classOne: .priest, classTwo: .mage,
+                                              manaOne: 4, manaTwo: 0, ap: 1, ply: 9)       // White cannot summon next turn
+        let usual = try XCTUnwrap(BotPlanner.planTurn(start, difficulty: .standard))
+        XCTAssertTrue(usual.actions.contains { if case .castSanctum = $0 { return true }; return false },
+                      "precondition: the standard bot casts Sanctum here (\(usual.actions.map(botActionDescription)))")
+        let thrifty = try XCTUnwrap(BotPlanner.planTurn(start, difficulty: .standard, sanctumGap: 1_000_000))
+        XCTAssertFalse(thrifty.actions.contains { if case .castSanctum = $0 { return true }; return false })
+        XCTAssertTrue(thrifty.reasons.contains { $0.contains("保留能量") }, "\(thrifty.reasons)")
+        let after = execute(start, thrifty)
+        XCTAssertEqual(after.mana(of: .one), 4, "kept the 4 mana")
+        XCTAssertFalse(whiteCanCaptureCommander(after), "the replacement still saves the commander this turn")
+    }
+}
+
+private extension GameState {
+    func withMana(_ mana: Int) throws -> GameState {
+        try GameSetup.fromDiagram(config: config, diagram: board.diagram, classOne: heroClass(of: .one), classTwo: heroClass(of: .two),
+                                  current: current, manaOne: mana, manaTwo: self.mana(of: .two), ap: apRemaining, ply: ply)
     }
 }

@@ -62,18 +62,34 @@ public struct BotTurnPlan: Sendable {
     public let score: Int
 }
 public enum BotPlanner {
-    /// The thrifty rule on its own: prefer the turn without Sanctum when the commander still ends at or above the
-    /// one-turn safety line and Sanctum's plan is better by no more than one commander liberty (75).
-    static func keepsMana(root: GameState, sanctumScore: Int, alternativeScore: Int, alternativeFinal after: GameState) -> Bool {
-        let me = root.current
-        guard sanctumScore - alternativeScore <= 75, after.winner != me.opponent,
-              let commander = after.board.find(me, .commander) else { return false }
-        let safe = root.config.apPerTurn + 1 + (after.board.find(me.opponent, .hero) != nil ? 1 : 0)
+    /// The thrifty rule on its own. Prefer the turn without Sanctum only when all hold:
+    /// - it really ends with more of the bot's mana than the Sanctum turn (not merely "a turn without Sanctum");
+    /// - the Sanctum turn scores at most `gap` better (75 = one commander liberty);
+    /// - the commander ends at or above an ESTIMATED one-turn line: one stone per opponent AP, plus one when the opponent
+    ///   has a hero on the board or can still summon one (summon, then Bastion/Reformation/Double Pull fills two points).
+    ///   This is a heuristic line, not a proof that the commander cannot be captured.
+    static func keepsMana(root: GameState, sanctumScore: Int, alternativeScore: Int, sanctumFinal: GameState,
+                          alternativeFinal after: GameState, gap: Int = 75) -> Bool {
+        let me = root.current, them = me.opponent
+        guard after.mana(of: me) > sanctumFinal.mana(of: me), sanctumScore - alternativeScore <= gap,
+              after.winner != them, let commander = after.board.find(me, .commander) else { return false }
+        let heroThreat = after.board.find(them, .hero) != nil
+            || (!after.hasSummonedHero(them) && after.heroClass(of: them) != .none
+                && after.mana(of: them) + after.config.manaGainPerTurn >= after.config.summonCost(after.heroClass(of: them)))
+        let safe = root.config.apPerTurn + 1 + (heroThreat ? 1 : 0)
         return after.board.liberties(at: commander).count >= safe
     }
     public static func planTurn(_ state: GameState, limits: BotLimits = .standard,
                                 difficulty: BotDifficulty = .standard, diagnostics: Bool = false, policy: BotPolicy = .baseline,
                                 cancelled: @Sendable () -> Bool = { false }) -> BotTurnPlan? {
+        planTurn(state, limits: limits, difficulty: difficulty, diagnostics: diagnostics, policy: policy,
+                 sanctumGap: 75, cancelled: cancelled)
+    }
+    /// `sanctumGap`: how much better (in score) a Sanctum turn may be and still count as "only a spare liberty".
+    /// 75 is one commander liberty. Tests pass a wide gap to drive the full replace path deterministically.
+    static func planTurn(_ state: GameState, limits: BotLimits = .standard, difficulty: BotDifficulty = .standard,
+                         diagnostics: Bool = false, policy: BotPolicy = .baseline, sanctumGap: Int,
+                         cancelled: @Sendable () -> Bool = { false }) -> BotTurnPlan? {
         guard state.status == .ongoing, !cancelled() else { return nil }
         let effectiveLimits = difficulty == .easy
             ? BotLimits(maxDomainTransitions: min(limits.maxDomainTransitions, BotLimits.easy.maxDomainTransitions),
@@ -84,7 +100,7 @@ public enum BotPlanner {
             var search = Search(root: state, limits: effectiveLimits, difficulty: difficulty, diagnostics: diagnostics, cancelled: callback)
             guard var baseline = search.run() else { return nil }
             if let thrifty = sanctumAlternative(state, baseline, limits: effectiveLimits, difficulty: difficulty,
-                                                diagnostics: diagnostics, cancelled: callback) { baseline = thrifty }
+                                                diagnostics: diagnostics, gap: sanctumGap, cancelled: callback) { baseline = thrifty }
             if policy == .forcingContinuation && difficulty == .standard {
                 return withoutActuallyEscaping(callback) { continuationCallback in
                     var continuation = BotContinuation(root: state, baseline: baseline, limits: effectiveLimits, candidates: search.continuationCandidates, cancelled: continuationCallback)
@@ -105,26 +121,31 @@ public enum BotPlanner {
 
 /// Owner 2026-10-17 (PRIEST-S2-P0): do not spend the priest's 4-mana Sanctum for a liberty the commander does not need.
 /// Only runs when the chosen turn casts Sanctum, so every other class and every turn without Sanctum is unchanged.
-/// The turn is searched again without Sanctum; that plan wins when its commander still has at least as many liberties as
-/// the opponent could fill in one turn (one per AP, plus one once its hero is on the board) and it scores no more than
-/// one commander liberty (75) below the Sanctum plan.
+/// The turn is searched again with the bot's own Sanctum removed (the opponent's replies keep it) and replaces the
+/// Sanctum turn only when `BotPlanner.keepsMana` accepts it.
 private func sanctumAlternative(_ state: GameState, _ chosen: BotTurnPlan, limits: BotLimits, difficulty: BotDifficulty,
-                                diagnostics: Bool, cancelled: @escaping @Sendable () -> Bool) -> BotTurnPlan? {
+                                diagnostics: Bool, gap: Int, cancelled: @escaping @Sendable () -> Bool) -> BotTurnPlan? {
     guard chosen.actions.contains(where: { if case .castSanctum = $0 { return true }; return false }) else { return nil }
     var search = Search(root: state, limits: limits, difficulty: difficulty, diagnostics: diagnostics, cancelled: cancelled,
                         excludeSanctum: true)
-    guard let alternative = search.run() else { return nil }
-    var after = state
-    for action in alternative.actions {
-        let outcome = GameEngine.apply(after, action)
-        guard outcome.success else { return nil }
-        after = outcome.state
-    }
-    guard BotPlanner.keepsMana(root: state, sanctumScore: chosen.score, alternativeScore: alternative.score, alternativeFinal: after),
+    guard let alternative = search.run(), let sanctumFinal = replay(state, chosen.actions),
+          let after = replay(state, alternative.actions),
+          BotPlanner.keepsMana(root: state, sanctumScore: chosen.score, alternativeScore: alternative.score,
+                               sanctumFinal: sanctumFinal, alternativeFinal: after, gap: gap),
           let commander = after.board.find(state.current, .commander) else { return nil }
+    let me = state.current
     return BotTurnPlan(actions: alternative.actions,
-                       reasons: alternative.reasons + ["保留能量：主將已有 \(after.board.liberties(at: commander).count) 口氣，不為多一口氣使用聖所"],
+                       reasons: alternative.reasons + ["保留能量：不用聖所時主將仍有 \(after.board.liberties(at: commander).count) 口氣，能量 \(after.mana(of: me))（用聖所為 \(sanctumFinal.mana(of: me))）"],
                        stats: alternative.stats, score: alternative.score)
+}
+private func replay(_ state: GameState, _ actions: [GameAction]) -> GameState? {
+    var s = state
+    for action in actions {
+        let outcome = GameEngine.apply(s, action)
+        guard outcome.success else { return nil }
+        s = outcome.state
+    }
+    return s
 }
 
 private struct Node {
@@ -161,7 +182,8 @@ private struct Search {
         // Core is the sole source of move legality, including suicide, ko, resources and skill gates.
         stats.legalEnumerations += 1
         let legal = GameEngine.legalActions(state,expansionCandidateLimit:256).filter { action in
-            if excludeSanctum, case .castSanctum = action { return false }
+            // Only the searching side gives up Sanctum; the opponent's replies keep their full repertoire.
+            if excludeSanctum, state.current == me, case .castSanctum = action { return false }
             // New1.1 presents Redeploy as the ordinary Mage skill; match the human repertoire.
             if state.config.expansionSkills && state.config.experimentalFriendlyRedeploy,
                case .castMagicHand = action { return false }
