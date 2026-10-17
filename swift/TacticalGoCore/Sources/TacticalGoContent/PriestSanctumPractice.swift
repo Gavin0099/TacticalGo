@@ -10,7 +10,8 @@ public enum PriestSanctumPractice: String, Sendable, CaseIterable {
     public enum Kind: Sendable, Equatable {
         /// Sanctum is the only single action that keeps the commander alive through White's turn.
         case onlySanctum
-        /// An ordinary stone at the exit already saves it; Sanctum would waste 4 mana.
+        /// An ordinary stone at the exit already survives White's turn (the commander is left in atari afterwards);
+        /// Sanctum costs 4 mana to keep one more liberty. A trade-off, not a requirement.
         case placementEnough
         /// Offering (2 mana) makes two eyes; Sanctum's reinforcement fills an own eye and loses.
         case offeringEnough
@@ -83,7 +84,7 @@ public enum PriestSanctumPractice: String, Sendable, CaseIterable {
         case .seven: "聖所救援 · 角落（7×7）"
         case .nine: "聖所救援 · 角落（9×9）"
         case .centerNine: "聖所救援 · 中腹（9×9）"
-        case .wideExitNine: "比較 · 出口夠寬，落子就好（9×9）"
+        case .wideExitNine: "比較 · 落子也能撐一回合（9×9）"
         case .twoEyesSeven: "比較 · 做兩眼用奉獻（7×7）"
         case .tooLateSeven: "比較 · 聖所也救不了（7×7）"
         }
@@ -98,8 +99,8 @@ public enum PriestSanctumPractice: String, Sendable, CaseIterable {
             return opening + "棋群在中腹，包住 E5 的己子圍成一圈，犧牲 E5 也不會把牧師和主將拆開。"
                 + "犧牲 E5、在出口 G5 補兵，氣會變成 3；普通落子或奉獻都只有 2。"
         case .wideExitNine:
-            return opening + "這次出口 G5 外面有三個空點：直接落子就有 3 口氣，白方一回合提不掉。"
-                + "能量留著，不必用聖所。"
+            return opening + "這次出口 G5 外面有三個空點：直接落子就有 3 口氣，白方這回合提不掉，能量全部留著。"
+                + "但白方填兩手後主將只剩 1 口氣，下回合要繼續補；用聖所多花 4 能量，白方回應後還有 2 口氣。兩種都可以，看你要不要換。"
         case .twoEyesSeven:
             return "黑方只剩 1 AP，主將棋群被完全包圍，只剩 A7 一個眼。奉獻 C7 就能做出第二個真眼（2 能量）。"
                 + "聖所反而只能把兵補在 A7，填掉自己的眼，主將會被提。"
