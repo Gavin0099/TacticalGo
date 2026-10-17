@@ -1,0 +1,161 @@
+{
+  "created_local_date": "2026-10-17",
+  "generator": "built-in image_gen",
+  "model": "unknown",
+  "tool_version": "unknown",
+  "transparent_background_requested": true,
+  "original_preserved": true,
+  "prompt": "PROMPT.txt",
+  "generation_inputs": [
+    {
+      "role": "priest identity",
+      "file": "/Users/pc49-58/TacticalGo-safety/wt-shell-copy/assets/candidates/priest-08/v02/priest-v02.png",
+      "width": 1254,
+      "height": 1254,
+      "file_sha256": "d04afa8acbe5b070cf54511cb629ef1ac5fd79efdf13dcb64fa7989ea1308cdd",
+      "decoded_rgba_sha256": "e0fd53cff85840a8843b4f9dabb5f350edc1443d5c72073e83e0548c5acf200a",
+      "alpha": {
+        "zero": 898503,
+        "partial": 672227,
+        "opaque": 1786
+      },
+      "visible_bounds_alpha_gte_13": [
+        225,
+        46,
+        1027,
+        1227
+      ],
+      "true_transparency": true
+    },
+    {
+      "id": "warrior-reference",
+      "label": "Warrior / current portrait",
+      "role": "composition and rendering reference",
+      "file": "/Users/pc49-58/TacticalGo-safety/wt-shell-copy/ios/TacticalGo/Assets.xcassets/warrior.imageset/portrait.png",
+      "width": 512,
+      "height": 512,
+      "file_sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+      "decoded_rgba_sha256": "b9ecc689b8a3c3c42419ea1f279ffadd049d88f6f70584661cf060e01ba5e286",
+      "alpha": {
+        "zero": 129415,
+        "partial": 131493,
+        "opaque": 1236
+      },
+      "visible_bounds_alpha_gte_13": [
+        39,
+        37,
+        482,
+        486
+      ],
+      "true_transparency": true
+    }
+  ],
+  "fixed_style_reference": {
+    "file": "/Users/pc49-58/Desktop/TacticalGo/.agents/skills/tacticalgo-character-style/assets/warrior-v01.png",
+    "manifest_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322",
+    "width": 1254,
+    "height": 1254,
+    "file_sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322",
+    "decoded_rgba_sha256": "e9d95dcd62ab37a8fc7a076176ffaa1bbf6d236b5aaff30da74f98addbb15ee3",
+    "alpha": {
+      "zero": 1014275,
+      "partial": 557377,
+      "opaque": 864
+    },
+    "visible_bounds_alpha_gte_13": [
+      123,
+      96,
+      1089,
+      1179
+    ],
+    "true_transparency": true
+  },
+  "records": [
+    {
+      "id": "warrior-reference",
+      "label": "Warrior / current portrait",
+      "role": "composition and rendering reference",
+      "file": "/Users/pc49-58/TacticalGo-safety/wt-shell-copy/ios/TacticalGo/Assets.xcassets/warrior.imageset/portrait.png",
+      "width": 512,
+      "height": 512,
+      "file_sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+      "decoded_rgba_sha256": "b9ecc689b8a3c3c42419ea1f279ffadd049d88f6f70584661cf060e01ba5e286",
+      "alpha": {
+        "zero": 129415,
+        "partial": 131493,
+        "opaque": 1236
+      },
+      "visible_bounds_alpha_gte_13": [
+        39,
+        37,
+        482,
+        486
+      ],
+      "true_transparency": true
+    },
+    {
+      "id": "priest-current-crop",
+      "label": "Priest / current crop",
+      "role": "comparison only, not generation input",
+      "file": "/Users/pc49-58/TacticalGo-safety/wt-shell-copy/ios/TacticalGo/Assets.xcassets/priest-portrait-bust-v01.imageset/priest-portrait-bust-v01.png",
+      "width": 512,
+      "height": 512,
+      "file_sha256": "90fe137e975964105849a984189a25de12ba58f0ad79dfe91d8a711abd7fd0a1",
+      "decoded_rgba_sha256": "25ab56f86ac760ade6fc470ff90518b2bee72bd688ee4b5f1a447c5e709c61e6",
+      "alpha": {
+        "zero": 108575,
+        "partial": 152677,
+        "opaque": 892
+      },
+      "visible_bounds_alpha_gte_13": [
+        46,
+        24,
+        465,
+        512
+      ],
+      "true_transparency": true
+    },
+    {
+      "id": "priest-redraw-v01",
+      "label": "Priest / new portrait candidate",
+      "role": "generated output",
+      "file": "/Users/pc49-58/Desktop/TacticalGo/assets/candidates/priest-portrait-redraw-v01/priest-portrait-redraw-v01.png",
+      "width": 1254,
+      "height": 1254,
+      "file_sha256": "b635a5a5a933cff8015f860d4582adbd868f6945a3b34e86aab5c9fdb46cf342",
+      "decoded_rgba_sha256": "7e3552600ca23bed98bbf23722d91e10e428cc2d22775d9edbd88aa40955f00a",
+      "alpha": {
+        "zero": 574700,
+        "partial": 996059,
+        "opaque": 1757
+      },
+      "visible_bounds_alpha_gte_13": [
+        65,
+        25,
+        1202,
+        1243
+      ],
+      "true_transparency": true
+    }
+  ],
+  "qa": {
+    "sample_sizes": [
+      32,
+      48,
+      64
+    ],
+    "light_dark_grayscale_silhouette": true,
+    "derivative_tool": "sharp",
+    "derivative_tool_version": "0.35.5",
+    "owner_visual_approval": "pending",
+    "consumer_ui": "not_run",
+    "board_token": "not_authored"
+  },
+  "approval": "pending_exact_file_owner_review",
+  "availability": {
+    "candidate": true,
+    "production": false,
+    "animation": false
+  },
+  "rights": "pending"
+}
