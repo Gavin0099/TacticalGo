@@ -311,6 +311,8 @@ import TacticalGoMotion
         let isolated = UserDefaults(suiteName:suite)!
         defer { isolated.removePersistentDomain(forName:suite) }
         let match = ExpansionLabStore(soundDefaults:isolated)
+        // This audit covers the spaced (balanced → calm) mechanics, as before; the product speaks on every cast (`.everyCast`).
+        match.setVoiceCadenceForAudit(.balanced)
         defer { match.scene(false) }
         let action = ExpansionPractice.rogue.action
         let key = "p8-voice-rogue-B"

@@ -9,6 +9,15 @@ final class CharacterVoiceCadenceTests: XCTestCase {
         let observed = times.map { cadence.shouldSpeak(player:.one,hero:.mage,at:$0,eligible:true) }
         XCTAssertEqual(observed, [true,false,false,true,false,false,true])
     }
+    // Owner TestFlight 1114: "戰士技能的聲音有時有有時沒有" — every cast speaks; only the 3 s global gap stays.
+    func testEveryCastSpeaksOnEachCastExceptInsideTheGlobalGap() {
+        var cadence = CharacterVoiceCadence(profile:.everyCast)
+        let mine = [0.0, 6, 12, 18].map { cadence.shouldSpeak(player:.one,hero:.warrior,at:$0,eligible:true) }
+        XCTAssertEqual(mine, [true,true,true,true])
+        XCTAssertFalse(cadence.shouldSpeak(player:.two,hero:.mage,at:19,eligible:true), "inside 3 s of another line")
+        XCTAssertTrue(cadence.shouldSpeak(player:.two,hero:.mage,at:21,eligible:true))
+        XCTAssertFalse(cadence.shouldSpeak(player:.one,hero:.warrior,at:22,eligible:false), "voice switched off")
+    }
     func testCalmDeferredOpportunityWaitsForEighteenSeconds() {
         var cadence = CharacterVoiceCadence(profile:.calm)
         let times: [Double] = [0,3,6,9,12,18,21,24,27,30,33,36]

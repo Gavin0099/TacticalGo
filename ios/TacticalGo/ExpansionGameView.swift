@@ -152,6 +152,7 @@ struct ExpansionGameView: View {
             Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
+        .onChange(of: inMatch) { _, playing in if !playing { returnToLatestRules() } }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
         .onChange(of: scenePhase) { _, phase in
             store.setSceneAudioActive(phase == .active)
@@ -436,25 +437,17 @@ struct ExpansionGameView: View {
                 }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("matchMode")
                     .onChange(of: singlePlayer) { _, solo in if solo { choosing = humanSide } }
                 #if DEBUG || TACTICALGO_V11
-                if productMode {
-                    // Original rules are an option inside the 1.1 shell (Owner decision 2026-10-15).
-                    Picker("玩法", selection: $useExpansion) {
-                        Text("擴充玩法").tag(true); Text("原版規則").tag(false)
-                    }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("playStyle")
-                        .onChange(of: useExpansion) { _, expanded in
-                            if !expanded {
-                                // The original product started new matches with the Owner-adopted default rules.
-                                selectedRules = GameStore.defaultMatchRules
-                                monsters = .none
-                                if one == .priest { one = .warrior }
-                                if two == .priest { two = .mage }
-                            }
-                        }
-                }
+                // Owner decision 2026-10-17 (TestFlight 1114): no play-style choice; every new match uses the latest rules.
+                // Old original-rules saves can still be resumed (and restarted) from the lobby.
                 if useExpansion {
                     Picker("魔物戰場",selection:$monsters) { ForEach(ExpansionLabStore.Monsters.allCases,id:\.self) { Text($0.rawValue).tag($0) } }
                         .accessibilityIdentifier("matchMonsters")
                         .onChange(of:monsters) { _, value in if value != .none { boardSize = 9 } }
+                    if monsters != .none {
+                        Text(SkillGuide.lobbyMonsters(monsters == .slime ? [.slime] : monsters == .wolf ? [.shadowWolf] : [.slime, .shadowWolf]))
+                            .font(.system(size: 12)).foregroundStyle(uiSecondary).multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading).accessibilityIdentifier("monsterGuide")
+                    }
                 }
                 #endif
                 if singlePlayer {
@@ -506,8 +499,10 @@ struct ExpansionGameView: View {
             Image(uiImage:portrait(h)).resizable().scaledToFit().frame(height:portraitHeight)
             Text(h.title).font(.system(size:17,weight:.bold))
             Text(lobbySkillTitle(h)).font(.system(size:12,weight:.semibold)).lineLimit(1)
-            if useExpansion && h != .priest {
-                Text(advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
+            if useExpansion {
+                // The priest has no second skill; a blank line keeps the four cards the same height.
+                Text(h == .priest ? " " : advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
+                    .accessibilityHidden(h == .priest)
             }
         }.frame(maxWidth:.infinity).padding(.vertical,12)
             .background(GamePanel(active:selected,kind:.hero))
@@ -527,13 +522,14 @@ struct ExpansionGameView: View {
     @ViewBuilder private var chosenSkill: some View {
                 let choice = choosing == .one ? one : two
                 VStack(spacing: 6) {
-                    Text(updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
+                    Text(useExpansion ? SkillGuide.basic(choice) : updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
+                        .accessibilityIdentifier("lobbySkillHelp")
                     Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(uiAccent)
                     if useExpansion && choice != .priest {
-                        Text("第二技能：\(advancedSkillTitle(choice)) · 1 AP＋\(TacticalHints.updatedConfig(size:boardSize).expansionSkillManaCost) 能量；兩招共用每回合一次。")
+                        Text("第二技能 · \(advancedSkillTitle(choice))（1 AP＋\(TacticalHints.updatedConfig(size:boardSize).expansionSkillManaCost) 能量，與技能共用每回合一次）：" + SkillGuide.second(choice))
                             .font(.system(size:12)).foregroundStyle(uiSecondary).accessibilityIdentifier("lobbyAdvancedSkill")
                     } else if useExpansion && choice == .priest {
-                        Text("奉獻：移除己兵打開氣或眼；不補兵，較適合救援被困棋群。")
+                        Text(SkillGuide.second(.priest))
                             .font(.system(size:12)).foregroundStyle(uiSecondary)
                     }
                 }.frame(minHeight: 45)
@@ -937,7 +933,7 @@ struct ExpansionGameView: View {
             HStack(spacing: 8) {
                 Button { store.undo() } label: { Text("復原重試").frame(maxWidth: .infinity, minHeight: 44) }
                     .buttonStyle(GameButtonStyle()).disabled(!store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
-                Button { if complete { store.leaveMatch(); inMatch = false; lesson = nil } else { startMatch() } } label: {
+                Button { if complete { store.leaveMatch(); inMatch = false; lesson = nil } else { returnToLatestRules(); startMatch() } } label: {
                     Text(complete ? "返回選角" : "再玩一局").bold().frame(maxWidth: .infinity, minHeight: 44)
                 }.buttonStyle(GameButtonStyle(kind: .primary)).accessibilityIdentifier("resultReplay")
             }
@@ -1099,9 +1095,20 @@ struct ExpansionGameView: View {
                 Section("勝利") { Text("包圍敵方主將所在的棋串，使它沒有相鄰空點（氣），提走主將即可獲勝。斜角不算相鄰。") }
                 Section("回合與資源") { Text("首回合 1 AP，其後 2 AP。每次行動 1 AP；耗盡 AP 自動換手。每回合增加 1 能量，上限 6。也可提早結束回合。100 回合未分勝負則和局。") }
                 Section("英雄") { Text("召喚在任一己方棋子相鄰空點。戰士與盜賊需 2 能量，\(heroes.contains(.priest) ? "法師與牧師需 3" : "法師需 3")。英雄被提走後，本局不能再召喚。") }
-                ForEach(heroes, id: \.self) { h in Section(h.title + " · " + ruleSkillTitle(h)) { Text(h.skillHelp(config: rulesConfig) + "\n技能需 1 AP＋2 能量，每回合只能使用一次。") } }
-                if useExpansion {
-                    Section("第二技能與魔物") { Text("三職第二技能需要1 AP＋4能量。原技能、第二技能和戰利能力每回合共用一次；魔物能力要到下一個己方回合才解鎖。魔物占據交叉點、阻擋氣；正鄰己子至少兩格且多於對手，可花1 AP討伐。暗影狼還需要正鄰己方英雄。") }
+                ForEach(heroes, id: \.self) { h in Section(h.title + " · " + ruleSkillTitle(h)) { Text((rulesConfig.expansionSkills ? SkillGuide.basic(h) + "\n" + SkillGuide.basicSteps(h) : h.skillHelp(config: rulesConfig)) + "\n技能需 1 AP＋2 能量，每回合只能使用一次。") } }
+                if rulesConfig.expansionSkills {
+                    Section("第二技能 · 1 AP＋4 能量") {
+                        ForEach(heroes.filter { $0 != .priest }, id: \.self) { h in
+                            Text(h.title + " · " + advancedSkillTitle(h) + "：" + SkillGuide.second(h) + "\n" + SkillGuide.secondSteps(h))
+                        }
+                        Text("技能、第二技能和戰利能力，每回合合計只能用一次。牧師沒有第二技能。")
+                    }
+                    Section("魔物與戰利能力") {
+                        Text(SkillGuide.monsters)
+                        Text(SkillGuide.loot)
+                        Text(SkillGuide.stickyBounce)
+                        Text(SkillGuide.shadowStep)
+                    }
                 }
                 Section("合法行動") { Text("先處理敵方提子，再檢查己方是否無氣。禁止自殺與重複任何先前盤面。預覽不扣資源；復原會還原完整盤面、回合、資源與歷史。") }
             }.gameSheetSurface().navigationTitle("遊戲規則").toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showRules = false } } }
@@ -1123,6 +1130,13 @@ struct ExpansionGameView: View {
         if store.state.board.monsters.contains(p) { return store.state.config.monsterBattlefield?.kind(at:p) == .slime ? "史萊姆，點選討伐" : "暗影狼，點選討伐" }
         guard let piece = store.state.board[p] else { return "空點" }
         return (piece.owner == .one ? "黑方 " : "白方 ") + (piece.kind == .hero ? store.state.heroClass(of: piece.owner).title : piece.kind == .commander ? "主將" : "士兵")
+    }
+    private func returnToLatestRules() {
+        guard productMode else { return }
+        #if DEBUG || TACTICALGO_V11
+        useExpansion = true
+        #endif
+        selectedRules = GameStore.defaultMatchRules
     }
     private func resumeRecord(_ record: MatchRecord) {
         if store.resume(record) {
@@ -1241,3 +1255,49 @@ struct FullGameRoot: View {
     }
 }
 #endif
+
+/// Player-facing explanations for the expansion rules (`TacticalHints.updatedConfig`): what each skill does and
+/// when it helps, before how to tap it. Owner TestFlight 1114 feedback: the old texts only listed tap steps.
+enum SkillGuide {
+    static func basic(_ hero: HeroClass) -> String {
+        switch hero {
+        case .warrior: "在戰士所在的己方棋群旁，一次加兩顆士兵。適合補牆、圍住敵兵或替棋群補氣。"
+        case .mage: "把法師 2 格內、與法師棋群相連的一顆己兵，移到棋群外緣的空點。不增加棋子，適合補缺口或逃出包圍。"
+        case .rogue: "盜賊和正鄰的一顆敵方士兵交換位置。適合突入敵陣，或拆開正在包圍你的敵兵。"
+        case .priest: "移除牧師 2 格內的一顆己兵，空出位置替被困的棋群打開氣或眼。不會在別處補兵。"
+        case .none: "請先選擇職業。"
+        }
+    }
+    static func basicSteps(_ hero: HeroClass) -> String {
+        switch hero {
+        case .warrior: "依序點棋群旁兩個不同空點，再按確認。"
+        case .mage: "先點要移動的己兵，再點棋群外緣空點，再按確認。"
+        case .rogue: "點盜賊上下左右的一顆敵兵，再按確認。"
+        case .priest: "點牧師 2 格內的一顆己兵，再按確認。"
+        case .none: ""
+        }
+    }
+    static func second(_ hero: HeroClass) -> String {
+        switch hero {
+        case .warrior: "把與戰士相連的兩顆己兵，各移到棋群外緣的空點（距戰士 4 格內）。適合重新排陣、堵住缺口。"
+        case .mage: "移動法師 2 格內的兩顆士兵（敵我皆可），各推到上下左右相鄰的空點。適合一次拆開敵陣。"
+        case .rogue: "盜賊穿過兩顆相連的敵兵：盜賊到第二顆敵兵的位置，兩顆敵兵各往後退一格。適合深入敵陣。"
+        case .priest, .none: "牧師沒有第二技能，請用奉獻救援被困的棋群。"
+        }
+    }
+    static func secondSteps(_ hero: HeroClass) -> String {
+        switch hero {
+        case .warrior, .mage: "依序點：士兵① → 空點① → 士兵② → 空點②，再按確認。"
+        case .rogue: "先點盜賊旁的敵兵，再點那顆敵兵旁的另一顆敵兵，再按確認。"
+        case .priest, .none: ""
+        }
+    }
+    static let monsters = "魔物占住一個交叉點，也會擋住氣。用己子從上下左右圍住它（至少 2 格，且比敵方多；斜角不算），再點「討伐」並確認，花 1 AP。暗影狼還需要己方英雄站在牠的上下左右。"
+    static let loot = "討伐後得到一次戰利能力，下個己方回合才能用：花 1 AP、0 能量，和職業技能共用每回合一次。按技能列的「戰利」切換使用。"
+    static let stickyBounce = "史萊姆 → 黏彈：選一顆己子，把貼著它的一顆士兵往外彈開一格（後方要是空點）。"
+    static let shadowStep = "暗影狼 → 影步：英雄沿直線移動 1～2 格到空點，路上不能有棋子或魔物。"
+    static func lobbyMonsters(_ kinds: [MonsterKind]) -> String {
+        let rewards = kinds.map { $0 == .slime ? stickyBounce : shadowStep }.joined(separator: "\n")
+        return "討伐魔物：用己子從上下左右圍住（至少 2 格且比敵方多），點「討伐」花 1 AP。" + (kinds.contains(.shadowWolf) ? "暗影狼還要己方英雄貼在旁邊。" : "") + "\n" + rewards
+    }
+}
