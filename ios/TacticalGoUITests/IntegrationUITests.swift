@@ -282,7 +282,36 @@ import XCTest
         style.buttons["原版規則"].tap()
         let rules = app.segmentedControls["matchRules"]
         XCTAssertTrue(rules.waitForExistence(timeout: 5))
-        XCTAssertTrue(rules.buttons["候選技能"].isSelected, "adopted default (.redeployment), not the legacy skills")
+        XCTAssertTrue(rules.buttons["新版技能"].isSelected, "adopted default (.redeployment), not the legacy skills")
         XCTAssertFalse(rules.buttons["原版"].isSelected)
+    }
+
+    // Owner TestFlight 1114 report: 「購買與恢復」 opened 「選擇繼續遊玩的方式」 with only 「返回遊戲」 while free matches remained.
+    func testPurchaseEntryOffersThePurchaseWhileFreeMatchesRemain() {
+        let app = launchFullGame()
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
+        app.buttons["purchaseSettings"].tap()
+        XCTAssertTrue(app.staticTexts["unlockTitle"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.staticTexts["unlockTitle"].label, "購買與恢復")
+        XCTAssertTrue(app.buttons["unlockPurchase"].exists, "the purchase is offered from the purchase entry")
+        XCTAssertTrue(app.buttons["restorePurchases"].exists)
+        XCTAssertFalse(app.buttons["watchRewardedAd"].exists, "free matches remain, so no ad is needed")
+        XCTAssertTrue(app.buttons["accessContinue"].exists)
+        app.buttons["accessContinue"].tap()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.otherElements["playArena"].exists, "returning from the purchase entry starts nothing")
+        XCTAssertEqual(app.staticTexts["accessStatus"].label, "免費完整對局剩餘 3／3")
+    }
+
+    // The rules sheet named the old skills and left out the priest while the lobby showed the new ones.
+    func testRulesSheetFollowsTheExpansionSkills() {
+        let app = launchFullGame()
+        for _ in 0..<4 where !app.buttons["遊戲規則"].isHittable { app.swipeUp() }
+        app.buttons["遊戲規則"].tap()
+        XCTAssertTrue(app.staticTexts["戰士 · 沿棋群築壘"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["法師 · 調度己兵"].exists)
+        XCTAssertFalse(app.staticTexts["戰士 · 築壘"].exists)
+        let heroes = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "法師與牧師需 3")).firstMatch
+        XCTAssertTrue(heroes.exists, "the priest is a fourth hero in the expansion")
     }
 }
