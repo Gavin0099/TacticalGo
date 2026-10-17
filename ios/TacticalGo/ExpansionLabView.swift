@@ -662,7 +662,8 @@ import TacticalGoVisuals
         let spent = preview.events.compactMap { e -> String? in if case .resourcesSpent(_,let ap,let mana) = e { return "\(ap) AP／\(mana) 能量" }; return nil }.first ?? ""
         // Priest sacrifices say what the sacrifice buys (review PRIEST-S2-P0: players could not see why to give a stone up).
         if let action = pending, let insight = PriestSacrificeInsight(state, action) {
-            return "合法預覽：\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
+            // Spend first, then the trade; the line may be cut on a phone, the 技能說明 sheet shows it whole.
+            return "\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
         }
         return "合法預覽：\(spent) · 提 \(captures) 顆。確認前不扣資源、不播聲音。"
     }

@@ -65,6 +65,9 @@ struct ExpansionGameView: View {
     }
     private func portrait(_ h: HeroClass) -> UIImage {
         #if DEBUG || TACTICALGO_V11
+        // The other three are upper-body portraits; the priest's is the same P08 art cropped to match
+        // (priest-portrait-bust-v01, 980px square from the top of priest-v02). The full figure stays on the board.
+        if h == .priest, let bust = UIImage(named:"priest-portrait-bust-v01") { return bust }
         if h == .priest, let url = Bundle.main.url(forResource:"priest-v02",withExtension:"png",subdirectory:"PresentationLab/P08"),let image = UIImage(contentsOfFile:url.path) { return image }
         #endif
         return visuals.portrait(h.art)
