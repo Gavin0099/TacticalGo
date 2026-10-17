@@ -8,7 +8,7 @@ spec = importlib.util.spec_from_file_location("chk", Path(__file__).with_name("c
 chk = importlib.util.module_from_spec(spec); spec.loader.exec_module(chk)
 
 GOOD = """MARKETING_VERSION = 1.1
-CURRENT_PROJECT_VERSION = 1114
+CURRENT_PROJECT_VERSION = 1115
 CROWN_UNLOCK_PRODUCT_ID = com.tacticalgo.crowntactics.unlock
 CROWN_PRIVACY_URL = https:/$()/example.test/privacy
 CROWN_SUPPORT_URL = https:/$()/example.test/
@@ -27,7 +27,7 @@ class XcconfigCheck(unittest.TestCase):
         self.assertEqual(run(GOOD), [])
 
     def test_repository_config_passes(self):
-        path = Path(__file__).resolve().parents[1] / "docs/release-01/Beta.integrated-1114.xcconfig"
+        path = Path(__file__).resolve().parents[1] / "docs/release-01/Beta.integrated-1115.xcconfig"
         self.assertEqual(run(path.read_text()), [])
 
     def test_comment_line_continuation_is_rejected(self):
@@ -43,7 +43,7 @@ class XcconfigCheck(unittest.TestCase):
         self.assertIn("admob_app_id_is_google_sample", run(bad))
 
     def test_build_number_must_exceed_last_upload(self):
-        self.assertIn("build_number_must_exceed_1113", run(GOOD.replace("1114", "1113")))
+        self.assertIn("build_number_must_exceed_1114", run(GOOD.replace("1115", "1114")))
 
     def test_unknown_key_is_rejected(self):
         self.assertTrue(any(f.startswith("unsupported_line") for f in run(GOOD + "CODE_SIGN_STYLE = Manual\n")))
@@ -58,7 +58,7 @@ class ExportComplianceKey(unittest.TestCase):
     def _app(self, extra):
         values, _ = chk.parse(GOOD)
         info = {
-            "CFBundleShortVersionString": "1.1", "CFBundleVersion": "1114",
+            "CFBundleShortVersionString": "1.1", "CFBundleVersion": "1115",
             "CrownTacticsUnlockProductID": "com.tacticalgo.crowntactics.unlock",
             "CrownTacticsRewardedAdUnitID": "",
             "GADApplicationIdentifier": "ca-app-pub-4399068253512867~8970810838",
