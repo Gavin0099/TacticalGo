@@ -367,6 +367,8 @@ import XCTest
         let message = app.staticTexts["playMessage"]
         let preview = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "犧牲後氣 1→3"), object: message)
         XCTAssertEqual(XCTWaiter.wait(for: [preview], timeout: 5), .completed, message.label)
+        // Review artifact: the 聖所 icon at its real rail size, next to the other skills.
+        let rail = XCTAttachment(screenshot: app.screenshot()); rail.name = "sanctum-rail"; rail.lifetime = .keepAlways; add(rail)
         app.buttons["playConfirm"].tap()
         let placed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-3-6"])
         XCTAssertEqual(XCTWaiter.wait(for: [placed], timeout: 10), .completed)
