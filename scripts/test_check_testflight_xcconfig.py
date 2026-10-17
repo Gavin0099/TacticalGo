@@ -1,4 +1,6 @@
 import importlib.util
+import plistlib
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -48,6 +50,37 @@ class XcconfigCheck(unittest.TestCase):
 
     def test_http_url_is_rejected(self):
         self.assertTrue(any(f.startswith("https_url_invalid") for f in run(GOOD.replace("https:/$()/example.test/privacy", "http:/$()/example.test/privacy"))))
+
+
+class ExportComplianceKey(unittest.TestCase):
+    """Hand-written Info.plist ignores INFOPLIST_KEY_*, which silently dropped this key from build 1114."""
+
+    def _app(self, extra):
+        values, _ = chk.parse(GOOD)
+        info = {
+            "CFBundleShortVersionString": "1.1", "CFBundleVersion": "1114",
+            "CrownTacticsUnlockProductID": "com.tacticalgo.crowntactics.unlock",
+            "CrownTacticsRewardedAdUnitID": "",
+            "GADApplicationIdentifier": "ca-app-pub-4399068253512867~8970810838",
+            "CrownTacticsPrivacyURL": "https://example.test/privacy",
+            "CrownTacticsSupportURL": "https://example.test/",
+        }
+        info.update(extra)
+        tmp = tempfile.TemporaryDirectory(); self.addCleanup(tmp.cleanup)
+        (Path(tmp.name) / "Info.plist").write_bytes(plistlib.dumps(info))
+        return values, Path(tmp.name)
+
+    def test_built_app_without_key_is_rejected(self):
+        values, app = self._app({})
+        self.assertIn("built_plist_missing_ITSAppUsesNonExemptEncryption_false", chk.check_app(values, app))
+
+    def test_built_app_with_key_false_passes(self):
+        values, app = self._app({"ITSAppUsesNonExemptEncryption": False})
+        self.assertEqual(chk.check_app(values, app), [])
+
+    def test_source_info_plist_declares_key_false(self):
+        info = plistlib.loads((Path(__file__).resolve().parents[1] / "ios/TacticalGo/Info.plist").read_bytes())
+        self.assertIs(info.get("ITSAppUsesNonExemptEncryption"), False)
 
 
 if __name__ == "__main__":
