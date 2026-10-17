@@ -439,7 +439,7 @@ private func isSummon(_ action: GameAction) -> Bool {
 }
 private func isSkill(_ action: GameAction) -> Bool {
     switch action {
-    case .castBastion, .castMagicHand, .castFriendlyRedeploy, .castSwap, .castSeal, .castOffering, .castSanctuary, .castDoublePull, .castReformation, .castChainSwap, .useStickyBounce, .useShadowStep: true
+    case .castBastion, .castMagicHand, .castFriendlyRedeploy, .castSwap, .castSeal, .castOffering, .castSanctuary, .castSanctum, .castDoublePull, .castReformation, .castChainSwap, .useStickyBounce, .useShadowStep: true
     default: false
     }
 }
@@ -455,6 +455,7 @@ private func actionKey(_ action: GameAction) -> String {
     case .castFriendlyRedeploy(let source, let destination): return "7-redeploy:\(p(source)):\(p(destination))"
     case .castSwap(let point): return "5-swap:\(p(point))"
     case .castSanctuary(let a,let b): return "8-sanctuary:\(p(a)):\(p(b))"
+    case .castSanctum(let a,let b): return "8-sanctum:\(p(a)):\(p(b))"
     case .castOffering(let a): return "8-offering:\(p(a))"
     case .castDoublePull(let a,let b): return "8-pull:\(p(a.from)):\(p(a.to)):\(p(b.from)):\(p(b.to))"
     case .castReformation(let a,let b): return "8-reformation:\(p(a.from)):\(p(a.to)):\(p(b.from)):\(p(b.to))"

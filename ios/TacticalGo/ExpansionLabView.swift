@@ -258,6 +258,16 @@ import TacticalGoVisuals
             message = "已重播 \(session!.log.count) 個合法行動；可照說明試用，也可自由落子比較。"
         } catch { message = "試用局面載入失敗：\(error)" }
     }
+    /// PRIEST-S2-P0 lesson: a hand-placed position (not a recordable match), so it is a review fixture and never saved.
+    func sanctumPractice(_ practice: PriestSanctumPractice) {
+        stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = true; challenge = false; showHint = false
+        do {
+            session = GameSession(try practice.state()); voiceCadence.reset()
+            size = practice.size; monsters = .none; one = .priest; two = .mage; computer = nil
+            mode = .advanced; instruction = practice.instruction
+            message = "練習局面：不會覆蓋你的存局。"
+        } catch { message = "練習局面載入失敗：\(error)" }
+    }
     func priestChallenge() {
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; showHint = false
         do {
@@ -288,7 +298,7 @@ import TacticalGoVisuals
         case .soldier: selected = [p]; pending = .placeSoldier(p); return
         case .summon: selected = [p]; pending = .summonHero(p); return
         case .skill: needed = hero == .warrior || (hero == .mage && state.config.experimentalFriendlyRedeploy) ? 2 : 1
-        case .advanced: needed = hero == .warrior || hero == .mage ? 4 : hero == .rogue ? 2 : 0
+        case .advanced: needed = hero == .warrior || hero == .mage ? 4 : hero == .rogue || hero == .priest ? 2 : 0
         case .loot: needed = ability == .stickyBounce ? 2 : 1
         }
         guard needed > 0 else { message = SkillGuide.second(.priest); return }
@@ -307,6 +317,7 @@ import TacticalGoVisuals
             }
         case .advanced:
             if hero == .rogue { pending = .castChainSwap(first:selected[0],second:selected[1]) }
+            else if hero == .priest { pending = .castSanctum(sacrifice:selected[0],destination:selected[1]) }
             else {
                 let a = SoldierShift(selected[0],selected[1]), b = SoldierShift(selected[2],selected[3])
                 pending = hero == .mage ? .castDoublePull(a,b) : .castReformation(a,b)
@@ -447,7 +458,7 @@ import TacticalGoVisuals
         case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: voiceCue = ("mage-cast-B",0.08)
         case .castBastion,.castReformation: voiceCue = ("w7-voice-B",0.08)
         case .castSwap,.castChainSwap: voiceCue = ("p8-voice-rogue-"+castTake,0.06)
-        case .castSanctuary,.castOffering: voiceCue = ("p8-voice-priest-"+castTake,0.06)
+        case .castSanctuary,.castSanctum,.castOffering: voiceCue = ("p8-voice-priest-"+castTake,0.06)
         default: voiceCue = nil
         }
         let carriedVoiceTail = samples.remainingVoiceDuration
@@ -481,7 +492,7 @@ import TacticalGoVisuals
             case .castSwap,.castChainSwap:
                 sound = [("p8-rogue-coil",0.04,mix(at:0.04).preparation),("p8-rogue-dash",p.moveStart,mix(at:p.moveStart).motion),("p8-rogue-land",p.arrival,mix(at:p.arrival).impact)]
                 if p.isChainSwap { let at = (p.moveStart+p.arrival)/2; sound.insert(("p8-rogue-land-first",at,mix(at:at).impact*0.60),at:2) }
-            case .castSanctuary, .castOffering:
+            case .castSanctuary, .castSanctum, .castOffering:
                 sound = [("p8-priest-prayer",0.06,mix(at:0.06).preparation),("p8-priest-bless",p.moveStart,mix(at:p.moveStart).motion),("p8-priest-land",p.arrival,mix(at:p.arrival).impact)]
             case .useStickyBounce:
                 sound = [("p8-slime-coil",0.12,ExpansionCueMix.monsterPreparation),("p8-slime-bounce",p.moveStart,ExpansionCueMix.monsterMotion),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)]
@@ -565,6 +576,7 @@ import TacticalGoVisuals
             case .castFriendlyRedeploy: "調度己兵"
             case .castSwap: "換位"
             case .castOffering: "奉獻己兵"
+            case .castSanctum: "施放聖所"
             case .castDoublePull: "施放雙重牽引"
             case .castReformation: "戰線重整"
             case .castChainSwap: "連鎖換位"
@@ -588,6 +600,7 @@ import TacticalGoVisuals
             }
         case .advanced:
             if hero == .rogue { return n == 0 ? "① 選英雄正鄰敵兵" : "② 選第1敵兵旁另一敵兵" }
+            if hero == .priest { return n == 0 ? "① 選牧師2格內要犧牲的己兵" : "② 選牧師或主將旁的空點補兵" }
             return ["① 選第1顆士兵","② 選第1個目的空點","③ 選第2顆不同士兵","④ 選第2個不同空點"][min(n,3)]
         case .loot: return ability == .shadowStep ? "① 選英雄直線2格內空點" : n == 0 ? "① 選己方接觸支點" : "② 選支點旁普通士兵"
         }
@@ -647,6 +660,10 @@ import TacticalGoVisuals
         }
         let captures = preview.events.reduce(0) { n,e in if case .piecesCaptured(_,let p) = e { return n+p.count }; return n }
         let spent = preview.events.compactMap { e -> String? in if case .resourcesSpent(_,let ap,let mana) = e { return "\(ap) AP／\(mana) 能量" }; return nil }.first ?? ""
+        // Priest sacrifices say what the sacrifice buys (review PRIEST-S2-P0: players could not see why to give a stone up).
+        if let action = pending, let insight = PriestSacrificeInsight(state, action) {
+            return "合法預覽：\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
+        }
         return "合法預覽：\(spent) · 提 \(captures) 顆。確認前不扣資源、不播聲音。"
     }
 }

@@ -82,12 +82,14 @@ struct GamePanel: View {
 
 enum GameIcon: Int {
     case soldier, summon, bastion, reformation, magicHand, doublePull, swap, chainSwap, offering, slime, shadow, crystal
+    /// PRIEST-S2-P0: drawn from its own image (`game-ability-sanctum-v01`), not from the full 4x3 atlas.
+    case sanctum
     static func hero(_ hero: HeroClass, advanced: Bool = false) -> Self {
         switch hero {
         case .warrior: advanced ? .reformation : .bastion
         case .mage: advanced ? .doublePull : .magicHand
         case .rogue: advanced ? .chainSwap : .swap
-        case .priest: .offering
+        case .priest: advanced ? .sanctum : .offering
         case .none: .soldier
         }
     }
@@ -98,6 +100,16 @@ struct GameIconView: View {
     let icon: GameIcon
     var size: CGFloat = 36
     var body: some View {
+        if icon == .sanctum {
+            Image("game-ability-sanctum-v01").resizable().scaledToFit()
+                .frame(width: size, height: size)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        } else {
+            atlasCell
+        }
+    }
+    private var atlasCell: some View {
         Image("game-ability-atlas-v20").resizable()
             .frame(width: size * 4, height: size * 3)
             .offset(x: -CGFloat(icon.rawValue % 4) * size, y: -CGFloat(icon.rawValue / 4) * size)

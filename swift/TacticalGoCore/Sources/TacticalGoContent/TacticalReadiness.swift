@@ -39,7 +39,7 @@ public enum TacticalReadiness {
                 }
             }
         }
-        if mode == .advanced && (!state.config.expansionSkills || hero == .priest || hero == .none) { return .unsupported }
+        if mode == .advanced && (!state.config.expansionSkills || hero == .none) { return .unsupported }
         let cost = mode == .advanced ? state.config.expansionSkillManaCost : mode == .skill ? state.config.skillManaCost : mode == .summon ? state.config.summonCost(hero) : 0
         let mana = state.mana(of:state.current)
         guard mana >= cost else { return .mana(needed:cost,current:mana) }

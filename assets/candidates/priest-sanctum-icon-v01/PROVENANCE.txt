@@ -1,0 +1,9 @@
+Asset: priest-sanctum-v01.png
+Created: 2026-10-17
+Generator: built-in image_gen tool (transparent_background=true)
+Prompt: PROMPT.txt (exact generation prompt)
+Style reference: /Users/pc49-58/TacticalGo-safety/wt-shell-copy/ios/TacticalGo/Assets.xcassets/game-ability-atlas-v20.imageset/game-ability-atlas-v20.png
+Generated original: /Users/pc49-58/.codex/generated_images/01a148fb-d3c3-7ac3-a612-547c5ae7e59e/exec-ad29efd0-dc67-41a7-8ee0-e6d33c17054c.png
+Status: standalone art candidate; no application code, PR, or release changes made.
+Visual inspection: gold leaf sanctuary dome, protected ivory pawn, dissolving secondary pawn, gold-rimmed blue-slate plinth. Full subject visible and no generated text.
+Validation: sips confirms 1254x1254 PNG with alpha. Small-size in-game readability is not yet verified.

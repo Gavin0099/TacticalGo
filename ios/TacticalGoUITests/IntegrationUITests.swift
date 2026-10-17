@@ -340,4 +340,38 @@ import XCTest
         XCTAssertTrue(monsters.exists, "monster rewards are explained")
         XCTAssertFalse(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "驗證職業特色")).firstMatch.exists, "no internal wording")
     }
+
+    // PRIEST-S2-P0 (Beta candidate): the priest has a second skill, 聖所.
+    func testPriestShowsSanctumAsItsSecondSkill() {
+        let app = launchFullGame()
+        let priest = app.buttons["choose-priest"]
+        for _ in 0..<4 where !priest.isHittable { app.swipeUp() }
+        XCTAssertTrue(priest.label.contains("聖所"), priest.label)
+        priest.tap()
+        let second = app.staticTexts["lobbyAdvancedSkill"]
+        XCTAssertTrue(second.waitForExistence(timeout: 5))
+        XCTAssertTrue(second.label.contains("聖所"), second.label)
+    }
+
+    // The 7x7 lesson in the real shell: pick the sacrifice and the exit, see the liberty preview, confirm.
+    func testSanctumPracticeIsPlayableWithALibertyPreview() {
+        let app = launchFullGame()
+        let practice = app.buttons["玩法練習"]
+        for _ in 0..<6 where !practice.isHittable { app.swipeUp() }
+        practice.tap()
+        let lesson = app.buttons["牧師 · 聖所救援（7×7）"]
+        XCTAssertTrue(lesson.waitForExistence(timeout: 5)); lesson.tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["mode-advanced"].isSelected, "the lesson opens on the second skill")
+        app.buttons["play-cell-1-5"].tap(); app.buttons["play-cell-3-6"].tap()
+        let message = app.staticTexts["playMessage"]
+        let preview = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "犧牲後氣 1→3"), object: message)
+        XCTAssertEqual(XCTWaiter.wait(for: [preview], timeout: 5), .completed, message.label)
+        // Review artifact: the 聖所 icon at its real rail size, next to the other skills.
+        let rail = XCTAttachment(screenshot: app.screenshot()); rail.name = "sanctum-rail"; rail.lifetime = .keepAlways; add(rail)
+        app.buttons["playConfirm"].tap()
+        let placed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-3-6"])
+        XCTAssertEqual(XCTWaiter.wait(for: [placed], timeout: 10), .completed)
+        XCTAssertTrue(app.buttons["play-cell-1-5"].label.contains("空點"))
+    }
 }

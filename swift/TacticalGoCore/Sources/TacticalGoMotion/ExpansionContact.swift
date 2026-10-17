@@ -30,7 +30,7 @@ extension ExpansionPresentation {
                     .init(at:first,from:second,start:arrival),.init(at:second,from:first,start:arrival)]
         case .castOffering:
             return sacrifices.map { .init(at:$0,from:nil,start:arrival) }
-        case .castBastion,.castReformation,.castMagicHand,.castFriendlyRedeploy,.castDoublePull,.castSwap,.castSanctuary:
+        case .castBastion,.castReformation,.castMagicHand,.castFriendlyRedeploy,.castDoublePull,.castSwap,.castSanctuary,.castSanctum:
             var points: [Point] = []
             return (placements+transfers.map(\.to)).compactMap { point in
                 guard !points.contains(point) else { return nil }; points.append(point)

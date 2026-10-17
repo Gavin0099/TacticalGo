@@ -119,6 +119,7 @@ struct MatchGallery: View {
         case .useStickyBounce: verb = "黏彈"
         case .useShadowStep: verb = "影步"
         case .castSanctuary: verb = "奉獻救援"
+        case .castSanctum: verb = "聖所"
         case .castOffering: verb = "奉獻"
         case .castDoublePull: verb = "雙重牽引"
         case .castReformation: verb = "戰線重整"

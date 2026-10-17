@@ -39,7 +39,7 @@ public struct CombatFeedbackPlan: Equatable, Sendable {
         case .summonHero: landing = 0; capture = 0.46; duration = 0.74
         case .placeSoldier: landing = 0.21; capture = 0.30
         case .huntMonster, .useStickyBounce, .useShadowStep: duration = 0 // Lab uses static state, no production sound.
-        case .castSanctuary, .castOffering, .castDoublePull, .castReformation, .castChainSwap: duration = 0 // Opt-in expansion presentation owns its timeline.
+        case .castSanctuary, .castSanctum, .castOffering, .castDoublePull, .castReformation, .castChainSwap: duration = 0 // Opt-in expansion presentation owns its timeline.
         case .endTurn: duration = 0
         }
         var landed = false, captured = false
