@@ -82,7 +82,10 @@ def check_app(values: dict[str, str], app: Path) -> list[str]:
         "CrownTacticsPrivacyURL": values.get("CROWN_PRIVACY_URL"),
         "CrownTacticsSupportURL": values.get("CROWN_SUPPORT_URL"),
     }
-    return [f"built_plist_mismatch:{k}" for k, v in expected.items() if info.get(k) != v]
+    failures = [f"built_plist_mismatch:{k}" for k, v in expected.items() if info.get(k) != v]
+    if info.get("ITSAppUsesNonExemptEncryption") is not False:
+        failures.append("built_plist_missing_ITSAppUsesNonExemptEncryption_false")
+    return failures
 
 
 def main() -> int:

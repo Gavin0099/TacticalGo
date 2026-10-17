@@ -47,3 +47,8 @@ build 號要高於 App Store Connect 上所有已上傳者；上傳前先重新�
 
 ## 歷史
 build 1113（`Beta.integrated-1113.xcconfig`，來自 `main` `f9e3fe7`）已於 2026-10-15 上傳並加入「Owner 1.1」群組；該設定檔已移除，避免誤用。1114 包含「1.1 外殼成為根畫面」等變更。
+
+## 出口合規（ITSAppUsesNonExemptEncryption）
+`Info.plist` 現在直接宣告 `ITSAppUsesNonExemptEncryption = false`，與 1.0（1025）在 App Store Connect 的答案一致（只用系統網路／StoreKit 與 CryptoKit SHA256 完整性檢查，沒有自製加密）。
+根因：Beta 設定改用手寫 `Info.plist`（`GENERATE_INFOPLIST_FILE = NO`）後，設定裡的 `INFOPLIST_KEY_ITSAppUsesNonExemptEncryption` 會被忽略，所以 1114 的封存沒有這個鍵，App Store Connect 會再問一次。
+`check-testflight-xcconfig.py --app` 現在會檢查這個鍵；**已封存的 1114 沒有這個鍵**（需手動回答一次出口合規）。下一個 build（1115 以後）才會自動帶上。
