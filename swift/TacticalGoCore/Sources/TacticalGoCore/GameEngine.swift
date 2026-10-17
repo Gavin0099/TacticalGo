@@ -167,7 +167,7 @@ public enum GameEngine {
             isSkill = true; manaCost = state.config.skillManaCost
         case .castFriendlyRedeploy(let source, let destination):
             return applyExperimentalRedeployment(state, FriendlyRedeployment(from: source, to: destination))
-        case .castSanctuary, .castOffering, .castDoublePull, .castReformation, .castChainSwap:
+        case .castSanctuary, .castSanctum, .castOffering, .castDoublePull, .castReformation, .castChainSwap:
             return applyExpansion(state, action)
         case .huntMonster(let p):
             guard let mode = state.config.monsterBattlefield else { return reject(.monsterModeDisabled) }

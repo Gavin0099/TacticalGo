@@ -262,7 +262,7 @@ struct SwiftBoard: View {
     private var botFocus: Set<Point> {
         guard let action = computerAction else { return [] }
         switch action {
-        case .castSanctuary(let a,let b), .castChainSwap(let a,let b): return [a,b]
+        case .castSanctuary(let a,let b), .castSanctum(let a,let b), .castChainSwap(let a,let b): return [a,b]
         case .castOffering(let p): return [p]
         case .castDoublePull(let a,let b), .castReformation(let a,let b): return [a.from,a.to,b.from,b.to]
         case .placeSoldier(let p), .summonHero(let p), .castSeal(let p): return [p]

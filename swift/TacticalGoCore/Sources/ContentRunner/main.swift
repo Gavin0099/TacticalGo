@@ -15,6 +15,7 @@ func action(_ a: GameAction) -> [String: Any] {
     case .castFriendlyRedeploy(let from, let to): ["type": "castFriendlyRedeploy", "from": point(from), "to": point(to)]
     case .castSwap(let p): ["type": "castSwap", "point": point(p)]
     case .castSanctuary(let a,let b): ["type":"sanctuary", "points":[point(a),point(b)]]
+    case .castSanctum(let a,let b): ["type":"sanctum", "points":[point(a),point(b)]]
     case .castOffering(let a): ["type":"offering", "points":[point(a)]]
     case .castDoublePull(let a,let b): ["type":"doublePull", "points":[point(a.from),point(a.to),point(b.from),point(b.to)]]
     case .castReformation(let a,let b): ["type":"reformation", "points":[point(a.from),point(a.to),point(b.from),point(b.to)]]

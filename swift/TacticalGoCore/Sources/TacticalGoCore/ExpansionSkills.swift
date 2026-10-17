@@ -5,7 +5,7 @@ extension GameEngine {
         guard state.config.expansionSkills else { return reject(.skillNotSelected) }
         let required: HeroClass
         switch action {
-        case .castSanctuary, .castOffering: required = .priest
+        case .castSanctuary, .castSanctum, .castOffering: required = .priest
         case .castDoublePull: required = .mage
         case .castReformation: required = .warrior
         case .castChainSwap: required = .rogue
@@ -15,7 +15,9 @@ extension GameEngine {
         guard state.heroClass(of: me) == required else { return reject(.wrongClass) }
         guard let hero = state.board.find(me, .hero) else { return reject(.noHeroOnBoard) }
         guard !state.skillUsedThisTurn else { return reject(.skillAlreadyUsed) }
-        let cost = required == .priest ? state.config.skillManaCost : state.config.expansionSkillManaCost
+        // Priest basic skills keep the basic cost; every second skill (now including the priest's sanctum) pays the expansion cost.
+        let isSecondSkill: Bool = { if case .castSanctum = action { return true }; return required != .priest }()
+        let cost = isSecondSkill ? state.config.expansionSkillManaCost : state.config.skillManaCost
         guard state.mana(of: me) >= cost else { return reject(.notEnoughMana) }
         let board = state.board
         var trial = board
@@ -26,7 +28,7 @@ extension GameEngine {
             guard hero.distance(to: source) <= 2 else { return reject(.outOfRange) }
             trial[source] = nil
             return settle(state, trial:trial, manaCost:cost, isSkill:true, sacrifice:source)
-        case .castSanctuary(let source, let destination):
+        case .castSanctuary(let source, let destination), .castSanctum(let source, let destination):
             guard board.contains(source), board.contains(destination) else { return reject(.outOfBounds) }
             guard source != destination else { return reject(.duplicateTarget) }
             guard board[source] == Piece(me, .soldier) else { return reject(.invalidTarget) }
@@ -82,6 +84,24 @@ extension GameEngine {
             guard kind == .priest else { return [] }
             return board.points.filter { board[$0] == Piece(me, .soldier) && hero.distance(to: $0) <= 2 }
                 .map(GameAction.castOffering)
+        }
+        if kind == .priest {
+            // Sanctum: an own soldier within 2 of the priest, and an empty unsealed point next to the priest or own commander.
+            let sources = board.points.filter { board[$0] == Piece(me, .soldier) && hero.distance(to: $0) <= 2 }
+            let anchors = [hero] + (board.find(me, .commander).map { [$0] } ?? [])
+            var destinations = board.points.filter { p in
+                board.isEmpty(p) && !state.isSealed(p, for: me) && anchors.contains { $0.distance(to: p) == 1 }
+            }
+            if limit != nil, let commander = board.find(me, .commander) {
+                // Search order only: points that refill the own commander first.
+                destinations.sort { ($0.distance(to: commander), $0.y, $0.x) < ($1.distance(to: commander), $1.y, $1.x) }
+            }
+            var result: [GameAction] = []
+            for d in destinations { for s in sources where s != d {
+                result.append(.castSanctum(sacrifice: s, destination: d))
+                if let limit, result.count >= max(1, limit) { return result }
+            } }
+            return result
         }
         if kind == .rogue {
             let enemy = Piece(me.opponent, .soldier)

@@ -64,6 +64,10 @@ import TacticalGoContent
         leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.practice(value)
         expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
     }
+    func sanctumPractice(_ practice: PriestSanctumPractice) {
+        leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.sanctumPractice(practice)
+        expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
+    }
     func expansionChallenge(counter: Bool = false) {
         leaveMatch(); let match = ExpansionLabStore()
         if counter { match.priestCounter() } else { match.priestChallenge() }
@@ -364,6 +368,7 @@ import TacticalGoContent
         case .useStickyBounce: return "黏彈"
         case .useShadowStep: return "影步"
         case .castSanctuary: return "奉獻救援"
+        case .castSanctum: return "聖所"
         case .castOffering: return "奉獻"
         case .castDoublePull: return "雙重牽引"
         case .castReformation: return "戰線重整"

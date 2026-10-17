@@ -224,7 +224,11 @@ public struct GameState: Equatable, Sendable {
 public enum GameAction: Equatable, Sendable {
     case placeSoldier(Point), summonHero(Point), castBastion(Point, Point), castSeal(Point), castSwap(Point), castMagicHand(Point, PushDirection), castFriendlyRedeploy(Point, Point), huntMonster(Point), endTurn
     case useStickyBounce(anchor: Point, target: Point), useShadowStep(Point)
+    /// Historical priest skill (2 mana). Kept unchanged so recorded matches replay with their original cost.
     case castSanctuary(sacrifice: Point, destination: Point)
+    /// PRIEST-S2-P0 Beta candidate: the priest's second skill. Same geometry and settlement as `castSanctuary`, but a
+    /// separate identity so it is charged `expansionSkillManaCost` without changing how old `castSanctuary` records replay.
+    case castSanctum(sacrifice: Point, destination: Point)
     /// Priest's current skill: voluntary removal with no transfer or reinforcement.
     case castOffering(Point)
     case castDoublePull(SoldierShift, SoldierShift), castReformation(SoldierShift, SoldierShift)

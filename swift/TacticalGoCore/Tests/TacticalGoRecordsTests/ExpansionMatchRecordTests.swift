@@ -36,6 +36,23 @@ final class ExpansionMatchRecordTests: XCTestCase {
         malformed["actions"] = actions
         XCTAssertThrowsError(try ExpansionMatchRecord.read(JSONSerialization.data(withJSONObject:malformed)))
     }
+    // PRIEST-S2-P0: the second skill records as its own kind and replays with the second-skill cost.
+    func testSanctumRecordsAsItsOwnKindAndReplaysWithTheSecondSkillCost() throws {
+        // Records replay from a real opening, so this uses the legal priest opening rather than the diagram lesson.
+        var session = try ExpansionPractice.priest.session()
+        while session.state.mana(of:.one) < 4 {
+            XCTAssertTrue(session.apply(.endTurn).success); XCTAssertTrue(session.apply(.endTurn).success)
+        }
+        let manaBefore = session.state.mana(of:.one)
+        XCTAssertTrue(session.apply(.castSanctum(sacrifice:Point(4,5),destination:Point(4,6))).success)
+        XCTAssertEqual(session.state.mana(of:.one), manaBefore - 4)
+        let bytes = try ExpansionMatchRecord(session:session).data()
+        let object = try XCTUnwrap(JSONSerialization.jsonObject(with:bytes) as? [String:Any])
+        let kinds = (object["actions"] as? [[String:Any]] ?? []).compactMap { $0["kind"] as? String }
+        XCTAssertTrue(kinds.contains("sanctum")); XCTAssertFalse(kinds.contains("sanctuary"))
+        let replay = try ExpansionMatchRecord.read(bytes).rebuild()
+        XCTAssertEqual(replay.state, session.state)
+    }
     func testAllNewSkillsReachableRoundtripStateHistoryAndUndo() throws {
         for f in ExpansionPractice.allCases { for cost in [4,5] {
             var s = try f.session(cost:cost); let before = s.state

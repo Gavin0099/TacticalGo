@@ -21,7 +21,7 @@ struct ExpansionSpellEffects: View {
                     case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: mage
                     case .castBastion,.castReformation: warrior
                     case .castSwap,.castChainSwap: rogue
-                    case .castSanctuary: priest
+                    case .castSanctuary, .castSanctum: priest
                     case .castOffering: offering
                     case .useStickyBounce: bounce
                     case .useShadowStep: shadow

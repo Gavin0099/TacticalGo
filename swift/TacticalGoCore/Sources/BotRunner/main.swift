@@ -249,6 +249,7 @@ import TacticalGoBot
         case .castFriendlyRedeploy(let source, let destination): return ["kind": "castFriendlyRedeploy", "from": p(source), "to": p(destination)]
         case .castSwap(let at): return ["kind": "castSwap", "at": p(at)]
         case .castSanctuary(let a,let b): return ["kind":"sanctuary", "points":[p(a),p(b)]]
+        case .castSanctum(let a,let b): return ["kind":"sanctum", "points":[p(a),p(b)]]
         case .castOffering(let a): return ["kind":"offering", "points":[p(a)]]
         case .castDoublePull(let a,let b): return ["kind":"doublePull", "points":[p(a.from),p(a.to),p(b.from),p(b.to)]]
         case .castReformation(let a,let b): return ["kind":"reformation", "points":[p(a.from),p(a.to),p(b.from),p(b.to)]]

@@ -492,7 +492,7 @@ struct ExpansionGameView: View {
     }
     private func lobbyHeroLabel(_ h:HeroClass) -> String {
         let basic = h.title + "，" + lobbySkillTitle(h)
-        return useExpansion && h != .priest ? basic + "，" + advancedSkillTitle(h) : basic
+        return useExpansion ? basic + "，" + advancedSkillTitle(h) : basic
     }
     private func heroChoiceFace(_ h:HeroClass,selected:Bool,portraitHeight:CGFloat) -> some View {
         VStack(spacing:7) {
@@ -500,9 +500,8 @@ struct ExpansionGameView: View {
             Text(h.title).font(.system(size:17,weight:.bold))
             Text(lobbySkillTitle(h)).font(.system(size:12,weight:.semibold)).lineLimit(1)
             if useExpansion {
-                // The priest has no second skill; a blank line keeps the four cards the same height.
-                Text(h == .priest ? " " : advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
-                    .accessibilityHidden(h == .priest)
+                // Every hero shows its second skill, so the four cards keep the same height.
+                Text(advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
             }
         }.frame(maxWidth:.infinity).padding(.vertical,12)
             .background(GamePanel(active:selected,kind:.hero))
@@ -525,12 +524,9 @@ struct ExpansionGameView: View {
                     Text(useExpansion ? SkillGuide.basic(choice) : updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
                         .accessibilityIdentifier("lobbySkillHelp")
                     Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(uiAccent)
-                    if useExpansion && choice != .priest {
+                    if useExpansion {
                         Text("第二技能 · \(advancedSkillTitle(choice))（1 AP＋\(TacticalHints.updatedConfig(size:boardSize).expansionSkillManaCost) 能量，與技能共用每回合一次）：" + SkillGuide.second(choice))
                             .font(.system(size:12)).foregroundStyle(uiSecondary).accessibilityIdentifier("lobbyAdvancedSkill")
-                    } else if useExpansion && choice == .priest {
-                        Text(SkillGuide.second(.priest))
-                            .font(.system(size:12)).foregroundStyle(uiSecondary)
                     }
                 }.frame(minHeight: 45)
     }
@@ -561,6 +557,12 @@ struct ExpansionGameView: View {
                                 store.expansionPractice(value); boardSize = store.size; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two)
                                 lesson = nil; inMatch = true; store.setMatchAudioActive(true)
                             }
+                        }
+                        ForEach(PriestSanctumPractice.allCases, id: \.self) { practice in
+                            Button(practice.title) {
+                                store.sanctumPractice(practice); boardSize = store.size; one = .priest; two = .mage
+                                lesson = nil; inMatch = true; store.setMatchAudioActive(true)
+                            }.accessibilityIdentifier("sanctumPractice-" + practice.rawValue)
                         }
                         Button("牧師：奉獻救援挑戰") {
                             store.expansionChallenge(); boardSize = store.size; one = .priest; two = .mage
@@ -958,13 +960,13 @@ struct ExpansionGameView: View {
         }
     }
     private var availableModes: [GameStore.Mode] {
-        store.state.config.expansionSkills ? [.soldier,.summon,.skill] + (hero == .priest ? []:[.advanced]) + (store.state.lootInventory(of:store.state.current).isEmpty ? []:[.loot]) : [.soldier,.summon,.skill]
+        store.state.config.expansionSkills ? [.soldier,.summon,.skill,.advanced] + (store.state.lootInventory(of:store.state.current).isEmpty ? []:[.loot]) : [.soldier,.summon,.skill]
     }
     private var advancedTitle: String {
         advancedSkillTitle(hero)
     }
     private func advancedSkillTitle(_ hero:HeroClass) -> String {
-        switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest,.none: "第二技能" }
+        switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest: "聖所"; case .none: "第二技能" }
     }
     private func playerStrip(_ player: Player) -> some View {
         let state = store.state, active = displayedPlayer == player
@@ -1098,10 +1100,10 @@ struct ExpansionGameView: View {
                 ForEach(heroes, id: \.self) { h in Section(h.title + " · " + ruleSkillTitle(h)) { Text((rulesConfig.expansionSkills ? SkillGuide.basic(h) + "\n" + SkillGuide.basicSteps(h) : h.skillHelp(config: rulesConfig)) + "\n技能需 1 AP＋2 能量，每回合只能使用一次。") } }
                 if rulesConfig.expansionSkills {
                     Section("第二技能 · 1 AP＋4 能量") {
-                        ForEach(heroes.filter { $0 != .priest }, id: \.self) { h in
+                        ForEach(heroes, id: \.self) { h in
                             Text(h.title + " · " + advancedSkillTitle(h) + "：" + SkillGuide.second(h) + "\n" + SkillGuide.secondSteps(h))
                         }
-                        Text("技能、第二技能和戰利能力，每回合合計只能用一次。牧師沒有第二技能。")
+                        Text("技能、第二技能和戰利能力，每回合合計只能用一次。")
                     }
                     Section("魔物與戰利能力") {
                         Text(SkillGuide.monsters)
@@ -1282,14 +1284,16 @@ enum SkillGuide {
         case .warrior: "把與戰士相連的兩顆己兵，各移到棋群外緣的空點（距戰士 4 格內）。適合重新排陣、堵住缺口。"
         case .mage: "移動法師 2 格內的兩顆士兵（敵我皆可），各推到上下左右相鄰的空點。適合一次拆開敵陣。"
         case .rogue: "盜賊穿過兩顆相連的敵兵：盜賊到第二顆敵兵的位置，兩顆敵兵各往後退一格。適合深入敵陣。"
-        case .priest, .none: "牧師沒有第二技能，請用奉獻救援被困的棋群。"
+        case .priest: "聖所：犧牲牧師 2 格內的一顆己兵，同時在牧師或主將旁的空點補一顆兵。一手同時替棋群開氣、又向外延伸，適合救援快被提的主將。"
+        case .none: "請先選擇職業。"
         }
     }
     static func secondSteps(_ hero: HeroClass) -> String {
         switch hero {
         case .warrior, .mage: "依序點：士兵① → 空點① → 士兵② → 空點②，再按確認。"
         case .rogue: "先點盜賊旁的敵兵，再點那顆敵兵旁的另一顆敵兵，再按確認。"
-        case .priest, .none: ""
+        case .priest: "先點要犧牲的己兵，再點牧師或主將旁的空點，再按確認。"
+        case .none: ""
         }
     }
     static let monsters = "魔物占住一個交叉點，也會擋住氣。用己子從上下左右圍住它（至少 2 格，且比敵方多；斜角不算），再點「討伐」並確認，花 1 AP。暗影狼還需要己方英雄站在牠的上下左右。"

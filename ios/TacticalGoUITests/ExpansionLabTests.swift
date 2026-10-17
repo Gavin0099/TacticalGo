@@ -485,7 +485,8 @@ import XCTest
         app.segmentedControls["botDifficulty"].buttons["標準"].tap()
         tap(app,"choose-priest");tap(app,"startMatch");botDone(app,1)
         XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到白方牧師")
-        XCTAssertFalse(app.buttons["mode-advanced"].exists)
+        // PRIEST-S2-P0: the priest now has a second skill (聖所); before summoning it is shown but restricted.
+        XCTAssertTrue(app.buttons["mode-advanced"].exists)
         XCTAssertFalse(app.buttons["undoOrCancel"].isEnabled)
         normalPoints(app,[(0,0)]);tap(app,"playConfirm");ready(app)
         tap(app,"playEndTurn");botDone(app,2)

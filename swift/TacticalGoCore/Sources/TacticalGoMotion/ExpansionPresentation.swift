@@ -56,7 +56,7 @@ public struct ExpansionPresentation: Equatable, Sendable {
         case .castMagicHand, .castFriendlyRedeploy, .castDoublePull: timing = (0.30,0.46,0.68,0.80,1.08)
         case .castBastion, .castReformation: timing = (0.34,0.35,0.58,0.68,1.02)
         case .castSwap, .castChainSwap: timing = (0.12,0.16,0.36,0.44,0.70)
-        case .castSanctuary, .castOffering: timing = (0.20,0.32,0.58,0.68,0.94)
+        case .castSanctuary, .castSanctum, .castOffering: timing = (0.20,0.32,0.58,0.68,0.94)
         case .useStickyBounce: timing = (0.14,0.22,0.44,0.54,0.76)
         case .useShadowStep: timing = (0.14,0.18,0.42,0.50,0.76)
         case .huntMonster: timing = (0.14,0.20,0.44,0.54,0.76)
@@ -86,7 +86,7 @@ public struct ExpansionPresentation: Equatable, Sendable {
     }
     public var isHeroSkill: Bool {
         switch action {
-        case .castBastion,.castMagicHand,.castSwap,.castSanctuary,.castOffering,.castDoublePull,.castReformation,.castChainSwap,.castSeal,.castFriendlyRedeploy: true
+        case .castBastion,.castMagicHand,.castSwap,.castSanctuary,.castSanctum,.castOffering,.castDoublePull,.castReformation,.castChainSwap,.castSeal,.castFriendlyRedeploy: true
         default: false
         }
     }

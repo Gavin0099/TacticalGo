@@ -32,6 +32,7 @@ public struct RecordedAction: Codable, Equatable, Sendable {
         case .castFriendlyRedeploy(let from, let to): kind = "redeploy"; points = [from,to]; direction = nil
         case .castSwap(let p): kind = "swap"; points = [p]; direction = nil
         case .castSanctuary(let a, let b): kind = "unsupported-expansion-sanctuary"; points = [a,b]; direction = nil
+        case .castSanctum(let a, let b): kind = "unsupported-expansion-sanctum"; points = [a,b]; direction = nil
         case .castOffering(let p): kind = "unsupported-expansion-offering"; points = [p]; direction = nil
         case .castDoublePull(let a, let b): kind = "unsupported-expansion-pull"; points = [a.from,a.to,b.from,b.to]; direction = nil
         case .castReformation(let a, let b): kind = "unsupported-expansion-reformation"; points = [a.from,a.to,b.from,b.to]; direction = nil

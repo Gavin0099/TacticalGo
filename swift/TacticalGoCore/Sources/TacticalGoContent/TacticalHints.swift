@@ -30,6 +30,7 @@ public enum TacticalHints {
             case (.advanced, .castReformation(let a, let b)), (.advanced, .castDoublePull(let a, let b)):
                 paths = [[a.from,a.to,b.from,b.to],[b.from,b.to,a.from,a.to]]
             case (.advanced, .castChainSwap(let a, let b)): paths = [[a,b]]
+            case (.advanced, .castSanctum(let a, let b)): paths = [[a,b]]
             case (.loot, .useStickyBounce(let a, let b)) where ability == .stickyBounce: paths = [[a,b]]
             case (.loot, .useShadowStep(let p)) where ability == .shadowStep: paths = [[p]]
             default: continue

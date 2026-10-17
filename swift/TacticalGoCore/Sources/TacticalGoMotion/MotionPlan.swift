@@ -45,7 +45,7 @@ public struct MotionPlan: Equatable, Sendable {
         case .castMagicHand: captureStart = 0 // A0 uses static committed state; no new motion production.
         case .castFriendlyRedeploy: captureStart = 0.62
         case .huntMonster, .useStickyBounce, .useShadowStep: captureStart = 0
-        case .castSanctuary, .castOffering, .castDoublePull, .castReformation, .castChainSwap: captureStart = 0
+        case .castSanctuary, .castSanctum, .castOffering, .castDoublePull, .castReformation, .castChainSwap: captureStart = 0
         case .endTurn: captureStart = 0
         }
         for event in outcome.events {

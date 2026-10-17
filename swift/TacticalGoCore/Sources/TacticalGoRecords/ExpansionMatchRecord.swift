@@ -36,6 +36,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
             case .castFriendlyRedeploy(let a,let b): kind = "redeploy"; points = [a,b]
             case .castSwap(let p): kind = "swap"; points = [p]
             case .castSanctuary(let a,let b): kind = "sanctuary"; points = [a,b]
+            case .castSanctum(let a,let b): kind = "sanctum"; points = [a,b]
             case .castOffering(let p): kind = "offering"; points = [p]
             case .castDoublePull(let a,let b): kind = "doublePull"; points = [a.from,a.to,b.from,b.to]
             case .castReformation(let a,let b): kind = "reformation"; points = [a.from,a.to,b.from,b.to]
@@ -57,6 +58,7 @@ public struct ExpansionMatchRecord: Codable, Sendable {
             case ("redeploy",2): return .castFriendlyRedeploy(points[0],points[1])
             case ("swap",1): return .castSwap(points[0])
             case ("sanctuary",2): return .castSanctuary(sacrifice:points[0],destination:points[1])
+            case ("sanctum",2): return .castSanctum(sacrifice:points[0],destination:points[1])
             case ("offering",1): return .castOffering(points[0])
             case ("doublePull",4): return .castDoublePull(.init(points[0],points[1]),.init(points[2],points[3]))
             case ("reformation",4): return .castReformation(.init(points[0],points[1]),.init(points[2],points[3]))
