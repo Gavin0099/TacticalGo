@@ -23,26 +23,43 @@ final class PriestSanctumPracticeTests: XCTestCase {
         state.current == .one && state.status == .ongoing ? GameEngine.apply(state, .endTurn).state : state
     }
 
-    func testOnlySanctumKeepsTheCommanderAliveThroughWhitesNextTurn() throws {
+    private func saving(_ start: GameState) -> [GameAction] {
+        GameEngine.legalActions(start, expansionCandidateLimit: 512).filter { action in
+            let outcome = GameEngine.apply(start, action)
+            return outcome.success && !whiteCanCaptureCommander(handOver(outcome.state))
+        }
+    }
+    private func saves(_ start: GameState, _ action: GameAction) -> Bool {
+        let outcome = GameEngine.apply(start, action)
+        return outcome.success && !whiteCanCaptureCommander(handOver(outcome.state))
+    }
+
+    /// Every lesson's claim, checked exhaustively: what saves the commander and what does not.
+    func testEachLessonClaimHoldsUnderExhaustiveSearch() throws {
         for practice in PriestSanctumPractice.allCases {
             let start = try practice.state()
             XCTAssertEqual(start.apRemaining, 1); XCTAssertEqual(start.mana(of: .one), 4)
+            XCTAssertEqual(GameEngine.validate(start, practice.action), .none, "\(practice): the Sanctum in question is legal")
             XCTAssertTrue(whiteCanCaptureCommander(handOver(start)), "\(practice): passing loses the commander")
-            var saving: [GameAction] = []
-            for action in GameEngine.legalActions(start, expansionCandidateLimit: 512) {
-                let outcome = GameEngine.apply(start, action)
-                guard outcome.success else { continue }
-                if !whiteCanCaptureCommander(handOver(outcome.state)) { saving.append(action) }
+            let rescues = saving(start)
+            switch practice.kind {
+            case .onlySanctum:
+                XCTAssertTrue(rescues.contains(practice.action), "\(practice): the taught Sanctum saves")
+                for action in rescues {
+                    guard case .castSanctum = action else { return XCTFail("\(practice): \(action) also saves") }
+                }
+                XCTAssertFalse(saves(start, .placeSoldier(practice.destination)), "\(practice): a stone at the exit is not enough")
+                XCTAssertFalse(saves(start, .castOffering(practice.sacrifice)), "\(practice): Offering is not enough")
+            case .placementEnough:
+                XCTAssertTrue(saves(start, .placeSoldier(practice.destination)), "\(practice): a plain stone saves")
+            case .offeringEnough:
+                XCTAssertTrue(saves(start, .castOffering(practice.sacrifice)), "\(practice): Offering makes two eyes")
+                XCTAssertFalse(saves(start, practice.action), "\(practice): Sanctum fills an own eye and loses")
+                XCTAssertFalse(rescues.contains { if case .castSanctum = $0 { return true }; return false }, "\(practice): no Sanctum saves")
+            case .nothingSaves:
+                XCTAssertEqual(rescues, [], "\(practice): nothing saves, Sanctum included")
             }
-            XCTAssertTrue(saving.contains(practice.action), "\(practice): the taught move saves the commander")
-            for action in saving {
-                guard case .castSanctum = action else { return XCTFail("\(practice): \(action) also saves; the lesson would be wrong") }
-            }
-            // The two ordinary alternatives the lesson names, explicitly.
-            let place = GameEngine.apply(start, .placeSoldier(practice.destination))
-            XCTAssertTrue(place.success); XCTAssertTrue(whiteCanCaptureCommander(handOver(place.state)))
-            let offering = GameEngine.apply(start, .castOffering(practice.sacrifice))
-            XCTAssertTrue(offering.success); XCTAssertTrue(whiteCanCaptureCommander(handOver(offering.state)))
+            if let recommended = practice.recommended { XCTAssertTrue(rescues.contains(recommended), "\(practice): recommended move saves") }
         }
     }
 

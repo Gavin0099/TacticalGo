@@ -558,11 +558,13 @@ struct ExpansionGameView: View {
                                 lesson = nil; inMatch = true; store.setMatchAudioActive(true)
                             }
                         }
-                        ForEach(PriestSanctumPractice.allCases, id: \.self) { practice in
-                            Button(practice.title) {
-                                store.sanctumPractice(practice); boardSize = store.size; one = .priest; two = .mage
-                                lesson = nil; inMatch = true; store.setMatchAudioActive(true)
-                            }.accessibilityIdentifier("sanctumPractice-" + practice.rawValue)
+                        Menu("牧師 · 聖所課題") {
+                            ForEach(PriestSanctumPractice.allCases, id: \.self) { practice in
+                                Button(practice.title) {
+                                    store.sanctumPractice(practice); boardSize = store.size; one = .priest; two = .mage
+                                    lesson = nil; inMatch = true; store.setMatchAudioActive(true)
+                                }.accessibilityIdentifier("sanctumPractice-" + practice.rawValue)
+                            }
                         }
                         Button("牧師：奉獻救援挑戰") {
                             store.expansionChallenge(); boardSize = store.size; one = .priest; two = .mage
