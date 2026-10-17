@@ -858,6 +858,8 @@ import XCTest
 private extension XCUIApplication {
     var expansionShellArguments: [String] {
         get { launchArguments }
-        set { launchArguments = ["--integrated-shell"] + newValue }
+        // A fresh token per test resets sound settings once, so results do not depend on test order or on preferences
+        // left in the simulator; relaunching the same app object keeps the token and therefore the test's own settings.
+        set { launchArguments = ["--integrated-shell"] + newValue + ["--sound-preferences-reset", UUID().uuidString] }
     }
 }
