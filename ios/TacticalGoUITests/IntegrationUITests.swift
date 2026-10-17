@@ -374,4 +374,53 @@ import XCTest
         XCTAssertEqual(XCTWaiter.wait(for: [placed], timeout: 10), .completed)
         XCTAssertTrue(app.buttons["play-cell-1-5"].label.contains("空點"))
     }
+
+    // Review item 6: Sanctum in a real (recordable) match survives leaving the app, resuming and undo.
+    func testSanctumSurvivesRelaunchResumeAndUndo() {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = .portrait
+        let isolation = UUID().uuidString
+        let app = XCUIApplication()
+        app.launchArguments = ["--integrated-practice", "priest", "--integrated-sanctum-ready", "--record-isolation", isolation, "--cozy-reduced"]
+        app.launch()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 20))
+        let resources = app.descendants(matching: .any)["blueResources"].firstMatch
+        func mana() -> Int { Int((resources.value as? String ?? "").split(separator: " ").dropFirst().first?.split(separator: "/").first ?? "") ?? -1 }
+        let before = mana()
+        XCTAssertGreaterThanOrEqual(before, 4, "\(resources.value ?? "")")
+        let turn = app.staticTexts["currentTurn"].label
+        app.buttons["mode-advanced"].tap()
+        app.buttons["play-cell-4-5"].tap(); app.buttons["play-cell-4-6"].tap()
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        app.buttons["playConfirm"].tap()
+        let placed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-4-6"])
+        XCTAssertEqual(XCTWaiter.wait(for: [placed], timeout: 10), .completed)
+        XCTAssertTrue(app.buttons["play-cell-4-5"].label.contains("空點"))
+        XCTAssertEqual(mana(), before - 4)
+        let used = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value CONTAINS %@", "本回合已施法"), object: app.buttons["mode-advanced"])
+        XCTAssertEqual(XCTWaiter.wait(for: [used], timeout: 10), .completed, "the once-per-turn skill gate is closed")
+
+        // Leave and come back: the saved match must restore the same board, mana, turn and used-skill gate.
+        app.terminate()
+        app.launchArguments = ["--integrated-shell", "--record-isolation", isolation, "--cozy-reduced"]
+        app.launch()
+        XCTAssertTrue(app.buttons["resumeExpansion"].waitForExistence(timeout: 20))
+        app.buttons["resumeExpansion"].tap()
+        XCTAssertTrue(app.otherElements["playArena"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["play-cell-4-6"].label.contains("士兵"))
+        XCTAssertTrue(app.buttons["play-cell-4-5"].label.contains("空點"))
+        XCTAssertEqual(mana(), before - 4)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label, turn)
+        XCTAssertTrue((app.buttons["mode-advanced"].value as? String ?? "").contains("本回合已施法"))
+
+        // Undo after resuming brings the sacrificed soldier, the empty exit and the mana back, and reopens the gate.
+        let undo = app.buttons["undoOrCancel"]
+        XCTAssertTrue(undo.isEnabled)
+        undo.tap()
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "士兵"), object: app.buttons["play-cell-4-5"])
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 10), .completed)
+        XCTAssertTrue(app.buttons["play-cell-4-6"].label.contains("空點"))
+        XCTAssertEqual(mana(), before)
+        XCTAssertFalse((app.buttons["mode-advanced"].value as? String ?? "").contains("本回合已施法"))
+    }
 }

@@ -417,6 +417,17 @@ import TacticalGoVisuals
         guard let session else { throw RecordError.invalidSetup }
         return try ExpansionMatchRecord(session:session,computer:computer,difficulty:computer == nil ? nil:difficulty,matchID:matchID)
     }
+    #if DEBUG
+    /// UI-test setup only: legal end-turn pairs applied straight to the session (the scene is not active yet at launch),
+    /// then saved, so the match stays a recordable game from a real opening.
+    func passTurnsForTest(untilBlackMana mana: Int) {
+        guard var s = session else { return }
+        while s.state.mana(of:.one) < mana, s.state.current == .one, s.state.ply < 30 {
+            guard s.apply(.endTurn).success, s.apply(.endTurn).success else { break }
+        }
+        session = s; cancelSelection(); saveCandidate(announce:false)
+    }
+    #endif
     func saveCandidate(announce: Bool = true) {
         guard let session,!reviewFixture else { return }
         do {

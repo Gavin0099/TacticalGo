@@ -224,6 +224,8 @@ struct ExpansionGameView: View {
             if args.contains("--original-rules") { useExpansion = false }
             if let i = args.firstIndex(of:"--integrated-practice"),args.indices.contains(i+1),let value = ExpansionPractice(rawValue:args[i+1]) {
                 store.expansionPractice(value); boardSize = store.size; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two)
+                // Review item 6: a recordable match (legal opening) where Black can afford the priest's Sanctum (4).
+                if args.contains("--integrated-sanctum-ready") { store.expansion?.passTurnsForTest(untilBlackMana: 4) }
                 inMatch = true; store.setMatchAudioActive(true)
             }
             if let i = args.firstIndex(of:"--polish-monster"),args.indices.contains(i+1),let value = MonsterPresentationPractice(rawValue:args[i+1]) {
