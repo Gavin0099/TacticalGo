@@ -867,13 +867,19 @@ struct ExpansionBoard: View {
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
-                ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1)
+                if ArtV2.enabled { ArtBoardInlay(boardSize:board.size,boardImage:assets.board,pitch:pitch).frame(width:size.width,height:size.height) }
+                else { ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1) }
+                if ArtV2.enabled {
+                    ArtLegalMarkers(points:targets.filter { board.isEmpty($0) }.map { presentation.center($0,size) },pitch:pitch,reduced:reduced).zIndex(8)
+                }
                 ForEach(targets.sorted { $0.y == $1.y ? $0.x < $1.x : $0.y < $1.y },id:\.self) { point in
                     if board.isEmpty(point) {
-                        Circle().fill(Color(red:0.18,green:0.62,blue:0.46))
-                            .overlay(Circle().stroke(Color(red:0.94,green:0.94,blue:0.76).opacity(0.65),lineWidth:0.5))
-                            .frame(width:4.5,height:4.5)
-                            .shadow(color:.black.opacity(0.55),radius:0.8).position(presentation.center(point,size)).zIndex(8)
+                        if !ArtV2.enabled {
+                            Circle().fill(Color(red:0.18,green:0.62,blue:0.46))
+                                .overlay(Circle().stroke(Color(red:0.94,green:0.94,blue:0.76).opacity(0.65),lineWidth:0.5))
+                                .frame(width:4.5,height:4.5)
+                                .shadow(color:.black.opacity(0.55),radius:0.8).position(presentation.center(point,size)).zIndex(8)
+                        }
                     } else {
                         Circle().stroke(Color(red:0.25,green:0.85,blue:0.63),lineWidth:2).frame(width:pitch*0.82,height:pitch*0.82)
                             .position(presentation.center(point,size)).zIndex(225)
@@ -958,7 +964,9 @@ struct ExpansionBoard: View {
     @ViewBuilder private func token(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?) -> some View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
-        if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
+        if ArtV2.enabled,piece.kind == .commander {
+            ArtKing(black:piece.owner == .one,pitch:pitch)
+        } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
                 WarriorBodyView(original:image,plate:plate,pose:performing ? .skill(at:time,reduced:reduced,weighted:weightedWarrior) : .rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))

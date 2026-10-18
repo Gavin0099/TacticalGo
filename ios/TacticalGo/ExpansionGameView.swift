@@ -121,7 +121,7 @@ struct ExpansionGameView: View {
             Group { if inMatch { match(size: geo.size) } else { lobby(size: geo.size) } }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .background(GameBackdrop())
+        .background(ArtTable())
         .foregroundStyle(uiInk).tint(uiAccent).preferredColorScheme(.dark)
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
