@@ -236,6 +236,22 @@ import TacticalGoVisuals
         stop();cancelSelection();voiceCadence.reset();reviewTime = nil;reviewReceipt = nil
         session = rebuilt;size = 9;one = .rogue;two = .mage;computer = nil;mode = .skill
     }
+    /// UI-test positions for undo across a computer reply (Black = human warrior, White = computer mage). Hand-placed,
+    /// so they are review fixtures and never saved. "capture": a connected Bastion captures White F5 and leaves 1 AP.
+    /// "win": the core-verified Reformation (E4→E3, F4→F3) captures White's commander in one AP.
+    func undoFixture(_ kind: String) {
+        stop();cancelSelection();reviewFixture = true
+        var c = RuleConfig.board(size:9);c.expansionSkills = true;c.bastionScope = .connectedGroup
+        let diagram: String, ap: Int
+        if kind == "win" {
+            diagram = "....xx...\n...xOox..\n...x..x..\n...xxx...\n...H.....\n.........\n.........\n....X....\n........."; ap = 1
+        } else {
+            diagram = ".........\n....O....\n.........\n.....x...\n.....xox.\n.....H...\n.........\n....X....\n........."; ap = 2
+        }
+        session = GameSession(try! GameSetup.fromDiagram(config:c,diagram:diagram,classOne:.warrior,classTwo:.mage,manaOne:6,manaTwo:6,ap:ap))
+        size = 9;one = .warrior;two = .mage;mode = .soldier
+        instruction = "工程棋形：復原跨過電腦回應（\(kind)）；不作可達開局或平衡證明。"
+    }
     func warriorBotReview() {
         stop();cancelSelection();reviewFixture = true
         var c = RuleConfig.board(size:9);c.expansionSkills = true
