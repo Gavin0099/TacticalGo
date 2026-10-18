@@ -226,6 +226,7 @@ struct ArtPlayerStrip: View {
     let apMax: Int
     var loot: String?
     var reduced = false
+    @State private var pulse = false
     var body: some View {
         HStack(spacing: 8) {
             ZStack {
@@ -242,10 +243,15 @@ struct ArtPlayerStrip: View {
                     else { Rectangle().fill(Color(red:0.12,green:0.20,blue:0.25)).overlay(Rectangle().stroke(Color(red:0.98,green:0.93,blue:0.78),lineWidth:0.8)).rotationEffect(.degrees(45)) }
                 }.frame(width: 9, height: 9).offset(x: -15, y: 15)
             }
-            .shadow(color: active ? Color(red:1,green:0.80,blue:0.36).opacity(0.75) : .clear, radius: active ? 5 : 0)
+            .shadow(color: active ? Color(red:1,green:0.80,blue:0.36).opacity(0.75) : .clear, radius: active ? (reduced ? 5 : (pulse ? 8 : 3)) : 0)
+            .onAppear {
+                guard !reduced else { return }
+                withAnimation(.easeInOut(duration: 1.3).repeatForever(autoreverses: true)) { pulse = true }
+            }
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 4) {
                     Text(name).font(.system(size: 13, weight: .bold, design: .serif)).foregroundStyle(GameChrome.cream)
+                        .accessibilityLabel((black ? "● " : "○ ") + name)
                     if let role { Text(role).font(.system(size: 9, weight: .bold)).foregroundStyle(GameChrome.gold) }
                     Spacer(minLength: 0)
                     Text(status).font(.system(size: 10, weight: .bold)).foregroundStyle(active ? GameChrome.gold : GameChrome.muted)
@@ -261,6 +267,8 @@ struct ArtPlayerStrip: View {
                                     .overlay(Circle().stroke(GameChrome.gold.opacity(0.8), lineWidth: 1))
                                     .frame(width: 7, height: 7)
                                     .shadow(color: i < ap ? GameChrome.gold.opacity(0.8) : .clear, radius: 2)
+                                    .scaleEffect(i < ap ? 1 : 0.8)
+                                    .animation(reduced ? nil : .spring(response: 0.3, dampingFraction: 0.45), value: i < ap)
                             }
                             Text("\(ap) AP").font(.system(size: 10, weight: .bold)).foregroundStyle(GameChrome.cream)
                         }
@@ -296,6 +304,7 @@ struct ArtCrystal: View {
                 ctx.stroke(hex, with: .color(Color(red:0.45,green:0.60,blue:0.70).opacity(0.45)), lineWidth: 0.7)
             }
         }.frame(width: 10, height: 11).shadow(color: lit ? Color(red:0.3,green:0.7,blue:1).opacity(0.5) : .clear, radius: 1.5)
+            .scaleEffect(lit ? 1 : 0.85).animation(.spring(response: 0.32, dampingFraction: 0.45), value: lit)
     }
 }
 
@@ -462,7 +471,7 @@ struct ArtCardLift: ViewModifier {
     @ViewBuilder func body(content: Content) -> some View {
         if ArtV2.enabled {
             content.shadow(color: selected ? accent.opacity(0.55) : .clear, radius: selected ? 9 : 0)
-                .scaleEffect(selected ? 1.03 : 1).offset(y: selected ? -3 : 0)
+                .offset(y: selected ? -3 : 0)   // no scaleEffect: the four cards must keep the same height
                 .animation(.easeOut(duration: 0.18), value: selected)
         } else { content }
     }
