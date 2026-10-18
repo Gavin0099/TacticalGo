@@ -1,16 +1,16 @@
 // Integrated 1.0 + 1.1 build for INTERNAL TestFlight only (Owner group). Not a Release/App Review configuration.
 // Use with the `TacticalGoBeta` scheme / `Beta` configuration:
 //   xcodebuild archive -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta
-//   -destination generic/platform=iOS -xcconfig docs/release-01/Beta.integrated-1116.xcconfig (see TESTFLIGHT_INTEGRATED.md)
+//   -destination generic/platform=iOS -xcconfig docs/release-01/Beta.integrated-1117.xcconfig (see TESTFLIGHT_INTEGRATED.md)
 // Signing (manual, Apple Distribution, profile "Crown Strategy App Store 20261011", team P358EB3X9H) and the
 // TACTICALGO_V11 expansion flag come from the project's Beta configuration, NOT from this file: a command-line
 // xcconfig also reaches the Swift package targets, which must not receive a provisioning profile.
 // Only version, build number and the CROWN_* values that the Beta target leaves empty are set here.
 //
-// Build number: must be higher than every build already uploaded for this app (1115 is the last one known: uploaded 2026-10-17 and in the Owner 1.1 group).
+// Build number: must be higher than every build already uploaded for this app (1116 is the last one known: uploaded 2026-10-17 by the Owner via Xcode Organizer).
 // Re-check App Store Connect before using it; raise it if a higher build exists.
 MARKETING_VERSION = 1.1
-CURRENT_PROJECT_VERSION = 1116
+CURRENT_PROJECT_VERSION = 1117
 
 // In-app purchase: the NT$60 non-consumable unlock (same product the 1.0 submission uses).
 CROWN_UNLOCK_PRODUCT_ID = com.tacticalgo.crowntactics.unlock
