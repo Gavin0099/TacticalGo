@@ -689,8 +689,10 @@ import TacticalGoVisuals
         let spent = preview.events.compactMap { e -> String? in if case .resourcesSpent(_,let ap,let mana) = e { return "\(ap) AP／\(mana) 能量" }; return nil }.first ?? ""
         // Priest sacrifices say what the sacrifice buys (review PRIEST-S2-P0: players could not see why to give a stone up).
         if let action = pending, let insight = PriestSacrificeInsight(state, action) {
-            // Same "合法預覽：" lead as every other skill; the line may be cut on a phone, 技能說明 shows it whole.
-            return "合法預覽：\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
+            // No "合法預覽：" lead here (PR #19 dropped it on purpose): the dock line is one line of 11pt on a phone (about 357pt),
+            // and with the lead a sacrifice that also captures or makes an eye is cut (measured 357-412pt, 303-357pt without it).
+            // The trade comes first; the confirm button and the unchanged resources already say nothing is committed yet.
+            return "\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
         }
         return "合法預覽：\(spent) · 提 \(captures) 顆。確認前不扣資源、不播聲音。"
     }

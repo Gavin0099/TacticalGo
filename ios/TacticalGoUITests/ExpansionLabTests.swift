@@ -599,7 +599,9 @@ import XCTest
         tap(app,"playConfirm"); ready(app)
         let before = resources(app);XCTAssertTrue(before.contains("能量 2/6"));XCTAssertTrue(before.contains("1 AP"))
         tap(app,"mode-skill");normalPoints(app,[(2,5)])
-        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("合法預覽"))
+        // The priest's Offering preview leads with the trade, like Sanctum (no "合法預覽：" lead; see previewMessage).
+        let offering = app.staticTexts["playMessage"].label
+        XCTAssertTrue(offering.contains("犧牲") && offering.contains("氣"), offering)
         XCTAssertEqual(resources(app),before)
         tap(app,"undoOrCancel");XCTAssertFalse(app.buttons["playConfirm"].isEnabled)
         normalPoints(app,[(2,5)]);tap(app,"playConfirm");ready(app)
@@ -799,7 +801,9 @@ import XCTest
             let before = app.staticTexts["exp-status"].label
             let beforeCell = app.buttons["exp-cell-\(occupied.0)-\(occupied.1)"].label
             points(app,targets)
-            XCTAssertTrue(app.staticTexts["exp-preview"].label.contains("合法預覽"),hero)
+            // Priest sacrifice previews lead with the trade (no "合法預覽：" lead, see ExpansionLabStore.previewMessage); the rest keep it.
+            let preview = app.staticTexts["exp-preview"].label
+            XCTAssertTrue(hero == "priest" ? (preview.contains("犧牲") && preview.contains("氣")) : preview.contains("合法預覽"),hero + ": " + preview)
             XCTAssertEqual(app.staticTexts["exp-status"].label,before)
             XCTAssertEqual(app.buttons["exp-cell-\(occupied.0)-\(occupied.1)"].label,beforeCell)
             shot(app,"exp-\(hero)-preview-source-retained")
