@@ -1,9 +1,11 @@
 import Foundation
 import TacticalGoCore
 import TacticalGoBot
+import TacticalGoContent
 
 @main struct BotRunner {
     static func main() throws {
+        setvbuf(stdout, nil, _IOLBF, 0) // progress lines appear immediately when the output is redirected to a log
         let arguments = CommandLine.arguments
         if arguments.count > 3, arguments[1] == "--pass-audit" {
             try passAudit(arguments[2], out: arguments[3]); return
@@ -15,6 +17,39 @@ import TacticalGoBot
             try priestSanctumStats(games: Int(arguments[2]) ?? 8, out: arguments[3],
                                    difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .easy : .easy,
                                    size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7); return
+        }
+        if arguments.count > 3, arguments[1] == "--blunder-stats" {
+            // --blunder-stats <games> <out.json> [easy|standard] [size] [expansion|original] [max-ply]
+            try blunderStats(games: Int(arguments[2]) ?? 6, out: arguments[3],
+                             difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .standard : .standard,
+                             size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7, rules: arguments.count > 6 ? arguments[6] : "expansion",
+                             maxPly: arguments.count > 7 ? Int(arguments[7]) ?? 60 : 60); return
+        }
+        if arguments.count > 3, arguments[1] == "--exact-turns" { try exactTurnsAudit(positions: arguments[2], out: arguments[3]); return }
+        if arguments.count > 3, arguments[1] == "--versus" {
+            // --versus <games> <out.json> [size] [expansion|original]   (Standard vs Easy, colours alternate)
+            try versus(games: Int(arguments[2]) ?? 8, out: arguments[3], size: arguments.count > 4 ? Int(arguments[4]) ?? 7 : 7,
+                       rules: arguments.count > 5 ? arguments[5] : "expansion"); return
+        }
+        if arguments.count > 2, arguments[1] == "--advanced-audit" {
+            try advancedAudit(out: arguments[2], maxFirst: arguments.count > 3 ? Int(arguments[3]) ?? 30 : 30,
+                              maxSecond: arguments.count > 4 ? Int(arguments[4]) ?? 30 : 30); return
+        }
+        if arguments.count > 2, arguments[1] == "--tension-fixtures" { try tensionFixtures(out: arguments[2]); return }
+        if arguments.count > 3, arguments[1] == "--bot-behavior" {
+            // --bot-behavior <games> <out.json> [easy|standard] [size] [expansion|original]
+            try botBehavior(games: Int(arguments[2]) ?? 8, out: arguments[3],
+                            difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .standard : .standard,
+                            size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7,
+                            rules: arguments.count > 6 ? arguments[6] : "expansion"); return
+        }
+        if arguments.count > 3, arguments[1] == "--tension-stats" {
+            // --tension-stats <games> <out.json> [easy|standard] [size] [expansion|original] [every-nth-turn]
+            try tensionStats(games: Int(arguments[2]) ?? 8, out: arguments[3],
+                             difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .standard : .standard,
+                             size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7,
+                             rules: arguments.count > 6 ? arguments[6] : "expansion",
+                             stride: arguments.count > 7 ? max(1, Int(arguments[7]) ?? 3) : 3); return
         }
         if arguments.count > 2, arguments[1] == "--replay" {
             try replayFile(arguments[2]); return

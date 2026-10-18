@@ -1,0 +1,136 @@
+{
+  "notClaimed" : [
+    "original Ko history",
+    "the other side's exact Mana"
+  ],
+  "rows" : [
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 29,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 33,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 37,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 41,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 45,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 49,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 53,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    },
+    {
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "distinctCompleteTurns" : 159,
+      "exactSafeTurns" : 1,
+      "game" : 16,
+      "ply" : 57,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 1,
+      "setup" : "Warrior-vs-Warrior"
+    }
+  ]
+}

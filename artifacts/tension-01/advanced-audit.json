@@ -1,0 +1,781 @@
+{
+  "challenges" : [
+    {
+      "challenge" : "c03-1-commander-rescue",
+      "deadEnd" : 25,
+      "distinctViableSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk0",
+        "skill|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "firstPlansTried" : 30,
+      "plans" : [
+        {
+          "first" : "1-place:1,2\/1-place:5,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:5,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,3\/1-place:5,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,3\/1-place:6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:2,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:6,3\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:6,3\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:6,3\/1-place:2,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,2\/3-bastion:5,4: 6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/3-bastion:5,4: 6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,3\/3-bastion:5,4: 6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:2,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:5,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:6,3\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/3-bastion:5,4: 6,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:4,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 10,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:4,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 18,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:5,4\/1-place:5,5",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:6,3\/1-place:5,5",
+          "reason" : "",
+          "secondTurnsThatComplete" : 2,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "3-bastion:5,4: 6,3\/1-place:5,5",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,1\/1-place:5,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib4|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        }
+      ],
+      "refutedByScriptedReply" : 0,
+      "title" : "守住下一回合",
+      "viable" : 5
+    },
+    {
+      "challenge" : "c03-2-feint-counterattack",
+      "deadEnd" : 26,
+      "distinctViableSignatures" : [
+        "capture|cap1|enemyLib1|ownLib4|risk0",
+        "skill|cap0|enemyLib1|ownLib4|risk1",
+        "skill|cap0|enemyLib2|ownLib4|risk1"
+      ],
+      "firstPlansTried" : 30,
+      "plans" : [
+        {
+          "first" : "1-place:0,3\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 1,
+          "signature" : "skill|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 1,
+          "signature" : "skill|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:2,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 1,
+          "signature" : "capture|cap1|enemyLib1|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:2,6",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,6\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:4,1\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:3,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:4,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,1\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,0\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,1\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:5,5\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:0,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:1,0",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:5,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:5,5",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,6\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:2,6",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:3,0\/4-push:2,3:Left",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "4-push:2,3:Left\/1-place:3,0",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:2,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,2\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,2\/1-place:2,6",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,6\/1-place:2,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:3,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:2,6\/1-place:3,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/4-push:2,4:Down",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/4-push:3,2:Up",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 1,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:2,6\/4-push:3,2:Up",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/4-push:4,4:Up",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "skill|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        }
+      ],
+      "refutedByScriptedReply" : 0,
+      "title" : "引出回應，再反打",
+      "viable" : 4
+    },
+    {
+      "challenge" : "c03-3-skill-timing",
+      "deadEnd" : 8,
+      "distinctViableSignatures" : [
+        "build|cap0|enemyLib1|ownLib4|risk1",
+        "build|cap0|enemyLib2|ownLib4|risk0",
+        "build|cap0|enemyLib2|ownLib4|risk1",
+        "capture|cap1|enemyLib2|ownLib4|risk0",
+        "capture|cap1|enemyLib2|ownLib4|risk1"
+      ],
+      "firstPlansTried" : 30,
+      "plans" : [
+        {
+          "first" : "1-place:1,2\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 1,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 2,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 2,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk1",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,2\/5-swap:3,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 18,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,4\/5-swap:3,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 21,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "5-swap:3,4\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 18,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "5-swap:3,4\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 21,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:0,3\/5-swap:3,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 21,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "5-swap:3,4\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 21,
+          "secondTurnsTried" : 30,
+          "signature" : "capture|cap1|enemyLib2|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,1\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:1,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:3,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:3,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:3,1\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:3,1\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:2,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:2,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:2,1\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:2,1\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:0,2\/1-place:1,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:0,3\/1-place:1,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:0,4\/1-place:1,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 2,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,1\/1-place:0,3",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk1",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:0,4",
+          "reason" : "",
+          "secondTurnsThatComplete" : 2,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,2\/1-place:4,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:0,2",
+          "reason" : "",
+          "secondTurnsThatComplete" : 0,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "deadEnd"
+        },
+        {
+          "first" : "1-place:1,4\/1-place:4,1",
+          "reason" : "",
+          "secondTurnsThatComplete" : 1,
+          "secondTurnsTried" : 30,
+          "signature" : "build|cap0|enemyLib2|ownLib4|risk0",
+          "verdict" : "viable"
+        }
+      ],
+      "refutedByScriptedReply" : 0,
+      "title" : "出手，還是留力",
+      "viable" : 22
+    }
+  ],
+  "notClaimed" : [
+    "that every legal plan was tried",
+    "how hard these are for people",
+    "that other opponents reply the same way"
+  ],
+  "setup" : {
+    "firstCandidates" : 30,
+    "opponent" : "shipped AdvancedOpponent (deterministic)",
+    "secondCandidates" : 30,
+    "success" : "the product's own TutorialSession.assessment == completed"
+  }
+}

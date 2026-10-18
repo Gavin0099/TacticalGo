@@ -1,0 +1,1853 @@
+{
+  "byPhase" : {
+    "late(51+)" : {
+      "forcedDefense" : 2,
+      "positions" : 8,
+      "twoPlans" : 6
+    },
+    "middle(21-50)" : {
+      "forcedDefense" : 6,
+      "obvious" : 5,
+      "positions" : 35,
+      "twoPlans" : 24
+    },
+    "opening(5-20)" : {
+      "obvious" : 4,
+      "positions" : 24,
+      "twoPlans" : 19,
+      "winningTurn" : 1
+    }
+  },
+  "bySetup" : {
+    "Priest-vs-Mage" : {
+      "positions" : 7,
+      "twoPlans" : 7
+    },
+    "Priest-vs-Priest" : {
+      "obvious" : 4,
+      "positions" : 14,
+      "twoPlans" : 10
+    },
+    "Priest-vs-Rogue" : {
+      "positions" : 14,
+      "twoPlans" : 14
+    },
+    "Priest-vs-Warrior" : {
+      "obvious" : 5,
+      "positions" : 14,
+      "twoPlans" : 9
+    },
+    "Warrior-vs-Mage" : {
+      "positions" : 4,
+      "twoPlans" : 3,
+      "winningTurn" : 1
+    },
+    "Warrior-vs-Warrior" : {
+      "forcedDefense" : 8,
+      "positions" : 14,
+      "twoPlans" : 6
+    }
+  },
+  "closeDistinctSignatureHistogram" : [
+    {
+      "positions" : 18,
+      "signatures" : 1
+    },
+    {
+      "positions" : 22,
+      "signatures" : 2
+    },
+    {
+      "positions" : 12,
+      "signatures" : 3
+    },
+    {
+      "positions" : 8,
+      "signatures" : 4
+    },
+    {
+      "positions" : 6,
+      "signatures" : 5
+    },
+    {
+      "positions" : 1,
+      "signatures" : 6
+    }
+  ],
+  "counts" : {
+    "forcedDefense" : 8,
+    "obvious" : 9,
+    "positions" : 67,
+    "twoPlans" : 49,
+    "winningTurn" : 1
+  },
+  "notClaimed" : [
+    "human decision quality",
+    "that alternatives are equally good",
+    "balance",
+    "fun"
+  ],
+  "positions" : [
+    {
+      "ap" : 2,
+      "bestSafeScore" : 1141,
+      "board" : "o.....o\n...O...\n.......\n......x\n......x\n...Xoxo\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,2\/1-place:1,4"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib2|ownLib3|risk1"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 157,
+      "board" : "o....xo\n.oQOo..\n...x...\n......x\n...Hxox\n...Xo.o\n.....o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,5\/1-place:5,5",
+        "1-place:0,2\/1-place:3,5",
+        "1-place:0,2\/1-place:3,4"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 12,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -17,
+      "board" : "o.x.o.o\n.oQOoo.\n...x...\n.....xx\n..oHxox\n...Xo.o\n.....o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,2\/1-place:5,5"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 148,
+      "board" : "o.x.o.o\n.oQOoo.\n..o.o..\n..xoxxx\n..oHxox\n..xXo.o\n.....o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,5\/1-place:6,4",
+        "1-place:1,0\/1-place:4,1",
+        "1-place:2,1\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 74,
+      "board" : "o.xoo.o\n.oQOoo.\n..o.oo.\n.o.oxxx\n.xoHx.x\n.oxX.xo\n....xo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,0\/1-place:3,2",
+        "1-place:1,6\/1-place:3,2",
+        "1-place:5,0\/1-place:6,1",
+        "1-place:6,6\/1-place:3,2"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "capture|cap3|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -23,
+      "board" : "o.xoo.o\n.oQOoo.\n..o.oo.\n.o.oxxx\no.oHx.x\nxoxX.xo\n.x.oxo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,6\/1-place:4,1",
+        "1-place:6,2\/1-place:4,1",
+        "1-place:1,0\/1-place:4,1",
+        "1-place:1,6\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap3|enemyLib4|ownLib4|risk2",
+        "capture|cap2|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -11,
+      "board" : "o.xoo.o\n.oQOoo.\nooo.ooo\n.oooxxx\noxoHx.x\nx.xX.x.\n.x.ox.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,2\/1-place:3,0",
+        "8-sanctum:4,4:5,4\/1-place:3,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -86,
+      "board" : "oo.oo.o\no.QOoo.\noo.oooo\n.oooxxx\noxoHx.x\nx.xX.x.\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,3\/1-place:3,0",
+        "1-place:5,1\/8-sanctum:4,4:5,4"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -18,
+      "board" : "oo.oooo\no.QOooo\noo.oooo\n.oooxxx\noxoHx.x\nxxxX.x.\n.xxxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-sanctum:4,4:5,4\/1-place:3,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 90,
+      "board" : ".oooooo\nooQOooo\noo.oooo\n.oooxxx\noxoHx.x\nxxxX.x.\n.xxxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-sanctum:4,4:5,4\/1-place:3,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib2|ownLib4|risk1"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 41,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 115,
+      "board" : ".oooooo\nooQOooo\noo.oooo\nxoooxxx\nxxoHx.x\nxxxX.x.\n.xxxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,4\/8-offering:4,4",
+        "1-place:6,0\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib2|ownLib4|risk0",
+        "build|cap0|enemyLib2|ownLib4|risk0"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 45,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 77,
+      "board" : "oo.oooo\no.QOooo\nooooooo\nxoooxxx\nxxoHxxx\nxxxX.x.\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,3\/8-offering:4,5"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib2|ownLib4|risk0"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 49,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 83,
+      "board" : "oo.oooo\no.QOooo\nooooooo\nxoooxxx\nxxoHx.x\nxxxX.x.\n.xxxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,4\/8-offering:4,4",
+        "1-place:6,0\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib2|ownLib4|risk0",
+        "build|cap0|enemyLib2|ownLib4|risk0"
+      ],
+      "game" : 12,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 53,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 88,
+      "board" : "oo.oooo\no.QOooo\nooooooo\nxoooxxx\nxxoH.xx\nxxxXxx.\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,5\/9-end",
+        "1-place:6,0\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib2|ownLib4|risk0",
+        "build|cap0|enemyLib2|ownLib4|risk0"
+      ],
+      "game" : 12,
+      "mana" : 4,
+      "player" : 0,
+      "ply" : 57,
+      "safe" : 8,
+      "setup" : "Priest-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 410,
+      "board" : "..o..x.\n...O...\n.......\nx......\n...o..x\n.o.X...\n.....o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:5,4\/1-place:1,2",
+        "2-summon:5,4\/1-place:1,4",
+        "2-summon:5,4\/1-place:5,2"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib3|ownLib4|risk1",
+        "summon|cap0|enemyLib3|ownLib4|risk0",
+        "summon|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 1008,
+      "board" : "..o..x.\n...OQx.\n...xx..\nx......\n...oo.x\n.o.XHo.\n....oo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,4\/1-place:5,2",
+        "1-place:0,3\/1-place:5,2"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib2|ownLib3|risk1",
+        "build|cap0|enemyLib2|ownLib3|risk2"
+      ],
+      "game" : 13,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 79,
+      "board" : "..ox.x.\n.xoOQ..\n...xxx.\nx.o....\n..xoo.x\n.oxXHo.\n..o.oo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,4\/1-place:4,1",
+        "1-place:2,2\/1-place:4,1",
+        "1-place:4,1\/1-place:5,0",
+        "1-place:3,1\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib3|ownLib3|risk3",
+        "build|cap0|enemyLib3|ownLib3|risk2",
+        "build|cap0|enemyLib4|ownLib3|risk2",
+        "build|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 71,
+      "board" : "..o...o\n.xoOQo.\n...xxx.\nx.o....\n.xxoo.x\nx.xXHo.\n.xoooo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,5\/1-place:1,6",
+        "1-place:0,4\/1-place:1,6",
+        "1-place:2,2\/1-place:3,1",
+        "1-place:0,4\/1-place:3,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk0",
+        "build|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : "..o.x.x\n.xoOQo.\no.xxxxx\n.oo....\noxxoo.x\nx.xXHo.\n.xoooo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,3\/1-place:3,0",
+        "1-place:0,1\/1-place:3,0",
+        "1-place:0,5\/1-place:3,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib2|risk1",
+        "capture|cap1|enemyLib3|ownLib2|risk1",
+        "capture|cap1|enemyLib3|ownLib2|risk3"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 620,
+      "board" : "..oox.x\n.x.OQo.\noxxxxxx\n.o.x...\noxxoo.x\nx.xXHo.\n.xoooo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,2\/1-place:3,0",
+        "1-place:3,2\/1-place:4,5",
+        "1-place:0,1\/1-place:3,2",
+        "1-place:1,6\/1-place:3,2"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib4|risk2",
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "build|cap0|enemyLib3|ownLib4|risk2",
+        "build|cap0|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 4916,
+      "board" : ".xo.oox\n.x.OQox\noxxxx.x\nx.xxox.\n.xxooox\nx.xXHo.\n.xoooo.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,2\/1-place:2,5",
+        "1-place:1,2\/1-place:0,3"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib1|ownLib4|risk1",
+        "capture|cap1|enemyLib1|ownLib4|risk1"
+      ],
+      "game" : 13,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Priest-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 542,
+      "board" : "....o.o\n...O...\n.......\n..o....\no....x.\nx.xX...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:4,3\/1-place:1,2",
+        "2-summon:4,3\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib3|ownLib4|risk1",
+        "summon|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 319,
+      "board" : "....o.o\n..QO...\n..ox...\n..oo...\nox.H.x.\nx.xX...\n.x.....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,6\/1-place:2,4",
+        "1-place:1,4\/1-place:0,5",
+        "1-place:1,4\/1-place:1,6"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk3",
+        "build|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 14,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 261,
+      "board" : "..x.o.o\n.xQO..x\n..oxx..\n..oo...\noxoHox.\nx.xXo..\n.x.o...",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,1\/1-place:5,1",
+        "1-place:1,4\/1-place:6,2",
+        "1-place:6,2\/1-place:6,4",
+        "1-place:1,4\/1-place:5,1"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib2|risk1",
+        "capture|cap1|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk1"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 462,
+      "board" : "..x.o.o\n.xQOo.x\nxooxx..\n.xooo..\noxoHox.\nxxxXo..\n.x..x..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,5\/1-place:5,5",
+        "1-place:0,5\/1-place:2,5",
+        "1-place:1,5\/1-place:3,5",
+        "1-place:0,5\/1-place:3,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib3|ownLib4|risk2",
+        "capture|cap1|enemyLib3|ownLib4|risk2"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 133,
+      "board" : ".ox.ox.\no.QOo.x\nxooxxx.\nxxooo..\n.xoHox.\nxxxXox.\n.x.o.o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,6\/1-place:6,4",
+        "1-place:1,5\/1-place:3,5",
+        "1-place:3,5\/1-place:6,6",
+        "1-place:1,5\/1-place:3,6",
+        "1-place:3,5\/1-place:6,2"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib3|risk2",
+        "build|cap0|enemyLib3|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk2",
+        "build|cap0|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib2|risk1"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 200,
+      "board" : ".o.oox.\no.QOoox\nxooxxx.\nxxoooo.\n.xoHox.\nxxxXox.\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,6\/1-place:3,6",
+        "1-place:2,6\/1-place:4,6"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib2|ownLib3|risk3",
+        "build|cap0|enemyLib3|ownLib3|risk3"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -435,
+      "board" : ".o.oo.o\no.QOooo\nxoo..o.\nxxoooo.\n.xoHoxo\nxxxXox.\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,6\/1-place:5,6",
+        "1-place:2,3\/1-place:3,6",
+        "1-place:3,6\/8-sanctum:4,1:6,3",
+        "1-place:3,6\/1-place:6,3",
+        "1-place:3,6\/8-sanctum:5,2:6,3"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk2",
+        "skill|cap0|enemyLib4|ownLib4|risk3",
+        "build|cap0|enemyLib4|ownLib3|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -424,
+      "board" : ".o.oo.o\no.QOooo\nxoo.ooo\nxxoooo.\n.xoHoxo\nxxxXoxx\n.xx.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,3\/1-place:3,6",
+        "8-sanctum:4,1:6,3\/1-place:3,6",
+        "1-place:4,0\/1-place:3,6",
+        "8-sanctum:5,2:6,3\/1-place:3,6",
+        "1-place:6,3\/1-place:6,5"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib3|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib2|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib2|risk0"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -421,
+      "board" : "oo.oo.o\no.QOooo\nxoooooo\nxxoooo.\n.xoHoxo\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,0\/1-place:3,6",
+        "8-offering:4,1\/1-place:3,6",
+        "8-offering:6,3\/1-place:3,6",
+        "8-offering:5,2\/1-place:3,6",
+        "8-offering:4,1\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib3|ownLib2|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib3|ownLib3|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib3|risk3"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 8,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -321,
+      "board" : "oo.oooo\no.QOooo\nxoooooo\nxxoooox\n.xoHox.\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,6\/9-end",
+        "1-place:4,6\/8-offering:4,1",
+        "1-place:4,6\/8-offering:4,5",
+        "8-offering:4,1\/9-end",
+        "8-offering:4,5\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib2|ownLib2|risk0",
+        "skill|cap0|enemyLib3|ownLib3|risk3",
+        "skill|cap0|enemyLib3|ownLib3|risk0",
+        "skill|cap0|enemyLib3|ownLib4|risk3",
+        "skill|cap0|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 41,
+      "safe" : 6,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -359,
+      "board" : "oo.oooo\no.QOooo\nxoooooo\nxxoooox\n.xoHoxx\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,1\/9-end",
+        "8-offering:4,5\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib3|risk3",
+        "skill|cap0|enemyLib3|ownLib3|risk0"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 45,
+      "safe" : 5,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -359,
+      "board" : "oo.oooo\no.QOooo\nxoooooo\nxxoooox\n.xoHoxx\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,1\/9-end",
+        "8-offering:4,5\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib3|risk3",
+        "skill|cap0|enemyLib3|ownLib3|risk0"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 49,
+      "safe" : 5,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -359,
+      "board" : "oo.oooo\no.QOooo\nxoooooo\nxxoooox\n.xoHoxx\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,1\/9-end",
+        "8-offering:4,5\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib3|risk3",
+        "skill|cap0|enemyLib3|ownLib3|risk0"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 53,
+      "safe" : 5,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -359,
+      "board" : "oo.oooo\no.QOooo\nxoooooo\nxxoooox\n.xoHoxx\nxxxXoxx\n.xxxxxx",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,1\/9-end",
+        "8-offering:4,5\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib3|risk3",
+        "skill|cap0|enemyLib3|ownLib3|risk0"
+      ],
+      "game" : 14,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 57,
+      "safe" : 5,
+      "setup" : "Priest-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 476,
+      "board" : "x....o.\n...Oox.\n..o....\no......\n....x..\n...X...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:5,2\/1-place:1,2"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 240,
+      "board" : "x....o.\n..xOox.\n..oQ...\noo.o...\n..oxx..\n..HX...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,3\/1-place:2,4"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -3,
+      "board" : "x.o..ox\n..xOox.\n..oQ.o.\noo.oo..\n..oxx..\n..HX...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,4\/1-place:3,5",
+        "1-place:0,1\/1-place:0,4"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -145,
+      "board" : "x.o.xo.\n.xxOo.o\n..oQ.o.\noo.oo..\n.xoxx..\n.oHX...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,5\/1-place:3,2",
+        "1-place:5,0\/1-place:6,1",
+        "1-place:0,1\/1-place:3,2"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -111,
+      "board" : "x.o.xo.\n.xxOo.o\n..oQ.o.\noo.oo..\no.oxxx.\nxoHX.o.\n.x.....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,1\/1-place:4,1",
+        "1-place:0,1\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -84,
+      "board" : "x.o.xo.\n.xxOo.o\n..oQ.o.\noo.oox.\no.oxxx.\nxoHX.o.\n.x.xo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,1\/1-place:4,1",
+        "1-place:0,1\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -86,
+      "board" : "x.o.xo.\n.xxOo.o\nxxoQ.o.\noo.ooxo\no.oxxxo\nxoHX.o.\n.x.xo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,6\/1-place:4,1",
+        "8-offering:6,3\/1-place:4,1"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib3|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 128,
+      "board" : "x.o.xo.\n.xxOo.o\nxxoQ.ox\noo.oox.\no.oxxxo\nxoHX.ox\n.xooo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,1\/1-place:3,2",
+        "1-place:6,5\/1-place:5,4"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap5|enemyLib3|ownLib4|risk2",
+        "capture|cap4|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 280,
+      "board" : "x.oo.o.\n.xxOo.o\nxx.Q.o.\n..xooxo\n.x.xxxo\nx.HXxo.\n.x..o.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,2\/1-place:4,2",
+        "1-place:6,3\/1-place:6,5",
+        "1-place:0,1\/1-place:2,2",
+        "1-place:0,1\/1-place:4,2",
+        "1-place:2,2\/8-sanctum:5,4:4,2",
+        "1-place:2,2\/1-place:6,3"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib3|ownLib4|risk0",
+        "build|cap0|enemyLib4|ownLib4|risk0",
+        "skill|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk1"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 352,
+      "board" : ".ooo.o.\noxxOo.o\nxxxQ.o.\no.xooxo\n.xxxxxo\nx.HXxo.\n.x.xo.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,0\/1-place:6,5",
+        "8-sanctum:4,2:5,1\/1-place:6,5",
+        "1-place:4,0\/1-place:0,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 41,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 306,
+      "board" : "oooo.o.\noxxOooo\nxxxQ.o.\n.xxooxo\nxxxxxxo\nx.HXxo.\n.x.xo.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:4,1\/1-place:6,5"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 45,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 190,
+      "board" : "oooo.o.\noxxOooo\nxxxQ.oo\nxxxooxo\nxx.xxxo\nx.HXxoo\n.x.xo.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,0\/1-place:6,5"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 49,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 51,
+      "board" : "oooooo.\noxxOooo\nxxxQ.oo\nxxxooxo\nxx.xxxo\n.oHXxoo\nxx.xo.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:6,3\/1-place:5,0",
+        "8-offering:4,3\/1-place:5,0",
+        "8-offering:4,3\/1-place:6,5",
+        "8-sanctum:4,1:4,2\/1-place:6,5",
+        "8-sanctum:3,2:4,2\/1-place:6,5"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib3|ownLib4|risk0",
+        "capture|cap1|enemyLib4|ownLib4|risk0",
+        "capture|cap1|enemyLib3|ownLib4|risk3",
+        "capture|cap1|enemyLib2|ownLib4|risk2",
+        "capture|cap1|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 15,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 53,
+      "safe" : 8,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -186,
+      "board" : "oooooo.\noxxOooo\nxxxQ.oo\nxxxooxo\nxx.xxxo\nx.HXxoo\nxxooooo",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-offering:5,4\/9-end",
+        "8-offering:5,0\/1-place:5,1",
+        "8-offering:4,3\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib3|risk0",
+        "skill|cap0|enemyLib2|ownLib2|risk0",
+        "skill|cap0|enemyLib3|ownLib3|risk3"
+      ],
+      "game" : 15,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 57,
+      "safe" : 5,
+      "setup" : "Priest-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 410,
+      "board" : ".......\n...Oo..\n....o.o\n..x....\n......o\nx..X.x.\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:3,3\/3-bastion:3,1: 4,3",
+        "2-summon:4,3\/1-place:1,2",
+        "2-summon:4,3\/1-place:2,5"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk0",
+        "summon|cap0|enemyLib4|ownLib4|risk0",
+        "summon|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 242,
+      "board" : ".......\n..oOo..\n..o.o.o\n.oxoQx.\n...Hoxo\nx.xXxxx\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "3-bastion:2,5: 4,2\/1-place:1,6",
+        "1-place:1,1\/3-bastion:2,5: 3,6",
+        "3-bastion:2,5: 3,6\/1-place:0,3"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 16,
+      "mana" : 2,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 99,
+      "board" : ".o.....\no.oOoo.\nxoo.oxo\n.oxoQxx\n...Hox.\nx.xXxxx\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,3\/3-bastion:4,2: 5,1",
+        "1-place:1,6\/3-bastion:4,2: 5,1"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 16,
+      "mana" : 2,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 236,
+      "board" : ".oox.o.\no.oOoox\nxoo.ox.\n.oxoQxx\n.oxHox.\nxxxXxxx\n..xo.o.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "3-bastion:4,0: 6,4\/1-place:3,0",
+        "3-bastion:4,0: 6,6\/1-place:3,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib4|ownLib4|risk2",
+        "skill|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 16,
+      "mana" : 2,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 159,
+      "board" : ".oo.ooo\no.oOoo.\nxoo.oxo\nxoxoQxx\nxoxHox.\nxxxXxxx\n.ox.x.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,0\/1-place:1,6",
+        "1-place:6,3\/1-place:1,6",
+        "3-bastion:4,6: 6,3\/1-place:1,6"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib4|risk1",
+        "capture|cap1|enemyLib4|ownLib3|risk1"
+      ],
+      "game" : 16,
+      "mana" : 2,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 150,
+      "board" : ".oooooo\no.oOoo.\nxooooxo\nxoxoQxx\nxoxHox.\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,6\/1-place:1,6",
+        "8-reformation:3,2:6,1:5,6:4,6\/1-place:1,6",
+        "1-place:4,6\/9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap1|enemyLib2|ownLib3|risk1",
+        "capture|cap1|enemyLib3|ownLib4|risk1",
+        "build|cap0|enemyLib3|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 4,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 41,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 45,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 49,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 53,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 121,
+      "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "9-end"
+      ],
+      "closeDistinctSignatures" : [
+        "pass|cap0|enemyLib2|ownLib2|risk0"
+      ],
+      "game" : 16,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 57,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Warrior",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 421,
+      "board" : ".x.....\n..oO...\no.o.x..\nx......\n..o....\n...X...\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:5,4\/1-place:2,1",
+        "2-summon:1,1\/3-bastion:0,2: 2,1"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib4|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 17,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 309,
+      "board" : ".x.....\n..oO...\noxo.x..\nxx.....\n.x.o...\n..QXHo.\n.......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,2\/1-place:6,2",
+        "1-place:4,2\/1-place:5,1",
+        "1-place:4,2\/3-bastion:4,4: 6,3",
+        "1-place:4,2\/1-place:4,4"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib3|risk1",
+        "build|cap0|enemyLib4|ownLib3|risk0",
+        "skill|cap0|enemyLib4|ownLib4|risk0",
+        "build|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "game" : 17,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 913,
+      "board" : ".x.....\no.oO...\noxo.x..\nxx.xoo.\n.xxxxx.\n..QXHo.\n..ox...",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "3-bastion:1,1: 5,1\/1-place:3,6",
+        "3-bastion:1,1: 5,1\/1-place:2,5"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "game" : 17,
+      "mana" : 4,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Warrior-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 1000000,
+      "board" : ".x.xo..\noxoOx..\noxoxx..\nxxxxoo.\n.xxxxxo\no.QXHo.\n.xo.x..",
+      "candidates" : 1,
+      "closeDistinctKeys" : [
+        "1-place:0,2"
+      ],
+      "closeDistinctSignatures" : [
+        "win|cap2|enemyLib0|ownLib4|risk0"
+      ],
+      "game" : 17,
+      "mana" : 2,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 1,
+      "setup" : "Warrior-vs-Mage",
+      "verdict" : "winningTurn"
+    }
+  ],
+  "samples" : {
+    "forcedDefense" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 121,
+        "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "9-end"
+        ],
+        "closeDistinctSignatures" : [
+          "pass|cap0|enemyLib2|ownLib2|risk0"
+        ],
+        "game" : 16,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 29,
+        "safe" : 1,
+        "setup" : "Warrior-vs-Warrior",
+        "verdict" : "forcedDefense"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 121,
+        "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "9-end"
+        ],
+        "closeDistinctSignatures" : [
+          "pass|cap0|enemyLib2|ownLib2|risk0"
+        ],
+        "game" : 16,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 33,
+        "safe" : 1,
+        "setup" : "Warrior-vs-Warrior",
+        "verdict" : "forcedDefense"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 121,
+        "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "9-end"
+        ],
+        "closeDistinctSignatures" : [
+          "pass|cap0|enemyLib2|ownLib2|risk0"
+        ],
+        "game" : 16,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 37,
+        "safe" : 1,
+        "setup" : "Warrior-vs-Warrior",
+        "verdict" : "forcedDefense"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 121,
+        "board" : ".oooooo\no.oOoox\nxooooxx\nxoxoQxx\nxoxHoxx\nxxxXxxx\nx.xxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "9-end"
+        ],
+        "closeDistinctSignatures" : [
+          "pass|cap0|enemyLib2|ownLib2|risk0"
+        ],
+        "game" : 16,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 41,
+        "safe" : 1,
+        "setup" : "Warrior-vs-Warrior",
+        "verdict" : "forcedDefense"
+      }
+    ],
+    "obvious" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 1141,
+        "board" : "o.....o\n...O...\n.......\n......x\n......x\n...Xoxo\n.......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:1,2\/1-place:1,4"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib2|ownLib3|risk1"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 5,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -17,
+        "board" : "o.x.o.o\n.oQOoo.\n...x...\n.....xx\n..oHxox\n...Xo.o\n.....o.",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:5,2\/1-place:5,5"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap1|enemyLib4|ownLib4|risk2"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 13,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -18,
+        "board" : "oo.oooo\no.QOooo\noo.oooo\n.oooxxx\noxoHx.x\nxxxX.x.\n.xxxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "8-sanctum:4,4:5,4\/1-place:3,0"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap1|enemyLib3|ownLib4|risk1"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 37,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 90,
+        "board" : ".oooooo\nooQOooo\noo.oooo\n.oooxxx\noxoHx.x\nxxxX.x.\n.xxxx.x",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "8-sanctum:4,4:5,4\/1-place:3,0"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap1|enemyLib2|ownLib4|risk1"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 41,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "obvious"
+      }
+    ],
+    "twoPlans" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 157,
+        "board" : "o....xo\n.oQOo..\n...x...\n......x\n...Hxox\n...Xo.o\n.....o.",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:3,5\/1-place:5,5",
+          "1-place:0,2\/1-place:3,5",
+          "1-place:0,2\/1-place:3,4"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap1|enemyLib4|ownLib4|risk2",
+          "build|cap0|enemyLib4|ownLib4|risk1",
+          "build|cap0|enemyLib4|ownLib4|risk2"
+        ],
+        "game" : 12,
+        "mana" : 5,
+        "player" : 0,
+        "ply" : 9,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 148,
+        "board" : "o.x.o.o\n.oQOoo.\n..o.o..\n..xoxxx\n..oHxox\n..xXo.o\n.....o.",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:5,5\/1-place:6,4",
+          "1-place:1,0\/1-place:4,1",
+          "1-place:2,1\/1-place:4,1"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap2|enemyLib4|ownLib4|risk2",
+          "capture|cap1|enemyLib4|ownLib4|risk2",
+          "capture|cap1|enemyLib4|ownLib4|risk1"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 17,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 74,
+        "board" : "o.xoo.o\n.oQOoo.\n..o.oo.\n.o.oxxx\n.xoHx.x\n.oxX.xo\n....xo.",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:3,0\/1-place:3,2",
+          "1-place:1,6\/1-place:3,2",
+          "1-place:5,0\/1-place:6,1",
+          "1-place:6,6\/1-place:3,2"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap1|enemyLib4|ownLib4|risk2",
+          "capture|cap1|enemyLib4|ownLib4|risk3",
+          "capture|cap1|enemyLib4|ownLib4|risk1",
+          "capture|cap3|enemyLib4|ownLib4|risk2"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 21,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -23,
+        "board" : "o.xoo.o\n.oQOoo.\n..o.oo.\n.o.oxxx\no.oHx.x\nxoxX.xo\n.x.oxo.",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:6,6\/1-place:4,1",
+          "1-place:6,2\/1-place:4,1",
+          "1-place:1,0\/1-place:4,1",
+          "1-place:1,6\/1-place:4,1"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap3|enemyLib4|ownLib4|risk2",
+          "capture|cap2|enemyLib4|ownLib4|risk2",
+          "capture|cap1|enemyLib4|ownLib4|risk2",
+          "capture|cap1|enemyLib4|ownLib4|risk3"
+        ],
+        "game" : 12,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 25,
+        "safe" : 8,
+        "setup" : "Priest-vs-Warrior",
+        "verdict" : "twoPlans"
+      }
+    ],
+    "winningTurn" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 1000000,
+        "board" : ".x.xo..\noxoOx..\noxoxx..\nxxxxoo.\n.xxxxxo\no.QXHo.\n.xo.x..",
+        "candidates" : 1,
+        "closeDistinctKeys" : [
+          "1-place:0,2"
+        ],
+        "closeDistinctSignatures" : [
+          "win|cap2|enemyLib0|ownLib4|risk0"
+        ],
+        "game" : 17,
+        "mana" : 2,
+        "player" : 0,
+        "ply" : 17,
+        "safe" : 1,
+        "setup" : "Warrior-vs-Mage",
+        "verdict" : "winningTurn"
+      }
+    ]
+  },
+  "seconds" : 790.89119274998666,
+  "setup" : {
+    "boardSize" : 7,
+    "botRelativeFact" : "close = own-turn heuristic score within 120 of the best safe turn (the planner's easy-relaxed gap)",
+    "candidateSet" : "planner-retained complete own turns, up to 8 distinct outcomes (the best by the planner's own-turn score); not every legal turn",
+    "difficulty" : "standard",
+    "exactFacts" : "captures enemy commander; opponent has some complete reply that captures ours (Core, bounded by expansionCandidateLimit 256)",
+    "games" : 6,
+    "maxPly" : 60,
+    "opening" : "seeded random soldiers for plies 1-4 (seed = game index), then bot vs bot",
+    "rules" : "expansion",
+    "sampleEveryNthTurn" : 4
+  }
+}
