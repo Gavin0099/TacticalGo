@@ -13,6 +13,17 @@ enum ArtV2 {
         return true
         #endif
     }
+    /// Ambient motion (pulses, glints, banners). Off while UI tests drive the app (`--sound-preferences-reset` is only
+    /// passed by the tests): XCUITest waits for the app to go idle before every action, and endless animations make each
+    /// wait run into its timeout (a full run took 67 minutes instead of about 25). Always on in Beta and Release.
+    static var ambient: Bool {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        return !args.contains("--sound-preferences-reset") && !args.contains("--art-no-ambient")
+        #else
+        return true
+        #endif
+    }
     static let brass = Color(red: 0.88, green: 0.72, blue: 0.42)
     /// Dashed preview lines and rings (pushes, swaps): brass instead of the old purple.
     static let preview = Color(red: 1, green: 0.86, blue: 0.46)
@@ -101,9 +112,9 @@ struct ArtLegalMarkers: View {
     let pitch: CGFloat
     let reduced: Bool
     var body: some View {
-        TimelineView(.animation(minimumInterval: 1.0/24, paused: reduced)) { context in
-            let t = reduced ? 0.0 : context.date.timeIntervalSinceReferenceDate
-            let pulse = reduced ? 0.5 : 0.5 + 0.5 * sin(t * 2.6)
+        TimelineView(.animation(minimumInterval: 1.0/24, paused: reduced || !ArtV2.ambient)) { context in
+            let t = (reduced || !ArtV2.ambient) ? 0.0 : context.date.timeIntervalSinceReferenceDate
+            let pulse = (reduced || !ArtV2.ambient) ? 0.5 : 0.5 + 0.5 * sin(t * 2.6)
             ZStack {
                 ForEach(points.indices, id: \.self) { i in
                     ZStack {
@@ -129,8 +140,8 @@ struct ArtKing: View {
     var reduced = false
     var body: some View {
         // Only the side to move animates (aura pulse and a crown glint every few seconds); the other king is still.
-        TimelineView(.animation(minimumInterval: 1.0/20, paused: reduced || !active)) { context in
-            king(t: (reduced || !active) ? 0 : context.date.timeIntervalSinceReferenceDate)
+        TimelineView(.animation(minimumInterval: 1.0/20, paused: reduced || !active || !ArtV2.ambient)) { context in
+            king(t: (reduced || !active || !ArtV2.ambient) ? 0 : context.date.timeIntervalSinceReferenceDate)
         }
     }
     private func king(t: Double) -> some View {
@@ -188,7 +199,7 @@ struct ArtKing: View {
             }
             ctx.fill(crown,with:gold(CGRect(x:cx-half,y:y-h*0.45,width:half*2,height:h*1.45)))
             ctx.stroke(crown,with:.color(Color(red:0.35,green:0.22,blue:0.08).opacity(0.7)),lineWidth:0.6)
-            if active && !reduced {
+            if active && !reduced && ArtV2.ambient {
                 // glint: a short bright sweep across the crown once every ~4.5 s
                 let phase = (t.truncatingRemainder(dividingBy: 4.5)) / 0.55
                 if phase < 1 {
@@ -245,7 +256,7 @@ struct ArtPlayerStrip: View {
             }
             .shadow(color: active ? Color(red:1,green:0.80,blue:0.36).opacity(0.75) : .clear, radius: active ? (reduced ? 5 : (pulse ? 8 : 3)) : 0)
             .onAppear {
-                guard !reduced else { return }
+                guard !reduced, ArtV2.ambient else { return }
                 withAnimation(.easeInOut(duration: 1.3).repeatForever(autoreverses: true)) { pulse = true }
             }
             VStack(alignment: .leading, spacing: 3) {
@@ -525,7 +536,7 @@ struct ArtTable: View {
 import SwiftUI
 
 /// Release (App Store 1.0) keeps the previous look: these stand-ins make the shared lobby code compile unchanged.
-enum ArtV2 { static let enabled = false }
+enum ArtV2 { static let enabled = false; static let ambient = false }
 struct ArtTable: View { var body: some View { GameBackdrop() } }
 struct ArtDivider: View { var body: some View { EmptyView() } }
 struct ArtCardLift: ViewModifier {

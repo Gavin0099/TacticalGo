@@ -1106,12 +1106,12 @@ struct ExpansionGameView: View {
                 #endif
             }
             #if DEBUG || TACTICALGO_V11
-            if ArtV2.enabled,!reduceMotion,let at = turnBannerAt,store.state.status == .ongoing,store.expansion?.reviewTime == nil {
+            if ArtV2.enabled,ArtV2.ambient,!reduceMotion,let at = turnBannerAt,store.state.status == .ongoing,store.expansion?.reviewTime == nil {
                 ArtTurnBanner(text:store.computer != nil ? (store.state.current == store.computer ? "電腦回合" : "你的回合") : (store.state.current == .one ? "黑方回合" : "白方回合"),
                               black:store.state.current == .one,start:at)
                     .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.top).padding(.top,6).id(at)
             }
-            if ArtV2.enabled,!reduceMotion,let result = presentedResult,store.expansion?.reviewTime == nil {
+            if ArtV2.enabled,ArtV2.ambient,!reduceMotion,let result = presentedResult,store.expansion?.reviewTime == nil {
                 let human = store.computer
                 let tone: ArtResultBanner.Tone = store.state.status == .drawn ? .draw
                     : (human != nil ? (store.state.winner == human ? .defeat : .victory) : .victory)
