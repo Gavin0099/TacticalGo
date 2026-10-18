@@ -1,0 +1,60 @@
+{
+  "branches" : [
+    {
+      "board" : "o.o.ooo.o\noo.QOoooo\no.o.oxxxo\noo.oooxoo\noooooxxxx\nooooooox.\nooooooxxx\nooxHXxxx.\nooxo.xx.x",
+      "game" : 1,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "8-offering:7,2",
+        "1-place:8,4"
+      ],
+      "mana" : 4,
+      "opponent" : "Mage",
+      "ply" : 63,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "使用技能重組棋形",
+        "提掉敵方棋子 1 枚",
+        "敵主將生存空格 7 → 8",
+        "Mana 4 → 2",
+        "完整回合 2 次行動；攻守分數 -1240",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 2（用聖所為 0）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:7,2:8,4",
+        "9-end"
+      ]
+    }
+  ],
+  "notClaimed" : [
+    "that a few branches decide the question",
+    "balance",
+    "human preference"
+  ],
+  "setup" : {
+    "boardSize" : 9,
+    "comparison" : "rule off vs rule on at the same position, then both sides play on with the rule on",
+    "difficulty" : "easy",
+    "games" : 16,
+    "horizonOwnAndOpponentTurns" : 16
+  },
+  "totals" : {
+    "branches" : 1,
+    "games" : 16,
+    "priestTurns" : 199,
+    "sameResult" : 1,
+    "sanctumChosenWithRule" : 2
+  }
+}

@@ -389,3 +389,77 @@ extension BotRunner {
         print("totals:", totals.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: " "))
     }
 }
+
+/// PR #18 question: is the thrifty Sanctum rule needed? At every priest turn where switching the rule on changes the
+/// plan, play BOTH choices forward (rule on for everyone afterwards) and compare. Branch points come from seeded
+/// bot-vs-bot games; the game then follows the rule-on choice. Observation only; a few dozen branches can show a
+/// direction, not a verdict.
+extension BotRunner {
+    static func thriftyAudit(games: Int, out: String, difficulty: BotDifficulty, size: Int, horizonTurns: Int) throws {
+        let first = Int(ProcessInfo.processInfo.environment["TENSION_FIRST"] ?? "") ?? 0
+        let (config, _) = ruleConfig(size: size, rules: "expansion")
+        let opponents: [HeroClass] = [.warrior, .mage, .rogue, .priest]
+        var rows: [[String: Any]] = []
+        var totals: [String: Int] = [:]
+        func play(_ start: GameState, _ firstPlan: [GameAction], priest: Player) throws -> (state: GameState, castLater: Bool, priestCommanderSafeAfter: Bool) {
+            var state = start
+            for action in firstPlan { let o = GameEngine.apply(state, action); guard o.success else { throw RunnerError.illegal }; state = o.state }
+            let safeAfter = state.status != .ongoing || !TensionProbe.opponentCanCaptureCommander(state)
+            var turns = 0, cast = false
+            while state.status == .ongoing, turns < horizonTurns {
+                guard let plan = BotPlanner.planTurn(state, difficulty: difficulty) else { throw RunnerError.noPlan }
+                if state.current == priest, plan.actions.contains(where: { if case .castSanctum = $0 { return true }; return false }) { cast = true }
+                for action in plan.actions { let o = GameEngine.apply(state, action); guard o.success else { throw RunnerError.illegal }; state = o.state }
+                turns += 1
+            }
+            return (state, cast, safeAfter)
+        }
+        func rank(_ state: GameState, priest: Player) -> Int { state.status == .won ? (state.winner == priest ? 2 : 0) : 1 }
+        for game in first..<(first + games) {
+            let opponent = opponents[game % opponents.count]
+            let priestIsBlack = (game / opponents.count) % 2 == 0
+            let priest: Player = priestIsBlack ? .one : .two
+            var state = try GameSetup.newGame(config: config, classOne: priestIsBlack ? .priest : opponent, classTwo: priestIsBlack ? opponent : .priest)
+            var seed = UInt64(game &+ 1) &* 0x9E3779B97F4A7C15
+            func random(_ n: Int) -> Int { seed = seed &* 6364136223846793005 &+ 1442695040888963407; return Int((seed >> 33) % UInt64(n)) }
+            while state.status == .ongoing, state.ply <= 4 {
+                let spots = state.board.points.filter { GameEngine.validate(state, .placeSoldier($0)) == .none }
+                let o = GameEngine.apply(state, spots.isEmpty ? .endTurn : .placeSoldier(spots[random(spots.count)]))
+                guard o.success else { throw RunnerError.illegal }; state = o.state
+            }
+            var turns = 0
+            while state.status == .ongoing, turns < 120 {
+                guard let on = BotPlanner.planTurn(state, difficulty: difficulty) else { throw RunnerError.noPlan }
+                if state.current == priest {
+                    totals["priestTurns", default: 0] += 1
+                    if on.actions.contains(where: { if case .castSanctum = $0 { return true }; return false }) { totals["sanctumChosenWithRule", default: 0] += 1 }
+                    if let off = BotPlanner.planTurnWithoutThriftyRule(state, difficulty: difficulty),
+                       off.actions.contains(where: { if case .castSanctum = $0 { return true }; return false }), off.actions != on.actions {
+                        totals["branches", default: 0] += 1
+                        let sanctum = try play(state, off.actions, priest: priest), kept = try play(state, on.actions, priest: priest)
+                        let rs = rank(sanctum.state, priest: priest), rk = rank(kept.state, priest: priest)
+                        totals[rk > rs ? "keptBetter" : rk < rs ? "keptWorse" : "sameResult", default: 0] += 1
+                        if !kept.priestCommanderSafeAfter { totals["keptNotImmediatelySafe", default: 0] += 1 }
+                        if !sanctum.priestCommanderSafeAfter { totals["sanctumNotImmediatelySafe", default: 0] += 1 }
+                        if kept.castLater { totals["keptThenCastSanctumWithinHorizon", default: 0] += 1 }
+                        rows.append(["game": game, "opponent": opponent.rawValue, "priestColour": priestIsBlack ? "black" : "white", "ply": state.ply,
+                                     "mana": state.mana(of: priest), "board": state.board.diagram, "sanctumTurn": off.actions.map(botActionDescription),
+                                     "keptTurn": on.actions.map(botActionDescription),
+                                     "sanctumResult": ["status": sanctum.state.status.rawValue, "winner": sanctum.state.winner?.rawValue as Any? ?? NSNull(), "immediatelySafe": sanctum.priestCommanderSafeAfter],
+                                     "keptResult": ["status": kept.state.status.rawValue, "winner": kept.state.winner?.rawValue as Any? ?? NSNull(), "immediatelySafe": kept.priestCommanderSafeAfter, "castSanctumLater": kept.castLater],
+                                     "reasons": on.reasons])
+                        print("game \(game) ply \(state.ply): branch → kept \(rk > rs ? "better" : rk < rs ? "worse" : "same") (sanctum \(sanctum.state.status.rawValue), kept \(kept.state.status.rawValue))")
+                    }
+                }
+                for action in on.actions { let o = GameEngine.apply(state, action); guard o.success else { throw RunnerError.illegal }; state = o.state }
+                turns += 1
+            }
+            totals["games", default: 0] += 1
+            print("game \(game) priest vs \(opponent.rawValue): \(state.status.rawValue) in \(turns) turns; branches \(totals["branches", default: 0])")
+        }
+        try JSONSerialization.data(withJSONObject: ["setup": ["games": games, "difficulty": difficulty.rawValue, "boardSize": size, "horizonOwnAndOpponentTurns": horizonTurns,
+            "comparison": "rule off vs rule on at the same position, then both sides play on with the rule on"], "totals": totals, "branches": rows,
+            "notClaimed": ["that a few branches decide the question", "balance", "human preference"]], options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: out))
+        print("totals:", totals.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value)" }.joined(separator: " "))
+    }
+}

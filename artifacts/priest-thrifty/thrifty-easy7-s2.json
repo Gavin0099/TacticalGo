@@ -1,0 +1,335 @@
+{
+  "branches" : [
+    {
+      "board" : "xxoo.oo\nxxxOQ.o\nxxxxxoo\nxxxxxxx\nxxoH.xx\nxx.Xxx.\nx.x.x.x",
+      "game" : 33,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "keptTurn" : [
+        "1-place:5,2",
+        "8-offering:5,4"
+      ],
+      "mana" : 5,
+      "opponent" : "Mage",
+      "ply" : 75,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "使用技能重組棋形",
+        "提掉敵方棋子 1 枚",
+        "Mana 5 → 3",
+        "完整回合 2 次行動；攻守分數 1365",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 7 口氣，能量 3（用聖所為 1）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "sanctumTurn" : [
+        "1-place:5,2",
+        "8-sanctum:3,3:6,3"
+      ]
+    },
+    {
+      "board" : "xxoo.oo\nxxxOQ.o\nxxxxxoo\nxxxxxxx\nxx.Hoxx\nxxxX.x.\nx.x.x.x",
+      "game" : 33,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "keptTurn" : [
+        "8-offering:3,3",
+        "1-place:6,1"
+      ],
+      "mana" : 4,
+      "opponent" : "Mage",
+      "ply" : 77,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "使用技能重組棋形",
+        "Mana 4 → 2",
+        "完整回合 2 次行動；攻守分數 1333",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 6 口氣，能量 2（用聖所為 0）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:3,3:5,4",
+        "1-place:6,1"
+      ]
+    },
+    {
+      "board" : ".ooooox\noo.O.ox\n.oxxoxx\noooQx.x\nooxHxx.\nxoxXxxx\nxxxxxx.",
+      "game" : 36,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 1
+      },
+      "keptTurn" : [
+        "1-place:1,2",
+        "9-end"
+      ],
+      "mana" : 4,
+      "opponent" : "Warrior",
+      "ply" : 34,
+      "priestColour" : "white",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "提掉敵方棋子 2 枚",
+        "完整回合 1 次行動；攻守分數 77",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 4（用聖所為 0）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:3,1:1,2",
+        "9-end"
+      ]
+    },
+    {
+      "board" : "..Ho...\n.xxOooo\n...xQo.\n...oxo.\n..o.x.o\n.oxX.x.\n....x..",
+      "game" : 40,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:3,2",
+        "1-place:4,1"
+      ],
+      "mana" : 6,
+      "opponent" : "Warrior",
+      "ply" : 11,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "完整回合 2 次行動；攻守分數 117",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 6（用聖所為 2）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "1-place:3,2",
+        "8-sanctum:1,1:4,3"
+      ]
+    },
+    {
+      "board" : "xxxxoo.\nxxxOooo\nxxxQ.oo\nx.xooo.\nxxxxooo\n.x.XHxo\nxxxo.xx",
+      "game" : 43,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:6,4",
+        "9-end"
+      ],
+      "mana" : 5,
+      "opponent" : "Priest",
+      "ply" : 45,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "提掉敵方棋子 1 枚",
+        "完整回合 1 次行動；攻守分數 480",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 5（用聖所為 1）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "1-place:6,4",
+        "8-sanctum:6,4:5,2"
+      ]
+    },
+    {
+      "board" : "xxxxoo.\nxxxOooo\nxxxQ..o\nx.xooo.\nxxxxooo\n.x.XHxo\nxxx.xxx",
+      "game" : 43,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:2,4",
+        "9-end"
+      ],
+      "mana" : 6,
+      "opponent" : "Priest",
+      "ply" : 47,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "敵主將生存空格 4 → 3",
+        "完整回合 1 次行動；攻守分數 558",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 6（用聖所為 2）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "1-place:2,4",
+        "8-sanctum:6,4:5,2"
+      ]
+    },
+    {
+      "board" : "xxxxoo.\nxxxOooo\nxxxQxxo\nxxxxxoo\nxxxxooo\n.x.XHxo\nxxxxxo.",
+      "game" : 43,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "keptTurn" : [
+        "8-offering:6,3",
+        "1-place:6,6"
+      ],
+      "mana" : 6,
+      "opponent" : "Priest",
+      "ply" : 81,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "主將生存空格 2 → 4",
+        "使用技能重組棋形",
+        "提掉敵方棋子 1 枚",
+        "敵主將生存空格 2 → 1",
+        "Mana 6 → 4",
+        "完整回合 2 次行動；攻守分數 4900",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 4（用聖所為 2）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "sanctumTurn" : [
+        "8-sanctum:6,3:5,2",
+        "1-place:6,6"
+      ]
+    },
+    {
+      "board" : "ooooxxo\nxo.OQ.o\n.ooxooo\no.oxxxx\nxooxx.x\nxxoX.x.\n.xx.xxo",
+      "game" : 45,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:1,5",
+        "1-place:2,0"
+      ],
+      "mana" : 5,
+      "opponent" : "Mage",
+      "ply" : 28,
+      "priestColour" : "white",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "提掉敵方棋子 3 枚",
+        "完整回合 2 次行動；攻守分數 350",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 5（用聖所為 1）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:1,6:1,5",
+        "1-place:2,0"
+      ]
+    },
+    {
+      "board" : "ooooxxo\n.o.OQ.o\noooxooo\no.oxxxx\nxooxxxx\nxxoX.xx\n.xxxxx.",
+      "game" : 45,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:1,5",
+        "9-end"
+      ],
+      "mana" : 4,
+      "opponent" : "Mage",
+      "ply" : 34,
+      "priestColour" : "white",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "提掉敵方棋子 2 枚",
+        "完整回合 1 次行動；攻守分數 368",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 4（用聖所為 0）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:1,6:1,5",
+        "9-end"
+      ]
+    }
+  ],
+  "notClaimed" : [
+    "that a few branches decide the question",
+    "balance",
+    "human preference"
+  ],
+  "setup" : {
+    "boardSize" : 7,
+    "comparison" : "rule off vs rule on at the same position, then both sides play on with the rule on",
+    "difficulty" : "easy",
+    "games" : 16,
+    "horizonOwnAndOpponentTurns" : 16
+  },
+  "totals" : {
+    "branches" : 9,
+    "games" : 16,
+    "keptBetter" : 2,
+    "priestTurns" : 406,
+    "sameResult" : 7,
+    "sanctumChosenWithRule" : 2
+  }
+}

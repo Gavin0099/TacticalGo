@@ -18,6 +18,13 @@ import TacticalGoContent
                                    difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .easy : .easy,
                                    size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7); return
         }
+        if arguments.count > 3, arguments[1] == "--thrifty-audit" {
+            // --thrifty-audit <games> <out.json> [easy|standard] [size] [horizon-turns]
+            try thriftyAudit(games: Int(arguments[2]) ?? 8, out: arguments[3],
+                             difficulty: arguments.count > 4 ? BotDifficulty(rawValue: arguments[4]) ?? .easy : .easy,
+                             size: arguments.count > 5 ? Int(arguments[5]) ?? 7 : 7,
+                             horizonTurns: arguments.count > 6 ? Int(arguments[6]) ?? 16 : 16); return
+        }
         if arguments.count > 3, arguments[1] == "--blunder-stats" {
             // --blunder-stats <games> <out.json> [easy|standard] [size] [expansion|original] [max-ply]
             try blunderStats(games: Int(arguments[2]) ?? 6, out: arguments[3],
