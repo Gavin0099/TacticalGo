@@ -56,6 +56,7 @@ struct ExpansionGameView: View {
     @State private var showRules = false
     @State private var showGrid = false
     @State private var confirmExit = false
+    @State private var turnBannerAt: Date?
     #if DEBUG
     @State private var polishReviewUsed = false
     /// Which step the autoplay review reached, or why it stopped; UI tests read it instead of only timing out.
@@ -459,8 +460,11 @@ struct ExpansionGameView: View {
                             Spacer()
                         }
                     }
-                    Text(productMode ? "皇冠戰略" : "TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2).foregroundStyle(uiAccent)
+                    Text(productMode ? "皇冠戰略" : "TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2)
+                        .foregroundStyle(ArtV2.enabled ? AnyShapeStyle(LinearGradient(colors:[Color(red:1,green:0.95,blue:0.74),GameChrome.gold,Color(red:0.70,green:0.48,blue:0.18)],startPoint:.top,endPoint:.bottom)) : AnyShapeStyle(uiAccent))
+                        .shadow(color: ArtV2.enabled ? .black.opacity(0.65) : .clear, radius: 2, y: 2)
                     if productMode { Text("CROWN TACTICS").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(uiSecondary) }
+                    if ArtV2.enabled { ArtDivider() }
                     Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(uiSecondary)
                 }.padding(.top, 14)
     }
@@ -540,6 +544,7 @@ struct ExpansionGameView: View {
         }.frame(maxWidth:.infinity).padding(.vertical,12)
             .background(GamePanel(active:selected,kind:.hero))
             .overlay(GameCutCorner().stroke(selected ? GameChrome.accent(h) : .clear,lineWidth:2))
+            .modifier(ArtCardLift(selected:selected,accent:GameChrome.accent(h)))
             .overlay(alignment:.topTrailing) {
                 if selected {
                     Image(systemName:"checkmark.seal.fill").font(.system(size:16,weight:.bold))
@@ -1101,6 +1106,11 @@ struct ExpansionGameView: View {
                 #endif
             }
             #if DEBUG || TACTICALGO_V11
+            if ArtV2.enabled,!reduceMotion,let at = turnBannerAt,store.state.status == .ongoing,store.expansion?.reviewTime == nil {
+                ArtTurnBanner(text:store.computer != nil ? (store.state.current == store.computer ? "電腦回合" : "你的回合") : (store.state.current == .one ? "黑方回合" : "白方回合"),
+                              black:store.state.current == .one,start:at)
+                    .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.top).padding(.top,6).id(at)
+            }
             if ArtV2.enabled,!reduceMotion,let result = presentedResult,store.expansion?.reviewTime == nil {
                 let human = store.computer
                 let tone: ArtResultBanner.Tone = store.state.status == .drawn ? .draw
@@ -1130,6 +1140,7 @@ struct ExpansionGameView: View {
             Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").font(.system(size: 16)).padding(10) }
                 .buttonStyle(GameButtonStyle()).accessibilityLabel("以格點清單操作棋盤")
         }
+        .onChange(of: store.state.current) { _, _ in turnBannerAt = Date() }
     }
     private var modeHelp: String {
         if store.isBotActing { return store.botActionLabel }

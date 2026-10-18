@@ -428,6 +428,57 @@ struct ArtResultBanner: View {
     }
 }
 
+/// "Your turn" / "Computer's turn" pill that slides in at the top of the board for under a second at each turn change.
+/// Transient, no hit testing, hidden from accessibility (the turn label above the board already says it).
+struct ArtTurnBanner: View {
+    let text: String
+    let black: Bool
+    let start: Date
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 1.0/30)) { context in
+            let t = context.date.timeIntervalSince(start)
+            let inT = min(1, t / 0.22), out = t > 0.85 ? max(0, 1 - (t - 0.85) / 0.25) : 1
+            let ease = 1 - pow(1 - inT, 3)
+            HStack(spacing: 7) {
+                Group {
+                    if black { Circle().fill(Color(red:0.98,green:0.93,blue:0.78)) }
+                    else { Rectangle().fill(Color(red:0.12,green:0.20,blue:0.25)).rotationEffect(.degrees(45)).overlay(Rectangle().stroke(Color(red:0.98,green:0.93,blue:0.78),lineWidth:1).rotationEffect(.degrees(45))) }
+                }.frame(width: 9, height: 9)
+                Text(text).font(.system(size: 15, weight: .heavy, design: .serif)).foregroundStyle(GameChrome.cream).kerning(1.5)
+            }
+            .padding(.horizontal, 16).padding(.vertical, 6)
+            .background(Capsule().fill(LinearGradient(colors:[Color(red:0.17,green:0.24,blue:0.27),Color(red:0.07,green:0.10,blue:0.13)],startPoint:.top,endPoint:.bottom)))
+            .overlay(Capsule().stroke(ArtV2.brass.opacity(0.9), lineWidth: 1.2))
+            .shadow(color: .black.opacity(0.5), radius: 4, y: 2)
+            .offset(y: CGFloat(-16 * (1 - ease))).opacity(ease * out)
+        }.allowsHitTesting(false).accessibilityHidden(true)
+    }
+}
+
+/// Selected hero card: lifts a little and glows in the class color.
+struct ArtCardLift: ViewModifier {
+    let selected: Bool
+    let accent: Color
+    @ViewBuilder func body(content: Content) -> some View {
+        if ArtV2.enabled {
+            content.shadow(color: selected ? accent.opacity(0.55) : .clear, radius: selected ? 9 : 0)
+                .scaleEffect(selected ? 1.03 : 1).offset(y: selected ? -3 : 0)
+                .animation(.easeOut(duration: 0.18), value: selected)
+        } else { content }
+    }
+}
+
+/// A thin brass rule with a diamond at its centre, used under the lobby title.
+struct ArtDivider: View {
+    var body: some View {
+        HStack(spacing: 6) {
+            LinearGradient(colors:[.clear,ArtV2.brass.opacity(0.8)],startPoint:.leading,endPoint:.trailing).frame(height: 1)
+            Rectangle().fill(ArtV2.brass).frame(width: 6, height: 6).rotationEffect(.degrees(45))
+            LinearGradient(colors:[ArtV2.brass.opacity(0.8),.clear],startPoint:.leading,endPoint:.trailing).frame(height: 1)
+        }.frame(width: 190).accessibilityHidden(true)
+    }
+}
+
 /// The table around the board: a warm pool of light under the board and a dark vignette, over the existing backdrop.
 struct ArtTable: View {
     var body: some View {
@@ -449,5 +500,17 @@ struct ArtTable: View {
             }
         }.accessibilityHidden(true)
     }
+}
+#else
+import SwiftUI
+
+/// Release (App Store 1.0) keeps the previous look: these stand-ins make the shared lobby code compile unchanged.
+enum ArtV2 { static let enabled = false }
+struct ArtTable: View { var body: some View { GameBackdrop() } }
+struct ArtDivider: View { var body: some View { EmptyView() } }
+struct ArtCardLift: ViewModifier {
+    let selected: Bool
+    let accent: Color
+    func body(content: Content) -> some View { content }
 }
 #endif
