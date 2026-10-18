@@ -768,14 +768,15 @@ import XCTest
         let app = XCUIApplication(); app.expansionShellArguments = args; app.launch()
         XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:15)); return app
     }
-    /// Opens the match menu and waits for one of its rows. A tap that lands while the board is still settling is lost
-    /// (seen once in a full run: the menu never opened and every later step failed), so it is retried, never assumed.
+    /// Opens the match menu and waits for one of its rows. Seen in full runs: the first tap on the menu button was lost
+    /// and every later step failed, so the tap is repeated (never gated on isHittable: the menu button reports itself
+    /// as not hittable although a plain tap opens it, which is how the original code worked).
     private func openMatchMenu(_ app: XCUIApplication,_ row: String) {
         let menu = app.buttons["對戰選單"]
+        XCTAssertTrue(menu.waitForExistence(timeout:5))
         for _ in 0..<3 {
-            XCTAssertTrue(menu.waitForExistence(timeout:5))
-            if menu.isHittable { menu.tap() }
-            if app.buttons[row].waitForExistence(timeout:3) { return }
+            menu.tap()
+            if app.buttons[row].waitForExistence(timeout:4) { return }
         }
         XCTFail("The match menu did not open: " + row)
     }
