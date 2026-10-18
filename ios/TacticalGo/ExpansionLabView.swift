@@ -239,6 +239,15 @@ import TacticalGoVisuals
     /// UI-test positions for undo across a computer reply (Black = human warrior, White = computer mage). Hand-placed,
     /// so they are review fixtures and never saved. "capture": a connected Bastion captures White F5 and leaves 1 AP.
     /// "win": the core-verified Reformation (E4→E3, F4→F3) captures White's commander in one AP.
+    /// Frozen frame of a capture ("capture") or a winning skill ("win") for material review captures (DEBUG).
+    func artImpactFrame(_ kind: String,time t: Double) {
+        undoFixture(kind)
+        let action: GameAction = kind == "win" ? .castReformation(.init(Point(4,3),Point(4,2)),.init(Point(5,3),Point(5,2)))
+            : .castBastion(Point(6,3),Point(6,5))
+        let before = state,outcome = session!.apply(action)
+        reviewReceipt = ExpansionPresentation.make(before:before,action:action,outcome:outcome,current:state)
+        reviewTime = t;pending = nil;message = "素材檢查的定格畫面：\(t) 秒（無音訊）。"
+    }
     func undoFixture(_ kind: String) {
         stop();cancelSelection();reviewFixture = true
         var c = RuleConfig.board(size:9);c.expansionSkills = true;c.bastionScope = .connectedGroup
@@ -867,7 +876,7 @@ struct ExpansionBoard: View {
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
-                if ArtV2.enabled { ArtBoardInlay(boardSize:board.size,boardImage:assets.board,pitch:pitch).frame(width:size.width,height:size.height) }
+                if ArtV2.enabled { ArtBoardInlay(boardSize:board.size,boardImage:assets.board,pitch:pitch).equatable().frame(width:size.width,height:size.height) }
                 else { ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1) }
                 if ArtV2.enabled {
                     ArtLegalMarkers(points:targets.filter { board.isEmpty($0) }.map { presentation.center($0,size) },pitch:pitch,reduced:reduced).zIndex(8)
@@ -932,6 +941,19 @@ struct ExpansionBoard: View {
                             .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
                     }
                 }
+                if ArtV2.enabled,let preview = store.preview,preview.success {
+                    ForEach(preview.events.indices,id:\.self) { i in
+                        if case .piecePlaced(let owner,let at,let kind) = preview.events[i],board.isEmpty(at) {
+                            ZStack {
+                                Ellipse().stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:1.5,dash:[3,2])).frame(width:pitch*0.78,height:pitch*0.46).offset(y:pitch*0.04)
+                                token(Piece(owner,kind),pitch:pitch,plan:nil).opacity(0.68)
+                            }.position(presentation.center(at,size)).allowsHitTesting(false).accessibilityHidden(true).zIndex(215)
+                        }
+                    }
+                }
+                if ArtV2.enabled,let p,store.effects,!reduced {
+                    ArtImpact(receipt:p,time:time,pitch:pitch,size:size,center:{ presentation.center($0,size) }).zIndex(200)
+                }
                 if let preview = store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
@@ -943,7 +965,9 @@ struct ExpansionBoard: View {
                 }
                 ForEach(store.selected.indices,id:\.self) { i in
                     let point = store.selected[i]
-                    Circle().stroke(P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80).position(presentation.center(point,size)).zIndex(230)
+                    Circle().stroke(ArtV2.enabled ? Color(red:1,green:0.86,blue:0.46) : P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80)
+                        .shadow(color:ArtV2.enabled ? Color(red:1,green:0.78,blue:0.30).opacity(0.7) : .clear,radius:3)
+                        .position(presentation.center(point,size)).zIndex(230)
                     Text("\(i+1)").font(.system(size:10,weight:.bold)).foregroundStyle(.white).padding(2).background(P02Cozy.deepMage,in:Circle()).position(x:presentation.center(point,size).x+pitch*0.30,y:presentation.center(point,size).y+pitch*0.20).zIndex(230)
                 }
                 ForEach(Player.allCases,id:\.self) { player in
@@ -965,7 +989,7 @@ struct ExpansionBoard: View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
         if ArtV2.enabled,piece.kind == .commander {
-            ArtKing(black:piece.owner == .one,pitch:pitch)
+            ArtKing(black:piece.owner == .one,pitch:pitch,active:store.state.current == piece.owner && store.state.status == .ongoing,reduced:reduced)
         } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)

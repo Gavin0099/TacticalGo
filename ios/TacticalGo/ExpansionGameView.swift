@@ -236,6 +236,12 @@ struct ExpansionGameView: View {
                 store.expansion?.monsterReview(value);boardSize = 9;one = .warrior;two = .mage
                 inMatch = true;store.setMatchAudioActive(true)
             }
+            if let i = args.firstIndex(of:"--art-impact"),args.indices.contains(i+2) {
+                useExpansion = true;singlePlayer = true;humanSide = .one
+                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.two)
+                store.expansion?.artImpactFrame(args[i+1],time:Double(args[i+2]) ?? 0.7);boardSize = 9
+                inMatch = true
+            }
             if let i = args.firstIndex(of:"--undo-fixture"),args.indices.contains(i+1) {
                 // Human Black warrior against the computer's White mage, on a hand-placed review position.
                 useExpansion = true;singlePlayer = true;humanSide = .one
@@ -999,6 +1005,38 @@ struct ExpansionGameView: View {
         switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest: "聖所"; case .none: "第二技能" }
     }
     private func playerStrip(_ player: Player) -> some View {
+        Group {
+            #if DEBUG || TACTICALGO_V11
+            if ArtV2.enabled { artPlayerStrip(player) } else { classicPlayerStrip(player) }
+            #else
+            classicPlayerStrip(player)
+            #endif
+        }
+    }
+    #if DEBUG || TACTICALGO_V11
+    private func artPlayerStrip(_ player: Player) -> some View {
+        let state = store.state, active = displayedPlayer == player
+        let commander = state.board.find(player, .commander)
+        let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let ap = active ? (store.isBotActing && state.current != player ? 0 : state.apRemaining) : 0
+        let hero = state.heroClass(of: player)
+        return ArtPlayerStrip(
+            portrait: portrait(hero), accent: GameChrome.accent(hero),
+            name: (player == .one ? "黑方 " : "白方 ") + hero.title, black: player == .one, active: active,
+            status: state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束",
+            role: store.computer != nil ? (player == store.computer ? "電腦" : "你") : nil,
+            mana: state.mana(of: player), cap: state.config.manaCap, liberties: liberties, ap: ap, apMax: state.config.apPerTurn,
+            loot: !phoneInterface && !state.lootInventory(of: player).isEmpty
+                ? state.lootInventory(of: player).map { ($0.ability == .stickyBounce ? "黏彈":"影步") + (state.ply < $0.unlockPly ? "待解鎖":"×1") }.joined(separator: " · ") : nil,
+            reduced: reduceMotion)
+            .frame(maxWidth: .infinity)
+            .background(GamePanel(active: active))
+            .accessibilityElement(children: .combine)
+            .accessibilityValue("能量 \(state.mana(of: player))/\(state.config.manaCap) · \(ap) AP · \(liberties) 氣")
+            .accessibilityIdentifier(player == .one ? "blueResources" : "redResources")
+    }
+    #endif
+    private func classicPlayerStrip(_ player: Player) -> some View {
         let state = store.state, active = displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0

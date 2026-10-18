@@ -1,6 +1,7 @@
 #if DEBUG || TACTICALGO_V11
 import SwiftUI
 import TacticalGoCore
+import TacticalGoMotion
 
 /// Beta-only material pass. It draws on top of the unchanged pinned board art and never touches rules, hit testing,
 /// accessibility or the grid projection. `--art-v1` (DEBUG) switches back to the previous look for side-by-side captures.
@@ -24,10 +25,15 @@ enum ArtV2 {
 
 /// Engraved brass grid, brass studs and a soft light pass, clipped to the silhouette of the board image.
 /// Line thickness follows the perspective: thicker on the near rows, thinner on the far rows.
-struct ArtBoardInlay: View {
+struct ArtBoardInlay: View, Equatable {
     let boardSize: Int
     let boardImage: UIImage
     let pitch: CGFloat
+    /// The board is re-evaluated every frame during animations; these layers only depend on these three values, so the
+    /// call site uses `.equatable()` and the result is rasterised once with `drawingGroup`.
+    nonisolated static func == (a: ArtBoardInlay, b: ArtBoardInlay) -> Bool {
+        MainActor.assumeIsolated { a.boardSize == b.boardSize && a.pitch == b.pitch && a.boardImage === b.boardImage }
+    }
     var body: some View {
         ZStack {
             Canvas { ctx, size in
@@ -66,12 +72,24 @@ struct ArtBoardInlay: View {
                                                   startPoint:CGPoint(x:c.x-r,y:c.y-r),endPoint:CGPoint(x:c.x+r,y:c.y+r)))
                 }
             }
+            // wood grain: long faint streaks along the board's width, clipped to the board silhouette
+            Canvas { ctx, size in
+                var seed: UInt64 = 0x9E3779B97F4A7C15
+                func rnd() -> CGFloat { seed = seed &* 6364136223846793005 &+ 1442695040888963407; return CGFloat((seed >> 33) % 10_000) / 10_000 }
+                for _ in 0..<170 {
+                    let y = size.height * (0.06 + 0.9 * rnd()), x = size.width * (rnd() * 0.9 - 0.1), len = size.width * (0.25 + 0.6 * rnd())
+                    let wob = pitch * 0.05 * (rnd() - 0.5)
+                    let path = Path { p in p.move(to: CGPoint(x:x,y:y)); p.addQuadCurve(to: CGPoint(x:x+len,y:y+wob),control: CGPoint(x:x+len/2,y:y-wob*2)) }
+                    let dark = rnd() < 0.7
+                    ctx.stroke(path,with:.color((dark ? Color(red:0.35,green:0.20,blue:0.06) : Color.white).opacity(dark ? 0.05 + 0.05 * rnd() : 0.05)),lineWidth:0.5 + 1.1 * rnd())
+                }
+            }.mask(Image(uiImage:boardImage).resizable())
             // Light: warm from the upper left, falling off toward the near edge; plus an inner vignette.
             LinearGradient(colors:[.white.opacity(0.13),.clear,.black.opacity(0.16)],startPoint:.topLeading,endPoint:.bottomTrailing)
                 .mask(Image(uiImage:boardImage).resizable())
             RadialGradient(colors:[.clear,.black.opacity(0.22)],center:.center,startRadius:pitch*2.6,endRadius:pitch*7.2)
                 .mask(Image(uiImage:boardImage).resizable())
-        }.allowsHitTesting(false).accessibilityHidden(true)
+        }.drawingGroup().allowsHitTesting(false).accessibilityHidden(true)
     }
 }
 
@@ -105,19 +123,34 @@ struct ArtLegalMarkers: View {
 struct ArtKing: View {
     let black: Bool
     let pitch: CGFloat
+    var active = false
+    var reduced = false
     var body: some View {
+        // Only the side to move animates (aura pulse and a crown glint every few seconds); the other king is still.
+        TimelineView(.animation(minimumInterval: 1.0/20, paused: reduced || !active)) { context in
+            king(t: (reduced || !active) ? 0 : context.date.timeIntervalSinceReferenceDate)
+        }
+    }
+    private func king(t: Double) -> some View {
         let w = pitch * 0.62
         let body1 = black ? Color(red:0.10,green:0.17,blue:0.23) : Color(red:0.78,green:0.70,blue:0.52)
         let body2 = black ? Color(red:0.40,green:0.55,blue:0.66) : Color(red:1.0,green:0.97,blue:0.88)
         let body3 = black ? Color(red:0.06,green:0.10,blue:0.15) : Color(red:0.58,green:0.50,blue:0.35)
         let goldColors = [Color(red:1,green:0.93,blue:0.66),Color(red:0.86,green:0.66,blue:0.30),Color(red:0.52,green:0.34,blue:0.12)]
-        Canvas { ctx, size in
+        return Canvas { ctx, size in
             let cx = size.width / 2, by = size.height / 2
             func gold(_ rect: CGRect) -> GraphicsContext.Shading {
                 .linearGradient(Gradient(colors:goldColors),startPoint:CGPoint(x:rect.midX,y:rect.minY),endPoint:CGPoint(x:rect.midX,y:rect.maxY))
             }
             func cyl(_ rect: CGRect) -> GraphicsContext.Shading {
                 .linearGradient(Gradient(colors:[body3,body2,body1]),startPoint:CGPoint(x:rect.minX,y:rect.midY),endPoint:CGPoint(x:rect.maxX,y:rect.midY))
+            }
+            // turn aura: a soft gold ring under the king whose turn it is
+            if active {
+                let pulse = reduced ? 0.6 : 0.5 + 0.5 * sin(t * 2.4)
+                var glow = ctx; glow.addFilter(.blur(radius:max(2,w*0.12)))
+                glow.fill(Path(ellipseIn:CGRect(x:cx-w*0.78,y:by-w*0.34+w*0.04,width:w*1.56,height:w*0.68)),with:.color(Color(red:1,green:0.82,blue:0.38).opacity(0.28 + 0.28 * pulse)))
+                ctx.stroke(Path(ellipseIn:CGRect(x:cx-w*0.62,y:by-w*0.27+w*0.03,width:w*1.24,height:w*0.54)),with:.color(Color(red:1,green:0.88,blue:0.50).opacity(0.55 + 0.35 * pulse)),lineWidth:max(1,w*0.05))
             }
             // contact shadow
             var shadow = ctx; shadow.addFilter(.blur(radius:1.4))
@@ -153,6 +186,15 @@ struct ArtKing: View {
             }
             ctx.fill(crown,with:gold(CGRect(x:cx-half,y:y-h*0.45,width:half*2,height:h*1.45)))
             ctx.stroke(crown,with:.color(Color(red:0.35,green:0.22,blue:0.08).opacity(0.7)),lineWidth:0.6)
+            if active && !reduced {
+                // glint: a short bright sweep across the crown once every ~4.5 s
+                let phase = (t.truncatingRemainder(dividingBy: 4.5)) / 0.55
+                if phase < 1 {
+                    let gx = cx - half + (half * 2) * phase
+                    var g = ctx; g.clip(to: crown)
+                    g.fill(Path(CGRect(x:gx-w*0.05,y:y-h*0.6,width:w*0.10,height:h*1.6)),with:.color(.white.opacity(0.85)))
+                }
+            }
             ctx.fill(Path(ellipseIn:CGRect(x:cx-w*0.05,y:y+h*0.35-w*0.05,width:w*0.10,height:w*0.10)),with:.color(Color(red:0.95,green:0.25,blue:0.30)))
             // faction marker, shape-coded, on the front of the base
             let m = max(3.2,w*0.15), mc = CGPoint(x:cx,y:by+w*0.12)
@@ -165,12 +207,184 @@ struct ArtKing: View {
     }
 }
 
+/// Player panel: a hero crest, the mana as a row of crystals (full ones lit), liberties and AP pips. The panel is one
+/// accessibility element at the call site, so everything here is decorative and the spoken value is unchanged.
+struct ArtPlayerStrip: View {
+    let portrait: UIImage?
+    let accent: Color
+    let name: String
+    let black: Bool
+    let active: Bool
+    let status: String
+    let role: String?
+    let mana: Int
+    let cap: Int
+    let liberties: Int
+    let ap: Int
+    let apMax: Int
+    var loot: String?
+    var reduced = false
+    var body: some View {
+        HStack(spacing: 8) {
+            ZStack {
+                Circle().fill(Color.black.opacity(0.55)).frame(width: 40, height: 40)
+                if let portrait {
+                    Image(uiImage: portrait).resizable().scaledToFill().frame(width: 36, height: 36)
+                        .clipShape(Circle())
+                }
+                Circle().stroke(LinearGradient(colors:[accent.opacity(0.95),accent.opacity(0.45)],startPoint:.top,endPoint:.bottom),lineWidth: 2.2).frame(width: 38, height: 38)
+                Circle().stroke(ArtV2.brass.opacity(0.9),lineWidth: 1).frame(width: 42, height: 42)
+                // faction, shape-coded: filled circle for Black, diamond for White
+                Group {
+                    if black { Circle().fill(Color(red:0.98,green:0.93,blue:0.78)).overlay(Circle().stroke(Color.black.opacity(0.5),lineWidth:0.6)) }
+                    else { Rectangle().fill(Color(red:0.12,green:0.20,blue:0.25)).overlay(Rectangle().stroke(Color(red:0.98,green:0.93,blue:0.78),lineWidth:0.8)).rotationEffect(.degrees(45)) }
+                }.frame(width: 9, height: 9).offset(x: -15, y: 15)
+            }
+            .shadow(color: active ? Color(red:1,green:0.80,blue:0.36).opacity(0.75) : .clear, radius: active ? 5 : 0)
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 4) {
+                    Text(name).font(.system(size: 13, weight: .bold, design: .serif)).foregroundStyle(GameChrome.cream)
+                    if let role { Text(role).font(.system(size: 9, weight: .bold)).foregroundStyle(GameChrome.gold) }
+                    Spacer(minLength: 0)
+                    Text(status).font(.system(size: 10, weight: .bold)).foregroundStyle(active ? GameChrome.gold : GameChrome.muted)
+                }
+                HStack(spacing: 2) {
+                    ForEach(0..<cap, id: \.self) { i in ArtCrystal(lit: i < mana) }
+                    Text("\(liberties) 氣").font(.system(size: 10, weight: .semibold)).foregroundStyle(liberties <= 1 ? Color.redTeam : GameChrome.muted).padding(.leading, 3)
+                    Spacer(minLength: 0)
+                    if active {
+                        HStack(spacing: 3) {
+                            ForEach(0..<max(apMax, ap), id: \.self) { i in
+                                Circle().fill(i < ap ? GameChrome.gold : Color.clear)
+                                    .overlay(Circle().stroke(GameChrome.gold.opacity(0.8), lineWidth: 1))
+                                    .frame(width: 7, height: 7)
+                                    .shadow(color: i < ap ? GameChrome.gold.opacity(0.8) : .clear, radius: 2)
+                            }
+                            Text("\(ap) AP").font(.system(size: 10, weight: .bold)).foregroundStyle(GameChrome.cream)
+                        }
+                    }
+                }
+                if let loot { Text(loot).font(.system(size: 10)).foregroundStyle(GameChrome.gold) }
+            }
+        }.padding(.horizontal, 6).padding(.vertical, 5)
+    }
+}
+
+/// One mana crystal: a small hexagon, lit blue or an empty dark socket.
+struct ArtCrystal: View {
+    let lit: Bool
+    var body: some View {
+        Canvas { ctx, size in
+            let c = CGPoint(x: size.width/2, y: size.height/2), r = min(size.width, size.height)/2
+            let hex = Path { p in
+                for k in 0..<6 {
+                    let a = Double(k) * .pi / 3 - .pi / 2
+                    let pt = CGPoint(x: c.x + CGFloat(cos(a)) * r, y: c.y + CGFloat(sin(a)) * r)
+                    if k == 0 { p.move(to: pt) } else { p.addLine(to: pt) }
+                }
+                p.closeSubpath()
+            }
+            if lit {
+                ctx.fill(hex, with: .linearGradient(Gradient(colors:[Color(red:0.70,green:0.93,blue:1),Color(red:0.20,green:0.60,blue:0.90),Color(red:0.05,green:0.20,blue:0.45)]),
+                                                    startPoint: CGPoint(x: c.x - r, y: c.y - r), endPoint: CGPoint(x: c.x + r, y: c.y + r)))
+                ctx.stroke(hex, with: .color(Color(red:0.75,green:0.92,blue:1).opacity(0.9)), lineWidth: 0.7)
+                ctx.fill(Path(ellipseIn: CGRect(x: c.x - r*0.45, y: c.y - r*0.65, width: r*0.5, height: r*0.35)), with: .color(.white.opacity(0.55)))
+            } else {
+                ctx.fill(hex, with: .color(Color.black.opacity(0.45)))
+                ctx.stroke(hex, with: .color(Color(red:0.45,green:0.60,blue:0.70).opacity(0.45)), lineWidth: 0.7)
+            }
+        }.frame(width: 10, height: 11).shadow(color: lit ? Color(red:0.3,green:0.7,blue:1).opacity(0.5) : .clear, radius: 1.5)
+    }
+}
+
+/// Landing dust and capture shards, as pure functions of time from the presentation receipt (so a frozen review frame
+/// shows exactly what the live match shows). Skipped for reduced motion. Never touches rules, audio or hit testing.
+struct ArtImpact: View {
+    let receipt: ExpansionPresentation
+    let time: Double
+    let pitch: CGFloat
+    let size: CGSize
+    let center: (Point) -> CGPoint
+    private func rnd(_ i: Int,_ k: Int) -> Double {
+        var x = UInt64(i &* 7919 &+ k &* 104729 &+ 17) &* 6364136223846793005 &+ 1442695040888963407
+        x ^= x >> 29; x = x &* 0xBF58476D1CE4E5B9
+        return Double((x >> 40) % 10_000) / 10_000
+    }
+    var body: some View {
+        Canvas { ctx, _ in
+            // landing: a dust ring plus a few sparks where a piece arrives
+            let a = time - receipt.arrival
+            if a >= 0, a < 0.5 {
+                let t = a / 0.5
+                for at in receipt.placements {
+                    let c = center(at)
+                    let r = pitch * CGFloat(0.18 + 0.50 * (1 - pow(1 - t, 2)))
+                    let ring = Path(ellipseIn: CGRect(x: c.x - r, y: c.y + pitch*0.06 - r*0.34, width: r*2, height: r*0.68))
+                    ctx.stroke(ring, with: .color(Color(red:1,green:0.93,blue:0.74).opacity(0.70 * (1 - t))), lineWidth: max(1.2, pitch * 0.10 * CGFloat(1 - t)))
+                    for k in 0..<7 {
+                        let ang = (Double(k) / 7 + rnd(k, 1) * 0.1) * 2 * .pi, d = pitch * CGFloat(0.20 + 0.34 * t) * CGFloat(0.7 + 0.5 * rnd(k, 2))
+                        let px = c.x + CGFloat(cos(ang)) * d, py = c.y + pitch*0.06 + CGFloat(sin(ang)) * d * 0.34 - pitch * CGFloat(0.18 * t * (0.5 + rnd(k, 3)))
+                        let sz = max(1.2, pitch * 0.06) * CGFloat(1 - t)
+                        ctx.fill(Path(ellipseIn: CGRect(x: px - sz/2, y: py - sz/2, width: sz, height: sz)), with: .color(Color(red:1,green:0.95,blue:0.80).opacity(0.85 * (1 - t))))
+                    }
+                }
+            }
+            // capture: flash, then shards flying out with a little gravity; the commander gets a bigger, golden version
+            let b = time - receipt.captureStart
+            if b >= 0, b < 0.62 {
+                for (n, captured) in receipt.captures.enumerated() {
+                    let commander = captured.piece.kind == .commander
+                    let t = b / (commander ? 0.62 : 0.50)
+                    guard t < 1 else { continue }
+                    let c = center(captured.at)
+                    let flash = max(0, 1 - b / 0.16)
+                    if flash > 0 {
+                        let r = pitch * CGFloat(commander ? 0.95 : 0.55) * CGFloat(0.55 + 0.45 * (1 - flash))
+                        ctx.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r*0.9, width: r*2, height: r*1.8)),
+                                 with: .radialGradient(Gradient(colors:[.white.opacity(0.80 * flash),Color(red:1,green:0.85,blue:0.45).opacity(0.32 * flash),.clear]),
+                                                       center: c, startRadius: 0, endRadius: r))
+                    }
+                    if commander {
+                        let rr = pitch * CGFloat(0.3 + 1.5 * (1 - pow(1 - t, 2)))
+                        ctx.stroke(Path(ellipseIn: CGRect(x: c.x - rr, y: c.y - rr*0.5, width: rr*2, height: rr)),
+                                   with: .color(Color(red:1,green:0.86,blue:0.45).opacity(0.75 * (1 - t))), lineWidth: max(1.5, pitch * 0.10 * CGFloat(1 - t)))
+                    }
+                    let count = commander ? 26 : 12
+                    let black = captured.piece.owner == .one
+                    for k in 0..<count {
+                        let ang = (Double(k) / Double(count) + rnd(k + 40 * n, 4) * 0.08) * 2 * .pi
+                        let speed = pitch * CGFloat(commander ? 1.35 : 0.95) * CGFloat(0.5 + rnd(k + 40 * n, 5))
+                        let tt = CGFloat(t)
+                        let x = c.x + CGFloat(cos(ang)) * speed * tt
+                        let y = c.y - pitch * 0.25 + CGFloat(sin(ang)) * speed * tt * 0.55 - pitch * 0.45 * tt + pitch * 0.9 * tt * tt
+                        let w = max(2, pitch * CGFloat(0.10 + 0.09 * rnd(k + 40 * n, 6))) * (1 - 0.45 * tt)
+                        var piece = ctx; piece.translateBy(x: x, y: y); piece.rotate(by: .radians(ang * 2 + Double(tt) * 6 * (rnd(k, 7) - 0.5)))
+                        let color: Color = commander && k % 3 == 0 ? Color(red:1,green:0.82,blue:0.36)
+                            : black ? Color(red:0.30,green:0.45,blue:0.56) : Color(red:0.98,green:0.94,blue:0.82)
+                        let shard = Path(CGRect(x: -w/2, y: -w*0.35, width: w, height: w*0.7))
+                        piece.fill(shard, with: .color(color.opacity(1 - Double(tt) * 0.9)))
+                        piece.stroke(shard, with: .color(Color(red:0.20,green:0.12,blue:0.05).opacity(0.55 * (1 - Double(tt)))), lineWidth: 0.7)
+                    }
+                }
+            }
+        }.frame(width: size.width, height: size.height).allowsHitTesting(false).accessibilityHidden(true)
+    }
+}
+
 /// The table around the board: a warm pool of light under the board and a dark vignette, over the existing backdrop.
 struct ArtTable: View {
     var body: some View {
         ZStack {
             GameBackdrop()
             if ArtV2.enabled {
+                Canvas { ctx, size in
+                    var seed: UInt64 = 0xD1B54A32D192ED03
+                    func rnd() -> CGFloat { seed = seed &* 6364136223846793005 &+ 1442695040888963407; return CGFloat((seed >> 33) % 10_000) / 10_000 }
+                    for _ in 0..<1400 {
+                        let x = size.width * rnd(), y = size.height * rnd(), r = 0.4 + 0.9 * rnd()
+                        ctx.fill(Path(ellipseIn:CGRect(x:x,y:y,width:r,height:r)),with:.color((rnd() < 0.5 ? Color.black : Color.white).opacity(0.05)))
+                    }
+                }.ignoresSafeArea().allowsHitTesting(false)
                 RadialGradient(colors:[Color(red:0.62,green:0.43,blue:0.20).opacity(0.26),.clear],
                                center:UnitPoint(x:0.5,y:0.44),startRadius:20,endRadius:520).ignoresSafeArea().allowsHitTesting(false)
                 RadialGradient(colors:[.clear,.black.opacity(0.55)],
