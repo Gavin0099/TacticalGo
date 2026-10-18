@@ -280,7 +280,7 @@ import TacticalGoVisuals
         do {
             session = GameSession(try practice.state()); voiceCadence.reset()
             size = practice.size; monsters = .none; one = .priest; two = .mage; computer = nil
-            mode = .advanced; instruction = practice.instruction
+            mode = practice.startsOnSecondSkill ? .advanced : .soldier; instruction = practice.instruction
             message = "練習局面：不會覆蓋你的存局。"
         } catch { message = "練習局面載入失敗：\(error)" }
     }
