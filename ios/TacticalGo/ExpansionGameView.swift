@@ -326,7 +326,7 @@ struct ExpansionGameView: View {
             default: return
             }
         } else { return }
-        let before = match.state,generation = match.generation
+        let before = match.state
         let expected = GameEngine.apply(before,action)
         guard expected.success else { polishStatus = "polish: stopped - fixture action illegal: \(expected.reason) (\(action))"; return }
         if monsterFixture == nil { store.changeMode(basic ? .skill:.advanced) }
@@ -334,10 +334,13 @@ struct ExpansionGameView: View {
         guard match.state == before else { polishStatus = "polish: stopped - board changed while selecting"; return }
         guard let preview = match.preview else { polishStatus = "polish: stopped - no preview after selecting \(points) in mode \(match.mode)"; return }
         guard preview.success else { polishStatus = "polish: stopped - preview illegal: \(preview.reason)"; return }
+        // Changing mode cancels any presentation and bumps the generation, so capture it only after selecting.
+        let generation = match.generation
         polishStatus = "polish: preview legal, showing (0.8 s window)"
         do { try await Task.sleep(for:.milliseconds(800)) } catch { polishStatus = "polish: stopped - preview window cancelled"; return }
         guard inMatch,scenePhase == .active,store.expansion === match else { polishStatus = "polish: stopped - match left or scene inactive before confirm"; return }
-        guard match.state == before,match.generation == generation else { polishStatus = "polish: stopped - state changed before confirm"; return }
+        guard match.state == before else { polishStatus = "polish: stopped - board/resources changed before confirm"; return }
+        guard match.generation == generation else { polishStatus = "polish: stopped - presentation generation changed before confirm"; return }
         let committedAt = ProcessInfo.processInfo.systemUptime
         store.confirm()
         polishStatus = match.state == expected.state ? "polish: committed" : "polish: stopped - confirm did not apply the action"
