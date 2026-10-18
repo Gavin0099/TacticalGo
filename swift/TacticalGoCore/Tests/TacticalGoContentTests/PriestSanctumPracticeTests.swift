@@ -71,6 +71,6 @@ final class PriestSanctumPracticeTests: XCTestCase {
         let sanctum = try XCTUnwrap(PriestSacrificeInsight(start, PriestSanctumPractice.seven.action))
         XCTAssertEqual(sanctum.libertiesBefore, 1); XCTAssertEqual(sanctum.libertiesAfter, 3)
         XCTAssertNil(PriestSacrificeInsight(start, .placeSoldier(Point(5,5))), "only priest sacrifices are described")
-        XCTAssertEqual(sanctum.summary, "犧牲後氣 1→3")
+        XCTAssertEqual(sanctum.summary, "犧牲 B6→補 D7 · 主將氣 1→3")
     }
 }

@@ -1,0 +1,248 @@
+{
+  "notClaimed" : [
+    "original Ko history",
+    "the other side's exact Mana"
+  ],
+  "rows" : [
+    {
+      "board" : "xxxxo.o\nxxxOooo\nxxxooo.\nxxxxooo\nxxxoo.o\nx.HXQo.\n.xxoo.o",
+      "distinctCompleteTurns" : 3,
+      "exactSafeTurns" : 1,
+      "game" : 9,
+      "ply" : 45,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 3,
+      "samplerSafe" : 1,
+      "setup" : "Rogue-vs-Mage"
+    },
+    {
+      "board" : "xxxxo.o\nxxxOooo\nxxxooo.\nxxxxooo\nxxxoo.o\nx.HXQo.\n.xxoo.o",
+      "distinctCompleteTurns" : 3,
+      "exactSafeTurns" : 1,
+      "game" : 9,
+      "ply" : 49,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 3,
+      "samplerSafe" : 1,
+      "setup" : "Rogue-vs-Mage"
+    },
+    {
+      "board" : "xxxxo.o\nxxxOooo\nxxxoooo\nxxxxooo\nxxxoooo\nx.HXQ.o\n.xxoooo",
+      "distinctCompleteTurns" : 3,
+      "exactSafeTurns" : 1,
+      "game" : 9,
+      "ply" : 57,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 3,
+      "samplerSafe" : 1,
+      "setup" : "Rogue-vs-Mage"
+    },
+    {
+      "board" : ".x.x.o.\nx.xO.o.\n..xQo..\nx..xoo.\n...xo..\n..oXo..\no...o..",
+      "distinctCompleteTurns" : 758,
+      "exactSafeTurns" : 41,
+      "game" : 10,
+      "ply" : 13,
+      "safe" : [
+        {
+          "actions" : "1-place:0,0\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "2-summon:0,0\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:0,2\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "2-summon:0,2\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:0,4\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:0,4\/2-summon:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "2-summon:0,4\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:0,6\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,1\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "2-summon:1,1\/1-place:1,4",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/9-end",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:1,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:2,0",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:2,0",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:2,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:2,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:2,5",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:2,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:3,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:3,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:3,2",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:3,2",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:3,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:4,0",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:4,0",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:4,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:4,2",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:4,2",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:4,5",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:4,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:5,0",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:5,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:5,5",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:5,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:6,1",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:6,2",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:6,3",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/2-summon:6,3",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:6,5",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "1-place:1,4\/1-place:6,6",
+          "status" : "Ongoing"
+        },
+        {
+          "actions" : "2-summon:4,2\/5-swap:5,2",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 8,
+      "samplerSafe" : 0,
+      "setup" : "Rogue-vs-Rogue"
+    },
+    {
+      "board" : ".oo.ooo\no.oOooo\noo.Qxoo\no.ooHoo\nooxxxoo\nxxxXxxx\nx.xxxx.",
+      "distinctCompleteTurns" : 3,
+      "exactSafeTurns" : 1,
+      "game" : 11,
+      "ply" : 53,
+      "safe" : [
+        {
+          "actions" : "9-end",
+          "status" : "Ongoing"
+        }
+      ],
+      "samplerRetained" : 3,
+      "samplerSafe" : 1,
+      "setup" : "Rogue-vs-Priest"
+    }
+  ]
+}

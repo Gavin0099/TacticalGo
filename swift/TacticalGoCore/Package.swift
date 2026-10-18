@@ -33,7 +33,7 @@ let package = Package(
         .executableTarget(name: "ContentRunner", dependencies: ["TacticalGoContent", "TacticalGoCore"]),
         .testTarget(name: "TacticalGoContentTests", dependencies: ["TacticalGoContent", "TacticalGoCore", "TacticalGoRecords"]),
         .executableTarget(name: "RecordsRunner", dependencies: ["TacticalGoRecords"]),
-        .executableTarget(name: "BotRunner", dependencies: ["TacticalGoBot", "TacticalGoCore"]),
+        .executableTarget(name: "BotRunner", dependencies: ["TacticalGoBot", "TacticalGoCore", "TacticalGoContent"]),
         .testTarget(name: "TacticalGoBotTests", dependencies: ["TacticalGoBot", "TacticalGoCore", "TacticalGoContent"], resources: [.copy("Fixtures")]),
         .target(name: "TacticalGoMotion", dependencies: ["TacticalGoCore"]),
         .target(name: "TacticalGoVisuals"),

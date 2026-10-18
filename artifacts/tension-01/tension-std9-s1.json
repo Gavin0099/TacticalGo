@@ -1,0 +1,882 @@
+{
+  "byPhase" : {
+    "middle(21-50)" : {
+      "forcedDefense" : 1,
+      "obvious" : 2,
+      "positions" : 12,
+      "twoPlans" : 9
+    },
+    "opening(5-20)" : {
+      "obvious" : 5,
+      "positions" : 15,
+      "twoPlans" : 9,
+      "winningTurn" : 1
+    }
+  },
+  "bySetup" : {
+    "Mage-vs-Mage" : {
+      "positions" : 3,
+      "twoPlans" : 2,
+      "winningTurn" : 1
+    },
+    "Mage-vs-Priest" : {
+      "forcedDefense" : 1,
+      "obvious" : 4,
+      "positions" : 9,
+      "twoPlans" : 4
+    },
+    "Mage-vs-Rogue" : {
+      "obvious" : 1,
+      "positions" : 9,
+      "twoPlans" : 8
+    },
+    "Mage-vs-Warrior" : {
+      "obvious" : 2,
+      "positions" : 6,
+      "twoPlans" : 4
+    }
+  },
+  "closeDistinctSignatureHistogram" : [
+    {
+      "positions" : 9,
+      "signatures" : 1
+    },
+    {
+      "positions" : 8,
+      "signatures" : 2
+    },
+    {
+      "positions" : 6,
+      "signatures" : 3
+    },
+    {
+      "positions" : 3,
+      "signatures" : 4
+    },
+    {
+      "positions" : 1,
+      "signatures" : 5
+    }
+  ],
+  "counts" : {
+    "forcedDefense" : 1,
+    "obvious" : 7,
+    "positions" : 27,
+    "twoPlans" : 18,
+    "winningTurn" : 1
+  },
+  "notClaimed" : [
+    "human decision quality",
+    "that alternatives are equally good",
+    "balance",
+    "fun"
+  ],
+  "positions" : [
+    {
+      "ap" : 2,
+      "bestSafeScore" : 493,
+      "board" : ".....o...\no...O....\n.........\n..o....x.\n.........\n......o..\n.....x...\n....X....\n..x......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:7,3\/1-place:1,3",
+        "2-summon:7,3\/1-place:1,5"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib3|ownLib4|risk0",
+        "summon|cap0|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 4,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 286,
+      "board" : ".....o...\no.xQOo...\n...xx....\n..o....x.\n.........\n......o..\n...o.x...\n..oHX....\n..x......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,2\/1-place:6,4",
+        "1-place:0,3\/8-pull:6,3:5,3:7,2:6,2",
+        "1-place:0,3\/1-place:1,6",
+        "1-place:1,6\/8-pull:6,3:5,3:7,2:6,2"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib3|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk0"
+      ],
+      "game" : 4,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 217,
+      "board" : "...xoo...\no.xQOo...\n...xxo...\n..o..o.x.\n.........\n..oo..o..\n.oo.xx...\n...HX....\n..x......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,6\/1-place:4,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 4,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -3,
+      "board" : "..xxoo...\no.xQOoxo.\n..xxxoo..\n..oooo.x.\n....ox...\n..ooo.o..\n.oo.xx...\n...HX....\n..x......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,7\/1-place:2,7"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 4,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -305,
+      "board" : "..xxooox.\no.xQOo.ox\n..xxxoox.\n.ooooo.x.\n...oox...\n..o.ooo..\n.oo.xxo..\n.ooHX....\n..x......",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,6\/1-place:7,5",
+        "1-place:4,6\/7-redeploy:6,4:7,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "skill|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 4,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -679,
+      "board" : "..xxooox.\no.xQOo.ox\n..xxxoox.\n.oooooox.\n.x.ooxx..\n..o.ooo..\n.oooxxo..\n.ooHXoo..\n..x.x....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,7\/7-redeploy:6,4:8,5",
+        "1-place:5,7\/7-redeploy:6,4:8,5",
+        "1-place:1,6\/7-redeploy:6,4:8,5"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib3|risk2",
+        "skill|cap0|enemyLib4|ownLib3|risk3",
+        "capture|cap1|enemyLib4|ownLib3|risk3"
+      ],
+      "game" : 4,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Mage-vs-Warrior",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 491,
+      "board" : ".......x.\n....O..x.\n..x......\n.........\no......o.\n...o.o...\n.........\n....X....\n.........",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:6,4\/1-place:1,3",
+        "2-summon:6,4\/1-place:0,4"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib3|ownLib4|risk0",
+        "summon|cap0|enemyLib3|ownLib4|risk1"
+      ],
+      "game" : 5,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Mage-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 215,
+      "board" : "....x..x.\n.oooOx.x.\n..x.x....\n.........\no......o.\n...o.o...\n...QH....\n....X....\n.........",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:0,2\/1-place:7,3",
+        "1-place:0,3\/1-place:7,3"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 5,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Mage-vs-Mage",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 1000000,
+      "board" : ".xx.x..x.\nxoooOx.x.\n.xx.x....\n.........\no......o.\n...ooo...\n...QHo...\n....Xo...\n....o....",
+      "candidates" : 1,
+      "closeDistinctKeys" : [
+        "1-place:0,3\/1-place:2,3"
+      ],
+      "closeDistinctSignatures" : [
+        "win|cap3|enemyLib0|ownLib1|risk0"
+      ],
+      "game" : 5,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 1,
+      "setup" : "Mage-vs-Mage",
+      "verdict" : "winningTurn"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 431,
+      "board" : "x.......o\n....O....\n...o.....\n........x\n.........\n..x......\n.........\n....X..o.\n....o....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:6,4\/1-place:1,3",
+        "2-summon:6,4\/1-place:0,7"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib3|ownLib4|risk1",
+        "summon|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 6,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 198,
+      "board" : "x..x....o\n..xQO....\n...ox....\n........x\n.........\n..x.o....\n...oHo...\n....X..o.\n....o....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "8-pull:6,3:5,3:6,5:5,5\/1-place:1,5",
+        "8-pull:6,3:5,3:6,5:5,5\/1-place:0,7"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib3|ownLib4|risk1",
+        "skill|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 6,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 109,
+      "board" : "x..x...xo\n..xQO....\n...ox....\n...oo...x\n.........\n..xooo...\n...oHo...\n..xxX..o.\n....o....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,5\/1-place:8,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 6,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 58,
+      "board" : "xo.x..o.o\n..xQOx.o.\n...oxx...\n..xoo...x\n...o.....\n..xooo...\n...oHo...\n.xxxX..o.\n....o....",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,1\/1-place:8,5",
+        "1-place:1,0\/1-place:8,5",
+        "1-place:0,2\/1-place:8,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "build|cap0|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 6,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -75,
+      "board" : "xo.xo.o.o\nxxxQOx.o.\n...oxx...\n..xoo...x\n...oo....\n..xooo...\n...oHo...\n.xxxXo.o.\n.....oo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,5\/1-place:5,6",
+        "1-place:0,2\/1-place:5,6"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 6,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -27,
+      "board" : "xo.xo.o.o\nxxxQOx.o.\n...oxx.x.\n..xoo...x\n...oo.o..\n.xxoooxo.\n.oxoHo...\n.xxxXo.o.\n...o.oo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,6\/1-place:8,4",
+        "1-place:0,2\/1-place:6,6",
+        "1-place:8,4\/8-pull:5,5:4,5:7,5:7,6"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "skill|cap0|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 6,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 59,
+      "board" : "xo.xo.o.o\nxxxQOx.o.\n...oxx.x.\n.xxoo...x\nooxoo.o..\n.xxoooxo.\nooxoHox..\n.xxxXooo.\n...oxoo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,0\/8-pull:5,5:4,5:6,6:6,7",
+        "1-place:3,6\/1-place:5,0",
+        "1-place:0,2\/1-place:5,0",
+        "1-place:5,0\/1-place:7,0"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk2",
+        "build|cap0|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "capture|cap2|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 6,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 190,
+      "board" : "xo.xo.o.o\nxxxQOx.o.\n..ooxx.x.\n.xxoo...x\nooxoooox.\nxxxooox.x\nooxoHoox.\n.xxxXooo.\n.o.oxoo..",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,6\/1-place:7,0",
+        "1-place:2,1\/1-place:3,6",
+        "1-place:0,5\/1-place:7,0"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib4|risk3",
+        "build|cap0|enemyLib4|ownLib4|risk3",
+        "capture|cap2|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 6,
+      "mana" : 4,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 5,
+      "board" : "xo.xo.o.o\nxxxQOx.o.\n..ooxx.x.\n.xxoo.x.x\nooxoooox.\nxxxooo.ox\n..xoHoo.o\nxxxxXooo.\n.o.oxoo.o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,6\/1-place:1,8",
+        "1-place:1,8\/1-place:0,7",
+        "1-place:0,5\/1-place:2,1",
+        "1-place:0,2\/1-place:8,2",
+        "1-place:0,5\/1-place:8,2"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk3",
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "capture|cap2|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 6,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 8,
+      "setup" : "Mage-vs-Rogue",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 434,
+      "board" : "x...o....\n..o.O....\n.........\n.........\n.........\n...o.....\n.........\nx...X....\n..x.....o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "2-summon:6,4\/1-place:1,3"
+      ],
+      "closeDistinctSignatures" : [
+        "summon|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 7,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 5,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 157,
+      "board" : "x...o....\n.xooOx...\n....x....\n.........\n.........\n...oQ....\n...oHo...\nx...X....\n..x.....o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,2\/8-pull:6,3:6,2:6,5:5,5"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 7,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 9,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 1041,
+      "board" : "x.x.ox...\n.xooOx...\n..xox....\n...o.....\n.........\n...oQo...\n..o.Ho...\nx..oX....\n..x.....o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:3,4\/1-place:4,3",
+        "1-place:4,3\/1-place:0,3"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib2|ownLib3|risk1",
+        "build|cap0|enemyLib2|ownLib3|risk3"
+      ],
+      "game" : 7,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 13,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -173,
+      "board" : "x.x.ox...\n.xooOx...\n..xox....\n...oo....\n...xo....\n...oQo...\n..o.H.o..\nx.o.X....\n..x.o...o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:4,2\/1-place:8,5",
+        "1-place:7,8\/1-place:8,5",
+        "1-place:8,3\/1-place:8,5"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 7,
+      "mana" : 1,
+      "player" : 0,
+      "ply" : 17,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -229,
+      "board" : "x.x.ox...\n.xooOx...\n..xox....\n...oo....\n..xxo....\n...oQo...\n..ooHoo..\nx.ooXxxox\n..x.o...o",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:6,7\/1-place:8,7"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap2|enemyLib4|ownLib3|risk1"
+      ],
+      "game" : 7,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 21,
+      "safe" : 1,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "forcedDefense"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 71,
+      "board" : "x.x.ox...\n.xooOx...\n..xox....\n...ooo...\n..xx.o...\n...oQo...\n..ooHoox.\nx.oxXxx.x\n..x.o..x.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:2,5\/1-place:7,7"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 7,
+      "mana" : 1,
+      "player" : 0,
+      "ply" : 25,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 132,
+      "board" : "x.x.ox...\n.xooOx...\n..xoxx...\n...ooo...\n..xx.o...\n...oQo.o.\n..ooHooxo\nxxoxXxxxx\n.oxxoo.x.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:5,8\/7-redeploy:7,3:8,6",
+        "1-place:5,8\/1-place:4,7",
+        "1-place:5,8\/1-place:8,6",
+        "1-place:3,6\/7-redeploy:7,3:8,6"
+      ],
+      "closeDistinctSignatures" : [
+        "capture|cap3|enemyLib4|ownLib4|risk2",
+        "capture|cap1|enemyLib4|ownLib3|risk1",
+        "capture|cap3|enemyLib4|ownLib4|risk1",
+        "capture|cap2|enemyLib4|ownLib4|risk2"
+      ],
+      "game" : 7,
+      "mana" : 3,
+      "player" : 0,
+      "ply" : 29,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : 47,
+      "board" : "x.x.o.o..\n.xooO.o..\n..xo..o..\n..oooo...\n..xx.o.x.\n...oQox.x\n..ooHoox.\nxxoxXxxxx\n.oxx..xx.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,5\/1-place:2,1",
+        "1-place:2,1\/1-place:4,4",
+        "1-place:2,1\/1-place:8,0"
+      ],
+      "closeDistinctSignatures" : [
+        "build|cap0|enemyLib4|ownLib4|risk1",
+        "build|cap0|enemyLib4|ownLib4|risk3",
+        "capture|cap1|enemyLib4|ownLib4|risk1"
+      ],
+      "game" : 7,
+      "mana" : 5,
+      "player" : 0,
+      "ply" : 33,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "bestSafeScore" : -172,
+      "board" : "x.x.o.o..\n.xooOxo..\n.xxo..o..\n..oooo...\n.o...o.x.\n..ooQox.x\nooooHoox.\nxxoxXxxxx\nx.xx..xx.",
+      "candidates" : 8,
+      "closeDistinctKeys" : [
+        "1-place:1,7\/7-redeploy:7,3:8,1"
+      ],
+      "closeDistinctSignatures" : [
+        "skill|cap0|enemyLib4|ownLib4|risk3"
+      ],
+      "game" : 7,
+      "mana" : 6,
+      "player" : 0,
+      "ply" : 37,
+      "safe" : 8,
+      "setup" : "Mage-vs-Priest",
+      "verdict" : "obvious"
+    }
+  ],
+  "samples" : {
+    "forcedDefense" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : -229,
+        "board" : "x.x.ox...\n.xooOx...\n..xox....\n...oo....\n..xxo....\n...oQo...\n..ooHoo..\nx.ooXxxox\n..x.o...o",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:6,7\/1-place:8,7"
+        ],
+        "closeDistinctSignatures" : [
+          "capture|cap2|enemyLib4|ownLib3|risk1"
+        ],
+        "game" : 7,
+        "mana" : 3,
+        "player" : 0,
+        "ply" : 21,
+        "safe" : 1,
+        "setup" : "Mage-vs-Priest",
+        "verdict" : "forcedDefense"
+      }
+    ],
+    "obvious" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 217,
+        "board" : "...xoo...\no.xQOo...\n...xxo...\n..o..o.x.\n.........\n..oo..o..\n.oo.xx...\n...HX....\n..x......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:1,6\/1-place:4,5"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib4|ownLib4|risk1"
+        ],
+        "game" : 4,
+        "mana" : 3,
+        "player" : 0,
+        "ply" : 13,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -3,
+        "board" : "..xxoo...\no.xQOoxo.\n..xxxoo..\n..oooo.x.\n....ox...\n..ooo.o..\n.oo.xx...\n...HX....\n..x......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:0,7\/1-place:2,7"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib4|ownLib4|risk2"
+        ],
+        "game" : 4,
+        "mana" : 5,
+        "player" : 0,
+        "ply" : 17,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 109,
+        "board" : "x..x...xo\n..xQO....\n...ox....\n...oo...x\n.........\n..xooo...\n...oHo...\n..xxX..o.\n....o....",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:2,5\/1-place:8,5"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib4|ownLib4|risk1"
+        ],
+        "game" : 6,
+        "mana" : 3,
+        "player" : 0,
+        "ply" : 13,
+        "safe" : 8,
+        "setup" : "Mage-vs-Rogue",
+        "verdict" : "obvious"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 434,
+        "board" : "x...o....\n..o.O....\n.........\n.........\n.........\n...o.....\n.........\nx...X....\n..x.....o",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "2-summon:6,4\/1-place:1,3"
+        ],
+        "closeDistinctSignatures" : [
+          "summon|cap0|enemyLib4|ownLib4|risk1"
+        ],
+        "game" : 7,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 5,
+        "safe" : 8,
+        "setup" : "Mage-vs-Priest",
+        "verdict" : "obvious"
+      }
+    ],
+    "twoPlans" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 493,
+        "board" : ".....o...\no...O....\n.........\n..o....x.\n.........\n......o..\n.....x...\n....X....\n..x......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "2-summon:7,3\/1-place:1,3",
+          "2-summon:7,3\/1-place:1,5"
+        ],
+        "closeDistinctSignatures" : [
+          "summon|cap0|enemyLib3|ownLib4|risk0",
+          "summon|cap0|enemyLib3|ownLib4|risk1"
+        ],
+        "game" : 4,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 5,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : 286,
+        "board" : ".....o...\no.xQOo...\n...xx....\n..o....x.\n.........\n......o..\n...o.x...\n..oHX....\n..x......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:6,2\/1-place:6,4",
+          "1-place:0,3\/8-pull:6,3:5,3:7,2:6,2",
+          "1-place:0,3\/1-place:1,6",
+          "1-place:1,6\/8-pull:6,3:5,3:7,2:6,2"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib4|ownLib4|risk1",
+          "skill|cap0|enemyLib4|ownLib4|risk1",
+          "build|cap0|enemyLib3|ownLib4|risk1",
+          "skill|cap0|enemyLib4|ownLib4|risk0"
+        ],
+        "game" : 4,
+        "mana" : 5,
+        "player" : 0,
+        "ply" : 9,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -305,
+        "board" : "..xxooox.\no.xQOo.ox\n..xxxoox.\n.ooooo.x.\n...oox...\n..o.ooo..\n.oo.xxo..\n.ooHX....\n..x......",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:4,6\/1-place:7,5",
+          "1-place:4,6\/7-redeploy:6,4:7,5"
+        ],
+        "closeDistinctSignatures" : [
+          "build|cap0|enemyLib4|ownLib4|risk2",
+          "skill|cap0|enemyLib4|ownLib4|risk2"
+        ],
+        "game" : 4,
+        "mana" : 3,
+        "player" : 0,
+        "ply" : 21,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "twoPlans"
+      },
+      {
+        "ap" : 2,
+        "bestSafeScore" : -679,
+        "board" : "..xxooox.\no.xQOo.ox\n..xxxoox.\n.oooooox.\n.x.ooxx..\n..o.ooo..\n.oooxxo..\n.ooHXoo..\n..x.x....",
+        "candidates" : 8,
+        "closeDistinctKeys" : [
+          "1-place:4,7\/7-redeploy:6,4:8,5",
+          "1-place:5,7\/7-redeploy:6,4:8,5",
+          "1-place:1,6\/7-redeploy:6,4:8,5"
+        ],
+        "closeDistinctSignatures" : [
+          "skill|cap0|enemyLib4|ownLib3|risk2",
+          "skill|cap0|enemyLib4|ownLib3|risk3",
+          "capture|cap1|enemyLib4|ownLib3|risk3"
+        ],
+        "game" : 4,
+        "mana" : 3,
+        "player" : 0,
+        "ply" : 25,
+        "safe" : 8,
+        "setup" : "Mage-vs-Warrior",
+        "verdict" : "twoPlans"
+      }
+    ],
+    "winningTurn" : [
+      {
+        "ap" : 2,
+        "bestSafeScore" : 1000000,
+        "board" : ".xx.x..x.\nxoooOx.x.\n.xx.x....\n.........\no......o.\n...ooo...\n...QHo...\n....Xo...\n....o....",
+        "candidates" : 1,
+        "closeDistinctKeys" : [
+          "1-place:0,3\/1-place:2,3"
+        ],
+        "closeDistinctSignatures" : [
+          "win|cap3|enemyLib0|ownLib1|risk0"
+        ],
+        "game" : 5,
+        "mana" : 6,
+        "player" : 0,
+        "ply" : 13,
+        "safe" : 1,
+        "setup" : "Mage-vs-Mage",
+        "verdict" : "winningTurn"
+      }
+    ]
+  },
+  "seconds" : 556.06131087499671,
+  "setup" : {
+    "boardSize" : 9,
+    "botRelativeFact" : "close = own-turn heuristic score within 120 of the best safe turn (the planner's easy-relaxed gap)",
+    "candidateSet" : "planner-retained complete own turns, up to 8 distinct outcomes (the best by the planner's own-turn score); not every legal turn",
+    "difficulty" : "standard",
+    "exactFacts" : "captures enemy commander; opponent has some complete reply that captures ours (Core, bounded by expansionCandidateLimit 256)",
+    "games" : 4,
+    "maxPly" : 40,
+    "opening" : "seeded random soldiers for plies 1-4 (seed = game index), then bot vs bot",
+    "rules" : "expansion",
+    "sampleEveryNthTurn" : 4
+  }
+}

@@ -1,0 +1,131 @@
+{
+ "purpose": "Candidate positions for the human half of TENSION-01 (3-5 players, no hints). Boards are sampled from standard-bot games (7x7, expansion rules); the mover shown is Black when player=0. Ko history is not included; mana of the side not to move is not recorded here.",
+ "positions": [
+  {
+   "game": 15,
+   "setup": "Priest-vs-Priest",
+   "ply": 37,
+   "player": 0,
+   "mana": 6,
+   "ap": 2,
+   "board": "x.oo.o.\n.xxOo.o\nxx.Q.o.\n..xooxo\n.x.xxxo\nx.HXxo.\n.x..o.o",
+   "closeDistinctKeys": [
+    "1-place:2,2/1-place:4,2",
+    "1-place:6,3/1-place:6,5",
+    "1-place:0,1/1-place:2,2",
+    "1-place:0,1/1-place:4,2",
+    "1-place:2,2/8-sanctum:5,4:4,2",
+    "1-place:2,2/1-place:6,3"
+   ],
+   "closeDistinctSignatures": [
+    "build|cap0|enemyLib4|ownLib4|risk1",
+    "capture|cap1|enemyLib4|ownLib4|risk1",
+    "build|cap0|enemyLib3|ownLib4|risk0",
+    "build|cap0|enemyLib4|ownLib4|risk0",
+    "skill|cap0|enemyLib4|ownLib4|risk1",
+    "build|cap0|enemyLib4|ownLib3|risk1"
+   ]
+  },
+  {
+   "game": 11,
+   "setup": "Rogue-vs-Priest",
+   "ply": 33,
+   "player": 0,
+   "mana": 2,
+   "ap": 2,
+   "board": ".ox.oo.\no.oOoo.\noo.Qooo\no.ooHoo\nooxxxoo\nxxxXxxx\n..x.ox.",
+   "closeDistinctKeys": [
+    "1-place:1,6/5-swap:3,3",
+    "1-place:6,3/5-swap:3,3",
+    "1-place:1,6/1-place:6,3",
+    "5-swap:3,3/9-end",
+    "1-place:1,6/9-end"
+   ],
+   "closeDistinctSignatures": [
+    "skill|cap0|enemyLib4|ownLib4|risk2",
+    "capture|cap1|enemyLib4|ownLib4|risk1",
+    "capture|cap1|enemyLib4|ownLib4|risk2",
+    "skill|cap0|enemyLib4|ownLib4|risk1",
+    "build|cap0|enemyLib4|ownLib4|risk2"
+   ]
+  },
+  {
+   "game": 4,
+   "setup": "Mage-vs-Warrior",
+   "ply": 13,
+   "player": 0,
+   "mana": 6,
+   "ap": 2,
+   "board": ".o..xo.\n.xoOQo.\n.ooxxo.\n..ooxx.\n.ooHxo.\nx..X...\no.x.x..",
+   "closeDistinctKeys": [
+    "1-place:4,6/1-place:5,5",
+    "1-place:1,0/1-place:5,5",
+    "1-place:3,6/1-place:5,5",
+    "1-place:5,5/7-redeploy:2,3:3,6"
+   ],
+   "closeDistinctSignatures": [
+    "capture|cap1|enemyLib4|ownLib4|risk2",
+    "build|cap0|enemyLib4|ownLib4|risk3",
+    "build|cap0|enemyLib4|ownLib4|risk2",
+    "skill|cap0|enemyLib4|ownLib4|risk2"
+   ]
+  },
+  {
+   "game": 3,
+   "setup": "Warrior-vs-Priest",
+   "ply": 9,
+   "player": 0,
+   "mana": 6,
+   "ap": 2,
+   "board": "....x..\n..oOQ..\n..oxxoo\n...o.o.\n...H...\n.xxX...\n.o...x.",
+   "closeDistinctKeys": [
+    "1-place:3,2/1-place:3,4",
+    "1-place:1,5/1-place:3,2",
+    "1-place:3,2/3-bastion:4,1: 6,2"
+   ],
+   "closeDistinctSignatures": [
+    "capture|cap1|enemyLib4|ownLib4|risk3",
+    "build|cap0|enemyLib4|ownLib4|risk2",
+    "skill|cap0|enemyLib4|ownLib4|risk2"
+   ]
+  },
+  {
+   "game": 4,
+   "setup": "Mage-vs-Warrior",
+   "ply": 17,
+   "player": 0,
+   "mana": 6,
+   "ap": 2,
+   "board": ".ox.xo.\no.oOQo.\n.ooxxo.\n..ooxx.\n.ooHx.x\nxooX.x.\noox.x..",
+   "closeDistinctKeys": [
+    "8-pull:4,4:5,4:3,2:3,1/1-place:3,2",
+    "1-place:3,0/1-place:4,0",
+    "1-place:1,6/8-pull:4,4:5,4:3,2:3,1"
+   ],
+   "closeDistinctSignatures": [
+    "capture|cap1|enemyLib4|ownLib4|risk3",
+    "build|cap0|enemyLib4|ownLib4|risk3",
+    "skill|cap0|enemyLib4|ownLib4|risk3"
+   ]
+  },
+  {
+   "game": 5,
+   "setup": "Mage-vs-Mage",
+   "ply": 21,
+   "player": 0,
+   "mana": 5,
+   "ap": 2,
+   "board": "..o....\n.oxOoQ.\n..xx.o.\n...ox.o\n.oo.xo.\nooHXxxo\nox.ox.x",
+   "closeDistinctKeys": [
+    "1-place:3,2/1-place:4,6",
+    "8-pull:4,2:3,2:4,1:4,0/1-place:3,0",
+    "1-place:0,5/1-place:2,4"
+   ],
+   "closeDistinctSignatures": [
+    "capture|cap1|enemyLib4|ownLib4|risk2",
+    "skill|cap0|enemyLib4|ownLib4|risk3",
+    "build|cap0|enemyLib4|ownLib4|risk2"
+   ]
+  }
+ ]
+}

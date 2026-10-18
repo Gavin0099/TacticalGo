@@ -288,7 +288,8 @@ import XCTest
         let audit = app.staticTexts["integratedExpansionAudit"]
         XCTAssertTrue(audit.waitForExistence(timeout:10))
         let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
-        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:10),.completed)
+        // On a timeout, say which autoplay step stopped (polishReviewStatus) instead of only "timed out".
+        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:20),.completed, app.staticTexts["polishReviewStatus"].label)
         XCTAssertTrue(audit.label.contains("players=0|active=false"))
         shot(app,"p28b-chain-first-contact-exact-frame")
         tap(app,"undoOrCancel");ready(app)
@@ -459,6 +460,77 @@ import XCTest
         shot(app,"expanded-late-decision-rejected-after-undo")
         #else
         throw XCTSkip("Noncooperative test worker only in DEBUG")
+        #endif
+    }
+    // Undo across a computer reply after a skill that captured: each undo must land on one consistent moment
+    // (board, side to move, AP, mana and the once-per-turn skill gate together), and the computer must not move again.
+    func testUndoAfterSkillCaptureCrossesComputerReplyAndRestoresManaAndSkillGate() throws {
+        #if DEBUG
+        let app = XCUIApplication();app.expansionShellArguments = ["--undo-fixture","capture"];app.launch()
+        XCTAssertTrue(app.staticTexts["currentTurn"].waitForExistence(timeout:15));ready(app)
+        func cell(_ x:Int,_ y:Int) -> String { app.buttons["play-cell-\(x)-\(y)"].label }
+        XCTAssertTrue(cell(6,4).contains("白方士兵"))
+        let start = resources(app)
+        XCTAssertTrue(start.contains("能量 6/6") && start.contains("2 AP"), start)
+        tap(app,"mode-skill");normalPoints(app,[(6,3),(6,5)])
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("合法預覽"))
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(cell(6,4).contains("空點"),"Bastion captured White G5")
+        XCTAssertTrue(cell(6,3).contains("黑方士兵") && cell(6,5).contains("黑方士兵"))
+        let afterSkill = resources(app)
+        XCTAssertTrue(afterSkill.contains("能量 4/6") && afterSkill.contains("1 AP"), afterSkill)
+        XCTAssertTrue((app.buttons["mode-skill"].value as? String ?? "").contains("本回合已施法"))
+        tap(app,"playEndTurn");botDone(app,1)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到黑方戰士")
+        // Undo 1: the computer's whole reply and Black's end turn go; the capture, spent mana and closed gate stay.
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到黑方戰士")
+        XCTAssertTrue(cell(6,4).contains("空點"))
+        let beforeEnd = resources(app)
+        XCTAssertTrue(beforeEnd.contains("能量 4/6") && beforeEnd.contains("1 AP"), beforeEnd)
+        XCTAssertTrue((app.buttons["mode-skill"].value as? String ?? "").contains("本回合已施法"))
+        // Undo 2: the Bastion goes; the captured stone, mana, AP and the skill gate come back together.
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertTrue(cell(6,4).contains("白方士兵"),"captured stone restored")
+        XCTAssertTrue(cell(6,3).contains("空點") && cell(6,5).contains("空點"))
+        XCTAssertEqual(resources(app),start)
+        XCTAssertFalse((app.buttons["mode-skill"].value as? String ?? "").contains("本回合已施法"))
+        // Nothing late: the computer does not move again on its own after the undo.
+        Thread.sleep(forTimeInterval:3)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到黑方戰士")
+        XCTAssertEqual(resources(app),start)
+        #else
+        throw XCTSkip("Undo fixtures are DEBUG-only")
+        #endif
+    }
+    // Undo from the result screen after a winning skill: the game is live again at the moment before the skill.
+    func testUndoAfterWinningSkillRestoresTheLiveGame() throws {
+        #if DEBUG
+        let app = XCUIApplication();app.expansionShellArguments = ["--undo-fixture","win"];app.launch()
+        XCTAssertTrue(app.staticTexts["currentTurn"].waitForExistence(timeout:15));ready(app)
+        func cell(_ x:Int,_ y:Int) -> String { app.buttons["play-cell-\(x)-\(y)"].label }
+        let start = resources(app)
+        XCTAssertTrue(start.contains("能量 6/6") && start.contains("1 AP"), start)
+        XCTAssertTrue(cell(4,1).contains("白方主將"))
+        tap(app,"mode-advanced");normalPoints(app,[(4,3),(4,2),(5,3),(5,2)])
+        tap(app,"playConfirm")
+        XCTAssertTrue(app.descendants(matching:.any)["matchResult"].firstMatch.waitForExistence(timeout:15),"Reformation captures the commander")
+        XCTAssertFalse(cell(4,1).contains("主將"))
+        let undo = app.buttons["undoOrCancel"]
+        XCTAssertTrue(undo.isEnabled,"the winning skill is a human decision that can be undone")
+        undo.tap();ready(app)
+        XCTAssertFalse(app.descendants(matching:.any)["matchResult"].firstMatch.exists)
+        XCTAssertTrue(cell(4,1).contains("白方主將"))
+        XCTAssertTrue(cell(4,3).contains("黑方士兵") && cell(5,3).contains("黑方士兵"))
+        XCTAssertTrue(cell(4,2).contains("空點") && cell(5,2).contains("空點"))
+        XCTAssertEqual(resources(app),start)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到黑方戰士")
+        XCTAssertFalse((app.buttons["mode-advanced"].value as? String ?? "").contains("本回合已施法"))
+        Thread.sleep(forTimeInterval:3)
+        XCTAssertEqual(app.staticTexts["currentTurn"].label,"輪到黑方戰士","the computer does not move after the undo")
+        XCTAssertTrue(cell(4,1).contains("白方主將"))
+        #else
+        throw XCTSkip("Undo fixtures are DEBUG-only")
         #endif
     }
     func testSoloDefaultsFourClassesNewBoardAndUndoCrossesComputerReply() {
@@ -858,6 +930,8 @@ import XCTest
 private extension XCUIApplication {
     var expansionShellArguments: [String] {
         get { launchArguments }
-        set { launchArguments = ["--integrated-shell"] + newValue }
+        // A fresh token per test resets sound settings once, so results do not depend on test order or on preferences
+        // left in the simulator; relaunching the same app object keeps the token and therefore the test's own settings.
+        set { launchArguments = ["--integrated-shell"] + newValue + ["--sound-preferences-reset", UUID().uuidString] }
     }
 }

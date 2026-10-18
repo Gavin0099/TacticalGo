@@ -1,6 +1,24 @@
 import SwiftUI
 import TacticalGoContent
 @main struct TacticalGoApp: App {
+    init() {
+        #if DEBUG
+        Self.resetSoundPreferencesIfRequested()
+        #endif
+    }
+    #if DEBUG
+    /// UI tests pass `--sound-preferences-reset <token>` so each test starts from the default sound settings instead of
+    /// whatever an earlier test left in UserDefaults. The reset happens once per token: relaunching inside the same
+    /// test (to check that settings persist) keeps the values that test chose.
+    private static func resetSoundPreferencesIfRequested() {
+        let args = ProcessInfo.processInfo.arguments, defaults = UserDefaults.standard
+        guard let i = args.firstIndex(of: "--sound-preferences-reset"), args.indices.contains(i + 1) else { return }
+        let token = args[i + 1]
+        guard defaults.string(forKey: "debug.soundPreferencesResetToken") != token else { return }
+        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix("combatAudio.") { defaults.removeObject(forKey: key) }
+        defaults.set(token, forKey: "debug.soundPreferencesResetToken")
+    }
+    #endif
     @State private var ready = false
     @State private var failed = false
     private var legacyReview: Bool {

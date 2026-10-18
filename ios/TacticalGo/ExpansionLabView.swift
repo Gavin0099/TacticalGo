@@ -236,6 +236,22 @@ import TacticalGoVisuals
         stop();cancelSelection();voiceCadence.reset();reviewTime = nil;reviewReceipt = nil
         session = rebuilt;size = 9;one = .rogue;two = .mage;computer = nil;mode = .skill
     }
+    /// UI-test positions for undo across a computer reply (Black = human warrior, White = computer mage). Hand-placed,
+    /// so they are review fixtures and never saved. "capture": a connected Bastion captures White F5 and leaves 1 AP.
+    /// "win": the core-verified Reformation (E4→E3, F4→F3) captures White's commander in one AP.
+    func undoFixture(_ kind: String) {
+        stop();cancelSelection();reviewFixture = true
+        var c = RuleConfig.board(size:9);c.expansionSkills = true;c.bastionScope = .connectedGroup
+        let diagram: String, ap: Int
+        if kind == "win" {
+            diagram = "....xx...\n...xOox..\n...x..x..\n...xxx...\n...H.....\n.........\n.........\n....X....\n........."; ap = 1
+        } else {
+            diagram = ".........\n....O....\n.........\n.....x...\n.....xox.\n.....H...\n.........\n....X....\n........."; ap = 2
+        }
+        session = GameSession(try! GameSetup.fromDiagram(config:c,diagram:diagram,classOne:.warrior,classTwo:.mage,manaOne:6,manaTwo:6,ap:ap))
+        size = 9;one = .warrior;two = .mage;mode = .soldier
+        instruction = "工程棋形：復原跨過電腦回應（\(kind)）；不作可達開局或平衡證明。"
+    }
     func warriorBotReview() {
         stop();cancelSelection();reviewFixture = true
         var c = RuleConfig.board(size:9);c.expansionSkills = true
@@ -417,6 +433,17 @@ import TacticalGoVisuals
         guard let session else { throw RecordError.invalidSetup }
         return try ExpansionMatchRecord(session:session,computer:computer,difficulty:computer == nil ? nil:difficulty,matchID:matchID)
     }
+    #if DEBUG
+    /// UI-test setup only: legal end-turn pairs applied straight to the session (the scene is not active yet at launch),
+    /// then saved, so the match stays a recordable game from a real opening.
+    func passTurnsForTest(untilBlackMana mana: Int) {
+        guard var s = session else { return }
+        while s.state.mana(of:.one) < mana, s.state.current == .one, s.state.ply < 30 {
+            guard s.apply(.endTurn).success, s.apply(.endTurn).success else { break }
+        }
+        session = s; cancelSelection(); saveCandidate(announce:false)
+    }
+    #endif
     func saveCandidate(announce: Bool = true) {
         guard let session,!reviewFixture else { return }
         do {
@@ -662,6 +689,7 @@ import TacticalGoVisuals
         let spent = preview.events.compactMap { e -> String? in if case .resourcesSpent(_,let ap,let mana) = e { return "\(ap) AP／\(mana) 能量" }; return nil }.first ?? ""
         // Priest sacrifices say what the sacrifice buys (review PRIEST-S2-P0: players could not see why to give a stone up).
         if let action = pending, let insight = PriestSacrificeInsight(state, action) {
+            // Same "合法預覽：" lead as every other skill; the line may be cut on a phone, 技能說明 shows it whole.
             return "合法預覽：\(spent) · \(insight.summary)。確認前不扣資源、不播聲音。"
         }
         return "合法預覽：\(spent) · 提 \(captures) 顆。確認前不扣資源、不播聲音。"

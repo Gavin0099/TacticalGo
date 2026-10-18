@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-LAST_UPLOADED_BUILD = 1115   # last build known to be uploaded for this app; raise if App Store Connect shows more
+LAST_UPLOADED_BUILD = 1116   # last build known to be uploaded for this app; raise if App Store Connect shows more
 ALLOWED = {
     "MARKETING_VERSION", "CURRENT_PROJECT_VERSION", "CROWN_UNLOCK_PRODUCT_ID", "CROWN_PRIVACY_URL",
     "CROWN_SUPPORT_URL", "CROWN_ADMOB_APP_ID", "CROWN_REWARDED_AD_UNIT_ID",

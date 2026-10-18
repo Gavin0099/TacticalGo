@@ -1,0 +1,166 @@
+{
+  "branches" : [
+    {
+      "board" : "..o.ooo\nooxOoo.\nxxxo.oo\n.xxQoo.\noxxH.xo\n.xxXxxx\n.xx.xo.",
+      "game" : 1,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "keptTurn" : [
+        "1-place:3,0",
+        "1-place:0,1"
+      ],
+      "mana" : 6,
+      "opponent" : "Mage",
+      "ply" : 31,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "完整回合 2 次行動；攻守分數 451",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 6（用聖所為 2）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "sanctumTurn" : [
+        "8-sanctum:4,2:4,4",
+        "1-place:0,1"
+      ]
+    },
+    {
+      "board" : "oooxxxx\no.QOxxx\nooxxxx.\nooox.xx\noooHoxx\n.ooX.xx\noxxxxxx",
+      "game" : 2,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "keptTurn" : [
+        "8-offering:6,3",
+        "1-place:5,0"
+      ],
+      "mana" : 4,
+      "opponent" : "Rogue",
+      "ply" : 63,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "使用技能重組棋形",
+        "提掉敵方棋子 1 枚",
+        "敵主將生存空格 2 → 1",
+        "Mana 4 → 2",
+        "完整回合 2 次行動；攻守分數 4540",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 2（用聖所為 0）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 0
+      },
+      "sanctumTurn" : [
+        "8-sanctum:4,5:5,4",
+        "1-place:5,0"
+      ]
+    },
+    {
+      "board" : "xxooo.o\nxxxO.o.\nxxxQo.o\nxxxooo.\nx.xHo.o\n.x.Xxox\nxxoxxxx",
+      "game" : 3,
+      "keptResult" : {
+        "castSanctumLater" : true,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "8-offering:3,2",
+        "1-place:4,5"
+      ],
+      "mana" : 5,
+      "opponent" : "Priest",
+      "ply" : 51,
+      "priestColour" : "black",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "使用技能重組棋形",
+        "提掉敵方棋子 1 枚",
+        "Mana 5 → 3",
+        "完整回合 2 次行動；攻守分數 310",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 4 口氣，能量 3（用聖所為 1）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "sanctumTurn" : [
+        "8-sanctum:3,2:5,2",
+        "1-place:4,5"
+      ]
+    },
+    {
+      "board" : "o.oxxx.\n.ooOx.x\noo.Qxx.\n.ooxxxo\nooxHx.x\n.ooXxx.\noox.x.x",
+      "game" : 4,
+      "keptResult" : {
+        "castSanctumLater" : false,
+        "immediatelySafe" : true,
+        "status" : "Ongoing",
+        "winner" : null
+      },
+      "keptTurn" : [
+        "1-place:3,0",
+        "1-place:6,3"
+      ],
+      "mana" : 6,
+      "opponent" : "Warrior",
+      "ply" : 24,
+      "priestColour" : "white",
+      "reasons" : [
+        "簡單：有限己方回合搜尋，不搜尋對手完整回合反擊",
+        "提掉敵方棋子 1 枚",
+        "敵主將生存空格 7 → 6",
+        "完整回合 2 次行動；攻守分數 -234",
+        "簡單：選擇接近最佳的合法候選，減少精準施壓；不保證玩家獲勝",
+        "保留能量：不用聖所時主將仍有 5 口氣，能量 6（用聖所為 2）"
+      ],
+      "sanctumResult" : {
+        "immediatelySafe" : true,
+        "status" : "Won",
+        "winner" : 1
+      },
+      "sanctumTurn" : [
+        "8-sanctum:2,1:2,2",
+        "1-place:6,3"
+      ]
+    }
+  ],
+  "notClaimed" : [
+    "that a few branches decide the question",
+    "balance",
+    "human preference"
+  ],
+  "setup" : {
+    "boardSize" : 7,
+    "comparison" : "rule off vs rule on at the same position, then both sides play on with the rule on",
+    "difficulty" : "easy",
+    "games" : 16,
+    "horizonOwnAndOpponentTurns" : 16
+  },
+  "totals" : {
+    "branches" : 4,
+    "games" : 16,
+    "keptThenCastSanctumWithinHorizon" : 1,
+    "keptWorse" : 1,
+    "priestTurns" : 245,
+    "sameResult" : 3,
+    "sanctumChosenWithRule" : 5
+  }
+}
