@@ -236,6 +236,13 @@ struct ExpansionGameView: View {
                 store.expansion?.monsterReview(value);boardSize = 9;one = .warrior;two = .mage
                 inMatch = true;store.setMatchAudioActive(true)
             }
+            if let i = args.firstIndex(of:"--undo-fixture"),args.indices.contains(i+1) {
+                // Human Black warrior against the computer's White mage, on a hand-placed review position.
+                useExpansion = true;singlePlayer = true;humanSide = .one
+                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.two)
+                store.expansion?.undoFixture(args[i+1]);boardSize = 9
+                inMatch = true;store.setMatchAudioActive(true)
+            }
             if args.contains("--solo-warrior-review") {
                 useExpansion = true;singlePlayer = true
                 store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.one)
