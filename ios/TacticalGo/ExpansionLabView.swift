@@ -958,8 +958,8 @@ struct ExpansionBoard: View {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
                             Path { path in path.move(to:presentation.center(from,size)); path.addLine(to:presentation.center(to,size)) }
-                                .stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).zIndex(220)
-                            Circle().stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).frame(width:pitch*0.66).position(presentation.center(to,size)).zIndex(220)
+                                .stroke(ArtV2.enabled ? ArtV2.preview : P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).zIndex(220)
+                            Circle().stroke(ArtV2.enabled ? ArtV2.preview : P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).frame(width:pitch*0.66).position(presentation.center(to,size)).zIndex(220)
                         }
                     }
                 }

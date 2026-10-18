@@ -1101,6 +1101,13 @@ struct ExpansionGameView: View {
                 #endif
             }
             #if DEBUG || TACTICALGO_V11
+            if ArtV2.enabled,!reduceMotion,let result = presentedResult,store.expansion?.reviewTime == nil {
+                let human = store.computer
+                let tone: ArtResultBanner.Tone = store.state.status == .drawn ? .draw
+                    : (human != nil ? (store.state.winner == human ? .defeat : .victory) : .victory)
+                ArtResultBanner(title:result == "和局" ? "和局" : (human != nil ? (tone == .victory ? "勝利" : "敗北") : result),tone:tone)
+                    .frame(maxWidth:.infinity,maxHeight:.infinity).id(result + String(store.state.ply))
+            }
             if store.botReviewPhases && store.isBotActing {
                 Button("下一演出階段") { store.advanceBotReviewPhase() }
                     .font(.system(size: 10)).padding(5).background(Color.ink)

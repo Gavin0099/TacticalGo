@@ -14,6 +14,8 @@ enum ArtV2 {
         #endif
     }
     static let brass = Color(red: 0.88, green: 0.72, blue: 0.42)
+    /// Dashed preview lines and rings (pushes, swaps): brass instead of the old purple.
+    static let preview = Color(red: 1, green: 0.86, blue: 0.46)
     static let brassDark = Color(red: 0.42, green: 0.28, blue: 0.12)
 
     /// Star points for the two board sizes, drawn as small brass studs (like the dots on a go board).
@@ -368,6 +370,61 @@ struct ArtImpact: View {
                 }
             }
         }.frame(width: size.width, height: size.height).allowsHitTesting(false).accessibilityHidden(true)
+    }
+}
+
+/// A short ribbon over the board when the match ends (about 3 seconds, then it fades and the result dock remains).
+/// Victory: gold ribbon with slowly turning rays. Defeat: dark and quiet. Draw: steel. Not shown for reduced motion;
+/// it never intercepts touches and is hidden from accessibility (the dock already says the result).
+struct ArtResultBanner: View {
+    enum Tone { case victory, defeat, draw }
+    let title: String
+    let tone: Tone
+    @State private var start = Date()
+    private var colors: [Color] {
+        switch tone {
+        case .victory: [Color(red:0.30,green:0.22,blue:0.08),Color(red:0.14,green:0.12,blue:0.10)]
+        case .defeat: [Color(red:0.26,green:0.10,blue:0.12),Color(red:0.10,green:0.07,blue:0.09)]
+        case .draw: [Color(red:0.17,green:0.24,blue:0.30),Color(red:0.08,green:0.11,blue:0.15)]
+        }
+    }
+    private var edge: Color { tone == .victory ? Color(red:1,green:0.84,blue:0.42) : tone == .defeat ? Color(red:0.75,green:0.45,blue:0.45) : Color(red:0.62,green:0.76,blue:0.86) }
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 1.0/30)) { context in
+            let t = context.date.timeIntervalSince(start)
+            let appear = min(1, t / 0.45)
+            let ease = 1 - pow(1 - appear, 3)
+            let fade = t > 2.6 ? max(0, 1 - (t - 2.6) / 0.6) : 1
+            ZStack {
+                if tone == .victory {
+                    Canvas { ctx, size in
+                        let c = CGPoint(x: size.width/2, y: size.height/2)
+                        let spin = t * 0.25
+                        for k in 0..<14 {
+                            let a0 = spin + Double(k) * 2 * .pi / 14, a1 = a0 + .pi / 28
+                            var path = Path(); path.move(to: c)
+                            path.addLine(to: CGPoint(x: c.x + CGFloat(cos(a0)) * size.width, y: c.y + CGFloat(sin(a0)) * size.width))
+                            path.addLine(to: CGPoint(x: c.x + CGFloat(cos(a1)) * size.width, y: c.y + CGFloat(sin(a1)) * size.width)); path.closeSubpath()
+                            ctx.fill(path, with: .radialGradient(Gradient(colors:[Color(red:1,green:0.88,blue:0.5).opacity(0.30),.clear]), center: c, startRadius: 0, endRadius: size.width * 0.7))
+                        }
+                    }.opacity(ease)
+                }
+                VStack(spacing: 0) {
+                    Rectangle().fill(edge).frame(height: 2)
+                    ZStack {
+                        LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom)
+                        Text(title).font(.system(size: 34, weight: .heavy, design: .serif))
+                            .foregroundStyle(LinearGradient(colors:[Color(red:1,green:0.96,blue:0.78),edge],startPoint:.top,endPoint:.bottom))
+                            .shadow(color: .black.opacity(0.7), radius: 2, y: 2)
+                            .kerning(4)
+                    }.frame(height: 66)
+                    Rectangle().fill(edge).frame(height: 2)
+                }
+                .shadow(color: edge.opacity(tone == .victory ? 0.5 : 0.2), radius: 10)
+                .scaleEffect(x: 1, y: CGFloat(0.2 + 0.8 * ease))
+            }
+            .opacity(fade)
+        }.allowsHitTesting(false).accessibilityHidden(true)
     }
 }
 
