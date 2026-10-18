@@ -256,27 +256,38 @@ struct ArtPlayerStrip: View {
                     Spacer(minLength: 0)
                     Text(status).font(.system(size: 10, weight: .bold)).foregroundStyle(active ? GameChrome.gold : GameChrome.muted)
                 }
-                HStack(spacing: 2) {
-                    ForEach(0..<cap, id: \.self) { i in ArtCrystal(lit: i < mana) }
-                    Text("\(liberties) 氣").font(.system(size: 10, weight: .semibold)).foregroundStyle(liberties <= 1 ? Color.redTeam : GameChrome.muted).padding(.leading, 3)
-                    Spacer(minLength: 0)
-                    if active {
-                        HStack(spacing: 3) {
-                            ForEach(0..<max(apMax, ap), id: \.self) { i in
-                                Circle().fill(i < ap ? GameChrome.gold : Color.clear)
-                                    .overlay(Circle().stroke(GameChrome.gold.opacity(0.8), lineWidth: 1))
-                                    .frame(width: 7, height: 7)
-                                    .shadow(color: i < ap ? GameChrome.gold.opacity(0.8) : .clear, radius: 2)
-                                    .scaleEffect(i < ap ? 1 : 0.8)
-                                    .animation(reduced ? nil : .spring(response: 0.3, dampingFraction: 0.45), value: i < ap)
-                            }
-                            Text("\(ap) AP").font(.system(size: 10, weight: .bold)).foregroundStyle(GameChrome.cream)
-                        }
-                    }
+                // Narrow phones: drop the "N AP" label first (the pips and the spoken value still carry it).
+                ViewThatFits(in: .horizontal) {
+                    resourceRow(showApLabel: true)
+                    resourceRow(showApLabel: false)
                 }
                 if let loot { Text(loot).font(.system(size: 10)).foregroundStyle(GameChrome.gold) }
             }
         }.padding(.horizontal, 6).padding(.vertical, 5)
+    }
+}
+
+extension ArtPlayerStrip {
+    func resourceRow(showApLabel: Bool) -> some View {
+        HStack(spacing: 2) {
+            ForEach(0..<cap, id: \.self) { i in ArtCrystal(lit: i < mana) }
+            Text("\(liberties) 氣").font(.system(size: 10, weight: .semibold)).foregroundStyle(liberties <= 1 ? Color.redTeam : GameChrome.muted)
+                .padding(.leading, 3).fixedSize()
+            Spacer(minLength: 0)
+            if active {
+                HStack(spacing: 3) {
+                    ForEach(0..<max(apMax, ap), id: \.self) { i in
+                        Circle().fill(i < ap ? GameChrome.gold : Color.clear)
+                            .overlay(Circle().stroke(GameChrome.gold.opacity(0.8), lineWidth: 1))
+                            .frame(width: 7, height: 7)
+                            .shadow(color: i < ap ? GameChrome.gold.opacity(0.8) : .clear, radius: 2)
+                            .scaleEffect(i < ap ? 1 : 0.8)
+                            .animation(reduced ? nil : .spring(response: 0.3, dampingFraction: 0.45), value: i < ap)
+                    }
+                    if showApLabel { Text("\(ap) AP").font(.system(size: 10, weight: .bold)).foregroundStyle(GameChrome.cream).fixedSize() }
+                }
+            }
+        }
     }
 }
 
