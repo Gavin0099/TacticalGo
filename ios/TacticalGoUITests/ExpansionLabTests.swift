@@ -643,7 +643,7 @@ import XCTest
         if app.switches["audioMute"].value as? String == "1" {
             app.switches["audioMute"].coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
         }
-        XCTAssertEqual(app.switches["audioMute"].value as? String,"0");tap(app,"audioSettingsDone")
+        XCTAssertEqual(app.switches["audioMute"].value as? String,"0");closeSettingsSheet(app)
         tap(app,"mode-advanced");normalPoints(app,[(4,5),(5,5),(4,3),(3,3)])
         XCTAssertTrue(app.staticTexts["integratedExpansionAudit"].label.contains("cues=0|players=0|active=false"))
         tap(app,"playConfirm");ready(app)
@@ -657,7 +657,7 @@ import XCTest
         XCTAssertEqual(app.switches["audioMute"].value as? String,"1")
         app.switches["reduceCombatMotion"].coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
         XCTAssertEqual(app.switches["reduceCombatMotion"].value as? String,"1")
-        shot(app,"unified-muted-reduced-settings");tap(app,"audioSettingsDone")
+        shot(app,"unified-muted-reduced-settings");closeSettingsSheet(app)
         XCTAssertTrue(app.staticTexts["integratedExpansionAudit"].label.contains("muted=true"))
         let before = app.staticTexts["integratedExpansionAudit"].label.components(separatedBy:"|")[0]
         tap(app,"mode-advanced");normalPoints(app,[(4,5),(5,5),(4,3),(3,3)]);tap(app,"playConfirm");ready(app)
@@ -769,6 +769,17 @@ import XCTest
     private func launch(_ args: [String] = ["--expansion-lab"]) -> XCUIApplication {
         let app = XCUIApplication(); app.expansionShellArguments = args; app.launch()
         XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:15)); return app
+    }
+    /// Taps 完成 and waits until the settings sheet is really gone. Without the wait, the next tap (mode-advanced, a cell)
+    /// sometimes lands while the sheet is still dismissing and every later step fails ("not hittable").
+    private func closeSettingsSheet(_ app: XCUIApplication) {
+        let done = app.buttons["audioSettingsDone"]
+        for _ in 0..<3 {
+            if done.waitForExistence(timeout:3) { done.tap() }
+            let gone = XCTNSPredicateExpectation(predicate:NSPredicate(format:"exists == false"),object:done)
+            if XCTWaiter.wait(for:[gone],timeout:4) == .completed { return }
+        }
+        XCTFail("The settings sheet did not close")
     }
     /// Opens the match menu and waits for one of its rows. Seen in full runs: the first tap on the menu button was lost
     /// and every later step failed, so the tap is repeated (never gated on isHittable: the menu button reports itself
