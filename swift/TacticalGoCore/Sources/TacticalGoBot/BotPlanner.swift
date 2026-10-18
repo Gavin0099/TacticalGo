@@ -54,6 +54,11 @@ public struct BotSearchStats: Sendable {
     /// Why passing won the bounded comparison, with actual retained-candidate values.
     public internal(set) var passDiagnostics: [String] = []
 }
+public struct BotCandidateTurn: Sendable {
+    public let actions: [GameAction]
+    public let state: GameState
+    public let ownScore: Int
+}
 public struct BotTurnPlan: Sendable {
     /// Stops exactly at victory, draw, or the handover to the opponent.
     public let actions: [GameAction]
@@ -62,6 +67,20 @@ public struct BotTurnPlan: Sendable {
     public let score: Int
 }
 public enum BotPlanner {
+    /// Observation only (TENSION-01): the complete own turns the planner retains after its own-turn beam, best first,
+    /// with its own-turn heuristic score. A direct victory returns just that turn. This does not change planTurn.
+    public static func candidateTurns(_ state: GameState, limits: BotLimits = .standard,
+                                      difficulty: BotDifficulty = .standard) -> [BotCandidateTurn] {
+        guard state.status == .ongoing else { return [] }
+        var search = Search(root: state, limits: limits, difficulty: difficulty, diagnostics: false, cancelled: { false })
+        guard let plan = search.run() else { return [] }
+        if search.continuationCandidates.isEmpty {
+            var current = state
+            for action in plan.actions { let result = GameEngine.apply(current, action); guard result.success else { return [] }; current = result.state }
+            return [BotCandidateTurn(actions: plan.actions, state: current, ownScore: plan.score)]
+        }
+        return search.continuationCandidates.map { BotCandidateTurn(actions: $0.actions, state: $0.state, ownScore: $0.score) }
+    }
     public static func planTurn(_ state: GameState, limits: BotLimits = .standard,
                                 difficulty: BotDifficulty = .standard, diagnostics: Bool = false, policy: BotPolicy = .baseline,
                                 cancelled: @Sendable () -> Bool = { false }) -> BotTurnPlan? {
@@ -241,7 +260,7 @@ private struct Search {
         // Different move orders can lead to the same board/resources; keep a stable representative.
         // History is deliberately not merged: superko can distinguish otherwise identical states.
         completed.sort(by: better)
-        continuationCandidates = completed.map { BotTurnCandidate(state: $0.state, actions: $0.actions) }
+        continuationCandidates = completed.map { BotTurnCandidate(state: $0.state, actions: $0.actions, score: $0.score) }
         stats.turnCandidates = completed.count
         stats.ownTurnComparisons = completed.map { "\($0.key) own=\($0.score)" }
         if let pass = completed.first(where: { $0.actions.allSatisfy { $0 == .endTurn } }) {

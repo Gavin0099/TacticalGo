@@ -1,0 +1,88 @@
+{
+  "cases" : [
+    {
+      "ap" : 2,
+      "board" : "xooQH.o\n..xOx..\n.x.x...\n..o....\n.......\no..X..x\n.......",
+      "chosen" : "1-place:1,0\/1-place:2,4",
+      "game" : 7,
+      "legalCompleteTurns" : 668,
+      "mana" : [
+        3,
+        4
+      ],
+      "player" : 1,
+      "ply" : 8,
+      "reasons" : [
+        "主將生存空格 1 → 2",
+        "提掉敵方棋子 1 枚",
+        "完整回合 2 次行動；攻守分數 -1000000",
+        "有限對手反應分數 -1000000"
+      ],
+      "safeTurnExists" : false,
+      "safeTurnsFound(capped at 3)" : 0,
+      "setup" : "Mage-vs-Priest"
+    },
+    {
+      "ap" : 2,
+      "board" : ".....x.\n.oxOx.o\n...x...\n.......\n.......\nox.X.o.\n.......",
+      "chosen" : "1-place:0,3\/2-summon:4,5",
+      "game" : 8,
+      "legalCompleteTurns" : 1390,
+      "mana" : [
+        6,
+        6
+      ],
+      "player" : 1,
+      "ply" : 6,
+      "reasons" : [
+        "主將生存空格 1 → 2",
+        "召喚英雄支援攻守位置",
+        "Mana 6 → 4",
+        "完整回合 2 次行動；攻守分數 -1000000",
+        "有限對手反應分數 -1000000"
+      ],
+      "safeTurnExists" : false,
+      "safeTurnsFound(capped at 3)" : 0,
+      "setup" : "Rogue-vs-Warrior"
+    },
+    {
+      "ap" : 2,
+      "board" : ".x.x.o.\nx.xO.o.\n..xQo..\nx..xoo.\n...xo..\n..oXo..\no...o..",
+      "chosen" : "1-place:3,2\/1-place:5,0",
+      "game" : 10,
+      "legalCompleteTurns" : 407,
+      "mana" : [
+        6,
+        6
+      ],
+      "player" : 0,
+      "ply" : 13,
+      "reasons" : [
+        "完整回合 2 次行動；攻守分數 -220",
+        "有限對手反應分數 -413"
+      ],
+      "safeTurnExists" : true,
+      "safeTurnsFound(capped at 3)" : 3,
+      "setup" : "Rogue-vs-Rogue"
+    }
+  ],
+  "notClaimed" : [
+    "slower mistakes",
+    "that a flagged position was lost",
+    "human play"
+  ],
+  "setup" : {
+    "boardSize" : 7,
+    "difficulty" : "standard",
+    "games" : 6,
+    "maxPly" : 60,
+    "opponentReplyBound" : "Core legalActions with expansionCandidateLimit 256, first and second action, all of them",
+    "rules" : "expansion"
+  },
+  "totals" : {
+    "checkedTurns" : 183,
+    "games" : 6,
+    "unsafeChoices" : 3,
+    "unsafeWhileSafeExists" : 1
+  }
+}

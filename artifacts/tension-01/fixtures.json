@@ -1,0 +1,175 @@
+{
+  "fixtures" : [
+    {
+      "ap" : 2,
+      "board" : ".......\n...O...\n.......\n.......\n...o...\n..oX...\n....Hx.",
+      "candidates" : 12,
+      "closeDistinct" : [
+        {
+          "key" : "1-place:1,2\/1-place:5,4",
+          "score" : 274,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk0"
+        },
+        {
+          "key" : "1-place:1,2\/3-bastion:5,4: 6,3",
+          "score" : 270,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk0"
+        },
+        {
+          "key" : "1-place:0,3\/1-place:5,4",
+          "score" : 265,
+          "signature" : "build|cap0|enemyLib3|ownLib4|risk1"
+        },
+        {
+          "key" : "1-place:0,3\/3-bastion:5,4: 6,3",
+          "score" : 261,
+          "signature" : "skill|cap0|enemyLib3|ownLib4|risk1"
+        }
+      ],
+      "name" : "advanced:c03-1-commander-rescue",
+      "player" : 0,
+      "safe" : 12,
+      "unsafeExamples" : [
+
+      ],
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "board" : ".......\n..xOxx.\n.x.ooo.\n..xH.x.\n...xx..\n...X...\n.......",
+      "candidates" : 12,
+      "closeDistinct" : [
+        {
+          "key" : "1-place:0,3\/4-push:2,3:Left",
+          "score" : 5171,
+          "signature" : "skill|cap0|enemyLib1|ownLib4|risk1"
+        },
+        {
+          "key" : "4-push:2,3:Left\/1-place:2,3",
+          "score" : 5132,
+          "signature" : "capture|cap1|enemyLib1|ownLib4|risk0"
+        }
+      ],
+      "name" : "advanced:c03-2-feint-counterattack",
+      "player" : 0,
+      "safe" : 12,
+      "unsafeExamples" : [
+
+      ],
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "board" : ".......\n...O...\n...x.x.\n..xHoo.\n...x.x.\n...X...\n.......",
+      "candidates" : 12,
+      "closeDistinct" : [
+        {
+          "key" : "1-place:1,2\/1-place:1,4",
+          "score" : 4991,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk0"
+        },
+        {
+          "key" : "1-place:0,3\/1-place:1,2",
+          "score" : 4982,
+          "signature" : "build|cap0|enemyLib1|ownLib4|risk1"
+        }
+      ],
+      "name" : "advanced:c03-3-skill-timing",
+      "player" : 0,
+      "safe" : 12,
+      "unsafeExamples" : [
+
+      ],
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 1,
+      "board" : ".......\n...O...\n.......\n.......\noo.....\nHxo....\nxxX....",
+      "candidates" : 10,
+      "closeDistinct" : [
+        {
+          "key" : "8-sanctum:6,0:6,3",
+          "score" : 19,
+          "signature" : "skill|cap0|enemyLib4|ownLib3|risk0"
+        }
+      ],
+      "name" : "sanctum-practice:seven",
+      "player" : 0,
+      "safe" : 3,
+      "unsafeExamples" : [
+        "1-place:6,3",
+        "8-offering:6,0",
+        "8-offering:5,1"
+      ],
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 1,
+      "board" : ".........\n....O....\n.........\n.........\n.........\n.........\n.......oo\n......oxH\n......Xxx",
+      "candidates" : 10,
+      "closeDistinct" : [
+        {
+          "key" : "8-sanctum:8,8:8,5",
+          "score" : -5,
+          "signature" : "skill|cap0|enemyLib4|ownLib3|risk0"
+        }
+      ],
+      "name" : "sanctum-practice:nine",
+      "player" : 0,
+      "safe" : 3,
+      "unsafeExamples" : [
+        "1-place:8,5",
+        "8-offering:8,8",
+        "8-offering:7,7"
+      ],
+      "verdict" : "obvious"
+    },
+    {
+      "ap" : 2,
+      "board" : "..O....\n.......\n.......\n...o...\n..oXo..\n.......\n.......",
+      "candidates" : 12,
+      "closeDistinct" : [
+        {
+          "key" : "1-place:1,2\/2-summon:5,3",
+          "score" : 1091,
+          "signature" : "summon|cap0|enemyLib2|ownLib3|risk0"
+        },
+        {
+          "key" : "1-place:0,1\/2-summon:5,3",
+          "score" : 1082,
+          "signature" : "summon|cap0|enemyLib2|ownLib3|risk1"
+        }
+      ],
+      "name" : "benchmark:commander-rescue",
+      "player" : 0,
+      "safe" : 12,
+      "unsafeExamples" : [
+
+      ],
+      "verdict" : "twoPlans"
+    },
+    {
+      "ap" : 2,
+      "board" : "...x...\n..xOx..\n.H.o...\n.......\n.......\n...X...\n.......",
+      "candidates" : 1,
+      "closeDistinct" : [
+        {
+          "key" : "4-push:2,3:Left\/1-place:2,3",
+          "score" : 1000000,
+          "signature" : "win|cap0|enemyLib0|ownLib4|risk0"
+        }
+      ],
+      "name" : "benchmark:mage-two-action-capture",
+      "player" : 0,
+      "safe" : 1,
+      "unsafeExamples" : [
+
+      ],
+      "verdict" : "winningTurn"
+    }
+  ],
+  "notClaimed" : [
+    "that retained candidates are all legal turns",
+    "human difficulty"
+  ]
+}

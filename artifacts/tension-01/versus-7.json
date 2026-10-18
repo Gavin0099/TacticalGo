@@ -1,0 +1,181 @@
+{
+  "games" : [
+    {
+      "easyPasses" : 1,
+      "finalBoard" : ".x.x.x.\nxx...xx\nxx.Hxx.\n.x.xxxx\nx..xxxx\n...Xxx.\n..xxx.x",
+      "game" : 0,
+      "result" : "standardWon",
+      "setup" : "Warrior-vs-Warrior",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 27
+    },
+    {
+      "easyPasses" : 24,
+      "finalBoard" : "ooooooo\nxxoOooo\nxxxooQ.\nxxxxxoo\n.xxHxxo\nxxxXxoo\n.xxxooo",
+      "game" : 1,
+      "result" : "drawn",
+      "setup" : "Warrior-vs-Mage",
+      "standardColour" : "white",
+      "standardPasses" : 27,
+      "turns" : 96
+    },
+    {
+      "easyPasses" : 32,
+      "finalBoard" : "ooooooo\n.ooOxoo\nooxxHxx\noxxxxxx\nx.xxxxx\n.xxXxx.\nx.xxx.x",
+      "game" : 2,
+      "result" : "drawn",
+      "setup" : "Warrior-vs-Rogue",
+      "standardColour" : "black",
+      "standardPasses" : 29,
+      "turns" : 96
+    },
+    {
+      "easyPasses" : 1,
+      "finalBoard" : "..o.ooo\n...Oooo\n...oooo\n...Q.oo\n..o.o.o\n.....oo\n....ooo",
+      "game" : 3,
+      "result" : "standardWon",
+      "setup" : "Warrior-vs-Priest",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 30
+    },
+    {
+      "easyPasses" : 32,
+      "finalBoard" : "ooooxxx\noooOQxx\noooooxx\nooxxxxx\noooH.xx\noooXxx.\no.oxxxx",
+      "game" : 4,
+      "result" : "drawn",
+      "setup" : "Mage-vs-Warrior",
+      "standardColour" : "black",
+      "standardPasses" : 34,
+      "turns" : 96
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : "x.xxo.o\n..xOoQ.\nx.xxooo\n..oo..o\n.ooooo.\noo....o\noooo.o.",
+      "game" : 5,
+      "result" : "standardWon",
+      "setup" : "Mage-vs-Mage",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 26
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : "...x...\n.ox.H..\n..Qx.x.\n...oo..\n...x.o.\n...X...\n..o....",
+      "game" : 6,
+      "result" : "standardWon",
+      "setup" : "Mage-vs-Rogue",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 3
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : "x...H.o\n.xx.x..\n.x.x...\n..o....\n...o...\no.oX..x\n.......",
+      "game" : 7,
+      "result" : "easyWon",
+      "setup" : "Mage-vs-Priest",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 5
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : "..x.Hx.\n.ox.x.o\n...x...\n.......\n.......\nox.XQo.\n.......",
+      "game" : 8,
+      "result" : "standardWon",
+      "setup" : "Rogue-vs-Warrior",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 3
+    },
+    {
+      "easyPasses" : 1,
+      "finalBoard" : "..oooo.\n...Oo.o\n....oo.\n...Qooo\n...oooo\no...ooo\n...o.oo",
+      "game" : 9,
+      "result" : "standardWon",
+      "setup" : "Rogue-vs-Mage",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 52
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : ".x.x.o.\nx.xO.o.\n..xxo..\nx.oxoo.\n.xxQ...\n..o.o..\no..oo..",
+      "game" : 10,
+      "result" : "easyWon",
+      "setup" : "Rogue-vs-Rogue",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 10
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : ".ox.ox.\nxoxO.ox\noooooox\n.o.Qx.o\no.oooH.\no....oo\n.o.oooo",
+      "game" : 11,
+      "result" : "standardWon",
+      "setup" : "Rogue-vs-Priest",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 32
+    },
+    {
+      "easyPasses" : 1,
+      "finalBoard" : ".xxx...\nxx....x\n.x.x...\nx..x.xx\n...Hx.x\n..xX.x.\n...xx.x",
+      "game" : 12,
+      "result" : "standardWon",
+      "setup" : "Priest-vs-Warrior",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 25
+    },
+    {
+      "easyPasses" : 0,
+      "finalBoard" : ".xo.xx.\n.xoO...\n..xQx..\nx.xx...\n..ooo.x\n.oo..o.\n..oooo.",
+      "game" : 13,
+      "result" : "standardWon",
+      "setup" : "Priest-vs-Mage",
+      "standardColour" : "white",
+      "standardPasses" : 0,
+      "turns" : 10
+    },
+    {
+      "easyPasses" : 1,
+      "finalBoard" : ".......\n.x....x\n.....x.\nx...x.x\nxx.H.xx\nx.xXxxx\n.xx.xxx",
+      "game" : 14,
+      "result" : "standardWon",
+      "setup" : "Priest-vs-Rogue",
+      "standardColour" : "black",
+      "standardPasses" : 0,
+      "turns" : 41
+    },
+    {
+      "easyPasses" : 29,
+      "finalBoard" : "oooo.oo\noooOoxo\nooo.Qxx\nooooxx.\nooooxxx\nooHXxxx\nooooxx.",
+      "game" : 15,
+      "result" : "drawn",
+      "setup" : "Priest-vs-Priest",
+      "standardColour" : "white",
+      "standardPasses" : 23,
+      "turns" : 96
+    }
+  ],
+  "notClaimed" : [
+    "human strength",
+    "balance",
+    "that wins mean the standard bot is strong"
+  ],
+  "setup" : {
+    "boardSize" : 7,
+    "games" : 16,
+    "opening" : "seeded random soldiers for plies 1-4 (seed = game index), then Standard vs Easy",
+    "rules" : "expansion"
+  },
+  "totals" : {
+    "drawn" : 4,
+    "easyWon" : 2,
+    "games" : 16,
+    "standardWon" : 10
+  }
+}

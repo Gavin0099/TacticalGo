@@ -9,6 +9,8 @@ public enum BotPolicy: String, Sendable, CaseIterable { case baseline, forcingCo
 struct BotTurnCandidate {
     let state: GameState
     let actions: [GameAction]
+    /// The planner's own-turn heuristic score; observation only, not used by the continuation policies.
+    var score = 0
     var key: String { actions.map(botActionDescription).joined(separator: "/") }
 }
 
