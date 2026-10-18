@@ -58,6 +58,8 @@ struct ExpansionGameView: View {
     @State private var confirmExit = false
     #if DEBUG
     @State private var polishReviewUsed = false
+    /// Which step the autoplay review reached, or why it stopped; UI tests read it instead of only timing out.
+    @State private var polishStatus = "polish: idle"
     #endif
     
     private var heroes: [HeroClass] {
@@ -196,6 +198,7 @@ struct ExpansionGameView: View {
         .overlay(alignment: .top) {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("--integrated-review-audit"),let match = store.expansion { Text(match.audit).font(.system(size:8)).accessibilityIdentifier("integratedExpansionAudit") }
+            if ProcessInfo.processInfo.arguments.contains("--polish-autoplay") { Text(polishStatus).font(.system(size:8)).accessibilityIdentifier("polishReviewStatus") }
             if ProcessInfo.processInfo.arguments.contains("--integrated-audio-audit") || ProcessInfo.processInfo.arguments.contains("--integrated-volume-audit") || ProcessInfo.processInfo.arguments.contains("--integrated-cadence-audit") {
                 Text(audioAuditStatus).accessibilityIdentifier("integratedAudioAudit").padding().background(Color.ink)
             }
@@ -286,10 +289,15 @@ struct ExpansionGameView: View {
         }
         let fixture = value(after:"--integrated-practice").flatMap(ExpansionPractice.init(rawValue:))
         let monsterFixture = value(after:"--polish-monster").flatMap(MonsterPresentationPractice.init(rawValue:))
-        guard fixture != nil || monsterFixture != nil else { return }
+        guard fixture != nil || monsterFixture != nil else { polishStatus = "polish: stopped - no --integrated-practice or --polish-monster fixture"; return }
         polishReviewUsed = true
-        do { try await Task.sleep(for:.seconds(3)) } catch { return }
-        guard inMatch,scenePhase == .active,let match = store.expansion else { return }
+        // The 3 s preparation and 0.8 s preview are authored windows (testPolishAutoplayBackgroundNeverCommitsOnReturn
+        // backgrounds the app inside them); each step reports where it stopped instead of failing silently.
+        polishStatus = "polish: preparing (3 s window)"
+        do { try await Task.sleep(for:.seconds(3)) } catch { polishStatus = "polish: stopped - preparation cancelled (scene changed)"; return }
+        guard inMatch else { polishStatus = "polish: stopped - no match on screen after preparation"; return }
+        guard scenePhase == .active else { polishStatus = "polish: stopped - scene not active after preparation"; return }
+        guard let match = store.expansion else { polishStatus = "polish: stopped - no expansion match"; return }
         // Fixed review conditions only; never write the owner's persisted sound preferences.
         match.configureReviewSound(voiceEnabled:!args.contains("--polish-voice-off"))
         if args.contains("--polish-body-only") { match.effects = false }
@@ -318,17 +326,24 @@ struct ExpansionGameView: View {
             default: return
             }
         } else { return }
-        let before = match.state,generation = match.generation
+        let before = match.state
         let expected = GameEngine.apply(before,action)
-        guard expected.success else { return }
+        guard expected.success else { polishStatus = "polish: stopped - fixture action illegal: \(expected.reason) (\(action))"; return }
         if monsterFixture == nil { store.changeMode(basic ? .skill:.advanced) }
         for p in points { store.select(p) }
-        guard match.preview?.success == true,match.state == before else { return }
-        do { try await Task.sleep(for:.milliseconds(800)) } catch { return }
-        guard inMatch,scenePhase == .active,store.expansion === match,
-              match.state == before,match.generation == generation else { return }
+        guard match.state == before else { polishStatus = "polish: stopped - board changed while selecting"; return }
+        guard let preview = match.preview else { polishStatus = "polish: stopped - no preview after selecting \(points) in mode \(match.mode)"; return }
+        guard preview.success else { polishStatus = "polish: stopped - preview illegal: \(preview.reason)"; return }
+        // Changing mode cancels any presentation and bumps the generation, so capture it only after selecting.
+        let generation = match.generation
+        polishStatus = "polish: preview legal, showing (0.8 s window)"
+        do { try await Task.sleep(for:.milliseconds(800)) } catch { polishStatus = "polish: stopped - preview window cancelled"; return }
+        guard inMatch,scenePhase == .active,store.expansion === match else { polishStatus = "polish: stopped - match left or scene inactive before confirm"; return }
+        guard match.state == before else { polishStatus = "polish: stopped - board/resources changed before confirm"; return }
+        guard match.generation == generation else { polishStatus = "polish: stopped - presentation generation changed before confirm"; return }
         let committedAt = ProcessInfo.processInfo.systemUptime
         store.confirm()
+        polishStatus = match.state == expected.state ? "polish: committed" : "polish: stopped - confirm did not apply the action"
         let p = match.frameReceipt
         var report: [String:Any] = ["fixture":args.contains("--quality-warrior-fixture") ? "hand-placed-WarriorPresentationFixture":monsterFixture == nil ? "legal-opening-ExpansionPractice":"legal-opening-MonsterPresentationPractice","hero":before.heroClass(of:before.current).rawValue,
             "scene":monsterFixture?.rawValue ?? fixture?.rawValue ?? "unknown",
@@ -343,6 +358,7 @@ struct ExpansionGameView: View {
         report["soundSchedule"] = match.lastSoundSchedule.map { ["key":$0.key,"delay":$0.delay,"gain":$0.gain,"actualPlayerGain":$0.playerGain] as [String:Any] }
         if let i = args.firstIndex(of:"--polish-frame"),args.indices.contains(i+1),let time = Double(args[i+1]) {
             report["frameTime"] = time;report["frameFrozen"] = match.freezeConfirmedFrame(time)
+            polishStatus = report["frameFrozen"] as? Bool == true ? "polish: frozen at \(time)" : "polish: stopped - freeze failed (no receipt or time outside the presentation)"
         }
         let url = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first!.appendingPathComponent("polish-native-review.json")
         if let bytes = try? JSONSerialization.data(withJSONObject:report,options:[.prettyPrinted,.sortedKeys]) { try? bytes.write(to:url,options:.atomic) }

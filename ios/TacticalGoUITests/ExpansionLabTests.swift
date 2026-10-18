@@ -288,7 +288,8 @@ import XCTest
         let audit = app.staticTexts["integratedExpansionAudit"]
         XCTAssertTrue(audit.waitForExistence(timeout:10))
         let frozen = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","frozen=true"),object:audit)
-        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:10),.completed)
+        // On a timeout, say which autoplay step stopped (polishReviewStatus) instead of only "timed out".
+        XCTAssertEqual(XCTWaiter.wait(for:[frozen],timeout:20),.completed, app.staticTexts["polishReviewStatus"].label)
         XCTAssertTrue(audit.label.contains("players=0|active=false"))
         shot(app,"p28b-chain-first-contact-exact-frame")
         tap(app,"undoOrCancel");ready(app)
