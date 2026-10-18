@@ -464,7 +464,7 @@ import XCTest
         // 5. Change the sacrifice: pick one, cancel, pick the taught one, then the exit.
         app.buttons["play-cell-0-6"].tap(); step("②"); cancel.tap(); step("①")
         app.buttons["play-cell-1-5"].tap(); app.buttons["play-cell-3-6"].tap()
-        let legal = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "犧牲後氣 1→3"), object: app.staticTexts["playMessage"])
+        let legal = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS %@", "犧牲 B6→補 D7 · 主將氣 1→3"), object: app.staticTexts["playMessage"])
         XCTAssertEqual(XCTWaiter.wait(for: [legal], timeout: 5), .completed)
         XCTAssertTrue(confirm.isEnabled)
         // 6. Confirm, then undo: board and mana both come back.
