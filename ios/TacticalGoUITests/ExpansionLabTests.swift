@@ -799,7 +799,9 @@ import XCTest
             let before = app.staticTexts["exp-status"].label
             let beforeCell = app.buttons["exp-cell-\(occupied.0)-\(occupied.1)"].label
             points(app,targets)
-            XCTAssertTrue(app.staticTexts["exp-preview"].label.contains("合法預覽"),hero)
+            // Priest sacrifice previews lead with the trade (no "合法預覽：" lead, see ExpansionLabStore.previewMessage); the rest keep it.
+            let preview = app.staticTexts["exp-preview"].label
+            XCTAssertTrue(hero == "priest" ? (preview.contains("犧牲") && preview.contains("氣")) : preview.contains("合法預覽"),hero + ": " + preview)
             XCTAssertEqual(app.staticTexts["exp-status"].label,before)
             XCTAssertEqual(app.buttons["exp-cell-\(occupied.0)-\(occupied.1)"].label,beforeCell)
             shot(app,"exp-\(hero)-preview-source-retained")
