@@ -639,7 +639,7 @@ import XCTest
     func testIntegratedCastingMuteReducedMotionAndBackgroundCancelPlayers() {
         let app = XCUIApplication();app.expansionShellArguments = ["--integrated-practice","mage","--integrated-review-audit"];app.launch()
         XCTAssertTrue(app.staticTexts["currentTurn"].waitForExistence(timeout:15));ready(app)
-        app.buttons["對戰選單"].tap();tap(app,"audioSettings")
+        openMatchMenu(app,"audioSettings");tap(app,"audioSettings")
         if app.switches["audioMute"].value as? String == "1" {
             app.switches["audioMute"].coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
         }
@@ -651,7 +651,7 @@ import XCTest
         XCUIDevice.shared.press(.home);app.activate();ready(app)
         XCTAssertTrue(app.staticTexts["integratedExpansionAudit"].label.contains("players=0|active=false"))
         tap(app,"undoOrCancel")
-        app.buttons["對戰選單"].tap();tap(app,"audioSettings")
+        openMatchMenu(app,"audioSettings");tap(app,"audioSettings")
         XCTAssertEqual(app.switches["castVoice"].value as? String,"1")
         app.switches["audioMute"].coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
         XCTAssertEqual(app.switches["audioMute"].value as? String,"1")
@@ -769,6 +769,18 @@ import XCTest
     private func launch(_ args: [String] = ["--expansion-lab"]) -> XCUIApplication {
         let app = XCUIApplication(); app.expansionShellArguments = args; app.launch()
         XCTAssertTrue(app.staticTexts["exp-status"].waitForExistence(timeout:15)); return app
+    }
+    /// Opens the match menu and waits for one of its rows. Seen in full runs: the first tap on the menu button was lost
+    /// and every later step failed, so the tap is repeated (never gated on isHittable: the menu button reports itself
+    /// as not hittable although a plain tap opens it, which is how the original code worked).
+    private func openMatchMenu(_ app: XCUIApplication,_ row: String) {
+        let menu = app.buttons["對戰選單"]
+        XCTAssertTrue(menu.waitForExistence(timeout:5))
+        for _ in 0..<3 {
+            menu.tap()
+            if app.buttons[row].waitForExistence(timeout:4) { return }
+        }
+        XCTFail("The match menu did not open: " + row)
     }
     private func tap(_ app: XCUIApplication,_ id: String) {
         let b = app.buttons[id]
