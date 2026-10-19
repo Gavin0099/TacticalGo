@@ -1,0 +1,16 @@
+[
+  {
+    "package": "A",
+    "binary_sha256": "9285f6906be0c552987f394b5e4b31cc1f3412ff533d4fea5a6b754569e4f5e0",
+    "catalog_sha256": "480a7e75b9fdb7037c7982710c8604268e62ee3ccb1c58afc490ff8be7389e44",
+    "snapshot_location": "/Users/pc49-58/.codex/worktrees/assets-pass-1/A-tested.app",
+    "scope": "copied from installed A app / built B app before C code changes; no build-for-testing mutation of source"
+  },
+  {
+    "package": "B",
+    "binary_sha256": "042476e0e3dda6e7cb7642260dfe27fb504f9a74cbcc9d6e34a8c31273523913",
+    "catalog_sha256": "ca00733a94f9676891155e2eb5e2c784f0fec9a0b47279566effc20fb6084b43",
+    "snapshot_location": "/Users/pc49-58/.codex/worktrees/assets-pass-1/B-tested.app",
+    "scope": "copied from installed A app / built B app before C code changes; no build-for-testing mutation of source"
+  }
+]

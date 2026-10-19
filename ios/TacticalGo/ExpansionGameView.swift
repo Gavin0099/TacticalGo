@@ -68,6 +68,7 @@ struct ExpansionGameView: View {
     }
     private func portrait(_ h: HeroClass) -> UIImage {
         #if DEBUG || TACTICALGO_V11
+        if ArtV2.enabled, let image = UIImage(named: "\(h.art)-portrait-v30") { return image }
         // The other three are upper-body portraits; the priest's is a redrawn upper-body portrait of the same P08
         // character (assets/candidates/priest-portrait-redraw-v01, 512px here). The full figure stays on the board.
         if h == .priest, let bust = UIImage(named:"priest-portrait-v03") { return bust }

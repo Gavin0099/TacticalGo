@@ -1,0 +1,34 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination "platform=iOS Simulator,id=B3E27BF5-0FC6-4378-8A06-A254DC3782B2" -derivedDataPath /Users/pc49-58/.codex/worktrees/assets-pass-1/DerivedData -resultBundlePath /Users/pc49-58/.codex/worktrees/assets-pass-1/A-rerun.xcresult "-only-testing:TacticalGoUITests/ExpansionLabTests/testMonsterHuntAndLootUseSameNineBoardAndResume" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  GoogleUserMessagingPlatform: https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git @ 3.1.0
+  GoogleMobileAds: https://github.com/googleads/swift-package-manager-google-mobile-ads.git @ 13.11.0
+  TacticalGoCore: /Users/pc49-58/.codex/worktrees/assets-pass-1/TacticalGo/swift/TacticalGoCore @ local
+
+Writing result bundle at path:
+	/Users/pc49-58/.codex/worktrees/assets-pass-1/A-rerun.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:B3E27BF5-0FC6-4378-8A06-A254DC3782B2, OS:18.0, name:iPhone 16 }
+{ platform:iOS Simulator, arch:x86_64, id:B3E27BF5-0FC6-4378-8A06-A254DC3782B2, OS:18.0, name:iPhone 16 }
+2026-10-19 11:33:29.140330+0800 TacticalGoUITests-Runner[21060:6283220] [Default] Running tests...
+2026-10-19 11:33:52.138 xcodebuild[20662:6276766] [MT] IDETestOperationsObserverDebug: 46.513 elapsed -- Testing started completed.
+2026-10-19 11:33:52.138 xcodebuild[20662:6276766] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-19 11:33:52.138 xcodebuild[20662:6276766] [MT] IDETestOperationsObserverDebug: 46.513 sec, +46.513 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/pc49-58/.codex/worktrees/assets-pass-1/A-rerun.xcresult
+
+Testing failed:
+	TacticalGoUITests-Runner (21060) encountered an error (Early unexpected exit, operation never finished bootstrapping - no restart will be attempted. (Underlying Error: Lost pending connection to the test runner before launch.))
+
+** TEST EXECUTE FAILED **
+
+Testing started

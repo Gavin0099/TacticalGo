@@ -981,3 +981,12 @@ Owner要求分析距離爐石品質，未達則繼續優化，至少90%以上才
 - [ ] 依原生聲畫比較再迭代人物表演、次要動作與材質份量；用代表性爐石片段和獨立真人比較判斷整體接近程度。90%仍未驗收，不關閉本項。
 
 本輪驗證後推送同一codex/v11-game-interface候選分支；不合併main或發布TestFlight。報告ANIMATION_24.md與artifacts/animation-24；目前可完成本機候選與browser比較，缺Mac／iPhone聲畫評估能力的項目明確保留，不能冒稱整體完成。
+
+## ASSETS-PASS-1（2026-10-19，Beta/DEBUG候選）
+
+Owner授權從PR #30建立art/assets-pass-1，僅改善肖像、七加一技能圖示、原創可重現音效；一包一commit，推分支開PR，不合併/不TestFlight。Release原素材、棋盤骨架/P02、規則/Bot/存檔/手勢/識別碼不變。
+
+- A已交付四張1254來源及512/256，三設定建置成功；UI首輪61/62，runner終止的一項重啟模擬器後1/1補跑通過；不是乾淨首輪全過。詳細視覺結論：docs/art/ASSETS_PASS_1.md。
+- B已製作七加一圖示並接ArtV2，三設定建置成功；完整UI/原生操作區比較待完成。
+- C已製作25個版本音效並獨立量測：最長1.18s、最大true peak−4.7dBFS、組內0LU（0.1精度）、無削波；載入/成功事件及原生audit待Debug驗證。
+- 實機、真人評分、效能、正式發布權利接受未驗；未重畫棋盤身體。完整證據在artifacts/assets-pass-1及assets/candidates/assets-pass-1。
