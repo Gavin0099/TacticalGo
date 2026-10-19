@@ -1,9 +1,0 @@
-Monitoring boot status for TacticalGo Assets Pass 1 Audio (96BBB949-A09E-480F-B978-2AE55D04FCBC).
-[2026-10-19 03:39:35 +0000] Status=2, isTerminal=NO, Elapsed=00:01.
-	Waiting on Data Migration
-		Reason:(null)
-		Migration Elapsed:00:00 seconds
-
-[2026-10-19 03:40:00 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:26.
-	Finished
-

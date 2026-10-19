@@ -104,3 +104,6 @@ UI首輪總數62：61 passed、1 failed（`testMonsterHuntAndLootUseSameNineBoar
 大廳130pt對照在screens/before/lobby.png與screens/C/lobby.png。另有C-art-v1/capture.png證明回退；它同時關閉PR30材質，僅用於回退檢查，不作PR30品質比較。
 
 C中兩次中止不隱藏：第一次為補缺檔fixture人工中止；第二次在非法預覽播放selection的真實斷言失敗後中止。原因、修正、聚焦回歸及最終66全過見音效報告。A的runner終止根因未定位；重啟模擬器後缺項補跑通過。這些都不改寫為首輪全過。
+
+## 合併前的整理
+為避免 repo 膨脹約 141 MB，合併前移除了建置與測試的原始記錄（`artifacts/assets-pass-1/logs`）與過程截圖（`screens/A`、`B`、`C`、`C-art-v1`、`before`），並把保留的四職前後對照圖縮到最長邊 1100px。這些檔案只在 Codex 的本機工作目錄；上面文字中指向它們的路徑已不存在，結論以本文與保留的圖為準。
