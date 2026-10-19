@@ -20,7 +20,7 @@ import TacticalGoVisuals
     #endif
     init() {
         let keys = ["p8-rogue-coil","p8-rogue-dash","p8-rogue-land","p8-rogue-land-first","p8-priest-prayer","p8-priest-bless","p8-priest-land","p8-slime-coil","p8-slime-bounce","p8-slime-land","p8-wolf-growl","p8-wolf-dash","p8-wolf-land","p8-voice-rogue-A","p8-voice-rogue-B","p8-voice-priest-A","p8-voice-priest-B","p-charge","p-release","p-land","p-capture","mage-voice-english","mage-cast-A","mage-cast-B","p3-air","p4-conjure","p4-push","p4-contact","p5-conjure","p5-push","p5-contact","w7-brace","w7-strike","w7-land","w7-voice-A","w7-voice-B","warrior","place","draw","capture","victory","defeat"]
-        for key in keys + (ArtV2.enabled ? ["selection", "confirm", "summon", "commander-capture"] : []) {
+        for key in keys + (ArtV2.sfx ? ["selection", "confirm", "summon", "commander-capture"] : []) {
             do {
                 // The two chain contacts need independent players; scheduling one twice replaces its first start.
                 let resourceKey = key == "p8-rogue-land-first" ? "p8-rogue-land" : key

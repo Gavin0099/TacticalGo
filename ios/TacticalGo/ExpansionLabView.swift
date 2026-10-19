@@ -316,7 +316,7 @@ import TacticalGoVisuals
     }
     func select(_ p: Point) {
         guard !controlsLocked,state.status == .ongoing else { return }
-        if ArtV2.enabled, active, !interrupted, !muted, legalTargets.contains(p) {
+        if ArtV2.sfx, active, !interrupted, !muted, legalTargets.contains(p) {
             samples.schedule("selection", after: 0, volume: 0.35)
         }
         defer { message = previewText }
@@ -362,7 +362,7 @@ import TacticalGoVisuals
     }
     func confirm(systemReduced: Bool) {
         guard active,!interrupted,!playing,let action = pending,preview?.success == true else { return }
-        if commit(action,systemReduced:systemReduced), ArtV2.enabled, !muted {
+        if commit(action,systemReduced:systemReduced), ArtV2.sfx, !muted {
             samples.schedule("confirm", after: 0, volume: 0.35)
         }
     }
@@ -544,11 +544,11 @@ import TacticalGoVisuals
                 let slime = p.before.config.monsterBattlefield?.kind(at:point) == .slime
                 sound = slime ? [("p8-slime-coil",0.02,ExpansionCueMix.monsterPreparation),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)] : [("p8-wolf-growl",0.02,ExpansionCueMix.monsterPreparation),("p8-wolf-land",p.arrival,ExpansionCueMix.monsterImpact)]
             case .placeSoldier: sound = [("place",p.arrival,0.55)]
-            case .summonHero: sound = [(ArtV2.enabled ? "summon" : "place",p.arrival,0.55)]
+            case .summonHero: sound = [(ArtV2.sfx ? "summon" : "place",p.arrival,0.55)]
             default: break
             }
             if !p.captures.isEmpty {
-                let key = ArtV2.enabled && p.captures.contains(where: { $0.piece.kind == .commander }) ? "commander-capture" : "capture"
+                let key = ArtV2.sfx && p.captures.contains(where: { $0.piece.kind == .commander }) ? "commander-capture" : "capture"
                 sound.append((key,p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60))
             }
             if let ending = p.terminalCue(computer: computer), onTerminalCue == nil {

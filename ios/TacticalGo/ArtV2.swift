@@ -24,6 +24,9 @@ enum ArtV2 {
         return true
         #endif
     }
+    /// The v30 sound set (Audio/V30) is only used when it is actually in the app. The App Store build strips it until the
+    /// Owner has listened and approved; without it the original cues play exactly as before.
+    static let sfx: Bool = enabled && Bundle.main.url(forResource: "confirm", withExtension: "wav", subdirectory: "Audio/V30") != nil
     static let brass = Color(red: 0.88, green: 0.72, blue: 0.42)
     /// Dashed preview lines and rings (pushes, swaps): brass instead of the old purple.
     static let preview = Color(red: 1, green: 0.86, blue: 0.46)
@@ -536,7 +539,7 @@ struct ArtTable: View {
 import SwiftUI
 
 /// Release (App Store 1.0) keeps the previous look: these stand-ins make the shared lobby code compile unchanged.
-enum ArtV2 { static let enabled = false; static let ambient = false }
+enum ArtV2 { static let enabled = false; static let ambient = false; static let sfx = false }
 struct ArtTable: View { var body: some View { GameBackdrop() } }
 struct ArtDivider: View { var body: some View { EmptyView() } }
 struct ArtCardLift: ViewModifier {

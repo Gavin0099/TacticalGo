@@ -9,3 +9,11 @@ rm -rf "$app_resources/Audio/Voice" "$app_resources/Audio/V30" "$app_resources/M
 if [ -e "$app_resources/Audio/Voice" ] || [ -e "$app_resources/Audio/V30" ] || [ -e "$app_resources/Models" ]; then
     echo "Unapproved research assets remain in Release" >&2; exit 1
 fi
+# The expansion's presentation pack carries English hero voices that are not approved for release; the player skips a cue
+# whose file is absent, so nothing depends on them.
+if [ -d "$app_resources/PresentationLab" ]; then
+    find "$app_resources/PresentationLab" -type f \( -iname '*voice*' -o -name 'mage-cast-A.wav' -o -name 'mage-cast-B.wav' \) -delete
+    if [ -n "$(find "$app_resources/PresentationLab" -type f \( -iname '*voice*' -o -name 'mage-cast-A.wav' -o -name 'mage-cast-B.wav' \) -print -quit)" ]; then
+        echo "Unapproved voice assets remain in Release" >&2; exit 1
+    fi
+fi
