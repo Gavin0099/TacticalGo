@@ -1,0 +1,87 @@
+[
+  {
+    "file": "artifacts/assets-pass-1/screens/B/lobby.png",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "--terminate-running-process",
+      "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+      "com.tacticalgo.prototype",
+      "--integrated-shell",
+      "--art-no-ambient"
+    ],
+    "sha256": "fda5bc2844c58673665e0bf586498cdc1a4da130899b8438e789b3fabd469ead",
+    "settle_seconds": 4
+  },
+  {
+    "file": "artifacts/assets-pass-1/screens/B/capture.png",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "--terminate-running-process",
+      "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+      "com.tacticalgo.prototype",
+      "--integrated-shell",
+      "--art-no-ambient",
+      "--undo-fixture",
+      "capture"
+    ],
+    "sha256": "e0e9f1cb20eabccf9c54fc0c7d5e4165eef08ecf222a894af458768190d80498",
+    "settle_seconds": 4
+  },
+  {
+    "file": "artifacts/assets-pass-1/screens/B/priest.png",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "--terminate-running-process",
+      "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+      "com.tacticalgo.prototype",
+      "--integrated-shell",
+      "--art-no-ambient",
+      "--integrated-practice",
+      "priest"
+    ],
+    "sha256": "c77b4d4d01ed946890066724b6d44d91b6da200fcc9edf0ecdbbed1ad7deda4e",
+    "settle_seconds": 4
+  },
+  {
+    "file": "artifacts/assets-pass-1/screens/B/impact.png",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "--terminate-running-process",
+      "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+      "com.tacticalgo.prototype",
+      "--integrated-shell",
+      "--art-no-ambient",
+      "--art-impact",
+      "capture",
+      "0.74"
+    ],
+    "sha256": "ffb5897d6e550a5f9b75bca75185ce1a911c1993878e8872cae98275426d99d0",
+    "settle_seconds": 4
+  },
+  {
+    "file": "artifacts/assets-pass-1/screens/B/commander.png",
+    "command": [
+      "xcrun",
+      "simctl",
+      "launch",
+      "--terminate-running-process",
+      "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+      "com.tacticalgo.prototype",
+      "--integrated-shell",
+      "--art-no-ambient",
+      "--art-impact",
+      "win",
+      "0.74"
+    ],
+    "sha256": "5f02ba85e5a348a3b54a786de917d3c8c9485cbae87edd2a070a6c1630945498",
+    "settle_seconds": 4
+  }
+]
