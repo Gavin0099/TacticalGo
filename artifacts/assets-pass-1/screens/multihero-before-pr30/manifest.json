@@ -1,0 +1,80 @@
+{
+  "app": "/Users/pc49-58/.codex/worktrees/assets-pass-1/BaselineBuild/Products/Debug-iphonesimulator/TacticalGo.app",
+  "device": "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+  "records": [
+    {
+      "hero": "warrior",
+      "args": [
+        "xcrun",
+        "simctl",
+        "launch",
+        "--terminate-running-process",
+        "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+        "com.tacticalgo.prototype",
+        "--integrated-shell",
+        "--art-no-ambient",
+        "--integrated-practice",
+        "warrior"
+      ],
+      "settle_seconds": 4,
+      "file": "artifacts/assets-pass-1/screens/multihero-before-pr30/warrior.png",
+      "sha256": "147f1bc7f5539d08733566f97c6b65630d65c7b1f96b23668bc9b784e11723ad"
+    },
+    {
+      "hero": "mage",
+      "args": [
+        "xcrun",
+        "simctl",
+        "launch",
+        "--terminate-running-process",
+        "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+        "com.tacticalgo.prototype",
+        "--integrated-shell",
+        "--art-no-ambient",
+        "--integrated-practice",
+        "mage"
+      ],
+      "settle_seconds": 4,
+      "file": "artifacts/assets-pass-1/screens/multihero-before-pr30/mage.png",
+      "sha256": "4d83bf03e722a2da8d501595cc21c928613703c90806aab9807120d33d3f1320"
+    },
+    {
+      "hero": "rogue",
+      "args": [
+        "xcrun",
+        "simctl",
+        "launch",
+        "--terminate-running-process",
+        "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+        "com.tacticalgo.prototype",
+        "--integrated-shell",
+        "--art-no-ambient",
+        "--integrated-practice",
+        "rogue"
+      ],
+      "settle_seconds": 4,
+      "file": "artifacts/assets-pass-1/screens/multihero-before-pr30/rogue.png",
+      "sha256": "198577872dedacccb07b40c296a44928940d58b8b3dc99f6ad90368f87b0040b"
+    },
+    {
+      "hero": "priest",
+      "args": [
+        "xcrun",
+        "simctl",
+        "launch",
+        "--terminate-running-process",
+        "B3E27BF5-0FC6-4378-8A06-A254DC3782B2",
+        "com.tacticalgo.prototype",
+        "--integrated-shell",
+        "--art-no-ambient",
+        "--integrated-practice",
+        "priest"
+      ],
+      "settle_seconds": 4,
+      "file": "artifacts/assets-pass-1/screens/multihero-before-pr30/priest.png",
+      "sha256": "ceb7d2a66ca4f3cb4cde1058c4e7f54442c1772e0cf92400e7e9217b625f9d4a"
+    }
+  ],
+  "binary_sha256": "305ebfa166f4a5697497ccb98573f867ccb72472424cb1352440a2b94af175e3",
+  "source": "pinned PR30 f2a28b712d3392973f37360a41ea25ce255b0cb7 git archive"
+}

@@ -228,3 +228,9 @@
 - 1.1/1112聲畫候選已上傳Apple，XcodeGUI成功證據和實際IPA核對保存；ASC網頁需Owner登入，處理／Owner群組／可安裝仍未核實。不得重傳；80–90%和真機／人類品質未接受，heartbeatPAUSED，無Git／公開发布。 <!-- memory_record_projection:active-task-summary:18a5f127a3ee600ffcf04cc4286abcca15bb1fa4674cde477a8a5ed327edf807 -->
 
 - 1.1/1112已上傳Apple及驗實際套件；Mac鎖定、ASC登入逾時，Owner手動登入後核Apple處理／Owner群組／可安裝。不得重傳或冒稱可安裝／80–90%，無源新增、heartbeatPAUSED。 <!-- memory_record_projection:active-task-summary:bbb7fd1b70e3fce6d1555b00609ecd69b5fecf81e9c760c9678dd7b45b9f28cc -->
+
+- ASSETS-PASS-1 A肖像完成；B/C候選與量測已準備，原生測試持續中，未推送或開PR。 <!-- memory_record_projection:active-task-summary:0c10f2ae9de91352e8c3547dcefc75437773e25b6218d344b15e3d64b96f41ad -->
+
+- ASSETS-PASS-1 A已提交，B圖示三設定與UI62/62完成；C音效最終回歸驗證持續，未推送/開PR。 <!-- memory_record_projection:active-task-summary:b2a2075938b8a6fe7a06f7d0a37d541b55b2e3151044497face71ef01b7f47e6 -->
+
+- ASSETS-PASS-1三包候選與本機驗證完成；A/B已提交，C待提交後推送開PR；尚未合併或發布。 <!-- memory_record_projection:active-task-summary:cec3e45df54f7934851a70ad77aecd54fd1513a80155ef5fd5ce630388311235 -->

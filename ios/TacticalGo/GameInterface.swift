@@ -101,7 +101,7 @@ struct GameIconView: View {
     var size: CGFloat = 36
     var body: some View {
         if icon == .sanctum {
-            Image("game-ability-sanctum-v01").resizable().scaledToFit()
+            Image(ArtV2.enabled ? "game-ability-sanctum-v30" : "game-ability-sanctum-v01").resizable().scaledToFit()
                 .frame(width: size, height: size)
                 .allowsHitTesting(false)
                 .accessibilityHidden(true)
@@ -110,7 +110,7 @@ struct GameIconView: View {
         }
     }
     private var atlasCell: some View {
-        Image("game-ability-atlas-v20").resizable()
+        Image(ArtV2.enabled ? "game-ability-atlas-v30" : "game-ability-atlas-v20").resizable()
             .frame(width: size * 4, height: size * 3)
             .offset(x: -CGFloat(icon.rawValue % 4) * size, y: -CGFloat(icon.rawValue / 4) * size)
             .frame(width: size, height: size, alignment: .topLeading).clipped()

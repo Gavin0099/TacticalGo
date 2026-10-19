@@ -1,0 +1,831 @@
+ios/TacticalGo/PresentationMageBody.swift:7:    let cleanPlate: UIImage
+ios/TacticalGo/PresentationMageBody.swift:9:    static func loadOriginal(bundle: Bundle = .main) throws -> UIImage {
+ios/TacticalGo/PresentationMageBody.swift:10:        guard let url = bundle.url(forResource: "mage-original", withExtension: "png", subdirectory: "PresentationLab"),
+ios/TacticalGo/PresentationMageBody.swift:12:              let image = UIImage(contentsOfFile: url.path), let cg = image.cgImage,
+ios/TacticalGo/PresentationMageBody.swift:14:        return image
+ios/TacticalGo/PresentationMageBody.swift:19:              let image = UIImage(contentsOfFile: url.path), let cg = image.cgImage,
+ios/TacticalGo/PresentationMageBody.swift:22:        return Self(cleanPlate: image)
+ios/TacticalGo/PresentationMageBody.swift:29:    let original: UIImage
+ios/TacticalGo/PresentationMageBody.swift:30:    let plate: UIImage
+ios/TacticalGo/PresentationMageBody.swift:74:    private func source(_ image: UIImage) -> some View {
+ios/TacticalGo/PresentationMageBody.swift:75:        Image(uiImage: image).resizable().interpolation(.high).frame(width: width,height: width)
+ios/TacticalGo/PresentationMageBody.swift:143:    struct Anim { let manifest: Manifest; let images:[String:UIImage]; func image(_ name:String)->UIImage { images[name]! } }
+ios/TacticalGo/PresentationMageBody.swift:145:    let mageBody: PresentationMageBodyAssets
+ios/TacticalGo/PresentationMageBody.swift:146:    let heroes: [HeroClass:UIImage]
+ios/TacticalGo/PresentationMageBody.swift:147:    let board: UIImage
+ios/TacticalGo/PresentationMageBody.swift:148:    let shadow: UIImage
+ios/TacticalGo/PresentationMageBody.swift:154:        var images:[String:UIImage]=[:]
+ios/TacticalGo/PresentationMageBody.swift:159:            if name.hasSuffix(".png") {guard let img=UIImage(data:bytes) else {throw Invalid.source};images[name]=img}
+ios/TacticalGo/PresentationMageBody.swift:163:        return try Self(anim:Anim(manifest:m,images:images),mageBody:PresentationMageBodyAssets.load(),heroes:[.mage:images["mage.png"]!,.warrior:images["warrior.png"]!,.rogue:images["rogue.png"]!],board:images["board.png"]!,shadow:images["shadow.png"]!)
+ios/TacticalGo/PresentationMageBody.swift:170:    static let mage = color(0x9277B6), deepMage = color(0x59446F), danger = color(0x6E302B)
+ios/TacticalGo/PresentationMageBody.swift:184:    var magePose: MageBodyPose = .rest
+ios/TacticalGo/PresentationMageBody.swift:190:    private var classColor: Color { heroClass == .mage ? P02Cozy.mage : heroClass == .warrior ? P02Cozy.sage : P02Cozy.coordinate }
+ios/TacticalGo/PresentationMageBody.swift:191:    private var symbol: String { heroClass == .warrior ? "shield.fill" : heroClass == .mage ? "sparkle" : "bolt.fill" }
+ios/TacticalGo/PresentationMageBody.swift:206:            } else if piece.kind == .hero, let image = assets.heroes[heroClass] {
+ios/TacticalGo/PresentationMageBody.swift:210:                    if heroClass == .mage { PresentationMageBodyView(original: image, plate: assets.mageBody.cleanPlate, pose: magePose, width: width) }
+ios/TacticalGo/PresentationMageBody.swift:211:                    else { Image(uiImage: image).resizable().frame(width: width, height: width) }
+ios/TacticalGo/PresentationMageBody.swift:216:                    if heroClass == .rogue { P02CozyDagger().fill(P02Cozy.card).frame(width: max(8, pitch * 0.17), height: max(8, pitch * 0.17)) }
+ios/TacticalGo/PresentationMageBody.swift:217:                    else { Image(systemName: symbol).font(.system(size: max(8, pitch * 0.17), weight: .black)).foregroundStyle(P02Cozy.card) }
+ios/TacticalGo/PresentationMageBody.swift:220:                Image(systemName: "crown.fill").font(.system(size: pitch * 0.26, weight: .black)).foregroundStyle(black ? P02Cozy.confirm : P02Cozy.coordinate)
+ios/TacticalGo/PresentationMageBody.swift:237:                Image(systemName:"crown.fill").font(.system(size:pitch*0.30,weight:.black))
+ios/TacticalGo/PresentationMageBody.swift:248:        let canvas = pitch * (heroClass == .mage ? 0.92 : 0.88)
+ios/TacticalGo/PresentationMageBody.swift:262:            if let image = assets.heroes[heroClass] {
+ios/TacticalGo/PresentationMageBody.swift:264:                    if heroClass == .mage { PresentationMageBodyView(original: image,plate:assets.mageBody.cleanPlate,pose:magePose,width:canvas) }
+ios/TacticalGo/PresentationMageBody.swift:265:                    else { Image(uiImage:image).resizable().frame(width:canvas,height:canvas) }
+ios/TacticalGo/PresentationMageBody.swift:278:                    if heroClass == .rogue { P02CozyDagger().fill(black ? P02Cozy.card : P02Cozy.coordinate) }
+ios/TacticalGo/PresentationMageBody.swift:279:                    else { Image(systemName:symbol).font(.system(size:max(4.5,pitch * 0.105),weight:.bold)).foregroundStyle(black ? P02Cozy.card : P02Cozy.coordinate) }
+ios/TacticalGo/PresentationMageBody.swift:353:        Image(uiImage: assets.image(asset.file)).resizable().interpolation(.high)
+ios/TacticalGo/PresentationMageBody.swift:754:    static func load() -> [UIImage] {
+ios/TacticalGo/PresentationMageBody.swift:756:              let source=UIImage(contentsOfFile:url.path)?.cgImage, source.width == source.height*3 else { return [] }
+ios/TacticalGo/PresentationMageBody.swift:760:            let image=UIImage(cgImage:cell)
+ios/TacticalGo/PresentationMageBody.swift:761:            return image.preparingForDisplay() ?? image
+ios/TacticalGo/PresentationMageBody.swift:766:    let poses: [UIImage]
+ios/TacticalGo/PresentationMageBody.swift:770:        Image(uiImage:poses[index]).resizable().interpolation(.high)
+ios/TacticalGo/PresentationMageBody.swift:780:    let poses: [UIImage]
+ios/TacticalGo/AnimationGallery.swift:110:                    Button("播放動作", systemImage: "play.fill") { play() }.font(.headline).accessibilityIdentifier("playMotion")
+ios/TacticalGo/ModelExport.swift:99:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:142:                case "hero-change": view.inspect(hero == .warrior ? .mage : .warrior, yaw: 0.30, motionID: nil)
+ios/TacticalGo/ModelExport.swift:160:        let source = MiniatureModels.hero(.mage), loaded = MiniatureModels.renderedHero(.mage)
+ios/TacticalGo/ModelExport.swift:163:        let expectedPose = MiniaturePose(hero: source, heroClass: .mage), actualPose = MiniaturePose(hero: loaded, heroClass: .mage)
+ios/TacticalGo/ModelExport.swift:182:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:227:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:268:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:339:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:511:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelExport.swift:570:        for hero in arenaOnly || unitsOnly ? [] : [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ContentView.swift:56:                        Label("\(store.state.apRemaining) 次", systemImage: "bolt.fill").foregroundStyle(Color.gold)
+ios/TacticalGo/ContentView.swift:57:                        Label("\(store.state.mana(of: store.state.current)) / 6", systemImage: "drop.fill").foregroundStyle(.cyan)
+ios/TacticalGo/ContentView.swift:61:                        Label(result, systemImage: store.state.status == .won ? "crown.fill" : "equal.circle.fill")
+ios/TacticalGo/ContentView.swift:75:                                    Label("置中", systemImage: "scope").font(.caption.bold())
+ios/TacticalGo/ContentView.swift:87:                                Label(boardZoom == 1 ? "放大" : "全盤", systemImage: boardZoom == 1 ? "plus.magnifyingglass" : "arrow.down.right.and.arrow.up.left")
+ios/TacticalGo/ContentView.swift:106:                            Button("英雄模型", systemImage: "cube") { showModels = true }
+ios/TacticalGo/ContentView.swift:108:                            Button("對戰動作", systemImage: "play.circle") { showAnimations = true }
+ios/TacticalGo/ContentView.swift:110:                            Button("旋轉視角", systemImage: "rotate.3d") { boardYaw = boardYaw == 0 ? 0.30 : 0 }
+ios/TacticalGo/ContentView.swift:114:                        Image(heroImage).resizable().scaledToFit().frame(width: 58, height: showReviewTools && geo.size.height >= 650 ? 65 : 48)
+ios/TacticalGo/ContentView.swift:133:                        Button { store.selected = [] } label: { Image(systemName: "xmark").frame(width: 38, height: 44) }
+ios/TacticalGo/ContentView.swift:136:                            Label(store.mode == .skill ? "確認技能" : "確認放這裡", systemImage: "checkmark.circle.fill").font(.headline).frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/ContentView.swift:144:                        Button("復原", systemImage: "arrow.uturn.backward", action: { store.undo() }).disabled(!store.session.canUndo)
+ios/TacticalGo/ContentView.swift:267:            Button("英雄模型", systemImage: "cube") { showModels = true }
+ios/TacticalGo/ContentView.swift:268:            Button("對戰動作", systemImage: "play.circle") { showAnimations = true }
+ios/TacticalGo/ContentView.swift:269:            Button("連續對戰回放", systemImage: "play.rectangle") { showMatchReplay = true }
+ios/TacticalGo/ContentView.swift:270:            Button("復原", systemImage: "arrow.uturn.backward", action: store.undo).disabled(!store.session.canUndo)
+ios/TacticalGo/ContentView.swift:275:        } label: { Image(systemName: "slider.horizontal.3").frame(width: 36, height: 36) }
+ios/TacticalGo/ContentView.swift:280:        case .warrior: "築壘 · 相鄰雙落子 · 2 能量"
+ios/TacticalGo/ContentView.swift:281:        case .rogue: "換位 · 相鄰敵兵 · 2 能量"
+ios/TacticalGo/ContentView.swift:285:    var heroImage: String {
+ios/TacticalGo/ContentView.swift:288:        case .warrior: name = "warrior"
+ios/TacticalGo/ContentView.swift:289:        case .rogue: name = "rogue"
+ios/TacticalGo/ContentView.swift:290:        default: name = "mage"
+ios/TacticalGo/ContentView.swift:296:        case .warrior: "戰士 · 築壘"; case .rogue: "盜賊 · 換位"; default: "法師 · 封印"
+ios/TacticalGo/ContentView.swift:301:        case .warrior: "相鄰兩個空點放士兵 · 1 次行動＋2 能量"
+ios/TacticalGo/ContentView.swift:302:        case .rogue: "交換相鄰敵方士兵 · 1 次行動＋2 能量"
+ios/TacticalGo/UnlockView.swift:23:                    Image(systemName: "crown.fill").font(.system(size: 46)).foregroundStyle(Cozy.confirm).accessibilityHidden(true)
+ios/TacticalGo/UnlockView.swift:47:                            Label("看廣告，再玩一局", systemImage: "play.rectangle")
+ios/TacticalGo/ExpansionContactEffects.swift:26:                case .warrior: warrior(&local,r:r)
+ios/TacticalGo/ExpansionContactEffects.swift:27:                case .mage: mage(&local,r:r)
+ios/TacticalGo/ExpansionContactEffects.swift:28:                case .rogue:
+ios/TacticalGo/ExpansionContactEffects.swift:31:                    rogue(&local,r:r)
+ios/TacticalGo/ExpansionContactEffects.swift:38:    private func warrior(_ context: inout GraphicsContext,r: CGFloat) {
+ios/TacticalGo/ExpansionContactEffects.swift:50:    private func mage(_ context: inout GraphicsContext,r: CGFloat) {
+ios/TacticalGo/ExpansionContactEffects.swift:60:    private func rogue(_ context: inout GraphicsContext,r: CGFloat) {
+ios/TacticalGo/ModelLibrary.swift:15:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/MatchGallery.swift:9:    @State private var example: MatchExample = .warriorMage
+ios/TacticalGo/MatchGallery.swift:10:    @State private var session = GameSession(try! MatchExample.warriorMage.initialState())
+ios/TacticalGo/MatchGallery.swift:55:                        Button(runID == nil ? "連續播放" : "暫停", systemImage: runID == nil ? "play.fill" : "pause.fill") {
+ios/TacticalGo/MatchGallery.swift:91:            if args.contains("--rogue-match") { example = .rogueWarrior; reset() }
+ios/TacticalGo/MatchGallery.swift:141:            let file = folder.appendingPathComponent(example == .warriorMage ? "warrior-mage-match-review.json" : "rogue-warrior-match-review.json")
+ios/TacticalGo/ChallengesView.swift:39:        case .warrior: return selected.count == 2 ? .castBastion(first, selected[1]) : nil
+ios/TacticalGo/ChallengesView.swift:40:        case .mage: return .castMagicHand(first, direction)
+ios/TacticalGo/ChallengesView.swift:41:        case .rogue: return .castSwap(first)
+ios/TacticalGo/ChallengesView.swift:71:        guard let preview else { return feedback.isEmpty ? (skill && controller.scenario?.heroClass == .warrior ? "選兩個不同的合法空點，再確認築壘。" : "選目標並預覽，再確認；預覽不扣資源。") : feedback }
+ios/TacticalGo/ChallengesView.swift:86:        if skill && controller.scenario?.heroClass == .warrior {
+ios/TacticalGo/ChallengesView.swift:245:                        Image(uiImage: GameVisualAssets.original.portrait(scenario.heroClass.art)).resizable().scaledToFit().frame(width: 54, height: 54)
+ios/TacticalGo/ChallengesView.swift:251:                        Image(systemName: model.controller.completedIDs.contains(scenario.id) ? "checkmark.circle.fill" : "chevron.right")
+ios/TacticalGo/ChallengesView.swift:321:                if model.skill && scenario.heroClass == .mage {
+ios/TacticalGo/ModelBoard.swift:150:        let cloth = hero == .mage ? purple : hero == .rogue ? navy : UIColor(red: 0.10, green: 0.40, blue: 0.52, alpha: 1)
+ios/TacticalGo/ModelBoard.swift:168:            if hero == .warrior { boot.append(ball(root, steel, [x, 0.125, 0.145], [0.09, 0.035, 0.10], metal: true)) }
+ios/TacticalGo/ModelBoard.swift:171:        if hero == .mage {
+ios/TacticalGo/ModelBoard.swift:176:            if hero == .warrior {
+ios/TacticalGo/ModelBoard.swift:187:            if hero == .warrior {
+ios/TacticalGo/ModelBoard.swift:196:            let cuff = cylinder(root, hero == .warrior ? leather : gold, [x * 1.1, 0.405, 0.1], radius: 0.10, height: 0.065, metal: hero == .mage)
+ios/TacticalGo/ModelBoard.swift:208:        if hero == .rogue { part(root, hoodMesh(), navy, at: [0, 0.94, -0.015]) }
+ios/TacticalGo/ModelBoard.swift:209:        let faceScale: SIMD3<Float> = hero == .warrior ? [0.237, 0.235, 0.210] : hero == .mage ? [0.218, 0.240, 0.209] : [0.215, 0.228, 0.210]
+ios/TacticalGo/ModelBoard.swift:212:        ball(root, skin, [0, 0.90, 0.275], hero == .rogue ? [0.050, 0.059, 0.060] : hero == .mage ? [0.057, 0.069, 0.066] : [0.065, 0.061, 0.070])
+ios/TacticalGo/ModelBoard.swift:215:            let eyeHeight: Float = hero == .rogue ? 0.045 : hero == .mage ? 0.051 : 0.050
+ios/TacticalGo/ModelBoard.swift:217:            ball(root, UIColor(red: 0.045, green: 0.07, blue: 0.09, alpha: 1), [x + (hero == .rogue ? 0.004 : 0), 0.956, 0.283], [0.022, eyeHeight * 0.60, 0.012])
+ios/TacticalGo/ModelBoard.swift:219:            let brow = part(root, polygon("tapered-expression-brow", outline: [[-0.5, 0.05], [-0.4, 0.23], [0.12, 0.3], [0.5, 0.05], [0.40, -0.13], [-0.45, -0.10]], depth: 0.07), hero == .mage ? ivory : leather,
+ios/TacticalGo/ModelBoard.swift:220:                            at: [x, hero == .mage ? 1.028 : 1.025, 0.262], scale: [hero == .warrior ? 0.103 : 0.092, 0.07, 0.15])
+ios/TacticalGo/ModelBoard.swift:221:            let browAngle: Float = hero == .rogue ? 0.24 : hero == .mage ? -0.10 : 0.16
+ios/TacticalGo/ModelBoard.swift:223:            if hero != .rogue { ball(root, skin, [x < 0 ? -0.23 : 0.23, 0.93, 0.04], [0.054, 0.078, 0.051]) }
+ios/TacticalGo/ModelBoard.swift:227:        case .warrior:
+ios/TacticalGo/ModelBoard.swift:231:            let cape = clothPanel("warrior-folded-cape") { u, v in
+ios/TacticalGo/ModelBoard.swift:242:            part(shield, polygon("warrior-shield-gold", outline: outline, depth: 0.06), gold, at: .zero, metal: true)
+ios/TacticalGo/ModelBoard.swift:243:            part(shield, polygon("warrior-shield-face", outline: outline.map { $0 * 0.80 }, depth: 0.012), cloth, at: [0, 0, 0.066])
+ios/TacticalGo/ModelBoard.swift:248:        case .mage:
+ios/TacticalGo/ModelBoard.swift:257:            let hat = part(root, lathe("mage-hat", [(0, 0), (0, 0.235), (0.05, 0.24), (0.33, 0.11), (0.45, 0.035), (0.47, 0)]), purple, at: [0, 1.14, 0])
+ios/TacticalGo/ModelBoard.swift:268:            let cape = clothPanel("mage-folded-cape") { u, v in
+ios/TacticalGo/ModelBoard.swift:275:                collar.name = x < 0 ? "mage-collar-left" : "mage-collar-right"
+ios/TacticalGo/ModelBoard.swift:281:        case .rogue:
+ios/TacticalGo/ModelBoard.swift:282:            let mask = clothPanel("rogue-tailored-mask") { u, v in
+ios/TacticalGo/ModelBoard.swift:294:            let cape = clothPanel("rogue-folded-cape") { u, v in
+ios/TacticalGo/ModelBoard.swift:377:        part(root, headMesh(commander ? .warrior : .rogue), skin, at: [0, 0.67, 0.025],
+ios/TacticalGo/ModelBoard.swift:589:        let expectedHero = heroIndex.flatMap { $0 + 1 < args.count ? HeroClass(rawValue: args[$0 + 1]) : nil } ?? .warrior
+ios/TacticalGo/ModelBoard.swift:816:        return .warrior
+ios/TacticalGo/ModelBoard.swift:844:                Text("戰士").tag(HeroClass.warrior); Text("法師").tag(HeroClass.mage); Text("盜賊").tag(HeroClass.rogue)
+ios/TacticalGo/ModelBoard.swift:850:                    Image("identity-reference-" + hero.rawValue.lowercased()).resizable().scaledToFit().frame(width: 48, height: 56)
+ios/TacticalGo/ModelBoard.swift:861:                    Label("造型動作", systemImage: "play.fill").frame(minHeight: 44).contentShape(Rectangle())
+ios/TacticalGo/ModelBoard.swift:899:                    let title = hero == .warrior ? "戰士" : (hero == .mage ? "法師" : "盜賊")
+ios/TacticalGo/ModelBoard.swift:932:                for candidate in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/ModelBoard.swift:948:                for candidate in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/R2LabView.swift:29:    var variant: String { switch self { case .original:"A"; case .warrior:"B"; case .mage:"C"; case .both:"D"; case .redeployment:"E" } }
+ios/TacticalGo/R2LabView.swift:33:        case .warrior: "B 戰士：原棋串旁築壘／法師原版"
+ios/TacticalGo/R2LabView.swift:34:        case .mage: "C 法師：空點推動或異色士兵交換／戰士原版"
+ios/TacticalGo/R2LabView.swift:44:    @State private var selectedID = "warrior-rear-frontier"
+ios/TacticalGo/R2LabView.swift:60:                        Button("戰士密集") { selectedID = "warrior-rear-frontier" }.accessibilityIdentifier("r2Warrior")
+ios/TacticalGo/R2LabView.swift:61:                        Button("法師密集") { selectedID = "mage-dense-front" }.accessibilityIdentifier("r2Mage")
+ios/TacticalGo/CozyBoard.swift:17:    var mageRevision: MageArtRevision = .r1
+ios/TacticalGo/CozyBoard.swift:70:            "heroRepresentation": "B-v02 original head/hand/staff pixels + masked garment clean plate; articulated mage",
+ios/TacticalGo/CozyBoard.swift:71:            "effectsEnabled": effectsEnabled, "mageRevision":mageRevision.rawValue, "markerStyle":markerStyle == .legacy ? "legacy" : "thinRing", "commercialStyle": commercialStyle,
+ios/TacticalGo/CozyBoard.swift:72:            "mageCanvas":fit.pitch * (mageRevision == .m2 ? 0.70 : 0.92), "mageGroundSource":mageRevision == .m2 ? 420 : 448, "reducedMotion": reducedMotion, "checkpointMs": checkpoint.map { $0 * 1000 } ?? -1]
+ios/TacticalGo/CozyBoard.swift:82:        let timing = receipt?.mageTempo.timing ?? MageTempo.full.timing
+ios/TacticalGo/CozyBoard.swift:83:        let summonPoint = receipt?.mageSummon
+ios/TacticalGo/CozyBoard.swift:85:        let mageSummoning = summonPoint != nil && elapsed < timing.summonEnd && !reducedMotion
+ios/TacticalGo/CozyBoard.swift:99:            Image(uiImage: assets.shadow).resizable().frame(width: size.width, height: size.height)
+ios/TacticalGo/CozyBoard.swift:100:            if commercialStyle { Image("sell-board").resizable().frame(width:size.width,height:size.height) }
+ios/TacticalGo/CozyBoard.swift:101:            else { Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height) }
+ios/TacticalGo/CozyBoard.swift:113:                    if !hideMovedSource, !(mageSummoning && p == summonPoint), !generic.hidden.contains(p), let piece = displayed[p] {
+ios/TacticalGo/CozyBoard.swift:114:                        token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing, revision: mageRevision) : .rest,
+ios/TacticalGo/CozyBoard.swift:128:            if mageSummoning, let summonPoint, let piece = presentation.state.board[summonPoint] {
+ios/TacticalGo/CozyBoard.swift:129:                token(piece, pitch: pitch, magePose: MageBodyPose.summon(at: elapsed, timing: timing, revision: mageRevision))
+ios/TacticalGo/CozyBoard.swift:134:                if elapsed < (receipt.mageSummon != nil ? timing.summonEnd : plan.duration) {
+ios/TacticalGo/CozyBoard.swift:137:                            let t = min(1, max(0, elapsed / (receipt.mageSummon != nil ? timing.summonEnd : 0.46)))
+ios/TacticalGo/CozyBoard.swift:155:                            Image(systemName: "shield.fill").font(.system(size: pitch * 0.33, weight: .bold))
+ios/TacticalGo/CozyBoard.swift:221:        if let image = assets.anim.fx(key, progress: progress), let clip = assets.anim.manifest.fx[key] {
+ios/TacticalGo/CozyBoard.swift:223:            Image(uiImage: image).resizable().frame(width: width, height: width)
+ios/TacticalGo/CozyBoard.swift:234:    private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest,heroPose: HeroBodyPose = .rest) -> some View {
+ios/TacticalGo/CozyBoard.swift:235:        CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, commercialStyle:commercialStyle, heroClass: presentation.state.heroClass(of: piece.owner))
+ios/TacticalGo/PlayAccess.swift:61:        // A verified permanent owner can play even when the unrelated trial file is damaged.
+ios/TacticalGo/IntegratedAudioAudit.swift:20:        let keys = ["selection", "mage", "place", "capture", "victory"]
+ios/TacticalGo/IntegratedAudioAudit.swift:120:        terminal.warriorBotReview(); terminal.scene(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:130:        let redeploy = ExpansionLabStore(soundDefaults:defaults);redeploy.practice(.mage);redeploy.voice = true;redeploy.muted = false;redeploy.scene(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:134:        record("updated_mage_redeploy_routes_confirmed_transfer_and_B_voice",redeployed && expectedMove.success && redeploy.state == expectedMove.state && redeploy.presentationHold == 1.08 && Set(redeploy.lastSoundKeys) == Set(["p5-conjure","p5-push","p5-contact","mage-cast-B"]))
+ios/TacticalGo/IntegratedAudioAudit.swift:136:        record("updated_mage_native_voice_player_started",redeploy.audit.contains("voices=1"))
+ios/TacticalGo/IntegratedAudioAudit.swift:138:        record("updated_mage_undo_cancels_audio_and_restores_state",redeploy.state == redeployBefore && redeploy.audit.contains("voices=0") && !redeploy.playing)
+ios/TacticalGo/IntegratedAudioAudit.swift:142:        record("updated_mage_background_never_replays_old_voice",redeploy.state == expectedMove.state && redeploy.audit.contains("voices=0") && !redeploy.playing)
+ios/TacticalGo/IntegratedAudioAudit.swift:145:        let responsive = ExpansionLabStore(soundDefaults:defaults);responsive.practice(.rogue);responsive.voice = true;responsive.muted = false;responsive.scene(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:146:        let original = responsive.state,chain = ExpansionPractice.rogue.action
+ios/TacticalGo/IntegratedAudioAudit.swift:149:        record("expansion_chain_schedules_two_independent_contacts",chainCommitted && responsive.lastSoundKeys.contains("p8-rogue-land-first") && responsive.lastSoundKeys.contains("p8-rogue-land") && responsive.audit.hasPrefix("cues=5|"))
+ios/TacticalGo/IntegratedAudioAudit.swift:158:        responsive.practice(.rogue);responsive.scene(true);_ = responsive.commit(chain,systemReduced:false)
+ios/TacticalGo/IntegratedAudioAudit.swift:166:        audio.resetBattle(); terminal.warriorBotReview(); terminal.scene(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:182:            store.startPractice(.mage); store.setMatchAudioActive(true); store.setSceneAudioActive(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:188:        record("end_turn_preserves_committed_skill_cues", Array(store.audioCueHistory.dropFirst(endTurnCount)) == ["mage", "place"])
+ios/TacticalGo/IntegratedAudioAudit.swift:216:        record("local_success_event_order", Array(store.audioCueHistory.dropFirst(winCount)) == ["mage", "place", "capture", "victory"])
+ios/TacticalGo/IntegratedAudioAudit.swift:221:        record("computer_win_uses_human_defeat_cue", Array(store.audioCueHistory.dropFirst(defeatCount)) == ["mage", "place", "capture", "defeat"])
+ios/TacticalGo/IntegratedAudioAudit.swift:241:        let action = ExpansionPractice.rogue.action
+ios/TacticalGo/IntegratedAudioAudit.swift:242:        func prepare() { match.practice(.rogue);match.muted = false;match.scene(true) }
+ios/TacticalGo/IntegratedAudioAudit.swift:246:        record("default_stage_gains_preserved",near(match.soundVolumeForAudit("p8-rogue-coil"),0.20) && near(match.soundVolumeForAudit("p8-rogue-dash"),0.26) && near(match.soundVolumeForAudit("p8-rogue-land"),0.30) && near(match.soundVolumeForAudit("p8-voice-rogue-B"),0.85))
+ios/TacticalGo/IntegratedAudioAudit.swift:249:        record("live_change_preserves_stage_ratios",near(match.soundVolumeForAudit("p8-rogue-coil"),0.10) && near(match.soundVolumeForAudit("p8-rogue-dash"),0.13) && near(match.soundVolumeForAudit("p8-rogue-land"),0.15) && near(match.soundVolumeForAudit("p8-voice-rogue-B"),0.425))
+ios/TacticalGo/IntegratedAudioAudit.swift:253:        record("SFX_zero_cancels_only_effects",!match.soundPlayingForAudit("p8-rogue-dash") && !match.soundPlayingForAudit("p8-rogue-land") && match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:256:        record("SFX_restore_does_not_revive_delayed_contacts",!match.soundPlayingForAudit("p8-rogue-land-first") && !match.soundPlayingForAudit("p8-rogue-land") && match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:258:        record("voice_zero_cancels_voice_keeps_visual",!match.soundPlayingForAudit("p8-voice-rogue-B") && match.playing && match.state == committed)
+ios/TacticalGo/IntegratedAudioAudit.swift:260:        record("voice_restore_does_not_restart",!match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:264:        record("voice_toggle_cancels_only_voice",!match.soundPlayingForAudit("p8-voice-rogue-B") && match.playing && match.soundPlayingForAudit("p8-rogue-coil"))
+ios/TacticalGo/IntegratedAudioAudit.swift:266:        record("voice_toggle_on_no_revival",!match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:269:        record("next_cast_silent_voice_uses_unvoiced_material",!match.lastSoundKeys.contains("p8-voice-rogue-B") && near(match.soundVolumeForAudit("p8-rogue-coil"),0.42) && near(match.soundVolumeForAudit("p8-rogue-land"),0.65))
+ios/TacticalGo/IntegratedAudioAudit.swift:285:        record("mix_change_after_undo_no_revival",match.state == before && !match.soundPlayingForAudit("p8-rogue-land") && !match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:289:        record("zero_effect_bus_rejects_new_cue_keeps_voice",!players.schedule("p8-rogue-land",after:0.3,volume:0.3) && players.schedule("p8-voice-rogue-B",after:0,volume:0.85))
+ios/TacticalGo/IntegratedAudioAudit.swift:292:        record("full_slider_keeps_native_gain_bound",near(players.volume("p8-slime-land"),0.8125) && near(players.volume("p8-voice-rogue-B"),1))
+ios/TacticalGo/IntegratedAudioAudit.swift:296:        record("BGM_zero_keeps_voice_and_SFX",!background.musicIsPlaying && match.soundPlayingForAudit("p8-voice-rogue-B") && match.soundPlayingForAudit("p8-rogue-coil"))
+ios/TacticalGo/IntegratedAudioAudit.swift:299:        record("background_mix_changes_do_not_revive",!match.soundPlayingForAudit("p8-rogue-land") && !match.soundPlayingForAudit("p8-voice-rogue-B"))
+ios/TacticalGo/IntegratedAudioAudit.swift:317:        let action = ExpansionPractice.rogue.action
+ios/TacticalGo/IntegratedAudioAudit.swift:318:        let key = "p8-voice-rogue-B"
+ios/TacticalGo/IntegratedAudioAudit.swift:320:            match.practice(.rogue);match.configureReviewSound(voiceEnabled:true);match.scene(true)
+ios/TacticalGo/IntegratedAudioAudit.swift:334:        record("quiet_cast_preserves_full_SFX",Set(match.lastSoundKeys)==Set(["p8-rogue-coil","p8-rogue-dash","p8-rogue-land-first","p8-rogue-land"]) && abs(match.soundVolumeForAudit("p8-rogue-land")-0.65)<0.000001)
+ios/TacticalGo/IntegratedAudioAudit.swift:339:        record("background_cancels_without_replaying",!match.soundPlayingForAudit(key) && !match.soundPlayingForAudit("p8-rogue-land"))
+ios/TacticalGo/IntegratedAudioAudit.swift:345:        record("voice_off_cast_is_full_SFX",!cast(0) && match.lastSoundKeys.contains("p8-rogue-land"))
+ios/TacticalGo/IntegratedAudioAudit.swift:351:        record("missing_player_uses_full_SFX",!cast(0) && !match.lastSoundKeys.contains("quality35-missing-voice") && abs(match.soundVolumeForAudit("p8-rogue-land")-0.65)<0.000001)
+ios/TacticalGo/IntegratedAudioAudit.swift:363:        match.restart();match.practice(.rogue)
+ios/TacticalGo/IntegratedAudioAudit.swift:381:            record("quiet_other_class_preserves_previous_line",match.commit(CombatVoiceHandoff.second,systemReduced:false) && secondExpected.success && match.state==secondExpected.state && !match.lastSoundKeys.contains("mage-cast-B") && match.soundPlayingForAudit(key))
+ios/TacticalGo/ArtV2.swift:39:/// Engraved brass grid, brass studs and a soft light pass, clipped to the silhouette of the board image.
+ios/TacticalGo/ArtV2.swift:43:    let boardImage: UIImage
+ios/TacticalGo/ArtV2.swift:48:        MainActor.assumeIsolated { a.boardSize == b.boardSize && a.pitch == b.pitch && a.boardImage === b.boardImage }
+ios/TacticalGo/ArtV2.swift:99:            }.mask(Image(uiImage:boardImage).resizable())
+ios/TacticalGo/ArtV2.swift:102:                .mask(Image(uiImage:boardImage).resizable())
+ios/TacticalGo/ArtV2.swift:104:                .mask(Image(uiImage:boardImage).resizable())
+ios/TacticalGo/ArtV2.swift:226:    let portrait: UIImage?
+ios/TacticalGo/ArtV2.swift:246:                    Image(uiImage: portrait).resizable().scaledToFill().frame(width: 36, height: 36)
+ios/TacticalGo/Anim01Assets.swift:39:    private let images: [String: UIImage]
+ios/TacticalGo/Anim01Assets.swift:45:        var images: [String: UIImage] = [:]
+ios/TacticalGo/Anim01Assets.swift:50:            guard let image = UIImage(data: bytes), let cg = image.cgImage, cg.width == width, cg.height == height else { throw Invalid.size(name) }
+ios/TacticalGo/Anim01Assets.swift:52:            images[name] = image
+ios/TacticalGo/Anim01Assets.swift:61:        return Self(manifest: manifest, images: images)
+ios/TacticalGo/Anim01Assets.swift:63:    func image(_ name: String) -> UIImage { images[name]! }
+ios/TacticalGo/Anim01Assets.swift:65:    func fx(_ name: String, progress: Double) -> UIImage? {
+ios/TacticalGo/Anim01Assets.swift:68:        return images[clip.files[index]]
+ios/TacticalGo/Anim01Assets.swift:70:    func fx(_ name: String, elapsed: Double) -> UIImage? {
+ios/TacticalGo/Anim01Assets.swift:73:        return clip.files.indices.contains(index) ? images[clip.files[index]] : nil
+ios/TacticalGo/Anim01Assets.swift:84:        Image(uiImage: assets.image(asset.file)).resizable().interpolation(.high)
+ios/TacticalGo/HeroBodyReview.swift:9:    @State private var hero: HeroClass = .warrior
+ios/TacticalGo/HeroBodyReview.swift:18:                    Picker("角色",selection:$hero) { Text("戰士").tag(HeroClass.warrior);Text("盜賊").tag(HeroClass.rogue) }.pickerStyle(.segmented).accessibilityIdentifier("heroPoseClass")
+ios/TacticalGo/HeroBodyReview.swift:34:        for hero in [HeroClass.warrior,.rogue] {
+ios/TacticalGo/HeroBodyReview.swift:36:                let r = ImageRenderer(content:HeroSizeSheet(assets:assets,hero:hero,pitch:pitch).frame(width:390));r.scale = 1
+ios/TacticalGo/HeroBodyReview.swift:37:                try? r.uiImage?.pngData()?.write(to:d.appendingPathComponent("\(hero.art)-black-white-\(Int(pitch)).png"))
+ios/TacticalGo/HeroBodyReview.swift:42:                let r = ImageRenderer(content:HeroBodyView(original:original,plate:plate,heroClass:hero,pose:.skill(hero,at:t),width:512).frame(width:512,height:512));r.scale = 1
+ios/TacticalGo/HeroBodyReview.swift:43:                try? r.uiImage?.pngData()?.write(to:d.appendingPathComponent("\(hero.art)-\(name)-512.png"))
+ios/TacticalGo/HeroBodyReview.swift:81:        func prepare(_ hero:HeroClass) { if hero == .warrior {store.select(Point(2,3));store.select(Point(4,3))} else {store.select(Point(4,3))} }
+ios/TacticalGo/HeroBodyReview.swift:84:        for hero in [HeroClass.warrior,.rogue] {for owner in Player.allCases {for capture in [false,true] {
+ios/TacticalGo/HeroBodyReview.swift:96:            if hero == .warrior {
+ios/TacticalGo/HeroBodyReview.swift:106:                    let r = ImageRenderer(content:content);r.scale = 1;try? r.uiImage?.pngData()?.write(to:checkpoints.appendingPathComponent("\(hero.art)-\(name).png"))
+ios/TacticalGo/HeroBodyReview.swift:117:        for hero in [HeroClass.warrior,.rogue] {
+ios/TacticalGo/HeroBodyReview.swift:140:        let vertical = try! GameSetup.fromDiagram(config:.board(size:7),diagram:".......\n...O...\n...o...\n...H...\n.......\n...X...\n.......",classOne:.rogue,classTwo:.rogue,manaOne:4,manaTwo:4,ap:2)
+ios/TacticalGo/HeroBodyReview.swift:142:        check("rogue-vertical-real-core",verticalOutcome.success)
+ios/TacticalGo/HeroBodyReview.swift:146:        check("rogue-vertical-perpendicular-lanes",vf.sprites.contains{$0.piece.kind == .hero && $0.lateral<0 && $0.lift == 0} && vf.sprites.contains{$0.piece.kind == .soldier && $0.lateral>0 && $0.lift == 0})
+ios/TacticalGo/HeroBodyReview.swift:148:        for hero in [HeroClass.warrior,.rogue] { for owner in Player.allCases {
+ios/TacticalGo/HeroBodyReview.swift:154:                let r = ImageRenderer(content:content);r.scale = 1;try? r.uiImage?.pngData()?.write(to:checkpoints.appendingPathComponent("dense-\(hero.art)-\(owner)-\(name).png"))
+ios/TacticalGo/BoardViews.swift:65:    static let miniatures: [HeroClass: UIImage] = {
+ios/TacticalGo/BoardViews.swift:66:        var images: [HeroClass: UIImage] = [:]
+ios/TacticalGo/BoardViews.swift:67:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/BoardViews.swift:68:            if let image = UIImage(named: name(for: hero)) { images[hero] = image }
+ios/TacticalGo/BoardViews.swift:70:        return images
+ios/TacticalGo/BoardViews.swift:76:        case .warrior: CGPoint(x: 0.54, y: 0.93)
+ios/TacticalGo/BoardViews.swift:77:        case .mage: CGPoint(x: 0.54, y: 0.94)
+ios/TacticalGo/BoardViews.swift:78:        case .rogue: CGPoint(x: 0.55, y: 0.93)
+ios/TacticalGo/BoardViews.swift:97:                Image(uiImage: art).resizable().interpolation(.high).scaledToFit()
+ios/TacticalGo/BoardViews.swift:107:                    Image(systemName: "crown.fill").font(.system(size: radius * 1.15, weight: .black)).foregroundStyle(piece.owner == .one ? Color.gold : Color.ink).offset(y: -radius * 0.55)
+ios/TacticalGo/BoardViews.swift:114:                Image(systemName: "triangle.fill").font(.system(size: radius * 0.32)).foregroundStyle(.white).offset(y: radius * 0.44)
+ios/TacticalGo/BoardViews.swift:147:                Image(systemName: "crown.fill").font(.system(size: radius * 0.92, weight: .black))
+ios/TacticalGo/BoardViews.swift:188:                    Image(uiImage: visuals.image(asset)).resizable().frame(width: geo.size.width, height: geo.size.height)
+ios/TacticalGo/BoardViews.swift:193:                    Image(uiImage: visuals.image(asset)).resizable().frame(width: geo.size.width, height: geo.size.height)
+ios/TacticalGo/BoardViews.swift:243:                            Image(systemName: "hand.point.down.fill").foregroundStyle(Color.gold)
+ios/TacticalGo/BoardViews.swift:252:                    Image(systemName: "arrowtriangle.right.fill").foregroundStyle(Color.gold)
+ios/TacticalGo/BoardViews.swift:416:                if piece.kind == .hero, let image = BoardArt.miniatures[heroClass] {
+ios/TacticalGo/BoardViews.swift:417:                    let figure = SKSpriteNode(texture: SKTexture(image: image))
+ios/TacticalGo/BoardViews.swift:430:                    if piece.kind == .commander, let image = UIImage(systemName: "crown.fill")?.withTintColor(piece.owner == .one ? UIColor(Color.gold) : UIColor(Color.ink), renderingMode: .alwaysOriginal) {
+ios/TacticalGo/BoardViews.swift:431:                        let raster = UIGraphicsImageRenderer(size: CGSize(width: 48, height: 48)).image { _ in image.draw(in: CGRect(x: 0, y: 0, width: 48, height: 48)) }
+ios/TacticalGo/BoardViews.swift:432:                        let crown = SKSpriteNode(texture: SKTexture(image: raster)); crown.size = CGSize(width: r * 1.15, height: r * 1.15); crown.position.y = r * 0.55; group.addChild(crown)
+ios/TacticalGo/CombatAudio.swift:67:    private static let voiceKeys: Set<String> = ["voice-warrior-summon", "voice-warrior-skill", "voice-mage-summon", "voice-mage-skill", "voice-rogue-summon", "voice-rogue-skill"]
+ios/TacticalGo/CombatAudio.swift:72:    private static let effectKeys: Set<String> = ["selection", "place", "capture", "summon", "mage", "warrior", "rogue", "danger", "victory", "defeat", "draw"]
+ios/TacticalGo/ModelMotion.swift:82:        case .warrior:
+ios/TacticalGo/ModelMotion.swift:86:        case .mage:
+ios/TacticalGo/ModelMotion.swift:89:        case .rogue:
+ios/TacticalGo/ModelMotion.swift:95:        let capeAmplitude: Float = heroClass == .rogue ? 0.18 : (heroClass == .warrior ? 0.14 : 0.10)
+ios/TacticalGo/ModelMotion.swift:96:        rotate("cape", Float(MotionCurves.capeFollowThrough(t, lateImpact: heroClass == .warrior)) * capeAmplitude)
+ios/TacticalGo/MonsterLabView.swift:8:    static let images: [MonsterKind: UIImage] = {
+ios/TacticalGo/MonsterLabView.swift:9:        var images: [MonsterKind: UIImage] = [:]
+ios/TacticalGo/MonsterLabView.swift:13:               let image = UIImage(contentsOfFile: url.path) { images[kind] = image }
+ios/TacticalGo/MonsterLabView.swift:15:        return images
+ios/TacticalGo/MonsterLabView.swift:28:    var one: HeroClass = .warrior
+ios/TacticalGo/MonsterLabView.swift:29:    var two: HeroClass = .mage
+ios/TacticalGo/MonsterLabView.swift:97:            case .warrior:
+ios/TacticalGo/MonsterLabView.swift:100:            case .mage: selected = [p]; pending = nil
+ios/TacticalGo/MonsterLabView.swift:101:            case .rogue: selected = [p]; pending = .castSwap(p)
+ios/TacticalGo/MonsterLabView.swift:170:                    Button("規則", systemImage: "info.circle") { showRules = true }
+ios/TacticalGo/MonsterLabView.swift:218:                if store.mode == .skill && store.state.heroClass(of: store.state.current) == .mage {
+ios/TacticalGo/MonsterLabView.swift:281:            ForEach([HeroClass.warrior, .mage, .rogue], id: \.self) { Text("\(title) \($0.title)").tag($0) }
+ios/TacticalGo/MonsterLabView.swift:304:                    if let kind = store.state.config.monsterBattlefield?.kind(at: p), let art = MonsterLabArt.images[kind] {
+ios/TacticalGo/MonsterLabView.swift:306:                            Image(uiImage: art).renderingMode(.original).resizable().interpolation(.high).scaledToFit()
+ios/TacticalGo/MonsterLabView.swift:322:                ? (MonsterLabArt.images[store.state.config.monsterBattlefield!.kind(at: p)!] != nil ? "候選圖樣已載入" : "圖樣缺失") : "")
+ios/TacticalGo/PresentationLabView.swift:15:    private static func isVoice(_ key:String) -> Bool { key.contains("voice") || key.hasPrefix("mage-cast-") }
+ios/TacticalGo/PresentationLabView.swift:19:        for key in ["p8-rogue-coil","p8-rogue-dash","p8-rogue-land","p8-rogue-land-first","p8-priest-prayer","p8-priest-bless","p8-priest-land","p8-slime-coil","p8-slime-bounce","p8-slime-land","p8-wolf-growl","p8-wolf-dash","p8-wolf-land","p8-voice-rogue-A","p8-voice-rogue-B","p8-voice-priest-A","p8-voice-priest-B","p-charge","p-release","p-land","p-capture","mage-voice-english","mage-cast-A","mage-cast-B","p3-air","p4-conjure","p4-push","p4-contact","p5-conjure","p5-push","p5-contact","w7-brace","w7-strike","w7-land","w7-voice-A","w7-voice-B","warrior","place","draw","capture","victory","defeat"] {
+ios/TacticalGo/PresentationLabView.swift:22:                let resourceKey = key == "p8-rogue-land-first" ? "p8-rogue-land" : key
+ios/TacticalGo/PresentationLabView.swift:23:                guard let url = Bundle.main.url(forResource: resourceKey, withExtension: "wav", subdirectory: key.hasPrefix("p8-") ? "PresentationLab/P08" : key.hasPrefix("w7-") ? "PresentationLab/P07" : key.hasPrefix("mage-cast-") ? "PresentationLab/P06" : key.hasPrefix("p5-") ? "PresentationLab/P05" : key.hasPrefix("p4-") ? "PresentationLab/P04" : key == "p3-air" ? "PresentationLab/P03" : ["warrior","place","draw","capture","victory","defeat"].contains(key) ? "Audio" : "PresentationLab") else {
+ios/TacticalGo/PresentationLabView.swift:56:        for (key,player) in players where !key.contains("voice") && !key.hasPrefix("mage-cast-") && (keys == nil || keys!.contains(key)) {
+ios/TacticalGo/PresentationLabView.swift:71:    var playingVoices: Int { players.filter { ($0.key.contains("voice") || $0.key.hasPrefix("mage-cast-")) && $0.value.isPlaying }.count }
+ios/TacticalGo/PresentationLabView.swift:102:    let original: UIImage?
+ios/TacticalGo/PresentationLabView.swift:103:    let plate: UIImage?
+ios/TacticalGo/PresentationLabView.swift:105:    let handPoses: [UIImage]
+ios/TacticalGo/PresentationLabView.swift:172:                    classOne: caster == .one ? .mage : .warrior, classTwo: caster == .two ? .mage : .warrior,
+ios/TacticalGo/PresentationLabView.swift:202:        let castKey = "mage-cast-" + castTake
+ios/TacticalGo/PresentationLabView.swift:221:                samples.schedule("mage-voice-english", after: started + 0.10 - ProcessInfo.processInfo.systemUptime, volume: voiceVolume); voiceUsed = true
+ios/TacticalGo/PresentationLabView.swift:262:        // Run after the initial view/image layout, as a real user tap would.
+ios/TacticalGo/PresentationLabView.swift:274:            try await Task.sleep(for: .seconds(max(1.6,samples.duration("mage-cast-" + castTake) + 0.3)))
+ios/TacticalGo/PresentationLabView.swift:285:            try await Task.sleep(for: .seconds(max(1.6,samples.duration("mage-cast-" + castTake) + 0.3)))
+ios/TacticalGo/PresentationLabView.swift:311:                }; Spacer(); Image(systemName: "wand.and.stars").foregroundStyle(.purple) }
+ios/TacticalGo/PresentationLabView.swift:418:                Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/PresentationLabView.swift:419:                Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/PresentationLabView.swift:436:                        P02CozyToken(piece:piece,assets:assets,pitch:pitch,magePose:p == plan?.clip.hero ? plan!.pose(at:time,reducedMotion:reduced) : .rest,commercialStyle:true,heroClass:store.session.state.heroClass(of:piece.owner))
+ios/TacticalGo/PresentationLabView.swift:444:                    P02CozyToken(piece:plan.clip.piece,assets:assets,pitch:pitch,squash:squash,commercialStyle:true,heroClass:.mage)
+ios/TacticalGo/PresentationLabView.swift:505:                    PieceToken(piece:plan.clip.piece,heroClass:.mage,radius:radius,artSize:art)
+ios/TacticalGo/PresentationLabView.swift:537:                Image(systemName:piece.owner == .one ? "circle.fill" : "triangle.fill").font(.system(size:5)).foregroundStyle(.white).offset(y:pitch*0.08)
+ios/TacticalGo/MagePoseReview.swift:31:            if let assets, let original = assets.heroes[.mage] {
+ios/TacticalGo/MagePoseReview.swift:38:                                MageBodyView(original: original,plate: assets.mageBody.cleanPlate,pose: MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:.r1),width:100)
+ios/TacticalGo/MagePoseReview.swift:47:                        MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:pose,width:280)
+ios/TacticalGo/MagePoseReview.swift:51:                        Button("登場") { summon = true; start = Date() }.accessibilityIdentifier("magePoseSummon")
+ios/TacticalGo/MagePoseReview.swift:52:                        Button("施法") { summon = false; start = Date() }.accessibilityIdentifier("magePoseCast")
+ios/TacticalGo/MagePoseReview.swift:58:                            CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:64,heroClass:.mage).frame(width:80,height:90)
+ios/TacticalGo/MagePoseReview.swift:67:        guard let original = assets.heroes[.mage],let docs = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first else { return }
+ios/TacticalGo/MagePoseReview.swift:68:        let directory = docs.appendingPathComponent("mage-pose-review")
+ios/TacticalGo/MagePoseReview.swift:70:        let m3 = docs.appendingPathComponent("mage-m3-review")
+ios/TacticalGo/MagePoseReview.swift:73:            let sheet = ImageRenderer(content:MageM3SizeSheet(assets:assets,pitch:pitch).frame(width:390))
+ios/TacticalGo/MagePoseReview.swift:75:            try? sheet.uiImage?.pngData()?.write(to:m3.appendingPathComponent("markers-poses-\(Int(pitch)).png"))
+ios/TacticalGo/MagePoseReview.swift:79:                    let token = CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:pose,markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
+ios/TacticalGo/MagePoseReview.swift:81:                    let image = ImageRenderer(content:token);image.scale = 1
+ios/TacticalGo/MagePoseReview.swift:82:                    try? image.uiImage?.pngData()?.write(to:m3.appendingPathComponent("\(revision.rawValue)-\(owner)-\(name)-\(Int(pitch)).png"))
+ios/TacticalGo/MagePoseReview.swift:88:                let renderer = ImageRenderer(content: MageBodyView(original:original,plate:assets.mageBody.cleanPlate,pose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:.r1),width:CGFloat(width)).frame(width:CGFloat(width),height:CGFloat(width)))
+ios/TacticalGo/MagePoseReview.swift:90:                try? renderer.uiImage?.pngData()?.write(to:directory.appendingPathComponent("\(name)-\(width).png"))
+ios/TacticalGo/MagePoseReview.swift:109:                            CozyToken(piece:Piece(owner,.hero),assets:assets,pitch:pitch,magePose:MageBodyPose.cast(at:t,timing:MageTempo.full.timing,revision:revision),markers:revision == .m2 ? .legacy : .thinRing,heroClass:.mage)
+ios/TacticalGo/MagePoseReview.swift:127:            store.leaveMatch(); store.computer = nil; store.mageTempo = tempo; store.presentationReducedMotion = reduced
+ios/TacticalGo/MagePoseReview.swift:135:        let screens = docs.appendingPathComponent("mage-body-checkpoints")
+ios/TacticalGo/MagePoseReview.swift:147:                    check(prefix+"-successful-receipt",receipt.magicHand != nil && receipt.mageTempo == tempo && store.isPresenting)
+ios/TacticalGo/MagePoseReview.swift:151:                            let renderer = ImageRenderer(content:content); renderer.scale = 1
+ios/TacticalGo/MagePoseReview.swift:152:                            try? renderer.uiImage?.pngData()?.write(to:screens.appendingPathComponent("\(captured)-\(name).png"))
+ios/TacticalGo/MagePoseReview.swift:163:                    check(prefix+"-shared-sfx",cues == (captured ? ["mage","place","capture","victory"] : ["mage","place"]))
+ios/TacticalGo/MagePoseReview.swift:176:                case "restart": store.newMatch(classOne:.mage,classTwo:.warrior)
+ios/TacticalGo/MagePoseReview.swift:190:        check("reduced-keeps-sfx-no-voice",store.audio.playbackObservations.dropFirst(count).compactMap { $0["key"] } == ["mage","place","capture","victory"] && store.audio.activeVoiceCount == 0)
+ios/TacticalGo/MagePoseReview.swift:194:        try? JSONSerialization.data(withJSONObject:["status":passed ? "PASS":"FAIL","checks":rows,"checkpoints":checkpoints,"voice":"disabled","renderer":"actual SwiftUI CozyBoard; ImageRenderer receipt checkpoints","deviceBoundary":"Simulator checks do not prove physical-device or human acting acceptance"],options:[.prettyPrinted,.sortedKeys]).write(to:docs.appendingPathComponent("mage-body-audit.json"),options:.atomic)
+ios/TacticalGo/TacticalGoApp.swift:56:                else if ProcessInfo.processInfo.arguments.contains("--mage-pose-review") { MagePoseReview() }
+ios/TacticalGo/SkillVFXView.swift:187:            let tip=MageBodyView.tipOffset(pose:MageBodyPose.cast(at:elapsed,timing:receipt.mageTempo.timing),width:pitch*0.92)
+ios/TacticalGo/SkillVFXView.swift:215:            let tip=MageBodyView.tipOffset(pose:MageBodyPose.cast(at:elapsed,timing:receipt.mageTempo.timing),width:pitch*0.92)
+ios/TacticalGo/SkillVFXView.swift:289:            if h == .warrior {store.select(Point(2,3));store.select(Point(4,3))}
+ios/TacticalGo/SkillVFXView.swift:290:            else {store.select(Point(4,3));if h == .mage {store.chooseDirection(.up)}}
+ios/TacticalGo/SkillVFXView.swift:295:            let image=ImageRenderer(content:board);image.scale=1
+ios/TacticalGo/SkillVFXView.swift:296:            if let data=image.uiImage?.pngData() {try? data.write(to:dir.appendingPathComponent(name+".png"))}
+ios/TacticalGo/SkillVFXView.swift:299:        for h in [HeroClass.warrior,.mage,.rogue] {for owner in Player.allCases {for capture in [false,true] {
+ios/TacticalGo/SkillVFXView.swift:306:            check(key+"-targets",fx.destinations.count==(h == .mage ? 1:2))
+ios/TacticalGo/SkillVFXView.swift:324:        for h in [HeroClass.warrior,.mage,.rogue] {for owner in Player.allCases {
+ios/TacticalGo/SkillVFXView.swift:337:        for h in [HeroClass.warrior,.mage,.rogue] {for boundary in ["restart","leave"] {
+ios/TacticalGo/ExpansionGameView.swift:32:    @State private var one: HeroClass = .warrior
+ios/TacticalGo/ExpansionGameView.swift:33:    @State private var two: HeroClass = .mage
+ios/TacticalGo/ExpansionGameView.swift:69:    private func portrait(_ h: HeroClass) -> UIImage {
+ios/TacticalGo/ExpansionGameView.swift:73:        if h == .priest, let bust = UIImage(named:"priest-portrait-v03") { return bust }
+ios/TacticalGo/ExpansionGameView.swift:74:        if h == .priest, let url = Bundle.main.url(forResource:"priest-v02",withExtension:"png",subdirectory:"PresentationLab/P08"),let image = UIImage(contentsOfFile:url.path) { return image }
+ios/TacticalGo/ExpansionGameView.swift:217:                        // A verified owner is never metered, and an unrelated damaged trial file must not block a copy.
+ios/TacticalGo/ExpansionGameView.swift:236:                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:value.kind == .slime ? .slime:.wolf)
+ios/TacticalGo/ExpansionGameView.swift:237:                store.expansion?.monsterReview(value);boardSize = 9;one = .warrior;two = .mage
+ios/TacticalGo/ExpansionGameView.swift:242:                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.two)
+ios/TacticalGo/ExpansionGameView.swift:247:                // Human Black warrior against the computer's White mage, on a hand-placed review position.
+ios/TacticalGo/ExpansionGameView.swift:249:                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.two)
+ios/TacticalGo/ExpansionGameView.swift:253:            if args.contains("--solo-warrior-review") {
+ios/TacticalGo/ExpansionGameView.swift:255:                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.one)
+ios/TacticalGo/ExpansionGameView.swift:256:                store.expansion?.warriorBotReview();store.expansion?.muted = false;boardSize = 9
+ios/TacticalGo/ExpansionGameView.swift:259:            if args.contains("--quality-warrior-fixture"),let match = store.expansion {
+ios/TacticalGo/ExpansionGameView.swift:279:            if args.contains("--bot-mage-motion-review") { singlePlayer = true; startMatch(); store.loadBotMageMotionReview() }
+ios/TacticalGo/ExpansionGameView.swift:289:                store.loadSkillScreenshot(candidate: args.contains("--candidate-skills"), mage: args.contains("--mage-redeploy"))
+ios/TacticalGo/ExpansionGameView.swift:322:        if args.contains("--quality-warrior-fixture") {
+ios/TacticalGo/ExpansionGameView.swift:330:            case .warrior: points = [Point(5,5),Point(6,6)];action = .castBastion(points[0],points[1])
+ios/TacticalGo/ExpansionGameView.swift:331:            case .mage: points = [Point(4,5),Point(5,5)];action = .castFriendlyRedeploy(points[0],points[1])
+ios/TacticalGo/ExpansionGameView.swift:332:            case .rogue: points = [Point(5,4)];action = .castSwap(points[0])
+ios/TacticalGo/ExpansionGameView.swift:362:        var report: [String:Any] = ["fixture":args.contains("--quality-warrior-fixture") ? "hand-placed-WarriorPresentationFixture":monsterFixture == nil ? "legal-opening-ExpansionPractice":"legal-opening-MonsterPresentationPractice","hero":before.heroClass(of:before.current).rawValue,
+ios/TacticalGo/ExpansionGameView.swift:396:                    } label: { Label("續玩擴充玩法上局", systemImage: "play.circle").frame(maxWidth: .infinity, minHeight: 44) }
+ios/TacticalGo/ExpansionGameView.swift:401:                    Button { resumeRecord(record) } label: { Label(productMode ? "續玩原版規則上局" : "續玩上局", systemImage: "play.circle").frame(maxWidth:.infinity,minHeight:44) }
+ios/TacticalGo/ExpansionGameView.swift:405:                    Label("存局與棋譜", systemImage: "book.closed").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/ExpansionGameView.swift:437:                    } label: { Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44) }
+ios/TacticalGo/ExpansionGameView.swift:440:                        Label("購買與恢復", systemImage: "cart").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/ExpansionGameView.swift:443:                        Label("隱私與支援", systemImage: "hand.raised").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/ExpansionGameView.swift:459:                            Button { onClose() } label: { Label("返回主選單", systemImage: "chevron.left") }.accessibilityIdentifier("closeExpansion")
+ios/TacticalGo/ExpansionGameView.swift:537:            Image(uiImage:portrait(h)).resizable().scaledToFit().frame(height:portraitHeight)
+ios/TacticalGo/ExpansionGameView.swift:550:                    Image(systemName:"checkmark.seal.fill").font(.system(size:16,weight:.bold))
+ios/TacticalGo/ExpansionGameView.swift:558:        return hero == .mage ? "調度己兵" : hero == .warrior ? "沿棋群築壘" : hero.skillTitle
+ios/TacticalGo/ExpansionGameView.swift:563:                    Text(useExpansion ? SkillGuide.basic(choice) : updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
+ios/TacticalGo/ExpansionGameView.swift:584:                Button(action: startMatch) { Label(singlePlayer ? "開始電腦對戰" : "開始本機雙人對戰", systemImage: "play.fill").frame(maxWidth: .infinity).frame(minHeight: 46) }
+ios/TacticalGo/ExpansionGameView.swift:587:                    Label("新手教學 · 不需要懂圍棋", systemImage: "hand.tap")
+ios/TacticalGo/ExpansionGameView.swift:603:                                    store.sanctumPractice(practice); boardSize = store.size; one = .priest; two = .mage
+ios/TacticalGo/ExpansionGameView.swift:609:                            store.expansionChallenge(); boardSize = store.size; one = .priest; two = .mage
+ios/TacticalGo/ExpansionGameView.swift:613:                    } label: { Label("玩法練習", systemImage: "graduationcap") }
+ios/TacticalGo/ExpansionGameView.swift:668:                Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 38, height: 36) }.accessibilityLabel("返回選角")
+ios/TacticalGo/ExpansionGameView.swift:709:                } label: { Image(systemName: "ellipsis.circle").font(.system(size: 20)).frame(width: 38, height: 36) }.accessibilityLabel("對戰選單")
+ios/TacticalGo/ExpansionGameView.swift:734:            HStack { Image(systemName:"crown.fill");Text("本局結算").bold();Spacer() }
+ios/TacticalGo/ExpansionGameView.swift:790:            Image(uiImage: dockPortrait).resizable().scaledToFit().padding(2).frame(width: 44, height: 44)
+ios/TacticalGo/ExpansionGameView.swift:815:                    Label("戰利", systemImage: "shippingbox.fill").font(.system(size: 11, weight: .bold)).frame(minWidth: 52, minHeight: 44)
+ios/TacticalGo/ExpansionGameView.swift:820:            if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy && !store.state.config.expansionSkills {
+ios/TacticalGo/ExpansionGameView.swift:821:                Picker("魔法之手方式", selection: Binding(get: { store.mageOperation }, set: { store.changeMageOperation($0) })) {
+ios/TacticalGo/ExpansionGameView.swift:823:                }.pickerStyle(.menu).accessibilityIdentifier("mageOperation")
+ios/TacticalGo/ExpansionGameView.swift:832:                Image(systemName: "book.closed.fill").font(.system(size: 15)).frame(width: 44, height: 44)
+ios/TacticalGo/ExpansionGameView.swift:844:    private var dockPortrait: UIImage {
+ios/TacticalGo/ExpansionGameView.swift:846:        if let match = store.expansion,let kind = match.presentedHuntKind,let image = match.monsterArt[kind] { return image }
+ios/TacticalGo/ExpansionGameView.swift:859:        switch mode { case .soldier: "放士兵"; case .summon: "召喚英雄"; case .skill: hero == .mage && store.mageOperation == .redeploy ? "調度己兵" : hero == .warrior && store.state.config.bastionScope == .connectedGroup ? "沿棋群築壘" : hero.skillTitle; case .advanced: advancedTitle; case .loot: "戰利能力" }
+ios/TacticalGo/ExpansionGameView.swift:893:            if store.mode == .skill && hero == .mage && store.selected.first != nil && store.mageOperation == .push {
+ios/TacticalGo/ExpansionGameView.swift:898:                                Image(systemName: direction.symbol).font(.system(size: 22, weight: .heavy))
+ios/TacticalGo/ExpansionGameView.swift:950:                    Image(systemName: store.selected.isEmpty ? "arrow.uturn.backward" : "xmark").font(.system(size: 12, weight: .bold))
+ios/TacticalGo/ExpansionGameView.swift:956:                Label("確認", systemImage: "checkmark.seal.fill").font(.system(size: 15, weight: .heavy))
+ios/TacticalGo/ExpansionGameView.swift:961:                HStack(spacing: 4) { Text("結束回合"); Image(systemName: "chevron.right.2") }
+ios/TacticalGo/ExpansionGameView.swift:969:            Image(systemName: complete ? "checkmark.seal.fill" : "crown.fill")
+ios/TacticalGo/ExpansionGameView.swift:1010:        switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest: "聖所"; case .none: "第二技能" }
+ios/TacticalGo/ExpansionGameView.swift:1140:            Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").font(.system(size: 16)).padding(10) }
+ios/TacticalGo/ExpansionGameView.swift:1155:            if hero == .warrior, store.state.config.bastionScope == .connectedGroup { return "施放前原棋串旁兩個不同空點。1 AP＋2 能量" }
+ios/TacticalGo/ExpansionGameView.swift:1156:            if hero == .mage, store.state.config.experimentalFriendlyRedeploy, store.mageOperation == .redeploy { return "先選英雄兩格內的相連己兵，再選原棋群旁空點。1 AP＋2 能量" }
+ios/TacticalGo/ExpansionGameView.swift:1157:            if hero == .mage, store.state.config.magicHandDestination == .opposingSoldierExchange { return "推入相鄰空點，或交換異色普通士兵。1 AP＋2 能量" }
+ios/TacticalGo/ExpansionGameView.swift:1212:        if hero == .warrior, config.bastionScope == .connectedGroup { return "沿棋群築壘" }
+ios/TacticalGo/ExpansionGameView.swift:1213:        if hero == .mage, config.experimentalFriendlyRedeploy { return "調度己兵" }
+ios/TacticalGo/ExpansionGameView.swift:1352:        case .warrior: "在戰士所在的己方棋群旁，一次加兩顆士兵。適合補牆、圍住敵兵或替棋群補氣。"
+ios/TacticalGo/ExpansionGameView.swift:1353:        case .mage: "把法師 2 格內、與法師棋群相連的一顆己兵，移到棋群外緣的空點。不增加棋子，適合補缺口或逃出包圍。"
+ios/TacticalGo/ExpansionGameView.swift:1354:        case .rogue: "盜賊和正鄰的一顆敵方士兵交換位置。適合突入敵陣，或拆開正在包圍你的敵兵。"
+ios/TacticalGo/ExpansionGameView.swift:1361:        case .warrior: "依序點棋群旁兩個不同空點，再按確認。"
+ios/TacticalGo/ExpansionGameView.swift:1362:        case .mage: "先點要移動的己兵，再點棋群外緣空點，再按確認。"
+ios/TacticalGo/ExpansionGameView.swift:1363:        case .rogue: "點盜賊上下左右的一顆敵兵，再按確認。"
+ios/TacticalGo/ExpansionGameView.swift:1370:        case .warrior: "把與戰士相連的兩顆己兵，各移到棋群外緣的空點（距戰士 4 格內）。適合重新排陣、堵住缺口。"
+ios/TacticalGo/ExpansionGameView.swift:1371:        case .mage: "移動法師 2 格內的兩顆士兵（敵我皆可），各推到上下左右相鄰的空點。適合一次拆開敵陣。"
+ios/TacticalGo/ExpansionGameView.swift:1372:        case .rogue: "盜賊穿過兩顆相連的敵兵：盜賊到第二顆敵兵的位置，兩顆敵兵各往後退一格。適合深入敵陣。"
+ios/TacticalGo/ExpansionGameView.swift:1379:        case .warrior, .mage: "依序點：士兵① → 空點① → 士兵② → 空點②，再按確認。"
+ios/TacticalGo/ExpansionGameView.swift:1380:        case .rogue: "先點盜賊旁的敵兵，再點那顆敵兵旁的另一顆敵兵，再按確認。"
+ios/TacticalGo/SellMatchStyle.swift:39:                    .overlay(Image("sell-paper-r1").resizable().opacity(0.32).blendMode(.multiply).clipShape(SellPlaque()))
+ios/TacticalGo/SellMatchStyle.swift:45:                if selected { Image(systemName: "checkmark").font(.system(size: 10,weight: .black)).padding(5).accessibilityHidden(true) }
+ios/TacticalGo/SellMatchStyle.swift:62:            .overlay(Image("sell-paper-r1").resizable().opacity(0.65).blendMode(.multiply).clipShape(SellPlaque()))
+ios/TacticalGo/SellMatchStyle.swift:80:                Image(systemName: drawn ? "equal" : "crown.fill")
+ios/TacticalGo/SellMatchStyle.swift:91:            Image(geo.size.width > geo.size.height ? "sell-tabletop-wide-r1" : "sell-tabletop").resizable().scaledToFill()
+ios/TacticalGo/SellMatchStyle.swift:188:            } else if hero == .warrior {
+ios/TacticalGo/SellMatchStyle.swift:198:            } else if hero == .mage {
+ios/TacticalGo/WarriorPresentationLab.swift:11:    @State private var warrior = ProcessInfo.processInfo.arguments.contains("--presentation-warrior") || Bundle.main.bundleIdentifier == "com.tacticalgo.prototype.presentationlab"
+ios/TacticalGo/WarriorPresentationLab.swift:15:                Button("法師 · 魔法之手") {warrior=false}.accessibilityIdentifier("lab-mage").tint(warrior ? .gray:.purple)
+ios/TacticalGo/WarriorPresentationLab.swift:16:                Button("戰士 · 築壘") {warrior=true}.accessibilityIdentifier("lab-warrior").tint(warrior ? .brown:.gray)
+ios/TacticalGo/WarriorPresentationLab.swift:18:            if warrior {WarriorPresentationLabView()} else {PresentationLabView()}
+ios/TacticalGo/WarriorPresentationLab.swift:47:    let plate:UIImage?
+ios/TacticalGo/WarriorPresentationLab.swift:48:    let audio=CombatAudio(defaults:UserDefaults(suiteName:"TacticalGo.warriorLab")!)
+ios/TacticalGo/WarriorPresentationLab.swift:56:        if let url=Bundle.main.url(forResource:"warrior-clean-plate",withExtension:"png",subdirectory:"PresentationLab/P07"),let bytes=try? Data(contentsOf:url),SHA256.hash(data:bytes).map({String(format:"%02x",$0)}).joined()=="64f95dc2137cb5d30d0b642142069ed283cef4a33e918aeb5d137e150028cb63" {plate=UIImage(data:bytes)} else {plate=nil}
+ios/TacticalGo/WarriorPresentationLab.swift:71:        if args.contains("--warrior-original") {original=true}
+ios/TacticalGo/WarriorPresentationLab.swift:72:        if args.contains("--warrior-9") {size=9}
+ios/TacticalGo/WarriorPresentationLab.swift:73:        if args.contains("--warrior-white") {owner = .two}
+ios/TacticalGo/WarriorPresentationLab.swift:74:        if args.contains("--warrior-dense") {dense=true}
+ios/TacticalGo/WarriorPresentationLab.swift:75:        if args.contains("--warrior-capture") {capture=true}
+ios/TacticalGo/WarriorPresentationLab.swift:76:        if args.contains("--warrior-body-only") {bodyOnly=true;voice=false;sfxVolume=0}
+ios/TacticalGo/WarriorPresentationLab.swift:77:        if args.contains("--warrior-voice-A") {take="A"}
+ios/TacticalGo/WarriorPresentationLab.swift:78:        if args.contains("--warrior-board-390") {reviewWidth=390}
+ios/TacticalGo/WarriorPresentationLab.swift:79:        if args.contains("--warrior-board-320") {reviewWidth=320}
+ios/TacticalGo/WarriorPresentationLab.swift:112:        if ProcessInfo.processInfo.arguments.contains("--warrior-autoplay") {
+ios/TacticalGo/WarriorPresentationLab.swift:161:                    Button("原版節奏") {store.original=true;store.reset()}.accessibilityIdentifier("warrior-old")
+ios/TacticalGo/WarriorPresentationLab.swift:162:                    Button("盾擊＋英文語音") {store.original=false;store.reset()}.accessibilityIdentifier("warrior-new")
+ios/TacticalGo/WarriorPresentationLab.swift:163:                    Button(store.size==7 ? "7×7":"9×9") {store.size=store.size==7 ? 9:7;store.reset()}.accessibilityIdentifier("warrior-size")
+ios/TacticalGo/WarriorPresentationLab.swift:164:                    Button(store.owner == .one ? "黑方":"白方") {store.owner=store.owner.opponent;store.reset()}.accessibilityIdentifier("warrior-team")
+ios/TacticalGo/WarriorPresentationLab.swift:169:                }.aspectRatio(8/9.0,contentMode:.fit).frame(width:store.reviewWidth).accessibilityIdentifier("warrior-board")
+ios/TacticalGo/WarriorPresentationLab.swift:170:                Text(store.error ?? store.status).font(.callout).accessibilityIdentifier("warrior-status")
+ios/TacticalGo/WarriorPresentationLab.swift:172:                    Button("預覽") {store.preview()}.accessibilityIdentifier("warrior-preview")
+ios/TacticalGo/WarriorPresentationLab.swift:173:                    Button("取消") {store.cancel()}.accessibilityIdentifier("warrior-cancel")
+ios/TacticalGo/WarriorPresentationLab.swift:174:                    Button("施放／重播") {store.play()}.accessibilityIdentifier("warrior-play").buttonStyle(.borderedProminent)
+ios/TacticalGo/WarriorPresentationLab.swift:175:                    Button("復原") {store.undo()}.accessibilityIdentifier("warrior-undo")
+ios/TacticalGo/WarriorPresentationLab.swift:178:                    Button("提子局面") {store.capture.toggle();store.dense=false;store.reset()}.accessibilityIdentifier("warrior-capture")
+ios/TacticalGo/WarriorPresentationLab.swift:179:                    Button("密集棋形") {store.dense.toggle();store.capture=false;store.reset()}.accessibilityIdentifier("warrior-dense")
+ios/TacticalGo/WarriorPresentationLab.swift:180:                    Button("重設") {store.reset()}.accessibilityIdentifier("warrior-reset")
+ios/TacticalGo/WarriorPresentationLab.swift:182:                Toggle("只看角色動作",isOn:$store.bodyOnly).accessibilityIdentifier("warrior-body-only")
+ios/TacticalGo/WarriorPresentationLab.swift:183:                Toggle("減少動態",isOn:$store.reduced).accessibilityIdentifier("warrior-reduced").onChange(of:store.reduced) {store.cancel()}
+ios/TacticalGo/WarriorPresentationLab.swift:184:                Toggle("靜音",isOn:$store.muted).accessibilityIdentifier("warrior-muted").onChange(of:store.muted) {store.cancel()}
+ios/TacticalGo/WarriorPresentationLab.swift:185:                Toggle("英文技能語音：Hold the line!",isOn:$store.voice).accessibilityIdentifier("warrior-voice").onChange(of:store.voice) {store.cancel()}
+ios/TacticalGo/WarriorPresentationLab.swift:190:                if let image=store.assets?.heroes[.warrior],let plate=store.plate {
+ios/TacticalGo/WarriorPresentationLab.swift:193:                            VStack {WarriorBodyView(original:image,plate:plate,pose:WarriorBodyPose.skill(at:t,reduced:store.reduced || systemReduced),width:CGFloat(width));Text("\(width) pt").font(.caption2)}
+ios/TacticalGo/WarriorPresentationLab.swift:197:                Text(store.audit).font(.system(size:1)).foregroundStyle(.clear).frame(height:1).accessibilityIdentifier("warrior-audit")
+ios/TacticalGo/WarriorPresentationLab.swift:203:                if ProcessInfo.processInfo.arguments.contains("--warrior-lifecycle-audit") {await store.lifecycleAudit();return}
+ios/TacticalGo/WarriorPresentationLab.swift:204:                if ProcessInfo.processInfo.arguments.contains("--warrior-autoplay") {
+ios/TacticalGo/WarriorPresentationLab.swift:212:    let store:WarriorLabStore,assets:P02CozyAssets,plate:UIImage,time:Double,reduced:Bool
+ios/TacticalGo/WarriorPresentationLab.swift:219:                Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/WarriorPresentationLab.swift:220:                Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/WarriorPresentationLab.swift:228:                        P02CozyToken(piece:Piece(plan.caster,.soldier),assets:assets,pitch:pitch,commercialStyle:true,heroClass:.warrior)
+ios/TacticalGo/WarriorPresentationLab.swift:239:                if let plan,!plan.original,!store.bodyOnly,!reduced,let original=assets.heroes[.warrior] {
+ios/TacticalGo/WarriorPresentationLab.swift:245:                        Image(systemName:"shield.fill").foregroundStyle(P02Cozy.gold.opacity(max(0,1-time/0.48))).font(.system(size:pitch*0.33)).position(x:c.x,y:c.y-pitch*0.14*time/0.48).zIndex(190)
+ios/TacticalGo/WarriorPresentationLab.swift:261:        if piece.kind == .hero,piece.owner==store.owner,let original=assets.heroes[.warrior] {
+ios/TacticalGo/WarriorPresentationLab.swift:280:    let plan:WarriorPresentationPlan,time:Double,original:UIImage,pitch:CGFloat,size:CGSize,presentation:BoardPresentation
+ios/TacticalGo/ExpansionHeroBody.swift:9:    let original: UIImage, plate: UIImage
+ios/TacticalGo/ExpansionHeroBody.swift:14:        let r = hero == .priest ? ExpansionCutoutRig.priest : .rogue
+ios/TacticalGo/ExpansionHeroBody.swift:30:    private func source(_ image: UIImage) -> some View { Image(uiImage:image).resizable().interpolation(.high).frame(width:width,height:width) }
+ios/TacticalGo/ExpansionHeroBody.swift:53:    static let rogue = Self(
+ios/TacticalGo/ExpansionHeroBody.swift:74:    private var hero: HeroClass { ProcessInfo.processInfo.arguments.contains("--exp-art-rogue") ? .rogue:.priest }
+ios/TacticalGo/ExpansionHeroBody.swift:75:    private var original: UIImage? {
+ios/TacticalGo/ExpansionHeroBody.swift:76:        if hero == .rogue { return try? P02CozyAssets.load().heroes[.rogue] }
+ios/TacticalGo/ExpansionHeroBody.swift:79:    private var plate: UIImage? { png(hero == .rogue ? "rogue-clean-plate":"priest-clean-plate-v02") }
+ios/TacticalGo/ExpansionHeroBody.swift:80:    private func png(_ name: String) -> UIImage? {
+ios/TacticalGo/ExpansionHeroBody.swift:82:        return UIImage(contentsOfFile:p.path)
+ios/TacticalGo/ExpansionHeroBody.swift:87:                Text(hero == .rogue ? "盜賊原畫分層檢查":"牧師v02原畫分層檢查").font(.headline)
+ios/TacticalGo/ExpansionHeroBody.swift:96:                                        ExpansionHeroBody(original:original,plate:plate,hero:hero,pose:hero == .priest ? .priest(at:t):.rogue(at:t),width:CGFloat(edge)).frame(width:70,height:70)
+ios/TacticalGo/ModelGeometry.swift:17:            let exponent: Float = hero == .warrior ? 0.84 : hero == .mage ? 0.95 : 0.9
+ios/TacticalGo/ModelGeometry.swift:20:                let jaw = 1 - max(0, -y) * (hero == .warrior ? 0.05 : hero == .mage ? 0.16 : 0.12)
+ios/TacticalGo/ModelGeometry.swift:62:        mesh("sculpted-warrior-hair") {
+ios/TacticalGo/ModelGeometry.swift:86:            return surfaceMesh("sculpted-warrior-hair", positions: p, indices: indices)
+ios/TacticalGo/ModelGeometry.swift:179:        let book = Entity(); book.name = "mage-spellbook"; root.addChild(book)
+ios/TacticalGo/ModelGeometry.swift:207:        let clasp = Entity(); clasp.name = "rogue-strap-clasp"
+ios/TacticalGo/ModelGeometry.swift:222:        let pouch = Entity(); pouch.name = "rogue-side-pouch"; root.addChild(pouch)
+ios/TacticalGo/WarriorBodyView.swift:11:    let original: UIImage
+ios/TacticalGo/WarriorBodyView.swift:12:    let plate: UIImage
+ios/TacticalGo/WarriorBodyView.swift:20:            let rig = HeroCutoutRig.warrior
+ios/TacticalGo/WarriorBodyView.swift:59:    private func source(_ image: UIImage) -> some View {
+ios/TacticalGo/WarriorBodyView.swift:60:        Image(uiImage: image).resizable().interpolation(.high).frame(width: width, height: width)
+ios/TacticalGo/WarriorBodyView.swift:85:    let original:UIImage
+ios/TacticalGo/WarriorBodyView.swift:90:            Image(uiImage:original).resizable().interpolation(.high)
+ios/TacticalGo/WarriorBodyView.swift:91:                .frame(width:canvas,height:canvas).mask(HeroCutoutRig.warrior.shield!)
+ios/TacticalGo/WarriorBodyView.swift:128:    static let warrior: Self = {
+ios/TacticalGo/GameVisualAssets.swift:7:    private let images: [String: UIImage]
+ios/TacticalGo/GameVisualAssets.swift:12:        VisualPack(id: "original-a0", heroes: Dictionary(uniqueKeysWithValues: ["warrior", "mage", "rogue"].map {
+ios/TacticalGo/GameVisualAssets.swift:20:        var images: [String: UIImage] = [:]
+ios/TacticalGo/GameVisualAssets.swift:23:            guard let image = UIImage(named: asset.name), let cg = image.cgImage else { throw LoadError.missing(asset.name) }
+ios/TacticalGo/GameVisualAssets.swift:28:            images[asset.name] = image
+ios/TacticalGo/GameVisualAssets.swift:30:        return Self(pack: pack, images: images, diagnostic: nil)
+ios/TacticalGo/GameVisualAssets.swift:36:            return Self(pack: old.pack, images: old.images, diagnostic: "素材包拒絕：\(error)")
+ios/TacticalGo/GameVisualAssets.swift:39:    func image(_ asset: SpriteAsset) -> UIImage { images[asset.name]! }
+ios/TacticalGo/GameVisualAssets.swift:40:    func portrait(_ hero: String) -> UIImage { image(pack.heroes[hero]!.portrait) }
+ios/TacticalGo/GameVisualAssets.swift:47:            heroes["warrior"] = HeroAssets(portrait: source.heroes["warrior"]!.portrait,
+ios/TacticalGo/GameVisualAssets.swift:61:        Image(uiImage: visuals.image(asset)).resizable().interpolation(.high)
+ios/TacticalGo/ExpansionSpellEffects.swift:11:    let hands: [UIImage]
+ios/TacticalGo/ExpansionSpellEffects.swift:21:                    case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: mage
+ios/TacticalGo/ExpansionSpellEffects.swift:22:                    case .castBastion,.castReformation: warrior
+ios/TacticalGo/ExpansionSpellEffects.swift:23:                    case .castSwap,.castChainSwap: rogue
+ios/TacticalGo/ExpansionSpellEffects.swift:137:    private var mage: some View {
+ios/TacticalGo/ExpansionSpellEffects.swift:179:    private var warrior: some View {
+ios/TacticalGo/ExpansionSpellEffects.swift:199:                if case .castBastion = receipt.action,let image = assets.heroes[.warrior],f.alpha > 0 {
+ios/TacticalGo/ExpansionSpellEffects.swift:200:                    WarriorShieldProjection(original:image,width:pitch*0.78*f.scale).opacity(f.alpha).position(x:q.x,y:q.y-pitch*(0.30+f.lift))
+ios/TacticalGo/ExpansionSpellEffects.swift:205:    private var rogue: some View {
+ios/TacticalGo/ExpansionSpellEffects.swift:307:        Image("game-spell-atlas-v22").resizable().frame(width:size*4,height:size*2)
+ios/TacticalGo/CozyStyle.swift:10:    static let mage = color(0x9277B6), deepMage = color(0x59446F), danger = color(0x6E302B)
+ios/TacticalGo/CozyStyle.swift:31:                if selected { Image(systemName: "checkmark").font(.system(size: 10, weight: .black)).padding(5).foregroundStyle(Cozy.ink) }
+ios/TacticalGo/CozyStyle.swift:40:    let mageBody: MageBodyAssets
+ios/TacticalGo/CozyStyle.swift:41:    let heroes: [HeroClass: UIImage]
+ios/TacticalGo/CozyStyle.swift:42:    let heroPlates: [HeroClass: UIImage]
+ios/TacticalGo/CozyStyle.swift:43:    let board: UIImage
+ios/TacticalGo/CozyStyle.swift:44:    let shadow: UIImage
+ios/TacticalGo/CozyStyle.swift:55:        func image(_ name: String, width: Int, height: Int) throws -> UIImage {
+ios/TacticalGo/CozyStyle.swift:57:                  let image = UIImage(contentsOfFile: url.path), let cg = image.cgImage,
+ios/TacticalGo/CozyStyle.swift:59:            return image
+ios/TacticalGo/CozyStyle.swift:61:        var heroes: [HeroClass: UIImage] = [:]
+ios/TacticalGo/CozyStyle.swift:62:        for hero in [HeroClass.warrior, .mage, .rogue] { heroes[hero] = try image("B-" + hero.rawValue.lowercased() + "-v02", width: 512, height: 512) }
+ios/TacticalGo/CozyStyle.swift:65:        var plates: [HeroClass:UIImage] = [:]
+ios/TacticalGo/CozyStyle.swift:66:        for h in [HeroClass.warrior,.rogue] {
+ios/TacticalGo/CozyStyle.swift:70:                  let image = UIImage(contentsOfFile:url.path),let cg = image.cgImage,cg.width == cg.height,
+ios/TacticalGo/CozyStyle.swift:72:            plates[h] = image
+ios/TacticalGo/CozyStyle.swift:74:        return try Self(anim: Anim01Assets.load(bundle: bundle), mageBody: MageBodyAssets.load(bundle: bundle), heroes: heroes, heroPlates: plates,
+ios/TacticalGo/CozyStyle.swift:75:                        board: image("v3-b-board-surface", width: 1024, height: 1152),
+ios/TacticalGo/CozyStyle.swift:76:                        shadow: image("v3-b-board-shadow", width: 1024, height: 1152))
+ios/TacticalGo/CozyStyle.swift:87:    var magePose: MageBodyPose = .rest
+ios/TacticalGo/CozyStyle.swift:94:    private var classColor: Color { heroClass == .mage ? Cozy.mage : heroClass == .warrior ? Cozy.sage : Cozy.coordinate }
+ios/TacticalGo/CozyStyle.swift:95:    private var symbol: String { heroClass == .warrior ? "shield.fill" : heroClass == .mage ? "sparkle" : "bolt.fill" }
+ios/TacticalGo/CozyStyle.swift:110:            } else if piece.kind == .hero, let image = assets.heroes[heroClass] {
+ios/TacticalGo/CozyStyle.swift:114:                    if heroClass == .mage { MageBodyView(original: image, plate: assets.mageBody.cleanPlate, pose: magePose, width: width) }
+ios/TacticalGo/CozyStyle.swift:115:                    else { Image(uiImage: image).resizable().frame(width: width, height: width) }
+ios/TacticalGo/CozyStyle.swift:120:                    if heroClass == .rogue { CozyDagger().fill(Cozy.card).frame(width: max(8, pitch * 0.17), height: max(8, pitch * 0.17)) }
+ios/TacticalGo/CozyStyle.swift:121:                    else { Image(systemName: symbol).font(.system(size: max(8, pitch * 0.17), weight: .black)).foregroundStyle(Cozy.card) }
+ios/TacticalGo/CozyStyle.swift:124:                Image(systemName: "crown.fill").font(.system(size: pitch * 0.26, weight: .black)).foregroundStyle(black ? Cozy.confirm : Cozy.coordinate)
+ios/TacticalGo/CozyStyle.swift:141:                Image(systemName:"crown.fill").font(.system(size:pitch*0.30,weight:.black))
+ios/TacticalGo/CozyStyle.swift:152:        let canvas = pitch * (heroClass == .mage ? 0.92 : 0.88)
+ios/TacticalGo/CozyStyle.swift:166:            if let image = assets.heroes[heroClass] {
+ios/TacticalGo/CozyStyle.swift:168:                    if heroClass == .mage { MageBodyView(original: image,plate:assets.mageBody.cleanPlate,pose:magePose,width:canvas) }
+ios/TacticalGo/CozyStyle.swift:169:                    else if let plate = assets.heroPlates[heroClass] { HeroBodyView(original:image,plate:plate,heroClass:heroClass,pose:heroPose,width:canvas) }
+ios/TacticalGo/CozyStyle.swift:181:                    if heroClass == .rogue { CozyDagger().fill(black ? Cozy.card : Cozy.coordinate) }
+ios/TacticalGo/CozyStyle.swift:182:                    else { Image(systemName:symbol).font(.system(size:max(4.5,pitch * 0.105),weight:.bold)).foregroundStyle(black ? Cozy.card : Cozy.coordinate) }
+ios/TacticalGo/MageBodyView.swift:6:    let cleanPlate: UIImage
+ios/TacticalGo/MageBodyView.swift:10:              let image = UIImage(contentsOfFile: url.path), let cg = image.cgImage,
+ios/TacticalGo/MageBodyView.swift:13:        return Self(cleanPlate: image)
+ios/TacticalGo/MageBodyView.swift:21:    let original: UIImage
+ios/TacticalGo/MageBodyView.swift:22:    let plate: UIImage
+ios/TacticalGo/MageBodyView.swift:66:    private func source(_ image: UIImage) -> some View {
+ios/TacticalGo/MageBodyView.swift:67:        Image(uiImage: image).resizable().interpolation(.high).frame(width: width,height: width)
+ios/TacticalGo/GameStore.swift:133:            playback = nil; selected = []; pushDirection = nil; mageOperation = .push; mode = .soldier; review = .normal
+ios/TacticalGo/GameStore.swift:152:        !ProcessInfo.processInfo.arguments.contains("--mage-body-review"))
+ios/TacticalGo/GameStore.swift:158:    var mageTempo: MageTempo = .full
+ios/TacticalGo/GameStore.swift:207:            ? CombatFeedbackPlan.anim01(before: before, action: action, outcome: outcome, tempo: receipt?.mageTempo ?? mageTempo)
+ios/TacticalGo/GameStore.swift:223:                .map { $0.start + ($0.key == "capture" ? 0.48 : $0.key == "mage" ? 0.62 : 0.55) }.max() ?? plan.duration
+ios/TacticalGo/GameStore.swift:283:    var mageOperation: MageOperation {
+ios/TacticalGo/GameStore.swift:397:            case .warrior: return selected.count == 2 ? .castBastion(selected[0], selected[1]) : nil
+ios/TacticalGo/GameStore.swift:398:            case .mage:
+ios/TacticalGo/GameStore.swift:399:                if state.config.mageSkill == .seal { return .castSeal(p) }
+ios/TacticalGo/GameStore.swift:400:                if state.config.experimentalFriendlyRedeploy && mageOperation == .redeploy {
+ios/TacticalGo/GameStore.swift:404:            case .rogue: return .castSwap(p)
+ios/TacticalGo/GameStore.swift:420:            case (.skill, .castMagicHand(let p, _)): return mageOperation == .push ? [p] : []
+ios/TacticalGo/GameStore.swift:422:                guard mageOperation == .redeploy else { return [] }
+ios/TacticalGo/GameStore.swift:448:            let record = MatchRecord(size: 7, one: .warrior, two: .mage, computer: nil, difficulty: "easy", rules: GameStore.defaultMatchRules)
+ios/TacticalGo/GameStore.swift:474:        if mode == .skill && (state.heroClass(of: state.current) == .warrior ||
+ios/TacticalGo/GameStore.swift:475:            (state.heroClass(of: state.current) == .mage && state.config.experimentalFriendlyRedeploy && mageOperation == .redeploy)) {
+ios/TacticalGo/GameStore.swift:479:        else { message = state.heroClass(of: state.current) == .mage ? (mageOperation == .redeploy ? "調度己兵：再選原棋群旁空點。" : "魔法之手：選擇推動方向。") : (state.config.bastionScope == .connectedGroup ? "築壘：再選原棋串旁另一個空點。" : "築壘：再選另一個相鄰空點。") }
+ios/TacticalGo/GameStore.swift:529:            let receipt = BoardPlayback(before: before, action: action, outcome: o, mageTempo: mageTempo)
+ios/TacticalGo/GameStore.swift:537:            else if receipt.magicHand != nil || receipt.mageSummon != nil || receipt.heroPerformance != nil { visualDuration = receipt.visualDuration }
+ios/TacticalGo/GameStore.swift:610:        cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline
+ios/TacticalGo/GameStore.swift:615:                classOne:fixture.heroClass,classTwo:.rogue,manaOne:4,manaTwo:4,ap:2,ply:30)
+ios/TacticalGo/GameStore.swift:763:        var replay = GameSession(try! GameSetup.newGame(config: .board(size: 7), classOne: .rogue, classTwo: .mage))
+ios/TacticalGo/GameStore.swift:784:        """, classOne: .warrior, classTwo: .mage, current: .two, manaOne: 4, manaTwo: 5, ap: 2))
+ios/TacticalGo/GameStore.swift:803:    @discardableResult func newMatch(classOne: HeroClass = .warrior, classTwo: HeroClass = .mage, computer: Player? = nil, rules: RecordRules = GameStore.defaultMatchRules, requestedSize: Int? = nil, authorize: ((UUID) throws -> Void)? = nil) -> Bool {
+ios/TacticalGo/GameStore.swift:830:        selected = []; pushDirection = nil; mageOperation = .push; mode = .soldier
+ios/TacticalGo/GameStore.swift:849:            mageOperation = .push
+ios/TacticalGo/GameStore.swift:857:        mageOperation = operation; selected = []; pushDirection = nil
+ios/TacticalGo/GameStore.swift:861:    func loadSkillScreenshot(candidate: Bool, mage: Bool) {
+ios/TacticalGo/GameStore.swift:864:        let diagram = mage ? "O..x...\n..xxx..\n.xxxxx.\nxxxHxxx\n.xxxxx.\n..xxx..\n...x..X"
+ios/TacticalGo/GameStore.swift:867:            classOne: mage ? .mage : .warrior, classTwo: .warrior,
+ios/TacticalGo/GameStore.swift:868:            current: mage ? .one : .two, manaOne: 4, manaTwo: 4, ap: 2, ply: mage ? 30 : 12))
+ios/TacticalGo/GameStore.swift:869:        recordRules = rules; mode = .skill; mageOperation = mage ? .redeploy : .push
+ios/TacticalGo/GameStore.swift:883:        var config = RuleConfig.board(size: size); config.mageSkill = .seal
+ios/TacticalGo/GameStore.swift:885:            classOne: .mage, classTwo: .rogue, manaOne: 4, manaTwo: 3, ap: 2)
+ios/TacticalGo/CozyAudit.swift:91:        check("success_real_owner_mage_place_capture_victory", cues.map { $0["key"] ?? "" } == ["mage", "place", "capture", "victory"] && cues.allSatisfy { $0["playing"] == "true" })
+ios/TacticalGo/CozyAudit.swift:97:        check("no_capture_no_capture_or_victory_sound", audio.playbackObservations.dropFirst(noCaptureCount).map { $0["key"] ?? "" } == ["mage", "place"])
+ios/TacticalGo/CozyAudit.swift:110:            case "restart": store.newMatch(classOne: .mage, classTwo: .warrior)
+ios/TacticalGo/CozyAudit.swift:153:                diagram = "...O...\n.......\n.......\n..." + h + (hero == .rogue ? enemy : ".") + "..\n.......\n...X...\n......."
+ios/TacticalGo/CozyAudit.swift:155:            let state = skill && hero == .mage ? try! Anim01Fixture.state(caster: owner, pushedOwner: owner, capture: false)
+ios/TacticalGo/CozyAudit.swift:163:            case .warrior: store.select(Point(2,3)); store.select(Point(4,3))
+ios/TacticalGo/CozyAudit.swift:164:            case .mage: store.select(Point(4,3)); store.chooseDirection(.up)
+ios/TacticalGo/CozyAudit.swift:165:            case .rogue: store.select(Point(4,3))
+ios/TacticalGo/CozyAudit.swift:169:        for hero in [HeroClass.warrior, .mage, .rogue] {
+ios/TacticalGo/CozyAudit.swift:188:        reset(.mage); prepare(.mage); store.confirm(); await wait(0.06)
+ios/TacticalGo/CozyAudit.swift:192:        let n = audio.voiceObservations.count; reset(.mage); prepare(.mage); store.confirm(); await wait(0.06)
+ios/TacticalGo/CozyAudit.swift:195:        reset(.mage); prepare(.mage); store.confirm(); await wait(0.55)
+ios/TacticalGo/CozyAudit.swift:199:            reset(.warrior); prepare(.warrior); store.confirm(); await wait(0.06)
+ios/TacticalGo/CozyAudit.swift:203:            case "restart": store.newMatch(classOne: .warrior, classTwo: .mage)
+ios/TacticalGo/CozyAudit.swift:213:        reset(.mage); store.selected = [Point(0,0)]; let invalid = store.state, n2 = audio.voiceObservations.count
+ios/TacticalGo/CozyAudit.swift:216:            reset(.mage); audio.musicEnabled = true; audio.musicVolume = 0.25
+ios/TacticalGo/CozyAudit.swift:218:            prepare(.mage); store.confirm(); await wait(0.20)
+ios/TacticalGo/CozyAudit.swift:220:            await wait(audio.voiceDurationForAudit("voice-mage-summon") + 0.85); check("voice_duck_restores", audio.musicDuckGain > 0.99)
+ios/TacticalGo/CozyAudit.swift:249:                     "mageTempo":receipt.mageTempo.rawValue,"visualDuration":receipt.visualDuration,
+ios/TacticalGo/CozyAudit.swift:252:                     "mageRevision":ProcessInfo.processInfo.arguments.contains("--mage-m2-reference") ? "m2" : ProcessInfo.processInfo.arguments.contains("--mage-m3-reference") ? "m3" : "r1",
+ios/TacticalGo/CozyAudit.swift:253:                     "effectsEnabled": !ProcessInfo.processInfo.arguments.contains("--mage-no-effects"),
+ios/TacticalGo/CozyAudit.swift:275:        for hero in [HeroClass.warrior,.mage,.rogue] {
+ios/TacticalGo/CozyAudit.swift:287:        load(.warrior,diagram: "...O...\n.......\n.......\n...H...\n.......\n...X...\n.......",mode: .skill)
+ios/TacticalGo/CozyAudit.swift:294:        load(.rogue,diagram: "...O...\n.......\n.......\n...Ho..\n.......\n...X...\n.......",mode: .skill)
+ios/TacticalGo/CozyAudit.swift:303:            load(.warrior,diagram: surround,mode: .soldier); store.presentationReducedMotion = reduced
+ios/TacticalGo/BoardPlayback.swift:14:    let mageTempo: MageTempo
+ios/TacticalGo/BoardPlayback.swift:16:    var magicHand: Anim01MagicHand? { Anim01MagicHand.make(before: before, action: action, outcome: outcome, tempo: mageTempo) }
+ios/TacticalGo/BoardPlayback.swift:17:    var skillVFX: SkillVFX? { SkillVFX.make(before: before, action: action, outcome: outcome, tempo: mageTempo) }
+ios/TacticalGo/BoardPlayback.swift:18:    var mageSummon: Point? {
+ios/TacticalGo/BoardPlayback.swift:19:        guard outcome.success, case .summonHero(let point) = action, before.heroClass(of: before.current) == .mage else { return nil }
+ios/TacticalGo/BoardPlayback.swift:22:    var visualDuration: Double { magicHand?.duration ?? heroPerformance?.duration ?? (mageSummon != nil ? max(plan.duration, mageTempo.timing.summonEnd) : plan.duration) }
+ios/TacticalGo/BoardPlayback.swift:23:    init(before: GameState, action: GameAction, outcome: ActionOutcome, mageTempo: MageTempo = .full) {
+ios/TacticalGo/BoardPlayback.swift:24:        self.mageTempo = mageTempo
+ios/TacticalGo/PlayableGameView.swift:9:    var title: String { switch self { case .warrior: "戰士"; case .mage: "法師"; case .rogue: "盜賊"; case .priest: "牧師"; case .none: "無職業" } }
+ios/TacticalGo/PlayableGameView.swift:11:    var skillTitle: String { switch self { case .warrior: "築壘"; case .mage: "魔法之手"; case .rogue: "換位"; case .priest: "奉獻"; case .none: "技能" } }
+ios/TacticalGo/PlayableGameView.swift:14:        case .warrior: "英雄相鄰的兩個空點，同時放士兵。"
+ios/TacticalGo/PlayableGameView.swift:15:        case .mage: "距離 2 內的任一士兵，推往相鄰空點。"
+ios/TacticalGo/PlayableGameView.swift:16:        case .rogue: "與相鄰敵方士兵交換位置。"
+ios/TacticalGo/PlayableGameView.swift:22:        if self == .warrior, config.bastionScope == .connectedGroup {
+ios/TacticalGo/PlayableGameView.swift:25:        if self == .mage, config.experimentalFriendlyRedeploy {
+ios/TacticalGo/PlayableGameView.swift:28:        if self == .mage, config.magicHandDestination == .opposingSoldierExchange {
+ios/TacticalGo/PlayableGameView.swift:33:    var summonCost: Int { self == .mage || self == .priest ? 3 : 2 }
+ios/TacticalGo/PlayableGameView.swift:41:    case capture = "包圍與提子", warrior = "戰士築壘", mage = "法師魔法之手", rogue = "盜賊換位"
+ios/TacticalGo/PlayableGameView.swift:46:        case .warrior: "選 C4 與 E4，預覽兩顆士兵，再按確認。"
+ios/TacticalGo/PlayableGameView.swift:47:        case .mage: "選 E4 的敵兵，再選「上」並確認。"
+ios/TacticalGo/PlayableGameView.swift:48:        case .rogue: "選 E4 的敵兵，預覽換位，再按確認。"
+ios/TacticalGo/PlayableGameView.swift:56:            rows = ["...O...", "...x...", "..xox..", ".......", ".......", "...X...", "......."]; hero = .warrior
+ios/TacticalGo/PlayableGameView.swift:57:        case .warrior: hero = .warrior
+ios/TacticalGo/PlayableGameView.swift:58:        case .mage: rows[3] = "...Ho.."; hero = .mage
+ios/TacticalGo/PlayableGameView.swift:59:        case .rogue: rows[3] = "...Ho.."; hero = .rogue
+ios/TacticalGo/PlayableGameView.swift:62:            classOne: hero, classTwo: .warrior, manaOne: 6, manaTwo: 6, ap: 2)
+ios/TacticalGo/PlayableGameView.swift:67:        case .warrior: state.board[Point(2, 3)] == Piece(.one, .soldier) && state.board[Point(4, 3)] == Piece(.one, .soldier)
+ios/TacticalGo/PlayableGameView.swift:68:        case .mage: state.board[Point(4, 3)] == nil && state.board[Point(4, 2)] == Piece(.two, .soldier)
+ios/TacticalGo/PlayableGameView.swift:69:        case .rogue: state.board[Point(4, 3)] == Piece(.one, .hero) && state.board[Point(3, 3)] == Piece(.two, .soldier)
+ios/TacticalGo/PlayableGameView.swift:122:    @State private var mageBodyAuditStatus = "RUNNING"
+ios/TacticalGo/PlayableGameView.swift:123:    @State private var mageBodyAuditStarted = false
+ios/TacticalGo/PlayableGameView.swift:130:    @State private var mageEffectsEnabled = true
+ios/TacticalGo/PlayableGameView.swift:131:    @State private var mageRevision: MageArtRevision = .r1
+ios/TacticalGo/PlayableGameView.swift:132:    @State private var mageMarkers: HeroMarkerStyle = .thinRing
+ios/TacticalGo/PlayableGameView.swift:138:    @State private var one: HeroClass = .warrior
+ios/TacticalGo/PlayableGameView.swift:139:    @State private var two: HeroClass = .mage
+ios/TacticalGo/PlayableGameView.swift:167:    private let heroes: [HeroClass] = [.warrior, .mage, .rogue]
+ios/TacticalGo/PlayableGameView.swift:274:            if ProcessInfo.processInfo.arguments.contains("--mage-body-audit") { Text(mageBodyAuditStatus).accessibilityIdentifier("mageBodyAudit").font(.caption).background(Cozy.card) }
+ios/TacticalGo/PlayableGameView.swift:298:                // A verified owner is never metered, and an unrelated damaged trial file must not block a copy.
+ios/TacticalGo/PlayableGameView.swift:321:            if args.contains("--mage-body-review") || args.contains("--hero-body-review") { store.audio.voiceEnabled = false }
+ios/TacticalGo/PlayableGameView.swift:328:            mageEffectsEnabled = !args.contains("--mage-no-effects")
+ios/TacticalGo/PlayableGameView.swift:329:            if args.contains("--mage-m3-reference") { mageRevision = .m3 }
+ios/TacticalGo/PlayableGameView.swift:330:            if args.contains("--mage-m2-reference") { mageRevision = .m2; mageMarkers = .legacy }
+ios/TacticalGo/PlayableGameView.swift:331:            if args.contains("--mage-compact") { store.mageTempo = .compact }
+ios/TacticalGo/PlayableGameView.swift:346:            if args.contains("--bot-mage-motion-review") { singlePlayer = true; startMatch(); store.loadBotMageMotionReview() }
+ios/TacticalGo/PlayableGameView.swift:357:                    args.indices.contains(index + 1) ? ["warrior": HeroClass.warrior, "mage": .mage, "rogue": .rogue][args[index+1]] : nil
+ios/TacticalGo/PlayableGameView.swift:358:                } ?? .mage
+ios/TacticalGo/PlayableGameView.swift:369:                let hero: HeroClass = args.contains("rogue") ? .rogue : .warrior
+ios/TacticalGo/PlayableGameView.swift:372:                let diagram = "...O...\n.......\n.......\n..." + symbol + (hero == .rogue ? enemy : ".") + "..\n.......\n...X...\n......."
+ios/TacticalGo/PlayableGameView.swift:378:                let hero:HeroClass = args.contains("rogue") ? .rogue : .warrior
+ios/TacticalGo/PlayableGameView.swift:389:                one = .mage; two = .warrior; store.mode = .skill; inMatch = true
+ios/TacticalGo/PlayableGameView.swift:392:            if args.contains("--mage-dense") {
+ios/TacticalGo/PlayableGameView.swift:399:                func hero(_ key: String) -> HeroClass { ["mage": .mage, "warrior": .warrior, "rogue": .rogue][scene[key] as! String]! }
+ios/TacticalGo/PlayableGameView.swift:405:                let hero:HeroClass = args.contains("warrior") ? .warrior : args.contains("rogue") ? .rogue : .mage
+ios/TacticalGo/PlayableGameView.swift:415:                store.loadSkillScreenshot(candidate: args.contains("--candidate-skills"), mage: args.contains("--mage-redeploy"))
+ios/TacticalGo/PlayableGameView.swift:431:        if !mageBodyAuditStarted, ProcessInfo.processInfo.arguments.contains("--mage-body-audit"), let cozyAssets {
+ios/TacticalGo/PlayableGameView.swift:432:            mageBodyAuditStarted = true; Task { mageBodyAuditStatus = await MageBodyAudit.run(store:store,assets:cozyAssets) }
+ios/TacticalGo/PlayableGameView.swift:457:                        Image(systemName: "crown.fill").font(.system(size: compact ? 34 : 44, weight: .bold))
+ios/TacticalGo/PlayableGameView.swift:475:                        Label("續玩上局", systemImage: "play.circle.fill").font(.headline)
+ios/TacticalGo/PlayableGameView.swift:484:                    Label("開始對戰", systemImage: "play.fill").font(.headline)
+ios/TacticalGo/PlayableGameView.swift:489:                    Label("開始對戰", systemImage: "play.fill").font(.headline)
+ios/TacticalGo/PlayableGameView.swift:496:                        Label("新手入門", systemImage: "hand.tap").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/PlayableGameView.swift:499:                        Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/PlayableGameView.swift:503:                        Label("原版規則", systemImage: "square.grid.3x3").frame(maxWidth: .infinity, minHeight: 44)
+ios/TacticalGo/PlayableGameView.swift:516:            Image(uiImage: visuals.portrait("mage")).resizable().scaledToFit()
+ios/TacticalGo/PlayableGameView.swift:518:            Image(uiImage: visuals.portrait("rogue")).resizable().scaledToFit()
+ios/TacticalGo/PlayableGameView.swift:520:            Image(uiImage: visuals.portrait("warrior")).resizable().scaledToFit()
+ios/TacticalGo/PlayableGameView.swift:527:            Button("聲音", systemImage: "speaker.wave.2") { showSoundSettings = true }
+ios/TacticalGo/PlayableGameView.swift:528:            Button("遊戲規則", systemImage: "book") { showRules = true }
+ios/TacticalGo/PlayableGameView.swift:529:            Button("存局與棋譜", systemImage: "book.closed") {
+ios/TacticalGo/PlayableGameView.swift:532:            Menu("玩法練習", systemImage: "graduationcap") {
+ios/TacticalGo/PlayableGameView.swift:535:            Button("購買與恢復", systemImage: "cart") { pendingMatchRules = nil; showUnlock = true }.accessibilityIdentifier("purchaseSettings")
+ios/TacticalGo/PlayableGameView.swift:536:            Button("隱私與支援", systemImage: "hand.raised") { showPrivacy = true }.accessibilityIdentifier("privacySupport")
+ios/TacticalGo/PlayableGameView.swift:538:            Button("技能試驗", systemImage: "flask") { showR2 = true }
+ios/TacticalGo/PlayableGameView.swift:541:            Image(systemName: "gearshape").font(.system(size: 20)).frame(width: 44, height: 44)
+ios/TacticalGo/PlayableGameView.swift:546:        Menu("戰術挑戰", systemImage: "flag.checkered") {
+ios/TacticalGo/PlayableGameView.swift:566:                            Label("主畫面", systemImage: "chevron.left").frame(minHeight: 44)
+ios/TacticalGo/PlayableGameView.swift:570:                            Image(systemName: "gearshape").frame(width: 44, height: 44)
+ios/TacticalGo/PlayableGameView.swift:574:                            Image(systemName: "speaker.wave.2").frame(width: 44, height: 44)
+ios/TacticalGo/PlayableGameView.swift:585:                        } label: { Label("上一步", systemImage: "arrow.left").frame(minHeight: 44) }
+ios/TacticalGo/PlayableGameView.swift:591:                            Label("電腦對戰", systemImage: "cpu").font(.headline).frame(maxWidth: .infinity, minHeight: 68)
+ios/TacticalGo/PlayableGameView.swift:594:                            Label("本機雙人", systemImage: "person.2.fill").font(.headline).frame(maxWidth: .infinity, minHeight: 68)
+ios/TacticalGo/PlayableGameView.swift:660:                        Image(uiImage: visuals.portrait(h.art)).resizable().scaledToFit().frame(height: portraitHeight)
+ios/TacticalGo/PlayableGameView.swift:680:            Label("黑方 · \(one.title)", systemImage: "circle.fill")
+ios/TacticalGo/PlayableGameView.swift:682:            Label("白方 · \(two.title)", systemImage: "circle")
+ios/TacticalGo/PlayableGameView.swift:699:            Label(final ? "開始對局" : (singlePlayer ? "下一步：電腦英雄" : "下一步：白方英雄"), systemImage: final ? "play.fill" : "arrow.right")
+ios/TacticalGo/PlayableGameView.swift:831:                if sellLook { Image(systemName:"diamond.fill").font(.system(size:10)).foregroundStyle(Cozy.color(0x9ADADD)).accessibilityHidden(true) }
+ios/TacticalGo/PlayableGameView.swift:884:                    Image(uiImage: visuals.portrait(store.state.heroClass(of: winner).art))
+ios/TacticalGo/PlayableGameView.swift:890:                Label("再玩一局", systemImage: "arrow.clockwise")
+ios/TacticalGo/PlayableGameView.swift:897:                    Label("查看棋譜", systemImage: "book.closed")
+ios/TacticalGo/PlayableGameView.swift:902:                    Label("復原", systemImage: "arrow.uturn.backward")
+ios/TacticalGo/PlayableGameView.swift:923:        // Switching the active opponent must not add a mage picker to this bar.
+ios/TacticalGo/PlayableGameView.swift:934:                if !compact { Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: 48, height: 48)
+ios/TacticalGo/PlayableGameView.swift:954:                    Image(systemName: showActionHelp ? "chevron.up.circle" : "info.circle")
+ios/TacticalGo/PlayableGameView.swift:972:            if hero == .mage && store.state.config.experimentalFriendlyRedeploy && (store.mode == .skill || (compact && sellLook)) {
+ios/TacticalGo/PlayableGameView.swift:973:                Picker("魔法之手方式", selection: Binding(get: { store.mageOperation }, set: { store.changeMageOperation($0) })) {
+ios/TacticalGo/PlayableGameView.swift:975:                }.pickerStyle(.segmented).accessibilityIdentifier("mageOperation")
+ios/TacticalGo/PlayableGameView.swift:980:            if store.mode == .skill && hero == .mage && store.mageOperation == .push && store.selected.first != nil {
+ios/TacticalGo/PlayableGameView.swift:984:                            Label(direction.title, systemImage: direction.symbol)
+ios/TacticalGo/PlayableGameView.swift:1030:                        Label(sellLook && store.preview?.success == true ? store.mode == .skill ? "確認施法" : store.mode == .summon ? "確認召喚" : "確認落子" : "確認",systemImage:store.isPresenting ? "hourglass" : store.preview?.success == true ? "checkmark.seal.fill" : "checkmark").font(.headline)
+ios/TacticalGo/PlayableGameView.swift:1089:            + (store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy ? 38.0 : 0.0)
+ios/TacticalGo/PlayableGameView.swift:1123:                Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 44, height: 44) }.accessibilityLabel("返回選角")
+ios/TacticalGo/PlayableGameView.swift:1149:                        Image(systemName: "info.circle").font(.system(size: 20)).frame(width: 44, height: 44)
+ios/TacticalGo/PlayableGameView.swift:1184:                } label: { Image(systemName: "ellipsis.circle").font(.system(size: 20)).frame(width: 44, height: 44) }.accessibilityLabel("對戰選單")
+ios/TacticalGo/PlayableGameView.swift:1213:                HStack { Image(systemName: "crown.fill"); Text(title).font(.system(size: 16, weight: .bold)); Spacer(); Button("再玩一局", action: startMatch) }
+ios/TacticalGo/PlayableGameView.swift:1217:                HStack { Image(systemName: "checkmark.circle.fill"); Text("練習完成").bold(); Spacer(); Button("回到選角") { inMatch = false; lesson = nil } }
+ios/TacticalGo/PlayableGameView.swift:1225:                    Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: tablet ? 72 : 48, height: tablet ? 72 : 48)
+ios/TacticalGo/PlayableGameView.swift:1237:            if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy {
+ios/TacticalGo/PlayableGameView.swift:1238:                Picker("魔法之手方式", selection: Binding(get: { store.mageOperation }, set: { store.changeMageOperation($0) })) {
+ios/TacticalGo/PlayableGameView.swift:1240:                }.pickerStyle(.segmented).accessibilityIdentifier("mageOperation")
+ios/TacticalGo/PlayableGameView.swift:1242:            if store.mode == .skill && hero == .mage && store.mageOperation == .push && store.selected.first != nil {
+ios/TacticalGo/PlayableGameView.swift:1246:                            Label(direction.title, systemImage: direction.symbol).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
+ios/TacticalGo/PlayableGameView.swift:1321:                              animating: store.isPresenting || (store.isBotActing && store.botMotionStartedAt != nil), reducedMotion: reduceMotion || cozyReduced, checkpoint: nil, effectsEnabled: mageEffectsEnabled, mageRevision: mageRevision, markerStyle: mageMarkers, commercialStyle:sellLook, select: { point in
+ios/TacticalGo/PlayableGameView.swift:1349:            Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").font(.system(size: 16)).padding(10) }
+ios/TacticalGo/PlayableGameView.swift:1360:            if hero == .warrior, store.state.config.bastionScope == .connectedGroup { return "施放前原棋串旁兩個不同空點。1 AP＋2 能量" }
+ios/TacticalGo/PlayableGameView.swift:1361:            if hero == .mage, store.state.config.experimentalFriendlyRedeploy, store.mageOperation == .redeploy { return "先選英雄兩格內的相連己兵，再選原棋群旁空點。1 AP＋2 能量" }
+ios/TacticalGo/PlayableGameView.swift:1362:            if hero == .mage, store.state.config.magicHandDestination == .opposingSoldierExchange { return "推入相鄰空點，或交換異色普通士兵。1 AP＋2 能量" }
+ios/TacticalGo/GameInterface.swift:24:        case .warrior: gold
+ios/TacticalGo/GameInterface.swift:25:        case .mage: Color(red: 0.37, green: 0.77, blue: 0.91)
+ios/TacticalGo/GameInterface.swift:26:        case .rogue: Color(red: 0.53, green: 0.73, blue: 0.53)
+ios/TacticalGo/GameInterface.swift:38:                    Image("game-table-material").resizable().scaledToFill()
+ios/TacticalGo/GameInterface.swift:67:                    Image("game-table-material").resizable().scaledToFill()
+ios/TacticalGo/GameInterface.swift:72:                Image("game-tray-frame-v20").resizable()
+ios/TacticalGo/GameInterface.swift:85:    /// PRIEST-S2-P0: drawn from its own image (`game-ability-sanctum-v01`), not from the full 4x3 atlas.
+ios/TacticalGo/GameInterface.swift:89:        case .warrior: advanced ? .reformation : .bastion
+ios/TacticalGo/GameInterface.swift:90:        case .mage: advanced ? .doublePull : .magicHand
+ios/TacticalGo/GameInterface.swift:91:        case .rogue: advanced ? .chainSwap : .swap
+ios/TacticalGo/GameInterface.swift:104:            Image("game-ability-sanctum-v01").resizable().scaledToFit()
+ios/TacticalGo/GameInterface.swift:113:        Image("game-ability-atlas-v20").resizable()
+ios/TacticalGo/GameInterface.swift:154:                    Image(systemName:"lock.fill").font(.system(size:10,weight:.bold)).foregroundStyle(GameChrome.cream)
+ios/TacticalGo/HeroBodyView.swift:10:    let original: UIImage
+ios/TacticalGo/HeroBodyView.swift:11:    let plate: UIImage
+ios/TacticalGo/HeroBodyView.swift:17:        if pose == .rest || heroClass == .mage {
+ios/TacticalGo/HeroBodyView.swift:20:            let rig = heroClass == .warrior ? HeroCutoutRig.warrior : .rogue
+ios/TacticalGo/HeroBodyView.swift:59:    private func source(_ image: UIImage) -> some View {
+ios/TacticalGo/HeroBodyView.swift:60:        Image(uiImage: image).resizable().interpolation(.high).frame(width: width, height: width)
+ios/TacticalGo/HeroBodyView.swift:114:    static let warrior: Self = {
+ios/TacticalGo/HeroBodyView.swift:145:    static let rogue: Self = {
+ios/TacticalGo/ExpansionLabView.swift:27:    var one: HeroClass = .warrior
+ios/TacticalGo/ExpansionLabView.swift:28:    var two: HeroClass = .mage
+ios/TacticalGo/ExpansionLabView.swift:98:    let priest: UIImage? = {
+ios/TacticalGo/ExpansionLabView.swift:100:        return UIImage(contentsOfFile:url.path)
+ios/TacticalGo/ExpansionLabView.swift:102:    let priestPlate: UIImage? = {
+ios/TacticalGo/ExpansionLabView.swift:104:        return UIImage(contentsOfFile:url.path)
+ios/TacticalGo/ExpansionLabView.swift:106:    let roguePlate: UIImage? = {
+ios/TacticalGo/ExpansionLabView.swift:107:        guard let url = Bundle.main.url(forResource:"rogue-clean-plate",withExtension:"png",subdirectory:"PresentationLab/P08") else { return nil }
+ios/TacticalGo/ExpansionLabView.swift:108:        return UIImage(contentsOfFile:url.path)
+ios/TacticalGo/ExpansionLabView.swift:110:    let warriorPlate: UIImage? = {
+ios/TacticalGo/ExpansionLabView.swift:111:        guard let url = Bundle.main.url(forResource:"warrior-clean-plate",withExtension:"png",subdirectory:"PresentationLab/P07") else { return nil }
+ios/TacticalGo/ExpansionLabView.swift:112:        return UIImage(contentsOfFile:url.path)
+ios/TacticalGo/ExpansionLabView.swift:114:    let monsterArt: [MonsterKind:UIImage] = {
+ios/TacticalGo/ExpansionLabView.swift:115:        var result: [MonsterKind:UIImage] = [:]
+ios/TacticalGo/ExpansionLabView.swift:117:            if let url = Bundle.main.url(forResource:name,withExtension:"png"),let image = UIImage(contentsOfFile:url.path) { result[kind] = image }
+ios/TacticalGo/ExpansionLabView.swift:215:            session = try fixture.session();size = 9;one = .warrior;two = .mage
+ios/TacticalGo/ExpansionLabView.swift:237:        session = rebuilt;size = 9;one = .rogue;two = .mage;computer = nil;mode = .skill
+ios/TacticalGo/ExpansionLabView.swift:239:    /// UI-test positions for undo across a computer reply (Black = human warrior, White = computer mage). Hand-placed,
+ios/TacticalGo/ExpansionLabView.swift:260:        session = GameSession(try! GameSetup.fromDiagram(config:c,diagram:diagram,classOne:.warrior,classTwo:.mage,manaOne:6,manaTwo:6,ap:ap))
+ios/TacticalGo/ExpansionLabView.swift:261:        size = 9;one = .warrior;two = .mage;mode = .soldier
+ios/TacticalGo/ExpansionLabView.swift:264:    func warriorBotReview() {
+ios/TacticalGo/ExpansionLabView.swift:267:        session = GameSession(try! GameSetup.fromDiagram(config:c,diagram:"....xx...\n...xOox..\n...x..x..\n...xxx...\n...H.....\n.........\n.........\n....X....\n.........",classOne:.warrior,classTwo:.mage,manaOne:6,manaTwo:6,ap:1))
+ios/TacticalGo/ExpansionLabView.swift:268:        size = 9;one = .warrior;two = .mage
+ios/TacticalGo/ExpansionLabView.swift:281:            session = try fixture.session(cost:advancedCost,updatedBaseSkills:true); voiceCadence.reset(); size = 9; monsters = .none; one = fixture.hero; two = .mage
+ios/TacticalGo/ExpansionLabView.swift:291:            size = practice.size; monsters = .none; one = .priest; two = .mage; computer = nil
+ios/TacticalGo/ExpansionLabView.swift:301:            size = 9; monsters = .none; one = .priest; two = .mage; challenge = true
+ios/TacticalGo/ExpansionLabView.swift:311:            size = 9;monsters = .none;one = .priest;two = .mage;mode = .skill
+ios/TacticalGo/ExpansionLabView.swift:325:        case .skill: needed = hero == .warrior || (hero == .mage && state.config.experimentalFriendlyRedeploy) ? 2 : 1
+ios/TacticalGo/ExpansionLabView.swift:326:        case .advanced: needed = hero == .warrior || hero == .mage ? 4 : hero == .rogue || hero == .priest ? 2 : 0
+ios/TacticalGo/ExpansionLabView.swift:336:            case .warrior: pending = .castBastion(selected[0],selected[1])
+ios/TacticalGo/ExpansionLabView.swift:338:            case .rogue: pending = .castSwap(p)
+ios/TacticalGo/ExpansionLabView.swift:339:            case .mage:
+ios/TacticalGo/ExpansionLabView.swift:344:            if hero == .rogue { pending = .castChainSwap(first:selected[0],second:selected[1]) }
+ios/TacticalGo/ExpansionLabView.swift:348:                pending = hero == .mage ? .castDoublePull(a,b) : .castReformation(a,b)
+ios/TacticalGo/ExpansionLabView.swift:355:        guard !controlsLocked,mode == .skill,state.heroClass(of:state.current) == .mage,let p = selected.first else { return }
+ios/TacticalGo/ExpansionLabView.swift:426:        guard var s = try? GameSession(GameSetup.newGame(config:TacticalHints.updatedConfig(size:7,advancedCost:4),classOne:.warrior,classTwo:.mage)) else { return nil }
+ios/TacticalGo/ExpansionLabView.swift:494:        case .castMagicHand,.castFriendlyRedeploy,.castDoublePull: voiceCue = ("mage-cast-B",0.08)
+ios/TacticalGo/ExpansionLabView.swift:496:        case .castSwap,.castChainSwap: voiceCue = ("p8-voice-rogue-"+castTake,0.06)
+ios/TacticalGo/ExpansionLabView.swift:529:                sound = [("p8-rogue-coil",0.04,mix(at:0.04).preparation),("p8-rogue-dash",p.moveStart,mix(at:p.moveStart).motion),("p8-rogue-land",p.arrival,mix(at:p.arrival).impact)]
+ios/TacticalGo/ExpansionLabView.swift:530:                if p.isChainSwap { let at = (p.moveStart+p.arrival)/2; sound.insert(("p8-rogue-land-first",at,mix(at:at).impact*0.60),at:2) }
+ios/TacticalGo/ExpansionLabView.swift:631:            case .warrior: return n == 0 ? "① 選棋群旁第1個空點" : "② 選第2個不同空點"
+ios/TacticalGo/ExpansionLabView.swift:632:            case .mage: return state.config.experimentalFriendlyRedeploy ? (n == 0 ? "① 選相連己兵（法師2格內）" : "② 選原棋群旁空點") : (n == 0 ? "① 選2格內普通兵" : "② 選推動方向")
+ios/TacticalGo/ExpansionLabView.swift:633:            case .rogue: return "① 選正鄰敵兵 → ② 確認換位"
+ios/TacticalGo/ExpansionLabView.swift:638:            if hero == .rogue { return n == 0 ? "① 選英雄正鄰敵兵" : "② 選第1敵兵旁另一敵兵" }
+ios/TacticalGo/ExpansionLabView.swift:670:            state.config.experimentalFriendlyRedeploy || hero == .priest || hero == .rogue
+ios/TacticalGo/ExpansionLabView.swift:672:                : hero == .warrior ? (state.config.bastionScope == .connectedGroup ? "依序選戰士相連棋群旁兩個不同空點。英雄可以透過相連士兵延伸築壘。" : "依序選戰士正鄰兩個空點。")
+ios/TacticalGo/ExpansionLabView.swift:719:                    NavigationLink { ExpansionLabView(practice:.mage) } label: { card("技能試用","從合法開局重播，比較落子與新技能","wand.and.stars") }.accessibilityIdentifier("v11-practice")
+ios/TacticalGo/ExpansionLabView.swift:737:        HStack(spacing:16) { Image(systemName:icon).font(.title).frame(width:40)
+ios/TacticalGo/ExpansionLabView.swift:739:            Spacer(); Image(systemName:"chevron.right")
+ios/TacticalGo/ExpansionLabView.swift:757:                    Button("對局設定",systemImage:"slider.horizontal.3") { showSetup = true }.accessibilityIdentifier("exp-setup")
+ios/TacticalGo/ExpansionLabView.swift:759:                    Button("復原",systemImage:"arrow.uturn.backward") { store.undo() }.disabled(store.session?.canUndo != true).accessibilityIdentifier("exp-undo")
+ios/TacticalGo/ExpansionLabView.swift:760:                    Button("新局",systemImage:"arrow.clockwise") { store.restart() }.accessibilityIdentifier("exp-restart")
+ios/TacticalGo/ExpansionLabView.swift:770:                if store.mode == .skill && store.state.heroClass(of:store.state.current) == .mage {
+ios/TacticalGo/ExpansionLabView.swift:771:                    HStack { ForEach(PushDirection.allCases,id:\.self) { d in Button(d.title,systemImage:d.symbol) { store.push(d) }.accessibilityIdentifier("exp-push-"+d.rawValue) } }
+ios/TacticalGo/ExpansionLabView.swift:799:                    Button("保存候選",systemImage:"square.and.arrow.down") { store.saveCandidate() }.accessibilityIdentifier("exp-save")
+ios/TacticalGo/ExpansionLabView.swift:800:                    Button("載入候選",systemImage:"arrow.clockwise") { store.resumeCandidate() }.accessibilityIdentifier("exp-resume")
+ios/TacticalGo/ExpansionLabView.swift:854:        !ProcessInfo.processInfo.arguments.contains("--warrior-weight-before")
+ios/TacticalGo/ExpansionLabView.swift:877:                Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/ExpansionLabView.swift:878:                Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
+ios/TacticalGo/ExpansionLabView.swift:879:                if ArtV2.enabled { ArtBoardInlay(boardSize:board.size,boardImage:assets.board,pitch:pitch).equatable().frame(width:size.width,height:size.height) }
+ios/TacticalGo/ExpansionLabView.swift:910:                    if board.monsters.contains(point),let kind = store.state.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
+ios/TacticalGo/ExpansionLabView.swift:913:                            Image(uiImage:image).resizable().scaledToFit().frame(width:pitch*0.70,height:pitch*0.70)
+ios/TacticalGo/ExpansionLabView.swift:993:        } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
+ios/TacticalGo/ExpansionLabView.swift:996:                WarriorBodyView(original:image,plate:plate,pose:performing ? .skill(at:time,reduced:reduced,weighted:weightedWarrior) : .rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
+ios/TacticalGo/ExpansionLabView.swift:1000:        } else if piece.kind == .hero,hero == .rogue,let image = assets.heroes[.rogue],let plate = store.roguePlate {
+ios/TacticalGo/ExpansionLabView.swift:1003:                ExpansionHeroBody(original:image,plate:plate,hero:.rogue,pose:performing ? .rogue(at:time,reduced:reduced,chained:plan?.isChainSwap == true):.rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))
+ios/TacticalGo/ExpansionLabView.swift:1007:        } else if piece.kind == .hero,hero == .priest,let image = store.priest,let plate = store.priestPlate {
+ios/TacticalGo/ExpansionLabView.swift:1010:                ExpansionHeroBody(original:image,plate:plate,hero:.priest,pose:performing ? .priest(at:time,reduced:reduced,offering:plan?.isOffering == true):.rest,width:pitch*0.98).offset(y:-pitch*0.43)
+ios/TacticalGo/ExpansionLabView.swift:1016:                magePose:performing && hero == .mage ? .cast(at:time,timing:MagePresentationVariant.arcaneHand.timing,reduced:reduced,revision:.r2) : .rest,

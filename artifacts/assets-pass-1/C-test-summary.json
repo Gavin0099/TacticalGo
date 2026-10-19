@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "96BBB949-A09E-480F-B978-2AE55D04FCBC",
+        "deviceName" : "TacticalGo Assets Pass 1 Audio",
+        "modelName" : "iPhone 16",
+        "osBuildNumber" : "22A3351",
+        "osVersion" : "18.0",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 0,
+      "passedTests" : 66,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "TacticalGo · Built with macOS 26.6.2",
+  "expectedFailures" : 0,
+  "failedTests" : 0,
+  "finishTime" : 1792383813.496,
+  "passedTests" : 66,
+  "result" : "Passed",
+  "skippedTests" : 0,
+  "startTime" : 1792382561.331,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+
+  ],
+  "title" : "Test - TacticalGo",
+  "topInsights" : [
+    {
+      "category" : "Longest Test Runs",
+      "impact" : "6% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 61.02s (three standard deviations)"
+    }
+  ],
+  "totalTestCount" : 66
+}

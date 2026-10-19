@@ -1,0 +1,508 @@
+{
+  "schema_version": 1,
+  "original_inputs_only": true,
+  "third_party_inputs": [],
+  "generation": "built-in image_gen, one identity-preserving edit per character; seed unavailable",
+  "derivation": "scripts/prepare-portraits-v30.py; Pillow uniform resize and alpha canvas placement only",
+  "records": [
+    {
+      "hero": "warrior",
+      "generator": "built-in image_gen",
+      "model": "unknown",
+      "tool_version": "unknown",
+      "prompt": "assets/candidates/assets-pass-1/portraits/warrior-prompt.txt",
+      "inputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/warrior.imageset/portrait.png",
+          "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+          "rgba_sha256": "b9ecc689b8a3c3c42419ea1f279ffadd049d88f6f70584661cf060e01ba5e286",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            39,
+            37,
+            482,
+            486
+          ],
+          "transparent_pixels": 129415,
+          "opaque_pixels": 1236
+        },
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/identity-reference-warrior.imageset/reference.png",
+          "sha256": "49fe18591e9e64836130ee09ef6b173f5cb3e32f78962cb6a015b877f58fb322",
+          "rgba_sha256": "e9d95dcd62ab37a8fc7a076176ffaa1bbf6d236b5aaff30da74f98addbb15ee3",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            123,
+            96,
+            1089,
+            1179
+          ],
+          "transparent_pixels": 1014275,
+          "opaque_pixels": 864
+        }
+      ],
+      "source": {
+        "path": "assets/candidates/assets-pass-1/portraits/warrior-source-v30.png",
+        "sha256": "8bb518abed49b69feb88df5360a72263173292099c41057dede1214f0cf01330",
+        "rgba_sha256": "62fca23a61b6e7befd8e5761d2b700ff4e414b55b8b03f17110bc13ac9c45fb3",
+        "size": [
+          1254,
+          1254
+        ],
+        "visible_bounds": [
+          94,
+          87,
+          1184,
+          1191
+        ],
+        "transparent_pixels": 783207,
+        "opaque_pixels": 1076
+      },
+      "outputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/warrior-portrait-v30.imageset/warrior-portrait-v30.png",
+          "sha256": "f2a6e61d3235ca2bd30b5f3ecc717824967c55553253d8ddf462246aed3cdf01",
+          "rgba_sha256": "a4d3104951707fdc7beaa765f4a27a2c380ed6937dc03d8da4360f8143b41b2a",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            39,
+            37,
+            482,
+            486
+          ],
+          "transparent_pixels": 130873,
+          "opaque_pixels": 1222
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/warrior-portrait-v30-256.png",
+          "sha256": "5f6112b28edfa0969ae7265379ca926838ac7cafe9b6864e881fa15d92cfa49f",
+          "rgba_sha256": "b37c6dcb637d1db19b5be22c310fdc5ddb03733ba395bc051180e5e9a2ef8959",
+          "size": [
+            256,
+            256
+          ],
+          "visible_bounds": [
+            19,
+            18,
+            241,
+            243
+          ],
+          "transparent_pixels": 31999,
+          "opaque_pixels": 662
+        }
+      ],
+      "uniform_scale": 0.40642201834862385,
+      "anchor": "previous visible alpha>=13 bottom-center; uniform fit",
+      "approval": "pending_exact_file_owner_review",
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "third_party_inputs": [],
+        "status": "pending_owner_release_acceptance"
+      },
+      "qa": {
+        "owner_visual_approval": "pending",
+        "native_ui": "see review report"
+      }
+    },
+    {
+      "hero": "mage",
+      "generator": "built-in image_gen",
+      "model": "unknown",
+      "tool_version": "unknown",
+      "prompt": "assets/candidates/assets-pass-1/portraits/mage-prompt.txt",
+      "inputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/mage.imageset/portrait.png",
+          "sha256": "6980751a325e51156e56f14b38171a435bd54f4ef7d509433e94d6e3b9061a33",
+          "rgba_sha256": "163d4ff0b5d8c7f2d9109c1f0e9a3c6e0d011ef5a0ae6b9a9fa5b274e6459a3e",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            37,
+            57,
+            453,
+            474
+          ],
+          "transparent_pixels": 144895,
+          "opaque_pixels": 1388
+        },
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/identity-reference-mage.imageset/reference.png",
+          "sha256": "fa6dca952fe6029550e53cb9c04ef7ae6eb33249c69331fec772ddeb4594bacd",
+          "rgba_sha256": "0b76d640a0480772735698f2e4b5858210e1f7f9b65ad9cad0c3aa27c726fa20",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            226,
+            51,
+            1020,
+            1196
+          ],
+          "transparent_pixels": 1050248,
+          "opaque_pixels": 1788
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/warrior-source-v30.png",
+          "sha256": "8bb518abed49b69feb88df5360a72263173292099c41057dede1214f0cf01330",
+          "rgba_sha256": "62fca23a61b6e7befd8e5761d2b700ff4e414b55b8b03f17110bc13ac9c45fb3",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            94,
+            87,
+            1184,
+            1191
+          ],
+          "transparent_pixels": 783207,
+          "opaque_pixels": 1076
+        }
+      ],
+      "source": {
+        "path": "assets/candidates/assets-pass-1/portraits/mage-source-v30.png",
+        "sha256": "e9efdef5200f2d2275e9b4c13a2dc27d5d968aae76cef21270b8bcd825e379ad",
+        "rgba_sha256": "37251ed7485ecd2ce11daae21cb6bee952c72ed9ffa9211749361eec0b2fab58",
+        "size": [
+          1254,
+          1254
+        ],
+        "visible_bounds": [
+          69,
+          63,
+          1203,
+          1184
+        ],
+        "transparent_pixels": 728685,
+        "opaque_pixels": 1970
+      },
+      "outputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/mage-portrait-v30.imageset/mage-portrait-v30.png",
+          "sha256": "43ec0bec8942455fa7e327f26e809ccfb646268f1686591c106aa2d3b7f61efe",
+          "rgba_sha256": "b114460cc0d7fdf976545ab016e51e2eef67a9d2a79af32b8d5c9ad18b35d358",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            37,
+            63,
+            453,
+            474
+          ],
+          "transparent_pixels": 147391,
+          "opaque_pixels": 1435
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/mage-portrait-v30-256.png",
+          "sha256": "c31936f7f4f63d9b230dd5bd5b2c80fc6a731858e26a804cbb4f0b3e7e56b64c",
+          "rgba_sha256": "96d2e7afbbeb21df173d8f7345461bac2ca143f88eae2894e37101439e3ca6a4",
+          "size": [
+            256,
+            256
+          ],
+          "visible_bounds": [
+            18,
+            31,
+            227,
+            237
+          ],
+          "transparent_pixels": 36040,
+          "opaque_pixels": 713
+        }
+      ],
+      "uniform_scale": 0.36684303350970016,
+      "anchor": "previous visible alpha>=13 bottom-center; uniform fit",
+      "approval": "pending_exact_file_owner_review",
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "third_party_inputs": [],
+        "status": "pending_owner_release_acceptance"
+      },
+      "qa": {
+        "owner_visual_approval": "pending",
+        "native_ui": "see review report"
+      }
+    },
+    {
+      "hero": "rogue",
+      "generator": "built-in image_gen",
+      "model": "unknown",
+      "tool_version": "unknown",
+      "prompt": "assets/candidates/assets-pass-1/portraits/rogue-prompt.txt",
+      "inputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/rogue.imageset/portrait.png",
+          "sha256": "528580b66d26e9b8a2cfa7e80a4ca427888e086adc8dc4f9ca6468856d5f58de",
+          "rgba_sha256": "47069ed522fa70cfb6db1437927d4637073b62c53279d8dd38b754664bfd93cc",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            81,
+            25,
+            486,
+            444
+          ],
+          "transparent_pixels": 142615,
+          "opaque_pixels": 1183
+        },
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/identity-reference-rogue.imageset/reference.png",
+          "sha256": "64f795e866d6a13ec39b60252cef941274829c5e4912e1a1610c080ca6e5e814",
+          "rgba_sha256": "bfa67fa9e960067100e58611bc88275b719c91a2442ab15b83900b1f1e7c19f7",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            185,
+            89,
+            1024,
+            1189
+          ],
+          "transparent_pixels": 1119957,
+          "opaque_pixels": 1523
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/warrior-source-v30.png",
+          "sha256": "8bb518abed49b69feb88df5360a72263173292099c41057dede1214f0cf01330",
+          "rgba_sha256": "62fca23a61b6e7befd8e5761d2b700ff4e414b55b8b03f17110bc13ac9c45fb3",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            94,
+            87,
+            1184,
+            1191
+          ],
+          "transparent_pixels": 783207,
+          "opaque_pixels": 1076
+        }
+      ],
+      "source": {
+        "path": "assets/candidates/assets-pass-1/portraits/rogue-source-v30.png",
+        "sha256": "e7a4b419aacc6cb61830d91e4c78ec3988c80c4486eed4ddb6855601080a343a",
+        "rgba_sha256": "79d27d24157ee4b20112eaaf57509ee4468e5ed7d9d7632c07cc205fdf325973",
+        "size": [
+          1254,
+          1254
+        ],
+        "visible_bounds": [
+          135,
+          58,
+          1244,
+          1194
+        ],
+        "transparent_pixels": 711240,
+        "opaque_pixels": 1506
+      },
+      "outputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/rogue-portrait-v30.imageset/rogue-portrait-v30.png",
+          "sha256": "e91a674ef1848cf07a9f6ad41764e39cc501377a2f8e9dd1ed88fb8c395cd7a3",
+          "rgba_sha256": "00d3bfde530df5b9667efa392b6bab5b0cbbf276d79a2bb101d430e49ee18827",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            81,
+            29,
+            486,
+            444
+          ],
+          "transparent_pixels": 146024,
+          "opaque_pixels": 1208
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/rogue-portrait-v30-256.png",
+          "sha256": "336665073a71f03fdc608025e7db317b707ca9ce3e8ad0f39ea2413fc5a9ae8e",
+          "rgba_sha256": "6e974552d95d722dba18fe01a761489733903f4c3392becacc9b78d7416a47e5",
+          "size": [
+            256,
+            256
+          ],
+          "visible_bounds": [
+            40,
+            14,
+            243,
+            222
+          ],
+          "transparent_pixels": 35768,
+          "opaque_pixels": 612
+        }
+      ],
+      "uniform_scale": 0.3651938683498647,
+      "anchor": "previous visible alpha>=13 bottom-center; uniform fit",
+      "approval": "pending_exact_file_owner_review",
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "third_party_inputs": [],
+        "status": "pending_owner_release_acceptance"
+      },
+      "qa": {
+        "owner_visual_approval": "pending",
+        "native_ui": "see review report"
+      }
+    },
+    {
+      "hero": "priest",
+      "generator": "built-in image_gen",
+      "model": "unknown",
+      "tool_version": "unknown",
+      "prompt": "assets/candidates/assets-pass-1/portraits/priest-prompt.txt",
+      "inputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/priest-portrait-v03.imageset/priest-portrait-v03.png",
+          "sha256": "638c67158850761f201b8ef1a8ad28a5f851f386a0fd434fa89cb0426813c493",
+          "rgba_sha256": "3846f53847107d9b7c52c7c1e3a7e34c605de4617de94b18962b9c70145c1489",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            26,
+            10,
+            491,
+            507
+          ],
+          "transparent_pixels": 96470,
+          "opaque_pixels": 1699
+        },
+        {
+          "path": "assets/candidates/priest-08/v02/priest-v02.png",
+          "sha256": "d04afa8acbe5b070cf54511cb629ef1ac5fd79efdf13dcb64fa7989ea1308cdd",
+          "rgba_sha256": "e0fd53cff85840a8843b4f9dabb5f350edc1443d5c72073e83e0548c5acf200a",
+          "size": [
+            1254,
+            1254
+          ],
+          "visible_bounds": [
+            225,
+            46,
+            1027,
+            1227
+          ],
+          "transparent_pixels": 898503,
+          "opaque_pixels": 1786
+        },
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/warrior.imageset/portrait.png",
+          "sha256": "50885855dc9faee8966558ea854f99d24bd0ffd0ed93c03bb6b87c8643d42298",
+          "rgba_sha256": "b9ecc689b8a3c3c42419ea1f279ffadd049d88f6f70584661cf060e01ba5e286",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            39,
+            37,
+            482,
+            486
+          ],
+          "transparent_pixels": 129415,
+          "opaque_pixels": 1236
+        }
+      ],
+      "source": {
+        "path": "assets/candidates/assets-pass-1/portraits/priest-source-v30.png",
+        "sha256": "6d7ca3e0d0e7d5a7f82318ef702b5aaf2873099e249796c718aa4369b59d1c06",
+        "rgba_sha256": "1f45d8d876e6f7723b2415682f3108507b899e4d9ab05753c4fb58bf321df0f8",
+        "size": [
+          1254,
+          1254
+        ],
+        "visible_bounds": [
+          62,
+          27,
+          1200,
+          1241
+        ],
+        "transparent_pixels": 577355,
+        "opaque_pixels": 1300
+      },
+      "outputs": [
+        {
+          "path": "ios/TacticalGo/Assets.xcassets/priest-portrait-v30.imageset/priest-portrait-v30.png",
+          "sha256": "ecad47db019f6dc44029de8f98a93c8cfe6d881074b80b3c5709b75685bf04b2",
+          "rgba_sha256": "abbaa29508bbf039b00c8d426aadb6cad0f2dee2b163f979d5909622c65150f0",
+          "size": [
+            512,
+            512
+          ],
+          "visible_bounds": [
+            26,
+            11,
+            491,
+            507
+          ],
+          "transparent_pixels": 95122,
+          "opaque_pixels": 1559
+        },
+        {
+          "path": "assets/candidates/assets-pass-1/portraits/priest-portrait-v30-256.png",
+          "sha256": "bbeabcab959df9ba6b0ac0f87b331a82098dfa3d66617ed34776677dfb431a75",
+          "rgba_sha256": "1150e3ea42cc783cdbd605939f47fdbe78891633fe1a8dd42d70941c81abd663",
+          "size": [
+            256,
+            256
+          ],
+          "visible_bounds": [
+            13,
+            5,
+            246,
+            254
+          ],
+          "transparent_pixels": 22960,
+          "opaque_pixels": 807
+        }
+      ],
+      "uniform_scale": 0.4086115992970123,
+      "anchor": "previous visible alpha>=13 bottom-center; uniform fit",
+      "approval": "pending_exact_file_owner_review",
+      "availability": {
+        "candidate": true,
+        "production": false,
+        "animation": false
+      },
+      "rights": {
+        "third_party_inputs": [],
+        "status": "pending_owner_release_acceptance"
+      },
+      "qa": {
+        "owner_visual_approval": "pending",
+        "native_ui": "see review report"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+[aist#0:0/pcm_s16le @ 0x937010180] Guessed Channel Layout: stereo
+Input #0, wav, from '/Users/pc49-58/.codex/worktrees/assets-pass-1/TacticalGo/ios/TacticalGo/Audio/V30/victory.wav':
+  Duration: 00:00:01.18, bitrate: 1411 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.0999773  TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK: -16.0 -16.0 dBFS  TPK: -16.0 -16.0 dBFS
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf63.1.102
+  Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s
+    Metadata:
+      encoder         : Lavc63.1.102 pcm_s16le
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.199977   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK: -14.4 -14.4 dBFS  TPK: -14.4 -14.4 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.299977   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK: -16.5 -16.5 dBFS  TPK: -14.4 -14.4 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.399977   TARGET:-23 LUFS    M: -20.7 S:-120.7     I: -20.7 LUFS       LRA:   0.0 LU  FTPK: -14.4 -14.4 dBFS  TPK: -14.4 -14.4 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.499977   TARGET:-23 LUFS    M: -21.0 S:-120.7     I: -20.9 LUFS       LRA:   0.0 LU  FTPK: -14.2 -14.2 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.599977   TARGET:-23 LUFS    M: -20.4 S:-120.7     I: -20.7 LUFS       LRA:   0.0 LU  FTPK: -14.5 -14.5 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.699977   TARGET:-23 LUFS    M: -20.8 S:-120.7     I: -20.7 LUFS       LRA:   0.0 LU  FTPK: -20.5 -20.5 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.799977   TARGET:-23 LUFS    M: -22.6 S:-120.7     I: -21.0 LUFS       LRA:   0.0 LU  FTPK: -28.0 -28.0 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.899977   TARGET:-23 LUFS    M: -24.1 S:-120.7     I: -21.4 LUFS       LRA:   0.0 LU  FTPK: -35.1 -35.1 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 0.999977   TARGET:-23 LUFS    M: -30.9 S:-120.7     I: -22.0 LUFS       LRA:   0.0 LU  FTPK: -42.3 -42.3 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] t: 1.099977   TARGET:-23 LUFS    M: -38.2 S:-120.7     I: -22.0 LUFS       LRA:   0.0 LU  FTPK: -50.9 -50.9 dBFS  TPK: -14.2 -14.2 dBFS
+[Parsed_ebur128_0 @ 0x93700d080] Summary:
+
+  Integrated loudness:
+    I:         -22.0 LUFS
+    Threshold: -32.6 LUFS
+
+  Loudness range:
+    LRA:         0.0 LU
+    Threshold:   0.0 LUFS
+    LRA low:     0.0 LUFS
+    LRA high:    0.0 LUFS
+
+  True peak:
+    Peak:      -14.2 dBFS
+[out#0/null @ 0x93700c900] video:0KiB audio:203KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:01.18 bitrate=N/A speed= 212x elapsed=0:00:00.00    

@@ -56,6 +56,7 @@ struct ExpansionGameView: View {
     @State private var showRules = false
     @State private var showGrid = false
     @State private var confirmExit = false
+    @State private var turnBannerAt: Date?
     #if DEBUG
     @State private var polishReviewUsed = false
     /// Which step the autoplay review reached, or why it stopped; UI tests read it instead of only timing out.
@@ -67,6 +68,7 @@ struct ExpansionGameView: View {
     }
     private func portrait(_ h: HeroClass) -> UIImage {
         #if DEBUG || TACTICALGO_V11
+        if ArtV2.enabled, let image = UIImage(named: "\(h.art)-portrait-v30") { return image }
         // The other three are upper-body portraits; the priest's is a redrawn upper-body portrait of the same P08
         // character (assets/candidates/priest-portrait-redraw-v01, 512px here). The full figure stays on the board.
         if h == .priest, let bust = UIImage(named:"priest-portrait-v03") { return bust }
@@ -121,7 +123,7 @@ struct ExpansionGameView: View {
             Group { if inMatch { match(size: geo.size) } else { lobby(size: geo.size) } }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .background(GameBackdrop())
+        .background(ArtTable())
         .foregroundStyle(uiInk).tint(uiAccent).preferredColorScheme(.dark)
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
@@ -235,6 +237,12 @@ struct ExpansionGameView: View {
                 store.startExpansion(one:.warrior,two:.mage,size:9,monsters:value.kind == .slime ? .slime:.wolf)
                 store.expansion?.monsterReview(value);boardSize = 9;one = .warrior;two = .mage
                 inMatch = true;store.setMatchAudioActive(true)
+            }
+            if let i = args.firstIndex(of:"--art-impact"),args.indices.contains(i+2) {
+                useExpansion = true;singlePlayer = true;humanSide = .one
+                store.startExpansion(one:.warrior,two:.mage,size:9,monsters:.none,computer:.two)
+                store.expansion?.artImpactFrame(args[i+1],time:Double(args[i+2]) ?? 0.7);boardSize = 9
+                inMatch = true
             }
             if let i = args.firstIndex(of:"--undo-fixture"),args.indices.contains(i+1) {
                 // Human Black warrior against the computer's White mage, on a hand-placed review position.
@@ -453,8 +461,11 @@ struct ExpansionGameView: View {
                             Spacer()
                         }
                     }
-                    Text(productMode ? "皇冠戰略" : "TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2).foregroundStyle(uiAccent)
+                    Text(productMode ? "皇冠戰略" : "TACTICAL GO").font(.system(size: 29, weight: .black, design: .serif)).tracking(2)
+                        .foregroundStyle(ArtV2.enabled ? AnyShapeStyle(LinearGradient(colors:[Color(red:1,green:0.95,blue:0.74),GameChrome.gold,Color(red:0.70,green:0.48,blue:0.18)],startPoint:.top,endPoint:.bottom)) : AnyShapeStyle(uiAccent))
+                        .shadow(color: ArtV2.enabled ? .black.opacity(0.65) : .clear, radius: 2, y: 2)
                     if productMode { Text("CROWN TACTICS").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(uiSecondary) }
+                    if ArtV2.enabled { ArtDivider() }
                     Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(uiSecondary)
                 }.padding(.top, 14)
     }
@@ -534,6 +545,7 @@ struct ExpansionGameView: View {
         }.frame(maxWidth:.infinity).padding(.vertical,12)
             .background(GamePanel(active:selected,kind:.hero))
             .overlay(GameCutCorner().stroke(selected ? GameChrome.accent(h) : .clear,lineWidth:2))
+            .modifier(ArtCardLift(selected:selected,accent:GameChrome.accent(h)))
             .overlay(alignment:.topTrailing) {
                 if selected {
                     Image(systemName:"checkmark.seal.fill").font(.system(size:16,weight:.bold))
@@ -999,6 +1011,38 @@ struct ExpansionGameView: View {
         switch hero { case .warrior: "戰線重整"; case .mage: "雙重牽引"; case .rogue: "連鎖換位"; case .priest: "聖所"; case .none: "第二技能" }
     }
     private func playerStrip(_ player: Player) -> some View {
+        Group {
+            #if DEBUG || TACTICALGO_V11
+            if ArtV2.enabled { artPlayerStrip(player) } else { classicPlayerStrip(player) }
+            #else
+            classicPlayerStrip(player)
+            #endif
+        }
+    }
+    #if DEBUG || TACTICALGO_V11
+    private func artPlayerStrip(_ player: Player) -> some View {
+        let state = store.state, active = displayedPlayer == player
+        let commander = state.board.find(player, .commander)
+        let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let ap = active ? (store.isBotActing && state.current != player ? 0 : state.apRemaining) : 0
+        let hero = state.heroClass(of: player)
+        return ArtPlayerStrip(
+            portrait: portrait(hero), accent: GameChrome.accent(hero),
+            name: (player == .one ? "黑方 " : "白方 ") + hero.title, black: player == .one, active: active,
+            status: state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束",
+            role: store.computer != nil ? (player == store.computer ? "電腦" : "你") : nil,
+            mana: state.mana(of: player), cap: state.config.manaCap, liberties: liberties, ap: ap, apMax: state.config.apPerTurn,
+            loot: !phoneInterface && !state.lootInventory(of: player).isEmpty
+                ? state.lootInventory(of: player).map { ($0.ability == .stickyBounce ? "黏彈":"影步") + (state.ply < $0.unlockPly ? "待解鎖":"×1") }.joined(separator: " · ") : nil,
+            reduced: reduceMotion)
+            .frame(maxWidth: .infinity)
+            .background(GamePanel(active: active))
+            .accessibilityElement(children: .combine)
+            .accessibilityValue("能量 \(state.mana(of: player))/\(state.config.manaCap) · \(ap) AP · \(liberties) 氣")
+            .accessibilityIdentifier(player == .one ? "blueResources" : "redResources")
+    }
+    #endif
+    private func classicPlayerStrip(_ player: Player) -> some View {
         let state = store.state, active = displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
@@ -1063,6 +1107,18 @@ struct ExpansionGameView: View {
                 #endif
             }
             #if DEBUG || TACTICALGO_V11
+            if ArtV2.enabled,ArtV2.ambient,!reduceMotion,let at = turnBannerAt,store.state.status == .ongoing,store.expansion?.reviewTime == nil {
+                ArtTurnBanner(text:store.computer != nil ? (store.state.current == store.computer ? "電腦回合" : "你的回合") : (store.state.current == .one ? "黑方回合" : "白方回合"),
+                              black:store.state.current == .one,start:at)
+                    .frame(maxWidth:.infinity,maxHeight:.infinity,alignment:.top).padding(.top,6).id(at)
+            }
+            if ArtV2.enabled,ArtV2.ambient,!reduceMotion,let result = presentedResult,store.expansion?.reviewTime == nil {
+                let human = store.computer
+                let tone: ArtResultBanner.Tone = store.state.status == .drawn ? .draw
+                    : (human != nil ? (store.state.winner == human ? .defeat : .victory) : .victory)
+                ArtResultBanner(title:result == "和局" ? "和局" : (human != nil ? (tone == .victory ? "勝利" : "敗北") : result),tone:tone)
+                    .frame(maxWidth:.infinity,maxHeight:.infinity).id(result + String(store.state.ply))
+            }
             if store.botReviewPhases && store.isBotActing {
                 Button("下一演出階段") { store.advanceBotReviewPhase() }
                     .font(.system(size: 10)).padding(5).background(Color.ink)
@@ -1085,6 +1141,7 @@ struct ExpansionGameView: View {
             Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").font(.system(size: 16)).padding(10) }
                 .buttonStyle(GameButtonStyle()).accessibilityLabel("以格點清單操作棋盤")
         }
+        .onChange(of: store.state.current) { _, _ in turnBannerAt = Date() }
     }
     private var modeHelp: String {
         if store.isBotActing { return store.botActionLabel }

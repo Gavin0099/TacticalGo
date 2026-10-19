@@ -1,0 +1,79 @@
+{
+  "release_original_audio": [
+    {
+      "file": "b-danger.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "b-defeat.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "warrior.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "victory.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "draw.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "place.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "rogue.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "mage.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "selection.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "b-normal.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "capture.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "danger.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "defeat.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "b-focus.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "summon.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "tabletop-loop.wav",
+      "release_bytes_equal": true
+    },
+    {
+      "file": "b-victory.wav",
+      "release_bytes_equal": true
+    }
+  ],
+  "release_v30_absent": true,
+  "release_voice_absent": true,
+  "release_presentation_absent": true,
+  "beta_v30_manifest_matches": true,
+  "source_manifest_sha256": "ba54ada08529606706d8bc80a07d2f999e69b7bd0bdf7c19c154565d6aad1b05",
+  "release_build_log": "logs/C-Release-complete.log",
+  "beta_build_log": "logs/C-Beta-complete.log"
+}

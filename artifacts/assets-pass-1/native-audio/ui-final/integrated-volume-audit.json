@@ -1,0 +1,90 @@
+[
+  {
+    "name" : "fresh_defaults_preserve_29A_without_eager_keys",
+    "passed" : true
+  },
+  {
+    "name" : "default_success",
+    "passed" : true
+  },
+  {
+    "name" : "default_stage_gains_preserved",
+    "passed" : true
+  },
+  {
+    "name" : "live_change_preserves_stage_ratios",
+    "passed" : true
+  },
+  {
+    "name" : "mix_does_not_cancel_visual_or_mutate_domain",
+    "passed" : true
+  },
+  {
+    "name" : "SFX_zero_cancels_only_effects",
+    "passed" : true
+  },
+  {
+    "name" : "SFX_restore_does_not_revive_delayed_contacts",
+    "passed" : true
+  },
+  {
+    "name" : "voice_zero_cancels_voice_keeps_visual",
+    "passed" : true
+  },
+  {
+    "name" : "voice_restore_does_not_restart",
+    "passed" : true
+  },
+  {
+    "name" : "voice_toggle_cancels_only_voice",
+    "passed" : true
+  },
+  {
+    "name" : "voice_toggle_on_no_revival",
+    "passed" : true
+  },
+  {
+    "name" : "next_cast_silent_voice_uses_unvoiced_material",
+    "passed" : true
+  },
+  {
+    "name" : "independent_preferences_reconstruct",
+    "passed" : true
+  },
+  {
+    "name" : "DEBUG_review_does_not_write_owner_preferences",
+    "passed" : true
+  },
+  {
+    "name" : "nonfinite_levels_safely_zero",
+    "passed" : true
+  },
+  {
+    "name" : "levels_clamp_to_slider_contract",
+    "passed" : true
+  },
+  {
+    "name" : "SFX_voice_controls_keep_BGM",
+    "passed" : true
+  },
+  {
+    "name" : "mix_change_after_undo_no_revival",
+    "passed" : true
+  },
+  {
+    "name" : "zero_effect_bus_rejects_new_cue_keeps_voice",
+    "passed" : true
+  },
+  {
+    "name" : "full_slider_keeps_native_gain_bound",
+    "passed" : true
+  },
+  {
+    "name" : "BGM_zero_keeps_voice_and_SFX",
+    "passed" : true
+  },
+  {
+    "name" : "background_mix_changes_do_not_revive",
+    "passed" : true
+  }
+]

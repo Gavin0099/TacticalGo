@@ -155,6 +155,7 @@ import TacticalGoVisuals
     #if DEBUG
     func soundVolumeForAudit(_ key:String) -> Double { samples.volume(key) }
     func soundPlayingForAudit(_ key:String) -> Bool { samples.isPlaying(key) }
+    func soundPathForAudit(_ key:String) -> String? { samples.loadedResourcePaths[key] }
     func configureReviewSound(voiceEnabled:Bool) {
         persistSoundPreferences = false
         defer { persistSoundPreferences = true }
@@ -239,6 +240,15 @@ import TacticalGoVisuals
     /// UI-test positions for undo across a computer reply (Black = human warrior, White = computer mage). Hand-placed,
     /// so they are review fixtures and never saved. "capture": a connected Bastion captures White F5 and leaves 1 AP.
     /// "win": the core-verified Reformation (E4→E3, F4→F3) captures White's commander in one AP.
+    /// Frozen frame of a capture ("capture") or a winning skill ("win") for material review captures (DEBUG).
+    func artImpactFrame(_ kind: String,time t: Double) {
+        undoFixture(kind)
+        let action: GameAction = kind == "win" ? .castReformation(.init(Point(4,3),Point(4,2)),.init(Point(5,3),Point(5,2)))
+            : .castBastion(Point(6,3),Point(6,5))
+        let before = state,outcome = session!.apply(action)
+        reviewReceipt = ExpansionPresentation.make(before:before,action:action,outcome:outcome,current:state)
+        reviewTime = t;pending = nil;message = "素材檢查的定格畫面：\(t) 秒（無音訊）。"
+    }
     func undoFixture(_ kind: String) {
         stop();cancelSelection();reviewFixture = true
         var c = RuleConfig.board(size:9);c.expansionSkills = true;c.bastionScope = .connectedGroup
@@ -306,6 +316,9 @@ import TacticalGoVisuals
     }
     func select(_ p: Point) {
         guard !controlsLocked,state.status == .ongoing else { return }
+        if ArtV2.enabled, active, !interrupted, !muted, legalTargets.contains(p) {
+            samples.schedule("selection", after: 0, volume: 0.35)
+        }
         defer { message = previewText }
         if state.board.monsters.contains(p) { selected = [p]; pending = .huntMonster(p); return }
         let hero = state.heroClass(of:state.current)
@@ -349,7 +362,9 @@ import TacticalGoVisuals
     }
     func confirm(systemReduced: Bool) {
         guard active,!interrupted,!playing,let action = pending,preview?.success == true else { return }
-        commit(action,systemReduced:systemReduced)
+        if commit(action,systemReduced:systemReduced), ArtV2.enabled, !muted {
+            samples.schedule("confirm", after: 0, volume: 0.35)
+        }
     }
     @discardableResult func commit(_ action: GameAction, systemReduced: Bool) -> Bool {
         guard active,!interrupted else { return false }
@@ -528,10 +543,14 @@ import TacticalGoVisuals
             case .huntMonster(let point):
                 let slime = p.before.config.monsterBattlefield?.kind(at:point) == .slime
                 sound = slime ? [("p8-slime-coil",0.02,ExpansionCueMix.monsterPreparation),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)] : [("p8-wolf-growl",0.02,ExpansionCueMix.monsterPreparation),("p8-wolf-land",p.arrival,ExpansionCueMix.monsterImpact)]
-            case .placeSoldier,.summonHero: sound = [("place",p.arrival,0.55)]
+            case .placeSoldier: sound = [("place",p.arrival,0.55)]
+            case .summonHero: sound = [(ArtV2.enabled ? "summon" : "place",p.arrival,0.55)]
             default: break
             }
-            if !p.captures.isEmpty { sound.append(("capture",p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60)) }
+            if !p.captures.isEmpty {
+                let key = ArtV2.enabled && p.captures.contains(where: { $0.piece.kind == .commander }) ? "commander-capture" : "capture"
+                sound.append((key,p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60))
+            }
             if let ending = p.terminalCue(computer: computer), onTerminalCue == nil {
                 sound.append((ending,p.duration,p.duration < voiceEnd ? 0.30:0.60))
             }
@@ -867,13 +886,19 @@ struct ExpansionBoard: View {
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
-                ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1)
+                if ArtV2.enabled { ArtBoardInlay(boardSize:board.size,boardImage:assets.board,pitch:pitch).equatable().frame(width:size.width,height:size.height) }
+                else { ArenaGrid(boardSize:board.size).stroke(P02Cozy.ink.opacity(0.30),lineWidth:1) }
+                if ArtV2.enabled {
+                    ArtLegalMarkers(points:targets.filter { board.isEmpty($0) }.map { presentation.center($0,size) },pitch:pitch,reduced:reduced).zIndex(8)
+                }
                 ForEach(targets.sorted { $0.y == $1.y ? $0.x < $1.x : $0.y < $1.y },id:\.self) { point in
                     if board.isEmpty(point) {
-                        Circle().fill(Color(red:0.18,green:0.62,blue:0.46))
-                            .overlay(Circle().stroke(Color(red:0.94,green:0.94,blue:0.76).opacity(0.65),lineWidth:0.5))
-                            .frame(width:4.5,height:4.5)
-                            .shadow(color:.black.opacity(0.55),radius:0.8).position(presentation.center(point,size)).zIndex(8)
+                        if !ArtV2.enabled {
+                            Circle().fill(Color(red:0.18,green:0.62,blue:0.46))
+                                .overlay(Circle().stroke(Color(red:0.94,green:0.94,blue:0.76).opacity(0.65),lineWidth:0.5))
+                                .frame(width:4.5,height:4.5)
+                                .shadow(color:.black.opacity(0.55),radius:0.8).position(presentation.center(point,size)).zIndex(8)
+                        }
                     } else {
                         Circle().stroke(Color(red:0.25,green:0.85,blue:0.63),lineWidth:2).frame(width:pitch*0.82,height:pitch*0.82)
                             .position(presentation.center(point,size)).zIndex(225)
@@ -926,18 +951,33 @@ struct ExpansionBoard: View {
                             .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
                     }
                 }
+                if ArtV2.enabled,let preview = store.preview,preview.success {
+                    ForEach(preview.events.indices,id:\.self) { i in
+                        if case .piecePlaced(let owner,let at,let kind) = preview.events[i],board.isEmpty(at) {
+                            ZStack {
+                                Ellipse().stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:1.5,dash:[3,2])).frame(width:pitch*0.78,height:pitch*0.46).offset(y:pitch*0.04)
+                                token(Piece(owner,kind),pitch:pitch,plan:nil).opacity(0.68)
+                            }.position(presentation.center(at,size)).allowsHitTesting(false).accessibilityHidden(true).zIndex(215)
+                        }
+                    }
+                }
+                if ArtV2.enabled,let p,store.effects,!reduced {
+                    ArtImpact(receipt:p,time:time,pitch:pitch,size:size,center:{ presentation.center($0,size) }).zIndex(200)
+                }
                 if let preview = store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
                             Path { path in path.move(to:presentation.center(from,size)); path.addLine(to:presentation.center(to,size)) }
-                                .stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).zIndex(220)
-                            Circle().stroke(P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).frame(width:pitch*0.66).position(presentation.center(to,size)).zIndex(220)
+                                .stroke(ArtV2.enabled ? ArtV2.preview : P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).zIndex(220)
+                            Circle().stroke(ArtV2.enabled ? ArtV2.preview : P02Cozy.deepMage,style:StrokeStyle(lineWidth:2,dash:[3,3])).frame(width:pitch*0.66).position(presentation.center(to,size)).zIndex(220)
                         }
                     }
                 }
                 ForEach(store.selected.indices,id:\.self) { i in
                     let point = store.selected[i]
-                    Circle().stroke(P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80).position(presentation.center(point,size)).zIndex(230)
+                    Circle().stroke(ArtV2.enabled ? Color(red:1,green:0.86,blue:0.46) : P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80)
+                        .shadow(color:ArtV2.enabled ? Color(red:1,green:0.78,blue:0.30).opacity(0.7) : .clear,radius:3)
+                        .position(presentation.center(point,size)).zIndex(230)
                     Text("\(i+1)").font(.system(size:10,weight:.bold)).foregroundStyle(.white).padding(2).background(P02Cozy.deepMage,in:Circle()).position(x:presentation.center(point,size).x+pitch*0.30,y:presentation.center(point,size).y+pitch*0.20).zIndex(230)
                 }
                 ForEach(Player.allCases,id:\.self) { player in
@@ -958,7 +998,9 @@ struct ExpansionBoard: View {
     @ViewBuilder private func token(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?) -> some View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
-        if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
+        if ArtV2.enabled,piece.kind == .commander {
+            ArtKing(black:piece.owner == .one,pitch:pitch,active:store.state.current == piece.owner && store.state.status == .ongoing,reduced:reduced)
+        } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
                 WarriorBodyView(original:image,plate:plate,pose:performing ? .skill(at:time,reduced:reduced,weighted:weightedWarrior) : .rest,width:pitch*0.88).offset(y:pitch*0.88*(0.5-448.0/512))

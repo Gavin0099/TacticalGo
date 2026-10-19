@@ -1,0 +1,32 @@
+[
+  {
+    "package": "A",
+    "binary_sha256": "9285f6906be0c552987f394b5e4b31cc1f3412ff533d4fea5a6b754569e4f5e0",
+    "catalog_sha256": "480a7e75b9fdb7037c7982710c8604268e62ee3ccb1c58afc490ff8be7389e44",
+    "snapshot_location": "/Users/pc49-58/.codex/worktrees/assets-pass-1/A-tested.app",
+    "scope": "copied from installed A app / built B app before C code changes; no build-for-testing mutation of source"
+  },
+  {
+    "package": "B",
+    "binary_sha256": "042476e0e3dda6e7cb7642260dfe27fb504f9a74cbcc9d6e34a8c31273523913",
+    "catalog_sha256": "ca00733a94f9676891155e2eb5e2c784f0fec9a0b47279566effc20fb6084b43",
+    "snapshot_location": "/Users/pc49-58/.codex/worktrees/assets-pass-1/B-tested.app",
+    "scope": "copied from installed A app / built B app before C code changes; no build-for-testing mutation of source"
+  },
+  {
+    "package": "C",
+    "binary_sha256": "219170281e4c272e12cf484345d607b0adfaab882fde96be61091e5163fee949",
+    "catalog_sha256": "ca00733a94f9676891155e2eb5e2c784f0fec9a0b47279566effc20fb6084b43",
+    "app_location": "/Users/pc49-58/.codex/worktrees/assets-pass-1/CBuild/Products/Debug-iphonesimulator/TacticalGo.app",
+    "native_audit_v30": 64,
+    "native_audit_art_v1": 55,
+    "ui_result_bundle": "C-complete-tests.xcresult: Passed 66/66, 0 failures, 0 skipped",
+    "source_files_sha256": {
+      "ios/TacticalGo/ArtV2.swift": "fe0e664cce1fb7fa46f554bf46cffbe4d9b97e8d09ec3e3081712677dafaf8a5",
+      "ios/TacticalGo/CombatAudio.swift": "95c1f7b536a2e8c3f5f5ab80d5d7dfce0392cd216a8d62d0372248a7808a2ae5",
+      "ios/TacticalGo/ExpansionLabView.swift": "ea04830bc7c6bd3b5b906bca77b79f6e3cf224f34079a0534006d2e393266409",
+      "ios/TacticalGo/IntegratedAudioAudit.swift": "9838a0ed5845e31afe3aeec6b97026a4ff5f38b4eb64de57d15ad7f64a440538",
+      "ios/TacticalGo/PresentationLabView.swift": "414e2ccdf8da04d2a3a919cd394ed13581976304d777a0152cf20cc0e77629c0"
+    }
+  }
+]
