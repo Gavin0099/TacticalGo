@@ -545,3 +545,17 @@ struct ArtCardLift: ViewModifier {
     func body(content: Content) -> some View { content }
 }
 #endif
+
+extension ArtV2 {
+    /// Versioned original SFX keep their existing keys. Release and --art-v1 resolve the immutable original files.
+    static func audioURL(_ name: String, bundle: Bundle = .main, subdirectory: String) -> URL? {
+        #if DEBUG || TACTICALGO_V11
+        if enabled, let candidate = bundle.url(forResource: name, withExtension: "wav", subdirectory: "Audio/V30") {
+            return candidate
+        }
+        #endif
+        return bundle.url(forResource: name, withExtension: "wav", subdirectory: subdirectory)
+            ?? bundle.url(forResource: name, withExtension: "wav", subdirectory: "Audio")
+            ?? bundle.url(forResource: name, withExtension: "wav")
+    }
+}

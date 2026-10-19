@@ -1,0 +1,258 @@
+[
+  {
+    "name" : "native_player_started_and_stopped",
+    "passed" : true
+  },
+  {
+    "name" : "native_cancel_no_revival",
+    "passed" : true
+  },
+  {
+    "name" : "native_restart",
+    "passed" : true
+  },
+  {
+    "name" : "completed_players_retained",
+    "passed" : true
+  },
+  {
+    "name" : "loop_music_started",
+    "passed" : true
+  },
+  {
+    "name" : "background_pauses_music",
+    "passed" : true
+  },
+  {
+    "name" : "foreground_resumes_music",
+    "passed" : true
+  },
+  {
+    "name" : "leaving_stops_music",
+    "passed" : true
+  },
+  {
+    "name" : "B_three_equal_native_durations",
+    "passed" : true
+  },
+  {
+    "name" : "B_device_clock_sync",
+    "passed" : true
+  },
+  {
+    "name" : "B_loop_wrap_sync",
+    "passed" : true
+  },
+  {
+    "name" : "B_danger_layers_ramp",
+    "passed" : true
+  },
+  {
+    "name" : "B_skill_duck_minus_5dB",
+    "passed" : true
+  },
+  {
+    "name" : "B_cancel_clears_duck",
+    "passed" : true
+  },
+  {
+    "name" : "B_music_off_keeps_SFX",
+    "passed" : true
+  },
+  {
+    "name" : "B_SFX_off_keeps_music",
+    "passed" : true
+  },
+  {
+    "name" : "B_mute_all",
+    "passed" : true
+  },
+  {
+    "name" : "B_unmute_same_phase",
+    "passed" : true
+  },
+  {
+    "name" : "B_interruption_pauses",
+    "passed" : true
+  },
+  {
+    "name" : "B_interruption_resumes_sync",
+    "passed" : true
+  },
+  {
+    "name" : "B_end_phrase_uses_music_bus_with_SFX_off",
+    "passed" : true
+  },
+  {
+    "name" : "B_terminal_fades_loop",
+    "passed" : true
+  },
+  {
+    "name" : "B_six_second_phrase_finishes",
+    "passed" : true
+  },
+  {
+    "name" : "B_terminal_never_revives",
+    "passed" : true
+  },
+  {
+    "name" : "B_restart_resets_loop",
+    "passed" : true
+  },
+  {
+    "name" : "B_background_cancels_ending",
+    "passed" : true
+  },
+  {
+    "name" : "B_background_no_old_ending",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_receipt_is_computer_commander_capture",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_defeat_routes_music_with_SFX_off",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_terminal_no_loop_or_ending_revival",
+    "passed" : true
+  },
+  {
+    "name" : "updated_mage_redeploy_routes_confirmed_transfer_and_B_voice",
+    "passed" : true
+  },
+  {
+    "name" : "updated_mage_native_voice_player_started",
+    "passed" : true
+  },
+  {
+    "name" : "updated_mage_undo_cancels_audio_and_restores_state",
+    "passed" : true
+  },
+  {
+    "name" : "updated_mage_background_never_replays_old_voice",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_chain_schedules_two_independent_contacts",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_music_duck_keeps_voice_window",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_visual_unlocks_while_voice_tail_plays",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_ordinary_followup_retains_voice",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_undo_cancels_retained_voice",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_background_cancels_retained_voice",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_return_cannot_replay_old_voice",
+    "passed" : true
+  },
+  {
+    "name" : "expansion_background_cancels_pending_terminal",
+    "passed" : true
+  },
+  {
+    "name" : "end_turn_preserves_committed_skill_cues",
+    "passed" : true
+  },
+  {
+    "name" : "undo_cancels_pending_success_cues",
+    "passed" : true
+  },
+  {
+    "name" : "background_preserves_core_and_cancels_cues",
+    "passed" : true
+  },
+  {
+    "name" : "restart_no_old_cues",
+    "passed" : true
+  },
+  {
+    "name" : "illegal_action_no_success_cues",
+    "passed" : true
+  },
+  {
+    "name" : "local_success_event_order",
+    "passed" : true
+  },
+  {
+    "name" : "computer_win_uses_human_defeat_cue",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_native_material_paths",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_native_combat_paths",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_missing_candidate_falls_back_selection",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_missing_candidate_falls_back_summon",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_missing_everywhere_rejected",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_selection_native_player",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_confirm_only_successful_receipt",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_background_never_revives_confirm",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_illegal_selection_silent_unchanged",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_invalid_confirm_silent_unchanged",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_muted_confirm_silent",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_zero_SFX_selection_confirm_silent",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_summon_has_independent_native_cue",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_commander_cue_requires_confirmed_capture",
+    "passed" : true
+  },
+  {
+    "name" : "asset_pass_new_cues_use_V30_real_players",
+    "passed" : true
+  }
+]

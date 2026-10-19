@@ -63,6 +63,9 @@ import TacticalGoMotion
     // become false before AVFoundation delivers its queued finishedPlaying
     // callback; dropping that player at the next cue caused a native crash.
     @ObservationIgnored private var effects: [String: AVAudioPlayer] = [:]
+    #if DEBUG
+    @ObservationIgnored private(set) var loadedResourcePaths: [String: String] = [:]
+    #endif
     @ObservationIgnored private var voices: [String: AVAudioPlayer] = [:]
     private static let voiceKeys: Set<String> = ["voice-warrior-summon", "voice-warrior-skill", "voice-mage-summon", "voice-mage-skill", "voice-rogue-summon", "voice-rogue-skill"]
     private(set) var voiceObservations: [[String: String]] = []
@@ -360,14 +363,16 @@ import TacticalGoMotion
     }
 
     private func makePlayer(_ name: String) -> AVAudioPlayer? {
-        guard let url = bundle.url(forResource: name, withExtension: "wav", subdirectory: "Audio")
-            ?? bundle.url(forResource: name, withExtension: "wav") else {
+        guard let url = ArtV2.audioURL(name, bundle: bundle, subdirectory: "Audio") else {
             lastError = "找不到音訊素材：\(name).wav"
             return nil
         }
         do {
             let player = try AVAudioPlayer(contentsOf: url)
             player.prepareToPlay()
+            #if DEBUG
+            loadedResourcePaths[name] = url.path
+            #endif
             return player
         } catch {
             lastError = "無法讀取音訊素材 \(name)：\(error.localizedDescription)"

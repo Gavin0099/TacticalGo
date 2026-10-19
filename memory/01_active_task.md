@@ -232,3 +232,5 @@
 - ASSETS-PASS-1 A肖像完成；B/C候選與量測已準備，原生測試持續中，未推送或開PR。 <!-- memory_record_projection:active-task-summary:0c10f2ae9de91352e8c3547dcefc75437773e25b6218d344b15e3d64b96f41ad -->
 
 - ASSETS-PASS-1 A已提交，B圖示三設定與UI62/62完成；C音效最終回歸驗證持續，未推送/開PR。 <!-- memory_record_projection:active-task-summary:b2a2075938b8a6fe7a06f7d0a37d541b55b2e3151044497face71ef01b7f47e6 -->
+
+- ASSETS-PASS-1三包候選與本機驗證完成；A/B已提交，C待提交後推送開PR；尚未合併或發布。 <!-- memory_record_projection:active-task-summary:cec3e45df54f7934851a70ad77aecd54fd1513a80155ef5fd5ce630388311235 -->

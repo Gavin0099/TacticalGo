@@ -1,3 +1,7 @@
+結果：完成四張肖像、七加一技能圖示與25個原創短音效候選及本機驗證。
+原因：素材以新版本保留，僅在Beta/DEBUG選用；Release原檔、棋盤身體與規則邊界保留。
+下一步：交付分支與PR供Owner審圖試聽、實機與正式發布權利驗收；不合併或上傳TestFlight。
+
 # Assets pass 1 — 原創候選與驗收記錄
 
 基底：PR #30 `f2a28b712d3392973f37360a41ea25ce255b0cb7`；分支 `art/assets-pass-1`。
@@ -57,3 +61,46 @@ Debug、Release、Beta（指定1118 xcconfig）皆建置成功，原始輸出在
 UI首輪總數62：61 passed、1 failed（`testMonsterHuntAndLootUseSameNineBoardAndResume`，結果檔記錄 `Test crashed with signal term.`）；runner重啟後其餘案例完成。第一次單項補跑在bootstrap前失去連線，檢查時模擬器處於Shutdown，沒有測試通過證據。重新boot後保留的A版binary補跑1/1 passed。不能把此狀態寫成「首輪62/62全過」；termination根因未定位。結果摘要：`A-test-summary.json`、`A-rerun-2-summary.json`；A測試binary SHA在 `tested-app-snapshots.json`。
 
 另檢查light與silhouette的32/36/40/48/64/130原生像素樣本，未見白色底緣或新裁切缺角。四張大廳/36pt徽章/40pt操作區在同fixture截圖中保留辨識；棋盤身體沒有改動。
+
+## B／C 與完整素材索引
+
+- [七加一技能圖示逐項判讀](ASSETS_PASS_1_ICONS.md)：亂序、32/48/64、灰階與不可用樣本，含新舊原生操作區。
+- [音效逐事件判讀](ASSETS_PASS_1_AUDIO.md)：25個原創短效、既有音效盤點、缺檔fixture、原生稽核及限制。
+- [逐檔波形/響度表](../../artifacts/assets-pass-1/audio/comparison.md)、[上限獨立量測](../../artifacts/assets-pass-1/audio/limits-summary.json)、[原音訊/候選隔離](../../artifacts/assets-pass-1/built-resource-isolation.json)。
+
+![肖像實際尺寸，左舊右新](../../artifacts/assets-pass-1/portraits/native-size-before-after.png)
+
+![技能無名稱亂序，左舊右新](../../artifacts/assets-pass-1/icons/blind-color-32-48-64.png)
+
+## 未驗證與不宣稱
+
+沒有實機驗收、真人盲測/評分、FPS/記憶體/能耗量測、正式發布權利或Owner精確素材接受；音效只有波形/頻譜/LUFS和原生播放器/取消行為驗證，沒有主觀試聽或實機喇叭混音評分。沒有宣稱達到爐石品質。棋盤角色身體因依賴原圖骨架/底圖/遮罩/錨點而未動，沒有製作其替代原圖或動畫。
+
+## 最終驗證
+
+| 工作包 | Debug / Release / Beta | UI結果 | 關鍵證據 |
+|---|---|---|---|
+| A肖像 | 三者成功 | 首輪61/62，1項runner signal term；補跑1/1通過 | A-test-summary.json、A-rerun-2-summary.json；不宣稱乾淨首輪全過 |
+| B技能圖示 | 三者成功 | 62/62，0失敗/跳過，無補跑 | B-test-summary.json |
+| C音效最終版 | 三者成功 | 66/66，0失敗/跳過（62要求項＋4音訊UI） | C-test-summary.json、C-UI-complete-tests.log |
+| C缺陷回歸 | Debug成功 | 無效預覽靜音聚焦1/1通過，原斷言保留 | C-selection-regression-summary.json |
+| C原生播放器 | Debug | 最終v30 64/64、art-v1 55/55；最終UI內音量22/22、節奏54/54 | native-audio/v30、art-v1、ui-final |
+
+25個新WAV最高true peak **−4.7dBFS**、最長**1.18s**、同組差**0LU（0.1精度）**、零削波/首尾為零；完整重生25 WAV＋manifest共26檔逐位元相同。獨立量測與生成資料分開保存，不以script宣告代替ffmpeg量測。未量測實際多事件混音總線LUFS或聽感。
+
+原有141個圖像/音訊/身體資源逐位元相同，P02的8個pin通過；68項資源不變量通過。Swift Core、Bot、GameStore、UI測試檔未修改，沒有變更存檔格式、手勢或accessibilityIdentifier。Release內原Audio WAV逐位元相同、候選音效/語音/PresentationLab不在Release，Beta候選manifest匹配。
+
+## 四職原生前後畫面
+
+為補齊每職36pt HUD與40pt操作區，比較基線由固定PR #30 commit f2a28b7的git archive重建，前後同一台iPhone16（B3E27BF5…）、同一practice局面、同樣關閉ambient，非用--art-v1代替PR30。最小archive第一次缺少兩張外部怪物PNG而失敗，補回同commit的兩檔後建置成功；log完整保留。沒有修改或借用另一個工作樹的未提交內容。
+
+| 職業 | PR30原圖 | 本輪候選 | 實際畫面判讀 |
+|---|---|---|---|
+| 戰士 | [前](../../artifacts/assets-pass-1/screens/multihero-before-pr30/warrior.png) | [後](../../artifacts/assets-pass-1/screens/multihero-after/warrior.png) | 肖像小尺寸持平、身份仍可辨；城牆與重整平行箭頭可分 |
+| 法師 | [前](../../artifacts/assets-pass-1/screens/multihero-before-pr30/mage.png) | [後](../../artifacts/assets-pass-1/screens/multihero-after/mage.png) | 肖像小尺寸持平；單向手掌/雙向雙線可分，手指細節較小 |
+| 盜賊 | [前](../../artifacts/assets-pass-1/screens/multihero-before-pr30/rogue.png) | [後](../../artifacts/assets-pass-1/screens/multihero-after/rogue.png) | 肖像小尺寸持平；雙點橢圓與三點三角操作路徑改善 |
+| 牧師 | [前](../../artifacts/assets-pass-1/screens/multihero-before-pr30/priest.png) | [後](../../artifacts/assets-pass-1/screens/multihero-after/priest.png) | 肖像小尺寸持平；單點消散與犧牲補位輪廓可分 |
+
+大廳130pt對照在screens/before/lobby.png與screens/C/lobby.png。另有C-art-v1/capture.png證明回退；它同時關閉PR30材質，僅用於回退檢查，不作PR30品質比較。
+
+C中兩次中止不隱藏：第一次為補缺檔fixture人工中止；第二次在非法預覽播放selection的真實斷言失敗後中止。原因、修正、聚焦回歸及最終66全過見音效報告。A的runner終止根因未定位；重啟模擬器後缺項補跑通過。這些都不改寫為首輪全過。

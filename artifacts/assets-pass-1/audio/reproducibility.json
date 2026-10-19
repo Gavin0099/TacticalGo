@@ -1,0 +1,33 @@
+{
+  "identical_files": 26,
+  "hashes": {
+    "commander-capture.wav": "2c57b477daf751f14b9b2c3b9730b0ca00c70c4f6bfb6082db207f1ef757f3ee",
+    "p8-rogue-dash.wav": "bc0bd5553b0adca52a580ab1ca1bfdf1cbdeb2d8f466366dee8883222ae0bc3c",
+    "warrior.wav": "5114844745d399a976c836e66226e5d144e6f5b8e21fc688d4721a9f2c61e595",
+    "p8-rogue-land.wav": "3367bcbdd811edc3840ac75c8acf271f73af43d23ad1d8b61ef6d9469b5d3e73",
+    "victory.wav": "f6af14fa1a7c6f5f8d43b5c16541a6575debe36907cc1d7fb7eade1048ce1133",
+    "p8-priest-bless.wav": "2a783156478c9d70431a97498521a59669a95c4e4511bc262db848c7d6508141",
+    "p8-priest-land.wav": "07854f0040903f4d190e430ec724596351356618b5de98501a6f00a442e42a4e",
+    "draw.wav": "c4686e403a9461cd999fd7829a178d8daf1a4b68ae25ccf7538ea3f5df2f8d31",
+    "place.wav": "e9eb2085430c05f4279ec3c27c85e8547c9d0603f5a4855223bc2b63ce9c9986",
+    "p8-priest-prayer.wav": "b3cdd5baa89f313c11b99c53992bcd714f1a1bc1966ac18244d49101ba646fd3",
+    "rogue.wav": "21c7d9a366450c0f5d312a90f6139cdba29da35b5b9ce44e2ee99e40ba461d1f",
+    "w7-strike.wav": "af426379ac598d54a486a833b0caed114503f41a294e458b4161d3617b6c8236",
+    "mage.wav": "a666fb09abc02ffcaffd19d92572d34c2213ca14379d0617cdc476904633adc0",
+    "selection.wav": "9003b46034426b3119a6c45ed662290e051fdf959041abf33a9e0be0123c8811",
+    "capture.wav": "6dd7bc347e231c0419556c79209a855181463039a2fd47414bbe5aea015bc5ff",
+    "p5-conjure.wav": "c719b720538fc363ba50d67be15bc17816b5151655e5f4f97984117994477331",
+    "danger.wav": "6bd66a9b88b34ee42513dd088c8d105cf2f8285a087c4b9023e832dcd01b46f3",
+    "defeat.wav": "11c5bb0cd2b4e352da508f866c461671bfe037e59c7a05675b1ad5fc676efd8a",
+    "w7-brace.wav": "805f1433ac53bb67eeb7f0aeb60d1aeb2ad923d737a7593b717d9bbff3982efb",
+    "manifest.json": "ba54ada08529606706d8bc80a07d2f999e69b7bd0bdf7c19c154565d6aad1b05",
+    "w7-land.wav": "73e6b3ffe655e441725a7bbd394ba17354dd14f764ba13109d4ddd27f9755959",
+    "p5-contact.wav": "efbe8a395603103389ce04fe2c285fabbb4dd5df3cd8c9afcafc30aaa9311bda",
+    "p5-push.wav": "457c13f86ab733b769b837020192d2bc82fe4846e3f1f350e22bd48a9743b6da",
+    "confirm.wav": "40e6ca30e609224843653ec61319550f8136ca72f5fd5d378798da03a751f392",
+    "summon.wav": "4a25d08a06c2449011d94de9394d29b457bed659b6f43469288d8052272385e8",
+    "p8-rogue-coil.wav": "99fe604910aa8cc40b40a8f4a0ac53933c82af5cc48696f35c895443a4691e0c"
+  },
+  "method": "same fixed seed/source, Python3 standard library and same ffmpeg runtime; full regeneration compared bytewise",
+  "cross_platform_bit_identity": "NOT VERIFIED"
+}

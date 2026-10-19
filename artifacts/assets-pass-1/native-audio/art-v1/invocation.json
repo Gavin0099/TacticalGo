@@ -1,0 +1,20 @@
+{
+  "command": [
+    "xcrun",
+    "simctl",
+    "launch",
+    "--terminate-running-process",
+    "96BBB949-A09E-480F-B978-2AE55D04FCBC",
+    "com.tacticalgo.prototype",
+    "--integrated-shell",
+    "--cozy-demo",
+    "--integrated-audio-audit",
+    "--sound-preferences-reset",
+    "c05e24b8-ebb9-4302-8106-aee129828333",
+    "--record-isolation",
+    "561cc6d8-b9c7-4dd6-99af-df0401d6104f",
+    "--art-v1"
+  ],
+  "app": "/Users/pc49-58/.codex/worktrees/assets-pass-1/CBuild/Products/Debug-iphonesimulator/TacticalGo.app",
+  "timeout_seconds": 150
+}

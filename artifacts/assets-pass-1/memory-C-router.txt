@@ -1,0 +1,25 @@
+[memory_workflow]
+status=memory_workflow_required
+repo_root=/Users/pc49-58/.codex/worktrees/assets-pass-1/TacticalGo
+repo_root_resolved=True
+canonical_writer_required=True
+task_classification=governed_memory_task
+guard_ran=False
+completion_claim_allowed=False
+memory_protocol_path=governance/MEMORY_PROTOCOL.md
+canonical_writer_path=NOT FOUND
+authority_guard_path=NOT FOUND
+Memory authority has not been checked.
+completion_claim_allowed=False means this workflow does not allow a completion claim.
+This does not prove that all completed work has canonical memory.
+[memory_files_in_diff]
+memory/01_active_task.md
+memory/04_review_log.md
+[recommended_workflow]
+Stop editing memory/ files directly.
+Use canonical writer for session-derived memory.
+Run memory authority guard after memory changes.
+Do not claim memory DONE until guard result is reported.
+[warnings]
+canonical writer not found
+memory authority guard not found

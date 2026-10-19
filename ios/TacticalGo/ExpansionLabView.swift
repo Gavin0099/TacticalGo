@@ -155,6 +155,7 @@ import TacticalGoVisuals
     #if DEBUG
     func soundVolumeForAudit(_ key:String) -> Double { samples.volume(key) }
     func soundPlayingForAudit(_ key:String) -> Bool { samples.isPlaying(key) }
+    func soundPathForAudit(_ key:String) -> String? { samples.loadedResourcePaths[key] }
     func configureReviewSound(voiceEnabled:Bool) {
         persistSoundPreferences = false
         defer { persistSoundPreferences = true }
@@ -315,6 +316,9 @@ import TacticalGoVisuals
     }
     func select(_ p: Point) {
         guard !controlsLocked,state.status == .ongoing else { return }
+        if ArtV2.enabled, active, !interrupted, !muted, legalTargets.contains(p) {
+            samples.schedule("selection", after: 0, volume: 0.35)
+        }
         defer { message = previewText }
         if state.board.monsters.contains(p) { selected = [p]; pending = .huntMonster(p); return }
         let hero = state.heroClass(of:state.current)
@@ -358,7 +362,9 @@ import TacticalGoVisuals
     }
     func confirm(systemReduced: Bool) {
         guard active,!interrupted,!playing,let action = pending,preview?.success == true else { return }
-        commit(action,systemReduced:systemReduced)
+        if commit(action,systemReduced:systemReduced), ArtV2.enabled, !muted {
+            samples.schedule("confirm", after: 0, volume: 0.35)
+        }
     }
     @discardableResult func commit(_ action: GameAction, systemReduced: Bool) -> Bool {
         guard active,!interrupted else { return false }
@@ -537,10 +543,14 @@ import TacticalGoVisuals
             case .huntMonster(let point):
                 let slime = p.before.config.monsterBattlefield?.kind(at:point) == .slime
                 sound = slime ? [("p8-slime-coil",0.02,ExpansionCueMix.monsterPreparation),("p8-slime-land",p.arrival,ExpansionCueMix.monsterImpact)] : [("p8-wolf-growl",0.02,ExpansionCueMix.monsterPreparation),("p8-wolf-land",p.arrival,ExpansionCueMix.monsterImpact)]
-            case .placeSoldier,.summonHero: sound = [("place",p.arrival,0.55)]
+            case .placeSoldier: sound = [("place",p.arrival,0.55)]
+            case .summonHero: sound = [(ArtV2.enabled ? "summon" : "place",p.arrival,0.55)]
             default: break
             }
-            if !p.captures.isEmpty { sound.append(("capture",p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60)) }
+            if !p.captures.isEmpty {
+                let key = ArtV2.enabled && p.captures.contains(where: { $0.piece.kind == .commander }) ? "commander-capture" : "capture"
+                sound.append((key,p.captureStart,p.captureStart < voiceEnd ? 0.30:0.60))
+            }
             if let ending = p.terminalCue(computer: computer), onTerminalCue == nil {
                 sound.append((ending,p.duration,p.duration < voiceEnd ? 0.30:0.60))
             }

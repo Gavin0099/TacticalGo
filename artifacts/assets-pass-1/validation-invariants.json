@@ -1,0 +1,258 @@
+[
+  {
+    "name": "all_preexisting_raster_audio_body_inputs_byte_identical",
+    "passed": true
+  },
+  {
+    "name": "all_P02_sha256_pins",
+    "passed": true
+  },
+  {
+    "name": "v30_atlas_exact_1448x1086",
+    "passed": true
+  },
+  {
+    "name": "v30_sanctum_exact_384",
+    "passed": true
+  },
+  {
+    "name": "warrior_512_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "warrior_256_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "mage_512_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "mage_256_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "rogue_512_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "rogue_256_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "priest_512_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "priest_256_rgba_transparency",
+    "passed": true
+  },
+  {
+    "name": "rawValue_order_unchanged",
+    "passed": true
+  },
+  {
+    "name": "selection_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "selection_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "place_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "place_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "capture_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "capture_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "summon_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "summon_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "warrior_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "warrior_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "mage_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "mage_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "rogue_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "rogue_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "danger_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "danger_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "victory_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "victory_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "defeat_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "defeat_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "draw_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "draw_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "w7-brace_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "w7-brace_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "w7-strike_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "w7-strike_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "w7-land_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "w7-land_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p5-conjure_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p5-conjure_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p5-push_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p5-push_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p5-contact_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p5-contact_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-coil_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-coil_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-dash_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-dash_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-land_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-rogue-land_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-prayer_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-prayer_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-bless_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-bless_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-land_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "p8-priest-land_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "confirm_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "confirm_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "commander-capture_PCM_no_clip_zero_endpoints_and_duration",
+    "passed": true
+  },
+  {
+    "name": "commander-capture_hash_true_peak_lufs",
+    "passed": true
+  },
+  {
+    "name": "same_family_spread_le_2LU",
+    "passed": true
+  }
+]

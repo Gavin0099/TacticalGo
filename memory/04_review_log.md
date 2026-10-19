@@ -574,3 +574,14 @@
 - Validation boundary: release/XCODE_UPLOAD_SUCCESS.png／GUI_UPLOAD_RESULT／GUI_UPLOADED_PACKAGE／DELIVERY；來源279未變，memory-upload guard completion allowed true／blockers空；既有310Swift和最新主小+iPad結果維持
 - Next action: Owner手動解鎖Mac並登入既有ASC頁面後，接續只核1112處理／Owner1.1群組，來源未變不重跑或重傳。真機／人類80–90%品質仍未接受。
 - PLAN reconciliation: `updated`
+
+<!-- memory_record_projection:review-log:cec3e45df54f7934851a70ad77aecd54fd1513a80155ef5fd5ce630388311235 -->
+### Canonical memory checkpoint — cli-20261019-123153
+
+- Writer: `governance_tools.memory_record`
+- Record identity: `cec3e45df54f7934851a70ad77aecd54fd1513a80155ef5fd5ce630388311235`
+- Commit binding: `c49e039` (bound)
+- Record: C新增25個原創固定種子SFX、Beta/DEBUG版本載入及確認/召喚/主將提子回饋。修正兩項根因：新鍵缺檔時未回退Audio，以及選取音未經合法目標檢查導致非法預覽發聲；真實WAV fixture與原UI斷言回歸通過。補齊四職PR30/新版同機畫面及逐素材報告。
+- Validation boundary: artifacts/assets-pass-1/C-test-summary.json: Passed 66/66, 0 failed/skipped; C-selection-regression-summary.json: 1/1 pass; native-audio/ui-final: 64/22/54 all pass; art-v1:55 pass; C-Debug-complete.log C-Release-complete.log C-Beta-complete.log: BUILD SUCCEEDED; validation-invariants.json:68 pass; audio/limits-summary.json and reproducibility.json
+- Next action: 提交C並推送art/assets-pass-1，開依賴PR30的PR交Owner審圖試聽、實機/效能/權利驗收；不合併、不TestFlight。
+- PLAN reconciliation: `updated`
