@@ -1,0 +1,218 @@
+[
+  {
+    "name" : "core_cast_0",
+    "passed" : true
+  },
+  {
+    "name" : "first_success_has_original_B",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_2",
+    "passed" : true
+  },
+  {
+    "name" : "undo_cancels_and_does_not_rearm_line",
+    "passed" : true
+  },
+  {
+    "name" : "quiet_cast_preserves_full_SFX",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_5",
+    "passed" : true
+  },
+  {
+    "name" : "second_quiet_cast",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_7",
+    "passed" : true
+  },
+  {
+    "name" : "next_spaced_cast_has_B",
+    "passed" : true
+  },
+  {
+    "name" : "background_cancels_without_replaying",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_10",
+    "passed" : true
+  },
+  {
+    "name" : "background_does_not_rearm_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_12",
+    "passed" : true
+  },
+  {
+    "name" : "muted_cast_has_no_cue",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_14",
+    "passed" : true
+  },
+  {
+    "name" : "unmute_preserves_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_16",
+    "passed" : true
+  },
+  {
+    "name" : "voice_off_cast_is_full_SFX",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_18",
+    "passed" : true
+  },
+  {
+    "name" : "voice_on_preserves_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_20",
+    "passed" : true
+  },
+  {
+    "name" : "zero_voice_has_no_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_22",
+    "passed" : true
+  },
+  {
+    "name" : "restored_voice_preserves_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_24",
+    "passed" : true
+  },
+  {
+    "name" : "missing_player_uses_full_SFX",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_26",
+    "passed" : true
+  },
+  {
+    "name" : "failed_player_preserves_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "preview_cancel_no_cues_or_domain_change",
+    "passed" : true
+  },
+  {
+    "name" : "invalid_core_no_voice",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_30",
+    "passed" : true
+  },
+  {
+    "name" : "preview_invalid_preserve_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_32",
+    "passed" : true
+  },
+  {
+    "name" : "calm_first_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_34",
+    "passed" : true
+  },
+  {
+    "name" : "calm_quiet_6",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_36",
+    "passed" : true
+  },
+  {
+    "name" : "calm_quiet_12",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_38",
+    "passed" : true
+  },
+  {
+    "name" : "calm_quiet_17",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_40",
+    "passed" : true
+  },
+  {
+    "name" : "calm_next_spaced_line",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_42",
+    "passed" : true
+  },
+  {
+    "name" : "new_session_resets_cadence",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_44",
+    "passed" : true
+  },
+  {
+    "name" : "failed_new_game_retains_current_domain",
+    "passed" : true
+  },
+  {
+    "name" : "core_cast_46",
+    "passed" : true
+  },
+  {
+    "name" : "failed_new_game_does_not_rearm_voice",
+    "passed" : true
+  },
+  {
+    "name" : "handoff_first_confirmed",
+    "passed" : true
+  },
+  {
+    "name" : "handoff_visual_unlock_has_voice_tail",
+    "passed" : true
+  },
+  {
+    "name" : "handoff_turn_is_legal",
+    "passed" : true
+  },
+  {
+    "name" : "quiet_other_class_preserves_previous_line",
+    "passed" : true
+  },
+  {
+    "name" : "carried_line_keeps_prep_mix_full_later_contact_and_input_timing",
+    "passed" : true
+  },
+  {
+    "name" : "undo_cancels_carried_line",
+    "passed" : true
+  }
+]

@@ -219,6 +219,76 @@ import TacticalGoMotion
         store.presentAudio(before: victoryBefore, action: CombatDemo.action, outcome: victory)
         try? await Task.sleep(for: .milliseconds(1600))
         record("computer_win_uses_human_defeat_cue", Array(store.audioCueHistory.dropFirst(defeatCount)) == ["mage", "place", "capture", "defeat"])
+        // Asset pass 1: verify URLs used by real native players, then exercise the new successful-event cues.
+        let materials = PresentationSamples()
+        let materialKeys = ["place", "capture", "w7-brace", "w7-strike", "w7-land", "p5-conjure", "p5-push", "p5-contact", "p8-rogue-coil", "p8-rogue-dash", "p8-rogue-land", "p8-priest-prayer", "p8-priest-bless", "p8-priest-land"]
+        record("asset_pass_native_material_paths", materials.error == nil && materialKeys.allSatisfy {
+            guard let path = materials.loadedResourcePaths[$0] else { return false }
+            return path.contains("/Audio/V30/") == ArtV2.enabled
+        })
+        record("asset_pass_native_combat_paths", ["selection", "place", "capture", "summon", "mage", "warrior", "rogue", "danger", "victory", "defeat", "draw"].allSatisfy {
+            guard let path = audio.loadedResourcePaths[$0] else { return false }
+            return path.contains("/Audio/V30/") == ArtV2.enabled
+        })
+        // Missing candidate fixtures use actual immutable WAVs in the documented legacy Audio directory.
+        let fallbackFixture = FileManager.default.temporaryDirectory.appendingPathComponent("AssetFallback-\(UUID()).bundle")
+        defer { try? FileManager.default.removeItem(at: fallbackFixture) }
+        do {
+            try FileManager.default.createDirectory(at: fallbackFixture.appendingPathComponent("Audio"), withIntermediateDirectories: true)
+            let info = ["CFBundleIdentifier":"com.tacticalgo.assets-fixture", "CFBundleName":"AssetFallback", "CFBundlePackageType":"BNDL", "CFBundleVersion":"1"]
+            try PropertyListSerialization.data(fromPropertyList: info, format: .xml, options: 0).write(to: fallbackFixture.appendingPathComponent("Info.plist"))
+            for key in ["selection", "summon"] {
+                let source = Bundle.main.url(forResource: key, withExtension: "wav", subdirectory: "Audio")!
+                try FileManager.default.copyItem(at: source, to: fallbackFixture.appendingPathComponent("Audio/\(key).wav"))
+            }
+            if let fixtureBundle = Bundle(url: fallbackFixture) {
+                for key in ["selection", "summon"] {
+                    let url = ArtV2.audioURL(key, bundle: fixtureBundle, subdirectory: "PresentationLab")
+                    let player = url.flatMap { try? AVAudioPlayer(contentsOf: $0) }
+                    record("asset_pass_missing_candidate_falls_back_\(key)", url?.deletingLastPathComponent().lastPathComponent == "Audio" && (player?.duration ?? 0) > 0)
+                }
+                record("asset_pass_missing_everywhere_rejected", ArtV2.audioURL("absent-cue", bundle: fixtureBundle, subdirectory: "PresentationLab") == nil)
+            } else { record("asset_pass_fallback_fixture_bundle_created", false) }
+        } catch { record("asset_pass_fallback_fixture_created", false) }
+        if ArtV2.enabled {
+            let feedback = ExpansionLabStore(soundDefaults: defaults)
+            feedback.practice(.mage); feedback.voice = false; feedback.muted = false; feedback.scene(true)
+            defer { feedback.scene(false) }
+            let action = ExpansionPractice.mage.action, initial = feedback.state
+            let expected = GameEngine.apply(initial, action)
+            feedback.select(Point(4,5))
+            record("asset_pass_selection_native_player", feedback.soundPlayingForAudit("selection") && feedback.state == initial)
+            feedback.pending = action; feedback.confirm(systemReduced: true)
+            record("asset_pass_confirm_only_successful_receipt", expected.success && feedback.state == expected.state && feedback.soundPlayingForAudit("confirm"))
+            feedback.scene(false); feedback.scene(true)
+            record("asset_pass_background_never_revives_confirm", !feedback.soundPlayingForAudit("confirm") && !feedback.soundPlayingForAudit("selection"))
+            feedback.undo(); let undoState = feedback.state
+            feedback.select(Point(-1,-1))
+            record("asset_pass_illegal_selection_silent_unchanged", feedback.state == undoState && !feedback.soundPlayingForAudit("selection"))
+            feedback.pending = .placeSoldier(Point(-1,-1)); feedback.confirm(systemReduced: false)
+            record("asset_pass_invalid_confirm_silent_unchanged", feedback.state == undoState && !feedback.soundPlayingForAudit("confirm"))
+            feedback.muted = true; feedback.pending = action; feedback.confirm(systemReduced: false)
+            record("asset_pass_muted_confirm_silent", feedback.state == expected.state && !feedback.soundPlayingForAudit("confirm"))
+            feedback.undo(); feedback.muted = false; feedback.sfxVolume = 0
+            feedback.select(Point(4,5)); feedback.pending = action; feedback.confirm(systemReduced: true)
+            record("asset_pass_zero_SFX_selection_confirm_silent", feedback.state == expected.state && !feedback.soundPlayingForAudit("selection") && !feedback.soundPlayingForAudit("confirm"))
+            feedback.scene(false)
+            let arrival = ExpansionLabStore(soundDefaults: defaults)
+            arrival.voice = false; arrival.muted = false; arrival.sfxVolume = 0.80; arrival.scene(true)
+            arrival.passTurnsForTest(untilBlackMana: 4)
+            let summon = GameEngine.legalActions(arrival.state).first { if case .summonHero = $0 { return true }; return false }
+            let summoned = summon.map { arrival.commit($0, systemReduced: true) } ?? false
+            record("asset_pass_summon_has_independent_native_cue", summoned && arrival.state.board.find(.one, .hero) != nil && arrival.lastSoundKeys.contains("summon") && !arrival.lastSoundKeys.contains("place") && arrival.soundPlayingForAudit("summon"))
+            arrival.scene(false)
+            let crown = ExpansionLabStore(soundDefaults: defaults)
+            crown.warriorBotReview(); crown.voice = false; crown.muted = false; crown.sfxVolume = 0.80; crown.scene(true)
+            let captured = crown.commit(winningShift, systemReduced: true)
+            record("asset_pass_commander_cue_requires_confirmed_capture", captured && crown.receipt?.captures.contains(where: { $0.piece.kind == .commander }) == true && crown.lastSoundKeys.contains("commander-capture") && !crown.lastSoundKeys.contains("capture"))
+            crown.scene(false)
+            record("asset_pass_new_cues_use_V30_real_players", ["selection", "confirm", "summon", "commander-capture"].allSatisfy { materials.loadedResourcePaths[$0]?.contains("/Audio/V30/") == true })
+        } else {
+            record("asset_pass_art_v1_omits_new_cue_players", materials.loadedResourcePaths["confirm"] == nil && materials.loadedResourcePaths["commander-capture"] == nil)
+        }
         let status = checks.allSatisfy(\.passed) ? "PASS" : "FAIL"
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let encoder = JSONEncoder(); encoder.outputFormatting = [.prettyPrinted, .sortedKeys]

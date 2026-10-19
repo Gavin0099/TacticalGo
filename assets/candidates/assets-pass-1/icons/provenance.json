@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "generator": "built-in image_gen",
+  "model": "unknown",
+  "tool_version": "unknown",
+  "seed": "unavailable",
+  "third_party_inputs": [],
+  "reference": "original generated bastion style only; no competitive imagery",
+  "approval": "pending_exact_file_owner_review",
+  "availability": {
+    "candidate": true,
+    "production": false
+  },
+  "rights": "pending_owner_release_acceptance",
+  "derivation": "scripts/prepare-icons-v30.py; exact362px grid, unchanged non-skill cells from original TacticalGo v20; Sanctum384",
+  "records": [
+    {
+      "key": "bastion",
+      "rawValue": 2,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+        "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+        "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 458702
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/bastion-prompt.txt",
+      "style_input": []
+    },
+    {
+      "key": "reformation",
+      "rawValue": 3,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/reformation-source-v30.png",
+        "sha256": "1cea91391ebc43e88fbaa0d74231a665d952a3c22eae22cd3b959fd08b376ad9",
+        "rgba_sha256": "5dd7da42ee5b169bfa4fc449fe7cc804ecc502689d4349c8bb9e520c6f0f57d3",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 453499
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/reformation-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "magicHand",
+      "rawValue": 4,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/magicHand-source-v30.png",
+        "sha256": "111012c768087d595a5e211cb4e1fd404bb681e710f92216f24a137ae0a84c91",
+        "rgba_sha256": "1cb76d24113f34489dcc824e939a2367ebb2e49ee4a386701f408377a3a36e86",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 441888
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/magicHand-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "doublePull",
+      "rawValue": 5,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/doublePull-source-v30.png",
+        "sha256": "2557fb9d7e4d39e42e96b8672483b456305e6941c38948ee115dabf223d7fb90",
+        "rgba_sha256": "61a3bde03d5c60bc9ba5c00c5aea91fff0b38aad82f6abe12d90d8fba9e8a3bd",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 444205
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/doublePull-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "swap",
+      "rawValue": 6,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/swap-source-v30.png",
+        "sha256": "0ef0e3a27401bb36b4d3d8edb077dc762544fe9d7bef31f8f10b7fdf09e73479",
+        "rgba_sha256": "47e369fcf2d681de117c77ed36a279780704822dfcf72479dd461eba91b85c96",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 437594
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/swap-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "chainSwap",
+      "rawValue": 7,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/chainSwap-source-v30.png",
+        "sha256": "62e91b64466a511c52361d30a74ff9d13e6b436b9c0eaba34dfd59f4696852f8",
+        "rgba_sha256": "edb61b8067510f9bb05954109888b2ebc785a9f76b6af42d7ef6f3a1eb6a4d7a",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 453651
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/chainSwap-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "offering",
+      "rawValue": 8,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/offering-source-v30.png",
+        "sha256": "92b466fca61b7fe0b75f0e078b0dc300eb3def9cbfa451041952ac0215cdb6ce",
+        "rgba_sha256": "5cd48196b5bdeb8eb6149cce7e1ca4ce30bd61ffefc4d39c39c408991db42877",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 454568
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/offering-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    },
+    {
+      "key": "sanctum",
+      "rawValue": 12,
+      "source": {
+        "path": "assets/candidates/assets-pass-1/icons/sanctum-source-v30.png",
+        "sha256": "85799993c035a146d1244e8b068100a95871e32c05488876dfdd402157dbcb4c",
+        "rgba_sha256": "56e4b9ad57891e2af7fc095012bad6dff471f61ed8f4bbe61f5e475cd48f750c",
+        "size": [
+          1254,
+          1254
+        ],
+        "transparent_pixels": 450666
+      },
+      "prompt": "assets/candidates/assets-pass-1/icons/sanctum-prompt.txt",
+      "style_input": [
+        {
+          "path": "assets/candidates/assets-pass-1/icons/bastion-source-v30.png",
+          "sha256": "d2ef4311af1d4d67344b8b89e30a30663283b3a7245e5d49a436d04c8aca9026",
+          "rgba_sha256": "f9bfa461b9382ae3f7167ff4b943725bdcbfa2a0dff6eab6627fe50a2b4ccd3d",
+          "size": [
+            1254,
+            1254
+          ],
+          "transparent_pixels": 458702
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/game-ability-atlas-v30.imageset/game-ability-atlas-v30.png",
+      "sha256": "d46c5bfcd7bbf1207e2ca62644416cd8ef7e28510a68a27da23f6e526a1911f7",
+      "rgba_sha256": "fba4d98a220154fc92861c19acacc787562329fbe443ea663b8bce44d478b1c5",
+      "size": [
+        1448,
+        1086
+      ],
+      "transparent_pixels": 616656
+    },
+    {
+      "path": "ios/TacticalGo/Assets.xcassets/game-ability-sanctum-v30.imageset/game-ability-sanctum-v30.png",
+      "sha256": "2643c7abe03c54c2e11a0c130c85c9a6ba06aea17a8a8c3248465daff3a29f2d",
+      "rgba_sha256": "102cff6f6edfbf86bfeda2efa10ce98cf22fb52233e19d22518681f91b9dde4d",
+      "size": [
+        384,
+        384
+      ],
+      "transparent_pixels": 41344
+    }
+  ]
+}

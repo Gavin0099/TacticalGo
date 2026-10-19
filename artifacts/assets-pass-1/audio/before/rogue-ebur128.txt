@@ -1,0 +1,33 @@
+[aist#0:0/pcm_s16le @ 0x827010180] Guessed Channel Layout: stereo
+Input #0, wav, from '/Users/pc49-58/.codex/worktrees/assets-pass-1/TacticalGo/ios/TacticalGo/Audio/rogue.wav':
+  Duration: 00:00:00.35, bitrate: 1412 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, stereo, s16, 1411 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+[Parsed_ebur128_1 @ 0x82700d140] t: 0.0999773  TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK:  -8.8  -9.7 dBFS  TPK:  -8.8  -9.7 dBFS
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf63.1.102
+  Stream #0:0: Audio: pcm_s16le, 44100 Hz, stereo, s16, 1411 kb/s
+    Metadata:
+      encoder         : Lavc63.1.102 pcm_s16le
+[Parsed_ebur128_1 @ 0x82700d140] t: 0.199977   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK:  -6.6  -5.7 dBFS  TPK:  -6.6  -5.7 dBFS
+[Parsed_ebur128_1 @ 0x82700d140] t: 0.299977   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK: -11.5 -10.6 dBFS  TPK:  -6.6  -5.7 dBFS
+[Parsed_ebur128_1 @ 0x82700d140] t: 0.399977   TARGET:-23 LUFS    M: -16.7 S:-120.7     I: -16.7 LUFS       LRA:   0.0 LU  FTPK: -32.6 -27.4 dBFS  TPK:  -6.6  -5.7 dBFS
+[Parsed_ebur128_1 @ 0x82700d140] Summary:
+
+  Integrated loudness:
+    I:         -16.7 LUFS
+    Threshold: -26.7 LUFS
+
+  Loudness range:
+    LRA:         0.0 LU
+    Threshold:   0.0 LUFS
+    LRA low:     0.0 LUFS
+    LRA high:    0.0 LUFS
+
+  True peak:
+    Peak:       -5.7 dBFS
+[out#0/null @ 0x82700c900] video:0KiB audio:69KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:00.40 bitrate=N/A speed= 174x elapsed=0:00:00.00    
