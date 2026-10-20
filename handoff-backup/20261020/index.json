@@ -1,0 +1,340 @@
+{
+  "purpose": "Local unfinished-source backup for Mac handoff. Not a tested product candidate.",
+  "origin": "https://github.com/Gavin0099/TacticalGo.git",
+  "createdAt": "2026-10-20T15:54:25.066828+00:00",
+  "snapshots": [
+    {
+      "id": "41e8d5f15a",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/audio-combat-magic-hand/TacticalGo",
+      "baseCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+      "archiveSha256": "47e8f5d52525e8de8339f9e2346a274c3873f006c3ba1cb9463ff62c4c63c568",
+      "files": [
+        {
+          "name": "41e8d5f15a.tar.gz",
+          "bytes": 14477100,
+          "sha256": "47e8f5d52525e8de8339f9e2346a274c3873f006c3ba1cb9463ff62c4c63c568"
+        }
+      ],
+      "selectedTracked": 4,
+      "selectedUntracked": 236,
+      "excludedCounts": {
+        "generated": 9009,
+        "archiveMediaLogs": 36,
+        "localEvidenceOrWorkflow": 130
+      }
+    },
+    {
+      "id": "9f5db0fe41",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/autonomous-slices-1011/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "bd793217740073b01492352aedbd479840d113f4d905a4a9417b17eef52e18cd",
+      "files": [
+        {
+          "name": "9f5db0fe41.tar.gz",
+          "bytes": 13493442,
+          "sha256": "bd793217740073b01492352aedbd479840d113f4d905a4a9417b17eef52e18cd"
+        }
+      ],
+      "selectedTracked": 20,
+      "selectedUntracked": 319,
+      "excludedCounts": {
+        "generated": 48538,
+        "archiveMediaLogs": 662,
+        "localEvidenceOrWorkflow": 2527,
+        "nestedRepositoryOrDirectory": 1
+      }
+    },
+    {
+      "id": "1d407fb199",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/bot-01/TacticalGo",
+      "baseCommit": "90410d360ca3174042bf1b8cdd2656d44599b246",
+      "archiveSha256": "8c2cc822ede834da0c04be96ee94a147836344061e67f4b70196557fe2b469a8",
+      "files": [
+        {
+          "name": "1d407fb199.tar.gz",
+          "bytes": 78220,
+          "sha256": "8c2cc822ede834da0c04be96ee94a147836344061e67f4b70196557fe2b469a8"
+        }
+      ],
+      "selectedTracked": 4,
+      "selectedUntracked": 2,
+      "excludedCounts": {
+        "generated": 42665,
+        "archiveMediaLogs": 334,
+        "localEvidenceOrWorkflow": 1067
+      }
+    },
+    {
+      "id": "01b180e9af",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/bot-p1/TacticalGo",
+      "baseCommit": "a09cf208e851c23dd45555612b0a4a5b50f4d5ee",
+      "archiveSha256": "461d2edf7072f4a5d964b9ca9678bc8ad952376650b5b725f0b2807c92bd1b0a",
+      "files": [
+        {
+          "name": "01b180e9af.tar.gz",
+          "bytes": 6270,
+          "sha256": "461d2edf7072f4a5d964b9ca9678bc8ad952376650b5b725f0b2807c92bd1b0a"
+        }
+      ],
+      "selectedTracked": 4,
+      "selectedUntracked": 2,
+      "excludedCounts": {
+        "generated": 2777,
+        "archiveMediaLogs": 27,
+        "localEvidenceOrWorkflow": 15
+      }
+    },
+    {
+      "id": "e5c693f7c5",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/content-02/TacticalGo",
+      "baseCommit": "7414f273a0130c4367a905319464a078de7b5077",
+      "archiveSha256": "291b380e476c2cd14d02ad96b706d1034731e1d1525271eeac706effeacbaaa7",
+      "files": [
+        {
+          "name": "e5c693f7c5.tar.gz",
+          "bytes": 2856,
+          "sha256": "291b380e476c2cd14d02ad96b706d1034731e1d1525271eeac706effeacbaaa7"
+        }
+      ],
+      "selectedTracked": 0,
+      "selectedUntracked": 6,
+      "excludedCounts": {
+        "generated": 12326,
+        "archiveMediaLogs": 38,
+        "localEvidenceOrWorkflow": 124
+      }
+    },
+    {
+      "id": "ce9f18140e",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/cozy-02-integration/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "2a1c9cf2263b48b5ead67a7eebd45ea2ba6a02cff9c0ca118bd1936cbaed4a58",
+      "files": [
+        {
+          "name": "ce9f18140e.tar.gz",
+          "bytes": 7713684,
+          "sha256": "2a1c9cf2263b48b5ead67a7eebd45ea2ba6a02cff9c0ca118bd1936cbaed4a58"
+        }
+      ],
+      "selectedTracked": 11,
+      "selectedUntracked": 105,
+      "excludedCounts": {
+        "generated": 15691,
+        "archiveMediaLogs": 473,
+        "localEvidenceOrWorkflow": 992
+      }
+    },
+    {
+      "id": "3493ab30b9",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/ui-sell-00/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "8b789412736c3f5739f28186e215a93fcc98c1461d7c6235e706d890937d1ab0",
+      "files": [
+        {
+          "name": "3493ab30b9.tar.gz",
+          "bytes": 4117,
+          "sha256": "8b789412736c3f5739f28186e215a93fcc98c1461d7c6235e706d890937d1ab0"
+        }
+      ],
+      "selectedTracked": 3,
+      "selectedUntracked": 0,
+      "excludedCounts": {
+        "archiveMediaLogs": 3,
+        "localEvidenceOrWorkflow": 57
+      }
+    },
+    {
+      "id": "8f23ff9527",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/ui-sell-01a/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "12a6a2f3ef6dd8fe118c439288914a659f50b3629cf9662686bf43f894a153ee",
+      "files": [
+        {
+          "name": "8f23ff9527.tar.gz",
+          "bytes": 1349001,
+          "sha256": "12a6a2f3ef6dd8fe118c439288914a659f50b3629cf9662686bf43f894a153ee"
+        }
+      ],
+      "selectedTracked": 10,
+      "selectedUntracked": 2,
+      "excludedCounts": {
+        "generated": 2834,
+        "archiveMediaLogs": 30,
+        "localEvidenceOrWorkflow": 133
+      }
+    },
+    {
+      "id": "c6a6669643",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/ui-sell-01c/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "7a3dc7b2314ef5adfb0967b0d4652d7f92965d353be521dc566c0c910faff34d",
+      "files": [
+        {
+          "name": "c6a6669643.tar.gz",
+          "bytes": 10477652,
+          "sha256": "7a3dc7b2314ef5adfb0967b0d4652d7f92965d353be521dc566c0c910faff34d"
+        }
+      ],
+      "selectedTracked": 12,
+      "selectedUntracked": 11,
+      "excludedCounts": {
+        "generated": 2835,
+        "archiveMediaLogs": 63,
+        "localEvidenceOrWorkflow": 301
+      }
+    },
+    {
+      "id": "c48344c530",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/ui-sell03-lobby/TacticalGo",
+      "baseCommit": "4986805316ee99576d9f4b933eec6e557134027e",
+      "archiveSha256": "395b56b10b875341483f899a31d48834efdfdbc5675d0f1d39c5f9c21d4a5159",
+      "files": [
+        {
+          "name": "c48344c530.tar.gz",
+          "bytes": 10501808,
+          "sha256": "395b56b10b875341483f899a31d48834efdfdbc5675d0f1d39c5f9c21d4a5159"
+        }
+      ],
+      "selectedTracked": 12,
+      "selectedUntracked": 12,
+      "excludedCounts": {
+        "generated": 16068,
+        "archiveMediaLogs": 90,
+        "localEvidenceOrWorkflow": 877
+      }
+    },
+    {
+      "id": "eaf8da9938",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/v11-monster-battlefield/TacticalGo",
+      "baseCommit": "06c534c56855ba3f27fd9af459860c59ceabb185",
+      "archiveSha256": "5f4f1836f00041a7a588bc2aec453421fb9fe42c09d36461d32c3d1f67a7815f",
+      "files": [
+        {
+          "name": "eaf8da9938.tar.gz",
+          "bytes": 214193,
+          "sha256": "5f4f1836f00041a7a588bc2aec453421fb9fe42c09d36461d32c3d1f67a7815f"
+        }
+      ],
+      "selectedTracked": 23,
+      "selectedUntracked": 59,
+      "excludedCounts": {}
+    },
+    {
+      "id": "f742521fee",
+      "sourcePath": "/Users/pc49-58/.codex/worktrees/vis-3d-anim-01/TacticalGo",
+      "baseCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+      "archiveSha256": "194a9b3724932f25fe30007cfa05b5e36e3a9ccaecb4ed8a178732b83676664b",
+      "files": [
+        {
+          "name": "f742521fee.tar.gz.part000",
+          "bytes": 80000000,
+          "sha256": "fe47b8fcca201d2b5185fc457c95166a4590464fb848418c9ebc42620d9c3ce2"
+        },
+        {
+          "name": "f742521fee.tar.gz.part001",
+          "bytes": 80000000,
+          "sha256": "761f7602f9e192500c6e80adef370b2e8f27a7e133bb1eb5283444d12d10ecb0"
+        },
+        {
+          "name": "f742521fee.tar.gz.part002",
+          "bytes": 80000000,
+          "sha256": "2922ae2c540de79c4feb307b50704ea33978f7168d9fbbfd1ad120fa8aa6dbec"
+        },
+        {
+          "name": "f742521fee.tar.gz.part003",
+          "bytes": 80000000,
+          "sha256": "399777ce504b724dae6f8323fbfefdf7b6a06b712fda8b816e08f5c88f6a242d"
+        },
+        {
+          "name": "f742521fee.tar.gz.part004",
+          "bytes": 80000000,
+          "sha256": "eaa5d0b3b040ee4003a4ad2f11b2816ebe2069bdf5dcf172424975f741410419"
+        },
+        {
+          "name": "f742521fee.tar.gz.part005",
+          "bytes": 59500921,
+          "sha256": "41dea2a648b7ef005fc9111a1668f89c02dd3d1c9cbc1f85ccaba6cb443cc33e"
+        }
+      ],
+      "selectedTracked": 1,
+      "selectedUntracked": 2932,
+      "excludedCounts": {
+        "archiveMediaLogs": 81,
+        "largeFile": 19,
+        "localEvidenceOrWorkflow": 60,
+        "binaryOrPrivateDocument": 1,
+        "scannerFindingNeedsReview": 2
+      }
+    },
+    {
+      "id": "1e8a6c6c0e",
+      "sourcePath": "/Users/pc49-58/Desktop/TacticalGo",
+      "baseCommit": "fb45955628274c3c9de424228d8f6ef2b1670776",
+      "archiveSha256": "aed715455f8c2eed6bb21fa51a5747968c3daca6f6a1c9c38fd1bc4cb45daa65",
+      "files": [
+        {
+          "name": "1e8a6c6c0e.tar.gz.part000",
+          "bytes": 80000000,
+          "sha256": "cdc5a79c29f88bd87218d8827e0a35a7c14ee9a5a30ab0435738fa506acf9081"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part001",
+          "bytes": 80000000,
+          "sha256": "f711f951be574208199db8d1279795ca969b16841eea6b1c897ff68828d77b92"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part002",
+          "bytes": 80000000,
+          "sha256": "6d63677848c3ed8ebf4d905c3ae7dc343d0e782212cbc55f5d1a08cdc1e1677e"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part003",
+          "bytes": 80000000,
+          "sha256": "3abc47c69f17f465e69c86584ddf8769750dc7493939df65a62b2ef132288927"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part004",
+          "bytes": 80000000,
+          "sha256": "ad355a0234954fee92d077a6796e2199bc3cf7b3596bb7f170d31872c37dcea4"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part005",
+          "bytes": 80000000,
+          "sha256": "ef682d8fc4af817c4b29892b4965af82d53c84131ce0334927f5b71e2f16590e"
+        },
+        {
+          "name": "1e8a6c6c0e.tar.gz.part006",
+          "bytes": 47945424,
+          "sha256": "4ce25329486d864eda9d374c56bc4603c3ac41a3d3fd2134689ee4effb12f1c5"
+        }
+      ],
+      "selectedTracked": 8,
+      "selectedUntracked": 1427,
+      "excludedCounts": {
+        "generated": 7699,
+        "archiveMediaLogs": 980,
+        "largeFile": 4,
+        "localEvidenceOrWorkflow": 3255,
+        "binaryOrPrivateDocument": 1
+      }
+    },
+    {
+      "id": "3cd6598749",
+      "sourcePath": "/Users/pc49-58/TacticalGo-safety/clone-governance",
+      "baseCommit": "3c8207bd46483579204fcd0969d2f75659a9de59",
+      "archiveSha256": "415386a238c8f5facc64e4a53de5ab7e9c5ee7ff36f697abdc974d77da473060",
+      "files": [
+        {
+          "name": "3cd6598749.tar.gz",
+          "bytes": 2765,
+          "sha256": "415386a238c8f5facc64e4a53de5ab7e9c5ee7ff36f697abdc974d77da473060"
+        }
+      ],
+      "selectedTracked": 0,
+      "selectedUntracked": 1,
+      "excludedCounts": {}
+    }
+  ],
+  "restoreVerification": "17 snapshots and independent staging-only counterexample passed using isolated Git indexes.",
+  "excludedBoundary": "Builds, evidence, media, credentials and scanner exclusions are not represented as backed up. Originals remain recoverable in macOS Trash; this operation does not empty Trash."
+}

@@ -1,0 +1,15 @@
+MAC HANDOFF SOURCE BACKUP
+
+Do not merge this backup branch into the product.
+Each snapshot has an exact original base commit and excludes local outputs/credentials.
+
+1. Download a snapshot directory from this branch.
+2. If split, concatenate files in part000, part001, ... order to reconstruct ID.tar.gz.
+3. Verify SHA-256 against index.json. Extract into a separate directory.
+4. Create a separate clean checkout of manifest.baseCommit.
+5. To recover working content only, apply nonempty working.patch and copy untracked/ into that checkout.
+6. To recover original staging too: apply nonempty staged.patch with git apply --index; then apply nonempty unstaged.patch without --index; then copy untracked/. Do not also apply working.patch in this method.
+7. Selected file hashes are in manifest.json. Verify them before resuming development.
+
+The main source branches were not merged or rewritten. This branch stores backup archives only.
+Original raw archives, test outputs, ignored files and some historical Codex refs remain only in the recoverable local Trash until separately handled. This is not a whole-machine backup or secure-erasure claim.

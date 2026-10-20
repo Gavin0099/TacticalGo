@@ -1,0 +1,9 @@
+{
+  "scenario": "Working bytes equal HEAD while staging contains unique edits",
+  "headToWorkingPathListEmpty": true,
+  "stagingUnionRequired": true,
+  "expectedStagedSha256": "d6902fcb62dd7d96c1a8f1e32fb6502dd5de63c9ccfad1b2f12710dcb83484b6",
+  "expectedWorkingSha256": "f34848ca92665c342abd5816c9e3eda0e82180671195362bcd0080544a3bc2ac",
+  "stagedThenUnstagedRestore": "PASS",
+  "separateTemporaryFixture": true
+}
