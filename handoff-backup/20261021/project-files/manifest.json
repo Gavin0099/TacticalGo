@@ -1,0 +1,90 @@
+{
+  "purpose": "Preserve owner project documents and temporary source before recoverable local cleanup; no runtime change",
+  "files": [
+    {
+      "backupPath": "downloads/TacticalGo_1106_Hearthstone_Quality_Slices.md",
+      "category": "owner slice document",
+      "bytes": 12118,
+      "sha256": "60d2800b6341aae8c7e3895c97feaf766663c205a23b65659d3bb9723678b181"
+    },
+    {
+      "backupPath": "downloads/TacticalGo_Codex_All_In_One_2026-10-11 (1).md",
+      "category": "owner slice document",
+      "bytes": 61611,
+      "sha256": "879300fb2589ee4cf3bca876006ee17a91d9157633701c7423d4dcf5509b7d6c"
+    },
+    {
+      "backupPath": "downloads/TacticalGo_Codex_All_In_One_2026-10-11.md",
+      "category": "owner slice document",
+      "bytes": 61611,
+      "sha256": "879300fb2589ee4cf3bca876006ee17a91d9157633701c7423d4dcf5509b7d6c"
+    },
+    {
+      "backupPath": "downloads/TacticalGo_UI-SELL-01_Codex_Slices.md",
+      "category": "owner slice document",
+      "bytes": 18199,
+      "sha256": "f1a85f14eea41c239acb05c2667b8f87c20907ec49ccaf97aa98a5e3b7fc3643"
+    },
+    {
+      "backupPath": "downloads/slice-pack/00_MASTER_CONTRACT.md",
+      "category": "owner slice document",
+      "bytes": 10526,
+      "sha256": "77cd14dc409e11ade5a7244b320d31d7b0c8d35950c1692e58cf0baa2ce70f5f"
+    },
+    {
+      "backupPath": "downloads/slice-pack/01_BOT-P2.md",
+      "category": "owner slice document",
+      "bytes": 7236,
+      "sha256": "eb1e086114a5a9756703030220b83f3eacce473e1ce0db734f88b0671e77499b"
+    },
+    {
+      "backupPath": "downloads/slice-pack/02_CONTENT-03.md",
+      "category": "owner slice document",
+      "bytes": 7115,
+      "sha256": "47f3f459a6140c01540c3a21a3e0ab361d43128282af532a0e7e8d7f122a838c"
+    },
+    {
+      "backupPath": "downloads/slice-pack/03_BOSS-00.md",
+      "category": "owner slice document",
+      "bytes": 6634,
+      "sha256": "99000d32be4003f35dd5fffd00a9e9bf1fa7df848c691348fe3d72bf777a6fd2"
+    },
+    {
+      "backupPath": "downloads/slice-pack/04_ANIM-01.md",
+      "category": "owner slice document",
+      "bytes": 7261,
+      "sha256": "e41fee00d6d939b2b47e1d620e3341ff804cd841acec608feb2ed90cb54a1c6a"
+    },
+    {
+      "backupPath": "downloads/slice-pack/05_3D-00.md",
+      "category": "owner slice document",
+      "bytes": 5818,
+      "sha256": "5767c4e54eec2105f247ac7ce60d6576b527b4f110c8c98860fd99ca4e0e5160"
+    },
+    {
+      "backupPath": "downloads/slice-pack/06_CODEX_HANDOFF.md",
+      "category": "owner slice document",
+      "bytes": 8994,
+      "sha256": "7c2a5885d05e3f5eb7a7e007981bca033cf8dee362c00d25132f74b08479f442"
+    },
+    {
+      "backupPath": "downloads/slice-pack/07_GATE_CHECKLIST.md",
+      "category": "owner slice document",
+      "bytes": 4608,
+      "sha256": "c8151e20991ec3617798bf65fec3218b85414aec50bad4fd4b4e0c0d8d4d5231"
+    },
+    {
+      "backupPath": "downloads/slice-pack/MANIFEST.json",
+      "category": "owner slice document",
+      "bytes": 1647,
+      "sha256": "8894afc9cb840ccf6267f2eb907ad3556da3bda5e1757563a7b9dad2f49cf451"
+    },
+    {
+      "backupPath": "downloads/slice-pack/README.md",
+      "category": "owner slice document",
+      "bytes": 2893,
+      "sha256": "98f5c1d9f44aa1bd93aac754a9b26d9cd6e78bdf73212ffe2475663fe614ee34"
+    }
+  ],
+  "excluded": "Credentials, downloaded third-party assets, generated audio, archives and build/test output are not uploaded"
+}
