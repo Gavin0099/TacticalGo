@@ -40,6 +40,43 @@ import UIKit
         expeditionFlow(orientation: .portrait)
     }
 
+    /// The product UI contract requires the actual original-rule cost on the skill card.
+    /// E6 + D7 is the reviewed rescue fixture's legal Bastion preview; cancelling never commits it.
+    func testExpeditionSkillCardCostAndCancelledPreview() {
+        continueAfterFailure = false
+        let game = XCUIApplication()
+        game.launchArguments = ["--record-isolation", UUID().uuidString]
+        #if DEBUG
+        game.launchArguments.append("--full-game")
+        #endif
+        game.launch()
+        XCTAssertTrue(game.buttons["lobbyChallenges"].waitForExistence(timeout: 15))
+        game.buttons["lobbyChallenges"].tap()
+        XCTAssertTrue(game.buttons["openExpedition"].waitForExistence(timeout: 5))
+        game.buttons["openExpedition"].tap()
+        XCTAssertTrue(game.buttons["challenge-tg12-expedition-1"].waitForExistence(timeout: 5))
+        shot(game, "TG12-product-catalog")
+        game.buttons["challenge-tg12-expedition-1"].tap()
+        ready(game)
+        let resources = game.staticTexts["challengeResources"].label
+        let skill = game.buttons["challengeSkill"]
+        reveal(game, skill)
+        XCTAssertEqual(skill.label, "築壘，1 AP，2 能量")
+        XCTAssertEqual(game.buttons["challengeSoldier"].label, "放士兵，1 AP，0 能量")
+        XCTAssertGreaterThanOrEqual(skill.frame.height, 44)
+        skill.tap()
+        point(game, 4, 5); point(game, 3, 6)
+        let confirm = game.buttons["challengeConfirm"]
+        reveal(game, confirm)
+        XCTAssertTrue(confirm.isEnabled)
+        XCTAssertEqual(game.staticTexts["challengeResources"].label, resources)
+        shot(game, "TG12-product-skill-preview")
+        game.buttons["challengeCancel"].tap()
+        XCTAssertEqual(game.staticTexts["challengeResources"].label, resources)
+        XCTAssertEqual(game.otherElements["challengeArena"].value as? String, "未選取")
+        XCTAssertFalse(confirm.isEnabled)
+    }
+
     func testIPadExpeditionThreeStagesReviewRetryNextAndExport() {
         expeditionFlow(orientation: .landscapeLeft)
     }

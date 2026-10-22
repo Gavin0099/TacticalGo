@@ -202,6 +202,9 @@ import TacticalGoRecords
 struct ChallengesView: View {
     @State private var model: ChallengesStore
     private let assets = try? CozyAssets.load()
+    #if DEBUG || TACTICALGO_V11
+    private let productAssets = try? P02CozyAssets.load()
+    #endif
     @Environment(\.accessibilityReduceMotion) private var reducedMotion
     init(campaign: ChallengeCampaign = .introduction, close: @escaping () -> Void) {
         _model = State(initialValue: ChallengesStore(campaign: campaign)); self.close = close
@@ -217,9 +220,13 @@ struct ChallengesView: View {
                     HStack {
                         Button {
                             if model.controller.scenario == nil { model.pause(); close() } else { model.leave() }
-                        } label: { Text(model.controller.scenario == nil ? "退出挑戰" : "返回選關").frame(minHeight: 44) }.accessibilityIdentifier("challengeBack")
+                        } label: {
+                            Label(model.controller.scenario == nil ? "退出挑戰" : "返回選關", systemImage: "chevron.left")
+                                .padding(.horizontal, 10).frame(minHeight: 44)
+                        }.buttonStyle(GameButtonStyle()).accessibilityIdentifier("challengeBack")
                         Spacer()
-                        Text("\(model.controller.completedIDs.count)／\(model.controller.catalog.count) 已完成").accessibilityIdentifier("challengeProgress")
+                        Text("\(model.controller.completedIDs.count)／\(model.controller.catalog.count) 已完成")
+                            .foregroundStyle(GameChrome.gold).accessibilityIdentifier("challengeProgress")
                     }.font(.system(size: 14)).frame(minHeight: 44)
                     if let scenario = model.controller.scenario, let session = model.controller.session {
                         challenge(scenario, session, geo.size)
@@ -227,10 +234,10 @@ struct ChallengesView: View {
                     if model.controller.campaign == .expedition {
                         ShareLink(item: model.observationReport) {
                             Label("匯出本次試玩觀察", systemImage: "square.and.arrow.up")
-                                .frame(minHeight: 44).contentShape(Rectangle())
-                        }.accessibilityIdentifier("challengeExportObservation")
+                                .padding(.horizontal, 12).frame(minHeight: 44).contentShape(Rectangle())
+                        }.buttonStyle(GameButtonStyle()).accessibilityIdentifier("challengeExportObservation")
                         Text("僅本次開啟的紀錄，最多 500 筆；背景時間不計入。離開章節後清除，不會自動上傳。")
-                            .font(.caption2)
+                            .font(.caption2).foregroundStyle(GameChrome.muted)
                     }
                     if let error = model.saveError {
                         Text(error).font(.caption).foregroundStyle(.orange)
@@ -238,7 +245,7 @@ struct ChallengesView: View {
                     }
                 }.padding(.horizontal, 12).padding(.bottom, 20).frame(maxWidth: geo.size.width > geo.size.height ? 1080 : 720).frame(maxWidth: .infinity)
             }
-        }.background { SellTabletop() }.foregroundStyle(SellTheme.paper).preferredColorScheme(.dark)
+        }.background { GameBackdrop() }.foregroundStyle(GameChrome.cream).tint(GameChrome.gold).preferredColorScheme(.dark)
             .sheet(isPresented: $points) { pointPicker }
             .alert("只重設本章挑戰進度，其他挑戰、正式存局與基礎教學不變。", isPresented: $reset) {
                 Button("重設挑戰進度", role: .destructive) { model.reset() }
@@ -263,19 +270,19 @@ struct ChallengesView: View {
             Text(model.controller.campaign == .expedition ? "戰術遠征 · 試玩版" : model.controller.campaign == .advanced ? "邊境攻防" : "英雄技能入門").font(.title2.bold()).accessibilityIdentifier("challengeCatalog")
             Text(model.controller.campaign == .expedition ? "最後反擊後結算 · 每場獨立 · 原版技能" : model.controller.campaign == .advanced ? "兩個回合 · 原版技能 · 對手會反擊" : "兩次行動練習 · 原版技能 · 無電腦回合").font(.caption).foregroundStyle(Color.gold)
             Text("先讀目標、自己選擇；需要時再打開提示。自由對戰中，技能不一定比普通落子更好。")
-                .font(.subheadline).multilineTextAlignment(.center)
+                .font(.subheadline).foregroundStyle(GameChrome.muted).multilineTextAlignment(.center)
             ForEach(Array(model.controller.catalog.enumerated()), id: \.element.id) { index, scenario in
                 Button { model.choose(scenario.id, reduced: reducedMotion) } label: {
                     HStack(spacing: 12) {
-                        Image(uiImage: GameVisualAssets.original.portrait(scenario.heroClass.art)).resizable().scaledToFit().frame(width: 54, height: 54)
+                        Image(uiImage: portrait(scenario.heroClass)).resizable().scaledToFit().frame(width: 64, height: 64)
                         VStack(alignment: .leading) {
                             Text("\(index + 1). \(scenario.title)").font(.headline)
-                            Text(scenario.heroClass.title + " · 原版 " + scenario.heroClass.skillTitle).font(.caption)
+                            Text(scenario.heroClass.title + " · 原版 " + scenario.heroClass.skillTitle).font(.caption).foregroundStyle(GameChrome.muted)
                         }
                         Spacer()
                         Image(systemName: model.controller.completedIDs.contains(scenario.id) ? "checkmark.circle.fill" : "chevron.right")
-                    }.frame(minHeight: 64).padding(8)
-                }.buttonStyle(SellButton()).accessibilityIdentifier("challenge-" + scenario.id)
+                    }.frame(minHeight: 72).padding(10).background(GamePanel(kind: .hero)).contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityIdentifier("challenge-" + scenario.id)
             }
         }
     }
@@ -290,17 +297,26 @@ struct ChallengesView: View {
         } label: {
             Text(title).font(.subheadline.weight(.semibold))
                 .frame(maxWidth: .infinity, minHeight: 44)
-        }.buttonStyle(SellButton(selected: model.controller.campaign == campaign))
+        }.buttonStyle(GameButtonStyle(selected: model.controller.campaign == campaign))
             .accessibilityIdentifier("challengeChapter-" + id)
             .accessibilityAddTraits(model.controller.campaign == campaign ? [.isSelected] : [])
+    }
+    private func portrait(_ hero: HeroClass) -> UIImage {
+        #if DEBUG || TACTICALGO_V11
+        if let image = UIImage(named: "\(hero.art)-portrait-v30") { return image }
+        #endif
+        return GameVisualAssets.original.portrait(hero.art)
     }
     private func challenge(_ scenario: TutorialScenario, _ session: TutorialSession, _ size: CGSize) -> some View {
         VStack(spacing: 8) {
             Text(scenario.title).font(.title2.bold()).accessibilityIdentifier("challengeTitle")
             Text(scenario.instructions.joined(separator: "\n").replacingOccurrences(of: "由 Core 判定己方獲勝", with: "獲勝"))
                 .font(.system(size: 14)).multilineTextAlignment(.center)
+                .padding(12).frame(maxWidth: .infinity).background(GamePanel())
             Text("\(session.state.current == .one ? "黑方" : "白方") · \(session.state.apRemaining) AP · \(session.state.mana(of: session.state.current)) 能量 · 你已用 \(session.playerActionCount) 次行動")
-                .font(.system(size: 12)).foregroundStyle(Color.gold).accessibilityIdentifier("challengeResources")
+                .font(.system(size: 13, weight: .semibold)).foregroundStyle(GameChrome.gold)
+                .padding(8).frame(maxWidth: .infinity).background(GamePanel(active: model.humanCanAct))
+                .accessibilityIdentifier("challengeResources")
             if size.width > size.height && size.width >= 700 {
                 // Keep the board and controls together on the actual landscape viewport.
                 // This only changes presentation; both variants share the same projection.
@@ -319,9 +335,17 @@ struct ChallengesView: View {
         let presentation = BoardPresentation(state: session.state, selected: model.selected, legal: model.legal, preview: model.preview)
         return Group {
                 if let assets {
+                    #if DEBUG || TACTICALGO_V11
+                    if let productAssets {
+                        CozyBoard(presentation: presentation, assets: assets, playback: model.playback, botPlayback: nil,
+                            botStartedAt: nil, animating: model.playback != nil, reducedMotion: reducedMotion, checkpoint: nil,
+                            mageRevision: .r2, commercialStyle: true, productAssets: productAssets, select: model.select)
+                    } else { Text("棋盤素材驗證失敗，請重新安裝候選。").foregroundStyle(.orange) }
+                    #else
                     CozyBoard(presentation: presentation, assets: assets, playback: model.playback, botPlayback: nil,
                         botStartedAt: nil, animating: model.playback != nil, reducedMotion: reducedMotion, checkpoint: nil,
                         commercialStyle: true, select: model.select)
+                    #endif
                 } else { Text("棋盤素材驗證失敗，請重新安裝候選。").foregroundStyle(.orange) }
             }.frame(width: width, height: height).accessibilityElement(children: .ignore)
                 .accessibilityLabel("挑戰棋盤，可使用大按鍵選點。")
@@ -348,30 +372,37 @@ struct ChallengesView: View {
                 if model.controller.assessment == .completed, let i = model.controller.catalog.firstIndex(where: { $0.id == scenario.id }), i + 1 < model.controller.catalog.count {
                     Button { model.choose(model.controller.catalog[i + 1].id, reduced: reducedMotion) } label: {
                         Text("下一關").frame(minWidth: 88, minHeight: 44).contentShape(Rectangle())
-                    }.accessibilityIdentifier("challengeNext")
+                    }.buttonStyle(GameButtonStyle(kind: .primary)).accessibilityIdentifier("challengeNext")
                 }
             } else {
                 HStack {
-                    Button { model.mode(false) } label: { Text("放士兵").frame(minWidth: 88, minHeight: 44) }.tint(model.skill ? .gray : Color.gold).disabled(!model.humanCanAct).accessibilityIdentifier("challengeSoldier")
-                    Button { model.mode(true) } label: { Text(scenario.heroClass.skillTitle).frame(minWidth: 88, minHeight: 44) }.tint(model.skill ? Color.gold : .gray).disabled(!model.humanCanAct).accessibilityIdentifier("challengeSkill")
-                }.buttonStyle(.bordered).frame(minHeight: 44)
+                    Button { model.mode(false) } label: {
+                        GameAbilityLabel(title: "放士兵", icon: .soldier, mana: 0)
+                    }.buttonStyle(GameButtonStyle(kind: .ability, selected: !model.skill))
+                        .disabled(!model.humanCanAct).accessibilityIdentifier("challengeSoldier")
+                    Button { model.mode(true) } label: {
+                        GameAbilityLabel(title: scenario.heroClass.skillTitle, icon: .hero(scenario.heroClass), mana: session.state.config.skillManaCost)
+                    }.buttonStyle(GameButtonStyle(kind: .ability, selected: model.skill))
+                        .disabled(!model.humanCanAct).accessibilityIdentifier("challengeSkill")
+                }.frame(minHeight: 64)
                 if model.skill && scenario.heroClass == .mage {
                     HStack { ForEach([PushDirection.up, .right, .down, .left], id: \.rawValue) { d in
-                        Button { model.direction = d } label: { Text(d.title).frame(minWidth: 44, minHeight: 44) }.tint(model.direction == d ? Color.gold : .gray)
+                        Button { model.direction = d } label: { Text(d.title).frame(minWidth: 44, minHeight: 44) }
+                            .buttonStyle(GameButtonStyle(selected: model.direction == d))
                             .accessibilityIdentifier("challengeDirection-" + d.rawValue).frame(minWidth: 44, minHeight: 44)
-                    } }.buttonStyle(.bordered)
+                    } }
                 }
                 Text(model.previewText).font(.system(size: 14)).frame(minHeight: 32).multilineTextAlignment(.center).accessibilityIdentifier("challengeFeedback")
                 HStack {
                     Button { model.clear() } label: { Text("取消").frame(minWidth: 44, minHeight: 44) }.accessibilityIdentifier("challengeCancel")
-                    Button { model.confirm(reduced: reducedMotion) } label: { Text("確認").frame(minWidth: 72, minHeight: 44) }.buttonStyle(.borderedProminent).tint(Color.gold).foregroundStyle(Color.ink)
+                    Button { model.confirm(reduced: reducedMotion) } label: { Text("確認").frame(minWidth: 72, minHeight: 44) }.buttonStyle(GameButtonStyle(kind: .primary))
                         .disabled(!model.humanCanAct || model.preview?.success != true).accessibilityIdentifier("challengeConfirm")
                     Button { points = true } label: { Text("大按鍵選點").frame(minHeight: 44) }.accessibilityIdentifier("challengePoints")
                 }.font(.system(size: 14)).frame(minHeight: 44)
             }
             if model.controller.campaign != .introduction && !model.controller.locked {
                 Button { model.endTurn(reduced: reducedMotion) } label: { Text("結束回合，讓白方回應").frame(minHeight: 44) }
-                    .disabled(!model.humanCanAct).frame(minHeight: 44).accessibilityIdentifier("challengeEndTurn")
+                    .buttonStyle(GameButtonStyle(kind: .turn)).disabled(!model.humanCanAct).frame(minHeight: 44).accessibilityIdentifier("challengeEndTurn")
             }
             HStack {
                 Button { model.undo(reduced: reducedMotion) } label: { Text("復原上一步").frame(minHeight: 44) }.disabled(session.actions.isEmpty).accessibilityIdentifier("challengeUndo")
@@ -384,7 +415,7 @@ struct ChallengesView: View {
             }
             Button { model.hint() } label: { Text("顯示一則提示").frame(minHeight: 44) }.disabled(model.busy || model.controller.visibleHints.count == scenario.optionalHints.count)
                 .frame(minHeight: 44).accessibilityIdentifier("challengeHint")
-        }
+        }.buttonStyle(GameButtonStyle()).padding(12).background(GamePanel(kind: .tray))
     }
     private var pointPicker: some View {
         NavigationStack {
@@ -397,11 +428,11 @@ struct ChallengesView: View {
                                     Text("\(String(UnicodeScalar(65 + p.x)!))\(p.y + 1)")
                                     Text(state.board[p].map { "\($0.owner == .one ? "黑" : "白")\($0.kind == .hero ? "英雄" : $0.kind == .commander ? "主將" : "兵")" } ?? "空點").font(.system(size: 10))
                                 }.frame(maxWidth: .infinity, minHeight: 48)
-                            }.buttonStyle(.bordered).accessibilityIdentifier("challengePoint-\(p.x)-\(p.y)")
+                            }.buttonStyle(GameButtonStyle(selected: model.selected.contains(p))).accessibilityIdentifier("challengePoint-\(p.x)-\(p.y)")
                         }
                     }.padding(12)
                 }
-            }.navigationTitle("交叉點大按鍵").toolbar { ToolbarItem(placement: .confirmationAction) { Button("取消") { points = false } } }
+            }.gameSheetSurface().navigationTitle("交叉點大按鍵").toolbar { ToolbarItem(placement: .confirmationAction) { Button("取消") { points = false } } }
         }
     }
 }

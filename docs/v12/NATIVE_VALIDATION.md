@@ -4,6 +4,10 @@
 原因：新測試量到回顧控制只有 28.3 pt；另修正測試的捲動定位與系統分享選單查找。
 下一步：進行真機與 3–5 人試玩；本次僅完成模擬器操作及相關修正，不宣稱整個 1.2 驗收完成。
 
+2026-10-23 follow-up: [physical delivery and UI validation](PHYSICAL_VALIDATION.md)
+records the development-signed iPhone install, the expedition presentation repair,
+six targeted simulator rechecks and the remaining human acceptance steps.
+
 ## Scope and changes
 
 Start: `478c4e1da050abb0aa2a42adddbc3220d78c1b46`, branch
