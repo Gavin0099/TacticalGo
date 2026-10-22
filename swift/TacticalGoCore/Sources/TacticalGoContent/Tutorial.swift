@@ -28,6 +28,8 @@ public struct TutorialScenario: Sendable {
     /// The full replay, including explicit turn ends, from the official new game.
     public let sourceActions: [GameAction]
     public let branches: [TutorialBranch]
+    /// Content-only objective horizon; zero preserves the original challenge contract.
+    public var expeditionTurns: Int = 0
     public var config: RuleConfig { .board(size: 7) }
     /// One inspected example, not the complete set of accepted tactics.
     public var canonicalSolution: [GameAction] { branches.first { $0.name == "solution" }?.actions ?? [] }
@@ -123,7 +125,7 @@ public struct TutorialSession: Sendable {
             actions.append(action); events += result.events; state = result.state
             if [.advancedRescue, .advancedCounterattack, .advancedTiming].contains(scenario.goal) {
                 if actor == .one && state.current == .two && state.status == .ongoing, case .incomplete = assessment {
-                    plannedOpponentActions = AdvancedOpponent.planTurn(state, goal: scenario.goal).actions
+                    plannedOpponentActions = AdvancedOpponent.planTurn(state, goal: scenario.goal, expedition: scenario.expeditionTurns > 0).actions
                 } else if actor == .two && plannedOpponentActions.first == action {
                     plannedOpponentActions.removeFirst()
                 }
@@ -170,6 +172,9 @@ public struct TutorialSession: Sendable {
     }
 
     private func advancedAssessment(hero: Point, heroLiberties: Int) -> TutorialAssessment {
+        if scenario.expeditionTurns > 0 {
+            return expeditionAssessment(heroLiberties: heroLiberties)
+        }
         guard let commander = state.board.find(.one, .commander) else { return .failed("己方主將已被提走。敵方利用剩餘生存空格完成包圍。") }
         let commanderLiberties = state.board.liberties(at: commander).count
         let counterPlayed = opponentActionCount > 0
@@ -191,4 +196,41 @@ public struct TutorialSession: Sendable {
         guard capturedEnemySoldiers.count >= required else { return .failed("已提走 \(capturedEnemySoldiers.count) 名敵兵；敵方補回連線後，需要改變計畫取得兩名敵兵的戰果。") }
         return .completed
     }
+    private func expeditionAssessment(heroLiberties: Int) -> TutorialAssessment {
+        guard let commander = state.board.find(.one, .commander) else { return .failed("主將被提走。") }
+        // The last enemy reply must finish before objective success is possible.
+        let repliesFinished = state.ply >= initialPlayerPly + 2 * scenario.expeditionTurns
+        if state.status != .ongoing && !repliesFinished {
+            return .failed("對局已提前結束，未完成指定攻防目標。")
+        }
+        guard repliesFinished else {
+            let round = min(scenario.expeditionTurns, (state.ply - initialPlayerPly) / 2 + 1)
+            return .incomplete("第 \(round)／\(scenario.expeditionTurns) 輪：\(state.current == .two ? "等待敵方反擊完成" : "保留退路，再決定進攻")。")
+        }
+        guard opponentActionCount >= scenario.expeditionTurns, playerActionCount >= scenario.expeditionTurns else {
+            return .failed("未完成實際攻防；跳過回合不算完成遠征。")
+        }
+        let commanderLiberties = state.board.liberties(at: commander).count
+        // Rescue offers explicit route tradeoffs: hold D7 with three liberties in each group,
+        // or open a wider route with five. The outpost is an objective, not a new Core rule.
+        if scenario.goal == .advancedRescue {
+            let holdsOutpost = state.board[Point(3,6)]?.owner == .one
+            let minimum = min(commanderLiberties, heroLiberties)
+            if minimum >= 5 || (holdsOutpost && minimum >= 3) { return .completed }
+            return .failed("最後反擊後未建立通路：需雙棋群各五氣，或守住 D7 且各三氣。")
+        }
+        let required = 3
+        guard commanderLiberties >= required else {
+            return .failed("最後反擊後，主將剩 \(commanderLiberties) 氣，目標至少 \(required) 氣。")
+        }
+        let heroRequired = scenario.goal == .advancedTiming ? 2 : required
+        guard heroLiberties >= heroRequired else {
+            return .failed("最後反擊後，英雄剩 \(heroLiberties) 氣，目標至少 \(heroRequired) 氣。")
+        }
+        if scenario.goal != .advancedRescue && capturedEnemySoldiers.count < 2 {
+            return .failed("最後反擊後已提 \(capturedEnemySoldiers.count) 名敵兵，目標至少 2 名。")
+        }
+        return .completed
+    }
+
 }
