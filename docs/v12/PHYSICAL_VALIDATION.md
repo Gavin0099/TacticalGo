@@ -89,3 +89,23 @@ physical background/retry/export checks and 3–5 independent testers remain ope
 C# replay/parity, real 1.0 save samples, physical iPad, listening/art and purchase/
 ad-network acceptance were not executed here. No main merge, TestFlight upload,
 release, fun/balance or overall 1.2 acceptance is claimed.
+
+## CI metadata follow-up
+
+The governance job on `65f52d7` stopped at a stale generated plan-heading index.
+The existing plan-date warning is nonblocking under the pinned checker's current
+policy. Refreshing only generated baseline metadata makes the drift command
+return 0; the old plan, instruction files, policy fields, protected-file hash and
+framework pin remain unchanged.
+
+Generation ran in an isolated clone. The full Python CLI could not import its
+unavailable PyYAML dependency; no package was installed. The legacy shell writer
+truncated the inventory to 20 headings, so that output was rejected. The final
+metadata came from the pinned Python writer's unchanged helper definitions,
+loaded without unrelated reporting imports. Independent drift and policy-diff
+checks validated that output before it was copied back.
+
+Local CI-equivalent checks passed: 24 golden fixtures (structure only, no replay),
+24 validator unit tests, 2 hook configurations and 23 evidence-helper tests.
+See [CI repair evidence](../../artifacts/tg12/native-validation/ci-refresh-20261023.json).
+This is a generated-metadata repair, not a framework update or adoption claim.
