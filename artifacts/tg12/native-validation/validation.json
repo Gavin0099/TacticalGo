@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Asia/Taipei",
+  "base_commit": "e35d467687cb0c5fcfb6758b109e3096a8b61e5d",
+  "branch": "codex/tg12-tactical-expedition",
+  "pr": 34,
+  "toolchain": {
+    "xcode": "27.1 (27A9275)",
+    "swift": "6.4 (swiftlang-6.4.0.34.1)",
+    "platform": "arm64 macOS"
+  },
+  "change": {
+    "path": "ios/TacticalGoUITests/AdvancedChallengeUITests.swift",
+    "sha256": "3da0da75c9492e264b37fe93b1dbdc9c07247a7740d670e4cb4f2bbdb6ec2ff1",
+    "description": "Select existing --full-game root in Debug for the expedition product-entry test; Beta stays on its default product root.",
+    "runtime_files_changed": false
+  },
+  "checks": {
+    "swift_package": {
+      "command": "swift test --package-path swift/TacticalGoCore --jobs 2",
+      "exit_code": 0,
+      "executed": 464,
+      "ordinary_passes": 463,
+      "known_expected_failure_tests": 1,
+      "skipped": 0,
+      "unexpected_failures": 0,
+      "suite_totals": [
+        11,
+        52,
+        13,
+        121,
+        104,
+        76,
+        53,
+        34
+      ],
+      "known_defect": "PriestSanctumBotTests: standard bot uses Sanctum unnecessarily in wideExitNine; unchanged XCTest expected failure on Darwin."
+    },
+    "debug_original_build_for_testing": {
+      "exit_code": 0,
+      "architectures": [
+        "arm64",
+        "x86_64"
+      ],
+      "test_execution": false
+    },
+    "debug_fixed_build_for_testing": {
+      "exit_code": 0,
+      "architectures": [
+        "arm64",
+        "x86_64"
+      ],
+      "test_execution": false
+    },
+    "beta_fixed_build_for_testing": {
+      "exit_code": 0,
+      "architectures": [
+        "arm64"
+      ],
+      "test_execution": false
+    },
+    "diff_check": "passed"
+  },
+  "not_run": [
+    "Simulator UI execution (no installed runtime)",
+    "iPhone/iPad device acceptance (no devices detected)",
+    "C# replay/parity (dotnet unavailable)",
+    "Human playtests",
+    "Focused UI mutation (cannot execute UI test without runtime)"
+  ],
+  "warnings": [
+    "Existing forced-downcast warning in PlayableGameView.swift:402",
+    "Duplicate PrivacyInfo.xcprivacy in resource build phase",
+    "AppIntents metadata extraction skipped: no AppIntents dependency"
+  ],
+  "logs": {
+    "debug-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-build.log",
+      "sha256": "89efc19fb233ebf9c281541ae99e1c0edeba15203b6b097a3e01c57d9f8faf53"
+    },
+    "debug-fixed-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-fixed-build.log",
+      "sha256": "c6dd0503c7669321fdf152e05f26b313028c14796bd458ea06b0a11a08d88e59"
+    },
+    "beta-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-build.log",
+      "sha256": "28bcb7f8647b82d9a2d84dcfb40af016dcac1fe0ac52049855617299e147dddb"
+    },
+    "swift-tests.log": {
+      "local_path": "ios/Build/tg12-native-20261022/swift-tests.log",
+      "sha256": "c6c9162f4896e06c49d05193178b060c575b99fe5b66a174778a4c20b5deb9b4"
+    }
+  },
+  "claim_boundary": "Compilation and macOS package evidence only. No native interaction, corrected UI test execution, device quality, gameplay acceptance, merge or release claim."
+}

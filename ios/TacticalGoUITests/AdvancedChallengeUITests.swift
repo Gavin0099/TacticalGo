@@ -6,6 +6,10 @@ import XCTest
         continueAfterFailure = false
         let game = XCUIApplication()
         game.launchArguments = ["--record-isolation", UUID().uuidString]
+        #if DEBUG
+        // Debug defaults to the legacy home; select the same product root as Beta.
+        game.launchArguments.append("--full-game")
+        #endif
         game.launch()
         XCTAssertTrue(game.buttons["lobbyChallenges"].waitForExistence(timeout: 10))
         game.buttons["lobbyChallenges"].tap()
