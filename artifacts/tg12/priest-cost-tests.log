@@ -1,0 +1,16 @@
+Test Suite 'Selected tests' started at 2026-10-22 19:17:34.151
+Test Suite 'PriestCostExperimentTests' started at 2026-10-22 19:17:34.152
+Test Case 'PriestCostExperimentTests.testCostThreeChangesAffordabilityNotGeometryAndNeverShippingDefault' started at 2026-10-22 19:17:34.152
+PRIEST-COST seven: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+PRIEST-COST nine: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+PRIEST-COST centerNine: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+PRIEST-COST wideExitNine: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+PRIEST-COST twoEyesSeven: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+PRIEST-COST tooLateSeven: mana3 cost3=legal cost4=notEnoughMana; funded geometry equal; not balance evidence
+Test Case 'PriestCostExperimentTests.testCostThreeChangesAffordabilityNotGeometryAndNeverShippingDefault' passed (0.012 seconds)
+Test Case 'PriestCostExperimentTests.testLowerCostDoesNotMakeTheBadGeometrySafe' started at 2026-10-22 19:17:34.165
+Test Case 'PriestCostExperimentTests.testLowerCostDoesNotMakeTheBadGeometrySafe' passed (24.497 seconds)
+Test Suite 'PriestCostExperimentTests' passed at 2026-10-22 19:17:58.662
+	 Executed 2 tests, with 0 failures (0 unexpected) in 24.509 (24.509) seconds
+Test Suite 'Selected tests' passed at 2026-10-22 19:17:58.662
+	 Executed 2 tests, with 0 failures (0 unexpected) in 24.509 (24.509) seconds

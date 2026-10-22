@@ -1,0 +1,10 @@
+Test Suite 'Selected tests' started at 2026-10-22 19:28:34.061
+Test Suite 'ExpeditionTests' started at 2026-10-22 19:28:34.063
+Test Case 'ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual' started at 2026-10-22 19:28:34.063
+/workspace/scratch/3bffb92fe308/TacticalGo/swift/TacticalGoCore/Tests/TacticalGoContentTests/ExpeditionTests.swift:61: error: ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual : XCTAssertFalse failed - Success before last counterplay is a regression
+/workspace/scratch/3bffb92fe308/TacticalGo/swift/TacticalGoCore/Tests/TacticalGoContentTests/ExpeditionTests.swift:62: error: ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual : XCTUnwrap failed: expected non-nil value of type "GameAction" -
+Test Case 'ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual' failed (0.516 seconds)
+Test Suite 'ExpeditionTests' failed at 2026-10-22 19:28:34.579
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.516 (0.516) seconds
+Test Suite 'Selected tests' failed at 2026-10-22 19:28:34.579
+	 Executed 1 test, with 2 failures (0 unexpected) in 0.516 (0.516) seconds

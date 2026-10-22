@@ -1,0 +1,54 @@
+Test Suite 'Selected tests' started at 2026-10-22 19:18:00.318
+Test Suite 'AdvancedChallengeTests' started at 2026-10-22 19:18:00.321
+Test Case 'AdvancedChallengeTests.testFillingBothCommanderExitsLooksLikeRescueButTwoActionReplyClosesTheFrontier' started at 2026-10-22 19:18:00.321
+Test Case 'AdvancedChallengeTests.testFillingBothCommanderExitsLooksLikeRescueButTwoActionReplyClosesTheFrontier' passed (1.526 seconds)
+Test Case 'AdvancedChallengeTests.testLateSwapCostsAnActionWhichOrdinaryCaptureNeeds' started at 2026-10-22 19:18:01.847
+Test Case 'AdvancedChallengeTests.testLateSwapCostsAnActionWhichOrdinaryCaptureNeeds' passed (0.775 seconds)
+Test Case 'AdvancedChallengeTests.testMageCounterResponseHasTwoDifferentLegalFollowupPlans' started at 2026-10-22 19:18:02.623
+Test Case 'AdvancedChallengeTests.testMageCounterResponseHasTwoDifferentLegalFollowupPlans' passed (1.364 seconds)
+Test Case 'AdvancedChallengeTests.testNewProgressFileNeverMutatesIntroductoryProgressAndMatchDirectory' started at 2026-10-22 19:18:03.987
+Test Case 'AdvancedChallengeTests.testNewProgressFileNeverMutatesIntroductoryProgressAndMatchDirectory' passed (0.15 seconds)
+Test Case 'AdvancedChallengeTests.testOpponentDependsOnActualStateAndBudgetIsExplicit' started at 2026-10-22 19:18:04.137
+Test Case 'AdvancedChallengeTests.testOpponentDependsOnActualStateAndBudgetIsExplicit' passed (2.431 seconds)
+Test Case 'AdvancedChallengeTests.testPlausibleErrorsReceiveActualCounterplayAndPreciseFailure' started at 2026-10-22 19:18:06.567
+Test Case 'AdvancedChallengeTests.testPlausibleErrorsReceiveActualCounterplayAndPreciseFailure' passed (1.793 seconds)
+Test Case 'AdvancedChallengeTests.testPreviewIllegalAndCancelDoNotAlterAcceptedJournalOrResources' started at 2026-10-22 19:18:08.361
+Test Case 'AdvancedChallengeTests.testPreviewIllegalAndCancelDoNotAlterAcceptedJournalOrResources' passed (0.023 seconds)
+Test Case 'AdvancedChallengeTests.testRescueRequiresExtensionAfterActualTwoActionCounterattack' started at 2026-10-22 19:18:08.384
+Test Case 'AdvancedChallengeTests.testRescueRequiresExtensionAfterActualTwoActionCounterattack' passed (0.628 seconds)
+Test Case 'AdvancedChallengeTests.testResumeAfterOneEnemyReceiptAndPrematurePassNeverMakesFalseSuccess' started at 2026-10-22 19:18:09.012
+Test Case 'AdvancedChallengeTests.testResumeAfterOneEnemyReceiptAndPrematurePassNeverMakesFalseSuccess' passed (2.803 seconds)
+Test Case 'AdvancedChallengeTests.testRogueOrdinaryPlanTradesAnExtraTurnForManaWhileSwapSavesActions' started at 2026-10-22 19:18:11.815
+Test Case 'AdvancedChallengeTests.testRogueOrdinaryPlanTradesAnExtraTurnForManaWhileSwapSavesActions' passed (1.933 seconds)
+Test Case 'AdvancedChallengeTests.testThreeOfficialSourcesPreserveEveryStateAndFullKoReplay' started at 2026-10-22 19:18:13.748
+Test Case 'AdvancedChallengeTests.testThreeOfficialSourcesPreserveEveryStateAndFullKoReplay' passed (0.053 seconds)
+Test Case 'AdvancedChallengeTests.testUndoReplaysLastHumanDecisionWithOpponentReceiptsAndRejectsTampering' started at 2026-10-22 19:18:13.801
+Test Case 'AdvancedChallengeTests.testUndoReplaysLastHumanDecisionWithOpponentReceiptsAndRejectsTampering' passed (28.24 seconds)
+Test Case 'AdvancedChallengeTests.testWarriorOrdinaryConnectionAlsoSurvivesButLeavesDifferentFrontier' started at 2026-10-22 19:18:42.042
+Test Case 'AdvancedChallengeTests.testWarriorOrdinaryConnectionAlsoSurvivesButLeavesDifferentFrontier' passed (2.022 seconds)
+Test Suite 'AdvancedChallengeTests' passed at 2026-10-22 19:18:44.064
+	 Executed 13 tests, with 0 failures (0 unexpected) in 43.741 (43.741) seconds
+Test Suite 'ChallengeControllerTests' started at 2026-10-22 19:18:44.064
+Test Case 'ChallengeControllerTests.testAllSixSolutionsLockImmediatelyAndCannotSubmitAfterHandover' started at 2026-10-22 19:18:44.064
+Test Case 'ChallengeControllerTests.testAllSixSolutionsLockImmediatelyAndCannotSubmitAfterHandover' passed (0.104 seconds)
+Test Case 'ChallengeControllerTests.testCorruptUnknownForgedAndPostCompletionJournalsPreserveOriginalFile' started at 2026-10-22 19:18:44.168
+Test Case 'ChallengeControllerTests.testCorruptUnknownForgedAndPostCompletionJournalsPreserveOriginalFile' passed (0.085 seconds)
+Test Case 'ChallengeControllerTests.testEveryAlternateAndFailedBranchStopsAtTheAssessmentBoundary' started at 2026-10-22 19:18:44.253
+Test Case 'ChallengeControllerTests.testEveryAlternateAndFailedBranchStopsAtTheAssessmentBoundary' passed (0.365 seconds)
+Test Case 'ChallengeControllerTests.testIllegalSelectionAndCandidateActionDoNotChangeJournalOrSpend' started at 2026-10-22 19:18:44.618
+Test Case 'ChallengeControllerTests.testIllegalSelectionAndCandidateActionDoNotChangeJournalOrSpend' passed (0.011 seconds)
+Test Case 'ChallengeControllerTests.testIndependentPersistenceResumeHintsAndCompletionReceipts' started at 2026-10-22 19:18:44.629
+Test Case 'ChallengeControllerTests.testIndependentPersistenceResumeHintsAndCompletionReceipts' passed (0.12 seconds)
+Test Case 'ChallengeControllerTests.testUndoRebuildsFullCoreHistoryResourcesAndSkillProgress' started at 2026-10-22 19:18:44.748
+Test Case 'ChallengeControllerTests.testUndoRebuildsFullCoreHistoryResourcesAndSkillProgress' passed (0.129 seconds)
+Test Suite 'ChallengeControllerTests' passed at 2026-10-22 19:18:44.878
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.814 (0.814) seconds
+Test Suite 'PlaytestObservationTests' started at 2026-10-22 19:18:44.878
+Test Case 'PlaytestObservationTests.testBackgroundAndPostResultTimeExcludedAndUndoRestartsClock' started at 2026-10-22 19:18:44.878
+Test Case 'PlaytestObservationTests.testBackgroundAndPostResultTimeExcludedAndUndoRestartsClock' passed (0.001 seconds)
+Test Case 'PlaytestObservationTests.testInvalidTimesNoAttemptAndBoundedEvents' started at 2026-10-22 19:18:44.879
+Test Case 'PlaytestObservationTests.testInvalidTimesNoAttemptAndBoundedEvents' passed (0.0 seconds)
+Test Suite 'PlaytestObservationTests' passed at 2026-10-22 19:18:44.879
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'Selected tests' passed at 2026-10-22 19:18:44.879
+	 Executed 21 tests, with 0 failures (0 unexpected) in 44.556 (44.556) seconds

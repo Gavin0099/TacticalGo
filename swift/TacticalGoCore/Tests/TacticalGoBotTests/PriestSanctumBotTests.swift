@@ -28,6 +28,9 @@ final class PriestSanctumBotTests: XCTestCase {
     }
 
     func testBotRescuesTheCommanderAndUsesSanctumOnlyWhereItIsNeeded() throws {
+        #if os(Linux)
+        var linuxExpectedFailure = false
+        #endif
         for practice in PriestSanctumPractice.allCases { for difficulty in BotDifficulty.allCases {
             let start = try practice.state()
             let plan = try XCTUnwrap(BotPlanner.planTurn(start, difficulty: difficulty), "\(practice) \(difficulty)")
@@ -45,9 +48,16 @@ final class PriestSanctumBotTests: XCTestCase {
                     // Known: evaluate() scores each commander liberty 75 and each mana 7, so +1 liberty (3 → 4)
                     // outweighs keeping 4 mana even when 3 liberties already survive a 2-AP turn. Tuning that weight
                     // changes every class's play; left as a decision. Remove this wrapper once the bot keeps its mana.
+                    #if os(Linux)
+                    // swift-corelibs-xctest has no XCTExpectFailure. Keep every rescue assertion,
+                    // then report this known balance limitation as a skipped test, never a pass.
+                    XCTAssertTrue(usedSanctum, "Known defect changed: remove the expected-failure exception after review")
+                    linuxExpectedFailure = true
+                    #else
                     XCTExpectFailure("standard bot spends Sanctum for a 4th liberty instead of keeping 4 mana") {
                         XCTAssertFalse(usedSanctum, "\(practice) \(difficulty): spent Sanctum where a cheaper move saves")
                     }
+                    #endif
                 } else {
                     XCTAssertFalse(usedSanctum, "\(practice) \(difficulty): spent Sanctum where a cheaper move saves")
                 }
@@ -55,5 +65,8 @@ final class PriestSanctumBotTests: XCTestCase {
                 XCTAssertTrue(after.status == .ongoing || after.winner != nil)
             }
         } }
+        #if os(Linux)
+        if linuxExpectedFailure { throw XCTSkip("Known standard-bot unnecessary Sanctum use; all other fixture assertions executed") }
+        #endif
     }
 }

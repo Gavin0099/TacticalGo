@@ -66,6 +66,24 @@ import XCTest
             app.terminate()
         }
     }
+    func testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings() {
+        let app = integrated()
+        XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout: 15))
+        tap(app,"choose-rogue");tap(app,"startMatch");ready(app)
+        let menu = app.buttons["matchMenu"]
+        XCTAssertTrue(menu.isHittable)
+        XCTAssertGreaterThanOrEqual(menu.frame.width,44)
+        XCTAssertGreaterThanOrEqual(menu.frame.height,44)
+        menu.tap()
+        XCTAssertTrue(app.buttons["audioSettings"].waitForExistence(timeout:5))
+        app.buttons["audioSettings"].tap()
+        XCTAssertTrue(app.buttons["audioSettingsDone"].waitForExistence(timeout:5))
+        app.buttons["audioSettingsDone"].tap()
+        XCTAssertTrue(app.buttons["mode-advanced"].waitForExistence(timeout:5))
+        XCTAssertTrue(app.buttons["mode-advanced"].isHittable)
+        XCTAssertTrue(app.buttons["mode-advanced"].label.contains("連鎖換位"))
+    }
+
     func testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible() {
         let app = integrated();XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout:15))
         XCTAssertTrue(app.buttons["choose-rogue"].label.contains("換位"))

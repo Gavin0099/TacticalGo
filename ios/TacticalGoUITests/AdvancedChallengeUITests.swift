@@ -1,6 +1,33 @@
 import XCTest
 
 @MainActor final class AdvancedChallengeUITests: XCTestCase {
+    /// TG12 product route, one tap per control; no retry helper can hide a missed tap.
+    func testExpeditionProductEntryAndSeparateChapterProgress() {
+        continueAfterFailure = false
+        let game = XCUIApplication()
+        game.launchArguments = ["--record-isolation", UUID().uuidString]
+        game.launch()
+        XCTAssertTrue(game.buttons["lobbyChallenges"].waitForExistence(timeout: 10))
+        game.buttons["lobbyChallenges"].tap()
+        XCTAssertTrue(game.buttons["openExpedition"].waitForExistence(timeout: 5))
+        game.buttons["openExpedition"].tap()
+        XCTAssertTrue(game.staticTexts["challengeCatalog"].waitForExistence(timeout: 5))
+        XCTAssertEqual(game.staticTexts["challengeCatalog"].label, "戰術遠征 · 試玩版")
+        game.buttons["challenge-tg12-expedition-1"].tap()
+        XCTAssertTrue(game.staticTexts["challengeTitle"].waitForExistence(timeout: 5))
+        XCTAssertEqual(game.staticTexts["challengeTitle"].label, "守住補給線")
+        action(game, skill: false, points: [(4,5)])
+        let resources = game.staticTexts["challengeResources"].label
+        reveal(game, game.buttons["challengeBack"]); game.buttons["challengeBack"].tap()
+        game.buttons["challengeChapter-advanced"].tap()
+        XCTAssertEqual(game.staticTexts["challengeProgress"].label, "0／3 已完成")
+        game.buttons["challengeChapter-expedition"].tap()
+        game.buttons["challenge-tg12-expedition-1"].tap()
+        XCTAssertEqual(game.staticTexts["challengeResources"].label, resources)
+        reveal(game, game.buttons["challengeExportObservation"])
+        XCTAssertTrue(game.buttons["challengeExportObservation"].exists)
+    }
+
     /// Enter from the shipping home, not the debug chapter shortcut. The first
     /// chapter selected and later chapter changes must reach the intended catalog.
     func testHomeDirectChallengeEntryAndChapterSwitching() {

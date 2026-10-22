@@ -1,0 +1,10 @@
+Building for debugging...
+[0/14] Write swift-version--CCB399A3313C050.txt
+[1/14] Write sources
+[3/7] Emitting module TacticalGoContent
+[4/8] Compiling TacticalGoContent Tutorial.swift
+[5/10] Write Objects.LinkFileList
+[8/11] Linking tacticalgo-content
+[9/11] Linking tacticalgo-bot
+[10/11] Linking TacticalGoCorePackageTests.xctest
+Build complete! (3.37s)

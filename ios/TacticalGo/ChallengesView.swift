@@ -15,6 +15,14 @@ import TacticalGoRecords
     var direction: PushDirection = .down
     var feedback = ""
     var saveError: String?
+    private(set) var observation = PlaytestObservation()
+    private var now: Double { ProcessInfo.processInfo.systemUptime }
+    var observationReport: String { (try? observation.report()) ?? "[]" }
+    private func observeOutcome() {
+        if controller.locked, let assessment = controller.assessment {
+            observation.finish(assessment.label, at: now)
+        }
+    }
     let repository: ChallengeRepository
     private var work: Task<Void, Never>?
     private var generation = 0
@@ -30,6 +38,11 @@ import TacticalGoRecords
         repository = ChallengeRepository(directory: directory, campaign: campaign)
         do { controller = try repository.load() }
         catch { controller = try! ChallengeController(campaign: campaign); saveError = "挑戰進度無法驗證，原檔已保留。重設本章進度後才能儲存。" }
+        if let id = controller.scenario?.id {
+            observation.begin(id, at: now)
+            observation.record("restored-run", at: now)
+            observeOutcome()
+        }
     }
     var humanCanAct: Bool { active && !busy && !controller.locked && controller.session?.state.current == .one }
     var action: GameAction? {
@@ -95,7 +108,7 @@ import TacticalGoRecords
     private func stop() { generation += 1; work?.cancel(); work = nil; busy = false; playback = nil; clear() }
     func choose(_ id: String, reduced: Bool) {
         stop()
-        do { try controller.choose(id); skill = false; persist(); resume(reduced: reduced) }
+        do { try controller.choose(id); observation.begin(id, at: now); skill = false; persist(); resume(reduced: reduced) }
         catch { feedback = "無法載入挑戰。" }
     }
     func confirm(reduced: Bool) { guard let action, preview?.success == true else { return }; submit(action, reduced: reduced) }
@@ -113,7 +126,7 @@ import TacticalGoRecords
             guard !Task.isCancelled, active, generation == token else { return }
             guard let (next, outcome) = result else { busy = false; feedback = "進度無法驗證；可復原或重試。"; return }
             guard outcome.success else { busy = false; feedback = GameStore.reason(outcome.reason); return }
-            controller = next; persist()
+            controller = next; observation.record("action", at: now, detail: RecordedAction(action).label); observeOutcome(); persist()
             playback = reduced || action == .endTurn ? nil : BoardPlayback(before: before, action: action, outcome: outcome)
             if let playback {
                 traceSuccessfulPlayback(playback, reduced: reduced)
@@ -127,6 +140,7 @@ import TacticalGoRecords
     }
     func resume(reduced: Bool = false) {
         active = true
+        observation.resume(at: now)
         guard !busy, controller.opponentAction != nil else { return }
         let token = generation
         busy = true
@@ -137,7 +151,7 @@ import TacticalGoRecords
                 do {
                     let outcome = try controller.commit(action)
                     guard outcome.success else { feedback = "對手行動驗證失敗；可復原或重試。"; break }
-                    persist()
+                    observeOutcome(); persist()
                     playback = reduced || action == .endTurn ? nil : BoardPlayback(before: before, action: action, outcome: outcome)
                     if let playback {
                         traceSuccessfulPlayback(playback, reduced: reduced)
@@ -152,15 +166,15 @@ import TacticalGoRecords
             if !controller.locked { feedback = "輪到黑方。根據剛才的反擊，重新決定計畫。" }
         }
     }
-    func undo(reduced: Bool) { stop(); do { if try controller.undo() { persist(); resume(reduced: reduced) } } catch { feedback = "無法復原，進度已保留。" } }
-    func retry() { stop(); do { try controller.retry(); skill = false; persist() } catch { feedback = "無法重試。" } }
-    func leave() { stop(); controller.leave(); persist() }
-    func pause() { active = false; stop(); persist() }
+    func undo(reduced: Bool) { stop(); do { if try controller.undo() { observation.undo(at: now); persist(); resume(reduced: reduced) } } catch { feedback = "無法復原，進度已保留。" } }
+    func retry() { stop(); do { try controller.retry(); if let id = controller.scenario?.id { observation.begin(id, at: now, retry: true) }; skill = false; persist() } catch { feedback = "無法重試。" } }
+    func leave() { observation.leave(at: now, reason: "back-to-catalog"); stop(); controller.leave(); persist() }
+    func pause() { observation.pause(at: now); active = false; stop(); persist() }
     func hint() {
         // A human commit publishes an immutable controller copy. Do not mutate
         // hint progress while that copy or an opponent reply is in flight.
         guard !busy else { return }
-        _ = controller.revealHint(); persist()
+        if controller.revealHint() { observation.record("hint", at: now) }; persist()
     }
     func displayHint(_ text: String) -> String {
         guard let state = controller.session?.state else { return text }
@@ -210,6 +224,12 @@ struct ChallengesView: View {
                     if let scenario = model.controller.scenario, let session = model.controller.session {
                         challenge(scenario, session, geo.size)
                     } else { catalog }
+                    if model.controller.campaign == .expedition {
+                        ShareLink("匯出本次試玩觀察", item: model.observationReport)
+                            .accessibilityIdentifier("challengeExportObservation")
+                        Text("僅本次開啟的紀錄，最多 500 筆；背景時間不計入。離開章節後清除，不會自動上傳。")
+                            .font(.caption2)
+                    }
                     if let error = model.saveError {
                         Text(error).font(.caption).foregroundStyle(.orange)
                         Button("重設挑戰進度") { reset = true }
@@ -235,8 +255,11 @@ struct ChallengesView: View {
                 chapterButton(.introduction, title: "技能入門 · 六關", id: "introduction")
                 chapterButton(.advanced, title: "邊境攻防 · 三關", id: "advanced")
             }
-            Text(model.controller.campaign == .advanced ? "邊境攻防" : "英雄技能入門").font(.title2.bold()).accessibilityIdentifier("challengeCatalog")
-            Text(model.controller.campaign == .advanced ? "兩個回合 · 原版技能 · 對手會反擊" : "兩次行動練習 · 原版技能 · 無電腦回合").font(.caption).foregroundStyle(Color.gold)
+            HStack {
+                chapterButton(.expedition, title: "戰術遠征 · 短篇攻防", id: "expedition")
+            }
+            Text(model.controller.campaign == .expedition ? "戰術遠征 · 試玩版" : model.controller.campaign == .advanced ? "邊境攻防" : "英雄技能入門").font(.title2.bold()).accessibilityIdentifier("challengeCatalog")
+            Text(model.controller.campaign == .expedition ? "最後反擊後結算 · 每場獨立 · 原版技能" : model.controller.campaign == .advanced ? "兩個回合 · 原版技能 · 對手會反擊" : "兩次行動練習 · 原版技能 · 無電腦回合").font(.caption).foregroundStyle(Color.gold)
             Text("先讀目標、自己選擇；需要時再打開提示。自由對戰中，技能不一定比普通落子更好。")
                 .font(.subheadline).multilineTextAlignment(.center)
             ForEach(Array(model.controller.catalog.enumerated()), id: \.element.id) { index, scenario in
@@ -308,6 +331,14 @@ struct ChallengesView: View {
     private func challengeControls(_ scenario: TutorialScenario, _ session: TutorialSession) -> some View {
         VStack(spacing: 8) {
             if model.controller.locked {
+                if let review = try? ChallengeReview(session: session) {
+                    Text(review.summary).font(.caption).accessibilityIdentifier("challengeReviewSummary")
+                    DisclosureGroup("回顧本次攻防") {
+                        ForEach(Array(review.timeline.enumerated()), id: \.offset) { _, line in
+                            Text(line).font(.caption).frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }.accessibilityIdentifier("challengeReviewTimeline")
+                }
                 Text(model.resultText).font(.system(size: 15, weight: .bold)).foregroundStyle(model.controller.assessment == .completed ? .mint : .orange)
                     .multilineTextAlignment(.center).accessibilityIdentifier("challengeResult")
                 if model.controller.assessment == .completed, let i = model.controller.catalog.firstIndex(where: { $0.id == scenario.id }), i + 1 < model.controller.catalog.count {
@@ -332,14 +363,14 @@ struct ChallengesView: View {
                     Button { points = true } label: { Text("大按鍵選點").frame(minHeight: 44) }.accessibilityIdentifier("challengePoints")
                 }.font(.system(size: 14)).frame(minHeight: 44)
             }
-            if model.controller.campaign == .advanced && !model.controller.locked {
+            if model.controller.campaign != .introduction && !model.controller.locked {
                 Button { model.endTurn(reduced: reducedMotion) } label: { Text("結束回合，讓白方回應").frame(minHeight: 44) }
                     .disabled(!model.humanCanAct).frame(minHeight: 44).accessibilityIdentifier("challengeEndTurn")
             }
             HStack {
                 Button { model.undo(reduced: reducedMotion) } label: { Text("復原上一步").frame(minHeight: 44) }.disabled(session.actions.isEmpty).accessibilityIdentifier("challengeUndo")
                 Spacer()
-                Button { model.retry() } label: { Text("重試本關").frame(minHeight: 44) }.accessibilityIdentifier("challengeRetry")
+                Button { model.retry() } label: { Text(model.controller.locked ? "換個計畫再試一次" : "重試本關").frame(minHeight: 44) }.accessibilityIdentifier("challengeRetry")
             }.frame(minHeight: 44)
             ForEach(model.controller.visibleHints, id: \.self) { hint in
                 Text(model.displayHint(hint).replacingOccurrences(of: "由 Core 判定捕獲主將與勝利", with: "捕獲主將並獲勝"))
