@@ -413,6 +413,12 @@ NOT CLAIMED unless separately implemented and validated:
 - 不將測試、弱機器人、搜尋或治理檢查宣稱為好玩、新手理解、職業平衡、runtime enforcement、release readiness 或「已通過 Apple 審查」。
 - 不修改 `AGENTS.base.md` 或框架管理 BEGIN/END 區塊；不把填寫本檔當成治理框架更新完成。
 
+## Simulator Cleanup Preference
+
+- Owner 指示（2026-10-23）：每次模擬器驗證完成後，必須刪除本任務建立的臨時模擬器裝置以釋放空間；只關機不算清理完成。
+- 刪除前先保存需要的測試結果、截圖、匯出紀錄與失敗證據，並確認沒有測試仍在使用該裝置。使用明確的裝置 ID 逐台關機及刪除，再核對裝置已移除並回報清理數量與容量。
+- 保護 Owner 裝置、其他任務的模擬器與進行中的工作。共用 iOS runtime／SDK 不隨臨時裝置一併刪除；需要清理時先確認其使用狀態與清理範圍。
+
 <!-- AI Governance Framework: agent-contract BEGIN -->
 <!-- AI Governance Framework: agent-contract v1.0 -->
 <!-- Source: ai-governance-framework/governance/agent-contract-template.md -->
