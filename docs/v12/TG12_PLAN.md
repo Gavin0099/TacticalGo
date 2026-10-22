@@ -34,3 +34,6 @@ Existing old challenges must replay unchanged. No fabricated Xcode/device result
 3–5 independent testers, unprompted retries and explanation of choices remain a human gate.
 The three-stage candidate may ship for internal evaluation only after native verification;
 if alternative strategy witnesses fail, revise the scenario or report No-Go, not manufactured success.
+
+## Engineering outcome
+Three stages implemented; six complete witnesses; full Swift suite 464 tests, one known-defect skip, zero failures. See REPORT.md and artifacts/tg12/validation.json. Native and human acceptance remain open.

@@ -49,4 +49,7 @@ swift/TacticalGoCore/.build/debug/TacticalGoCorePackageTests.xctest
 - C# parity 未執行（環境無 dotnet）；未改 Core／C# 規則。
 - 原生測試與人工表單已準備；沒有自動捏造人類試玩。
 
-完整套件結果另見 artifacts/tg12/validation.json。
+完整 Swift 套件：464 項，1 項已知缺陷 skip、0 失敗，593.052 秒；exit 0。
+詳見 artifacts/tg12/validation.json 與 full-suite.log。
+
+公開分支只含本次功能、測試與工程文件。自動審查拒絕上傳歷史記憶及舊版總計畫，這些維護保留本地；本次公開計畫見 TG12_PLAN.md。
