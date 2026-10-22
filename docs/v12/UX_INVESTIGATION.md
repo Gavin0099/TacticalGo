@@ -20,3 +20,13 @@ ExpansionLabTests 已覆蓋新局、白後手、雙怪、標準電腦與未召�
 - 既有兩項 testRogue… 與 AdvancedChallengeUITests 回歸
 涵蓋小尺寸 iPhone、一般 iPhone、iPad 橫向、Reduced Motion 與前背景。
 未修改 Release xcconfig/build number/簽署，也未上傳 TestFlight。
+
+## 2026-10-22 原生結果
+
+首次點擊選單、聲音設定往返、盜賊雙技能、新局與白方標準／雙怪情境，
+已在 Debug／Beta 執行；最終通過。Beta 帶有續玩列時，測試需捲至實際英雄名稱並單點，
+再驗證選取；未憑此改技能顯示或宣稱原始回報的真機根因已確定。
+
+新增完整遠征與 iPad 橫向流程，並修正回顧／下一關／匯出的 44 pt 點擊區。
+小手機與 iPad 的匯出驗證包含背景停時計算；保留早期失敗與修復後結果。
+完整指令、實際計數、變異與未驗項目見 [NATIVE_VALIDATION.md](NATIVE_VALIDATION.md)。

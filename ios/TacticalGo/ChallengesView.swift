@@ -225,8 +225,10 @@ struct ChallengesView: View {
                         challenge(scenario, session, geo.size)
                     } else { catalog }
                     if model.controller.campaign == .expedition {
-                        ShareLink("匯出本次試玩觀察", item: model.observationReport)
-                            .accessibilityIdentifier("challengeExportObservation")
+                        ShareLink(item: model.observationReport) {
+                            Label("匯出本次試玩觀察", systemImage: "square.and.arrow.up")
+                                .frame(minHeight: 44).contentShape(Rectangle())
+                        }.accessibilityIdentifier("challengeExportObservation")
                         Text("僅本次開啟的紀錄，最多 500 筆；背景時間不計入。離開章節後清除，不會自動上傳。")
                             .font(.caption2)
                     }
@@ -333,16 +335,20 @@ struct ChallengesView: View {
             if model.controller.locked {
                 if let review = try? ChallengeReview(session: session) {
                     Text(review.summary).font(.caption).accessibilityIdentifier("challengeReviewSummary")
-                    DisclosureGroup("回顧本次攻防") {
+                    DisclosureGroup {
                         ForEach(Array(review.timeline.enumerated()), id: \.offset) { _, line in
                             Text(line).font(.caption).frame(maxWidth: .infinity, alignment: .leading)
                         }
+                    } label: {
+                        Text("回顧本次攻防").frame(minHeight: 44).contentShape(Rectangle())
                     }.accessibilityIdentifier("challengeReviewTimeline")
                 }
                 Text(model.resultText).font(.system(size: 15, weight: .bold)).foregroundStyle(model.controller.assessment == .completed ? .mint : .orange)
                     .multilineTextAlignment(.center).accessibilityIdentifier("challengeResult")
                 if model.controller.assessment == .completed, let i = model.controller.catalog.firstIndex(where: { $0.id == scenario.id }), i + 1 < model.controller.catalog.count {
-                    Button("下一關") { model.choose(model.controller.catalog[i + 1].id, reduced: reducedMotion) }.accessibilityIdentifier("challengeNext")
+                    Button { model.choose(model.controller.catalog[i + 1].id, reduced: reducedMotion) } label: {
+                        Text("下一關").frame(minWidth: 88, minHeight: 44).contentShape(Rectangle())
+                    }.accessibilityIdentifier("challengeNext")
                 }
             } else {
                 HStack {

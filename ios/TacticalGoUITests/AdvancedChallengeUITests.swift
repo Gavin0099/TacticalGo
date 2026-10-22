@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 @MainActor final class AdvancedChallengeUITests: XCTestCase {
     /// TG12 product route, one tap per control; no retry helper can hide a missed tap.
@@ -30,6 +31,118 @@ import XCTest
         XCTAssertEqual(game.staticTexts["challengeResources"].label, resources)
         reveal(game, game.buttons["challengeExportObservation"])
         XCTAssertTrue(game.buttons["challengeExportObservation"].exists)
+    }
+
+    /// The ordinary witnesses in artifacts/tg12/final-witnesses.json are the
+    /// independent input plans. UI assertions cover the completed product flow,
+    /// rather than recomputing legality or the objective in the test.
+    func testExpeditionThreeStagesReviewRetryNextAndExport() {
+        expeditionFlow(orientation: .portrait)
+    }
+
+    func testIPadExpeditionThreeStagesReviewRetryNextAndExport() {
+        expeditionFlow(orientation: .landscapeLeft)
+    }
+
+    private func expeditionFlow(orientation: UIDeviceOrientation) {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = orientation
+        let game = XCUIApplication()
+        game.launchArguments = ["--record-isolation", UUID().uuidString]
+        #if DEBUG
+        game.launchArguments.append("--full-game")
+        #endif
+        game.launch()
+        XCTAssertTrue(game.buttons["lobbyChallenges"].waitForExistence(timeout: 15))
+        if orientation.isLandscape {
+            XCTAssertGreaterThan(game.windows.firstMatch.frame.width, game.windows.firstMatch.frame.height)
+        }
+        game.buttons["lobbyChallenges"].tap()
+        XCTAssertTrue(game.buttons["openExpedition"].waitForExistence(timeout: 5))
+        game.buttons["openExpedition"].tap()
+        XCTAssertTrue(game.buttons["challenge-tg12-expedition-1"].waitForExistence(timeout: 5))
+        game.buttons["challenge-tg12-expedition-1"].tap()
+
+        func finished(_ count: Int, mana: Int, title: String, finalReply: String) {
+            XCTAssertTrue(game.staticTexts["challengeResult"].waitForExistence(timeout: 20))
+            XCTAssertEqual(game.staticTexts["challengeTitle"].label, title)
+            XCTAssertTrue(game.staticTexts["challengeResult"].label.contains("挑戰完成"))
+            let summary = game.staticTexts["challengeReviewSummary"]
+            reveal(game, summary)
+            XCTAssertTrue(summary.label.contains("本次 \(count) 次行動、消耗 \(mana) 能量"))
+            XCTAssertFalse(game.buttons["challengeConfirm"].exists)
+            let timeline = game.buttons["challengeReviewTimeline"]
+            reveal(game, timeline)
+            shot(game, "TG12-" + title + "-controls")
+            XCTAssertGreaterThanOrEqual(timeline.frame.height, 44)
+            timeline.tap()
+            // Last enemy receipt from the reviewed witness, not just any reply.
+            let lastReply = game.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", finalReply)).firstMatch
+            XCTAssertTrue(lastReply.exists)
+            reveal(game, lastReply)
+            XCTAssertTrue(lastReply.isHittable)
+            shot(game, "TG12-" + title + "-review")
+        }
+        func next(_ title: String) {
+            let button = game.buttons["challengeNext"]
+            reveal(game, button)
+            XCTAssertGreaterThanOrEqual(button.frame.height, 44)
+            button.tap()
+            XCTAssertTrue(game.staticTexts["challengeTitle"].waitForExistence(timeout: 5))
+            XCTAssertEqual(game.staticTexts["challengeTitle"].label, title)
+            ready(game)
+            XCTAssertTrue(game.staticTexts["challengeResources"].label.contains("已用 0"))
+        }
+
+        // Retry after an accepted move; it must restore the initial stage state.
+        action(game, points: [(4,5)])
+        reveal(game, game.buttons["challengeRetry"]); game.buttons["challengeRetry"].tap()
+        ready(game)
+        XCTAssertTrue(game.staticTexts["challengeResources"].label.contains("已用 0"))
+        action(game, points: [(4,5)]); action(game, points: [(5,5)])
+        XCUIDevice.shared.press(.home)
+        XCTAssertTrue(game.wait(for: .runningBackground, timeout: 5)
+            || game.state == .runningBackgroundSuspended)
+        // Give the scene a real background interval before resuming it.
+        Thread.sleep(forTimeInterval: 2)
+        game.activate()
+        XCTAssertTrue(game.wait(for: .runningForeground, timeout: 5))
+        ready(game)
+        XCTAssertFalse(game.staticTexts["challengeResult"].exists)
+        action(game, points: [(5,3)]); action(game, points: [(5,4)])
+        finished(4, mana: 0, title: "守住補給線", finalReply: "8. 白：落子 E4")
+        next("突破後守住戰果")
+
+        action(game, skill: true, points: [(4,2)], direction: "Down")
+        action(game, points: [(4,2)]); ready(game)
+        XCTAssertFalse(game.staticTexts["challengeResult"].exists)
+        action(game, skill: true, points: [(3,2)], direction: "Left")
+        action(game, points: [(3,2)]); ready(game)
+        XCTAssertFalse(game.staticTexts["challengeResult"].exists)
+        action(game, points: [(5,4)])
+        action(game, skill: true, points: [(2,3)], direction: "Up")
+        finished(6, mana: 6, title: "突破後守住戰果", finalReply: "12. 白：落子 C1")
+        next("出手後的退路")
+
+        action(game, points: [(4,2)]); action(game, points: [(4,4)]); ready(game)
+        XCTAssertFalse(game.staticTexts["challengeResult"].exists)
+        action(game, points: [(6,2)]); action(game, points: [(6,4)]); ready(game)
+        XCTAssertFalse(game.staticTexts["challengeResult"].exists)
+        action(game, points: [(2,1)]); action(game, points: [(2,2)])
+        finished(6, mana: 0, title: "出手後的退路", finalReply: "11. 白：落子 F2")
+        XCTAssertFalse(game.buttons["challengeNext"].exists)
+        XCTAssertEqual(game.staticTexts["challengeProgress"].label, "3／3 已完成")
+
+        let export = game.buttons["challengeExportObservation"]
+        reveal(game, export)
+        XCTAssertGreaterThanOrEqual(export.frame.height, 44)
+        export.tap()
+        // The system share sheet exposes actions as cells on iOS 27.
+        let copy = game.cells.matching(NSPredicate(format: "label IN %@", ["拷貝", "複製", "Copy"])).firstMatch
+        XCTAssertTrue(copy.waitForExistence(timeout: 10), game.debugDescription)
+        shot(game, "TG12-observation-share-sheet")
+        copy.tap()
+        XCTAssertTrue(export.waitForExistence(timeout: 5))
     }
 
     /// Enter from the shipping home, not the debug chapter shortcut. The first
@@ -174,7 +287,14 @@ import XCTest
     }
     private func reveal(_ app: XCUIApplication, _ element: XCUIElement) {
         for _ in 0..<7 {
-            if element.isHittable && element.frame.height >= 44 { return }
+            // iOS 27 can throw while querying isHittable for an offscreen button
+            // ("Activation point invalid"). Scroll it into view before asking.
+            if element.exists {
+                let frame = element.frame
+                let visible = app.windows.firstMatch.frame.intersection(frame)
+                if !visible.isNull && visible.height >= min(44, frame.height)
+                    && visible.width > 0 && element.isHittable { return }
+            }
             // A partly clipped control above the viewport must scroll downward.
             // Scrolling only up made a valid 44-pt label remain clipped on iPad.
             if element.exists && element.frame.midY < app.windows.firstMatch.frame.midY {
@@ -214,14 +334,27 @@ import XCTest
         XCTAssertTrue(arena.waitForExistence(timeout: 5))
         // Published 8:9 board-fit and trapezoid anchors, independent of the renderer.
         // In particular, account for the fit margins inside the challenge arena.
-        let frame = arena.frame, width = min(frame.width, frame.height * 8 / 9)
-        let height = width * 9 / 8, row = Double(y) / 6
-        let inset = 0.13 - 0.06 * row
-        let px = inset + (1 - 2 * inset) * Double(x) / 6
-        let py = 0.18 + 0.65 * row
-        arena.coordinate(withNormalizedOffset: CGVector(
-            dx: ((frame.width - width) / 2 + width * px) / frame.width,
-            dy: ((frame.height - height) / 2 + height * py) / frame.height)).tap()
+        for _ in 0..<7 {
+            let frame = arena.frame, width = min(frame.width, frame.height * 8 / 9)
+            let height = width * 9 / 8, row = Double(y) / 6
+            let inset = 0.13 - 0.06 * row
+            let px = inset + (1 - 2 * inset) * Double(x) / 6
+            let py = 0.18 + 0.65 * row
+            let dx = (frame.width - width) / 2 + width * px
+            let dy = (frame.height - height) / 2 + height * py
+            let target = CGPoint(x: frame.minX + dx, y: frame.minY + dy)
+            let viewport = app.windows.firstMatch.frame.insetBy(dx: 12, dy: 44)
+            if viewport.contains(target) {
+                arena.coordinate(withNormalizedOffset: CGVector(dx: dx / frame.width, dy: dy / frame.height)).tap()
+                let label = "\(String(UnicodeScalar(65 + x)!))\(y + 1)"
+                XCTAssertTrue((arena.value as? String)?.contains(label) == true)
+                return
+            }
+            // Recompute after scrolling; a previous mode/confirm reveal can
+            // leave the next board point under the top system gesture region.
+            if target.y < viewport.minY { app.swipeDown() } else { app.swipeUp() }
+        }
+        XCTFail("Board point could not be brought into the viewport")
     }
     private func boardCommit(_ app: XCUIApplication, points: [(Int, Int)], skill: Bool = false) {
         ready(app)

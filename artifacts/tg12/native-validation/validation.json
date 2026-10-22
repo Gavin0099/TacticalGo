@@ -10,10 +10,14 @@
     "platform": "arm64 macOS"
   },
   "change": {
-    "path": "ios/TacticalGoUITests/AdvancedChallengeUITests.swift",
-    "sha256": "3da0da75c9492e264b37fe93b1dbdc9c07247a7740d670e4cb4f2bbdb6ec2ff1",
-    "description": "Select existing --full-game root in Debug for the expedition product-entry test; Beta stays on its default product root.",
-    "runtime_files_changed": false
+    "description": "Minimum 44 pt review/next/export targets; product-flow, actual board selection and share-sheet regression coverage.",
+    "runtime_files_changed": true,
+    "runtime_scope": "UI hit targets only; no Core, policy, save-format or release setting changes",
+    "files": {
+      "ios/TacticalGo/ChallengesView.swift": "879173a7973f7103dac086d5d5418d521e06d22b418a89de441ce53fdb02cb77",
+      "ios/TacticalGoUITests/AdvancedChallengeUITests.swift": "1fe1e6c0fd708b9c2cff8aa21316f172ffe71c4966a0a03dfee2329f3df207ce",
+      "ios/TacticalGoUITests/ExpansionLabTests.swift": "6f64f7d997931958e2bd49b310a8c99b9a42f5fe7f3e45585032cae4771c7a20"
+    }
   },
   "checks": {
     "swift_package": {
@@ -62,11 +66,11 @@
     "diff_check": "passed"
   },
   "not_run": [
-    "Simulator UI execution (no installed runtime)",
-    "iPhone/iPad device acceptance (no devices detected)",
+    "Physical iPhone/iPad hardware acceptance",
     "C# replay/parity (dotnet unavailable)",
-    "Human playtests",
-    "Focused UI mutation (cannot execute UI test without runtime)"
+    "3–5 independent human playtests",
+    "Real 1.0 save-sample acceptance",
+    "Purchase/ad-network acceptance outside this UI scope"
   ],
   "warnings": [
     "Existing forced-downcast warning in PlayableGameView.swift:402",
@@ -89,7 +93,714 @@
     "swift-tests.log": {
       "local_path": "ios/Build/tg12-native-20261022/swift-tests.log",
       "sha256": "c6c9162f4896e06c49d05193178b060c575b99fe5b66a174778a4c20b5deb9b4"
+    },
+    "beta-boot.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-boot.log",
+      "sha256": "af65d44e36630930f7ae4af3bc69e3c7b743793618a19400c41fbb4523845ba6"
+    },
+    "beta-controls-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-controls-build.log",
+      "sha256": "4bea767abe3c2c529a98fe1f0bd40cc777a36a1b630051f4937ea86d8a9b313f"
+    },
+    "beta-controls-green.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-controls-green.log",
+      "sha256": "71b9c3946cd77a168b5f5a7c4a15a42e6a53fca545aa9680256bc33692fa0862"
+    },
+    "beta-entry-regression.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-entry-regression.log",
+      "sha256": "5375c5e9b802e8fa3984b8ff919d00d3fbec26a1b2c914fac6a36316c9786f77"
+    },
+    "beta-entry-resumed.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-entry-resumed.log",
+      "sha256": "754c83e308315657955d33c7d6499378f80b974def1d8b836e195427af7b26dc"
+    },
+    "beta-export-system.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-export-system.log",
+      "sha256": "ced358d4affa417759aa18d42485ed497cca589876886f4c11ee984e0f58fc3d"
+    },
+    "beta-final-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-final-build.log",
+      "sha256": "1b5cb02f48b978842af0f0a33abdb0f5a427af95f07ee8828aec450da3d0f847"
+    },
+    "beta-flow-01.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-flow-01.log",
+      "sha256": "a8a427d2a874bfadbb38edc04f3e2f2648186dcbba3be3f9b789605dd583641e"
+    },
+    "beta-flow-02.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-flow-02.log",
+      "sha256": "a5a5be3a28ecb5c45daa16bd1a77afc5e8caaf10e8be458ed9de4568203558a9"
+    },
+    "beta-flow-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-flow-build.log",
+      "sha256": "42153254145afe0f1e7cbeb2757c3544532fc2f0a627ed362059a7b7a0b3b5b7"
+    },
+    "beta-hero-final-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-hero-final-build.log",
+      "sha256": "d662ad1bb5a94c91036d30002fd40da1a6c930bc43bd20651b2ff47345466ac5"
+    },
+    "beta-hero-final.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-hero-final.log",
+      "sha256": "bb44d0daa1bef06f9eacdf3ee3c1f2024c5679d3d951cf372cf094a29b760364"
+    },
+    "beta-hero-restored.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-hero-restored.log",
+      "sha256": "91b41974e632fef65174ab63f6acbd0776b7374ef9a55306fb433078f41ad651"
+    },
+    "beta-launch-system.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-launch-system.log",
+      "sha256": "897c202b2efdfda68e2e5ae5192c06a1e861540d726861f50713ba9be214857c"
+    },
+    "beta-reboot.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-reboot.log",
+      "sha256": "c54af51e26d32642391ee3f23d1da2aa32d82b784280447e74dd84bcd0b3121b"
+    },
+    "beta-restored-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-restored-build.log",
+      "sha256": "3185282bc700d70f0f82b2d369bb9ecf553987df1297a9dc11b82cdfa4bc123e"
+    },
+    "beta-rogue-export.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-rogue-export.log",
+      "sha256": "c637364e77febe724319cebecabf5ce73714f9b8b836af15fca4989c763e0ae5"
+    },
+    "beta-simulator-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/beta-simulator-build.log",
+      "sha256": "4f971db2c0a38264d69b15a436d2f9fff3487ec4253f8373f26f1db81b1aaa4c"
+    },
+    "debug-controls-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-controls-build.log",
+      "sha256": "74ca1db8ec837a4000f8007412f43f9c4de528323ae12632c5882d53cd7b8356"
+    },
+    "debug-controls-green.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-controls-green.log",
+      "sha256": "4af07fe7cc2617d7edfb660ec97ed736087039b572300ebd3686eb2bfda40195"
+    },
+    "debug-device-matrix-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-device-matrix-build.log",
+      "sha256": "90562ec7ed8432c3a7a2c8f3d401cdfbd39a9080c95a575067d9a29eb1dbef02"
+    },
+    "debug-entry-01.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-entry-01.log",
+      "sha256": "bca3e41f55588be01f21335eeb67f8434da7929bf0d8aea97a09b93254f35dcc"
+    },
+    "debug-flow-01.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-flow-01.log",
+      "sha256": "6839aac83a48ccfd21866f35233485e0d68b4bc41a14e032431c808e87bec19b"
+    },
+    "debug-flow-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-flow-build.log",
+      "sha256": "87fa58c47a334b10afd5af821c83b0e1f66bc97aa325bf71301728dfc1455c14"
+    },
+    "debug-hero-final-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-hero-final-build.log",
+      "sha256": "5a6d1f4726b81575b3039ba07178864a5d83bdc62c156b5e7a873b89cf0f704c"
+    },
+    "debug-hit-target-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-hit-target-build.log",
+      "sha256": "57522c901d9cdff72303019cafe71c71fb0e0d917a63e9593a51a17e76f1a57b"
+    },
+    "debug-hit-target-red.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-hit-target-red.log",
+      "sha256": "6fdd8f69634d7c7aad007dd8989c737df0ed6bc0bfbf3ac861dc7476cd4aa71a"
+    },
+    "debug-matrix-final-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-matrix-final-build.log",
+      "sha256": "c873a6dfdc7c036744f1c855bebbe217c05d78f2df9834e53955fcd5f24d635a"
+    },
+    "debug-mutation-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-mutation-build.log",
+      "sha256": "77112ae5271e4237386a13df406e68eb0b9a7afe896fcbda46e71023adaed168"
+    },
+    "debug-regression-01.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-regression-01.log",
+      "sha256": "9e5444613c52e2ae5e73c33a22c1a0d246eb9b3f07917bbac7fa05615faae3af"
+    },
+    "debug-restored-build.log": {
+      "local_path": "ios/Build/tg12-native-20261022/debug-restored-build.log",
+      "sha256": "54219ff233d293b7fda574e670360b10bb6f51d3d3f39240366d8da710d083af"
+    },
+    "ios-27-runtime-export.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ios-27-runtime-export.log",
+      "sha256": "4f83da9fe71fcad0be09fbb240a7578d6919fdda88ae5e0c95d6c8042b5653c1"
+    },
+    "ios-27-standard-runtime-download.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ios-27-standard-runtime-download.log",
+      "sha256": "1b7cc07188e4a3a62c26bdf8952d44c9eccdba9599af9d8e40b68f00570b9bbc"
+    },
+    "ipad-boot.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ipad-boot.log",
+      "sha256": "2b00a000f65509fcb7b38f42889415866ad6fa9b28ad668b77ab6f116f09902e"
+    },
+    "ipad-export-attachments.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ipad-export-attachments.log",
+      "sha256": "25263ed735980626069786cfc125f716e799621d13815a977e258cc9fc429da4"
+    },
+    "ipad-hit-target-mutation.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ipad-hit-target-mutation.log",
+      "sha256": "9f8013f1a950473d9343233feb41d8833925c58430504a3274c1f96b92d953d7"
+    },
+    "ipad-matrix.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ipad-matrix.log",
+      "sha256": "638ecf08d367c5b03148051665d3edd0d850b5e2f1a9a18ef327cd88ad4b7440"
+    },
+    "ipad-restored-control.log": {
+      "local_path": "ios/Build/tg12-native-20261022/ipad-restored-control.log",
+      "sha256": "c522a10ddfcbf9e4998d50d6532e1d279705467f1dec79f6235cb698a79f602c"
+    },
+    "se-boot.log": {
+      "local_path": "ios/Build/tg12-native-20261022/se-boot.log",
+      "sha256": "1d1f3387416c7eb5132243eb21c4270378e0728b97befe8b68fde4af44df9276"
+    },
+    "se-hero-final.log": {
+      "local_path": "ios/Build/tg12-native-20261022/se-hero-final.log",
+      "sha256": "573bf68ad984f331a650078434ab3d3ef40b501d6a02cd7356347c4751de3066"
+    },
+    "se-hero-restored.log": {
+      "local_path": "ios/Build/tg12-native-20261022/se-hero-restored.log",
+      "sha256": "379358c05569cf4273c8adec02de5aaf5774e330b06246ab6aec6fe38b70c149"
+    },
+    "se-matrix.log": {
+      "local_path": "ios/Build/tg12-native-20261022/se-matrix.log",
+      "sha256": "fe0d632aab1444e5c02eb438c06e5903c3d6481e044231fbde8fcedcbec07cb4"
     }
   },
-  "claim_boundary": "Compilation and macOS package evidence only. No native interaction, corrected UI test execution, device quality, gameplay acceptance, merge or release claim."
+  "claim_boundary": "Simulator operation and targeted UI repair evidence. No real-device, human, fun, retention, overall 1.2 acceptance, main merge or release claim.",
+  "native_execution_base": "478c4e1da050abb0aa2a42adddbc3220d78c1b46",
+  "native_execution": {
+    "latest_unique_coverage": {
+      "Debug": 20,
+      "Beta": 5
+    },
+    "latest_outcomes": {
+      "Debug": {
+        "AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress": {
+          "status": "passed",
+          "run": "debug-entry-01"
+        },
+        "ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings": {
+          "status": "passed",
+          "run": "se-hero-final"
+        },
+        "AdvancedChallengeUITests/testAdjacentBoardPointsAndLargePickerSelectTheSameCoordinates": {
+          "status": "passed",
+          "run": "se-matrix"
+        },
+        "AdvancedChallengeUITests/testChallengesInvalidateLateBotWithoutChangingTheSavedTurn": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testExitDuringReplyNeverCommitsIntoNextChallenge": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testHintProgressSurvivesCommittedCounterplayAndRelaunch": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testHomeDirectChallengeEntryAndChapterSwitching": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testMageTwoTurnsCounterplayUndoAndCompletion": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testMatchChallengeEntryReturnsToUnchangedMatch": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testNativeMageCounterplayRecordingWithBoardHits": {
+          "status": "passed",
+          "run": "se-matrix"
+        },
+        "AdvancedChallengeUITests/testNativeRogueResourceTradeoffRecording": {
+          "status": "passed",
+          "run": "se-matrix"
+        },
+        "AdvancedChallengeUITests/testNativeWarriorPlansAndActualCounterplayRecording": {
+          "status": "passed",
+          "run": "se-matrix"
+        },
+        "AdvancedChallengeUITests/testPreviewCancelIllegalAndBackgroundCounterResume": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "AdvancedChallengeUITests/testRogueCompletionRestartsAndKeepsChapterSeparate": {
+          "status": "passed",
+          "run": "debug-regression-01"
+        },
+        "ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible": {
+          "status": "passed",
+          "run": "se-hero-final"
+        },
+        "ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening": {
+          "status": "passed",
+          "run": "se-hero-final"
+        },
+        "AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport": {
+          "status": "passed",
+          "run": "se-matrix"
+        },
+        "AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport": {
+          "status": "passed",
+          "run": "ipad-restored-control"
+        },
+        "AdvancedChallengeUITests/testIPadPortraitLandscapeAndRestoredSelectedRun": {
+          "status": "passed",
+          "run": "ipad-matrix"
+        },
+        "AdvancedChallengeUITests/testTabletLandscapeSharedBoardAndChapterSelection": {
+          "status": "passed",
+          "run": "ipad-matrix"
+        }
+      },
+      "Beta": {
+        "AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport": {
+          "status": "passed",
+          "run": "beta-controls-green"
+        },
+        "AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress": {
+          "status": "passed",
+          "run": "beta-entry-resumed"
+        },
+        "ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings": {
+          "status": "passed",
+          "run": "beta-hero-final"
+        },
+        "ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible": {
+          "status": "passed",
+          "run": "beta-hero-final"
+        },
+        "ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening": {
+          "status": "passed",
+          "run": "beta-hero-final"
+        }
+      }
+    },
+    "runs": [
+      {
+        "run": "beta-controls-green",
+        "result": "Passed",
+        "totalTestCount": 1,
+        "passedTests": 1,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/beta-controls-green.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-entry-regression",
+        "result": "Failed",
+        "totalTestCount": 1,
+        "passedTests": 0,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testExpeditionProductEntryAndSeparateChapterProgress()",
+            "message": "Testing was canceled"
+          }
+        ],
+        "purpose": "interrupted-by-device-shutdown",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/beta-entry-regression.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-entry-resumed",
+        "result": "Failed",
+        "totalTestCount": 4,
+        "passedTests": 3,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible()",
+            "message": "XCTAssertTrue failed"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/beta-entry-resumed.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-flow-01",
+        "result": "Failed",
+        "totalTestCount": 1,
+        "passedTests": 0,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testExpeditionThreeStagesReviewRetryNextAndExport()",
+            "message": "XCTAssertTrue failed"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -resultBundlePath <EVIDENCE_ROOT>/beta-flow-01.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-flow-02",
+        "result": "Failed",
+        "totalTestCount": 1,
+        "passedTests": 0,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testExpeditionThreeStagesReviewRetryNextAndExport()",
+            "message": "XCTAssertTrue failed - Attributes: Application, 0x1108cca00, pid: 39683, label: '皇冠戰略'"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/beta-flow-02.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-hero-final",
+        "result": "Passed",
+        "totalTestCount": 3,
+        "passedTests": 3,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/beta-hero-final.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "beta-hero-restored",
+        "result": "Failed",
+        "totalTestCount": 3,
+        "passedTests": 0,
+        "failedTests": 3,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings()",
+            "message": "XCTAssertTrue failed - choose-rogue"
+          },
+          {
+            "test": "testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible()",
+            "message": "XCTAssertTrue failed - choose-rogue"
+          },
+          {
+            "test": "testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening()",
+            "message": "XCTAssertTrue failed - choose-priest"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Beta",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -parallel-testing-enabled NO -collect-test-diagnostics never -scheme TacticalGoBeta -configuration Beta -destination \"platform=iOS Simulator,id=7D835D74-8243-4254-B7BA-C202E1DB68F0\" -derivedDataPath <EVIDENCE_ROOT>/BetaDerivedData -resultBundlePath <EVIDENCE_ROOT>/beta-hero-restored.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "debug-controls-green",
+        "result": "Failed",
+        "totalTestCount": 3,
+        "passedTests": 2,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testNativeMageCounterplayRecordingWithBoardHits()",
+            "message": "Testing was canceled"
+          }
+        ],
+        "purpose": "interrupted-by-device-shutdown",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=25DD7C27-EB47-40EF-99D7-373341D95A71\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/debug-controls-green.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeMageCounterplayRecordingWithBoardHits\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testAdjacentBoardPointsAndLargePickerSelectTheSameCoordinates\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeWarriorPlansAndActualCounterplayRecording\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeRogueResourceTradeoffRecording\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "debug-entry-01",
+        "result": "Passed",
+        "totalTestCount": 2,
+        "passedTests": 2,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=25DD7C27-EB47-40EF-99D7-373341D95A71\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -resultBundlePath <EVIDENCE_ROOT>/debug-entry-01.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "debug-flow-01",
+        "result": "Failed",
+        "totalTestCount": 2,
+        "passedTests": 0,
+        "failedTests": 2,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testExpeditionThreeStagesReviewRetryNextAndExport()",
+            "message": "XCTAssertTrue failed - Attributes: Application, 0x10f2d4a00, pid: 39781, label: '皇冠戰略'"
+          },
+          {
+            "test": "testNativeMageCounterplayRecordingWithBoardHits()",
+            "message": "XCTAssertTrue failed"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=25DD7C27-EB47-40EF-99D7-373341D95A71\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/debug-flow-01.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeMageCounterplayRecordingWithBoardHits\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "debug-hit-target-red",
+        "result": "Failed",
+        "totalTestCount": 1,
+        "passedTests": 0,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testExpeditionThreeStagesReviewRetryNextAndExport()",
+            "message": "XCTAssertGreaterThanOrEqual failed: (\"28.33333333333337\") is less than (\"44.0\")"
+          }
+        ],
+        "purpose": "negative-control",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=25DD7C27-EB47-40EF-99D7-373341D95A71\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/debug-hit-target-red.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "debug-regression-01",
+        "result": "Failed",
+        "totalTestCount": 14,
+        "passedTests": 13,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testNativeMageCounterplayRecordingWithBoardHits()",
+            "message": "Failed to determine hittability of \"challengeConfirm\" Button: Activation point invalid and no suggested hit points based on element frame"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=25DD7C27-EB47-40EF-99D7-373341D95A71\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -resultBundlePath <EVIDENCE_ROOT>/debug-regression-01.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests\" \"-skip-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress\" \"-skip-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadPortraitLandscapeAndRestoredSelectedRun\" \"-skip-testing:TacticalGoUITests/AdvancedChallengeUITests/testTabletLandscapeSharedBoardAndChapterSelection\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "ipad-hit-target-mutation",
+        "result": "Failed",
+        "totalTestCount": 1,
+        "passedTests": 0,
+        "failedTests": 1,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testIPadExpeditionThreeStagesReviewRetryNextAndExport()",
+            "message": "XCTAssertGreaterThanOrEqual failed: (\"28.5\") is less than (\"44.0\")"
+          }
+        ],
+        "purpose": "negative-control",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=ABB25C4F-5D5C-45D2-8CD4-2B6EA9DAEF65\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/ipad-hit-target-mutation.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "ipad-matrix",
+        "result": "Passed",
+        "totalTestCount": 3,
+        "passedTests": 3,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=ABB25C4F-5D5C-45D2-8CD4-2B6EA9DAEF65\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/ipad-matrix.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadPortraitLandscapeAndRestoredSelectedRun\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testTabletLandscapeSharedBoardAndChapterSelection\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "ipad-restored-control",
+        "result": "Passed",
+        "totalTestCount": 1,
+        "passedTests": 1,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -parallel-testing-enabled NO -collect-test-diagnostics never -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=ABB25C4F-5D5C-45D2-8CD4-2B6EA9DAEF65\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -resultBundlePath <EVIDENCE_ROOT>/ipad-restored-control.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "se-hero-final",
+        "result": "Passed",
+        "totalTestCount": 3,
+        "passedTests": 3,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=A23F18EC-7810-4E0A-AD0C-E3CCE0C3B2C0\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/se-hero-final.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "se-hero-restored",
+        "result": "Failed",
+        "totalTestCount": 3,
+        "passedTests": 0,
+        "failedTests": 3,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [
+          {
+            "test": "testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings()",
+            "message": "XCTAssertTrue failed - choose-rogue"
+          },
+          {
+            "test": "testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible()",
+            "message": "XCTAssertTrue failed - choose-rogue"
+          },
+          {
+            "test": "testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening()",
+            "message": "XCTAssertTrue failed - choose-priest"
+          }
+        ],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -parallel-testing-enabled NO -collect-test-diagnostics never -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=A23F18EC-7810-4E0A-AD0C-E3CCE0C3B2C0\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -resultBundlePath <EVIDENCE_ROOT>/se-hero-restored.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      },
+      {
+        "run": "se-matrix",
+        "result": "Passed",
+        "totalTestCount": 8,
+        "passedTests": 8,
+        "failedTests": 0,
+        "skippedTests": 0,
+        "expectedFailures": 0,
+        "failures": [],
+        "purpose": "validation",
+        "configuration": "Debug",
+        "command": "xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=A23F18EC-7810-4E0A-AD0C-E3CCE0C3B2C0\" -derivedDataPath <EVIDENCE_ROOT>/DerivedData -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath <EVIDENCE_ROOT>/se-matrix.xcresult \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionThreeStagesReviewRetryNextAndExport\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeMageCounterplayRecordingWithBoardHits\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeWarriorPlansAndActualCounterplayRecording\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testNativeRogueResourceTradeoffRecording\" \"-only-testing:TacticalGoUITests/AdvancedChallengeUITests/testAdjacentBoardPointsAndLargePickerSelectTheSameCoordinates\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening\" CODE_SIGNING_ALLOWED=NO test-without-building"
+      }
+    ],
+    "devices": [
+      {
+        "name": "TG12 Debug iPhone",
+        "model": "iPhone Duo",
+        "os": "27.1 (24A94425)",
+        "reduce_motion_verified_by_UIKit": true
+      },
+      {
+        "name": "TG12 Beta iPhone",
+        "model": "iPhone Duo",
+        "os": "27.1 (24A94425)",
+        "independent_clean_device": true
+      },
+      {
+        "name": "TG12 Small iPhone SE",
+        "model": "iPhone SE (3rd generation)",
+        "os": "27.0 (24A434)"
+      },
+      {
+        "name": "TG12 iPad landscape",
+        "model": "iPad Pro 11-inch (M4)",
+        "os": "27.0 (24A434)"
+      }
+    ],
+    "beta_simulator_only_override": {
+      "CROWN_ADMOB_APP_ID": "ca-app-pub-3940256099942544~1458002511",
+      "CROWN_REWARDED_AD_UNIT_ID": "",
+      "release_config_files_changed": false
+    },
+    "coverage_counting": "Latest pass per configuration/test; repeat executions and negative controls are not added as unique coverage. Full original failures remain in runs.",
+    "raw_evidence_directory": "ios/Build/tg12-native-20261022/"
+  },
+  "exports": [
+    {
+      "configuration": "Beta",
+      "events": 27,
+      "kinds": {
+        "start": 3,
+        "action": 17,
+        "leave": 3,
+        "retry": 1,
+        "result": 3
+      },
+      "results": [
+        [
+          "tg12-expedition-1",
+          "completed"
+        ],
+        [
+          "tg12-expedition-2",
+          "completed"
+        ],
+        [
+          "tg12-expedition-3",
+          "completed"
+        ]
+      ],
+      "finite_nonnegative_times": true,
+      "expected_action_count": 17,
+      "retry_clock_reset": true,
+      "background_pause_resume_observed": false,
+      "payload_sha256": "188ee8d3817dc575ef644b4faf8aa460a19ad2b80fe462e35b8d2af278a41722"
+    },
+    {
+      "device": "se",
+      "events": 29,
+      "kinds": {
+        "start": 3,
+        "action": 17,
+        "leave": 3,
+        "retry": 1,
+        "pause": 1,
+        "resume": 1,
+        "result": 3
+      },
+      "completed_stages": 3,
+      "player_actions": 17,
+      "background_time_excluded": true,
+      "pause_resume_active_seconds": [
+        18.759727416667374,
+        18.759727416667374
+      ],
+      "payload_sha256": "10b222fad6f5601c32563c056f56b7101da8ab4bd527154a32ce1b8d36342577"
+    },
+    {
+      "device": "ipad",
+      "events": 29,
+      "kinds": {
+        "start": 3,
+        "action": 17,
+        "leave": 3,
+        "retry": 1,
+        "pause": 1,
+        "resume": 1,
+        "result": 3
+      },
+      "completed_stages": 3,
+      "player_actions": 17,
+      "background_time_excluded": true,
+      "pause_resume_active_seconds": [
+        23.53034366666725,
+        23.53034366666725
+      ],
+      "payload_sha256": "67d9ceacfc132bf30ec255f2a1ba1c83a40048dbf165727baea050866fdea66d"
+    }
+  ],
+  "ui_mutation": {
+    "change": "Only review label minimum height 44 -> 20 pt",
+    "result": "caught",
+    "observed_height_pt": 28.5,
+    "required_height_pt": 44,
+    "negative_run": "ipad-hit-target-mutation",
+    "restored_control_run": "ipad-restored-control",
+    "exact_ui_source_restored": true,
+    "restored_sha256": "879173a7973f7103dac086d5d5418d521e06d22b418a89de441ce53fdb02cb77"
+  }
 }

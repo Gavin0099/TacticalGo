@@ -1,105 +1,134 @@
 # TG12 native validation — 2026-10-22
 
-結果：PR #34 在 macOS 完成 Swift 套件測試及 Debug／Beta 的 App 與 UI 測試程式編譯。
-原因：Xcode 已就緒；另修正遠征 UI 測試在 Debug 選錯首頁的啟動參數。模擬器 runtime 尚未安裝完成。
-下一步：runtime 完成後執行下列 UI 驗證，再做 iPhone 與 3–5 人試玩。尚未達到原生或產品驗收。
+結果：PR #34 已執行 Debug／Beta 原生操作；修正挑戰回顧、下一關及匯出的點擊區。
+原因：新測試量到回顧控制只有 28.3 pt；另修正測試的捲動定位與系統分享選單查找。
+下一步：進行真機與 3–5 人試玩；本次僅完成模擬器操作及相關修正，不宣稱整個 1.2 驗收完成。
 
-## Source and change
+## Scope and changes
 
-Base: `e35d467687cb0c5fcfb6758b109e3096a8b61e5d`, branch `codex/tg12-tactical-expedition`.
-Only the expedition product-entry UI test changes: Debug now passes the existing
-`--full-game` argument. `TacticalGoApp.productRoot` otherwise launches the legacy
-home, whose challenge button directly opens the introduction catalog. The test
-expects the expansion home's `openExpedition` menu item. Beta already selects
-`FullGameRoot` and needs no additional argument.
+Start: `478c4e1da050abb0aa2a42adddbc3220d78c1b46`, branch
+`codex/tg12-tactical-expedition`, Draft PR #34. The previous native preparation
+commit selected the existing `--full-game` product root for the Debug entry test.
 
-This is a source-confirmed test setup correction. Neither the original failure
-nor the corrected UI interaction has been executed on a simulator yet. No App,
-Core, Bot, save, admission, release configuration or gameplay behavior changed.
+- `ChallengesView`: give review, next-stage and observation-export labels a
+  minimum 44 pt hit target, consistent with the other challenge controls.
+- Native tests: replay all three reviewed witnesses through the product route;
+  assert the last enemy receipt, 4/6/6 player actions and 0/6/0 mana, completion
+  lock, retry reset, next stage, 3/3 progress and system Copy export.
+- Check visibility before querying XCTest hittability. Before tapping a board
+  intersection, scroll that point away from the system gesture region, recompute
+  its position and assert the selected coordinate. Do not retry taps.
+- iOS 27 exposes the system Copy action as a cell. The test uses that observed
+  accessibility type instead of looking for a button.
 
-## Executed evidence
+No Core rules, prices, admission, save format, release configuration, build
+number, signing or account settings changed. The helpers fix test positioning;
+they do not change the product's board-to-coordinate mapping.
 
-Toolchain: Xcode 27.1 (27A9275), Apple Swift 6.4, arm64 macOS.
+## Execution matrix
 
-| Check | Result | Limit |
+Toolchain: Xcode 27.1 (27A9275), Apple Swift 6.4, arm64 macOS. All devices below
+were created for this task. Beta uses its own clean device and normal product
+root; its production journal intentionally ignores `--record-isolation`.
+
+| Configuration / device | Actual result | Coverage / limitation |
 |---|---|---|
-| Original PR Debug `build-for-testing` | exit 0, arm64 + x86_64 | Compiled App and UI test bundle; did not run UI tests |
-| Corrected Debug `build-for-testing` | exit 0, arm64 + x86_64 | Same execution limit |
-| Corrected Beta `build-for-testing` | exit 0, arm64 | Actual product compilation path; no signing/upload |
-| macOS `swift test` | 464 executed, 0 unexpected failures, 0 skipped | 463 ordinary passes and 1 test with the pre-existing expected Bot failure |
-| `git diff --check` | Passed | Whitespace only |
+| Debug / iPhone Duo 27.1 | Baseline 2/2 and 13/14; one mage harness failure subsequently repaired | Product entry, separate chapters, menu first tap, rogue, old challenge regression; do not relabel the original failure |
+| Debug / iPhone Duo, Reduce Motion | 2 completed passes, then device shutdown interrupted the third test | Full expedition flow and board/picker mapping passed; remaining interrupted cases resumed on SE |
+| Debug / iPhone SE (3rd gen), 27.0 | 8/8; affected hero cases later 3/3 | Small screen, full expedition, board-hit regression, menu and both rogue setups |
+| Debug / iPad Pro 11-inch (M4), 27.0 | 3/3; restored mutation control 1/1 | Full expedition in landscape, portrait/landscape saved-run restore, both old catalogs |
+| Beta / independent iPhone Duo 27.1 | Full flow 1/1; entry/rogue batch 3/4 before helper repair, final hero cases 3/3 | Latest outcome for all five selected Beta methods passed; includes a saved-match lobby row |
+| Final unique configuration/test pairs | **Debug 20; Beta 5; all latest outcomes passed** | Aggregated across the above targeted runs, not a single 25-test suite; no skips |
 
-The eight XCTest target totals are 11, 52, 13, 121, 104, 76, 53 and 34. They sum to
-464; trailing Swift Testing messages containing zero tests are not additional
-tests. Darwin still reports the known unnecessary Sanctum use in
-`PriestSanctumBotTests` as `XCTExpectFailure`; this does not fix the Bot or establish
-balance. The previous Linux result (one skip) remains separate evidence.
+Debug and Beta final App/UI-test builds succeeded on arm64. The earlier Debug
+arm64/x86_64 builds and macOS package result remain in the evidence. A temporary
+simulator-only Objective-C probe called `UIAccessibilityIsReduceMotionEnabled()`
+and returned true before the Duo Reduce Motion run.
 
-Existing warnings remain: forced downcast in `PlayableGameView.swift:402`, duplicate
-PrivacyInfo resource, and AppIntents extraction without that framework. They were
-not changed in this bounded validation task.
-
-Machine-readable results and log hashes:
+The baseline Debug batches ran the compiled `478c4e1` tests. Later source hashes,
+configuration-specific builds, per-run counts and negative runs are retained in
 [validation.json](../../artifacts/tg12/native-validation/validation.json).
-Raw logs are retained locally under ignored `ios/Build/tg12-native-20261022/`;
-they are not included in the public branch. Historical memory and master-plan
-files remain outside this delivery.
+Re-runs overlap earlier tests and must not be summed as unique coverage.
 
-## Reproduce compilation
+## Failure and repair evidence
 
-From the repository root (the temporary derived-data paths may be replaced):
+1. The original mage board-hit test failed while asking for an offscreen
+   confirmation button's hittability. After preventing that query, the trace
+   exposed a subsequent board point near the top system gesture region: only
+   three player actions were accepted. Scroll the actual target into the visible
+   region and verify the selected coordinate before confirming.
+2. A fresh Beta app built with the target's empty CROWN values terminated with
+   `GADInvalidInitializationException`. For simulator execution only, build with
+   the same Google test application ID already used by Debug, keeping the
+   rewarded-unit ID empty. This is a runbook correction, not an account or release
+   configuration change. The original failing launch and system log are retained.
+3. Both initial full-flow tests completed three stages and opened the real share
+   UI, then failed because Copy was a cell rather than a button. Correct the
+   locator and verify the copied JSON through `simctl pbpaste`.
+4. The 44 pt regression assertion failed at 28.333 pt before the view fix. Preserve
+   that result separately from the successful candidate.
+5. While the iOS 27.0 runtime became available, both task devices stopped and two
+   batches lost their sessions. Keep their partial results; resume only unfinished
+   tests. The cancellation does not count as a successful run.
+
+The hero regression also exposed a harness assumption when Beta retained a
+saved-match row: the oversized card-art accessibility frame could be considered
+hittable while only its top edge was visible. Target the hero name, let XCTest
+bring it into view, tap once, and assert the named hero becomes selected. An
+intermediate attempt incorrectly required the child label itself to report
+hittability; those failed runs are retained. Both final Debug and Beta hero
+batches passed 3/3. No skill visibility or hero-selection product logic changed.
+
+Focused mutation: change only the review label minimum height from 44 to 20 pt.
+The iPad full-flow test failed at 28.5 < 44 pt. Restore the view byte-for-byte,
+rebuild, and rerun that same full-flow method: passed. The final test also brings
+the last white receipt into view before the screenshot, so mere accessibility
+existence is not treated as visible review content.
+
+System Copy produced valid JSON. Beta exported 27 events: 17 player actions,
+three completed results and one retry with a reset clock. The SE and iPad exports
+each had 29 events, additionally including one pause/resume pair with identical
+activeSeconds, proving their real background interval was excluded. The Duo
+quick Home/activate pair produced no pause event; background accounting is
+claimed from the SE/iPad runs, not that quick pair. These are automated test
+observations, not human playtest data.
+
+## Reproduce
 
 ```sh
 swift test --package-path swift/TacticalGoCore --jobs 2
 xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
   -configuration Debug -destination 'generic/platform=iOS Simulator' \
-  -derivedDataPath /tmp/tg12-native-20261022/DerivedData -jobs 2 \
-  CODE_SIGNING_ALLOWED=NO build-for-testing
+  -derivedDataPath /tmp/tg12-debug ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build-for-testing
 xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta \
   -configuration Beta -destination 'generic/platform=iOS Simulator' \
-  -derivedDataPath /tmp/tg12-native-20261022/BetaDerivedData -jobs 2 \
-  ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build-for-testing
+  -derivedDataPath /tmp/tg12-beta ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \
+  CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511 build-for-testing
 ```
 
-## Pending native execution
+Run `test-without-building` with the matching configuration/derived-data path,
+`-destination 'platform=iOS Simulator,id=<TASK_DEVICE>'`,
+`-parallel-testing-enabled NO`, a unique `-resultBundlePath`, and the explicit
+`-only-testing:TacticalGoUITests/<class>/<test>` selections in `validation.json`.
+Use `-collect-test-diagnostics never` to avoid the ten-minute sysdiagnose after
+an expected negative run; test logs, screenshots and xcresults are still kept.
+Run the methods prefixed `testIPad` and `testTablet` only on iPad.
 
-`xcrun simctl list runtimes --json` returned no runtimes, and
-`xcrun devicectl list devices` found no devices. The iOS 27.1 arm64 runtime download
-was started. Neither downloading a runtime nor compiling its SDK proves UI execution.
+Inspect `xcrun xcresulttool get test-results summary --path <xcresult> --format json`.
+Screenshots and failure traces live in those bundles. On iPhone Duo, the active
+LCD is `simctl io <UDID> screenshot --display=1`; the default LCD-1 can be black.
+Raw logs, exported payloads, screenshots and xcresults are retained locally under
+ignored `ios/Build/tg12-native-20261022/`; they are not public branch content.
 
-Once installed, select an available iPhone simulator with
-`xcrun simctl list devices available`, boot it, and substitute its UDID below.
-Use a fresh simulator for Beta: its challenge journal intentionally ignores the
-Debug-only `--record-isolation` argument. Never reset an Owner device's data.
+## Boundaries
 
-```sh
-xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
-  -configuration Debug -destination 'platform=iOS Simulator,id=<UDID>' \
-  -derivedDataPath /tmp/tg12-native-20261022/DerivedData \
-  -parallel-testing-enabled NO -resultBundlePath /tmp/tg12-debug-ui.xcresult \
-  -only-testing:TacticalGoUITests/AdvancedChallengeUITests \
-  -skip-testing:TacticalGoUITests/AdvancedChallengeUITests/testIPadPortraitLandscapeAndRestoredSelectedRun \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening \
-  CODE_SIGNING_ALLOWED=NO test-without-building
-xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGoBeta \
-  -configuration Beta -destination 'platform=iOS Simulator,id=<FRESH_BETA_UDID>' \
-  -derivedDataPath /tmp/tg12-native-20261022/BetaDerivedData \
-  -parallel-testing-enabled NO -resultBundlePath /tmp/tg12-beta-ui.xcresult \
-  -only-testing:TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible \
-  -only-testing:TacticalGoUITests/ExpansionLabTests/testRogueWhiteStandardDualNewMatchKeepsBothSkillsAfterComputerOpening \
-  CODE_SIGNING_ALLOWED=NO test-without-building
-```
+The prior macOS Swift package run remains 464 executed, 463 ordinary passes,
+1 test with the known expected Sanctum Bot failure, 0 unexpected failures and
+0 skips. No package implementation changed during this native follow-up, so that
+suite was not rerun. The Linux one-skip result remains separate evidence.
 
-Inspect actual test counts, skips, screenshots and failures in each xcresult.
-Extend to small iPhone, iPad landscape, Reduced Motion and foreground/background
-as specified in `UX_INVESTIGATION.md`. Full expedition completion, final enemy
-reply, review, retry, next stage and observation export still need native checks;
-the existing expedition UI test covers entry and progress isolation only.
-
-C# replay/parity was not run (`dotnet` unavailable). Focused UI mutation, real-device
-acceptance and independent human playtests were not run. No merge, TestFlight
-upload, release, fun or retention claim follows from this report.
+C# replay/parity was not run (`dotnet` unavailable). No real iPhone/iPad hardware,
+real 1.0 save sample, human playtest, listening/art approval, purchase/ad network
+acceptance or release acceptance follows from this scoped UI validation.
+Existing forced-cast, duplicate PrivacyInfo, AppIntents and audio-session warnings
+remain. No main merge, TestFlight upload, publication, fun or retention claim.

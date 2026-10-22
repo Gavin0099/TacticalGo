@@ -813,6 +813,16 @@ import XCTest
     }
     private func tap(_ app: XCUIApplication,_ id: String) {
         let b = app.buttons[id]
+        if let title = ["choose-warrior":"戰士", "choose-mage":"法師", "choose-rogue":"盜賊", "choose-priest":"牧師"][id] {
+            // Card artwork extends its accessibility frame. A saved-match row
+            // can leave only that frame's top edge visible. Let XCTest reveal
+            // the name, whose frame matches the visible label, before its tap.
+            let name = b.staticTexts[title]
+            XCTAssertTrue(name.waitForExistence(timeout: 5), id)
+            name.tap()
+            XCTAssertTrue(b.isSelected, "One tap must select the named hero: \(id)")
+            return
+        }
         for _ in 0..<8 {
             if b.isHittable { break }
             if b.frame.minY < app.windows.firstMatch.frame.minY+30 { app.swipeDown() } else { app.swipeUp() }
