@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          swift test --skip TG12GameplayResearchTests 2>&1 | tee swift-unit.log | tail -n 60
+          swift test --skip TG12GameplayResearchTests 2>&1 | tee swift-unit.log
       - name: TG12 gameplay research (Release)
         working-directory: swift/TacticalGoCore
         env:
@@ -35,21 +35,31 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          swift test -c release --filter TG12GameplayResearchTests 2>&1 | tee tg12-research.log | tail -n 60
+          swift test -c release --filter TG12GameplayResearchTests 2>&1 | tee tg12-research.log
       - name: P0 observation tool tests
         working-directory: scripts/tg12-p0-research
         shell: bash
         run: |
           set -o pipefail
-          swift test -c release 2>&1 | tee p0-observer.log | tail -n 60
-      - name: Preserve complete test and research output
+          swift test -c release 2>&1 | tee p0-observer.log
+      - name: Preserve complete research JSON in log and summary
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: swift-and-tg12-evidence
-          path: |
-            swift/TacticalGoCore/swift-unit.log
-            swift/TacticalGoCore/tg12-research.log
-            swift/TacticalGoCore/tg12-research.json
-            scripts/tg12-p0-research/p0-observer.log
-          if-no-files-found: warn
+        shell: bash
+        run: |
+          # This repository allows checkout/setup-python actions only. Use native
+          # logs/summary for evidence; do not change the Actions allowlist.
+          research_file=swift/TacticalGoCore/tg12-research.json
+          if [[ -f "$research_file" ]]; then
+            echo TG12_RESEARCH_FILE_JSON_BEGIN
+            cat "$research_file"
+            echo
+            echo TG12_RESEARCH_FILE_JSON_END
+            sha256sum "$research_file"
+            {
+              echo '### TG12 bounded research output'
+              echo '```json'
+              cat "$research_file"
+              echo
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi

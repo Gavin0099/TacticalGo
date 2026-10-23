@@ -71,6 +71,8 @@ Core 為舊棋譜保留 `MagicHand`，更新版 UI／Bot 在 `expansionSkills &&
 | 故意改壞第一筆收據的 AP | 拒絕，exit 1；原棋譜仍有效 |
 | `python3 scripts/tg12-p0-research/summarize.py artifacts/tg12/gameplay-p0-20261023 --check` | 統計與五組前綴核對一致 |
 
-原始 SHA `3e48a5e` Linux CI 為 465 項、1 個已知略過、0 失敗，兩項 required checks 通過。這不替代本次修正提交的 CI，請以 PR #35 最新 head 的 checks 與 `swift-and-tg12-evidence` artifact 為準。新 CI 保留原 Debug 測試，將研究測試單獨跑 Release，另跑觀察器測試。
+原始 SHA `3e48a5e` Linux CI 為 465 項、1 個已知略過、0 失敗，兩項 required checks 通過。這不替代本次修正提交的 CI，請以 PR #35 最新 head 的 checks 與完整工作流程日誌為準。新 CI 保留原 Debug 測試，將研究測試單獨跑 Release，另跑觀察器測試。
+
+第一次修正提交 `b21bcfc` 的 Swift workflow 在啟動前被 Actions 允許清單拒絕（新增的 `actions/upload-artifact` 不在清單），沒有產生測試結果。後續移除該 action，以原生工作流程日誌及 step summary 保存直接寫檔後的 JSON，沒有改儲存庫安全設定或允許清單。
 
 未執行：本輪 C# replay／跨語言 parity、iPhone 效能、真人玩法評估、完整 P1 反制／優勢分析。沒有更改產品 Core，因此本輪測試不能當成這些 Gate 已通過。
