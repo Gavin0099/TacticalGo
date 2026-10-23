@@ -1,0 +1,312 @@
+{
+  "date": "2026-10-23",
+  "validation_base_commit": "05aa18db845e3cea8211d5fb462914d9b4f9ab7c",
+  "branch": "codex/tg12-tactical-expedition",
+  "pr": 34,
+  "scope": "Existing product UI/renderer integration for challenges; no Core/rule/journal/paid-access change",
+  "source_sha256": {
+    "ios/TacticalGo/ChallengesView.swift": "01e68aab042fc0a7af12a84fdfb81a9dba955a3e07feead886d5c8c783c12e36",
+    "ios/TacticalGo/CozyBoard.swift": "921ddb415d3b1714996f9f842ab11831898b38aed5650d34572d059957f0d270",
+    "ios/TacticalGoUITests/AdvancedChallengeUITests.swift": "53bdd4fdce3bdb25cc4670f7d692634d8fb6249d55d128b5545447301ca62cc9"
+  },
+  "latest_unique_configuration_test_pairs": {
+    "Debug_iPad": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "Beta_SE": {
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "runs": [
+    {
+      "name": "beta-cost-cancel",
+      "classification": "pre-final presentation pass",
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "failures": [],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-cost-cancel.xcresult"
+    },
+    {
+      "name": "debug-ipad",
+      "classification": "initial wide-card hit failure",
+      "result": "Failed",
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "skipped": 0,
+      "failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testExpeditionProductEntryAndSeparateChapterProgress",
+          "testName": "testExpeditionProductEntryAndSeparateChapterProgress()"
+        },
+        {
+          "failureText": "XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 2,
+          "testIdentifierString": "AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testIPadExpeditionThreeStagesReviewRetryNextAndExport",
+          "testName": "testIPadExpeditionThreeStagesReviewRetryNextAndExport()"
+        },
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 3,
+          "testIdentifierString": "AdvancedChallengeUITests/testTabletLandscapeSharedBoardAndChapterSelection()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testTabletLandscapeSharedBoardAndChapterSelection",
+          "testName": "testTabletLandscapeSharedBoardAndChapterSelection()"
+        }
+      ],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/debug-ipad.xcresult"
+    },
+    {
+      "name": "beta-fee-mutation",
+      "classification": "inconclusive: restored Beta run bypassed catalog",
+      "result": "Failed",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview",
+          "testName": "testExpeditionSkillCardCostAndCancelledPreview()"
+        }
+      ],
+      "runtime_warnings": [
+        {
+          "issueType": "Runtime Warning",
+          "message": "Invalid frame dimension (negative or non-finite)."
+        }
+      ],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-fee-mutation.xcresult"
+    },
+    {
+      "name": "beta-cost-final",
+      "classification": "prior-run restore blocked catalog lookup",
+      "result": "Failed",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "failures": [
+        {
+          "failureText": "XCTAssertTrue failed",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview",
+          "testName": "testExpeditionSkillCardCostAndCancelledPreview()"
+        }
+      ],
+      "runtime_warnings": [
+        {
+          "issueType": "Runtime Warning",
+          "message": "Invalid frame dimension (negative or non-finite)."
+        }
+      ],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-cost-final.xcresult"
+    },
+    {
+      "name": "beta-fee-negative",
+      "classification": "expected UI fee assertion failure",
+      "result": "Failed",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "failures": [
+        {
+          "failureText": "XCTAssertEqual failed: (\"築壘，1 AP，4 能量\") is not equal to (\"築壘，1 AP，2 能量\")",
+          "targetName": "TacticalGoUITests",
+          "testIdentifier": 1,
+          "testIdentifierString": "AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview()",
+          "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview",
+          "testName": "testExpeditionSkillCardCostAndCancelledPreview()"
+        }
+      ],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-fee-negative.xcresult"
+    },
+    {
+      "name": "beta-cost-restored",
+      "classification": "final positive",
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "failures": [],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-cost-restored.xcresult"
+    },
+    {
+      "name": "beta-three-stages",
+      "classification": "final positive",
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "failures": [],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/beta-three-stages.xcresult"
+    },
+    {
+      "name": "debug-ipad-repaired",
+      "classification": "final positive",
+      "result": "Passed",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "failures": [],
+      "runtime_warnings": [],
+      "local_xcresult": "ios/Build/tg12-ui-20261023/debug-ipad-repaired.xcresult"
+    }
+  ],
+  "fee_mutation": {
+    "type": "UI-only fee label 2 -> 4; Core unchanged",
+    "candidate_sha256": "01e68aab042fc0a7af12a84fdfb81a9dba955a3e07feead886d5c8c783c12e36",
+    "fresh_beta_app_for_each_run": true,
+    "mutation_exit_code": 65,
+    "failures": [
+      {
+        "failureText": "XCTAssertEqual failed: (\"築壘，1 AP，4 能量\") is not equal to (\"築壘，1 AP，2 能量\")",
+        "targetName": "TacticalGoUITests",
+        "testIdentifier": 1,
+        "testIdentifierString": "AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview()",
+        "testIdentifierURL": "test://com.apple.xcode/TacticalGo/TacticalGoUITests/AdvancedChallengeUITests/testExpeditionSkillCardCostAndCancelledPreview",
+        "testName": "testExpeditionSkillCardCostAndCancelledPreview()"
+      }
+    ],
+    "sensitivity_proven": true,
+    "restored_sha256": "01e68aab042fc0a7af12a84fdfb81a9dba955a3e07feead886d5c8c783c12e36",
+    "restored_exactly": true
+  },
+  "exports": [
+    {
+      "source": "automated simulator run",
+      "local_path": "ios/Build/tg12-ui-20261023/beta-observation-export.json",
+      "sha256": "33b610ec6a62ad577193b03e1267dc5835564b332d93e12ac2586f09850622d9",
+      "events": 29,
+      "kind_counts": {
+        "start": 3,
+        "action": 17,
+        "leave": 3,
+        "retry": 1,
+        "pause": 1,
+        "resume": 1,
+        "result": 3
+      },
+      "completed_results": 3,
+      "pause_resume_active_seconds_equal": true
+    },
+    {
+      "source": "automated simulator run",
+      "local_path": "ios/Build/tg12-ui-20261023/ipad-observation-export.json",
+      "sha256": "e962390ec9a83be601c74db827fc16b4f192316333933062c392f6925219fb54",
+      "events": 29,
+      "kind_counts": {
+        "start": 3,
+        "action": 17,
+        "leave": 3,
+        "retry": 1,
+        "pause": 1,
+        "resume": 1,
+        "result": 3
+      },
+      "completed_results": 3,
+      "pause_resume_active_seconds_equal": true
+    }
+  ],
+  "physical_delivery": {
+    "model": "iPhone 16 Pro",
+    "os": "27.0",
+    "connection": "localNetwork/Wi-Fi",
+    "bundle_id": "com.tacticalgo.prototype.tg12verify",
+    "display_name": "皇冠戰略 TG12 驗收",
+    "version": "1.1",
+    "build": "1106",
+    "signature_checks": {
+      "signature_valid": true,
+      "isolated_bundle": true,
+      "candidate_name": true,
+      "development_entitlements": true,
+      "app_identifier": true,
+      "phone_provisioned": true,
+      "profile_unexpired": true,
+      "iphoneos": true
+    },
+    "install": "success",
+    "foreground_launch_request": "success",
+    "original_app_build_preserved": "1119",
+    "expedition_save_bytes_preserved": true,
+    "updated_ui_human_acceptance": "pending",
+    "full_hardware_playthrough": "not_run",
+    "independent_testers": "not_run"
+  },
+  "cleanup": {
+    "task_devices_deleted": 2,
+    "verified_removed": true,
+    "allocated_bytes_before": 5905182720,
+    "raw_result_bundles_preserved": 8
+  },
+  "assets": "Reused existing pinned P02, P07/P08 clean plates and product UI/portrait assets; no bitmap/audio modifications",
+  "not_run": [
+    "Full physical gameplay acceptance",
+    "3-5 independent human playtests",
+    "C# replay/parity",
+    "Real 1.0 save sample compatibility",
+    "Physical iPad",
+    "Listening/art and purchase/ad-network acceptance"
+  ],
+  "claim_boundary": "Engineering presentation and install evidence only; no overall 1.2, fun/balance, main merge, TestFlight or release claim",
+  "local_evidence_root": "ios/Build/tg12-ui-20261023",
+  "log_sha256": {
+    "ios/Build/tg12-ui-20261023/physical-signed-build.log": "1eb77ec1112ef90fe5af1e6bcc3acb7e67632cec56df6dba340ff0a00877baf2",
+    "ios/Build/tg12-ui-20261023/beta-restored-build.log": "8cf7651361ec1895154aca12884545c2cee95a708f176e0a4e153af384ddedbd",
+    "ios/Build/tg12-ui-20261023/beta-fee-mutation.log": "132cff17e0665e41b3f7e3e2d09b6feb20cf3b5c363573a0cb581767f8572a42",
+    "ios/Build/tg12-ui-20261023/phone-install.log": "f1d433b57d5c84559ff178120ceba8525498ca82de2f88fa72bd0cf23687bc76",
+    "ios/Build/tg12-ui-20261023/phone-postinstall-copy.log": "6eec0277d5865bfddd744ad2c6d8ad945233979e56651b4fd052ce59e73e31a8",
+    "ios/Build/tg12-ui-20261023/phone-preinstall-copy.log": "01a587784e53338e23e2511e55f429f4c04176dc55fd1ca6e0bce2bf5a2cd3bd",
+    "ios/Build/tg12-ui-20261023/ipad-attachment-export.log": "68db298ec65fc46f439f5193a62088863ab1deb161243afa102e0946643eb3f1",
+    "ios/Build/tg12-ui-20261023/phone-launch.log": "d25e9a060700093ccb5e0adabf629b523537fbf8284edecb6dc2f3a52e7b8dc6",
+    "ios/Build/tg12-ui-20261023/beta-cost-cancel.log": "d39b641a28cfea1d473d550b4ac340d3415ab163d107c2a5a50bd1a4c7b3077d",
+    "ios/Build/tg12-ui-20261023/phone-copy-before.log": "74875cfa6a071786a1d3f4b43a336d5ffa6c83ea45fb760f482e902a55eefec6",
+    "ios/Build/tg12-ui-20261023/beta-se-boot.log": "89a43d444ce4673440bf0d77994bde7631d95a58cf0f2f80834ddebed12298c0",
+    "ios/Build/tg12-ui-20261023/beta-three-stages.log": "eab19d606b0d71d33e42917a600bc65b8a006c6cc6b323f908f6c4a8ddc9d608",
+    "ios/Build/tg12-ui-20261023/debug-build.log": "88c0f4f25a09a7bf2d6096d5f9adf335dcaf53afa737d358252134054ed2140b",
+    "ios/Build/tg12-ui-20261023/beta-cost-final.log": "1d6a7b4b63442348237585c5486c9666e20d4e1d7d17ac1078531dceee40288f",
+    "ios/Build/tg12-ui-20261023/beta-fee-negative-build.log": "89eaa86ddf0ba3e5e937f4d2939ada66af7e3b07f5bc0d0f8662a721a37b5633",
+    "ios/Build/tg12-ui-20261023/beta-cost-restored.log": "0b839289151fd529027d25eb6a484e6b0d437815c6ecd18b88e8c71f692f5e54",
+    "ios/Build/tg12-ui-20261023/beta-mutation-build.log": "50c0e567bccb24c5ceb138905401bccd6e07d269ae4958a010316afcbf24b9f7",
+    "ios/Build/tg12-ui-20261023/beta-build.log": "301b8174219df2b78ad031073dee6af628d4d7f53ad7c340c667bdebc323c489",
+    "ios/Build/tg12-ui-20261023/debug-ipad-repaired.log": "0b6db4a064fc8e374ff4060569f4dff02bd51963cb24a7e39e0d8ed75524a8f1",
+    "ios/Build/tg12-ui-20261023/ipad-boot.log": "e6ea4ac62996630779c99affe150d01393be30ac0be037fcdbd71d3fdc1c8c8d",
+    "ios/Build/tg12-ui-20261023/phone-apps-after.log": "337e47963bed338e64e41b2587c83169607502087afceafb74729d7ed14af141",
+    "ios/Build/tg12-ui-20261023/beta-fee-negative.log": "50c7914b30f4ec1f4e9ea41896a80ca6d9e4f3a7bebb28d62a4539719c75f939",
+    "ios/Build/tg12-ui-20261023/beta-attachment-export.log": "61a27588eabdea58ae4b4a41db0b7d91543b9c1e2538ba3262d9086a49c14fab",
+    "ios/Build/tg12-ui-20261023/debug-final-build.log": "9b5b3e302d79630ee87199ba80e4f0494574afdb350c7d88ad27132b4ee543f9",
+    "ios/Build/tg12-ui-20261023/beta-tests-build.log": "054a8c09d2b522fe4b3b9afdc4631ee8e1d481c42f1360047fe70fc2245afe95",
+    "ios/Build/tg12-ui-20261023/beta-final-build.log": "cee67d56e064071ef648bfeaa62693ba631830a6a2577d31574b9416bbefbf35",
+    "ios/Build/tg12-ui-20261023/debug-ipad.log": "82d0c153903328f75261b44295aec3e23c9769bbdae5fc0d61441d7c3c474058",
+    "ios/Build/tg12-ui-20261023/debug-card-hit-build.log": "7fc1bed74cc67037996872561bf1b31681944b2dc92818e791f289ac4614c589"
+  }
+}

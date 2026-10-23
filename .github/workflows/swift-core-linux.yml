@@ -12,6 +12,7 @@ on:
     branches: [main]
     paths:
       - "swift/TacticalGoCore/**"
+      - "scripts/tg12-p0-research/**"
       - ".github/workflows/swift-core-linux.yml"
 
 jobs:
@@ -21,6 +22,86 @@ jobs:
     container: swift:6.0
     steps:
       - uses: actions/checkout@v4
-      - name: swift test (package)
+      - name: Swift unit tests (Debug)
         working-directory: swift/TacticalGoCore
-        run: swift test 2>&1 | tail -n 60
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test --skip TG12GameplayResearchTests 2>&1 | tee swift-unit.log
+      - name: TG12 gameplay research (Release)
+        working-directory: swift/TacticalGoCore
+        env:
+          TG12_RESEARCH_OUTPUT: ${{ github.workspace }}/swift/TacticalGoCore/tg12-research.json
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test -c release --filter TG12GameplayResearchTests 2>&1 | tee tg12-research.log
+      - name: P0 observation tool tests
+        working-directory: scripts/tg12-p0-research
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test -c release 2>&1 | tee p0-observer.log
+      - name: P1 same-state counterfactual (four-hero research smoke)
+        shell: bash
+        run: |
+          set -o pipefail
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p1 \
+            artifacts/tg12/gameplay-p0-20261023/complete-games \
+            scripts/tg12-p0-research/p1-selection-v1.json \
+            tg12-p1-ci.json 4 2>&1 | tee tg12-p1-ci.log
+          # The swift:6.0 container has no python3. Inspect the native research
+          # JSON using tools already present; keep the whole JSON in the job log.
+          test -s tg12-p1-ci.json
+          grep -q 'TG12_P1_SAME_STATE_COUNTERFACTUAL_V2' tg12-p1-ci.json
+          test "$(grep -c '"sourceSelectionReason" : "first-advanced-legal-ordinary-two-soldiers"' tg12-p1-ci.json)" -eq 4
+          echo P1_SAME_STATE_JSON_BEGIN
+          cat tg12-p1-ci.json
+          echo
+          echo P1_SAME_STATE_JSON_END
+          sha256sum tg12-p1-ci.json
+      - name: P1 pinned-selection rejection checks
+        shell: bash
+        run: |
+          bash scripts/tg12-p0-research/test-p1-contract.sh \
+            scripts/tg12-p0-research/.build/release/P0Runner \
+            artifacts/tg12/gameplay-p0-20261023/complete-games
+      - name: P1R Rogue ply60 response breadth and two-cycle replay
+        shell: bash
+        run: |
+          set -o pipefail
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner rogue \
+            artifacts/tg12/gameplay-p0-20261023/complete-games \
+            artifacts/tg12/gameplay-p1-20261023/results-v2.json \
+            tg12-p1r-ci.json 2>&1 | tee tg12-p1r-ci.log
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner rogue-verify \
+            artifacts/tg12/gameplay-p0-20261023/complete-games \
+            tg12-p1r-ci.json --negative-controls 2>&1 | tee tg12-p1r-verify.log
+          test -s tg12-p1r-ci.json
+          grep -q TG12_P1_ROGUE_COUNTERPLAY_V1 tg12-p1r-ci.json
+          echo TG12_P1R_JSON_BEGIN
+          cat tg12-p1r-ci.json
+          echo
+          echo TG12_P1R_JSON_END
+          sha256sum tg12-p1r-ci.json
+      - name: Preserve complete research JSON in log and summary
+        if: always()
+        shell: bash
+        run: |
+          # This repository allows checkout/setup-python actions only. Use native
+          # logs/summary for evidence; do not change the Actions allowlist.
+          research_file=swift/TacticalGoCore/tg12-research.json
+          if [[ -f "$research_file" ]]; then
+            echo TG12_RESEARCH_FILE_JSON_BEGIN
+            cat "$research_file"
+            echo
+            echo TG12_RESEARCH_FILE_JSON_END
+            sha256sum "$research_file"
+            {
+              echo '### TG12 bounded research output'
+              echo '```json'
+              cat "$research_file"
+              echo
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi

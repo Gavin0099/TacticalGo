@@ -17,7 +17,24 @@ struct CozyBoard: View {
     var mageRevision: MageArtRevision = .r1
     var markerStyle: HeroMarkerStyle = .thinRing
     var commercialStyle = false
+    #if DEBUG || TACTICALGO_V11
+    /// Product challenge skin; the receipt, projection and hit testing remain the original-rule renderer's.
+    var productAssets: P02CozyAssets? = nil
+    private static let warriorPlate = plate("warrior-clean-plate", directory: "PresentationLab/P07")
+    private static let roguePlate = plate("rogue-clean-plate", directory: "PresentationLab/P08")
+    private static func plate(_ name: String, directory: String) -> UIImage? {
+        Bundle.main.url(forResource: name, withExtension: "png", subdirectory: directory)
+            .flatMap { UIImage(contentsOfFile: $0.path) }
+    }
+    #endif
     let select: (Point) -> Void
+    private var productStyle: Bool {
+        #if DEBUG || TACTICALGO_V11
+        productAssets != nil
+        #else
+        false
+        #endif
+    }
     private var receipt: BoardPlayback? {
         guard let playback, playback.outcome.success, playback.outcome.state == presentation.state else { return nil }
         switch playback.action {
@@ -64,7 +81,7 @@ struct CozyBoard: View {
             return ["point": [p.x, p.y], "owner": piece.owner == .one ? "black" : "white", "kind": String(describing: piece.kind),
                     "center": [fit.x + center.x * fit.width, fit.y + center.y * fit.height]]
         }
-        let report: [String: Any] = ["renderer": "native SwiftUI CozyBoard", "pack": assets.anim.manifest.id,
+        let report: [String: Any] = ["renderer": "native SwiftUI CozyBoard", "pack": productStyle ? "PresentationLab/P02" : assets.anim.manifest.id, "productStyle": productStyle,
             "available": [available.width, available.height], "fitted": [fit.x, fit.y, fit.width, fit.height],
             "pitch": fit.pitch, "boardSize": board.size, "units": units,
             "heroRepresentation": "B-v02 original head/hand/staff pixels + masked garment clean plate; articulated mage",
@@ -96,10 +113,20 @@ struct CozyBoard: View {
         let displayed = showingAnimation ? receipt!.before.board : presentation.state.board
         let progress = clip?.progress(at: elapsed, reducedMotion: reducedMotion) ?? 1
         ZStack {
-            Image(uiImage: assets.shadow).resizable().frame(width: size.width, height: size.height)
-            if commercialStyle { Image("sell-board").resizable().frame(width:size.width,height:size.height) }
-            else { Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height) }
-            ArenaGrid(boardSize: presentation.state.board.size).stroke(Color.ink.opacity(0.30), lineWidth: 1)
+            #if DEBUG || TACTICALGO_V11
+            if let productAssets {
+                Image(uiImage: productAssets.shadow).resizable().frame(width: size.width, height: size.height)
+                Image(uiImage: productAssets.board).resizable().frame(width: size.width, height: size.height)
+                ArtBoardInlay(boardSize: presentation.state.board.size, boardImage: productAssets.board, pitch: pitch)
+                    .equatable().frame(width: size.width, height: size.height)
+                ArtLegalMarkers(points: presentation.legal.filter { displayed.isEmpty($0) }.map { point($0, size: size) },
+                    pitch: pitch, reduced: reducedMotion || !animating).zIndex(8)
+            } else {
+                legacySurface(size: size)
+            }
+            #else
+            legacySurface(size: size)
+            #endif
             if effectsEnabled, let receipt, let fx = receipt.skillVFX {
                 SkillVFXLayer(receipt:receipt,plan:fx,elapsed:elapsed,pitch:pitch,size:size,reduced:reducedMotion,foreground:false,center:{point($0,size:size)})
                     .id(receipt.id).zIndex(3)
@@ -109,24 +136,31 @@ struct CozyBoard: View {
                 let captured = clip?.captures.first { $0.at == p }
                 let captureOpacity = elapsed < timing.captureStart ? 1.0 : max(0, 1 - (elapsed - timing.captureStart) / (timing.captureEnd - timing.captureStart))
                 ZStack {
-                    if presentation.legal.contains(p) { Circle().fill(Color.white.opacity(0.40)).frame(width: pitch * 0.15) }
+                    if presentation.legal.contains(p) {
+                        if productStyle && !displayed.isEmpty(p) {
+                            Circle().stroke(Color(red: 0.25, green: 0.85, blue: 0.63), lineWidth: 2)
+                                .frame(width: pitch * 0.82, height: pitch * 0.82)
+                        } else if !productStyle {
+                            Circle().fill(Color.white.opacity(0.40)).frame(width: pitch * 0.15)
+                        }
+                    }
                     if !hideMovedSource, !(mageSummoning && p == summonPoint), !generic.hidden.contains(p), let piece = displayed[p] {
                         token(piece, pitch: pitch, magePose: showingAnimation && p == clip?.hero ? MageBodyPose.cast(at: elapsed, timing: timing, revision: mageRevision) : .rest,
-                              heroPose: p == heroPerformance?.hero ? bodyPose(piece,receipt:receipt,elapsed:elapsed) : .rest).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
+                              heroPose: p == heroPerformance?.hero ? bodyPose(piece,receipt:receipt,elapsed:elapsed) : .rest, elapsed: elapsed).opacity(showingAnimation && captured != nil ? captureOpacity : 1)
                     }
                 }.position(point(p, size: size)).zIndex(Double(p.y) * 10 + 10)
             }
             ForEach(generic.sprites.filter { !(summonPoint != nil && $0.piece.kind == .hero && $0.to == summonPoint && $0.piece.owner == receipt?.before.current) }) { sprite in
                 let a = point(sprite.from, size: size), b = point(sprite.to, size: size)
                 let bodySummon = heroPerformance?.isSummon == true && sprite.piece.kind == .hero && sprite.piece.owner == receipt?.before.current
-                token(sprite.piece, pitch: pitch,heroPose:bodyPose(sprite.piece,receipt:receipt,elapsed:elapsed))
+                token(sprite.piece, pitch: pitch,heroPose:bodyPose(sprite.piece,receipt:receipt,elapsed:elapsed), elapsed: elapsed)
                     .scaleEffect(bodySummon ? 1 : sprite.scale).opacity(sprite.opacity)
                     .position(x: a.x + (b.x - a.x) * sprite.progress + sprite.lateral,
                               y: a.y + (b.y - a.y) * sprite.progress + (bodySummon ? 0 : sprite.lift))
                     .zIndex(180 + Double(sprite.to.y))
             }
             if mageSummoning, let summonPoint, let piece = presentation.state.board[summonPoint] {
-                token(piece, pitch: pitch, magePose: MageBodyPose.summon(at: elapsed, timing: timing, revision: mageRevision))
+                token(piece, pitch: pitch, magePose: MageBodyPose.summon(at: elapsed, timing: timing, revision: mageRevision), elapsed: elapsed)
                     .position(point(summonPoint,size: size)).zIndex(Double(summonPoint.y)*10+10)
             }
             if let receipt, case .summonHero = receipt.action, !reducedMotion, effectsEnabled {
@@ -231,9 +265,55 @@ struct CozyBoard: View {
         let direction = target.map { $0.x < p.hero.x ? -1.0 : 1.0 } ?? 1
         return HeroBodyPose.skill(p.heroClass,at:elapsed,direction:direction)
     }
-    private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest,heroPose: HeroBodyPose = .rest) -> some View {
+    @ViewBuilder private func token(_ piece: Piece, pitch: CGFloat, squash: Double = 1, magePose: MageBodyPose = .rest,heroPose: HeroBodyPose = .rest, elapsed: Double = 0) -> some View {
+        #if DEBUG || TACTICALGO_V11
+        if let productAssets {
+            let hero = presentation.state.heroClass(of: piece.owner)
+            let performing = receipt?.heroPerformance?.isSummon == false && piece.owner == receipt?.before.current && elapsed < (receipt?.visualDuration ?? 0)
+            if piece.kind == .commander {
+                ArtKing(black: piece.owner == .one, pitch: pitch, active: presentation.state.current == piece.owner && presentation.state.status == .ongoing, reduced: reducedMotion || !animating)
+            } else if piece.kind == .hero, hero == .warrior, let image = productAssets.heroes[hero], let plate = Self.warriorPlate {
+                ZStack {
+                    P02SellUnitBase(black: piece.owner == .one, commander: false, width: pitch * 0.74).offset(y: pitch * 0.03)
+                    WarriorBodyView(original: image, plate: plate, pose: performing ? .skill(at: elapsed, reduced: reducedMotion, weighted: true) : .rest, width: pitch * 0.88)
+                        .offset(y: pitch * 0.88 * (0.5 - 448.0 / 512))
+                    P02SellUnitFrontRim(black: piece.owner == .one, width: pitch * 0.74).offset(y: pitch * 0.03)
+                    faction(piece, pitch: pitch)
+                }
+            } else if piece.kind == .hero, hero == .rogue, let image = productAssets.heroes[hero], let plate = Self.roguePlate {
+                ZStack {
+                    P02SellUnitBase(black: piece.owner == .one, commander: false, width: pitch * 0.74).offset(y: pitch * 0.03)
+                    ExpansionHeroBody(original: image, plate: plate, hero: hero, pose: performing ? .rogue(at: elapsed, reduced: reducedMotion) : .rest, width: pitch * 0.88)
+                        .offset(y: pitch * 0.88 * (0.5 - 448.0 / 512))
+                    P02SellUnitFrontRim(black: piece.owner == .one, width: pitch * 0.74).offset(y: pitch * 0.03)
+                    faction(piece, pitch: pitch)
+                }
+            } else {
+                P02CozyToken(piece: piece, assets: productAssets, pitch: pitch, squash: squash, magePose: magePose, commercialStyle: true, heroClass: hero)
+            }
+        } else {
+            CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, commercialStyle:commercialStyle, heroClass: presentation.state.heroClass(of: piece.owner))
+        }
+        #else
         CozyToken(piece: piece, assets: assets, pitch: pitch, squash: squash, magePose: magePose, heroPose:heroPose,markers: markerStyle, commercialStyle:commercialStyle, heroClass: presentation.state.heroClass(of: piece.owner))
+        #endif
     }
+    private func legacySurface(size: CGSize) -> some View {
+        ZStack {
+            Image(uiImage: assets.shadow).resizable().frame(width: size.width, height: size.height)
+            if commercialStyle { Image("sell-board").resizable().frame(width: size.width, height: size.height) }
+            else { Image(uiImage: assets.board).resizable().frame(width: size.width, height: size.height) }
+            ArenaGrid(boardSize: presentation.state.board.size).stroke(Color.ink.opacity(0.30), lineWidth: 1)
+        }
+    }
+    #if DEBUG || TACTICALGO_V11
+    private func faction(_ piece: Piece, pitch: CGFloat) -> some View {
+        Group {
+            if piece.owner == .one { Circle().fill(P02Cozy.card).overlay(Circle().fill(P02Cozy.coordinate).padding(0.7)) }
+            else { Rectangle().fill(P02Cozy.ink).overlay(Rectangle().fill(P02Cozy.card).padding(1)).rotationEffect(.degrees(45)) }
+        }.frame(width: max(3.5, pitch * 0.1), height: max(3.5, pitch * 0.1)).offset(x: -pitch * 0.20, y: pitch * 0.225)
+    }
+    #endif
 }
 
 private struct Anim01Arrow: Shape {

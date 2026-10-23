@@ -66,6 +66,24 @@ import XCTest
             app.terminate()
         }
     }
+    func testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings() {
+        let app = integrated()
+        XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout: 15))
+        tap(app,"choose-rogue");tap(app,"startMatch");ready(app)
+        let menu = app.buttons["matchMenu"]
+        XCTAssertTrue(menu.isHittable)
+        XCTAssertGreaterThanOrEqual(menu.frame.width,44)
+        XCTAssertGreaterThanOrEqual(menu.frame.height,44)
+        menu.tap()
+        XCTAssertTrue(app.buttons["audioSettings"].waitForExistence(timeout:5))
+        app.buttons["audioSettings"].tap()
+        XCTAssertTrue(app.buttons["audioSettingsDone"].waitForExistence(timeout:5))
+        app.buttons["audioSettingsDone"].tap()
+        XCTAssertTrue(app.buttons["mode-advanced"].waitForExistence(timeout:5))
+        XCTAssertTrue(app.buttons["mode-advanced"].isHittable)
+        XCTAssertTrue(app.buttons["mode-advanced"].label.contains("連鎖換位"))
+    }
+
     func testRogueLobbyListsBothSkillsAndNewMatchKeepsLockedAdvancedVisible() {
         let app = integrated();XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout:15))
         XCTAssertTrue(app.buttons["choose-rogue"].label.contains("換位"))
@@ -795,6 +813,16 @@ import XCTest
     }
     private func tap(_ app: XCUIApplication,_ id: String) {
         let b = app.buttons[id]
+        if let title = ["choose-warrior":"戰士", "choose-mage":"法師", "choose-rogue":"盜賊", "choose-priest":"牧師"][id] {
+            // Card artwork extends its accessibility frame. A saved-match row
+            // can leave only that frame's top edge visible. Let XCTest reveal
+            // the name, whose frame matches the visible label, before its tap.
+            let name = b.staticTexts[title]
+            XCTAssertTrue(name.waitForExistence(timeout: 5), id)
+            name.tap()
+            XCTAssertTrue(b.isSelected, "One tap must select the named hero: \(id)")
+            return
+        }
         for _ in 0..<8 {
             if b.isHittable { break }
             if b.frame.minY < app.windows.firstMatch.frame.minY+30 { app.swipeDown() } else { app.swipeUp() }

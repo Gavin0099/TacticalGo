@@ -1,0 +1,71 @@
+{
+  "generatedFromCommit": "c37e72077b4761e8c113e18a77c16ca10235b8b4",
+  "baselineP1Commit": "50f505a271af9c909311c9260b0de463ed709181",
+  "linuxJob": "https://github.com/Gavin0099/TacticalGo/actions/runs/39929614882/job/120334350180",
+  "extraction": "Parsed losslessly between TG12_P1R_JSON_BEGIN/END in full decoded job log; timestamp and BOM removed. Stored JSON compactly; hash is of stored representation, not raw CI bytes.",
+  "inputSHA256": {
+    "artifacts/tg12/gameplay-p1-20261023/results-v2.json": "2ce465ec0b4a6950c027f95b1b3f780fdf26bb1505b160561a52728eba0fc809",
+    "artifacts/tg12/gameplay-p0-20261023/complete-games/b9-Priest-Rogue/record.json": "63fd2298da5d4dd511bb3d65506ee256c0383c70a5bbc0373909f8034834914d"
+  },
+  "generatorSourceSHA256": {
+    "scripts/tg12-p0-research/Sources/P0Runner/P1RogueAudit.swift": "d061e076a8b1f95e199e313d5be3c032fa50b25e0663c263a317db631a08fc70",
+    "scripts/tg12-p0-research/Sources/P0Runner/Main.swift": "b90d13a0bbd9ecc5e42d4ae38244a364f503df4d5cf736955835c9a9d977338e"
+  },
+  "verifierSourceSHA256": {
+    "scripts/tg12-p0-research/Sources/P0Runner/P1RogueAudit.swift": "a5c6fa89e0afbb01521a326251f9ed06b8e3b4cb3302743b6830ba35077e8eb2",
+    "scripts/tg12-p0-research/Sources/P0Runner/Main.swift": "51d48741e1819c87c05e8277b758a25133fa811224b38e05ad9017fc61521da0"
+  },
+  "sourceIdentityCheck": "All six candidate IDs/actions/ownAfter and Standard actions/after exactly match pinned P1 V2. Original game root matches.",
+  "baselineP1Verification": {
+    "positions": 16,
+    "plans": 192,
+    "recordReplays": 388,
+    "negativeAPRejected": true
+  },
+  "p1rVerification": {
+    "ownPlans": 6,
+    "enemyReplies": 1634,
+    "selectedContinuations": 22,
+    "receiptChecks": 1662,
+    "negativeControls": 10,
+    "census": "Separate uncapped Core DFS: complete placement-only set each branch; complete current-mode reply set for candidate5."
+  },
+  "regression": {
+    "before": "c37e720 accepted report with candidate5 responsesEnumerated=0 and next-advanced=true despite real values 881/false; exit0.",
+    "after": "derived fields are checked; ten negative controls reject corruption.",
+    "mutation": "Temporarily bypass responsesEnumerated check: negative-control command exit1, negative control accepted: reply-count. Restored source byte-for-byte."
+  },
+  "CIAtEvidenceGeneration": {
+    "swift": {
+      "status": "success",
+      "tests": 472,
+      "skipped": 1,
+      "failures": 0,
+      "p1ContractChecks": 6
+    },
+    "governance": "success"
+  },
+  "localEnvironment": "macOS arm64 / Apple Swift 6.4 Release; cross-verifies persisted Linux Swift 6.0 receipts.",
+  "notClaimed": [
+    "best own move",
+    "second-round minimax",
+    "long-term dominance",
+    "all metadata or arbitrary JSON corruption handled",
+    "human fun",
+    "full P1 acceptance",
+    "iPhone performance",
+    "C# parity"
+  ],
+  "repairCIHistory": [
+    {
+      "commit": "4a6dea286d7d3720e8c8ec0f1fa5be1ed0660abb",
+      "job": "https://github.com/Gavin0099/TacticalGo/actions/runs/39935171720/job/120352833785",
+      "status": "failure",
+      "passedSwiftTests": 472,
+      "skipped": 1,
+      "swiftTestFailures": 0,
+      "diagnostic": "P1R reply metrics field ourCommanderLiberties",
+      "repair": "Use sorted-key JSON value equality instead of NSDictionary/native Swift value equality across Foundation platforms; no expected metric or coverage relaxed."
+    }
+  ]
+}

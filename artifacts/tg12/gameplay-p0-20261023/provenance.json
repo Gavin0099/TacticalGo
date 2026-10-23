@@ -1,0 +1,141 @@
+{
+  "productionSourceHead": "3e48a5ec1869168a9d91c074d7b11419cfb1ac1c",
+  "productionSourcePins": [
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/BoardProjection.swift",
+      "sha256": "4e12a1583ec7b98c5db3a0b0bde7009f4c1f19c75bdded2e13c2b61633f2a161"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/ExpansionSkills.swift",
+      "sha256": "c9a891ec7f9ed32b8e5a9f9387b98f9a23964891608d11136930ac3de2eca066"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/GameEngine.swift",
+      "sha256": "f63ff67e1876e1b9520df253ade9bacfd220f9053122bb04aaa2294f533593a3"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoCore/Model.swift",
+      "sha256": "c70df6590ec1f868142d5ceffb7f6b080af912e0e7d11619dead25216661476a"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/BotContinuation.swift",
+      "sha256": "40710d06e515f6294203a09c05deea51cc03a4fb6f83448de38c240f7985cd91"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/BotPlanner.swift",
+      "sha256": "b47dcd90bf920fd967df381e411a668d37d1914508731003cf6a8b8501bcf77d"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoBot/TensionProbe.swift",
+      "sha256": "b4ce7eced58825fa86d43cfe292f6512d14fb8baf34645c13081374f8afea41b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/AdvancedCatalog.swift",
+      "sha256": "a7a77c93615881884faf408a0d7eb6e5aa7e9b75bb4b040fac96474d76b19a39"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/AdvancedOpponent.swift",
+      "sha256": "dcc094af0740b122e37658f5613ff010f703736e5acc1ad521d121aff5d08483"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/ChallengeController.swift",
+      "sha256": "3f31634450e19db6af3b34ece835e650c5d6ad4d3504b79a5ddc875365bbc0e4"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/ChallengeReview.swift",
+      "sha256": "c4ab4f8c9b375d3266e4095b28982fb1ebafa7095babc0711b932a30be722f51"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/CombatQualitySequence.swift",
+      "sha256": "3ee2b45b1395186ab7ca4aa9cc21b330d58f04d0b729f4acf127409fd896ec04"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/ExpansionPractice.swift",
+      "sha256": "db3602e3fc4d1d0e7652353ad8fc6039e13d06bd8e8da95942e134e75ed4c2ea"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/ExpeditionCatalog.swift",
+      "sha256": "0a28eca8f588bdca57e6a9db256a779570d4de32e5a75005768b5966956ef38b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/MonsterPresentationPractice.swift",
+      "sha256": "20d09c15b596288373c8ee84f73fd62a9f3ca8c30cdd274016a479a9c3b7b00f"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/PlaytestObservation.swift",
+      "sha256": "81e498f885f0bf5a49d6644800853a77e8e2bb495a6bdc359b1fe0c00ab61b68"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/PriestSanctuaryChallenge.swift",
+      "sha256": "537afe007da4d0be4fdef83500442035e89d1d9d41bc827363a4f0f8f86c6ab9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/PriestSanctumPractice.swift",
+      "sha256": "ac7e8cfe1fa39ee1823969553a08da3658761f4887275ff94ab9b685fb43d0d5"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/TacticalHints.swift",
+      "sha256": "559d50e013be4334fd9447f4e3bd342a636b871f19f9eba34574bd88b87ac18d"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/TacticalHuntPreview.swift",
+      "sha256": "e5463a58fce7311746ee5e35d6f2393419747ed4a3878c20c467f5803b3019a0"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/TacticalReadiness.swift",
+      "sha256": "131da06b4ab0a7f4598a4303a61f7b4980aa236f58fc74fbccd9ef2de65c0d64"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/Tutorial.swift",
+      "sha256": "cdebf0676004482b371a493d7e6cc10516b67656f6cfed5b6dd42e62c91b18c6"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoContent/TutorialCatalog.swift",
+      "sha256": "2dfb2f58267054373c4edda673135b2dbab2ccfa3c7f070c912100c7bfbc8bb9"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoRecords/ExpansionMatchRecord.swift",
+      "sha256": "ca126803c51f5a2e76da07f92712c34dc6ea3f0cd33cddeb14284894982a673b"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoRecords/ExpansionStartJournal.swift",
+      "sha256": "f6f9c69258029d625dd2849168bb48a7777dc3f51a092c179a5e0fdfe736cb19"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoRecords/MatchRecord.swift",
+      "sha256": "6935c158c5918f007ff5b15f63f81f3021d04eab85a270813c657fc487dbdb8e"
+    },
+    {
+      "path": "swift/TacticalGoCore/Sources/TacticalGoRecords/PendingAdmissionJournal.swift",
+      "sha256": "a46d2dd1c8b1bc533f2d519698dc915af2ea6243dd58d5e02d89f3006f5010a5"
+    },
+    {
+      "path": "swift/TacticalGoCore/Package.swift",
+      "sha256": "801e6ada7865399c6232e9dfa4edf8cb4f72044024ac8953106a59aec93740ce"
+    },
+    {
+      "path": "ios/TacticalGo/ExpansionLabView.swift",
+      "sha256": "b1c34bef4c33d89dc170bac351bb1a188f27a94b5b5905922456eaa32a0fe498"
+    },
+    {
+      "path": "ios/TacticalGo/ExpansionGameView.swift",
+      "sha256": "3cd60d0daae39f9827ab6e35405e0c622a0c76d421f6f3c994929aa0905b3e98"
+    }
+  ],
+  "all30ProductionFilesUnchanged": true,
+  "reusedGame": {
+    "id": "b7-Warrior-Mage",
+    "sourceHead": "261154c0a6fd5e7cff1caf4480abd1a4c9ee6dab",
+    "reason": "One complete record reused after all 30 production source pins matched; other games from an interrupted older study are excluded."
+  },
+  "measurementCorrection": {
+    "before": "Core-compatible action enumeration included MagicHand in updated expansion",
+    "after": "Current human/Bot mode excludes compatibility-only MagicHand",
+    "rootSkillAvailabilityBefore": 492,
+    "rootSkillAvailabilityAfter": 486,
+    "allEightRecordHashesUnchanged": true,
+    "supersededDiagnostic": "b7-Warrior-Mage turn 75: old compatibility-only MagicHand witness invalid for current mode; corrected exhaustive search finds all 31 active complete turns allow an immediate commander-loss reply."
+  },
+  "traceFormatting": "Published traces preserve all JSON values; whitespace compacted per receipt; published trace hashes differ from original local formatting.",
+  "environment": "macOS arm64, Swift Release; ambient host load; no simulator, iPhone or human gameplay claim"
+}

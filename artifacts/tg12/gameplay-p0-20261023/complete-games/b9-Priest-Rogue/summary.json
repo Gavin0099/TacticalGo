@@ -1,0 +1,46 @@
+{
+  "atomicActions" : 193,
+  "boardSize" : 9,
+  "classOne" : "Priest",
+  "classTwo" : "Rogue",
+  "enemySoldierCaptures" : 76,
+  "finalSnapshot" : {
+    "ap" : 0,
+    "board" : "ooooooooo\nooooOoooo\nooooooo.o\nxooooooo.\nxxxxooxoo\nxxxQoxxxo\nxxxoH..xx\nxx.xXxxxx\nx.xx.xxxx",
+    "current" : 1,
+    "freeHunt" : false,
+    "loot" : [
+      [
+
+      ],
+      [
+
+      ]
+    ],
+    "mana" : [
+      0,
+      6
+    ],
+    "ply" : 100,
+    "seals" : [
+
+    ],
+    "skillUsed" : false,
+    "status" : "Drawn",
+    "summoned" : [
+      true,
+      true
+    ]
+  },
+  "fullReplayIncludingHistoryEqual" : true,
+  "id" : "b9-Priest-Rogue",
+  "longestPurePassRun" : 2,
+  "purePassTurns" : 6,
+  "result" : "drawn",
+  "secondsIncludingObservation" : 46.072881375002908,
+  "serializedReceiptsVerified" : true,
+  "timingScope" : "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+  "turns" : 100,
+  "turnsAfterLastCapture" : 3,
+  "winner" : null
+}

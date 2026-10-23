@@ -1,0 +1,117 @@
+{
+  "scope": "Local packaging validation; Linux CI must be checked against the final PR head separately",
+  "researchTests": {
+    "command": "TG12_RESEARCH_OUTPUT=<output.json> swift test -c release --package-path swift/TacticalGoCore --jobs 2 --filter TG12GameplayResearchTests",
+    "tests": 2,
+    "failures": 0,
+    "cohortGames": 5,
+    "turns": 186,
+    "jsonParsed": true
+  },
+  "observerTests": {
+    "command": "swift test -c release --package-path scripts/tg12-p0-research",
+    "tests": 6,
+    "failures": 0
+  },
+  "focusedMutations": [
+    {
+      "surface": "TG12GameplayResearchTests researchActions",
+      "mutation": "Allow current-mode compatibility-only MagicHand",
+      "tests": 1,
+      "failures": 1,
+      "restored": true
+    },
+    {
+      "surface": "P0Metrics.isInCurrentMode",
+      "mutation": "Allow current-mode compatibility-only MagicHand",
+      "tests": 1,
+      "failures": 1,
+      "restored": true
+    }
+  ],
+  "publishedReplays": [
+    {
+      "game": "b7-Mage-Warrior",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b7-Rogue-Priest",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b7-Warrior-Mage",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b9-Mage-Warrior",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b9-Priest-Rogue",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b9-Rogue-Priest",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    },
+    {
+      "game": "b9-Warrior-Mage",
+      "serializedReceiptsExit": 0,
+      "recordReplayExit": 0
+    }
+  ],
+  "negativeReceipt": {
+    "mutation": "Increment AP in first serialized after receipt; record stays unchanged",
+    "corruptReceiptExit": 1,
+    "expectedDiagnostic": "after/event receipt 0",
+    "unchangedRecordExit": 0
+  },
+  "productionPinsMatched": 30,
+  "notRun": [
+    "C# replay/parity",
+    "iPhone performance",
+    "human fun/understanding/replay willingness",
+    "P1 complete counterplay and strategic advantage"
+  ],
+  "researchSourcePins": [
+    {
+      "path": "scripts/tg12-p0-research/Package.swift",
+      "sha256": "cedbebb71242acc902ac951d5b2e08a46319e0d030e4878f3e03d0b3a09fbc52"
+    },
+    {
+      "path": "scripts/tg12-p0-research/Sources/P0Metrics/Metrics.swift",
+      "sha256": "9e7d4f876a2b560fd41f4da37eecb272e04ec16d44a70416dbe7fd4998664da3"
+    },
+    {
+      "path": "scripts/tg12-p0-research/Sources/P0Runner/Main.swift",
+      "sha256": "d6fb77df485aceffb7c00de36cdc019e660b380454364ded2baf4a1c07a82a5a"
+    },
+    {
+      "path": "scripts/tg12-p0-research/Sources/P0Runner/PassAudit.swift",
+      "sha256": "8c3d7df695e9a274f379a4c55c2f41310dbf359ce21f266b24af0e8b07d4acfe"
+    },
+    {
+      "path": "scripts/tg12-p0-research/Tests/P0MetricsTests/MetricsTests.swift",
+      "sha256": "c61c5f85cd9629f7c9e12d57b68d98e9bc3766266f25207a9ae8ee74ab497647"
+    },
+    {
+      "path": "scripts/tg12-p0-research/summarize.py",
+      "sha256": "70bda00b2044c2d499bae39973bc8f17502ccdeb98dcd64099d9de16fbf4c6b0"
+    },
+    {
+      "path": "swift/TacticalGoCore/Tests/TacticalGoBotTests/TG12GameplayResearchTests.swift",
+      "sha256": "7aed0e7e2c67d48ac403e4eca87eebddf3c51cd0710601312630b885139dbb3e"
+    }
+  ]
+}
