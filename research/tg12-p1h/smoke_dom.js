@@ -27,7 +27,7 @@ class Element {
   replaceChildren(...v){this.children=[...v]}
   click(){this.wasClicked=true}
 }
-function trial(tester,option,expectCost,expectNet,expectMana){
+function trial(tester,option,expectCost,expectNet,expectMana,regression=null){
   const nodes=Object.create(null);
   const get=id=>nodes[id]||(nodes[id]=new Element(id));
   get("studyFixture").textContent=fixtureMatch[1];
@@ -58,6 +58,14 @@ function trial(tester,option,expectCost,expectNet,expectMana){
      (option!=="ORDINARY"|| !x.includes("換位")));
   assert.ok(index>=0,"candidate option visible");
   get("planCards").children[index].onclick();
+  if(regression==="preview"){
+    // Reviewed CHAIN action contract: F3, then D3→C3; still only two AP.
+    const rings=get("choiceBoard").children.filter(e=>e.id==="circle"&&e.attributes["stroke-width"]==="3");
+    assert.deepEqual(rings.map(e=>[Number(e.attributes.cx),Number(e.attributes.cy)]),
+      [[226.5,117],[153.5,117],[117,117]],"CHAIN preview must include F3, D3 and C3");
+    const labels=get("choiceBoard").children.filter(e=>e.id==="text"&&e.attributes["font-size"]==="10");
+    assert.deepEqual(labels.map(e=>e.textContent),["1","2a","2b"],"two-step action labels must not imply three AP");
+  }
   assert.equal(get("confirmChoice").disabled,false);
   get("confirmChoice").onclick();
   assert.equal(get("outcome").hidden,true,"no results leaked before rationale");
@@ -83,9 +91,38 @@ function trial(tester,option,expectCost,expectNet,expectMana){
   assert.ok(data.observation.firstChoiceSeconds>0);
   assert.ok(!Object.keys(data.observation).some(x=>/email|lastName|firstName|address/i.test(x)));
   assert.equal(downloaded,1);
+  if(regression==="reset"){
+    get("experience").value="experienced";
+    get("tradeoff").value="synthetic first participant only";
+    get("reset").onclick();
+    assert.equal(get("welcome").hidden,false);
+    assert.equal(get("start").disabled,true);
+    assert.equal(get("consent").checked,false);
+    for(const id of ["understood","enjoyed","wantMore","skillRecall","confidence"])
+      assert.equal(get(id).value,"unknown",`${id} must not carry over to next participant`);
+    for(const id of ["reason","expect","tradeoff"])assert.equal(get(id).value,"");
+    assert.equal(get("experience").value,"new");
+    assert.match(get("exportStatus").textContent,/只存在此分頁記憶體/);
+    get("participant").value="T06";
+    get("consent").checked=true;get("consent").onchange();get("start").onclick();
+    get("planCards").children[0].onclick();get("confirmChoice").onclick();
+    get("showOutcome").onclick();get("finishChoice").onclick();get("export").onclick();
+    const second=JSON.parse(exported).observation;
+    assert.equal(second.participant,"T06");
+    assert.equal(second.rationale,"");assert.equal(second.anticipatedReply,"");
+    assert.equal(second.confidence,"unknown");assert.equal(second.otherPlansViewedCount,0);
+    assert.deepEqual(second.survey,{understood:"unknown",enjoyed:"unknown",wantMore:"unknown",energyRecall:"unknown",tradeoff:""});
+  }
   checked++;
   return {tester,selected:option,firstChoiceLabel:data.observation.firstChoiceLabel,order:data.observation.order};
 }
+if(process.argv[2]==="--reset-regression"){
+  trial("T01","CHAIN",4,"+2",3,"reset");
+  console.log("PASS synthetic same-tab reset and second-participant export isolation");
+}else if(process.argv[2]==="--preview-regression"){
+  trial("T01","CHAIN",4,"+2",3,"preview");
+  console.log("PASS CHAIN preview includes F3, D3, C3 with two-action labels");
+}else{
 const first=trial("T01","CHAIN",4,"+2",3);
 const second=trial("T02","BASIC",2,"+0",5);
 const third=trial("T03","ORDINARY",0,"+0",6);
@@ -93,4 +130,8 @@ assert.deepEqual(first.order,["BASIC","CHAIN","ORDINARY"]);
 assert.deepEqual(second.order,["CHAIN","ORDINARY","BASIC"]);
 assert.deepEqual(third.order,["ORDINARY","BASIC","CHAIN"]);
 console.log("PASS 3 simulated offline flows: no early reveal, legal cards, choice lock, resource feedback, exploration, anonymous export");
+trial("T01","CHAIN",4,"+2",3,"reset");
+trial("T01","CHAIN",4,"+2",3,"preview");
+console.log("PASS 2 regressions: same-tab participant reset/export isolation; complete two-step chain preview");
+}
 console.log("NO HUMAN TESTS performed; results are synthetic DOM smoke checks.");

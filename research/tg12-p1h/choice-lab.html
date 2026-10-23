@@ -182,10 +182,10 @@ function drawBoard(node,board,targets){
     const x=44+p.x*36.5,y=44+p.y*36.5;
     e("circle",{cx:x,cy:y,r:18.2,stroke:index===0?"#fff2b8":"#f8c66c",fill:"none","stroke-width":3,"stroke-dasharray":index===0?"none":"5 3"});
     e("circle",{cx:x+14,cy:y-13,r:8.5,fill:"#513e24",stroke:"#eed39a","stroke-width":1});
-    e("text",{x:x+14,y:y-9,"text-anchor":"middle",fill:"#fff8e6","font-size":10,"font-weight":700},index+1);
+    e("text",{x:x+14,y:y-9,"text-anchor":"middle",fill:"#fff8e6","font-size":10,"font-weight":700},p.label||String(index+1));
   }
 }
-function targets(arm){return arm.actions.map(a=>a.points[0]).filter(Boolean)}
+function targets(arm){return arm.actions.flatMap((a,step)=>(a.points||[]).map((p,i)=>({...p,label:String(step+1)+(a.points.length>1?"abcdefghijklmnopqrstuvwxyz"[i]:"")})))}
 function labelFor(id){return "甲乙丙"[session.order.indexOf(id)]}
 function planText(arm){return arm.actions.map((a,i)=>(i+1)+"．"+describe(a)).join("；")}
 function renderPlanCards(){
@@ -198,7 +198,7 @@ function renderPlanCards(){
     top.append(name,cost);
     const steps=document.createElement("div");steps.className="plan-steps";steps.textContent=planText(arm);
     button.append(top,steps);button.setAttribute("aria-pressed",String(id===selected));
-    button.onclick=()=>{selected=id;log("plan_preview",{plan:id});renderPlanCards();drawBoard($("choiceBoard"),DATA.root.board,targets(arm));$("planPreview").textContent="預覽：計畫 "+labelFor(id)+"。黃色圈標出兩個行動的主要目標，尚未結算。";$("confirmChoice").disabled=false};
+    button.onclick=()=>{selected=id;log("plan_preview",{plan:id});renderPlanCards();drawBoard($("choiceBoard"),DATA.root.board,targets(arm));$("planPreview").textContent="預覽：計畫 "+labelFor(id)+"。黃色圈依 1、2 標示兩手位置；若包含連鎖，第二手以 2a→2b 標示順序，仍只用 2 AP。尚未結算。";$("confirmChoice").disabled=false};
     node.appendChild(button);
   }
 }
@@ -253,7 +253,9 @@ $("export").onclick=()=>{
 };
 $("reset").onclick=()=>{if(!confirm("清空本次暫存回答並返回起點？尚未下載的資料將無法恢復。"))return;
   session=null;selected=null;observedArm=null;elapsed=0;$("consent").checked=false;$("start").disabled=true;
-  for(const id of ["reason","expect","tradeoff"])$(id).value="";$("confidence").value="unknown";show("welcome")};
+  for(const id of ["reason","expect","tradeoff"])$(id).value="";
+  for(const id of ["confidence","understood","enjoyed","wantMore","skillRecall"])$(id).value="unknown";
+  $("experience").value="new";$("exportStatus").textContent="紀錄只存在此分頁記憶體中；關閉後不會自動保存。主持人應在離開前取得自願匯出的 JSON。";show("welcome")};
 show("welcome");
 </script>
 </body></html>
