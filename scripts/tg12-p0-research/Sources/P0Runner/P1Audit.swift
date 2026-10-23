@@ -68,7 +68,7 @@ private func responseSample(_ state: GameState) -> [GameAction] {
 
 /// Positive risk witnesses are exact legal Core actions; negative findings are never a
 /// certificate of safety because advanced pairs and response lists are intentionally bounded.
-private func immediateCounterexample(_ root: GameState, against originalMover: Player) -> [String: Any] {
+private func immediateCounterexample(_ root: GameState, against originalMover: Player) throws -> [String: Any] {
     guard root.status == .ongoing, root.current == originalMover.opponent else {
         return ["verdict": root.winner == originalMover ? "player_already_won" : "no_opponent_turn",
                 "explicitApplies": 0]
@@ -81,7 +81,9 @@ private func immediateCounterexample(_ root: GameState, against originalMover: P
         guard firstOutcome.success else { continue }
         if firstOutcome.state.winner == opponent {
             return ["verdict": "opponent_can_win", "explicitApplies": attempts,
-                    "witness": [String(reflecting:first)]]
+                    "witness": [String(reflecting:first)],
+                    "recordActions": [try object(ExpansionMatchRecord.Action(first))],
+                    "after": try object(ExpansionMatchRecord.Snapshot(firstOutcome.state))]
         }
         guard firstOutcome.state.status == .ongoing,
               firstOutcome.state.current == opponent else { continue }
@@ -91,7 +93,9 @@ private func immediateCounterexample(_ root: GameState, against originalMover: P
             guard secondOutcome.success else { continue }
             if secondOutcome.state.winner == opponent {
                 return ["verdict": "opponent_can_win", "explicitApplies": attempts,
-                        "witness": [String(reflecting:first), String(reflecting:second)]]
+                        "witness": [String(reflecting:first), String(reflecting:second)],
+                        "recordActions": try [first, second].map { try object(ExpansionMatchRecord.Action($0)) },
+                        "after": try object(ExpansionMatchRecord.Snapshot(secondOutcome.state))]
             }
         }
     }
@@ -120,9 +124,13 @@ private func followStandardReply(_ after: GameState, originalMover: Player) thro
         throw StudyError.invalid("P1 enemy reply stopped before complete turn")
     }
     return ["applicable": true, "actions": choice.actions.map { String(reflecting:$0) },
+            "recordActions": try choice.actions.map { try object(ExpansionMatchRecord.Action($0)) },
+            "after": try object(ExpansionMatchRecord.Snapshot(replay)),
             "standardBotCapturedOurSoldiers": capturedByEnemy,
             "ourCommanderAliveAfterStandardReply": replay.board.find(originalMover,.commander) != nil,
             "ourCommanderLibertiesAfterStandardReply": commanderLiberties(replay, for:originalMover),
+            "enemyCommanderLibertiesAfterStandardReply": commanderLiberties(replay, for:defender),
+            "ourManaAfterStandardReply": replay.mana(of:originalMover),
             "ourHeroAliveAfterStandardReply": replay.board.find(originalMover,.hero) != nil,
             "outcome": replay.status.rawValue,
             "opponentSearchBudgetExhausted": choice.stats.budgetExhausted,
@@ -220,20 +228,38 @@ extension P0Runner {
     static func p1Audit(cohort:URL,selectionFile:URL,output:URL,maxPositions:Int) throws {
         let raw=try JSONSerialization.jsonObject(with:Data(contentsOf:selectionFile))
         guard let indices=raw as? [[String:Any]] else { throw StudyError.invalid("P1 selection array") }
+        guard (1...16).contains(maxPositions), indices.count >= maxPositions else {
+            throw StudyError.invalid("P1 selection count")
+        }
         var all:[[String:Any]]=[]
         for entry in indices.prefix(max(1,maxPositions)) {
             guard let game=entry["game"] as? String,let turn=entry["turn"] as? Int,
                   !game.contains("/") && !game.contains("..") else { throw StudyError.invalid("P1 selection index") }
             let dir=cohort.appendingPathComponent(game)
             let (root,row)=try stateAt(dir,turn:turn)
+            guard entry["ply"] as? Int == root.ply,
+                  entry["hero"] as? String == root.heroClass(of:root.current).rawValue else {
+                throw StudyError.invalid("P1 selection metadata")
+            }
             let serialized=row["actions"] as? [[String:Any]] ?? []
             let actual=try serialized.map { try JSONDecoder().decode(ExpansionMatchRecord.Action.self,
                 from:JSONSerialization.data(withJSONObject:$0)).domain() }
+            let pattern=P0Metrics.pattern(actual)
+            let reason=entry["reason"] as? String
+            let validReason:Bool
+            switch reason {
+            case "first-advanced-legal-ordinary-two-soldiers":
+                validReason = pattern == "soldier+soldier" && currentMoves(root).contains(where:P0Metrics.isAdvanced)
+            case "first-observed-skill-soldier":
+                validReason = pattern == "skill+soldier" || pattern == "soldier+skill"
+            default: validReason = false
+            }
+            guard validReason else { throw StudyError.invalid("P1 selection reason") }
             let plans=try candidates(root,original:actual)
             var outcomes:[[String:Any]]=[]
             for plan in plans {
                 let botReply=try followStandardReply(plan.after,originalMover:root.current)
-                let boundedCounterexample=immediateCounterexample(plan.after,against:root.current)
+                let boundedCounterexample=try immediateCounterexample(plan.after,against:root.current)
                 outcomes.append([
                     "group":plan.group,"origin":plan.origin,
                     "actions":try plan.actions.map { try object(ExpansionMatchRecord.Action($0)) },
@@ -263,7 +289,7 @@ extension P0Runner {
             log("P1 \(game) turn=\(turn) hero=\(root.heroClass(of:root.current).rawValue) candidates=\(outcomes.count)")
         }
         let report:[String:Any]=[
-            "study":"TG12_P1_SAME_STATE_COUNTERFACTUAL_V1",
+            "study":"TG12_P1_SAME_STATE_COUNTERFACTUAL_V2",
             "source":"P0 official-opening archived records; full receipt and superko replay verified before each comparison",
             "positions":all,
             "semantics":[

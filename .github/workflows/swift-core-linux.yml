@@ -53,13 +53,19 @@ jobs:
           # The swift:6.0 container has no python3. Inspect the native research
           # JSON using tools already present; keep the whole JSON in the job log.
           test -s tg12-p1-ci.json
-          grep -q 'TG12_P1_SAME_STATE_COUNTERFACTUAL_V1' tg12-p1-ci.json
+          grep -q 'TG12_P1_SAME_STATE_COUNTERFACTUAL_V2' tg12-p1-ci.json
           test "$(grep -c '"sourceSelectionReason" : "first-advanced-legal-ordinary-two-soldiers"' tg12-p1-ci.json)" -eq 4
           echo P1_SAME_STATE_JSON_BEGIN
           cat tg12-p1-ci.json
           echo
           echo P1_SAME_STATE_JSON_END
           sha256sum tg12-p1-ci.json
+      - name: P1 pinned-selection rejection checks
+        shell: bash
+        run: |
+          bash scripts/tg12-p0-research/test-p1-contract.sh \
+            scripts/tg12-p0-research/.build/release/P0Runner \
+            artifacts/tg12/gameplay-p0-20261023/complete-games
       - name: Preserve complete research JSON in log and summary
         if: always()
         shell: bash

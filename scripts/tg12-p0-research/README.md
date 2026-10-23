@@ -72,3 +72,34 @@ establish population win rates, class balance, human understanding, fun or a
 willingness to replay. Observed Mac elapsed times are not iPhone latency
 acceptance. Handwritten unit fixtures test reporting invariants only and never
 enter the natural-game dataset.
+
+## P1 same-state comparison
+
+```sh
+swift run -c release --package-path scripts/tg12-p0-research P0Runner p1 artifacts/tg12/gameplay-p0-20261023/complete-games scripts/tg12-p0-research/p1-selection-v1.json /tmp/tg12-p1.json 16
+bash scripts/tg12-p0-research/test-p1-contract.sh scripts/tg12-p0-research/.build/release/P0Runner artifacts/tg12/gameplay-p0-20261023/complete-games
+python3 scripts/tg12-p0-research/verify-p1.py artifacts/tg12/gameplay-p1-20261023/results-v2.json artifacts/tg12/gameplay-p0-20261023/complete-games scripts/tg12-p0-research/.build/release/P0Runner --negative-control
+```
+
+The 16 pinned entries cover four heroes, two board sizes and two selection
+reasons: an advanced-skill-legal two-soldier decision and observed skill+soldier
+play. "First" means earliest within the selected source game. It is not always
+the earliest across all eight games. Indices are preserved. The CLI checks the
+provided hero/ply and the reason against the actual source position before
+accepting it; requesting more entries than supplied fails.
+
+Each root retains four representatives of each two-action order. Results include
+the observed Bot plan, resources/captures, one complete Standard reply and a
+separate bounded immediate-win probe. V2 adds record-format response actions and
+result snapshots, so all candidates, replies and winning witnesses can be
+replayed with the original opening history. The Python stdlib verifier performs
+that persisted replay and rejects an intentionally corrupt reply AP receipt.
+It establishes replay consistency, not an independent proof of rule correctness.
+Python is only needed for this local verifier; Linux CI uses the existing shell
+for six rejection checks and a four-position smoke.
+
+A Standard reply that wins is already a conclusive risk witness, even if the
+separate evenly spaced reply sample finds none. Neither surviving Standard Bot
+nor a negative bounded probe proves safety. Capture/liberty/resource metrics
+remain separate; no scalar "best move", exhaustive dominance, balance or human
+fun is claimed. See `docs/v12/P1_GAMEPLAY_RESEARCH.md` for the actual results.
