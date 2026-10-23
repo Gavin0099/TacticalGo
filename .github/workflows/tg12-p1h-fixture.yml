@@ -1,0 +1,32 @@
+name: TG12 P1H Offline Fixture Audit
+
+# Research-only proof that the offline human-choice page uses unchanged P0/P1/P1R
+# receipts. This does NOT validate human responses, iOS UX or full gameplay.
+on:
+  pull_request:
+    paths:
+      - "research/tg12-p1h/**"
+      - ".github/workflows/tg12-p1h-fixture.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-fixture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check P0-P1-P1R fixture, ten corruption controls, offline JS syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 research/tg12-p1h/verify_fixture.py --negative-controls --check-js
+      - name: Exercise isolated choice, reveal and anonymous export flows
+        run: node research/tg12-p1h/smoke_dom.js
+      - name: Validate privacy-preserving aggregation on synthetic input only
+        run: python3 research/tg12-p1h/summarize.py --self-test

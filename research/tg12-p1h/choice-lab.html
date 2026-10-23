@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>皇冠戰略｜戰術抉擇（P1H 研究試玩）</title>
+<style>
+:root{font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;color:#f4ead8;background:#161f28;font-size:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 45% 0%,#304350 0%,#1a2933 43%,#101b23 100%);min-height:100vh}
+button,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e9b969;outline-offset:3px}
+[hidden]{display:none!important}
+header{max-width:1120px;margin:auto;padding:28px 20px 12px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #ffffff24}
+.mark{font-size:35px;color:#e5be70;line-height:1}.eyebrow{letter-spacing:.15em;text-transform:uppercase;font-size:.75rem;color:#cfbe9e}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(1.55rem,3vw,2.2rem);font-weight:600;line-height:1.3;margin:3px 0}
+.subtitle{font-size:.83rem;color:#bbc6c9}main{max-width:1120px;margin:auto;padding:24px 20px 45px}
+section{animation:appear .15s ease}@keyframes appear{from{opacity:.5}to{opacity:1}}
+h2{font:600 1.4rem Georgia,"Noto Serif TC",serif;color:#f1e0be;margin:0 0 13px}
+h3{font-size:1rem;margin:0 0 9px}.muted{color:#b9c7c7}.small{font-size:.85rem;line-height:1.55}
+.panel{border:1px solid #d9c19e40;background:linear-gradient(145deg,#283a43f7,#1d2b35f5);box-shadow:0 15px 45px #02080e55;border-radius:17px;padding:20px}
+.panel.paper{background:linear-gradient(160deg,#34424a,#23343d)}.narrow{max-width:720px;margin:10px auto}
+p{line-height:1.7;margin:10px 0 15px}.welcome-list{margin:15px 0 23px;padding-left:20px;line-height:1.8;color:#d8e0df}
+label{display:block;color:#f0ddbd;font-size:.9rem;margin:15px 0 7px}
+select,textarea{width:100%;background:#13222c;border:1px solid #a6a59e77;border-radius:10px;color:#f7f0e3;padding:12px}
+textarea{resize:vertical;min-height:88px}.consent{display:flex;align-items:flex-start;gap:11px;margin:18px 0;color:#d9e2df;font-size:.9rem}
+.consent input{margin-top:5px;width:18px;height:18px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{background:#d5ac69;color:#142029;border:1px solid #e5c489;border-radius:10px;font-weight:700;padding:11px 17px;min-height:44px}
+.btn.secondary{background:#263a46;color:#f1e2cc;border-color:#879b9c}.btn.ghost{background:transparent;color:#dbcbb2;border-color:#586872}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.game-layout{display:grid;grid-template-columns:minmax(270px,430px) minmax(300px,1fr);gap:20px;align-items:start}
+.board-panel{padding:14px}.board-frame{width:100%;max-width:414px;margin:auto;background:#b48d5c;border:10px solid #81623f;border-radius:12px;box-shadow:inset 0 0 12px #38261490,0 12px 30px #0e141a90}
+.board-frame svg{display:block;width:100%;height:auto;aspect-ratio:1}.board-caption{display:flex;justify-content:space-between;gap:12px;margin:10px 3px 2px;color:#dbceae;font-size:.8rem}
+.legend{display:flex;gap:15px;flex-wrap:wrap;margin:11px 4px 0;font-size:.83rem;color:#d9dfd8}.king{color:#eac780}
+.info{padding:9px 11px;border:1px solid #a2b4b43d;border-radius:10px;background:#182a34;font-size:.84rem;color:#d4dcd7;line-height:1.6}
+.plan-grid{display:grid;gap:10px}
+.plan-card{width:100%;text-align:left;color:#f0e5d2;background:#172b36;border:1.5px solid #627a7c;border-radius:12px;padding:14px 15px;min-height:83px}
+.plan-card:hover{background:#213741;border-color:#d8b67b}.plan-card.chosen{border-color:#efbd6d;background:#33434a;box-shadow:inset 4px 0 #efbd6d}
+.plan-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:.95rem;font-weight:700}
+.plan-steps{font-size:.9rem;color:#d1dad9;line-height:1.75}
+.cost{color:#e9bf7a;font-size:.78rem;white-space:nowrap}
+.preview-note{margin-top:10px;color:#b8c9c7;font-size:.85rem}
+.choice-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.pill{border:1px solid #9c9c8b69;border-radius:999px;color:#d7cba9;font-size:.75rem;padding:5px 9px}
+.feedback{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:15px 0}
+.fact{padding:12px;background:#162a35;border:1px solid #59707988;border-radius:10px;text-align:center}
+.fact strong{display:block;font:600 1.6rem Georgia,serif;color:#ecd2a4;margin:5px auto}
+.fact span{font-size:.76rem;color:#bdcaca}
+.tabs{display:flex;gap:9px;margin-bottom:11px}.tab[aria-pressed=true]{background:#e0b46e;color:#1c2830}
+.compare{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.compare button{padding:10px 12px}
+.survey-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+footer{max-width:1120px;margin:auto;border-top:1px solid #ffffff20;padding:18px 20px 28px;font-size:.78rem;line-height:1.7;color:#9dadae}
+.alert{border-left:3px solid #d7b06f;padding:7px 12px;color:#e9dfcd;background:#55492c33;font-size:.88rem;line-height:1.6;margin-top:14px}
+#explainBoardInfo{font-weight:600;color:#ecd9b9}
+svg text{font-family:system-ui,-apple-system,"PingFang TC",sans-serif}
+@media (max-width:800px){.game-layout{grid-template-columns:1fr}.board-panel{max-width:520px;margin:auto}.survey-grid{grid-template-columns:1fr}.panel{padding:16px}.feedback{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.board-frame{border-width:6px}.feedback{grid-template-columns:1fr 1fr}.actions .btn{width:100%}header{padding-top:18px}}
+@media (prefers-reduced-motion:reduce){section{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="mark" aria-hidden="true">♜</div><div><div class="eyebrow">TacticalGo · 1.2 / Human Choice Research</div><h1>皇冠戰略 · 戰術抉擇</h1><div class="subtitle">離線研究原型｜非正式對戰與非產品版</div></div></header>
+<main>
+<section id="welcome" class="narrow panel paper">
+  <h2>先理解局面，再做兩手選擇</h2>
+  <p>你會看到一個實際可從正式開局走到的 <strong>9×9 中後盤局面</strong>。你操控白方盜賊（白色棋子），對手是黑方牧師。本回合有 2 AP、6 能量。從三套已驗證合法的兩手行動中選一套；這並不是在考你哪個答案「正確」。</p>
+  <ul class="welcome-list"><li>選擇前不會顯示各方案的提子結果或電腦反擊。</li><li>選完後，先記錄你的理由與預期，再揭曉實際對局結果。</li><li>此頁不連網、不使用 Cookie／追蹤器、不自動上傳資料。完成後可自行下載匿名 JSON。</li></ul>
+  <label for="participant">匿名參與代碼（由主持人依序安排）</label>
+  <select id="participant"><option value="T01">T01</option><option value="T02">T02</option><option value="T03">T03</option><option value="T04">T04</option><option value="T05">T05</option><option value="T06">T06</option></select>
+  <label for="experience">過去對策略棋盤遊戲的熟悉程度</label>
+  <select id="experience"><option value="new">較少玩策略棋盤遊戲</option><option value="some">玩過一些策略棋盤遊戲</option><option value="experienced">熟悉圍棋或類似策略遊戲</option><option value="tacticalgo">玩過 TacticalGo</option></select>
+  <label class="consent"><input type="checkbox" id="consent"><span>我同意只在本次測試中記錄匿名選擇、選擇時間及我自行輸入的回答；可以隨時停止。回答請勿填入姓名或其他個資。</span></label>
+  <button id="start" class="btn" disabled>進入棋局 <span aria-hidden="true">→</span></button>
+  <div class="alert">此測試只能驗證「三套預先選定的合法行動是否看得懂」，不代表完整自由對戰、真人勝率或 iPhone 操作已驗收。</div>
+</section>
+<section id="choice" hidden>
+  <div class="choice-title"><h2>輪到白方盜賊</h2><span class="pill">第 60 ply · 2 AP · 6 能量</span></div>
+  <div class="game-layout">
+    <div class="panel board-panel">
+      <div class="board-frame"><svg id="choiceBoard" viewBox="0 0 380 380" role="img" aria-label="9 乘 9 棋盤，白方盜賊執棋"></svg></div>
+      <div class="legend"><span>● 黑方士兵</span><span>◯ 白方士兵</span><span class="king">♛ 主帥</span><span>✦ 英雄</span></div>
+      <div class="board-caption"><span>上方為第 1 列，左側為 A 欄</span><span>黃色圈：預覽行動目標</span></div>
+    </div>
+    <div class="panel">
+      <h3>選擇這一回合的行動順序</h3>
+      <p class="muted small">每套均使用 2 AP。技能與落兵會改變盤面；當前僅顯示行動位置與能量費用，不提供成敗提示。</p>
+      <div id="planCards" class="plan-grid"></div>
+      <div id="planPreview" class="preview-note" aria-live="polite">先選擇一套計畫，即可在棋盤上看到目標位置。</div>
+      <div class="actions"><button id="confirmChoice" class="btn" disabled>確認這兩手</button></div>
+      <div class="info" style="margin-top:14px">提示：換位不是單純移動棋子；它也可能改變圍氣與提子關係。但是否有利，需要自己判斷。</div>
+    </div>
+  </div>
+</section>
+<section id="explain" class="narrow panel">
+  <h2>在揭曉結果前</h2>
+  <p id="lockedSummary"></p>
+  <label for="reason">你想用這兩手達成什麼？（可不填）</label>
+  <textarea id="reason" placeholder="例如：想守住自己的出口，或想讓敵兵的氣減少……"></textarea>
+  <label for="expect">你認為對手下一回合可能怎麼應對？（可不填）</label>
+  <textarea id="expect" placeholder="請描述你的預測；不需要猜精確座標。"></textarea>
+  <label for="confidence">對自己的判斷有多有把握？</label>
+  <select id="confidence"><option value="unknown">不確定</option><option value="1">1 — 沒什麼把握</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — 很有把握</option></select>
+  <div class="actions"><button id="showOutcome" class="btn">看這一回合發生了什麼</button></div>
+</section>
+<section id="outcome" hidden>
+  <h2>實際結果與取捨</h2>
+  <p class="muted small">下方以相同的正式 Core 棋譜呈現：先執行你的兩手，再讓 Standard Bot 完成一次完整反擊。這不是對手的最佳反制證明。</p>
+  <div class="game-layout">
+    <div class="panel board-panel">
+      <div class="tabs"><button class="btn secondary tab" id="viewOwn" aria-pressed="false">我方兩手後</button><button class="btn secondary tab" id="viewReply" aria-pressed="true">電腦反擊後</button></div>
+      <div class="board-frame"><svg id="outcomeBoard" viewBox="0 0 380 380" role="img" aria-label="實際行動與對手反擊後的棋盤"></svg></div>
+      <div class="board-caption"><span id="boardPhase">電腦完整反擊後</span><span>白方盜賊 / 黑方牧師</span></div>
+    </div>
+    <div class="panel">
+      <h3 id="outcomeTitle">已選計畫</h3>
+      <p id="outcomeActions" class="small muted"></p>
+      <div class="feedback">
+        <div class="fact"><span>這回合能量消耗</span><strong id="resultCost"></strong></div>
+        <div class="fact"><span>反擊後淨提兵</span><strong id="resultNet"></strong></div>
+        <div class="fact"><span>盤上兵數差改善</span><strong id="resultBalance"></strong></div>
+        <div class="fact"><span>下輪可用能量</span><strong id="resultMana"></strong></div>
+        <div class="fact"><span>下輪進階技能</span><strong id="resultSkill"></strong></div>
+      </div>
+      <p class="small muted">淨提兵是本回合雙方實際提兵差；盤上兵數差另計新落兵與獻祭。能量已包含下輪恢復；未宣稱結果等於長期勝率。</p>
+      <div class="info"><strong>想了解另一條路線？</strong> 比較功能是你自行決定是否使用，研究會分別記錄第一次選擇和後續探索。</div>
+      <div id="compareChoices" class="compare"></div>
+      <div class="actions"><button id="finishChoice" class="btn">完成並回答感受</button></div>
+    </div>
+  </div>
+</section>
+<section id="survey" class="narrow panel" hidden>
+  <h2>最後的感受</h2><p class="muted small">沒有標準答案，請依你實際理解的程度回答。</p>
+  <div class="survey-grid">
+    <div><label for="understood">你理解剛才不同計畫的代價嗎？</label><select id="understood"><option value="unknown">不確定</option><option value="1">1 — 完全不理解</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — 很清楚</option></select></div>
+    <div><label for="enjoyed">剛才做選擇的過程有多有趣？</label><select id="enjoyed"><option value="unknown">不確定</option><option value="1">1 — 完全不有趣</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — 很有趣</option></select></div>
+    <div><label for="wantMore">你會想繼續玩這個局面嗎？</label><select id="wantMore"><option value="unknown">不確定</option><option value="yes">想</option><option value="no">不想</option></select></div>
+    <div><label for="skillRecall">假設下輪只有 3 能量，能使用 4 能量的技能嗎？</label><select id="skillRecall"><option value="unknown">不確定</option><option value="yes">可以</option><option value="no">不可以</option></select></div>
+  </div>
+  <label for="tradeoff">如果再玩一次，你會改變哪個決定？為什麼？（可不填）</label>
+  <textarea id="tradeoff" placeholder="例如：不改、會省能量、先試另一招；原因是……"></textarea>
+  <div class="actions"><button id="export" class="btn">下載匿名測試紀錄 JSON</button><button id="reset" class="btn secondary">清空並返回起點</button></div>
+  <div class="alert" id="exportStatus" aria-live="polite">紀錄只存在此分頁記憶體中；關閉後不會自動保存。主持人應在離開前取得自願匯出的 JSON。</div>
+</section>
+</main>
+<footer>資料來源：TacticalGo PR #36 的 P1 原始棋譜及 PR #37 的 P1R 核對摘要（固定 9×9、ply 60）。此離線原型只展示 3 個預先選定方案，不開放自由落子、沒有真正即時 AI、不提供全部合法反擊的逐一互動。每輪真人結果都必須由參與者親自完成，不得由工程測試冒充。版本 P1H-01。</footer>
+<script type="application/json" id="studyFixture">{"study":"TG12_P1H_CONTROLLED_CHOICE_V1","version":1,"source":{"repo":"Gavin0099/TacticalGo","ref":"2399cbc9bb03278c0811e6dc47167e2443b98751","p1Blob":"f28d41d8e636d85233fd64280b1599a52c34c9f6","p1rBlob":"b704e2fa5be420ed1c4b531edeb701261d78064e","p0Game":"b9-Priest-Rogue","turn":59,"ply":60,"actor":"white-rogue","opponent":"black-priest"},"root":{"board":"oo.oooooo\no.ooOooo.\nooxxQ.o.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx","mana":[6,6],"ap":2,"ply":60},"arms":[{"id":"BASIC","sourceCandidate":0,"actions":[{"kind":"swap","points":[{"x":3,"y":2}]},{"kind":"soldier","points":[{"x":6,"y":5}]}],"after":{"ap":2,"board":"oo.oooooo\no.ooOooo.\nooxQx.o.o\nxoxooooo.\nxxxxxo.oo\nxx.xxxoxo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx","current":0,"freeHunt":false,"loot":[[],[]],"mana":[6,4],"ply":61,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"replyActions":[{"kind":"soldier","points":[{"x":8,"y":7}]},{"kind":"soldier","points":[{"x":6,"y":4}]}],"reply":{"ap":2,"board":"oo.oooooo\no.ooOooo.\nooxQx.o.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.xx\nx.xxxxxxx","current":1,"freeHunt":false,"loot":[[],[]],"mana":[6,5],"ply":62,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"manaSpent":2,"ownCaptures":1,"opponentCaptures":1,"netCaptures":0,"boardBalanceDelta":-1,"nextAdvancedLegal":true},{"id":"CHAIN","sourceCandidate":5,"actions":[{"kind":"soldier","points":[{"x":5,"y":2}]},{"kind":"chainSwap","points":[{"x":3,"y":2},{"x":2,"y":2}]}],"after":{"ap":2,"board":"oo.oooooo\no.ooOooo.\nooQ..oo.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx","current":0,"freeHunt":false,"loot":[[],[]],"mana":[6,2],"ply":61,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"replyActions":[{"kind":"soldier","points":[{"x":3,"y":2}]},{"kind":"soldier","points":[{"x":6,"y":5}]}],"reply":{"ap":2,"board":"oo.oooooo\no.ooOooo.\nooQx.oo.o\nxoxooooo.\nxxxxxoxoo\nxx.xxxxxo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx","current":1,"freeHunt":false,"loot":[[],[]],"mana":[6,3],"ply":62,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"manaSpent":4,"ownCaptures":2,"opponentCaptures":0,"netCaptures":2,"boardBalanceDelta":1,"nextAdvancedLegal":false},{"id":"ORDINARY","sourceCandidate":9,"actions":[{"kind":"soldier","points":[{"x":1,"y":1}]},{"kind":"soldier","points":[{"x":6,"y":5}]}],"after":{"ap":2,"board":"oo.oooooo\nooooOooo.\nooxxQ.o.o\nxoxooooo.\nxxxxxo.oo\nxx.xxxoxo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx","current":0,"freeHunt":false,"loot":[[],[]],"mana":[6,6],"ply":61,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"replyActions":[{"kind":"soldier","points":[{"x":8,"y":7}]},{"kind":"soldier","points":[{"x":6,"y":4}]}],"reply":{"ap":2,"board":"oo.oooooo\nooooOooo.\nooxxQ.o.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.xx\nx.xxxxxxx","current":1,"freeHunt":false,"loot":[[],[]],"mana":[6,6],"ply":62,"seals":[],"skillUsed":false,"status":"Ongoing","summoned":[true,true]},"manaSpent":0,"ownCaptures":1,"opponentCaptures":1,"netCaptures":0,"boardBalanceDelta":0,"nextAdvancedLegal":true}],"constraints":{"notFullGame":true,"notHumanEvidence":true,"reply":"one Standard/Baseline Bot complete turn","populationEstimate":false}}</script>
+<script>
+"use strict";
+const DATA=JSON.parse(document.getElementById("studyFixture").textContent);
+const $=id=>document.getElementById(id);
+const sections=["welcome","choice","explain","outcome","survey"];
+const BY_ID=Object.fromEntries(DATA.arms.map(a=>[a.id,a]));
+const ORDERS=[["BASIC","CHAIN","ORDINARY"],["CHAIN","ORDINARY","BASIC"],["ORDINARY","BASIC","CHAIN"],["ORDINARY","CHAIN","BASIC"],["BASIC","ORDINARY","CHAIN"],["CHAIN","BASIC","ORDINARY"]];
+const LETTERS="ABCDEFGHI";
+let session=null,selected=null,observedArm=null,mode="reply",frontStarted=0,elapsed=0,suspended=false;
+function coord(p){return LETTERS[p.x]+String(p.y+1)}
+function describe(a){const p=a.points||[];if(a.kind==="soldier")return "在 "+coord(p[0])+" 落兵";if(a.kind==="swap")return "盜賊換位至 "+coord(p[0]);if(a.kind==="chainSwap")return "盜賊連鎖換位："+coord(p[0])+" → "+coord(p[1]);return "其他正式行動"}
+function active(){return elapsed+(suspended?0:Math.max(0,performance.now()-frontStarted))}
+function log(kind,details){if(!session)return;session.events.push({kind,activeSeconds:Math.round(active()/1000*10)/10,...(details||{})});if(session.events.length>90)session.events.shift()}
+document.addEventListener("visibilitychange",()=>{if(!session)return;if(document.hidden&&!suspended){elapsed=active();suspended=true;log("hidden")}else if(!document.hidden&&suspended){frontStarted=performance.now();suspended=false;log("visible")}});
+function show(name){sections.forEach(id=>$(id).hidden=id!==name);window.scrollTo({top:0,behavior:"instant"})}
+function drawBoard(node,board,targets){
+  const svgNS="http://www.w3.org/2000/svg";node.replaceChildren();
+  function e(type,attrs,content){const child=document.createElementNS(svgNS,type);for(const [k,v]of Object.entries(attrs))child.setAttribute(k,String(v));if(content!==undefined)child.textContent=String(content);node.appendChild(child);return child}
+  e("rect",{x:0,y:0,width:380,height:380,fill:"#b58d58"});
+  for(let i=0;i<9;i++){
+    const p=44+i*36.5;e("line",{x1:44,x2:336,y1:p,y2:p,stroke:"#694d2b","stroke-width":1.2});
+    e("line",{x1:p,x2:p,y1:44,y2:336,stroke:"#694d2b","stroke-width":1.2});
+    e("text",{x:p,y:23,"text-anchor":"middle",fill:"#44311d","font-size":14,"font-weight":700},LETTERS[i]);
+    e("text",{x:21,y:p+5,"text-anchor":"middle",fill:"#44311d","font-size":14,"font-weight":700},i+1);
+  }
+  const arr=board.trim().split("\n");
+  for(let y=0;y<9;y++)for(let x=0;x<9;x++){
+    const symbol=arr[y]?.[x];if(!symbol||symbol===".")continue;
+    const cx=44+x*36.5,cy=44+y*36.5,white="oOQ".includes(symbol),big="XO".includes(symbol),hero="HQ".includes(symbol);
+    e("circle",{cx,cy,r:big?14.2:13.3,fill:white?"#f8eee0":"#303136",stroke:white?"#826d50":"#13191d","stroke-width":2});
+    e("circle",{cx:cx-3.4,cy:cy-4,r:4.3,fill:white?"#ffffff65":"#ffffff17"});
+    if(big||hero)e("text",{x:cx,y:cy+5.5,"text-anchor":"middle",fill:white?"#695333":"#e9c582","font-size":hero?17:18,"font-weight":700},big?"♛":"✦");
+  }
+  for(const [index,p]of (targets||[]).entries()){
+    const x=44+p.x*36.5,y=44+p.y*36.5;
+    e("circle",{cx:x,cy:y,r:18.2,stroke:index===0?"#fff2b8":"#f8c66c",fill:"none","stroke-width":3,"stroke-dasharray":index===0?"none":"5 3"});
+    e("circle",{cx:x+14,cy:y-13,r:8.5,fill:"#513e24",stroke:"#eed39a","stroke-width":1});
+    e("text",{x:x+14,y:y-9,"text-anchor":"middle",fill:"#fff8e6","font-size":10,"font-weight":700},p.label||String(index+1));
+  }
+}
+function targets(arm){return arm.actions.flatMap((a,step)=>(a.points||[]).map((p,i)=>({...p,label:String(step+1)+(a.points.length>1?"abcdefghijklmnopqrstuvwxyz"[i]:"")})))}
+function labelFor(id){return "甲乙丙"[session.order.indexOf(id)]}
+function planText(arm){return arm.actions.map((a,i)=>(i+1)+"．"+describe(a)).join("；")}
+function renderPlanCards(){
+  const node=$("planCards");node.replaceChildren();
+  for(const id of session.order){
+    const arm=BY_ID[id],button=document.createElement("button");button.type="button";button.className="plan-card"+(id===selected?" chosen":"");
+    const top=document.createElement("div");top.className="plan-top";
+    const name=document.createElement("span");name.textContent="計畫 "+labelFor(id);
+    const cost=document.createElement("span");cost.className="cost";cost.textContent="2 AP ／ "+arm.manaSpent+" 能量";
+    top.append(name,cost);
+    const steps=document.createElement("div");steps.className="plan-steps";steps.textContent=planText(arm);
+    button.append(top,steps);button.setAttribute("aria-pressed",String(id===selected));
+    button.onclick=()=>{selected=id;log("plan_preview",{plan:id});renderPlanCards();drawBoard($("choiceBoard"),DATA.root.board,targets(arm));$("planPreview").textContent="預覽：計畫 "+labelFor(id)+"。黃色圈依 1、2 標示兩手位置；若包含連鎖，第二手以 2a→2b 標示順序，仍只用 2 AP。尚未結算。";$("confirmChoice").disabled=false};
+    node.appendChild(button);
+  }
+}
+function countSoldiers(board){let black=0,white=0;for(const c of board)if(c==="x")black++;else if(c==="o")white++;return {black,white}}
+function balanceDelta(arm){const before=countSoldiers(DATA.root.board),after=countSoldiers(arm.reply.board);return (after.white-after.black)-(before.white-before.black)}
+function presentOutcome(id){
+  observedArm=id;const arm=BY_ID[id];
+  mode="reply";$("viewOwn").setAttribute("aria-pressed","false");$("viewReply").setAttribute("aria-pressed","true");
+  $("outcomeTitle").textContent="計畫 "+labelFor(id)+" 的正式對局結果";
+  $("outcomeActions").textContent=planText(arm);
+  $("resultCost").textContent=arm.manaSpent;
+  $("resultNet").textContent=(arm.netCaptures>=0?"+":"")+arm.netCaptures;
+  const d=balanceDelta(arm);$("resultBalance").textContent=(d>=0?"+":"")+d;
+  $("resultMana").textContent=arm.reply.mana[1];
+  $("resultSkill").textContent=arm.nextAdvancedLegal?"可使用":"不可使用";
+  drawBoard($("outcomeBoard"),arm.reply.board,[]);
+  $("boardPhase").textContent="電腦完整反擊後";
+  const actions=$("compareChoices");actions.replaceChildren();
+  for(const option of session.order){
+    const button=document.createElement("button");button.type="button";button.className="btn secondary";
+    button.textContent="查看計畫 "+labelFor(option);button.disabled=option===id;
+    button.onclick=()=>{session.otherPlansViewed.push(option);log("other_plan_explored",{plan:option});presentOutcome(option)};
+    actions.appendChild(button);
+  }
+}
+$("consent").onchange=()=>{$("start").disabled=!$("consent").checked};
+$("start").onclick=()=>{
+  const code=$("participant").value,idx=Number(code.slice(1))-1;
+  session={study:DATA.study,source:DATA.source,participant:code,familiarity:$("experience").value,
+           order:ORDERS[idx].slice(),firstChoice:null,firstChoiceLabel:null,firstChoiceSeconds:null,
+           rationale:"",anticipatedReply:"",confidence:"unknown",otherPlansViewed:[],survey:{},events:[]};
+  selected=null;observedArm=null;elapsed=0;frontStarted=performance.now();suspended=false;
+  log("start");drawBoard($("choiceBoard"),DATA.root.board,[]);renderPlanCards();$("planPreview").textContent="先選擇一套計畫，即可在棋盤上看到目標位置。";$("confirmChoice").disabled=true;
+  show("choice");
+};
+$("confirmChoice").onclick=()=>{if(!selected)return;session.firstChoice=selected;session.firstChoiceLabel=labelFor(selected);session.firstChoiceSeconds=Number((active()/1000).toFixed(1));log("first_choice_locked",{plan:selected});
+  $("lockedSummary").textContent="你選了計畫 "+labelFor(selected)+"（"+BY_ID[selected].manaSpent+" 能量）。在揭曉結果前，請簡短說明你的想法。";show("explain")};
+$("showOutcome").onclick=()=>{session.rationale=$("reason").value.trim().slice(0,900);session.anticipatedReply=$("expect").value.trim().slice(0,900);session.confidence=$("confidence").value;log("reason_submitted");presentOutcome(session.firstChoice);show("outcome")};
+$("viewOwn").onclick=()=>{if(!observedArm)return;mode="own";$("viewOwn").setAttribute("aria-pressed","true");$("viewReply").setAttribute("aria-pressed","false");drawBoard($("outcomeBoard"),BY_ID[observedArm].after.board,[]);$("boardPhase").textContent="執行我方兩手後（尚未反擊）";log("board_view",{mode})};
+$("viewReply").onclick=()=>{if(!observedArm)return;mode="reply";$("viewOwn").setAttribute("aria-pressed","false");$("viewReply").setAttribute("aria-pressed","true");drawBoard($("outcomeBoard"),BY_ID[observedArm].reply.board,[]);$("boardPhase").textContent="電腦完整反擊後";log("board_view",{mode})};
+$("finishChoice").onclick=()=>{log("end_comparison");show("survey")};
+$("export").onclick=()=>{
+  session.survey={understood:$("understood").value,enjoyed:$("enjoyed").value,wantMore:$("wantMore").value,
+    energyRecall:$("skillRecall").value,tradeoff:$("tradeoff").value.trim().slice(0,900)};
+  log("download_requested");
+  session.totalActiveSeconds=Number((active()/1000).toFixed(1));session.otherPlansViewedCount=session.otherPlansViewed.length;
+  const out={schema:"TG12_P1H_EXPORT_V1",anonymous:true,offline:true,observation:session,
+    disclaimer:"This is an observed constrained choice, not full gameplay nor proof of retention or best strategy."};
+  const data=new Blob([JSON.stringify(out,null,2)],{type:"application/json"}),url=URL.createObjectURL(data);
+  const a=document.createElement("a");a.href=url;a.download="tg12-p1h-"+session.participant+".json";a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);$("exportStatus").textContent="已要求瀏覽器下載匿名 JSON。請確認檔案存在後再關閉頁面。";
+};
+$("reset").onclick=()=>{if(!confirm("清空本次暫存回答並返回起點？尚未下載的資料將無法恢復。"))return;
+  session=null;selected=null;observedArm=null;elapsed=0;$("consent").checked=false;$("start").disabled=true;
+  for(const id of ["reason","expect","tradeoff"])$(id).value="";
+  for(const id of ["confidence","understood","enjoyed","wantMore","skillRecall"])$(id).value="unknown";
+  $("experience").value="new";$("exportStatus").textContent="紀錄只存在此分頁記憶體中；關閉後不會自動保存。主持人應在離開前取得自願匯出的 JSON。";show("welcome")};
+show("welcome");
+</script>
+</body></html>
