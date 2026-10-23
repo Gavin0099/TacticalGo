@@ -39,4 +39,4 @@ jobs:
           swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
           swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
           grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
-          git diff --check HEAD^ HEAD
+          git show --check --format= HEAD
