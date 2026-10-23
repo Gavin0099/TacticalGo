@@ -238,7 +238,7 @@ struct TwoActionPlanningSheet: View {
                     } else {
                         Text("棋盤素材尚未載入，正式對局保持不變。").foregroundStyle(.red)
                     }
-                    Text("檢視棋形：\(planner.stage.title) · \(planner.stageState.apRemaining) AP · \(planner.stageState.mana(of:planner.origin.current)) 能量")
+                    Text("檢視：\(planner.stage.title) · \(planner.stageState.current == planner.origin.current && planner.stageState.status == .ongoing ? "\(planner.stageState.apRemaining) AP" : "己方已交棒") · 己方能量 \(planner.stageState.mana(of:planner.origin.current))")
                         .font(.caption).foregroundStyle(.secondary)
                         .accessibilityIdentifier("forecastResources")
                     if planner.canEdit {
