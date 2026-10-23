@@ -110,6 +110,13 @@ func snapshot(_ value: Any) throws -> ExpansionMatchRecord.Snapshot {
         case "audit":
             guard a.count == 4,let turn=Int(a[3]) else { throw StudyError.invalid("turn") }
             try audit(URL(fileURLWithPath:a[2]),turn:turn)
+        case "p1":
+            guard a.count == 5 || a.count == 6 else { throw StudyError.invalid("p1 complete-games-dir selection.json output.json [maxPositions]") }
+            let limit = a.count == 6 ? (Int(a[5]) ?? 0) : 4
+            guard (1...16).contains(limit) else { throw StudyError.invalid("P1 maxPositions 1...16") }
+            try p1Audit(cohort:URL(fileURLWithPath:a[2]),
+                        selectionFile:URL(fileURLWithPath:a[3]),
+                        output:URL(fileURLWithPath:a[4]),maxPositions:limit)
         default: throw StudyError.invalid("command")
         }
     }
