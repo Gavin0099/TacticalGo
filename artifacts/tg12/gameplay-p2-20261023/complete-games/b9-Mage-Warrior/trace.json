@@ -1,0 +1,2762 @@
+{
+  "boardSize": 9,
+  "classOne": "Mage",
+  "classTwo": "Warrior",
+  "difficulty": "standard",
+  "frames": [
+    {
+      "action": {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 4,
+            "y": 6
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 2,
+        "board": ".........\n....O....\n.........\n.........\n.........\n.........\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 2,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          false
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": false,
+        "heroPresent": false
+      },
+      "before": {
+        "ap": 1,
+        "board": ".........\n....O....\n.........\n.........\n.........\n.........\n.........\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          4,
+          3
+        ],
+        "ply": 1,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          false,
+          false
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 3)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 6), TacticalGoCore.PieceKind.hero)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 1)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 2, ap: 2, mana: 4)"
+      ],
+      "manaSpent": 3,
+      "turn": 0
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 4,
+            "y": 5
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": ".........\n....O....\n.........\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 2,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          false
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": false,
+        "heroPresent": false
+      },
+      "before": {
+        "ap": 2,
+        "board": ".........\n....O....\n.........\n.........\n.........\n.........\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 2,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          false
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 5), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 1
+    },
+    {
+      "action": {
+        "kind": "summon",
+        "points": [
+          {
+            "x": 4,
+            "y": 2
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": ".........\n....O....\n....Q....\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          2
+        ],
+        "ply": 3,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": false,
+        "heroPresent": false
+      },
+      "before": {
+        "ap": 1,
+        "board": ".........\n....O....\n.........\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 2,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          false
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 2), TacticalGoCore.PieceKind.hero)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 2)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 3, ap: 2, mana: 2)"
+      ],
+      "manaSpent": 2,
+      "turn": 1
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 2
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": ".........\n....O....\n...xQ....\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          2
+        ],
+        "ply": 3,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 3,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": ".........\n....O....\n....Q....\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          2
+        ],
+        "ply": 3,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 2), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 2
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 4,
+            "y": 3
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": ".........\n....O....\n...xQ....\n....x....\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          3
+        ],
+        "ply": 4,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 3,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": ".........\n....O....\n...xQ....\n.........\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          2
+        ],
+        "ply": 3,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 4, y: 3), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 3)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 4, ap: 2, mana: 3)"
+      ],
+      "manaSpent": 0,
+      "turn": 2
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 6
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": ".........\n....O....\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          3
+        ],
+        "ply": 4,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": ".........\n....O....\n...xQ....\n....x....\n.........\n....o....\n....H....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          3
+        ],
+        "ply": 4,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 6), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 3
+    },
+    {
+      "action": {
+        "kind": "bastion",
+        "points": [
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": ".........\n...oOo...\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 5,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": ".........\n....O....\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          3
+        ],
+        "ply": 4,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 2)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 1), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 5, y: 1), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 4)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 5, ap: 2, mana: 3)"
+      ],
+      "manaSpent": 2,
+      "turn": 3
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 0
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 5,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 6,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": ".........\n...oOo...\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 5,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 0), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 4
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 2
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          2
+        ],
+        "ply": 6,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 6,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQ....\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 5,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 5, y: 2), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 5)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 6, ap: 2, mana: 2)"
+      ],
+      "manaSpent": 0,
+      "turn": 4
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 6
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oHo...\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          2
+        ],
+        "ply": 6,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oH....\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          2
+        ],
+        "ply": 6,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 5, y: 6), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 5
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 4,
+            "y": 8
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          4,
+          2
+        ],
+        "ply": 7,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oHo...\n....X....\n.........",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          2
+        ],
+        "ply": 6,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 4, y: 8), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 6)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 7, ap: 2, mana: 4)"
+      ],
+      "manaSpent": 0,
+      "turn": 5
+    },
+    {
+      "action": {
+        "kind": "doublePull",
+        "points": [
+          {
+            "x": 3,
+            "y": 6
+          },
+          {
+            "x": 3,
+            "y": 5
+          },
+          {
+            "x": 5,
+            "y": 6
+          },
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n...ooo...\n....H....\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          2
+        ],
+        "ply": 7,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [
+          "castDoublePull"
+        ],
+        "advancedLegal": true,
+        "advancedWitnessCountLowerBound": 43,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 11,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n....o....\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          4,
+          2
+        ],
+        "ply": 7,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 4)",
+        "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 3, y: 6), to: TacticalGoCore.Point(x: 3, y: 5), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))",
+        "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.one, from: TacticalGoCore.Point(x: 5, y: 6), to: TacticalGoCore.Point(x: 5, y: 5), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))"
+      ],
+      "manaSpent": 4,
+      "turn": 6
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 1
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n....H....\n....X....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          3
+        ],
+        "ply": 8,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n...oOo...\n...xQx...\n....x....\n.........\n...ooo...\n....H....\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          2
+        ],
+        "ply": 7,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 6, y: 1), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 7)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 8, ap: 2, mana: 3)"
+      ],
+      "manaSpent": 0,
+      "turn": 6
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 6
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oH....\n....X....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          3
+        ],
+        "ply": 8,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 3,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n....H....\n....X....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          3
+        ],
+        "ply": 8,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 6), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 7
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 6
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          3
+        ],
+        "ply": 9,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 3,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oH....\n....X....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          3
+        ],
+        "ply": 8,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 5, y: 6), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 8)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 9, ap: 2, mana: 1)"
+      ],
+      "manaSpent": 0,
+      "turn": 7
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 2,
+            "y": 1
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          3
+        ],
+        "ply": 9,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...x.....\n...oOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          3
+        ],
+        "ply": 9,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 1), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 8
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 7
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 10,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n....X....\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          3
+        ],
+        "ply": 9,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 7), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 9)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 10, ap: 2, mana: 4)"
+      ],
+      "manaSpent": 0,
+      "turn": 8
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 8
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 10,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [
+          "castReformation"
+        ],
+        "advancedLegal": true,
+        "advancedWitnessCountLowerBound": 2,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 1,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n....o....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 10,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 3, y: 8), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 9
+    },
+    {
+      "action": {
+        "kind": "reformation",
+        "points": [
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 0
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 0
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...xoo...\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          0
+        ],
+        "ply": 11,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [
+          "castReformation"
+        ],
+        "advancedLegal": true,
+        "advancedWitnessCountLowerBound": 2,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 1,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...x.....\n..xoOox..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          1,
+          4
+        ],
+        "ply": 10,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 4)",
+        "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 3, y: 1), to: TacticalGoCore.Point(x: 4, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))",
+        "TacticalGoCore.ActionEvent.piecePushed(caster: TacticalGoCore.Player.two, from: TacticalGoCore.Point(x: 5, y: 1), to: TacticalGoCore.Point(x: 5, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier))",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 10)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 11, ap: 2, mana: 2)"
+      ],
+      "manaSpent": 4,
+      "turn": 9
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 6,
+            "y": 0
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          0
+        ],
+        "ply": 11,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 10,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...xoo...\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          0
+        ],
+        "ply": 11,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 6, y: 0), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 10
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 2,
+            "y": 7
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n..xxX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          1
+        ],
+        "ply": 12,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 10,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n...xX....\n...oo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          0
+        ],
+        "ply": 11,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 2, y: 7), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.one, ply: 11)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.two, ply: 12, ap: 2, mana: 1)"
+      ],
+      "manaSpent": 0,
+      "turn": 10
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 1,
+            "y": 7
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          1
+        ],
+        "ply": 12,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n..xxX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          1
+        ],
+        "ply": 12,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 1, y: 7), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 11
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 2,
+            "y": 8
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 2,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n...oo....",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          2,
+          1
+        ],
+        "ply": 12,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.two, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.two, TacticalGoCore.Point(x: 2, y: 8), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.turnEnded(TacticalGoCore.Player.two, ply: 12)",
+        "TacticalGoCore.ActionEvent.turnStarted(TacticalGoCore.Player.one, ply: 13, ap: 2, mana: 3)"
+      ],
+      "manaSpent": 0,
+      "turn": 11
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 5,
+            "y": 1
+          }
+        ]
+      },
+      "actionIndex": 0,
+      "after": {
+        "ap": 1,
+        "board": "...xoox..\n..x.Oxx..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 9,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 2,
+        "board": "...xoox..\n..x.O.x..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 0,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 5, y: 1), TacticalGoCore.PieceKind.soldier)"
+      ],
+      "manaSpent": 0,
+      "turn": 12
+    },
+    {
+      "action": {
+        "kind": "soldier",
+        "points": [
+          {
+            "x": 3,
+            "y": 1
+          }
+        ]
+      },
+      "actionIndex": 1,
+      "after": {
+        "ap": 0,
+        "board": "...x..x..\n..xx.xx..\n...x.x...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Won",
+        "summoned": [
+          true,
+          true
+        ],
+        "winner": 0
+      },
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 9,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "before": {
+        "ap": 1,
+        "board": "...xoox..\n..x.Oxx..\n...xQx...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Ongoing",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "enemySoldiersCaptured": 2,
+      "events": [
+        "TacticalGoCore.ActionEvent.resourcesSpent(TacticalGoCore.Player.one, ap: 1, mana: 0)",
+        "TacticalGoCore.ActionEvent.piecePlaced(TacticalGoCore.Player.one, TacticalGoCore.Point(x: 3, y: 1), TacticalGoCore.PieceKind.soldier)",
+        "TacticalGoCore.ActionEvent.piecesCaptured(TacticalGoCore.Player.one, [TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 4, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 5, y: 0), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.soldier)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 4, y: 1), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.commander)), TacticalGoCore.CapturedPiece(at: TacticalGoCore.Point(x: 4, y: 2), piece: TacticalGoCore.Piece(owner: TacticalGoCore.Player.two, kind: TacticalGoCore.PieceKind.hero))])",
+        "TacticalGoCore.ActionEvent.gameWon(TacticalGoCore.Player.one)"
+      ],
+      "manaSpent": 0,
+      "turn": 12
+    }
+  ],
+  "opening": "official GameSetup.newGame, same config as frozen P0 8 games",
+  "policy": "p2-research-diverse",
+  "turns": [
+    {
+      "actions": [
+        {
+          "kind": "summon",
+          "points": [
+            {
+              "x": 4,
+              "y": 6
+            }
+          ]
+        }
+      ],
+      "ap": 1,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": false,
+        "heroPresent": false
+      },
+      "enemyCommanderLibertiesAfter": 4,
+      "enemyCommanderLibertiesBefore": 4,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2961,
+      "heroClass": "Mage",
+      "index": 0,
+      "mana": 4,
+      "manaSpent": 3,
+      "pattern": "summon",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 33,
+      "player": 0,
+      "ply": 1,
+      "purePass": false,
+      "seconds": 0.0925946429999982,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 4,
+              "y": 5
+            }
+          ]
+        },
+        {
+          "kind": "summon",
+          "points": [
+            {
+              "x": 4,
+              "y": 2
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": false,
+        "heroPresent": false
+      },
+      "enemyCommanderLibertiesAfter": 5,
+      "enemyCommanderLibertiesBefore": 6,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 3398,
+      "heroClass": "Warrior",
+      "index": 1,
+      "mana": 4,
+      "manaSpent": 2,
+      "pattern": "soldier+summon",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 1,
+      "ply": 2,
+      "purePass": false,
+      "seconds": 0.1204702200000014,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 4,
+              "y": 3
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 3,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 4,
+      "enemyCommanderLibertiesBefore": 6,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 3284,
+      "heroClass": "Mage",
+      "index": 2,
+      "mana": 2,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 0,
+      "ply": 3,
+      "purePass": false,
+      "seconds": 0.15303367599999262,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 6
+            }
+          ]
+        },
+        {
+          "kind": "bastion",
+          "points": [
+            {
+              "x": 3,
+              "y": 1
+            },
+            {
+              "x": 5,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 4,
+      "enemyCommanderLibertiesBefore": 5,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 3127,
+      "heroClass": "Warrior",
+      "index": 3,
+      "mana": 3,
+      "manaSpent": 2,
+      "pattern": "soldier+skill",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 1,
+      "ply": 4,
+      "purePass": false,
+      "seconds": 0.15810218800000087,
+      "usedAdvanced": false,
+      "usedBasic": true
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 5,
+              "y": 2
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 6,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 4,
+      "enemyCommanderLibertiesBefore": 6,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 3130,
+      "heroClass": "Mage",
+      "index": 4,
+      "mana": 3,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 0,
+      "ply": 5,
+      "purePass": false,
+      "seconds": 0.214035717999991,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 5,
+              "y": 6
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 4,
+              "y": 8
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 6,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 4,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 3263,
+      "heroClass": "Warrior",
+      "index": 5,
+      "mana": 2,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 1,
+      "ply": 6,
+      "purePass": false,
+      "seconds": 0.20984633199999791,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "doublePull",
+          "points": [
+            {
+              "x": 3,
+              "y": 6
+            },
+            {
+              "x": 3,
+              "y": 5
+            },
+            {
+              "x": 5,
+              "y": 6
+            },
+            {
+              "x": 5,
+              "y": 5
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 6,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [
+          "castDoublePull"
+        ],
+        "advancedLegal": true,
+        "advancedWitnessCountLowerBound": 43,
+        "basicFunded": true,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 11,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 3,
+      "enemyCommanderLibertiesBefore": 4,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2988,
+      "heroClass": "Mage",
+      "index": 6,
+      "mana": 4,
+      "manaSpent": 4,
+      "pattern": "skill+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 0,
+      "ply": 7,
+      "purePass": false,
+      "seconds": 0.23842838400000232,
+      "usedAdvanced": true,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 6
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 5,
+              "y": 6
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 3,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 4,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2816,
+      "heroClass": "Warrior",
+      "index": 7,
+      "mana": 3,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 1,
+      "ply": 8,
+      "purePass": false,
+      "seconds": 0.2049431989999988,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 2,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 7
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 3,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2918,
+      "heroClass": "Mage",
+      "index": 8,
+      "mana": 1,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 0,
+      "ply": 9,
+      "purePass": false,
+      "seconds": 0.27251993400000174,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 8
+            }
+          ]
+        },
+        {
+          "kind": "reformation",
+          "points": [
+            {
+              "x": 3,
+              "y": 1
+            },
+            {
+              "x": 4,
+              "y": 0
+            },
+            {
+              "x": 5,
+              "y": 1
+            },
+            {
+              "x": 5,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": true,
+        "advancedKinds": [
+          "castReformation"
+        ],
+        "advancedLegal": true,
+        "advancedWitnessCountLowerBound": 2,
+        "basicFunded": true,
+        "basicKinds": [
+          "castBastion"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 1,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 3,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2757,
+      "heroClass": "Warrior",
+      "index": 9,
+      "mana": 4,
+      "manaSpent": 4,
+      "pattern": "soldier+skill",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 1,
+      "ply": 10,
+      "purePass": false,
+      "seconds": 0.2472479319999934,
+      "usedAdvanced": true,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 6,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 2,
+              "y": 7
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 10,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 3,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2596,
+      "heroClass": "Mage",
+      "index": 10,
+      "mana": 2,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 43,
+      "player": 0,
+      "ply": 11,
+      "purePass": false,
+      "seconds": 0.2746407919999996,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 1,
+              "y": 7
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 2,
+              "y": 8
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": false,
+        "basicKinds": [],
+        "basicLegal": false,
+        "basicLegalCount": 0,
+        "compatibilityActionsExcluded": 0,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 2,
+      "enemyCommanderLibertiesBefore": 4,
+      "enemySoldiersCaptured": 0,
+      "explicitPlannerTransitions": 2405,
+      "heroClass": "Warrior",
+      "index": 11,
+      "mana": 1,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 40,
+      "player": 1,
+      "ply": 12,
+      "purePass": false,
+      "seconds": 0.25428070499999933,
+      "usedAdvanced": false,
+      "usedBasic": false
+    },
+    {
+      "actions": [
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 5,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 3,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "ap": 2,
+      "availability": {
+        "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+        "advancedFunded": false,
+        "advancedKinds": [],
+        "advancedLegal": false,
+        "advancedWitnessCountLowerBound": 0,
+        "basicFunded": true,
+        "basicKinds": [
+          "castFriendlyRedeploy"
+        ],
+        "basicLegal": true,
+        "basicLegalCount": 2,
+        "compatibilityActionsExcluded": 9,
+        "heroAlreadySummoned": true,
+        "heroPresent": true
+      },
+      "enemyCommanderLibertiesAfter": 0,
+      "enemyCommanderLibertiesBefore": 2,
+      "enemySoldiersCaptured": 2,
+      "explicitPlannerTransitions": 304,
+      "heroClass": "Mage",
+      "index": 12,
+      "mana": 3,
+      "manaSpent": 0,
+      "pattern": "soldier+soldier",
+      "plannerBudgetExhausted": false,
+      "plannerLegalEnumerations": 5,
+      "player": 0,
+      "ply": 13,
+      "purePass": false,
+      "seconds": 0.03081961600000227,
+      "usedAdvanced": false,
+      "usedBasic": false
+    }
+  ]
+}

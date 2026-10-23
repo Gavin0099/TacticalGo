@@ -126,6 +126,19 @@ func snapshot(_ value: Any) throws -> ExpansionMatchRecord.Snapshot {
                 throw StudyError.invalid("rogue-verify complete-games-dir rogue-results.json [--negative-controls]")
             }
             try rogueVerify(cohort:URL(fileURLWithPath:a[2]),output:URL(fileURLWithPath:a[3]),negativeControls:a.count == 5)
+        case "p2-diagnose":
+            guard a.count == 5 || (a.count == 6 && a[5] == "--short") else {
+                throw StudyError.invalid("p2-diagnose complete-games-dir P1-results-v2.json output.json [--short]")
+            }
+            try p2Diagnose(cohort:URL(fileURLWithPath:a[2]),p1:URL(fileURLWithPath:a[3]),
+                           output:URL(fileURLWithPath:a[4]),short:a.count == 6)
+        case "p2-safety":
+            guard a.count == 4 else { throw StudyError.invalid("p2-safety complete-games-dir result.json") }
+            try p2SafetyProbe(cohort:URL(fileURLWithPath:a[2]),output:URL(fileURLWithPath:a[3]))
+        case "p2-match":
+            guard a.count == 6 else { throw StudyError.invalid("p2-match complete-games-dir game-name clone|diverse output-dir") }
+            try p2Match(cohort:URL(fileURLWithPath:a[2]),game:a[3],variant:a[4],
+                        out:URL(fileURLWithPath:a[5]))
         default: throw StudyError.invalid("command")
         }
     }

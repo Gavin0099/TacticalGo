@@ -1,0 +1,449 @@
+{
+  "changedDimension": "complete own-turn reply shortlist reserves at most one Core-measurable tactical plan outside top eight; no action score bonus",
+  "fixtures": [
+    {
+      "baseline": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": ".ooooxx\no.oOxxx\n.ooxxxx\noooQx.x\n.ooH.x.\no.oXxxx\n.oooxx.",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            4
+          ],
+          "ply": 35,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 4,
+        "enemyCommanderLibertiesBefore": 4,
+        "ownCommanderLibertiesAfter": 6,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "baselineExplicitApply": 282,
+      "baselineScore": 182,
+      "baselineSearchBudgetExhausted": false,
+      "case": "safe_active_but_not_better",
+      "changed": false,
+      "game": "b7-Priest-Rogue",
+      "P0Recorded": [
+        {
+          "kind": "end",
+          "points": []
+        }
+      ],
+      "ply": 34,
+      "replicaActionsAndScoreExact": true,
+      "research": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": ".ooooxx\no.oOxxx\n.ooxxxx\noooQx.x\n.ooH.x.\no.oXxxx\n.oooxx.",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            4
+          ],
+          "ply": 35,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 4,
+        "enemyCommanderLibertiesBefore": 4,
+        "ownCommanderLibertiesAfter": 6,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "researchExplicitApply": 284,
+      "researchScore": 182,
+      "researchSearchBudgetExhausted": false,
+      "turn": 33
+    },
+    {
+      "baseline": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": ".ooooxx\noo.Oxxx\noooQxxx\noxxxxxx\noxxH.xx\nxxxXxxx\n.xxxxxx",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            6
+          ],
+          "ply": 77,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 2,
+        "enemyCommanderLibertiesBefore": 2,
+        "ownCommanderLibertiesAfter": 2,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "baselineExplicitApply": 1412,
+      "baselineScore": -924,
+      "baselineSearchBudgetExhausted": false,
+      "case": "forced_wait_exception",
+      "changed": false,
+      "game": "b7-Warrior-Mage",
+      "P0Recorded": [
+        {
+          "kind": "end",
+          "points": []
+        }
+      ],
+      "ply": 76,
+      "replicaActionsAndScoreExact": true,
+      "research": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": ".ooooxx\noo.Oxxx\noooQxxx\noxxxxxx\noxxH.xx\nxxxXxxx\n.xxxxxx",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            6
+          ],
+          "ply": 77,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 2,
+        "enemyCommanderLibertiesBefore": 2,
+        "ownCommanderLibertiesAfter": 2,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "researchExplicitApply": 1412,
+      "researchScore": -924,
+      "researchSearchBudgetExhausted": false,
+      "turn": 75
+    },
+    {
+      "baseline": {
+        "actions": [
+          {
+            "kind": "swap",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ]
+          },
+          {
+            "kind": "soldier",
+            "points": [
+              {
+                "x": 6,
+                "y": 5
+              }
+            ]
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": "oo.oooooo\no.ooOooo.\nooxQx.o.o\nxoxooooo.\nxxxxxo.oo\nxx.xxxoxo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            4
+          ],
+          "ply": 61,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 1,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 10,
+        "enemyCommanderLibertiesBefore": 11,
+        "ownCommanderLibertiesAfter": 7,
+        "purePass": false,
+        "selectedKinds": "skill+soldier",
+        "spent": 2,
+        "terminalStatus": "Ongoing"
+      },
+      "baselineExplicitApply": 830,
+      "baselineScore": -329,
+      "baselineSearchBudgetExhausted": false,
+      "case": "known_rogue_chain",
+      "changed": false,
+      "game": "b9-Priest-Rogue",
+      "P0Recorded": [
+        {
+          "kind": "swap",
+          "points": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "kind": "soldier",
+          "points": [
+            {
+              "x": 6,
+              "y": 5
+            }
+          ]
+        }
+      ],
+      "ply": 60,
+      "replicaActionsAndScoreExact": true,
+      "research": {
+        "actions": [
+          {
+            "kind": "swap",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ]
+          },
+          {
+            "kind": "soldier",
+            "points": [
+              {
+                "x": 6,
+                "y": 5
+              }
+            ]
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": "oo.oooooo\no.ooOooo.\nooxQx.o.o\nxoxooooo.\nxxxxxo.oo\nxx.xxxoxo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx",
+          "current": 0,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            4
+          ],
+          "ply": 61,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 1,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 10,
+        "enemyCommanderLibertiesBefore": 11,
+        "ownCommanderLibertiesAfter": 7,
+        "purePass": false,
+        "selectedKinds": "skill+soldier",
+        "spent": 2,
+        "terminalStatus": "Ongoing"
+      },
+      "researchExplicitApply": 830,
+      "researchScore": -329,
+      "researchSearchBudgetExhausted": false,
+      "turn": 59
+    },
+    {
+      "baseline": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": "oooooxxxx\no.o.Oxxxx\nooooQxxxx\nxxoxooxxx\nxxxxxoxxx\nxxxxxxxxx\nxxxxH.xx.\nxx.xXxxxx\n.xx.xxxxx",
+          "current": 1,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            5
+          ],
+          "ply": 66,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 2,
+        "enemyCommanderLibertiesBefore": 2,
+        "ownCommanderLibertiesAfter": 5,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "baselineExplicitApply": 1778,
+      "baselineScore": 1841,
+      "baselineSearchBudgetExhausted": false,
+      "case": "unresolved_wait",
+      "changed": false,
+      "game": "b9-Warrior-Mage",
+      "P0Recorded": [
+        {
+          "kind": "end",
+          "points": []
+        }
+      ],
+      "ply": 65,
+      "replicaActionsAndScoreExact": true,
+      "research": {
+        "actions": [
+          {
+            "kind": "end",
+            "points": []
+          }
+        ],
+        "after": {
+          "ap": 2,
+          "board": "oooooxxxx\no.o.Oxxxx\nooooQxxxx\nxxoxooxxx\nxxxxxoxxx\nxxxxxxxxx\nxxxxH.xx.\nxx.xXxxxx\n.xx.xxxxx",
+          "current": 1,
+          "freeHunt": false,
+          "loot": [
+            [],
+            []
+          ],
+          "mana": [
+            6,
+            5
+          ],
+          "ply": 66,
+          "seals": [],
+          "skillUsed": false,
+          "status": "Ongoing",
+          "summoned": [
+            true,
+            true
+          ]
+        },
+        "capturedSoldiers": 0,
+        "coreWin": false,
+        "enemyCommanderLibertiesAfter": 2,
+        "enemyCommanderLibertiesBefore": 2,
+        "ownCommanderLibertiesAfter": 5,
+        "purePass": true,
+        "selectedKinds": "end",
+        "spent": 0,
+        "terminalStatus": "Ongoing"
+      },
+      "researchExplicitApply": 1778,
+      "researchScore": 1841,
+      "researchSearchBudgetExhausted": false,
+      "turn": 64
+    }
+  ],
+  "noClaim": [
+    "increased true strength",
+    "no unsafe reply anywhere",
+    "long-term advantage",
+    "human playtests",
+    "device performance",
+    "C# parity"
+  ],
+  "scope": "four source-pinned historical full GameState positions including forced-pass and Rogue chain",
+  "study": "TG12_P2_RESEARCH_BOT_FIXED_PROBES_V1"
+}

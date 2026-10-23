@@ -1,0 +1,289 @@
+{
+  "actions": [
+    {
+      "kind": "summon",
+      "points": [
+        {
+          "x": 4,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 4,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "kind": "summon",
+      "points": [
+        {
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 4,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "bastion",
+      "points": [
+        {
+          "x": 3,
+          "y": 1
+        },
+        {
+          "x": 5,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 5,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 5,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 4,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "kind": "doublePull",
+      "points": [
+        {
+          "x": 3,
+          "y": 6
+        },
+        {
+          "x": 3,
+          "y": 5
+        },
+        {
+          "x": 5,
+          "y": 6
+        },
+        {
+          "x": 5,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 6,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 5,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 7
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "kind": "reformation",
+      "points": [
+        {
+          "x": 3,
+          "y": 1
+        },
+        {
+          "x": 4,
+          "y": 0
+        },
+        {
+          "x": 5,
+          "y": 1
+        },
+        {
+          "x": 5,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 6,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 2,
+          "y": 7
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 1,
+          "y": 7
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 2,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 5,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 1
+        }
+      ]
+    }
+  ],
+  "advancedMana": 4,
+  "baseSkills": "redeployment",
+  "classOne": "Mage",
+  "classTwo": "Warrior",
+  "difficulty": "standard",
+  "expected": {
+    "ap": 0,
+    "board": "...x..x..\n..xx.xx..\n...x.x...\n....x....\n.........\n...ooo...\n...oHo...\n.oxxX....\n..ooo....",
+    "current": 0,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      3,
+      1
+    ],
+    "ply": 13,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Won",
+    "summoned": [
+      true,
+      true
+    ],
+    "winner": 0
+  },
+  "monsters": [],
+  "rules": "tacticalgo-1.1-expansion-08-monsters-05",
+  "size": 9,
+  "version": 1
+}

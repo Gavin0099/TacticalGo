@@ -1,0 +1,70 @@
+name: TG12 P2 Full Eight-Opening A-B Research
+
+# Independent research evidence only; no shipping Core/AI/UI/release change.
+permissions:
+  contents: read
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/tg12-p2-full-matrix.yml"
+      - "research/tg12-p2/full-matrix-start.md"
+  workflow_dispatch:
+
+jobs:
+  paired-game:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    container: swift:6.0
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        game:
+          - b7-Warrior-Mage
+          - b7-Mage-Warrior
+          - b7-Rogue-Priest
+          - b7-Priest-Rogue
+          - b9-Warrior-Mage
+          - b9-Mage-Warrior
+          - b9-Rogue-Priest
+          - b9-Priest-Rogue
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run baseline clone and isolated diverse-reply variant from the same formal opening
+        shell: bash
+        env:
+          GAME: ${{ matrix.game }}
+        run: |
+          set -euo pipefail
+          cohort=artifacts/tg12/gameplay-p0-20261023/complete-games
+          echo "P2_PAIR_START $GAME"
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-match \
+            "$cohort" "$GAME" clone p2-original
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-match \
+            "$cohort" "$GAME" diverse p2-variant
+          test -s p2-original/record.json
+          test -s p2-variant/record.json
+          test -s p2-variant/trace.json
+          echo "P2_PAIR_SHA256_BEGIN"
+          sha256sum p2-original/summary.json p2-variant/summary.json p2-variant/record.json p2-variant/trace.json
+          echo "P2_PAIR_SHA256_END"
+          echo "P2_ORIGINAL_SUMMARY_BEGIN"
+          cat p2-original/summary.json
+          echo
+          echo "P2_ORIGINAL_SUMMARY_END"
+          echo "P2_VARIANT_SUMMARY_BEGIN"
+          cat p2-variant/summary.json
+          echo
+          echo "P2_VARIANT_SUMMARY_END"
+          # No upload-artifact action: repo allowlist only supports checkout/setup-python.
+          # Persist Core-replayable synthetic variant evidence in workflow logs for
+          # extraction into this Draft PR after all 8 runs complete.
+          echo "P2_VARIANT_RECORD_JSON_BEGIN"
+          cat p2-variant/record.json
+          echo
+          echo "P2_VARIANT_RECORD_JSON_END"
+          echo "P2_VARIANT_TRACE_JSON_BEGIN"
+          cat p2-variant/trace.json
+          echo
+          echo "P2_VARIANT_TRACE_JSON_END"
+          echo "P2_PAIR_DONE $GAME"
