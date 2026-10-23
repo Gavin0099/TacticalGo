@@ -265,22 +265,22 @@ extension P0Runner {
             // Equal material and Commander liberties are common in this example.
             // Without deliberate diversity, "worst" and "least liberties" select
             // the Standard reply again and never test a second future.
-            let heroLow=replies.indices.min { a,b in
-                let aa=rogueLiberties(replies[a].final,owner:.two,kind:.hero)
-                let bb=rogueLiberties(replies[b].final,owner:.two,kind:.hero)
+            let heroLow=responses.indices.min { a,b in
+                let aa=rogueLiberties(responses[a].final,owner:.two,kind:.hero)
+                let bb=rogueLiberties(responses[b].final,owner:.two,kind:.hero)
                 return aa == bb ? a < b : aa < bb
             }
-            let retainedDifferent=replies.indices.first {
-                $0 != knownIndex && replies[$0].sources.contains("bounded_standard_retained")
+            let retainedDifferent=responses.indices.first {
+                $0 != knownIndex && responses[$0].sources.contains("bounded_standard_retained")
             }
-            let priestOffering=replies.indices.first {
-                replies[$0].actions.contains(where:{ if case .castOffering = $0 { return true };return false })
+            let priestOffering=responses.indices.first {
+                responses[$0].actions.contains(where:{ if case .castOffering = $0 { return true };return false })
             }
-            let priestSanctum=replies.indices.first {
-                replies[$0].actions.contains(where:{ if case .castSanctum = $0 { return true };return false })
+            let priestSanctum=responses.indices.first {
+                responses[$0].actions.contains(where:{ if case .castSanctum = $0 { return true };return false })
             }
-            let purePass=replies.indices.first {
-                replies[$0].actions.count == 1 && replies[$0].actions[0] == .endTurn
+            let purePass=responses.indices.first {
+                responses[$0].actions.count == 1 && responses[$0].actions[0] == .endTurn
             }
             let selected=Array(Set([knownIndex,worstIndex,libIndex,heroLow,retainedDifferent,
                                     priestOffering,priestSanctum,purePass].compactMap{$0})).sorted()
