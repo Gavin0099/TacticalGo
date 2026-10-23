@@ -871,18 +871,23 @@ struct ExpansionBoard: View {
     let time: Double
     let reduced: Bool
     var identityPrefix = "exp-cell"
+    /// Optional read-only forecast board/input. When present, all taps remain in
+    /// memory and the live ExpansionLabStore session/receipts are never touched.
+    var planning: TwoActionPlanningController? = nil
     var focusedNine = false
     var focusedPhone = false
     var body: some View {
         GeometryReader { geo in
-            let fit = Anim01Geometry(width:geo.size.width,height:geo.size.height,boardSize:store.state.board.size,focusedNine:focusedNine,focusedPhone:focusedPhone)
+            let displayState = planning?.stageState ?? store.state
+            let fit = Anim01Geometry(width:geo.size.width,height:geo.size.height,boardSize:displayState.board.size,focusedNine:focusedNine,focusedPhone:focusedPhone)
             let size = CGSize(width:fit.width,height:fit.height), pitch = CGFloat(fit.pitch)
-            let p = store.frameReceipt
-            let board = p?.board(at:time,reduced:reduced) ?? store.state.board
+            let p = planning == nil ? store.frameReceipt : nil
+            let board = p?.board(at:time,reduced:reduced) ?? displayState.board
             let moving = p != nil && !reduced && time < p!.arrival
             let sources = Set(moving ? p!.transfers.map(\.from) : [])
-            let targets = store.legalTargets
-            let presentation = BoardPresentation(state:store.state,selected:store.selected,legal:targets,preview:store.preview)
+            let targets = planning?.legalTargets ?? store.legalTargets
+            let presentation = BoardPresentation(state:displayState,selected:planning?.selected ?? store.selected,
+                                                 legal:targets,preview:planning?.preview ?? store.preview)
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
@@ -917,7 +922,7 @@ struct ExpansionBoard: View {
                     if let piece = board[point],!sources.contains(point) {
                         posedToken(piece,pitch:pitch,plan:p,point:point).position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
                     }
-                    if board.monsters.contains(point),let kind = store.state.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
+                    if board.monsters.contains(point),let kind = displayState.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
                         ZStack { Ellipse().fill(P02Cozy.card).overlay(Ellipse().stroke(P02Cozy.sage,lineWidth:1.5)).frame(width:pitch*0.76,height:pitch*0.40)
                             let pose = monsterPose(kind,point:point,plan:p)
                             Image(uiImage:image).resizable().scaledToFit().frame(width:pitch*0.70,height:pitch*0.70)
@@ -925,7 +930,7 @@ struct ExpansionBoard: View {
                                 .offset(y:-pitch*0.20+pitch*pose.lift)
                         }.position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
                     }
-                    Button { store.select(point) } label: { Color.clear.frame(width:pitch,height:pitch).contentShape(Rectangle()) }
+                    Button { if let planning { planning.select(point) } else { store.select(point) } } label: { Color.clear.frame(width:pitch,height:pitch).contentShape(Rectangle()) }
                         .buttonStyle(.plain).position(presentation.center(point,size)).zIndex(300)
                         .accessibilityIdentifier("\(identityPrefix)-\(point.x)-\(point.y)")
                         .accessibilityLabel("\(String(UnicodeScalar(65+point.x)!))\(point.y+1)，\(cellName(point))")
@@ -951,7 +956,7 @@ struct ExpansionBoard: View {
                             .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
                     }
                 }
-                if ArtV2.enabled,let preview = store.preview,preview.success {
+                if ArtV2.enabled,let preview = planning?.preview ?? store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePlaced(let owner,let at,let kind) = preview.events[i],board.isEmpty(at) {
                             ZStack {
@@ -964,7 +969,7 @@ struct ExpansionBoard: View {
                 if ArtV2.enabled,let p,store.effects,!reduced {
                     ArtImpact(receipt:p,time:time,pitch:pitch,size:size,center:{ presentation.center($0,size) }).zIndex(200)
                 }
-                if let preview = store.preview,preview.success {
+                if let preview = planning?.preview ?? store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
                             Path { path in path.move(to:presentation.center(from,size)); path.addLine(to:presentation.center(to,size)) }
@@ -973,8 +978,8 @@ struct ExpansionBoard: View {
                         }
                     }
                 }
-                ForEach(store.selected.indices,id:\.self) { i in
-                    let point = store.selected[i]
+                ForEach((planning?.selected ?? store.selected).indices,id:\.self) { i in
+                    let point = (planning?.selected ?? store.selected)[i]
                     Circle().stroke(ArtV2.enabled ? Color(red:1,green:0.86,blue:0.46) : P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80)
                         .shadow(color:ArtV2.enabled ? Color(red:1,green:0.78,blue:0.30).opacity(0.7) : .clear,radius:3)
                         .position(presentation.center(point,size)).zIndex(230)
@@ -986,7 +991,7 @@ struct ExpansionBoard: View {
                     }
                 }
             }.frame(width:size.width,height:size.height).offset(x:fit.x,y:fit.y)
-                .allowsHitTesting(!store.playing && store.reviewTime == nil)
+                .allowsHitTesting(planning != nil ? planning!.canEdit : (!store.playing && store.reviewTime == nil))
         }
     }
     private func posedToken(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?,point: Point,moving: Bool = false) -> some View {
@@ -999,7 +1004,7 @@ struct ExpansionBoard: View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
         if ArtV2.enabled,piece.kind == .commander {
-            ArtKing(black:piece.owner == .one,pitch:pitch,active:store.state.current == piece.owner && store.state.status == .ongoing,reduced:reduced)
+            ArtKing(black:piece.owner == .one,pitch:pitch,active:(planning?.stageState ?? store.state).current == piece.owner && (planning?.stageState ?? store.state).status == .ongoing,reduced:reduced)
         } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
@@ -1052,8 +1057,9 @@ struct ExpansionBoard: View {
         }.frame(width:max(3.5,pitch*0.1),height:max(3.5,pitch*0.1)).offset(x:-pitch*0.20,y:pitch*0.225)
     }
     private func cellName(_ p: Point) -> String {
-        let board = store.state.board
-        if board.monsters.contains(p) { return store.state.config.monsterBattlefield?.kind(at:p) == .slime ? "史萊姆" : "暗影狼" }
+        let displayState = planning?.stageState ?? store.state
+        let board = displayState.board
+        if board.monsters.contains(p) { return displayState.config.monsterBattlefield?.kind(at:p) == .slime ? "史萊姆" : "暗影狼" }
         guard let piece = board[p] else { return "空點" }
         return "\(piece.owner == .one ? "黑" : "白")方\(piece.kind == .hero ? store.state.heroClass(of:piece.owner).title : piece.kind == .commander ? "主將" : "士兵")"
     }
