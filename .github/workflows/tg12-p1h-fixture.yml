@@ -26,3 +26,5 @@ jobs:
         run: |
           set -euo pipefail
           python3 research/tg12-p1h/verify_fixture.py --negative-controls --check-js
+      - name: Exercise isolated choice, reveal and anonymous export flows
+        run: node research/tg12-p1h/smoke_dom.js
