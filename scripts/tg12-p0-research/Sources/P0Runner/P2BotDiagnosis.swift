@@ -89,7 +89,7 @@ extension P0Runner {
         let target=try p2Actions(arms[5]["actions"])
         let (state,row)=try stateAt(cohort.appendingPathComponent("b9-Priest-Rogue"),turn:59)
         guard state.ply == 60,state.current == .two,
-              (try ExpansionMatchRecord.Snapshot(state)) == snapshot(rogue["before"]!),
+              ExpansionMatchRecord.Snapshot(state) == (try snapshot(rogue["before"]!)),
               target.count == 2 else { throw StudyError.invalid("P2 Rogue root mismatch") }
         cases.append(.init(game:"b9-Priest-Rogue",turn:59,caseID:"rogue-two-action-validated",
                            target:target,observed:try p2Actions(row["actions"]),root:state,
