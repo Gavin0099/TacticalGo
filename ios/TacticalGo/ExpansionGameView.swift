@@ -789,6 +789,13 @@ struct ExpansionGameView: View {
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("r2Banner") }
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
     }
+    private var confirmedOrTacticalMessage: String {
+        #if DEBUG || TACTICALGO_V11
+        return store.expansion?.lastConfirmedFeedback ?? tacticalMessage
+        #else
+        return tacticalMessage
+        #endif
+    }
     // The same 200pt dock is used on phones and tablets; state never changes its height.
     private var gameActionDock: some View {
         VStack(spacing: 4) {
@@ -797,7 +804,7 @@ struct ExpansionGameView: View {
             } else {
                 dockHeading.frame(height: 44)
                 gameAbilityRail.frame(height: 64)
-                Text((store.expansion?.lastConfirmedFeedback ?? tacticalMessage).replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
+                Text(confirmedOrTacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
                     .font(.system(size: 11, weight: .medium)).foregroundStyle(uiSecondary)
                     .lineLimit(1).truncationMode(.tail)
                     .frame(maxWidth: .infinity, minHeight: 16, maxHeight: 16, alignment: .leading)
