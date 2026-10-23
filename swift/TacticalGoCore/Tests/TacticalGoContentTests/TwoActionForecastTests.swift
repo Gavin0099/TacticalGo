@@ -97,6 +97,43 @@ final class TwoActionForecastTests: XCTestCase {
         XCTAssertFalse(draft.hasTwoActions)
     }
 
+    func testWarriorAndMageSkillForecastsKeepActualCoreGeometryAndMana() throws {
+        // Synthetic visualization comparison only (not a natural-opening win claim).
+        let diagram = """
+        ...O...
+        ..ooo..
+        .......
+        ...H.x.
+        ..xxx..
+        ...X...
+        .......
+        """
+        for hero: HeroClass in [.warrior,.mage] {
+            let start = try GameSetup.fromDiagram(
+                config:TacticalHints.updatedConfig(size:7),diagram:diagram,
+                classOne:hero,classTwo:.priest,current:.one,manaOne:6,manaTwo:6,ap:2,ply:24)
+            let ability = GameEngine.legalActions(start).first { action in
+                switch (hero,action) {
+                case (.warrior,.castBastion),(.mage,.castFriendlyRedeploy): return true
+                default: return false
+                }
+            }
+            let skill = try XCTUnwrap(ability,"expected a legal \(hero) skill in the synthetic fixture")
+            var draft = TwoActionForecast(origin:start)
+            XCTAssertTrue(draft.chooseFirst(skill))
+            let first = try XCTUnwrap(draft.firstStep)
+            XCTAssertEqual(first.manaBefore,6)
+            XCTAssertEqual(first.manaAfter,4)
+            let replyState = try XCTUnwrap(draft.secondBase)
+            let follow = try XCTUnwrap(placements(replyState).first)
+            XCTAssertTrue(draft.chooseSecond(follow))
+            XCTAssertEqual(draft.secondStep?.before,first.after)
+            XCTAssertEqual(draft.secondStep?.manaAfter,4)
+            XCTAssertNotEqual(draft.projectedState.board.diagram,start.board.diagram)
+            XCTAssertEqual(start.mana(of:.one),6,"skill forecast must not spend live mana")
+        }
+    }
+
     func testRogueChainSwapReportsCurrentTurnFactsNotOpponentPrediction() throws {
         // Geometry-only synthetic fixture; the archived P1R official history is separately
         // replay-verified in PR #37 and is not invented here.
