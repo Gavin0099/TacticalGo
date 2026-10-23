@@ -66,6 +66,51 @@ import XCTest
             app.terminate()
         }
     }
+    /// Optional forecast must not mutate the live match; first and second
+    /// actions still use the existing independent Confirm and original save path.
+    func testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm() {
+        let app = integrated()
+        tap(app,"startMatch");ready(app)
+        XCTAssertFalse(app.buttons["forecastOpen"].exists, "first turn has one AP")
+        tap(app,"playEndTurn");ready(app)
+        let before = resources(app)
+        let board = boardFrames(app)
+        let open = app.buttons["forecastOpen"]
+        XCTAssertTrue(open.waitForExistence(timeout:5))
+        open.tap()
+        XCTAssertTrue(app.descendants(matching:.any)["forecastBoard"].firstMatch.waitForExistence(timeout:5))
+        XCTAssertTrue(app.buttons["forecastClose"].exists)
+        tap(app,"forecast-cell-0-0")
+        XCTAssertTrue(app.buttons["forecastAddStep"].isEnabled)
+        tap(app,"forecastAddStep")
+        XCTAssertTrue(app.descendants(matching:.any)["forecastSummary1"].firstMatch.exists)
+        tap(app,"forecast-cell-1-0")
+        XCTAssertTrue(app.buttons["forecastAddStep"].isEnabled)
+        tap(app,"forecastAddStep")
+        XCTAssertTrue(app.descendants(matching:.any)["forecastSummary2"].firstMatch.exists)
+        tap(app,"forecastClose");ready(app)
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"))
+        fixedBoard(app,board)
+        // Re-enter the unchanged live state, stage two actions, and bring in
+        // the first only. The ordinary Confirm is still required.
+        tap(app,"forecastOpen")
+        tap(app,"forecast-cell-0-0");tap(app,"forecastAddStep")
+        tap(app,"forecast-cell-1-0");tap(app,"forecastAddStep")
+        tap(app,"forecastLoadFirst")
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"))
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("士兵"))
+        XCTAssertTrue(app.buttons["forecastLoadSecond"].waitForExistence(timeout:5))
+        tap(app,"forecastLoadSecond")
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("士兵"))
+        shot(app,"tg12-two-action-forecast-committed")
+    }
+
     func testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings() {
         let app = integrated()
         XCTAssertTrue(app.buttons["choose-rogue"].waitForExistence(timeout: 15))
