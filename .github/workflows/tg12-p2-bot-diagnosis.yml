@@ -1,0 +1,32 @@
+name: TG12 P2 Bot Pruning Diagnosis
+
+# Research-only from archived P0/P1, no shipping planner, Core, save or release mutation.
+permissions:
+  contents: read
+on:
+  pull_request:
+    paths:
+      - "scripts/tg12-p0-research/**"
+      - ".github/workflows/tg12-p2-bot-diagnosis.yml"
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run read-only P0/P1 Bot pruning probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-diagnose \
+            artifacts/tg12/gameplay-p0-20261023/complete-games \
+            artifacts/tg12/gameplay-p1-20261023/results-v2.json \
+            tg12-p2-diagnose.json --short
+          test -s tg12-p2-diagnose.json
+          grep -q TG12_P2_BOT_PRUNING_DIAG_V1 tg12-p2-diagnose.json
+          echo TG12_P2_DIAG_JSON_BEGIN
+          cat tg12-p2-diagnose.json
+          echo TG12_P2_DIAG_JSON_END
