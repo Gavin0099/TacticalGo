@@ -1,0 +1,69 @@
+{
+  "activeOwnTurnsInspected": 0,
+  "activeTurnsWithWinningEnemyReply": 0,
+  "diagnosticCompletedWithinLimits": false,
+  "explicitApplies": 58,
+  "game": "b9-Warrior-Mage",
+  "legalEnumerations": 15,
+  "limits": {
+    "explicitApplyCalls": 60000,
+    "seconds": 30
+  },
+  "notClaimed": [
+    "permanent stalemate",
+    "globally optimal play",
+    "safe witness is strategically better than pass",
+    "total Core work bounded by explicit applies"
+  ],
+  "ownTurnsExhaustivelyEnumerated": false,
+  "passSurvivesOneReply": true,
+  "ply": 65,
+  "safeAfter": null,
+  "safeNonpassWitness": null,
+  "scope": "full official-opening superko history, uncapped current-mode legal actions, no state deduplication; immediate commander survival only",
+  "seconds": 31.09092733333091,
+  "sourceTurn": {
+    "actions": [
+      {
+        "kind": "end",
+        "points": []
+      }
+    ],
+    "ap": 2,
+    "availability": {
+      "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+      "advancedFunded": true,
+      "advancedKinds": [
+        "castReformation"
+      ],
+      "advancedLegal": true,
+      "advancedWitnessCountLowerBound": 256,
+      "basicFunded": true,
+      "basicKinds": [
+        "castBastion"
+      ],
+      "basicLegal": true,
+      "basicLegalCount": 10,
+      "compatibilityActionsExcluded": 0,
+      "heroAlreadySummoned": true,
+      "heroPresent": true
+    },
+    "enemySoldiersCaptured": 0,
+    "explicitPlannerTransitions": 1778,
+    "heroClass": "Warrior",
+    "index": 64,
+    "mana": 6,
+    "manaSpent": 0,
+    "pattern": "end",
+    "plannerBudgetExhausted": false,
+    "plannerLegalEnumerations": 34,
+    "player": 0,
+    "ply": 65,
+    "purePass": true,
+    "seconds": 4.508380291663343,
+    "usedAdvanced": false,
+    "usedBasic": false
+  },
+  "turn": 64,
+  "verdict": "unknown_budget_or_time_limit"
+}

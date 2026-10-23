@@ -48,11 +48,36 @@ final class TG12GameplayResearchTests: XCTestCase {
         guard values.count > cap, cap > 1 else { return Array(values.prefix(cap)) }
         return (0..<cap).map { values[$0 * (values.count - 1) / (cap - 1)] }
     }
+    /// Match the current human/Bot repertoire. Core also accepts compatibility actions for older records.
+    /// Same reviewed mode boundary as BotPlanner.ranked and TacticalHints.targets; not a new rule.
+    private func researchActions(_ state: GameState) -> [GameAction] {
+        GameEngine.legalActions(state, expansionCandidateLimit: 256).filter { action in
+            if state.config.expansionSkills && state.config.experimentalFriendlyRedeploy,
+               case .castMagicHand = action { return false }
+            return true
+        }
+    }
+    func testResearchRepertoireMatchesUpdatedAndOriginalMageModes() throws {
+        // Handwritten geometry tests only the mode boundary; it is not a natural-game sample.
+        let diagram = "O......\n.......\n..x....\n..Hx...\n.......\n.......\n......X"
+        let push = GameAction.castMagicHand(Point(3, 3), .right)
+        let redeploy = GameAction.castFriendlyRedeploy(Point(3, 3), Point(3, 2))
+        for (expansion, replacement) in [(true, true), (false, true), (false, false)] {
+            var config = RuleConfig.board(size: 7)
+            config.expansionSkills = expansion
+            config.experimentalFriendlyRedeploy = replacement
+            let state = try GameSetup.fromDiagram(config: config, diagram: diagram, classOne: .mage, manaOne: 4)
+            XCTAssertTrue(GameEngine.legalActions(state).contains(push), "Core must retain the old replay action")
+            XCTAssertEqual(researchActions(state).contains(push), !(expansion && replacement))
+            XCTAssertEqual(researchActions(state).contains(redeploy), replacement)
+            XCTAssertTrue(researchActions(state).contains(.placeSoldier(Point(0, 1))))
+        }
+    }
     /// P1 gate proves the existence of structurally different legal two-AP choices, not optimality.
     /// Retain original GameState history: reconstructing from board diagrams would lose superko.
     private func probeP1(_ state: GameState, id: String) -> [String: Any]? {
         guard state.apRemaining == 2, state.status == .ongoing else { return nil }
-        let actions = GameEngine.legalActions(state, expansionCandidateLimit: 256)
+        let actions = researchActions(state)
         let skills = actions.filter(isSkill)
         let places = actions.filter(isPlacement)
         guard !skills.isEmpty, places.count >= 2 else { return nil }
@@ -64,15 +89,15 @@ final class TG12GameplayResearchTests: XCTestCase {
         for skill in sampled(skills, cap: 6) {
             guard let afterSkill = record(state, [skill]), afterSkill.status == .ongoing,
                   afterSkill.current == state.current else { continue }
-            let second = GameEngine.legalActions(afterSkill, expansionCandidateLimit: 256).filter(isPlacement)
+            let second = researchActions(afterSkill).filter(isPlacement)
             for move in sampled(second, cap: 4) { accept("skill-place", [skill, move]) }
         }
         for place in sampled(places, cap: 6) {
             guard let afterPlace = record(state, [place]), afterPlace.status == .ongoing,
                   afterPlace.current == state.current else { continue }
-            let second = GameEngine.legalActions(afterPlace, expansionCandidateLimit: 256).filter(isSkill)
+            let second = researchActions(afterPlace).filter(isSkill)
             for move in sampled(second, cap: 4) { accept("place-skill", [place, move]) }
-            let two = GameEngine.legalActions(afterPlace, expansionCandidateLimit: 256).filter(isPlacement)
+            let two = researchActions(afterPlace).filter(isPlacement)
             for move in sampled(two, cap: 4) { accept("place-place", [place, move]) }
         }
         let groups = ["skill-place", "place-skill", "place-place"]
@@ -131,7 +156,7 @@ final class TG12GameplayResearchTests: XCTestCase {
             var consecutivePasses = 0
             while state.status == .ongoing, state.ply <= min(fixture.plyLimit, plyCap) {
                 let before = state
-                let actions = GameEngine.legalActions(before, expansionCandidateLimit: 256)
+                let actions = researchActions(before)
                 let legalSkills = actions.filter(isSkill)
                 let ordinaryLegal = actions.filter(isPlacement)
                 let heroPresent = before.board.find(before.current, .hero) != nil
@@ -194,10 +219,11 @@ final class TG12GameplayResearchTests: XCTestCase {
                           "replayedFullState": replay == state])
         }
         let output: [String: Any] = [
-            "kind": "TG12_GAMEPLAY_P0_P1_RESEARCH_V1", "origin": "formal newGame; baseline Standard Bot both colours",
+            "kind": "TG12_GAMEPLAY_P0_P1_RESEARCH_V2", "origin": "formal newGame; baseline Standard Bot both colours",
             "config": ["expansionSkills": true, "advancedCost": 4, "bastionScope": "connectedGroup",
                        "experimentalFriendlyRedeploy": true, "difficulty": "standard", "gameCount": gameCount,
-                       "perGamePlyCap": plyCap, "skillEnumerationLimit": 256],
+                       "perGamePlyCap": plyCap, "skillEnumerationLimit": 256,
+                       "actionSet": "current human/Bot mode; compatibility-only MagicHand excluded in updated expansion"],
             "summary": totals, "games": games, "turns": turns, "p1NaturalWitnesses": witnesses,
             "p1Gate": witnesses.isEmpty ? "HOLD: no mixed legal plans found in this sample" : "CANDIDATE: factual legal alternatives only; reply safety and human value unproven",
             "seconds": ProcessInfo.processInfo.systemUptime - startClock,
@@ -205,7 +231,11 @@ final class TG12GameplayResearchTests: XCTestCase {
                        "legal advanced candidate enumeration limited to 256 per state",
                        "P1 sampled choices cannot prove strategy dominance", "no human playtest"]
         ]
-        let data = try JSONSerialization.data(withJSONObject: output, options: [.sortedKeys])
+        let data = try JSONSerialization.data(withJSONObject: output, options: [.prettyPrinted, .sortedKeys])
+        if let path = env["TG12_RESEARCH_OUTPUT"] {
+            // A file avoids XCTest stdout/stderr interleaving inside a large JSON log value.
+            try data.write(to: URL(fileURLWithPath: path), options: .atomic)
+        }
         let json = try XCTUnwrap(String(data: data, encoding: .utf8))
         print("TG12_P0_RESULT_JSON_BEGIN")
         print(json)

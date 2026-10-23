@@ -12,6 +12,7 @@ on:
     branches: [main]
     paths:
       - "swift/TacticalGoCore/**"
+      - "scripts/tg12-p0-research/**"
       - ".github/workflows/swift-core-linux.yml"
 
 jobs:
@@ -21,9 +22,34 @@ jobs:
     container: swift:6.0
     steps:
       - uses: actions/checkout@v4
-      - name: swift test (package)
+      - name: Swift unit tests (Debug)
         working-directory: swift/TacticalGoCore
         shell: bash
         run: |
           set -o pipefail
-          swift test 2>&1 | tail -n 60
+          swift test --skip TG12GameplayResearchTests 2>&1 | tee swift-unit.log | tail -n 60
+      - name: TG12 gameplay research (Release)
+        working-directory: swift/TacticalGoCore
+        env:
+          TG12_RESEARCH_OUTPUT: ${{ github.workspace }}/swift/TacticalGoCore/tg12-research.json
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test -c release --filter TG12GameplayResearchTests 2>&1 | tee tg12-research.log | tail -n 60
+      - name: P0 observation tool tests
+        working-directory: scripts/tg12-p0-research
+        shell: bash
+        run: |
+          set -o pipefail
+          swift test -c release 2>&1 | tee p0-observer.log | tail -n 60
+      - name: Preserve complete test and research output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swift-and-tg12-evidence
+          path: |
+            swift/TacticalGoCore/swift-unit.log
+            swift/TacticalGoCore/tg12-research.log
+            swift/TacticalGoCore/tg12-research.json
+            scripts/tg12-p0-research/p0-observer.log
+          if-no-files-found: warn
