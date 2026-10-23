@@ -38,6 +38,7 @@
 python3 research/tg12-p1h/verify_fixture.py --negative-controls
 # 可選：本機有 Node.js 時同步檢查內嵌腳本語法
 python3 research/tg12-p1h/verify_fixture.py --check-js
+node research/tg12-p1h/smoke_dom.js  # 僅模擬頁面事件；不算真人驗收
 ```
 
 資料保護：無 HTTP(S) 網路需求、無 `fetch`、`localStorage`、`sessionStorage` 或外部資產；匯出前資料只在記憶體。匿名回答仍可能由參與者自行輸入識別資訊，主持人應提醒不要輸入私人資料、避免上傳公開 GitHub。不採集 IP、精準位置或裝置指紋。
