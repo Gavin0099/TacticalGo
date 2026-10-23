@@ -39,4 +39,12 @@ jobs:
           swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
           swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
           grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
-          git -c safe.directory="$PWD" show --check --format= HEAD
+          # Check newly introduced source only; this repo has legacy asset whitespace.
+          if grep -nE '[[:blank:]]+
+ \
+            swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift \
+            swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift \
+            ios/TacticalGo/TwoActionPlanningSheet.swift; then
+            echo "New Swift source contains trailing whitespace" >&2
+            exit 1
+          fi
