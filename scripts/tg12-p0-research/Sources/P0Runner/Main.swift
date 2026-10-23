@@ -132,6 +132,13 @@ func snapshot(_ value: Any) throws -> ExpansionMatchRecord.Snapshot {
             }
             try p2Diagnose(cohort:URL(fileURLWithPath:a[2]),p1:URL(fileURLWithPath:a[3]),
                            output:URL(fileURLWithPath:a[4]),short:a.count == 6)
+        case "p2-safety":
+            guard a.count == 4 else { throw StudyError.invalid("p2-safety complete-games-dir result.json") }
+            try p2SafetyProbe(cohort:URL(fileURLWithPath:a[2]),output:URL(fileURLWithPath:a[3]))
+        case "p2-match":
+            guard a.count == 6 else { throw StudyError.invalid("p2-match complete-games-dir game-name clone|diverse output-dir") }
+            try p2Match(cohort:URL(fileURLWithPath:a[2]),game:a[3],variant:a[4],
+                        out:URL(fileURLWithPath:a[5]))
         default: throw StudyError.invalid("command")
         }
     }
