@@ -995,6 +995,24 @@ struct ExpansionBoard: View {
                 if ArtV2.enabled,let p,store.effects,!reduced {
                     ArtImpact(receipt:p,time:time,pitch:pitch,size:size,center:{ presentation.center($0,size) }).zIndex(200)
                 }
+                // An actual Core capture deserves a readable beat regardless of
+                // whether it came from a normal soldier or a hero skill. No
+                // celebration is emitted for a merely legal/no-gain cast.
+                if let receipt = p,time >= receipt.captureStart,time < receipt.duration+0.10 {
+                    let taken = receipt.captures.filter {
+                        $0.piece.owner == receipt.caster.opponent && $0.piece.kind == .soldier
+                    }.count
+                    if taken > 0 {
+                        Text("提子 ×\(taken)")
+                            .font(.system(size:max(12,pitch*0.32),weight:.heavy,design:.rounded))
+                            .foregroundStyle(P02Cozy.card)
+                            .padding(.horizontal,10).padding(.vertical,5)
+                            .background(P02Cozy.ink.opacity(0.93),in:Capsule())
+                            .overlay(Capsule().stroke(P02Cozy.gold,lineWidth:1.2))
+                            .position(x:size.width/2,y:max(20,pitch*0.62))
+                            .zIndex(247).allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
                 if let preview = planning?.preview ?? store.preview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
