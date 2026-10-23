@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-23",
+  "source_commit": "65f52d7439f56fe71e0b66b892ce9b5d9d68878b",
+  "scope": "Generated baseline metadata repair for PR34 CI; no framework/policy/master-plan changes",
+  "initial_ci": {
+    "job_id": 119988691271,
+    "result": "failure",
+    "blocking_finding": "plan_inventory_current",
+    "plan_freshness": "existing nonblocking warning"
+  },
+  "framework_pin": "2a09d542900579e9527e3e08ce18b1d34e056e96",
+  "generator": {
+    "generator": "unchanged pinned adopt_governance._write_baseline_yaml helper",
+    "helper_loading": "AST extracted exact canonical function definitions; no function body modifications",
+    "reason": "Full Python CLI requires unavailable PyYAML; legacy shell inventory is capped at 20 headings. Both attempts retained.",
+    "framework_pin": "2a09d542900579e9527e3e08ce18b1d34e056e96",
+    "canonical_module_sha256": "bcece913ee175152dc4a85f809c11f1f94aafafb88cfba3a3f9175ceff959c9b",
+    "changed_metadata_keys": [
+      "framework_root",
+      "initialized_at",
+      "plan_section_inventory",
+      "sha256.AGENTS.md",
+      "sha256.PLAN.md",
+      "source_commit"
+    ],
+    "plan_headings": 79,
+    "policy_fields_unchanged": true,
+    "protected_hash_unchanged": true,
+    "plan_and_instruction_files_unchanged": true,
+    "framework_pointer_changed": false,
+    "full_adoption_or_framework_update_claimed": false
+  },
+  "canonical_cli_attempt": "Failed before mutation: missing PyYAML; no package installed",
+  "legacy_shell_attempt": "Generated only 20 headings; rejected by drift check; not applied to active worktree",
+  "baseline_before_sha256": "8c766798581d0e2d60ba1032a53cb7262f2a71618f0364d3c1966ba1dc44441c",
+  "baseline_after_sha256": "e947beb77b4f5b457e37275e9e7c14145cce224a16818366bf320f61ff09b8f6",
+  "local_checks": {
+    "governance_drift_exit": 0,
+    "severity": "ok",
+    "plan_inventory_current": true,
+    "protected_files_unmodified": true,
+    "plan_freshness": false,
+    "golden_fixture_validator": {
+      "passed": true,
+      "fixtures": 24,
+      "replay": false
+    },
+    "validator_unit_tests": {
+      "passed": 24,
+      "failed": 0
+    },
+    "hook_wiring": {
+      "passed": true,
+      "configs": 2
+    },
+    "evidence_helper_tests": {
+      "passed": 23,
+      "failed": 0
+    }
+  },
+  "framework_pointer_changed": false,
+  "plan_authority_or_policy_changed": false,
+  "instruction_or_master_plan_content_changed": false,
+  "framework_update_or_adoption_claimed": false,
+  "raw_evidence_root": "ios/Build/tg12-ui-20261023",
+  "log_sha256": {
+    "ios/Build/tg12-ui-20261023/ci-baseline-shell-configured-dry-run.log": "20dc8225ca1a1d0fab6670b0db81fb5ee18e9d327c8ea72e87002e4471effbc4",
+    "ios/Build/tg12-ui-20261023/ci-baseline-shell-dry-run.log": "1e9cece8b5f040523844477f344d95ce633e46928cd1f7b77280a541e7f2ffc0",
+    "ios/Build/tg12-ui-20261023/ci-baseline-shell-configured-apply.log": "6a0d44a205a15b7aa4eacd4850d016c6c7870683a30380ec04582f84709b7c61",
+    "ios/Build/tg12-ui-20261023/ci-isolated-setup.log": "1dfb515c8df909c74dad9dae9da583f6710f09a9a7bbb19415bdff692544c9c1",
+    "ios/Build/tg12-ui-20261023/ci-evidence-tests.log": "b73a1abe6817d840ae9d1b95db79efb80d027626ce03808a4ada14a75954a947",
+    "ios/Build/tg12-ui-20261023/ci-golden.log": "52f534add403d467311ce3745332db2cde2e5774eef457565e05e8f253b1b247",
+    "ios/Build/tg12-ui-20261023/ci-hook-wiring.log": "e9488ea0b1c534b6605a390ff31352f2aee40cd2a7e2d675bb20d044f4c68d8b",
+    "ios/Build/tg12-ui-20261023/ci-validator-tests.log": "a1af6753a7678b4ddebd6f13d08d4759258ac3a3774e24469df2ccf6d7d67784",
+    "ios/Build/tg12-ui-20261023/ci-baseline-refresh-dry-run.log": "2083d0e6b1d42a2c5c8deaad29a69befa29a39beeb8ca81ec90d531142b56c4c"
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 36,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 29,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 33,
+    "reused": true,
+    "reason": "Neither side is Mage, so the mode filter is the identity for all own and enemy actions; production source unchanged."
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 34,
+    "reused": true,
+    "reason": "Neither side is Mage, so the mode filter is the identity for all own and enemy actions; production source unchanged."
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 64,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 65,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b9-Rogue-Priest",
+    "turn": 70,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b9-Rogue-Priest",
+    "turn": 79,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 67,
+    "reused": true,
+    "reason": "Neither side is Mage, so the mode filter is the identity for all own and enemy actions; production source unchanged."
+  },
+  {
+    "game": "b7-Rogue-Priest",
+    "turn": 79,
+    "reused": true,
+    "reason": "Neither side is Mage, so the mode filter is the identity for all own and enemy actions; production source unchanged."
+  },
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 75,
+    "reused": false,
+    "reason": "Current-mode filtered diagnostic; Mage cases rerun, new 9x9 cases added."
+  }
+]

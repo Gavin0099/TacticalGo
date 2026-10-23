@@ -1,0 +1,105 @@
+{
+  "activeOwnTurnsInspected": 1,
+  "activeTurnsWithWinningEnemyReply": 0,
+  "diagnosticCompletedWithinLimits": true,
+  "explicitApplies": 451,
+  "game": "b9-Rogue-Priest",
+  "legalEnumerations": 49,
+  "limits": {
+    "explicitApplyCalls": 60000,
+    "seconds": 30
+  },
+  "notClaimed": [
+    "permanent stalemate",
+    "globally optimal play",
+    "safe witness is strategically better than pass",
+    "total Core work bounded by explicit applies"
+  ],
+  "ownTurnsExhaustivelyEnumerated": false,
+  "passSurvivesOneReply": true,
+  "ply": 71,
+  "safeAfter": {
+    "ap": 2,
+    "board": "oooo.oo.o\no.ooOo.oo\nooxxQ.oox\nxxxoooxxx\nxxxoxoxxx\nxxxxxxxxx\nxxxxH.xxx\n.x.xXxxxx\nx.xxxxxxx",
+    "current": 1,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      6,
+      5
+    ],
+    "ply": 72,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Ongoing",
+    "summoned": [
+      true,
+      true
+    ]
+  },
+  "safeNonpassWitness": [
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 1,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 3,
+          "y": 6
+        }
+      ]
+    }
+  ],
+  "scope": "full official-opening superko history, uncapped current-mode legal actions, no state deduplication; immediate commander survival only",
+  "seconds": 0.21908062500006054,
+  "sourceTurn": {
+    "actions": [
+      {
+        "kind": "end",
+        "points": []
+      }
+    ],
+    "ap": 2,
+    "availability": {
+      "advancedEnumeration": "uncapped-fallback-to-confirm-absence",
+      "advancedFunded": true,
+      "advancedKinds": [],
+      "advancedLegal": false,
+      "advancedWitnessCountLowerBound": 0,
+      "basicFunded": true,
+      "basicKinds": [],
+      "basicLegal": false,
+      "basicLegalCount": 0,
+      "compatibilityActionsExcluded": 0,
+      "heroAlreadySummoned": true,
+      "heroPresent": true
+    },
+    "enemySoldiersCaptured": 0,
+    "explicitPlannerTransitions": 414,
+    "heroClass": "Rogue",
+    "index": 70,
+    "mana": 6,
+    "manaSpent": 0,
+    "pattern": "end",
+    "plannerBudgetExhausted": false,
+    "plannerLegalEnumerations": 31,
+    "player": 0,
+    "ply": 71,
+    "purePass": true,
+    "seconds": 0.29392949999601115,
+    "usedAdvanced": false,
+    "usedBasic": false
+  },
+  "turn": 70,
+  "verdict": "safe_nonpass_exists_for_one_complete_enemy_reply"
+}

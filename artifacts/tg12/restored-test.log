@@ -1,0 +1,8 @@
+Test Suite 'Selected tests' started at 2026-10-22 19:31:43.978
+Test Suite 'ExpeditionTests' started at 2026-10-22 19:31:43.981
+Test Case 'ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual' started at 2026-10-22 19:31:43.981
+Test Case 'ExpeditionTests.testNeverCompletesBeforeFinalEnemyReplyAndReviewIsFactual' passed (2.311 seconds)
+Test Suite 'ExpeditionTests' passed at 2026-10-22 19:31:46.292
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.311 (2.311) seconds
+Test Suite 'Selected tests' passed at 2026-10-22 19:31:46.292
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.311 (2.311) seconds

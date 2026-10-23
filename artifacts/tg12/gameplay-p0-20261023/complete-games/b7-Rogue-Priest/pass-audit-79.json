@@ -1,0 +1,108 @@
+{
+  "activeOwnTurnsInspected": 11,
+  "activeTurnsWithWinningEnemyReply": 10,
+  "explicitApplies": 122,
+  "game": "b7-Rogue-Priest",
+  "legalEnumerations": 37,
+  "limits": {
+    "explicitApplyCalls": 60000,
+    "seconds": 30
+  },
+  "notClaimed": [
+    "permanent stalemate",
+    "globally optimal play",
+    "safe witness is strategically better than pass",
+    "total Core work bounded by explicit applies"
+  ],
+  "passSurvivesOneReply": true,
+  "ply": 80,
+  "safeAfter": {
+    "ap": 2,
+    "board": ".oooox.\noo.Ox.x\noooQxxx\noooxxxx\nxxxxxxx\nxxxXxxx\n.xxxxx.",
+    "current": 0,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      6,
+      4
+    ],
+    "ply": 81,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Ongoing",
+    "summoned": [
+      true,
+      true
+    ]
+  },
+  "safeNonpassWitness": [
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "offering",
+      "points": [
+        {
+          "x": 2,
+          "y": 1
+        }
+      ]
+    }
+  ],
+  "scope": "full official-opening superko history, uncapped legal actions, no state deduplication; immediate commander survival only",
+  "seconds": 0.10426170832943171,
+  "sourceTurn": {
+    "actions": [
+      {
+        "kind": "end",
+        "points": []
+      }
+    ],
+    "ap": 2,
+    "availability": {
+      "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+      "advancedFunded": true,
+      "advancedKinds": [
+        "castSanctum"
+      ],
+      "advancedLegal": true,
+      "advancedWitnessCountLowerBound": 4,
+      "basicFunded": true,
+      "basicKinds": [
+        "castOffering"
+      ],
+      "basicLegal": true,
+      "basicLegalCount": 4,
+      "heroAlreadySummoned": true,
+      "heroPresent": true
+    },
+    "enemySoldiersCaptured": 0,
+    "explicitPlannerTransitions": 161,
+    "heroClass": "Priest",
+    "index": 79,
+    "mana": 6,
+    "manaSpent": 0,
+    "pattern": "end",
+    "plannerBudgetExhausted": false,
+    "plannerLegalEnumerations": 34,
+    "player": 1,
+    "ply": 80,
+    "purePass": true,
+    "seconds": 0.11822929166373797,
+    "usedAdvanced": false,
+    "usedBasic": false
+  },
+  "turn": 79,
+  "verdict": "safe_nonpass_exists_for_one_complete_enemy_reply",
+  "diagnosticCompletedWithinLimits": true,
+  "ownTurnsExhaustivelyEnumerated": false
+}

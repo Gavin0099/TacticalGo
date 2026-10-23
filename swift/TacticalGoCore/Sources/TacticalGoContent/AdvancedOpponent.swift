@@ -10,7 +10,7 @@ public struct ChallengeReply: Sendable {
 /// A bounded opponent for these three fixtures, not a general-purpose Bot upgrade.
 /// Captures, turns, costs and all legality come from unchanged Core.
 public enum AdvancedOpponent {
-    public static func planTurn(_ root: GameState, goal: TutorialGoal, maxTransitions: Int = 2_000) -> ChallengeReply {
+    public static func planTurn(_ root: GameState, goal: TutorialGoal, maxTransitions: Int = 2_000, expedition: Bool = false) -> ChallengeReply {
         guard root.current == .two, root.status == .ongoing else {
             return ChallengeReply(actions: [], explicitTransitions: 0, budgetExhausted: false, reason: "不在敵方回合")
         }
@@ -28,7 +28,10 @@ public enum AdvancedOpponent {
         func score(_ state: GameState) -> Int {
             if state.winner == .two { return 1_000_000 }
             if state.winner == .one { return -1_000_000 }
-            var value = (oneBefore - state.board.points.filter { state.board[$0]?.owner == .one }.count) * 900
+            // Observed TG12 exploit: a remote one-stone sacrifice distracted the rescue
+            // opponent from the commander. Only this scenario devalues material bait.
+            let captureWeight = expedition && goal == .advancedRescue ? 50 : 900
+            var value = (oneBefore - state.board.points.filter { state.board[$0]?.owner == .one }.count) * captureWeight
             for p in threatenedEnemyGroups {
                 if state.board[p]?.owner != .two { value -= 1_000 }
                 else { value += min(4, state.board.liberties(at: p).count) * 150 }
