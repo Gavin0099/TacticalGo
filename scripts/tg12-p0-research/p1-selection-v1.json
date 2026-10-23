@@ -1,58 +1,114 @@
 [
   {
     "game": "b7-Warrior-Mage",
+    "turn": 8,
+    "ply": 9,
+    "hero": "Warrior",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 7,
+    "ply": 8,
+    "hero": "Mage",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b7-Rogue-Priest",
+    "turn": 4,
+    "ply": 5,
+    "hero": "Rogue",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 6,
+    "ply": 7,
+    "hero": "Priest",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b7-Warrior-Mage",
     "turn": 2,
     "ply": 3,
     "hero": "Warrior",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b7-Warrior-Mage",
     "turn": 9,
     "ply": 10,
     "hero": "Mage",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b7-Priest-Rogue",
     "turn": 19,
     "ply": 20,
     "hero": "Rogue",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b7-Priest-Rogue",
     "turn": 30,
     "ply": 31,
     "hero": "Priest",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 8,
+    "ply": 9,
+    "hero": "Warrior",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 7,
+    "ply": 8,
+    "hero": "Mage",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b9-Priest-Rogue",
+    "turn": 19,
+    "ply": 20,
+    "hero": "Rogue",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
+  },
+  {
+    "game": "b9-Priest-Rogue",
+    "turn": 6,
+    "ply": 7,
+    "hero": "Priest",
+    "reason": "first-advanced-legal-ordinary-two-soldiers"
   },
   {
     "game": "b9-Mage-Warrior",
     "turn": 3,
     "ply": 4,
     "hero": "Warrior",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b9-Mage-Warrior",
     "turn": 6,
     "ply": 7,
     "hero": "Mage",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b9-Priest-Rogue",
     "turn": 59,
     "ply": 60,
     "hero": "Rogue",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   },
   {
     "game": "b9-Priest-Rogue",
     "turn": 64,
     "ply": 65,
     "hero": "Priest",
-    "reason": "first-observed-skill-soldier (P0 selection; preregistered)"
+    "reason": "first-observed-skill-soldier"
   }
 ]
