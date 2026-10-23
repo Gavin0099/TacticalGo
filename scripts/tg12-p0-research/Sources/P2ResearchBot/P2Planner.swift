@@ -102,6 +102,13 @@ public enum P2Planner {
     }
 }
 
+private struct P2InternalTurnCandidate {
+    let state: GameState
+    let actions: [GameAction]
+    var score = 0
+    var key: String { actions.map(p2ActionDescription).joined(separator:"/") }
+}
+
 private struct Node {
     let state: GameState
     let actions: [GameAction]
@@ -115,7 +122,7 @@ private struct Search {
     let diagnostics: Bool
     let cancelled: @Sendable () -> Bool
     var stats = P2SearchStats()
-    var continuationCandidates: [BotTurnCandidate] = []
+    var continuationCandidates: [P2InternalTurnCandidate] = []
     var interrupted = false
     var me: Player { root.current }
     let win = 1_000_000
@@ -279,7 +286,7 @@ private struct Search {
         // Different move orders can lead to the same board/resources; keep a stable representative.
         // History is deliberately not merged: superko can distinguish otherwise identical states.
         completed.sort(by: better)
-        continuationCandidates = completed.map { BotTurnCandidate(state: $0.state, actions: $0.actions, score: $0.score) }
+        continuationCandidates = completed.map { P2InternalTurnCandidate(state: $0.state, actions: $0.actions, score: $0.score) }
         stats.turnCandidates = completed.count
         stats.ownTurnComparisons = completed.map { "\($0.key) own=\($0.score)" }
         if let pass = completed.first(where: { $0.actions.allSatisfy { $0 == .endTurn } }) {
