@@ -50,30 +50,15 @@ jobs:
             artifacts/tg12/gameplay-p0-20261023/complete-games \
             scripts/tg12-p0-research/p1-selection-v1.json \
             tg12-p1-ci.json 4 2>&1 | tee tg12-p1-ci.log
-          python3 - <<'PY'
-          import json
-          with open("tg12-p1-ci.json", encoding="utf-8") as f:
-              data = json.load(f)
-          positions = data["positions"]
-          assert [p["hero"] for p in positions] == ["Warrior", "Mage", "Rogue", "Priest"]
-          assert all(p["alternatives"] for p in positions)
-          assert all(p["sourceSelectionReason"] == "first-advanced-legal-ordinary-two-soldiers" for p in positions)
-          print("P1_FOUR_HERO_RESEARCH_BEGIN")
-          for pos in positions:
-              rows = pos["alternatives"]
-              counters = {}
-              for row in rows:
-                  key = row["group"]
-                  counters[key] = counters.get(key, 0) + 1
-              risks = sum(x["immediateLossProbe"]["verdict"] == "opponent_can_win" for x in rows)
-              advanced = sum(x["advancedSkillUsed"] for x in rows)
-              print(json.dumps({"game": pos["game"], "turn": pos["turn"],
-                                "hero": pos["hero"], "sampledCategories": counters,
-                                "sampledAdvancedPlans": advanced,
-                                "foundImmediateLossCounterexamples": risks,
-                                "candidateCount": len(rows)}, ensure_ascii=False))
-          print("P1_FOUR_HERO_RESEARCH_END")
-          PY
+          # The swift:6.0 container has no python3. Inspect the native research
+          # JSON using tools already present; keep the whole JSON in the job log.
+          test -s tg12-p1-ci.json
+          grep -q 'TG12_P1_SAME_STATE_COUNTERFACTUAL_V1' tg12-p1-ci.json
+          test "$(grep -c '"sourceSelectionReason" : "first-advanced-legal-ordinary-two-soldiers"' tg12-p1-ci.json)" -eq 4
+          echo P1_SAME_STATE_JSON_BEGIN
+          cat tg12-p1-ci.json
+          echo
+          echo P1_SAME_STATE_JSON_END
           sha256sum tg12-p1-ci.json
       - name: Preserve complete research JSON in log and summary
         if: always()
