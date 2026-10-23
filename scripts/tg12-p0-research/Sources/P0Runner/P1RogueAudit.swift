@@ -66,9 +66,10 @@ private func rogueApply(_ start:GameState,_ moves:[GameAction],
 
 /// Adds one complete reply without merging distinct action histories. Every reply is
 /// verified through GameEngine.apply, never reconstructed from its board string.
-private func rogueReplySet(_ after:GameState, expected:[GameAction]) throws
-    -> ([RogueReply],[String:Int],Bool) {
-    guard after.status == .ongoing else { return ([],[:],true) }
+private func rogueReplySet(_ after:GameState, expected:[GameAction],
+                           checkAllPriestSkills:Bool) throws
+    -> ([RogueReply],[String:Int],Bool,Bool,Int) {
+    guard after.status == .ongoing else { return ([],[:],true,false,0) }
     let defender=after.current
     var replies:[RogueReply]=[],index:[String:Int]=[:],visits=0,exhaustive=true
     func include(_ moves:[GameAction],source:String) throws {
@@ -113,9 +114,52 @@ private func rogueReplySet(_ after:GameState, expected:[GameAction]) throws
         }
         if !exhaustive { break }
     }
+    // P1R+ for the pinned 9x9 Rogue positive only: every enemy Priest skill as
+    // first action followed by any legal ordinary placement/pass, and every
+    // ordinary placement followed by every legal Priest skill.
+    // Together with the placement-only sweep this covers all current-mode
+    // complete turns if there are no other kinds and the cap is not reached.
+    var skillComplete=checkAllPriestSkills, skillEnumerated=0
+    if checkAllPriestSkills {
+        guard after.heroClass(of:defender) == .priest else {
+            throw StudyError.invalid("P1R skill census expected an enemy Priest")
+        }
+        let fullFirst=GameEngine.legalActions(after)
+            .filter { P0Metrics.isInCurrentMode($0,config:after.config) }
+        for first in fullFirst {
+            if first == .endTurn { continue }
+            let firstIsSoldier:Bool
+            if case .placeSoldier = first { firstIsSoldier=true }
+            else if P0Metrics.isClassSkill(first) { firstIsSoldier=false }
+            else {
+                // Summon, loot or any future new action is NOT silently assumed covered.
+                skillComplete=false;continue
+            }
+            let one=GameEngine.apply(after,first)
+            guard one.success else { throw StudyError.invalid("P1R census first action invalid") }
+            if one.state.status != .ongoing || one.state.current != defender {
+                try include([first],source:"all_priest_skills_ordered")
+                continue
+            }
+            let second=GameEngine.legalActions(one.state)
+                .filter { P0Metrics.isInCurrentMode($0,config:one.state.config) }
+                .filter { move in
+                    if firstIsSoldier { return P0Metrics.isClassSkill(move) }
+                    if move == .endTurn { return true }
+                    if case .placeSoldier = move { return true }
+                    return false
+                }
+            for move in second {
+                skillEnumerated += 1
+                if skillEnumerated > 8_000 { skillComplete=false;break }
+                try include([first,move],source:"all_priest_skills_ordered")
+            }
+            if skillEnumerated > 8_000 { break }
+        }
+    }
     var counts:[String:Int]=[:]
     for reply in replies { for name in reply.sources { counts[name,default:0] += 1 } }
-    return (replies,counts,exhaustive)
+    return (replies,counts,exhaustive,skillComplete,skillEnumerated)
 }
 
 private func rogueContinue(_ afterEnemy:GameState, mover:Player,
@@ -187,7 +231,8 @@ extension P0Runner {
                   let standard=old["reply"] as? [String:Any],standard["applicable"] as? Bool == true,
                   let knownReply=standard["recordActions"] as? [[String:Any]]
             else { throw StudyError.invalid("P1R P1 candidate altered") }
-            let (responses,counts,allSoldiers)=try rogueReplySet(after,expected:rogueDomain(knownReply))
+            let (responses,counts,allSoldiers,allPriestSkills,skillCases)=try rogueReplySet(
+                after,expected:rogueDomain(knownReply),checkAllPriestSkills:id == 5)
             var written:[[String:Any]]=[]
             var worstNet=Int.max,minLibs=Int.max
             var worstIndex:Int?,libIndex:Int?,knownIndex:Int?,losses=0,heroLosses=0
@@ -217,12 +262,41 @@ extension P0Runner {
                     "advancedActuallyLegalNextTurn":rogueAdvanced(next,owner:.two)])
             }
             guard let knownIndex else { throw StudyError.invalid("P1R missing standard reply") }
-            let selected=Array(Set([knownIndex,worstIndex,libIndex].compactMap{$0})).sorted()
+            // Equal material and Commander liberties are common in this example.
+            // Without deliberate diversity, "worst" and "least liberties" select
+            // the Standard reply again and never test a second future.
+            let heroLow=replies.indices.min { a,b in
+                let aa=rogueLiberties(replies[a].final,owner:.two,kind:.hero)
+                let bb=rogueLiberties(replies[b].final,owner:.two,kind:.hero)
+                return aa == bb ? a < b : aa < bb
+            }
+            let retainedDifferent=replies.indices.first {
+                $0 != knownIndex && replies[$0].sources.contains("bounded_standard_retained")
+            }
+            let priestOffering=replies.indices.first {
+                replies[$0].actions.contains(where:{ if case .castOffering = $0 { return true };return false })
+            }
+            let priestSanctum=replies.indices.first {
+                replies[$0].actions.contains(where:{ if case .castSanctum = $0 { return true };return false })
+            }
+            let purePass=replies.indices.first {
+                replies[$0].actions.count == 1 && replies[$0].actions[0] == .endTurn
+            }
+            let selected=Array(Set([knownIndex,worstIndex,libIndex,heroLow,retainedDifferent,
+                                    priestOffering,priestSanctum,purePass].compactMap{$0})).sorted()
             var continuations:[[String:Any]]=[]
             for idx in selected {
                 let response=responses[idx]
-                continuations.append(["replyIndex":idx,"chosenBecause":idx==knownIndex ? "standard"
-                    : idx==worstIndex ? "minimum_observed_net_captures" : "minimum_commander_liberties",
+                let why:String
+                if idx == knownIndex { why="standard" }
+                else if idx == priestSanctum { why="priest_sanctum_counterplay" }
+                else if idx == priestOffering { why="priest_offering_counterplay" }
+                else if idx == purePass { why="enemy_pass_resource_counterfactual" }
+                else if idx == heroLow { why="minimum_hero_liberties" }
+                else if idx == retainedDifferent { why="different_retained_bot_reply" }
+                else if idx == worstIndex { why="minimum_observed_net_captures" }
+                else { why="minimum_commander_liberties" }
+                continuations.append(["replyIndex":idx,"chosenBecause":why,
                     "simulation":try rogueContinue(response.final,mover:.two,
                                                    capturedMe:ours,capturedThem:response.enemySoldiersTaken)])
             }
@@ -233,6 +307,8 @@ extension P0Runner {
                 "ourSoldiersTakenFromEnemy":ours,
                 "manaSpent":root.mana(of:.two)-after.mana(of:.two),
                 "responseFamilies":counts, "allLegalPlacementOnlyReplyTurnsCovered":allSoldiers,
+                "allOrderedPriestSkillReplyTurnsCovered":id == 5 ? allPriestSkills : false,
+                "priestSkillSecondActionCandidatesInspected":skillCases,
                 "responsesEnumerated":responses.count,
                 "observedNetMaterialRange":[worstNet,
                    written.map { $0["netSoldiersAfterReply"] as! Int }.max() ?? worstNet],
@@ -251,8 +327,8 @@ extension P0Runner {
             "root":try object(ExpansionMatchRecord.Snapshot(root)),
             "selectedIndices":indices, "branches":branches,
             "boundaries":[
-                "All legal placement-only complete enemy turns are enumerated (if complete flag true) via uncapped placeSoldier legality plus pass; this is NOT all enemy skills",
-                "Other responses include Standard, Easy and bounded Standard candidateTurns, NOT a complete hostile policy space",
+                "All legal placement-only complete enemy turns are enumerated with a complete flag; candidate5 separately enumerates both orders of ALL current-mode enemy Priest skills under 8k second-action cap",
+                "Other responses include Standard, Easy and bounded Standard candidateTurns. Do not claim all skill responses if the Priest completeness flag is false or unsupported action kinds are encountered",
                 "Counterexample means one real legal reply; lack of one remains UNKNOWN",
                 "Two-cycle continuations use Standard Bot only, not minimax or proof of persistent benefit",
                 "Each response and each selected two-cycle includes record-format actions and snapshots",
