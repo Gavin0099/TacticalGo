@@ -39,6 +39,12 @@ struct ExpansionGameView: View {
     @State private var humanSide: Player = .one
     @State private var showBotLog = false
     @State private var showSoundSettings = false
+    #if DEBUG || TACTICALGO_V11
+    /// View-only forecast; discarded on close, never written to the match/save.
+    @State private var tacticalForecast: TwoActionPlanningController?
+    @State private var stagedSecondAction: GameAction?
+    @State private var stagedSecondBase: GameState?
+    #endif
     @State private var showTacticalHelp = false
     @State private var showLootAbilities = false
     @State private var showRecords = false
@@ -130,6 +136,13 @@ struct ExpansionGameView: View {
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
         .sheet(isPresented: $showTacticalHelp) { tacticalHelp }
+        #if DEBUG || TACTICALGO_V11
+        .sheet(item: $tacticalForecast) { draft in
+            if let match = store.expansion {
+                TwoActionPlanningSheet(planner:draft,match:match,onUseFirst:useForecastFirst)
+            }
+        }
+        #endif
         .sheet(item: $unlockRequest, onDismiss: { RewardedAdService.shared.cancelPendingRequest() }) { request in
             if let access {
                 let fromBar = request == .store
@@ -161,7 +174,14 @@ struct ExpansionGameView: View {
             Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
-        .onChange(of: inMatch) { _, playing in if !playing { returnToLatestRules() } }
+        .onChange(of: inMatch) { _, playing in
+            if !playing {
+                #if DEBUG || TACTICALGO_V11
+                tacticalForecast = nil; stagedSecondAction = nil; stagedSecondBase = nil
+                #endif
+                returnToLatestRules()
+            }
+        }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
         .onChange(of: scenePhase) { _, phase in
             store.setSceneAudioActive(phase == .active)
@@ -777,7 +797,7 @@ struct ExpansionGameView: View {
             } else {
                 dockHeading.frame(height: 44)
                 gameAbilityRail.frame(height: 64)
-                Text(tacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
+                Text((store.expansion?.lastConfirmedFeedback ?? tacticalMessage).replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
                     .font(.system(size: 11, weight: .medium)).foregroundStyle(uiSecondary)
                     .lineLimit(1).truncationMode(.tail)
                     .frame(maxWidth: .infinity, minHeight: 16, maxHeight: 16, alignment: .leading)
@@ -956,6 +976,20 @@ struct ExpansionGameView: View {
                 }.frame(width: 48, height: 44)
             }.buttonStyle(GameButtonStyle()).disabled(store.selected.isEmpty && !store.canUndoHumanDecision)
                 .accessibilityIdentifier("undoOrCancel")
+            #if DEBUG || TACTICALGO_V11
+            if forecastCanUseSecond {
+                Button { loadForecastSecond() } label: {
+                    Image(systemName:"arrow.right.circle.fill").font(.system(size:19)).frame(width:44,height:44)
+                }.buttonStyle(GameButtonStyle()).accessibilityLabel("帶入試算第二手").accessibilityIdentifier("forecastLoadSecond")
+                    .disabled(store.inputLocked)
+            } else if store.expansion != nil && store.state.apRemaining >= 2 &&
+                        store.state.status == .ongoing && store.computer != store.state.current {
+                Button { tacticalForecast = TwoActionPlanningController(origin:store.state) } label: {
+                    Image(systemName:"square.stack.3d.up.fill").font(.system(size:17)).frame(width:44,height:44)
+                }.buttonStyle(GameButtonStyle()).accessibilityLabel("兩手試算，正式落子前預覽").accessibilityIdentifier("forecastOpen")
+                    .disabled(store.inputLocked)
+            }
+            #endif
             Button(action: store.confirm) {
                 Label("確認", systemImage: "checkmark.seal.fill").font(.system(size: 15, weight: .heavy))
                     .frame(maxWidth: .infinity).frame(height: 44)
@@ -968,6 +1002,40 @@ struct ExpansionGameView: View {
                 .disabled(store.inputLocked || store.state.status != .ongoing || lesson != nil).accessibilityIdentifier("playEndTurn")
         }
     }
+    #if DEBUG || TACTICALGO_V11
+    /// A reviewed trial may only preselect one original action: no GameSession.apply,
+    /// no access ledger, no sound, no save. Existing Confirm remains authoritative.
+    private func useForecastFirst(_ trial:TwoActionForecast) -> Bool {
+        guard let match = store.expansion, !store.inputLocked,match.reviewTime == nil,
+              match.state == trial.origin,let first=trial.first,
+              GameEngine.apply(match.state,first).success,
+              let input=TwoActionPlanningController.liveInput(first) else { return false }
+        match.cancelSelection()
+        match.mode=input.mode
+        match.selected=input.points
+        match.pending=first
+        match.message="已帶入第一手；仍需按確認，才會真正扣資源並存局。"
+        stagedSecondAction=trial.second
+        stagedSecondBase=trial.secondBase
+        return true
+    }
+    private var forecastCanUseSecond: Bool {
+        guard let match=store.expansion,let action=stagedSecondAction,
+              let expected=stagedSecondBase,match.state == expected,
+              match.state.status == .ongoing, !store.isComputerTurn,
+              GameEngine.apply(match.state,action).success else { return false }
+        return TwoActionPlanningController.liveInput(action) != nil
+    }
+    private func loadForecastSecond() {
+        guard forecastCanUseSecond,let action=stagedSecondAction,
+              let input=TwoActionPlanningController.liveInput(action),let match=store.expansion else { return }
+        match.cancelSelection()
+        match.mode=input.mode;match.selected=input.points;match.pending=action
+        match.message="第二手仍合法；按原本「確認」才會真正施放。"
+        stagedSecondAction=nil;stagedSecondBase=nil
+    }
+    #endif
+
     private var gameResultDock: some View {
         VStack(spacing: 8) {
             Image(systemName: complete ? "checkmark.seal.fill" : "crown.fill")
