@@ -45,6 +45,8 @@ c37e720 的 `rogue-verify` 能核對行動與局面，卻會接受遭改動的�
 
 `--negative-controls` 執行 10 項拒絕案例：錯誤回應數、技能合法性、缺失回應、重複分支、壓掉續局適用性、移除全部續局、重複續局、缺失第二次敵方回合、錯誤終點及錯誤起點。這些 CLI 檢查與 Swift 單元測試數量分開計算；不宣稱所有 JSON 欄位或任意損壞格式都已完整驗證。
 
+本輪首次提交 `4a6dea2` 的 [Linux CI](https://github.com/Gavin0099/TacticalGo/actions/runs/39935171720/job/120352833785) 在新增欄位比較處失敗：`P1R reply metrics field ourCommanderLiberties`。當時 472 項 Swift 測試為 1 略過、零失敗，產生器的六組回應數亦一致。修正將 `NSDictionary` 對解碼後數值與原生 Swift 數值的比較，改為正規化 JSON 值比較，避免 Darwin／Linux Foundation bridge 差異；未放寬任何欄位期望或刪除檢查。新提交的 CI 須重新通過才算交付。
+
 ## 重現
 
 ```sh

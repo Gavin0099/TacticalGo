@@ -59,7 +59,11 @@ private func rogueCensus(_ start:GameState, soldiersOnly:Bool) throws -> Set<Str
 
 private func rogueFields(_ actual:[String:Any],_ expected:[String:Any],_ label:String) throws {
     for (key,value) in expected {
-        guard let stored=actual[key], NSDictionary(dictionary:["v":stored]).isEqual(to:["v":value]) else {
+        // Compare JSON values, not Foundation bridging identity. Linux and Darwin
+        // differ when NSDictionary compares decoded NSNumber with native Int/Bool.
+        guard let stored=actual[key],
+              try JSONSerialization.data(withJSONObject:["v":stored],options:.sortedKeys) ==
+                  JSONSerialization.data(withJSONObject:["v":value],options:.sortedKeys) else {
             throw StudyError.invalid("P1R \(label) field \(key)")
         }
     }

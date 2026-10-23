@@ -12,7 +12,7 @@
     "scripts/tg12-p0-research/Sources/P0Runner/Main.swift": "b90d13a0bbd9ecc5e42d4ae38244a364f503df4d5cf736955835c9a9d977338e"
   },
   "verifierSourceSHA256": {
-    "scripts/tg12-p0-research/Sources/P0Runner/P1RogueAudit.swift": "74061d5077179865c064c873eaa49d8a2caa836924b359261a6f8a7c91da7920",
+    "scripts/tg12-p0-research/Sources/P0Runner/P1RogueAudit.swift": "a5c6fa89e0afbb01521a326251f9ed06b8e3b4cb3302743b6830ba35077e8eb2",
     "scripts/tg12-p0-research/Sources/P0Runner/Main.swift": "51d48741e1819c87c05e8277b758a25133fa811224b38e05ad9017fc61521da0"
   },
   "sourceIdentityCheck": "All six candidate IDs/actions/ownAfter and Standard actions/after exactly match pinned P1 V2. Original game root matches.",
@@ -55,5 +55,17 @@
     "full P1 acceptance",
     "iPhone performance",
     "C# parity"
+  ],
+  "repairCIHistory": [
+    {
+      "commit": "4a6dea286d7d3720e8c8ec0f1fa5be1ed0660abb",
+      "job": "https://github.com/Gavin0099/TacticalGo/actions/runs/39935171720/job/120352833785",
+      "status": "failure",
+      "passedSwiftTests": 472,
+      "skipped": 1,
+      "swiftTestFailures": 0,
+      "diagnostic": "P1R reply metrics field ourCommanderLiberties",
+      "repair": "Use sorted-key JSON value equality instead of NSDictionary/native Swift value equality across Foundation platforms; no expected metric or coverage relaxed."
+    }
   ]
 }
