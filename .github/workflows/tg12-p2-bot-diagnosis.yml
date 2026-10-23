@@ -30,3 +30,29 @@ jobs:
           echo TG12_P2_DIAG_JSON_BEGIN
           cat tg12-p2-diagnose.json
           echo TG12_P2_DIAG_JSON_END
+      - name: Fixed baseline-parity and forced-pass safety checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-safety \
+            artifacts/tg12/gameplay-p0-20261023/complete-games tg12-p2-safety.json
+          test -s tg12-p2-safety.json
+          grep -q TG12_P2_RESEARCH_BOT_FIXED_PROBES_V1 tg12-p2-safety.json
+          echo TG12_P2_SAFETY_JSON_BEGIN
+          cat tg12-p2-safety.json
+          echo
+          echo TG12_P2_SAFETY_JSON_END
+      - name: One entire formal opening A/B smoke with replay receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          game=b7-Mage-Warrior
+          cohort=artifacts/tg12/gameplay-p0-20261023/complete-games
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-match \
+            "$cohort" "$game" clone p2-clone-smoke
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p2-match \
+            "$cohort" "$game" diverse p2-diverse-smoke
+          test -s p2-clone-smoke/record.json
+          test -s p2-diverse-smoke/record.json
+          cat p2-clone-smoke/summary.json
+          cat p2-diverse-smoke/summary.json
