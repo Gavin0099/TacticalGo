@@ -50,6 +50,8 @@ import TacticalGoVisuals
     }
     var pending: GameAction?
     var message = "選擇格點，再確認行動。"
+    /// Factual, committed-event feedback only. Previews and cancelled plans never set it.
+    var lastConfirmedFeedback: String?
     var instruction: String?
     var voice: Bool {
         didSet { if persistSoundPreferences { soundDefaults.set(voice,forKey:"combatAudio.castVoiceEnabled") }; updateSoundMix() }
@@ -192,7 +194,7 @@ import TacticalGoVisuals
         generation += 1; task?.cancel(); task = nil; samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
         playing = false; receipt = nil
     }
-    func cancelSelection() { selected = []; pending = nil }
+    func cancelSelection() { selected = []; pending = nil; lastConfirmedFeedback = nil }
     /// `keepIdentity` lets the caller restart the board of a match whose identity was already admitted.
     func restart(keepIdentity: Bool = false) {
         if !keepIdentity { matchID = UUID() }
@@ -316,6 +318,7 @@ import TacticalGoVisuals
     }
     func select(_ p: Point) {
         guard !controlsLocked,state.status == .ongoing else { return }
+        lastConfirmedFeedback = nil
         if ArtV2.sfx, active, !interrupted, !muted, legalTargets.contains(p) {
             samples.schedule("selection", after: 0, volume: 0.35)
         }
@@ -378,6 +381,29 @@ import TacticalGoVisuals
         let keepVoice = previousVisualEnded && state.status == .ongoing && !muted && voice && voiceVolume > 0
         stop(keepingCompletedVoice:keepVoice); cancelSelection()
         receipt = plan
+        // Reporting is authorized by the committed Core receipt, never by a preview
+        // or a heuristic. More liberties does not imply safety; just show the count.
+        let actor = before.current
+        let capturedSoldiers = outcome.events.reduce(0) { count,event in
+            guard case .piecesCaptured(let owner,let pieces) = event,owner == actor else { return count }
+            return count + pieces.filter { $0.piece == Piece(actor.opponent,.soldier) }.count
+        }
+        let priorLiberties = before.board.find(actor,.commander).map { before.board.liberties(at:$0).count } ?? 0
+        let newLiberties = state.board.find(actor,.commander).map { state.board.liberties(at:$0).count } ?? 0
+        let manaText = "能量 \(before.mana(of:actor))→\(state.mana(of:actor))"
+        if capturedSoldiers > 0 {
+            lastConfirmedFeedback = "提敵兵 ×\(capturedSoldiers) · 主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else if outcome.events.contains(where: { event in
+            if case .piecesSwapped = event { return true }
+            if case .piecePushed = event { return true }
+            return false
+        }) {
+            lastConfirmedFeedback = "棋子已移位 · 主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else if priorLiberties != newLiberties {
+            lastConfirmedFeedback = "主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else {
+            lastConfirmedFeedback = manaText + " · 已依規則完成行動"
+        }
         if before.current != state.current { mode = .soldier }
         started = ProcessInfo.processInfo.systemUptime; playing = (receipt?.duration ?? 0) > 0
         message = challenge && PriestSanctuaryChallenge.solved(state) ? "挑戰完成：犧牲一兵，牧師棋群形成兩個真眼。" : "已確認：\(before.current == .one ? "黑" : "白")方行動。"
