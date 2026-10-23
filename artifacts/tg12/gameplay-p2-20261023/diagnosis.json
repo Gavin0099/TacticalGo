@@ -1,0 +1,465 @@
+{
+  "cases": [
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "safe-active-witness",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": 182,
+      "completed": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 43,
+        "reason": "outside-complete-turn-reply-cap",
+        "retained": false
+      },
+      "explicitApply": 282,
+      "fullOwnCandidates": 65,
+      "game": "b7-Priest-Rogue",
+      "legalEnumerations": 35,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 4,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 65",
+        "pass己方分數 182，最佳非pass己方分數 189；反擊分數另列"
+      ],
+      "ply": 34,
+      "replyComparison": null,
+      "rootFirst": {
+        "observed": true,
+        "ownScore": 120,
+        "rank": 9,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "safe_nonpass_exists_for_one_complete_enemy_reply",
+      "targetActions": [
+        "1-place:0,0",
+        "1-place:1,1"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 33,
+      "variant": "baseline-10-8"
+    },
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "safe-active-witness",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": 182,
+      "completed": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 43,
+        "reason": "outside-complete-turn-reply-cap",
+        "retained": false
+      },
+      "explicitApply": 282,
+      "fullOwnCandidates": 65,
+      "game": "b7-Priest-Rogue",
+      "legalEnumerations": 35,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 4,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 65",
+        "pass己方分數 182，最佳非pass己方分數 189；反擊分數另列"
+      ],
+      "ply": 34,
+      "replyComparison": null,
+      "rootFirst": {
+        "observed": true,
+        "ownScore": 120,
+        "rank": 9,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "safe_nonpass_exists_for_one_complete_enemy_reply",
+      "targetActions": [
+        "1-place:0,0",
+        "1-place:1,1"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 33,
+      "variant": "own-beam-16"
+    },
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "safe-active-witness",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": 182,
+      "completed": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 43,
+        "reason": "outside-complete-turn-reply-cap",
+        "retained": false
+      },
+      "explicitApply": 497,
+      "fullOwnCandidates": 65,
+      "game": "b7-Priest-Rogue",
+      "legalEnumerations": 61,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": 77,
+        "rank": 4,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 65",
+        "pass己方分數 182，最佳非pass己方分數 189；反擊分數另列"
+      ],
+      "ply": 34,
+      "replyComparison": null,
+      "rootFirst": {
+        "observed": true,
+        "ownScore": 120,
+        "rank": 9,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "safe_nonpass_exists_for_one_complete_enemy_reply",
+      "targetActions": [
+        "1-place:0,0",
+        "1-place:1,1"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 33,
+      "variant": "reply-cap-16"
+    },
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "forced-pass-exact",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": -924,
+      "completed": {
+        "observed": true,
+        "ownScore": -944,
+        "rank": 1,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 1412,
+      "fullOwnCandidates": 32,
+      "game": "b7-Warrior-Mage",
+      "legalEnumerations": 27,
+      "ownSecond": {
+        "observed": false
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 9，完整己方候選 32",
+        "pass己方分數 -944，最佳非pass己方分數 -959；反擊分數另列"
+      ],
+      "ply": 76,
+      "replyComparison": "9-end own=-944 reply=-884 combined=-924",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -884,
+        "rank": 1,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 10,
+      "safety": "only_pure_pass_survives_one_complete_enemy_reply",
+      "targetActions": [
+        "9-end"
+      ],
+      "targetWasChosen": true,
+      "traceTruncated": false,
+      "turn": 75,
+      "variant": "baseline-10-8"
+    },
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "forced-pass-exact",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": -924,
+      "completed": {
+        "observed": true,
+        "ownScore": -944,
+        "rank": 1,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 1412,
+      "fullOwnCandidates": 32,
+      "game": "b7-Warrior-Mage",
+      "legalEnumerations": 27,
+      "ownSecond": {
+        "observed": false
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 9，完整己方候選 32",
+        "pass己方分數 -944，最佳非pass己方分數 -959；反擊分數另列"
+      ],
+      "ply": 76,
+      "replyComparison": "9-end own=-944 reply=-884 combined=-924",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -884,
+        "rank": 1,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 10,
+      "safety": "only_pure_pass_survives_one_complete_enemy_reply",
+      "targetActions": [
+        "9-end"
+      ],
+      "targetWasChosen": true,
+      "traceTruncated": false,
+      "turn": 75,
+      "variant": "own-beam-16"
+    },
+    {
+      "baselineWasPass": true,
+      "budgetExhausted": false,
+      "case": "forced-pass-exact",
+      "chosenActions": [
+        "9-end"
+      ],
+      "chosenPurePass": true,
+      "chosenScore": -924,
+      "completed": {
+        "observed": true,
+        "ownScore": -944,
+        "rank": 1,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 1444,
+      "fullOwnCandidates": 32,
+      "game": "b7-Warrior-Mage",
+      "legalEnumerations": 35,
+      "ownSecond": {
+        "observed": false
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 9，完整己方候選 32",
+        "pass己方分數 -944，最佳非pass己方分數 -959；反擊分數另列"
+      ],
+      "ply": 76,
+      "replyComparison": "9-end own=-944 reply=-884 combined=-924",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -884,
+        "rank": 1,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 10,
+      "safety": "only_pure_pass_survives_one_complete_enemy_reply",
+      "targetActions": [
+        "9-end"
+      ],
+      "targetWasChosen": true,
+      "traceTruncated": false,
+      "turn": 75,
+      "variant": "reply-cap-16"
+    },
+    {
+      "baselineWasPass": false,
+      "budgetExhausted": false,
+      "case": "rogue-two-action-validated",
+      "chosenActions": [
+        "5-swap:2,3",
+        "1-place:5,6"
+      ],
+      "chosenPurePass": false,
+      "chosenScore": -329,
+      "completed": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 8,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 830,
+      "fullOwnCandidates": 71,
+      "game": "b9-Priest-Rogue",
+      "legalEnumerations": 34,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 2,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 71",
+        "pass己方分數 -455，最佳非pass己方分數 -309；反擊分數另列"
+      ],
+      "ply": 60,
+      "replyComparison": "1-place:2,5/8-chain:2,3:2,2 own=-321 reply=-382 combined=-341",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -463,
+        "rank": 6,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "complete-one-turn-survival-with-net-captures",
+      "targetActions": [
+        "1-place:2,5",
+        "8-chain:2,3:2,2"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 59,
+      "variant": "baseline-10-8"
+    },
+    {
+      "baselineWasPass": false,
+      "budgetExhausted": false,
+      "case": "rogue-two-action-validated",
+      "chosenActions": [
+        "5-swap:2,3",
+        "1-place:5,6"
+      ],
+      "chosenPurePass": false,
+      "chosenScore": -329,
+      "completed": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 8,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 830,
+      "fullOwnCandidates": 71,
+      "game": "b9-Priest-Rogue",
+      "legalEnumerations": 34,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 2,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 71",
+        "pass己方分數 -455，最佳非pass己方分數 -309；反擊分數另列"
+      ],
+      "ply": 60,
+      "replyComparison": "1-place:2,5/8-chain:2,3:2,2 own=-321 reply=-382 combined=-341",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -463,
+        "rank": 6,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "complete-one-turn-survival-with-net-captures",
+      "targetActions": [
+        "1-place:2,5",
+        "8-chain:2,3:2,2"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 59,
+      "variant": "own-beam-16"
+    },
+    {
+      "baselineWasPass": false,
+      "budgetExhausted": false,
+      "case": "rogue-two-action-validated",
+      "chosenActions": [
+        "5-swap:2,3",
+        "1-place:5,6"
+      ],
+      "chosenPurePass": false,
+      "chosenScore": -329,
+      "completed": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 8,
+        "reason": "selected-for-reply-search",
+        "retained": true
+      },
+      "explicitApply": 1586,
+      "fullOwnCandidates": 71,
+      "game": "b9-Priest-Rogue",
+      "legalEnumerations": 59,
+      "ownSecond": {
+        "observed": true,
+        "ownScore": -321,
+        "rank": 2,
+        "reason": "within-second-beam",
+        "retained": true
+      },
+      "passDiagnostics": [
+        "已評估非pass首手 8，完整己方候選 71",
+        "pass己方分數 -455，最佳非pass己方分數 -309；反擊分數另列"
+      ],
+      "ply": 60,
+      "replyComparison": "1-place:2,5/8-chain:2,3:2,2 own=-321 reply=-382 combined=-341",
+      "rootFirst": {
+        "observed": true,
+        "ownScore": -463,
+        "rank": 6,
+        "reason": "beam-or-summon-skill-diversity-or-commander-threat",
+        "retained": true
+      },
+      "rootLegalCandidates": 9,
+      "safety": "complete-one-turn-survival-with-net-captures",
+      "targetActions": [
+        "1-place:2,5",
+        "8-chain:2,3:2,2"
+      ],
+      "targetWasChosen": false,
+      "traceTruncated": false,
+      "turn": 59,
+      "variant": "reply-cap-16"
+    }
+  ],
+  "noClaims": [
+    "strategy dominance",
+    "safe witness is better than pass",
+    "default bot includes a variant",
+    "human fun",
+    "iPhone speed",
+    "C# parity"
+  ],
+  "scope": "read-only baseline + one-factor own beam / complete-reply-cap probes; exact P0 history",
+  "source": {
+    "p0": "formal-opening P0 archived records; all eight games unchanged",
+    "p1": "P1 V2 Rogue case #5 with P1R complete one-reply coverage"
+  },
+  "study": "TG12_P2_BOT_PRUNING_DIAG_V1"
+}
