@@ -24,6 +24,9 @@ struct UnlockView: View {
                     Text(title).font(.title2.bold()).accessibilityIdentifier("unlockTitle")
                     Text("前 3 場完整對局免費。新手教學、玩法練習與戰術挑戰不消耗額度；既有存局可繼續。")
                         .font(.subheadline).multilineTextAlignment(.center)
+                    Text("免費額度用完後，可自願觀看一段獎勵廣告取得一局，或一次購買永久解鎖。已解鎖者不需觀看廣告。")
+                        .font(.subheadline).multilineTextAlignment(.center)
+                        .accessibilityIdentifier("accessOptionsDisclosure")
                     if offersPurchase {
                         Button { buy() } label: {
                             VStack(spacing: 4) {

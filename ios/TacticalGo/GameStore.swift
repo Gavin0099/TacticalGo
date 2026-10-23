@@ -84,8 +84,10 @@ import TacticalGoContent
     var savedRecords: [MatchRecord] = []
     var recordErrorMessage: String?
     var recordRules: RecordRules = .original
+    #if DEBUG
     var r2Fixture: R2PracticeFixture?
     var r2Rules: RecordRules = .original
+    #endif
     private var activeRecord: MatchRecord?
     var onMatchCompleted: ((UUID) -> Void)?
     /// (copy, parent): wired by the shell to the access ledger.
@@ -125,7 +127,9 @@ import TacticalGoContent
             expansion?.scene(false); expansion = nil
             #endif
             cancelBotWork(); session = restored; activeRecord = record
+            #if DEBUG
             r2Fixture = nil
+            #endif
             size = record.size; computer = record.computer; recordRules = record.rules
             botDifficulty = BotDifficulty(rawValue: record.difficulty) ?? .easy
             botPolicy = .baseline
@@ -430,7 +434,7 @@ import TacticalGoContent
     }
     init() {
         var directory = URL.applicationSupportDirectory.appendingPathComponent("TacticalGo/Records-v1", isDirectory: true)
-        #if DEBUG || TACTICALGO_V11
+        #if DEBUG
         let args = ProcessInfo.processInfo.arguments
         if let i = args.firstIndex(of: "--record-isolation"), args.indices.contains(i + 1), let id = UUID(uuidString: args[i + 1]) {
             directory = URL.applicationSupportDirectory.appendingPathComponent("TacticalGo/TestRecords/" + id.uuidString, isDirectory: true)
@@ -607,8 +611,13 @@ import TacticalGoContent
         #if DEBUG || TACTICALGO_V11
         expansion?.scene(false); expansion = nil
         #endif
-        cancelBotWork(); saveRecord(); activeRecord = nil; r2Fixture = nil; recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline
+        cancelBotWork(); saveRecord(); activeRecord = nil
+        #if DEBUG
+        r2Fixture = nil
+        #endif
+        recordRules = .original; mageOperation = .push; setMatchAudioActive(false); computer = nil; botPolicy = .baseline
     }
+    #if DEBUG
     func startR2(_ fixture: R2PracticeFixture, rules: RecordRules) -> Bool {
         do {
             let initial = try GameSetup.fromDiagram(config:rules.config(size:7),diagram:fixture.diagram,
@@ -619,6 +628,7 @@ import TacticalGoContent
             return true
         } catch { recordErrorMessage = "無法載入試驗局面。"; return false }
     }
+    #endif
     func setBotDifficulty(_ difficulty: BotDifficulty) {
         guard difficulty != botDifficulty else { return }
         cancelBotWork()
@@ -820,7 +830,10 @@ import TacticalGoContent
         #if DEBUG || TACTICALGO_V11
         expansion?.scene(false); expansion = nil
         #endif
-        size = nextSize; recordRules = rules; r2Fixture = nil
+        size = nextSize; recordRules = rules
+        #if DEBUG
+        r2Fixture = nil
+        #endif
         cancelBotWork(); self.computer = computer; botPolicy = .baseline; botTurnsCompleted = 0; botDiscardedDecisions = 0; botLastDecision = ""
         session = GameSession(try! GameSetup.newGame(config: recordRules.config(size: size), classOne: classOne, classTwo: classTwo))
         activeRecord = nextRecord

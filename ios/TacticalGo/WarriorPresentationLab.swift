@@ -1,4 +1,4 @@
-#if DEBUG || TACTICALGO_V11
+#if DEBUG
 import SwiftUI
 import AVFoundation
 import Observation

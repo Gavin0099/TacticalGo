@@ -1,0 +1,26 @@
+{
+  "schema": "tacticalgo-release-engineering-surface-v1",
+  "version": "1.1",
+  "build": "1120",
+  "executableSHA256": "c9e06264a8fb0b80bfb34fd02134cee35d22418dab6b89ebde77fdbeeae7bba7",
+  "engineeringMarkersFound": [
+    "--exp-review",
+    "--record-isolation",
+    "--review-controls",
+    "--presentation-",
+    "--warrior-autoplay",
+    "--warrior-board-",
+    "--warrior-lifecycle-audit",
+    "--warrior-voice-",
+    "--identity-models",
+    "--package-models",
+    "R2LabView",
+    "PresentationLabStore",
+    "WarriorLabStore"
+  ],
+  "excludedResourcesFound": [
+    "R2Positions.json"
+  ],
+  "passed": false,
+  "claimBoundary": "Reviewed executable markers and resources only; not proof of runtime equivalence, uploaded-archive identity or Apple approval."
+}

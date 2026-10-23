@@ -1,3 +1,4 @@
+#if DEBUG
 import SwiftUI
 import TacticalGoCore
 
@@ -304,3 +305,4 @@ struct ContentView: View {
         }
     }
 }
+#endif

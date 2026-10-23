@@ -1,0 +1,58 @@
+{
+  "info": {
+    "CFBundleIdentifier": "com.tacticalgo.prototype.herobody",
+    "CFBundleShortVersionString": "1.1",
+    "CFBundleVersion": "1121",
+    "MinimumOSVersion": "17.0",
+    "UIDeviceFamily": [
+      1,
+      2
+    ],
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "GADApplicationIdentifier": "ca-app-pub-4399068253512867~8970810838"
+  },
+  "privacySHA256": "be1439f113d59c3ae237991c2116aa2019c19ec859acc5efd121f43fcbecbee4",
+  "privacyManifest": {
+    "NSPrivacyTracking": false,
+    "NSPrivacyTrackingDomains": [],
+    "NSPrivacyCollectedDataTypes": [],
+    "NSPrivacyAccessedAPITypes": [
+      {
+        "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+        "NSPrivacyAccessedAPITypeReasons": [
+          "CA92.1"
+        ]
+      },
+      {
+        "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+        "NSPrivacyAccessedAPITypeReasons": [
+          "35F9.1"
+        ]
+      }
+    ]
+  },
+  "hasEmbeddedProvisioningProfile": false,
+  "hasAppCodeSignature": false,
+  "nestedSDKPrivacyManifests": [
+    "PrivacyInfo.xcprivacy",
+    "Frameworks/GoogleMobileAds.framework/PrivacyInfo.xcprivacy",
+    "Frameworks/UserMessagingPlatform.framework/PrivacyInfo.xcprivacy"
+  ],
+  "resources": {
+    "R2Positions.json": false,
+    "Audio/Voice": false,
+    "Audio/V30": false,
+    "Models": false,
+    "Assets.car": true
+  },
+  "claim": "Unsigned arm64 device archive only; distribution signing/entitlements and account readiness unverified.",
+  "unexpectedResourceFiles": []
+}
