@@ -28,3 +28,5 @@ jobs:
           python3 research/tg12-p1h/verify_fixture.py --negative-controls --check-js
       - name: Exercise isolated choice, reveal and anonymous export flows
         run: node research/tg12-p1h/smoke_dom.js
+      - name: Validate privacy-preserving aggregation on synthetic input only
+        run: python3 research/tg12-p1h/summarize.py --self-test
