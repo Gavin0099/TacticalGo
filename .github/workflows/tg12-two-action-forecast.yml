@@ -1,7 +1,6 @@
 name: TG12 Two-Action Forecast Candidate
 
-# Product candidate compared with PR #34, not merged into main.
-# Linux checks Core-facing pure forecast; iOS native behavior still needs Xcode.
+# Pure forecast tests and iOS parse only. Native Xcode/device QA remains separate.
 on:
   pull_request:
     branches: ["codex/tg12-tactical-expedition"]
@@ -39,9 +38,8 @@ jobs:
           swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
           swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
           grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
-          # Check newly introduced source only; this repo has legacy asset whitespace.
-          if grep -nE '[[:blank:]]+
- \
+          # Protect newly introduced sources; pre-existing assets have whitespace.
+          if grep -nE '[[:blank:]]+$' \
             swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift \
             swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift \
             ios/TacticalGo/TwoActionPlanningSheet.swift; then
