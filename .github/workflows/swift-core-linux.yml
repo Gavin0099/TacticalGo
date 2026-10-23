@@ -42,6 +42,39 @@ jobs:
         run: |
           set -o pipefail
           swift test -c release 2>&1 | tee p0-observer.log
+      - name: P1 same-state counterfactual (four-hero research smoke)
+        shell: bash
+        run: |
+          set -o pipefail
+          swift run -c release --package-path scripts/tg12-p0-research P0Runner p1 \
+            artifacts/tg12/gameplay-p0-20261023/complete-games \
+            scripts/tg12-p0-research/p1-selection-v1.json \
+            tg12-p1-ci.json 4 2>&1 | tee tg12-p1-ci.log
+          python3 - <<'PY'
+          import json
+          with open("tg12-p1-ci.json", encoding="utf-8") as f:
+              data = json.load(f)
+          positions = data["positions"]
+          assert [p["hero"] for p in positions] == ["Warrior", "Mage", "Rogue", "Priest"]
+          assert all(p["alternatives"] for p in positions)
+          assert all(p["sourceSelectionReason"].startswith("first-observed") for p in positions)
+          print("P1_FOUR_HERO_RESEARCH_BEGIN")
+          for pos in positions:
+              rows = pos["alternatives"]
+              counters = {}
+              for row in rows:
+                  key = row["group"]
+                  counters[key] = counters.get(key, 0) + 1
+              risks = sum(x["immediateLossProbe"]["verdict"] == "opponent_can_win" for x in rows)
+              advanced = sum(x["advancedSkillUsed"] for x in rows)
+              print(json.dumps({"game": pos["game"], "turn": pos["turn"],
+                                "hero": pos["hero"], "sampledCategories": counters,
+                                "sampledAdvancedPlans": advanced,
+                                "foundImmediateLossCounterexamples": risks,
+                                "candidateCount": len(rows)}, ensure_ascii=False))
+          print("P1_FOUR_HERO_RESEARCH_END")
+          PY
+          sha256sum tg12-p1-ci.json
       - name: Preserve complete research JSON in log and summary
         if: always()
         shell: bash
