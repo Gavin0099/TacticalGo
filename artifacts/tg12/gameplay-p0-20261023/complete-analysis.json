@@ -1,0 +1,766 @@
+{
+  "sourceHead": "3e48a5ec1869168a9d91c074d7b11419cfb1ac1c",
+  "scope": "four ordered pairs, matched 7x7/9x9, one deterministic official-opening Standard/Baseline path per pair/size",
+  "completedGames": 8,
+  "games": [
+    {
+      "atomicActions": 134,
+      "boardSize": 7,
+      "classOne": "Warrior",
+      "classTwo": "Mage",
+      "enemySoldierCaptures": 18,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "ooo.oxx\noooOxxx\noooQxxx\noxxxxxx\noxxH.xx\nxxxXxxx\n.xxxxxx",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          6,
+          4
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b7-Warrior-Mage",
+      "longestPurePassRun": 44,
+      "purePassTurns": 65,
+      "result": "drawn",
+      "secondsIncludingObservation": 65.2842834999974,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 73,
+      "winner": null,
+      "recordSha256": "28ab07c7aad8484fdb46faefebfdffddcf21dcb09da413a95c1bca917c4938e8",
+      "traceSha256": "8b40ca2ed936726bc8e3a94d35ca017a6558dbe16001d140a101d613cbe4be43"
+    },
+    {
+      "atomicActions": 74,
+      "boardSize": 7,
+      "classOne": "Mage",
+      "classTwo": "Warrior",
+      "enemySoldierCaptures": 35,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "o.oxxxx\n.ooOxx.\noo.Qxox\n.oooxox\n.oo.ooo\n....oo.\n.o.oo.o",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          0
+        ],
+        "ply": 38,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Won",
+        "summoned": [
+          true,
+          true
+        ],
+        "winner": 1
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b7-Mage-Warrior",
+      "longestPurePassRun": 1,
+      "purePassTurns": 1,
+      "result": "won",
+      "secondsIncludingObservation": 9.909563875000458,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 38,
+      "turnsAfterLastCapture": 0,
+      "winner": 1,
+      "recordSha256": "489798eee32610d076df8a6ffd272fff38361b2128343bbfa86ffdf577a302e4",
+      "traceSha256": "98c8e06a1e6b58305b2079d5562f02a385d7c674ace5998e559eab48ef3abdc5"
+    },
+    {
+      "atomicActions": 158,
+      "boardSize": 7,
+      "classOne": "Rogue",
+      "classTwo": "Priest",
+      "enemySoldierCaptures": 49,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "ooo.ox.\noooOxxx\noo.Qxxx\noooxxxx\nxxxxxxx\nxxxXxxx\n.xxxxx.",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          6,
+          4
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b7-Rogue-Priest",
+      "longestPurePassRun": 39,
+      "purePassTurns": 41,
+      "result": "drawn",
+      "secondsIncludingObservation": 12.221072458327399,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 42,
+      "winner": null,
+      "recordSha256": "881e2b7248972af12ea97ee2bbd0dc865f400597e673ccebe294ff0246f268ed",
+      "traceSha256": "a92d6bd2b9f3005d0f3ded2af7e15c39dc5cc00eeaff555518e3628fc8b6c2bd"
+    },
+    {
+      "atomicActions": 142,
+      "boardSize": 7,
+      "classOne": "Priest",
+      "classTwo": "Rogue",
+      "enemySoldierCaptures": 20,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "oooooxx\noooOxxx\n.oooxxx\noooo.xx\n.ooH.xx\no.oXxxx\n.oooxx.",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          4,
+          6
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b7-Priest-Rogue",
+      "longestPurePassRun": 51,
+      "purePassTurns": 57,
+      "result": "drawn",
+      "secondsIncludingObservation": 12.556904083328845,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 53,
+      "winner": null,
+      "recordSha256": "c196aaf38c67a89ed31e8edd9c4a92ad5dbd272f8b645ddc0936f5eece8ebb49",
+      "traceSha256": "077a02caafddc6daa02305efbdd36b88e5448d3c03dd5ce448acf9adf7055200"
+    },
+    {
+      "atomicActions": 162,
+      "boardSize": 9,
+      "classOne": "Warrior",
+      "classTwo": "Mage",
+      "enemySoldierCaptures": 41,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "oooooxxxx\nooo.Oxxxx\nooooQxxxx\nxxoxooxxx\nxxxxxoxxx\nxxxxxxxxx\nxxxxH.xx.\nxxxxXxxxx\n.xx.xxxxx",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          6,
+          4
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": true,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b9-Warrior-Mage",
+      "longestPurePassRun": 34,
+      "purePassTurns": 37,
+      "result": "drawn",
+      "secondsIncludingObservation": 553.6593173333385,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 39,
+      "winner": null,
+      "recordSha256": "5eed69c43ad65317a8d7172d7ed8e258bc1d23875bffe6ba02c576c6e3986c64",
+      "traceSha256": "29e080a7a69c9c48497be3e77445b00f4a8783e622ca16c39938e2f7632c7a5e"
+    },
+    {
+      "atomicActions": 25,
+      "boardSize": 9,
+      "classOne": "Mage",
+      "classTwo": "Warrior",
+      "enemySoldierCaptures": 2,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "...x..x..\n..xx.xx..\n...x.x...\n....x....\n.........\n...ooo...\n.o.oHo...\n..oxXxo..\n....o....",
+        "current": 0,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          3,
+          1
+        ],
+        "ply": 13,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Won",
+        "summoned": [
+          true,
+          true
+        ],
+        "winner": 0
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b9-Mage-Warrior",
+      "longestPurePassRun": 0,
+      "purePassTurns": 0,
+      "result": "won",
+      "secondsIncludingObservation": 2.9120087916599005,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 13,
+      "turnsAfterLastCapture": 0,
+      "winner": 0,
+      "recordSha256": "194fbb2e84d39b2d87a6fa67ae0cdee2183733b57389ad5dbe9025681ad9b9dd",
+      "traceSha256": "b4e7da16f524f7dc29ab4bd3df0854aef289988482daa943db1382e7468f53ce"
+    },
+    {
+      "atomicActions": 170,
+      "boardSize": 9,
+      "classOne": "Rogue",
+      "classTwo": "Priest",
+      "enemySoldierCaptures": 49,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "ooooooooo\noooxOoooo\nooxxQ.oox\nxxxoooxxx\nxxxoxoxxx\nxxxxxxxxx\nx.x.H.xxx\n.x.xXxxxx\nx.xxxxxxx",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          6,
+          6
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b9-Rogue-Priest",
+      "longestPurePassRun": 20,
+      "purePassTurns": 29,
+      "result": "drawn",
+      "secondsIncludingObservation": 36.66908745832916,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 46,
+      "winner": null,
+      "recordSha256": "a6e56105f2270613c9eedd6fecfe5d23bfb75e4a8358063555b933cb2cb0c797",
+      "traceSha256": "38d4b6d53254f1e7e96fe3e3bc056bdeec2bb77a687de1dbde4b2d8404e47617"
+    },
+    {
+      "atomicActions": 193,
+      "boardSize": 9,
+      "classOne": "Priest",
+      "classTwo": "Rogue",
+      "enemySoldierCaptures": 76,
+      "finalSnapshot": {
+        "ap": 0,
+        "board": "ooooooooo\nooooOoooo\nooooooo.o\nxooooooo.\nxxxxooxoo\nxxxQoxxxo\nxxxoH..xx\nxx.xXxxxx\nx.xx.xxxx",
+        "current": 1,
+        "freeHunt": false,
+        "loot": [
+          [],
+          []
+        ],
+        "mana": [
+          0,
+          6
+        ],
+        "ply": 100,
+        "seals": [],
+        "skillUsed": false,
+        "status": "Drawn",
+        "summoned": [
+          true,
+          true
+        ]
+      },
+      "fullReplayIncludingHistoryEqual": true,
+      "id": "b9-Priest-Rogue",
+      "longestPurePassRun": 2,
+      "purePassTurns": 6,
+      "result": "drawn",
+      "secondsIncludingObservation": 46.07288137500291,
+      "serializedReceiptsVerified": true,
+      "timingScope": "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+      "turns": 100,
+      "turnsAfterLastCapture": 3,
+      "winner": null,
+      "recordSha256": "63fd2298da5d4dd511bb3d65506ee256c0383c70a5bbc0373909f8034834914d",
+      "traceSha256": "eaa5263d2da9410c3db656c37b08885d6c0acb1fd06498fa05791064da0bc4ff"
+    }
+  ],
+  "byClass": [
+    {
+      "board": 7,
+      "hero": "Warrior",
+      "turns": 69,
+      "heroPresentTurns": 67,
+      "basicLegalAtTurnStart": 40,
+      "advancedLegalAtTurnStart": 21,
+      "anySkillLegalAtTurnStart": 40,
+      "skillUsedTurns": 15,
+      "basicUsedTurns": 10,
+      "advancedUsedTurns": 5,
+      "skillAndSoldierTurns": 12,
+      "purePassTurns": 29,
+      "fullManaPurePassTurns": 22,
+      "patterns": {
+        "summon": 1,
+        "soldier+skill": 6,
+        "soldier+soldier": 19,
+        "skill+soldier": 6,
+        "soldier+end": 5,
+        "end": 29,
+        "skill+end": 2,
+        "summon+skill": 1
+      }
+    },
+    {
+      "board": 7,
+      "hero": "Mage",
+      "turns": 69,
+      "heroPresentTurns": 67,
+      "basicLegalAtTurnStart": 64,
+      "advancedLegalAtTurnStart": 49,
+      "anySkillLegalAtTurnStart": 64,
+      "skillUsedTurns": 8,
+      "basicUsedTurns": 3,
+      "advancedUsedTurns": 5,
+      "skillAndSoldierTurns": 8,
+      "purePassTurns": 37,
+      "fullManaPurePassTurns": 34,
+      "patterns": {
+        "soldier+summon": 1,
+        "soldier+soldier": 21,
+        "skill+soldier": 2,
+        "soldier+skill": 6,
+        "end": 37,
+        "summon": 1,
+        "soldier+end": 1
+      }
+    },
+    {
+      "board": 7,
+      "hero": "Rogue",
+      "turns": 100,
+      "heroPresentTurns": 43,
+      "basicLegalAtTurnStart": 36,
+      "advancedLegalAtTurnStart": 26,
+      "anySkillLegalAtTurnStart": 41,
+      "skillUsedTurns": 9,
+      "basicUsedTurns": 6,
+      "advancedUsedTurns": 3,
+      "skillAndSoldierTurns": 6,
+      "purePassTurns": 49,
+      "fullManaPurePassTurns": 41,
+      "patterns": {
+        "summon": 1,
+        "soldier+soldier": 32,
+        "skill+soldier": 2,
+        "soldier+skill": 4,
+        "soldier+end": 8,
+        "end": 49,
+        "soldier+summon": 1,
+        "skill+end": 3
+      }
+    },
+    {
+      "board": 7,
+      "hero": "Priest",
+      "turns": 100,
+      "heroPresentTurns": 98,
+      "basicLegalAtTurnStart": 96,
+      "advancedLegalAtTurnStart": 76,
+      "anySkillLegalAtTurnStart": 96,
+      "skillUsedTurns": 10,
+      "basicUsedTurns": 10,
+      "advancedUsedTurns": 0,
+      "skillAndSoldierTurns": 5,
+      "purePassTurns": 49,
+      "fullManaPurePassTurns": 46,
+      "patterns": {
+        "soldier+summon": 1,
+        "soldier+soldier": 35,
+        "soldier+end": 4,
+        "soldier+skill": 4,
+        "skill+end": 5,
+        "end": 49,
+        "skill+soldier": 1,
+        "summon": 1
+      }
+    },
+    {
+      "board": 9,
+      "hero": "Warrior",
+      "turns": 56,
+      "heroPresentTurns": 54,
+      "basicLegalAtTurnStart": 53,
+      "advancedLegalAtTurnStart": 46,
+      "anySkillLegalAtTurnStart": 53,
+      "skillUsedTurns": 11,
+      "basicUsedTurns": 10,
+      "advancedUsedTurns": 1,
+      "skillAndSoldierTurns": 11,
+      "purePassTurns": 17,
+      "fullManaPurePassTurns": 17,
+      "patterns": {
+        "summon": 1,
+        "soldier+soldier": 21,
+        "soldier+skill": 8,
+        "skill+soldier": 3,
+        "soldier+end": 5,
+        "end": 17,
+        "soldier+summon": 1
+      }
+    },
+    {
+      "board": 9,
+      "hero": "Mage",
+      "turns": 57,
+      "heroPresentTurns": 55,
+      "basicLegalAtTurnStart": 50,
+      "advancedLegalAtTurnStart": 17,
+      "anySkillLegalAtTurnStart": 51,
+      "skillUsedTurns": 9,
+      "basicUsedTurns": 4,
+      "advancedUsedTurns": 5,
+      "skillAndSoldierTurns": 7,
+      "purePassTurns": 20,
+      "fullManaPurePassTurns": 16,
+      "patterns": {
+        "soldier+summon": 1,
+        "soldier+soldier": 22,
+        "soldier+skill": 4,
+        "soldier+end": 4,
+        "skill+soldier": 3,
+        "end": 20,
+        "skill+end": 2,
+        "summon": 1
+      }
+    },
+    {
+      "board": 9,
+      "hero": "Rogue",
+      "turns": 100,
+      "heroPresentTurns": 98,
+      "basicLegalAtTurnStart": 42,
+      "advancedLegalAtTurnStart": 27,
+      "anySkillLegalAtTurnStart": 46,
+      "skillUsedTurns": 8,
+      "basicUsedTurns": 6,
+      "advancedUsedTurns": 2,
+      "skillAndSoldierTurns": 8,
+      "purePassTurns": 21,
+      "fullManaPurePassTurns": 16,
+      "patterns": {
+        "summon": 1,
+        "soldier+soldier": 62,
+        "soldier+end": 7,
+        "end": 21,
+        "soldier+summon": 1,
+        "skill+soldier": 7,
+        "soldier+skill": 1
+      }
+    },
+    {
+      "board": 9,
+      "hero": "Priest",
+      "turns": 100,
+      "heroPresentTurns": 98,
+      "basicLegalAtTurnStart": 95,
+      "advancedLegalAtTurnStart": 91,
+      "anySkillLegalAtTurnStart": 95,
+      "skillUsedTurns": 15,
+      "basicUsedTurns": 15,
+      "advancedUsedTurns": 0,
+      "skillAndSoldierTurns": 8,
+      "purePassTurns": 14,
+      "fullManaPurePassTurns": 9,
+      "patterns": {
+        "soldier+summon": 1,
+        "soldier+soldier": 62,
+        "soldier+end": 7,
+        "skill+end": 7,
+        "end": 14,
+        "soldier+skill": 6,
+        "summon": 1,
+        "skill+soldier": 2
+      }
+    }
+  ],
+  "totals": {
+    "turns": 651,
+    "atomicActions": 1058,
+    "coreWins": 2,
+    "coreDraws": 6,
+    "purePassTurns": 236,
+    "fullManaPurePassTurns": 201,
+    "skillUsedTurns": 85,
+    "skillAndSoldierTurns": 65
+  },
+  "prefixVerification": [
+    {
+      "cappedFixture": "7-w-m",
+      "completeGame": "b7-Warrior-Mage",
+      "turnsChecked": 44,
+      "matched": true,
+      "mismatches": []
+    },
+    {
+      "cappedFixture": "7-m-w",
+      "completeGame": "b7-Mage-Warrior",
+      "turnsChecked": 38,
+      "matched": true,
+      "mismatches": []
+    },
+    {
+      "cappedFixture": "7-r-p",
+      "completeGame": "b7-Rogue-Priest",
+      "turnsChecked": 44,
+      "matched": true,
+      "mismatches": []
+    },
+    {
+      "cappedFixture": "7-p-r",
+      "completeGame": "b7-Priest-Rogue",
+      "turnsChecked": 44,
+      "matched": true,
+      "mismatches": []
+    },
+    {
+      "cappedFixture": "9-w-m",
+      "completeGame": "b9-Warrior-Mage",
+      "turnsChecked": 16,
+      "matched": true,
+      "mismatches": []
+    }
+  ],
+  "naturalProbeSelection": [
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 2,
+      "ply": 3,
+      "hero": "Warrior",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 4,
+      "ply": 5,
+      "hero": "Warrior",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 9,
+      "ply": 10,
+      "hero": "Mage",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 5,
+      "ply": 6,
+      "hero": "Mage",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "turn": 19,
+      "ply": 20,
+      "hero": "Rogue",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b7-Rogue-Priest",
+      "turn": 2,
+      "ply": 3,
+      "hero": "Rogue",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "turn": 30,
+      "ply": 31,
+      "hero": "Priest",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "turn": 4,
+      "ply": 5,
+      "hero": "Priest",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b9-Mage-Warrior",
+      "turn": 3,
+      "ply": 4,
+      "hero": "Warrior",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b9-Warrior-Mage",
+      "turn": 2,
+      "ply": 3,
+      "hero": "Warrior",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b9-Mage-Warrior",
+      "turn": 6,
+      "ply": 7,
+      "hero": "Mage",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b9-Warrior-Mage",
+      "turn": 5,
+      "ply": 6,
+      "hero": "Mage",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b9-Priest-Rogue",
+      "turn": 59,
+      "ply": 60,
+      "hero": "Rogue",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b9-Rogue-Priest",
+      "turn": 2,
+      "ply": 3,
+      "hero": "Rogue",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    },
+    {
+      "game": "b9-Priest-Rogue",
+      "turn": 64,
+      "ply": 65,
+      "hero": "Priest",
+      "reason": "first-observed-skill-soldier"
+    },
+    {
+      "game": "b9-Rogue-Priest",
+      "turn": 5,
+      "ply": 6,
+      "hero": "Priest",
+      "reason": "first-ordinary-pair-with-legal-skill"
+    }
+  ],
+  "passAuditSelection": [
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 36,
+      "ply": 37,
+      "hero": "Warrior"
+    },
+    {
+      "game": "b7-Warrior-Mage",
+      "turn": 29,
+      "ply": 30,
+      "hero": "Mage"
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "turn": 33,
+      "ply": 34,
+      "hero": "Rogue"
+    },
+    {
+      "game": "b7-Priest-Rogue",
+      "turn": 34,
+      "ply": 35,
+      "hero": "Priest"
+    },
+    {
+      "game": "b9-Warrior-Mage",
+      "turn": 64,
+      "ply": 65,
+      "hero": "Warrior"
+    },
+    {
+      "game": "b9-Warrior-Mage",
+      "turn": 65,
+      "ply": 66,
+      "hero": "Mage"
+    },
+    {
+      "game": "b9-Rogue-Priest",
+      "turn": 70,
+      "ply": 71,
+      "hero": "Rogue"
+    },
+    {
+      "game": "b9-Rogue-Priest",
+      "turn": 79,
+      "ply": 80,
+      "hero": "Priest"
+    }
+  ],
+  "timing": {
+    "observedPlannerMedianSeconds": 0.27962383333215257,
+    "scope": "Mac under ambient load, not an iPhone performance gate"
+  },
+  "limits": [
+    "Four pairings do not estimate a population-wide win/draw rate or class balance",
+    "Skill legality and use do not prove skill value",
+    "Natural probe selection is earliest by ply, not best-looking result",
+    "Only selected late pass positions will be diagnosed; incomplete search remains unknown",
+    "No P1 dominance, human understanding, fun or replay willingness claim"
+  ]
+}

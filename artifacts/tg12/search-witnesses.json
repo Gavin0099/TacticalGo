@@ -1,0 +1,682 @@
+{
+  "status": "historical exploration; superseded catalog/opponent, NOT final replay fixtures",
+  "witnesses": [
+    {
+      "source": "bounded candidate search, not exhaustive or fun evidence",
+      "plan": 1,
+      "progress": {
+        "selectedID": "tg12-expedition-1",
+        "runs": {
+          "tg12-expedition-1": [
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 5,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 5,
+                  "x": 5
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 6
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 3,
+                  "x": 5
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 4,
+                  "x": 5
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 2,
+                  "y": 6
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 3,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 1,
+                  "x": 5
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 2
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 1,
+                  "x": 4
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 2
+                }
+              ]
+            }
+          ]
+        },
+        "completed": {
+          "tg12-expedition-1": [
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 5
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 5
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 6,
+                  "x": 3
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 4,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 4,
+                  "x": 5
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 6,
+                  "x": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "x": 4,
+                  "y": 3
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 1
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 5,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "x": 4,
+                  "y": 1
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "y": 2,
+                  "x": 4
+                }
+              ],
+              "kind": "soldier"
+            }
+          ]
+        },
+        "version": 1,
+        "hints": {}
+      }
+    },
+    {
+      "source": "bounded candidate search, not exhaustive or fun evidence",
+      "plan": 2,
+      "progress": {
+        "selectedID": "tg12-expedition-2",
+        "runs": {
+          "tg12-expedition-2": [
+            {
+              "direction": "Down",
+              "kind": "push",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 2
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 2,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 0,
+                  "x": 3
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 6,
+                  "y": 2
+                }
+              ]
+            },
+            {
+              "kind": "push",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 2
+                }
+              ],
+              "direction": "Left"
+            },
+            {
+              "points": [
+                {
+                  "x": 3,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 2,
+                  "y": 4
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ],
+              "kind": "push",
+              "direction": "Up"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 0
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 2,
+                  "y": 0
+                }
+              ],
+              "kind": "soldier"
+            }
+          ]
+        },
+        "completed": {
+          "tg12-expedition-2": [
+            {
+              "kind": "push",
+              "direction": "Down",
+              "points": [
+                {
+                  "y": 2,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 2,
+                  "x": 4
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "y": 0,
+                  "x": 3
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "x": 6,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "push",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 2
+                }
+              ],
+              "direction": "Left"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 3,
+                  "y": 2
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 4,
+                  "x": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 2,
+                  "y": 3
+                }
+              ],
+              "direction": "Up",
+              "kind": "push"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 0
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 0,
+                  "x": 2
+                }
+              ]
+            }
+          ]
+        },
+        "version": 1,
+        "hints": {}
+      }
+    },
+    {
+      "source": "bounded candidate search, not exhaustive or fun evidence",
+      "plan": 3,
+      "progress": {
+        "hints": {},
+        "version": 1,
+        "completed": {
+          "tg12-expedition-3": [
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 2
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 4
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 3,
+                  "x": 1
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 6,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "y": 2,
+                  "x": 6
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "y": 4,
+                  "x": 6
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "end",
+              "points": []
+            },
+            {
+              "points": [
+                {
+                  "y": 1,
+                  "x": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 2,
+                  "x": 2
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 4,
+                  "y": 1
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 1,
+                  "x": 5
+                }
+              ]
+            }
+          ]
+        },
+        "runs": {
+          "tg12-expedition-3": [
+            {
+              "points": [
+                {
+                  "x": 4,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "y": 4,
+                  "x": 4
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 6,
+                  "y": 3
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 6,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 6,
+                  "y": 4
+                }
+              ]
+            },
+            {
+              "points": [],
+              "kind": "end"
+            },
+            {
+              "kind": "soldier",
+              "points": [
+                {
+                  "x": 2,
+                  "y": 1
+                }
+              ]
+            },
+            {
+              "points": [
+                {
+                  "x": 2,
+                  "y": 2
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "y": 1,
+                  "x": 4
+                }
+              ],
+              "kind": "soldier"
+            },
+            {
+              "points": [
+                {
+                  "y": 1,
+                  "x": 5
+                }
+              ],
+              "kind": "soldier"
+            }
+          ]
+        },
+        "selectedID": "tg12-expedition-3"
+      }
+    }
+  ]
+}

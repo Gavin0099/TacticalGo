@@ -1,0 +1,107 @@
+{
+  "activeOwnTurnsInspected": 1,
+  "activeTurnsWithWinningEnemyReply": 0,
+  "diagnosticCompletedWithinLimits": true,
+  "explicitApplies": 81,
+  "game": "b7-Warrior-Mage",
+  "legalEnumerations": 21,
+  "limits": {
+    "explicitApplyCalls": 60000,
+    "seconds": 30
+  },
+  "notClaimed": [
+    "permanent stalemate",
+    "globally optimal play",
+    "safe witness is strategically better than pass",
+    "total Core work bounded by explicit applies"
+  ],
+  "ownTurnsExhaustivelyEnumerated": false,
+  "passSurvivesOneReply": true,
+  "ply": 37,
+  "safeAfter": {
+    "ap": 2,
+    "board": ".ooooxx\noo.Oxxx\noooQxxx\noxxxxxx\noxxHxxx\nx.xXxxx\n.xxxxx.",
+    "current": 1,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      3,
+      6
+    ],
+    "ply": 38,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Ongoing",
+    "summoned": [
+      true,
+      true
+    ]
+  },
+  "safeNonpassWitness": [
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 6,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 2,
+          "y": 4
+        }
+      ]
+    }
+  ],
+  "scope": "full official-opening superko history, uncapped current-mode legal actions, no state deduplication; immediate commander survival only",
+  "seconds": 0.03005499999562744,
+  "sourceTurn": {
+    "actions": [
+      {
+        "kind": "end",
+        "points": []
+      }
+    ],
+    "ap": 2,
+    "availability": {
+      "advancedEnumeration": "bounded-positive-witness-or-resource-gated",
+      "advancedFunded": false,
+      "advancedKinds": [],
+      "advancedLegal": false,
+      "advancedWitnessCountLowerBound": 0,
+      "basicFunded": true,
+      "basicKinds": [
+        "castBastion"
+      ],
+      "basicLegal": true,
+      "basicLegalCount": 10,
+      "compatibilityActionsExcluded": 0,
+      "heroAlreadySummoned": true,
+      "heroPresent": true
+    },
+    "enemySoldiersCaptured": 0,
+    "explicitPlannerTransitions": 215,
+    "heroClass": "Warrior",
+    "index": 36,
+    "mana": 3,
+    "manaSpent": 0,
+    "pattern": "end",
+    "plannerBudgetExhausted": false,
+    "plannerLegalEnumerations": 34,
+    "player": 0,
+    "ply": 37,
+    "purePass": true,
+    "seconds": 0.09412162499938859,
+    "usedAdvanced": false,
+    "usedBasic": false
+  },
+  "turn": 36,
+  "verdict": "safe_nonpass_exists_for_one_complete_enemy_reply"
+}

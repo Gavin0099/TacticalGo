@@ -1,0 +1,50 @@
+[
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 36,
+    "ply": 37,
+    "hero": "Warrior"
+  },
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 29,
+    "ply": 30,
+    "hero": "Mage"
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 33,
+    "ply": 34,
+    "hero": "Rogue"
+  },
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 34,
+    "ply": 35,
+    "hero": "Priest"
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 64,
+    "ply": 65,
+    "hero": "Warrior"
+  },
+  {
+    "game": "b9-Warrior-Mage",
+    "turn": 65,
+    "ply": 66,
+    "hero": "Mage"
+  },
+  {
+    "game": "b9-Rogue-Priest",
+    "turn": 70,
+    "ply": 71,
+    "hero": "Rogue"
+  },
+  {
+    "game": "b9-Rogue-Priest",
+    "turn": 79,
+    "ply": 80,
+    "hero": "Priest"
+  }
+]

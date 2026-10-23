@@ -1,0 +1,97 @@
+{
+  "p0Baseline": "96493ec9d86c2f79221f553e08d30fd4103ea136",
+  "p1StartingHead": "15c3f343951c2fe9feb01654f248a21a73fca7f7",
+  "scope": "16 pinned natural positions; one sampled comparison per entry; no newly manufactured board states",
+  "selectionSemantics": "Earliest qualifying turn within each selected source game; not necessarily the cohort-global earliest. The 16 indices are unchanged.",
+  "firstFourOldLinuxFieldsMatchNewMac": true,
+  "all30ProductionPinsUnchanged": true,
+  "sourcePins": [
+    {
+      "path": "scripts/tg12-p0-research/Sources/P0Runner/P1Audit.swift",
+      "sha256": "09ad6c01f9f69807a112ffcd5f2f8e4236ca897cfa834a6245fdc773ad2d0d6b"
+    },
+    {
+      "path": "scripts/tg12-p0-research/Sources/P0Runner/Main.swift",
+      "sha256": "df3c1ccf3cb05fa6680481f17569f29cd79b7e74bc3528b3c6f2086fc7f9c4d4"
+    },
+    {
+      "path": "scripts/tg12-p0-research/p1-selection-v1.json",
+      "sha256": "867cd26a8336c409ed236f50661447bdba9a66a7feaf7d91594b1ee24b181ea0"
+    },
+    {
+      "path": "scripts/tg12-p0-research/test-p1-contract.sh",
+      "sha256": "4d67f178e288ec9ca9f25a541d42143347cd34f2b8af824a7232d05ad26c04f9"
+    },
+    {
+      "path": "scripts/tg12-p0-research/verify-p1.py",
+      "sha256": "04b6c3aa6a35ef1a99c9262d625e0b9c8f842a5975563e78f55b02e51a6acb23"
+    }
+  ],
+  "recordPins": [
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b7-Mage-Warrior/record.json",
+      "sha256": "489798eee32610d076df8a6ffd272fff38361b2128343bbfa86ffdf577a302e4"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b7-Priest-Rogue/record.json",
+      "sha256": "c196aaf38c67a89ed31e8edd9c4a92ad5dbd272f8b645ddc0936f5eece8ebb49"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b7-Rogue-Priest/record.json",
+      "sha256": "881e2b7248972af12ea97ee2bbd0dc865f400597e673ccebe294ff0246f268ed"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b7-Warrior-Mage/record.json",
+      "sha256": "28ab07c7aad8484fdb46faefebfdffddcf21dcb09da413a95c1bca917c4938e8"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b9-Mage-Warrior/record.json",
+      "sha256": "194fbb2e84d39b2d87a6fa67ae0cdee2183733b57389ad5dbe9025681ad9b9dd"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b9-Priest-Rogue/record.json",
+      "sha256": "63fd2298da5d4dd511bb3d65506ee256c0383c70a5bbc0373909f8034834914d"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b9-Rogue-Priest/record.json",
+      "sha256": "a6e56105f2270613c9eedd6fecfe5d23bfb75e4a8358063555b933cb2cb0c797"
+    },
+    {
+      "path": "artifacts/tg12/gameplay-p0-20261023/complete-games/b9-Warrior-Mage/record.json",
+      "sha256": "5eed69c43ad65317a8d7172d7ed8e258bc1d23875bffe6ba02c576c6e3986c64"
+    }
+  ],
+  "environment": "macOS arm64 Swift Release; no iPhone, simulator or human playtest",
+  "priorLinuxPass": {
+    "head": "15c3f343951c2fe9feb01654f248a21a73fca7f7",
+    "run": 39917776219,
+    "job": 120295374301,
+    "swiftTests": 472,
+    "skipped": 1,
+    "failures": 0,
+    "p1Positions": 4,
+    "p1Plans": 48
+  },
+  "priorLinuxFailure": {
+    "head": "17f910b550c1d31c552d6870dbba3756086c8975",
+    "run": 39917008814,
+    "job": 120292639044,
+    "fourPositionsGenerated": true,
+    "diagnostic": "python3: command not found",
+    "exit": 127,
+    "url": "https://github.com/Gavin0099/TacticalGo/actions/runs/39917008814/job/120292639044"
+  },
+  "regression": {
+    "originalSourceAcceptedWrongHero": true,
+    "focusedMutation": "Remove only the hero metadata equality check",
+    "mutatedContractCheckExit": 1,
+    "expectedFailure": "wrong-hero: invalid pinned input was accepted",
+    "sourceRestoredByteForByte": true,
+    "restoredRejectionChecks": 6,
+    "restoredObserverTests": 6,
+    "observerFailures": 0,
+    "replyAPCorruptionRejected": true,
+    "coreReplayChecks": 388
+  },
+  "newHeadLinuxCI": "Check PR #36 current head separately; prior-head pass does not certify the revision."
+}

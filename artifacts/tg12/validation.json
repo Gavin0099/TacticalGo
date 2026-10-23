@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-22",
+  "swift": "6.0.3",
+  "platform": "Ubuntu 24.04 Linux",
+  "source_commit_local": "ff13f45",
+  "source_commit_remote": "d00f006e737a2d41f4703ca63946df4444da9952",
+  "full_suite": {
+    "exit": 0,
+    "executed": 464,
+    "skipped": 1,
+    "failures": 0,
+    "seconds": 593.052,
+    "known_skip": "Standard priest bot unnecessarily spends Sanctum in wideExitNine; other assertions executed"
+  },
+  "focused": {
+    "expedition": 7,
+    "existing_challenges_and_observation": 21,
+    "priest_counterfactual": 2,
+    "restored_mutation_control": 1,
+    "failures": 0
+  },
+  "mutation": "Killed; exact source restored and test passed",
+  "ios_syntax_parse": "PASS; not a typecheck or native build",
+  "native_xcode_simulator_device": "NOT RUN",
+  "human_playtest": "NOT RUN",
+  "csharp_parity": "NOT RUN; dotnet unavailable",
+  "logs": "Trailing whitespace normalized only",
+  "publication": "Historical memory and docs/PLAN.md changes retained locally following automatic review rejection; remote uses docs/v12/TG12_PLAN.md"
+}

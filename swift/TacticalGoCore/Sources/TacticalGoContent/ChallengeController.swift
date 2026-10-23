@@ -2,7 +2,7 @@ import Foundation
 import TacticalGoCore
 import TacticalGoRecords
 
-public enum ChallengeCampaign: Sendable { case introduction, advanced }
+public enum ChallengeCampaign: Sendable { case introduction, advanced, expedition }
 
 public enum ChallengeError: Error { case version, corrupt, unknownChallenge, locked }
 public struct ChallengeProgress: Codable, Equatable, Sendable {
@@ -29,7 +29,12 @@ public struct ChallengeController: Sendable {
     }
     public var completedIDs: Set<String> { Set(progress.completed.keys) }
     public init(progress: ChallengeProgress = ChallengeProgress(), campaign: ChallengeCampaign = .introduction) throws {
-        let catalog = try campaign == .introduction ? TutorialCatalog.all() : AdvancedCatalog.all()
+        let catalog: [TutorialScenario]
+        switch campaign {
+        case .introduction: catalog = try TutorialCatalog.all()
+        case .advanced: catalog = try AdvancedCatalog.all()
+        case .expedition: catalog = try ExpeditionCatalog.all()
+        }
         guard progress.version == 1 else { throw ChallengeError.version }
         let known = Set(catalog.map(\.id))
         guard Set(progress.runs.keys).isSubset(of: known), Set(progress.completed.keys).isSubset(of: known),
@@ -49,12 +54,12 @@ public struct ChallengeController: Sendable {
         }
     }
     private static func replay(_ scenario: TutorialScenario, _ moves: [RecordedAction], campaign: ChallengeCampaign) throws -> TutorialSession {
-        guard moves.count <= (campaign == .introduction ? 3 : 16) else { throw ChallengeError.corrupt }
+        guard moves.count <= (campaign == .introduction ? 3 : campaign == .expedition ? 24 : 16) else { throw ChallengeError.corrupt }
         var session = try TutorialSession(scenario)
         for move in moves {
             guard case .incomplete = session.assessment else { throw ChallengeError.corrupt }
             let action = try move.action()
-            if campaign == .advanced && session.state.current == .two {
+            if campaign != .introduction && session.state.current == .two {
                 guard session.plannedOpponentActions.first == action else { throw ChallengeError.corrupt }
             }
             let outcome = session.apply(action)
@@ -68,7 +73,7 @@ public struct ChallengeController: Sendable {
         progress.selectedID = id; session = rebuilt
     }
     public var opponentAction: GameAction? {
-        guard campaign == .advanced, !locked, let session, session.state.current == .two else { return nil }
+        guard campaign != .introduction, !locked, let session, session.state.current == .two else { return nil }
         return session.plannedOpponentActions.first
     }
     public mutating func leave() { progress.selectedID = nil; session = nil }
@@ -78,7 +83,7 @@ public struct ChallengeController: Sendable {
     }
     @discardableResult public mutating func commit(_ action: GameAction) throws -> ActionOutcome {
         guard !locked, var session else { throw ChallengeError.locked }
-        if campaign == .advanced && session.state.current == .two && opponentAction != action { throw ChallengeError.corrupt }
+        if campaign != .introduction && session.state.current == .two && opponentAction != action { throw ChallengeError.corrupt }
         let outcome = session.apply(action)
         if outcome.success {
             self.session = session
@@ -90,7 +95,7 @@ public struct ChallengeController: Sendable {
     }
     @discardableResult public mutating func undo() throws -> Bool {
         guard let scenario, var moves = progress.runs[scenario.id], !moves.isEmpty else { return false }
-        if campaign == .advanced {
+        if campaign != .introduction {
             // Remove accepted opponent receipts after the last human decision, then that decision.
             while !moves.isEmpty {
                 var before = moves; before.removeLast()
@@ -125,7 +130,15 @@ public struct ChallengeController: Sendable {
 public struct ChallengeRepository {
     public let directory: URL
     public let campaign: ChallengeCampaign
-    public var file: URL { directory.appendingPathComponent(campaign == .introduction ? "challenges-v1.json" : "challenges-c03-v1.json") }
+    public var file: URL {
+        let name: String
+        switch campaign {
+        case .introduction: name = "challenges-v1.json"
+        case .advanced: name = "challenges-c03-v1.json"
+        case .expedition: name = "challenges-expedition-v1.json"
+        }
+        return directory.appendingPathComponent(name)
+    }
     public init(directory: URL, campaign: ChallengeCampaign = .introduction) { self.directory = directory; self.campaign = campaign }
     public func load() throws -> ChallengeController {
         guard FileManager.default.fileExists(atPath: file.path) else { return try ChallengeController(campaign: campaign) }

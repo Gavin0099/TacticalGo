@@ -5,7 +5,11 @@ import TacticalGoContent
 
 @main struct BotRunner {
     static func main() throws {
-        setvbuf(stdout, nil, _IOLBF, 0) // progress lines appear immediately when the output is redirected to a log
+        #if canImport(Darwin)
+        setvbuf(stdout, nil, _IOLBF, 0) // Darwin command-line progress is line-buffered.
+        #endif
+        // Linux retains standard buffering: Swift 6 forbids the shared Glibc stdout variable.
+        // This affects CLI progress delivery only, never engine/bot decisions.
         let arguments = CommandLine.arguments
         if arguments.count > 3, arguments[1] == "--pass-audit" {
             try passAudit(arguments[2], out: arguments[3]); return

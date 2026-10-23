@@ -10,9 +10,11 @@ import TacticalGoVisuals
 /// 1.0 PlayAccess gate so expansion matches are metered like any other full match.
 /// Challenge campaigns offered by the product-mode lobby (same content as the original shell's challenge entry).
 private enum ProductChallengeRoute: String, Identifiable {
-    case introduction, advanced
+    case introduction, advanced, expedition
     var id: String { rawValue }
-    var campaign: ChallengeCampaign { self == .advanced ? .advanced : .introduction }
+    var campaign: ChallengeCampaign {
+        switch self { case .introduction: .introduction; case .advanced: .advanced; case .expedition: .expedition }
+    }
 }
 
 struct ExpansionGameView: View {
@@ -435,6 +437,7 @@ struct ExpansionGameView: View {
                     Menu {
                         Button("英雄技能入門 · 六關") { openProductChallenges(.introduction) }
                         Button("邊境攻防 · 三關") { openProductChallenges(.advanced) }
+                        Button("戰術遠征 · 試玩版") { openProductChallenges(.expedition) }.accessibilityIdentifier("openExpedition")
                     } label: { Label("戰術挑戰", systemImage: "flag.checkered").frame(maxWidth: .infinity, minHeight: 44) }
                         .accessibilityIdentifier("lobbyChallenges")
                     Button { unlockRequest = .store } label: {
@@ -707,7 +710,7 @@ struct ExpansionGameView: View {
                     #if DEBUG || TACTICALGO_V11
                     if store.computer != nil { Button("電腦決策紀錄") { showBotLog = true } }
                     #endif
-                } label: { Image(systemName: "ellipsis.circle").font(.system(size: 20)).frame(width: 38, height: 36) }.accessibilityLabel("對戰選單")
+                } label: { Image(systemName: "ellipsis.circle").font(.system(size: 20)).frame(width: 44, height: 44).contentShape(Rectangle()) }.accessibilityLabel("對戰選單").accessibilityIdentifier("matchMenu")
             }.buttonStyle(GameButtonStyle())
     }
     @ViewBuilder private var botStatus: some View {

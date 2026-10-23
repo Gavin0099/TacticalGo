@@ -1,0 +1,26 @@
+[
+  {
+    "game": "b7-Priest-Rogue",
+    "turn": 67,
+    "ply": 68,
+    "runStart": 47,
+    "runLength": 51,
+    "selection": "longest pass run, fixed +20-turn offset, decided before diagnostic verdict"
+  },
+  {
+    "game": "b7-Rogue-Priest",
+    "turn": 79,
+    "ply": 80,
+    "runStart": 59,
+    "runLength": 39,
+    "selection": "longest pass run, fixed +20-turn offset, decided before diagnostic verdict"
+  },
+  {
+    "game": "b7-Warrior-Mage",
+    "turn": 75,
+    "ply": 76,
+    "runStart": 55,
+    "runLength": 44,
+    "selection": "longest pass run, fixed +20-turn offset, decided before diagnostic verdict"
+  }
+]

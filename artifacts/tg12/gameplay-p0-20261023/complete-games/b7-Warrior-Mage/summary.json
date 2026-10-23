@@ -1,0 +1,46 @@
+{
+  "atomicActions" : 134,
+  "boardSize" : 7,
+  "classOne" : "Warrior",
+  "classTwo" : "Mage",
+  "enemySoldierCaptures" : 18,
+  "finalSnapshot" : {
+    "ap" : 0,
+    "board" : "ooo.oxx\noooOxxx\noooQxxx\noxxxxxx\noxxH.xx\nxxxXxxx\n.xxxxxx",
+    "current" : 1,
+    "freeHunt" : false,
+    "loot" : [
+      [
+
+      ],
+      [
+
+      ]
+    ],
+    "mana" : [
+      6,
+      4
+    ],
+    "ply" : 100,
+    "seals" : [
+
+    ],
+    "skillUsed" : true,
+    "status" : "Drawn",
+    "summoned" : [
+      true,
+      true
+    ]
+  },
+  "fullReplayIncludingHistoryEqual" : true,
+  "id" : "b7-Warrior-Mage",
+  "longestPurePassRun" : 44,
+  "purePassTurns" : 65,
+  "result" : "drawn",
+  "secondsIncludingObservation" : 65.2842834999974,
+  "serializedReceiptsVerified" : true,
+  "timingScope" : "observed Mac Release time under ambient host load; not iPhone latency acceptance",
+  "turns" : 100,
+  "turnsAfterLastCapture" : 73,
+  "winner" : null
+}

@@ -1,0 +1,4306 @@
+{
+  "config" : {
+    "actionSet" : "current human\/Bot mode; compatibility-only MagicHand excluded in updated expansion",
+    "advancedCost" : 4,
+    "bastionScope" : "connectedGroup",
+    "difficulty" : "standard",
+    "expansionSkills" : true,
+    "experimentalFriendlyRedeploy" : true,
+    "gameCount" : 5,
+    "perGamePlyCap" : 100,
+    "skillEnumerationLimit" : 256
+  },
+  "games" : [
+    {
+      "censoredAtPlyCap" : true,
+      "classOne" : "Warrior",
+      "classTwo" : "Mage",
+      "finalPly" : 45,
+      "finalStatus" : "Ongoing",
+      "id" : "7-w-m",
+      "longestConsecutiveBothSidesPass" : 7,
+      "passes" : 13,
+      "replayedFullState" : true,
+      "size" : 7,
+      "turns" : 44
+    },
+    {
+      "censoredAtPlyCap" : false,
+      "classOne" : "Mage",
+      "classTwo" : "Warrior",
+      "finalPly" : 38,
+      "finalStatus" : "Won",
+      "id" : "7-m-w",
+      "longestConsecutiveBothSidesPass" : 1,
+      "passes" : 1,
+      "replayedFullState" : true,
+      "size" : 7,
+      "turns" : 38
+    },
+    {
+      "censoredAtPlyCap" : true,
+      "classOne" : "Rogue",
+      "classTwo" : "Priest",
+      "finalPly" : 45,
+      "finalStatus" : "Ongoing",
+      "id" : "7-r-p",
+      "longestConsecutiveBothSidesPass" : 0,
+      "passes" : 0,
+      "replayedFullState" : true,
+      "size" : 7,
+      "turns" : 44
+    },
+    {
+      "censoredAtPlyCap" : true,
+      "classOne" : "Priest",
+      "classTwo" : "Rogue",
+      "finalPly" : 45,
+      "finalStatus" : "Ongoing",
+      "id" : "7-p-r",
+      "longestConsecutiveBothSidesPass" : 4,
+      "passes" : 6,
+      "replayedFullState" : true,
+      "size" : 7,
+      "turns" : 44
+    },
+    {
+      "censoredAtPlyCap" : true,
+      "classOne" : "Warrior",
+      "classTwo" : "Mage",
+      "finalPly" : 17,
+      "finalStatus" : "Ongoing",
+      "id" : "9-w-m",
+      "longestConsecutiveBothSidesPass" : 0,
+      "passes" : 0,
+      "replayedFullState" : true,
+      "size" : 9,
+      "turns" : 16
+    }
+  ],
+  "kind" : "TG12_GAMEPLAY_P0_P1_RESEARCH_V2",
+  "limits" : [
+    "only fixed pairings and Standard Bot",
+    "game caps censor outcomes",
+    "legal advanced candidate enumeration limited to 256 per state",
+    "P1 sampled choices cannot prove strategy dominance",
+    "no human playtest"
+  ],
+  "origin" : "formal newGame; baseline Standard Bot both colours",
+  "p1Gate" : "CANDIDATE: factual legal alternatives only; reply safety and human value unproven",
+  "p1NaturalWitnesses" : [
+    {
+      "actor" : 0,
+      "boardBefore" : ".......\n...O...\n...Q...\n.......\n..oH...\n...X...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            8
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            9
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            5,
+            7
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Warrior",
+      "id" : "7-w-m",
+      "legalPlacements" : 44,
+      "legalSkillsInBoundedEnumeration" : 10,
+      "manaBefore" : 3,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 3
+    },
+    {
+      "actor" : 0,
+      "boardBefore" : ".......\n..oO...\n..xQ...\n..ox...\n..oH...\n..xX...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            5
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            10
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            5
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            11
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            5,
+            5
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            6
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Warrior",
+      "id" : "7-w-m",
+      "legalPlacements" : 39,
+      "legalSkillsInBoundedEnumeration" : 15,
+      "manaBefore" : 2,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 5
+    },
+    {
+      "actor" : 1,
+      "boardBefore" : ".......\n..oO...\n..xQ...\n.x.x...\n.x.H...\n..xX...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 20,
+          "enemyCommanderLibertiesRange" : [
+            8,
+            8
+          ],
+          "myCommanderLibertiesRange" : [
+            4,
+            5
+          ],
+          "sampledLegalPlans" : 20,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            8,
+            8
+          ],
+          "myCommanderLibertiesRange" : [
+            4,
+            7
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            7,
+            8
+          ],
+          "myCommanderLibertiesRange" : [
+            5,
+            5
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Mage",
+      "id" : "7-w-m",
+      "legalPlacements" : 39,
+      "legalSkillsInBoundedEnumeration" : 5,
+      "manaBefore" : 3,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 6
+    },
+    {
+      "actor" : 0,
+      "boardBefore" : ".......\n..oO...\n.o.Q...\n.xox...\n.x.H...\n..xX...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            6,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            7,
+            9
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            6,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            7,
+            10
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            6,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            7,
+            8
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Warrior",
+      "id" : "7-w-m",
+      "legalPlacements" : 37,
+      "legalSkillsInBoundedEnumeration" : 21,
+      "manaBefore" : 3,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 7
+    },
+    {
+      "actor" : 1,
+      "boardBefore" : ".......\n.xoO...\n.o.Qx..\n.xox...\n.x.H...\n..xX...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            7,
+            8
+          ],
+          "myCommanderLibertiesRange" : [
+            4,
+            6
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            6,
+            7
+          ],
+          "myCommanderLibertiesRange" : [
+            4,
+            6
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            6,
+            7
+          ],
+          "myCommanderLibertiesRange" : [
+            4,
+            5
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Mage",
+      "id" : "7-w-m",
+      "legalPlacements" : 36,
+      "legalSkillsInBoundedEnumeration" : 39,
+      "manaBefore" : 4,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 8
+    },
+    {
+      "actor" : 0,
+      "boardBefore" : ".o.....\no.oO...\n.o.Qx..\n.xox...\n.x.H...\n..xX...\n.......",
+      "claim" : "legal two-AP alternatives exist; no dominance, safety, or fun proven",
+      "groups" : [
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            4,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            11
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "skill-place"
+        },
+        {
+          "distinctBoards" : 24,
+          "enemyCommanderLibertiesRange" : [
+            4,
+            6
+          ],
+          "myCommanderLibertiesRange" : [
+            6,
+            11
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-skill"
+        },
+        {
+          "distinctBoards" : 23,
+          "enemyCommanderLibertiesRange" : [
+            3,
+            5
+          ],
+          "myCommanderLibertiesRange" : [
+            7,
+            12
+          ],
+          "sampledLegalPlans" : 24,
+          "type" : "place-place"
+        }
+      ],
+      "hero" : "Warrior",
+      "id" : "7-w-m",
+      "legalPlacements" : 32,
+      "legalSkillsInBoundedEnumeration" : 63,
+      "manaBefore" : 4,
+      "method" : "6 evenly-spaced root choices per type x up to 4 legal second actions; Core settlement and full history preserved",
+      "ply" : 9
+    }
+  ],
+  "seconds" : 64.322560874999908,
+  "summary" : {
+    "coreWins" : 1,
+    "games" : 5,
+    "heroPresentTurns" : 176,
+    "passDespiteOtherLegalAction" : 20,
+    "purePassAtFullMana" : 10,
+    "purePassTurns" : 20,
+    "skillAndPlaceTurns" : 28,
+    "skillChosenTurns" : 34,
+    "skillLegalTurns" : 163,
+    "turns" : 186
+  },
+  "turns" : [
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 47,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 51,
+      "ply" : 1,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 46,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 50,
+      "ply" : 2,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 44,
+      "legalSkillsBounded" : 10,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 54,
+      "ply" : 3,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 41,
+      "legalSkillsBounded" : 0,
+      "mana" : 2,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 41,
+      "ply" : 4,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 39,
+      "legalSkillsBounded" : 15,
+      "mana" : 2,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 54,
+      "ply" : 5,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 39,
+      "legalSkillsBounded" : 5,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 44,
+      "ply" : 6,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 37,
+      "legalSkillsBounded" : 21,
+      "mana" : 3,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 58,
+      "ply" : 7,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 36,
+      "legalSkillsBounded" : 39,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 75,
+      "ply" : 8,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 32,
+      "legalSkillsBounded" : 63,
+      "mana" : 4,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 95,
+      "ply" : 9,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 33,
+      "legalSkillsBounded" : 91,
+      "mana" : 5,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 124,
+      "ply" : 10,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 28,
+      "legalSkillsBounded" : 63,
+      "mana" : 5,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 91,
+      "ply" : 11,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 30,
+      "legalSkillsBounded" : 3,
+      "mana" : 2,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 33,
+      "ply" : 12,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 25,
+      "legalSkillsBounded" : 45,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 70,
+      "ply" : 13,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 11,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 4,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 30,
+      "ply" : 14,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 21,
+      "legalSkillsBounded" : 292,
+      "mana" : 5,
+      "myCommanderLiberties" : 9,
+      "otherLegalWhenPassed" : 313,
+      "ply" : 15,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 10,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 21,
+      "legalSkillsBounded" : 38,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 59,
+      "ply" : 16,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 18,
+      "legalSkillsBounded" : 292,
+      "mana" : 4,
+      "myCommanderLiberties" : 9,
+      "otherLegalWhenPassed" : 310,
+      "ply" : 17,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 10,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 18,
+      "legalSkillsBounded" : 38,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 56,
+      "ply" : 18,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 18,
+      "legalSkillsBounded" : 284,
+      "mana" : 5,
+      "myCommanderLiberties" : 8,
+      "otherLegalWhenPassed" : 302,
+      "ply" : 19,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 10,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 14,
+      "legalSkillsBounded" : 12,
+      "mana" : 2,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 20,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 292,
+      "mana" : 4,
+      "myCommanderLiberties" : 9,
+      "otherLegalWhenPassed" : 304,
+      "ply" : 21,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 12,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 20,
+      "ply" : 22,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 15,
+      "mana" : 3,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 25,
+      "ply" : 23,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 9,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 24,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 31,
+      "ply" : 24,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 13,
+      "legalSkillsBounded" : 284,
+      "mana" : 4,
+      "myCommanderLiberties" : 8,
+      "otherLegalWhenPassed" : 297,
+      "ply" : 25,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 3,
+      "legalSkillsBounded" : 6,
+      "mana" : 3,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 26,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 15,
+      "mana" : 3,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 23,
+      "ply" : 27,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 6,
+      "mana" : 4,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 28,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 271,
+      "mana" : 4,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 278,
+      "ply" : 29,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 6,
+      "mana" : 5,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 30,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 271,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 277,
+      "ply" : 31,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 32,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 271,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 277,
+      "ply" : 33,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 34,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 266,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 271,
+      "ply" : 35,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 7,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 36,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 10,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 15,
+      "ply" : 37,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 7,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 38,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 266,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 271,
+      "ply" : 39,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 7,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 40,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 266,
+      "mana" : 5,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 271,
+      "ply" : 41,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 7,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 42,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 266,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 271,
+      "ply" : 43,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 7,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 44,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 47,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 51,
+      "ply" : 1,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 46,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 50,
+      "ply" : 2,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon",
+        "skill"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 43,
+      "legalSkillsBounded" : 0,
+      "mana" : 2,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 43,
+      "ply" : 3,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 41,
+      "legalSkillsBounded" : 0,
+      "mana" : 1,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 41,
+      "ply" : 4,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 39,
+      "legalSkillsBounded" : 0,
+      "mana" : 3,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 39,
+      "ply" : 5,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 37,
+      "legalSkillsBounded" : 15,
+      "mana" : 2,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 52,
+      "ply" : 6,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 9,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 34,
+      "legalSkillsBounded" : 35,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 69,
+      "ply" : 7,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 32,
+      "legalSkillsBounded" : 0,
+      "mana" : 1,
+      "myCommanderLiberties" : 9,
+      "otherLegalWhenPassed" : 32,
+      "ply" : 8,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 9,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 30,
+      "legalSkillsBounded" : 48,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 78,
+      "ply" : 9,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 28,
+      "legalSkillsBounded" : 21,
+      "mana" : 2,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 49,
+      "ply" : 10,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 25,
+      "legalSkillsBounded" : 66,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 91,
+      "ply" : 11,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 0,
+      "mana" : 1,
+      "myCommanderLiberties" : 8,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 12,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 24,
+      "legalSkillsBounded" : 20,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 44,
+      "ply" : 13,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 22,
+      "legalSkillsBounded" : 21,
+      "mana" : 2,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 43,
+      "ply" : 14,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 20,
+      "legalSkillsBounded" : 38,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 58,
+      "ply" : 15,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 18,
+      "legalSkillsBounded" : 15,
+      "mana" : 3,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 33,
+      "ply" : 16,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 17,
+      "legalSkillsBounded" : 28,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 45,
+      "ply" : 17,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 16,
+      "legalSkillsBounded" : 266,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 282,
+      "ply" : 18,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 17,
+      "legalSkillsBounded" : 35,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 52,
+      "ply" : 19,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 16,
+      "legalSkillsBounded" : 0,
+      "mana" : 1,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 16,
+      "ply" : 20,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 14,
+      "legalSkillsBounded" : 12,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 21,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 13,
+      "legalSkillsBounded" : 3,
+      "mana" : 2,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 16,
+      "ply" : 22,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 11,
+      "legalSkillsBounded" : 26,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 37,
+      "ply" : 23,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 1,
+      "mana" : 3,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 24,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 26,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 36,
+      "ply" : 25,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 23,
+      "mana" : 4,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 35,
+      "ply" : 26,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 18,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 27,
+      "ply" : 27,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 11,
+      "legalSkillsBounded" : 66,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 77,
+      "ply" : 28,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 11,
+      "legalSkillsBounded" : 15,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 29,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 1,
+      "mana" : 2,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 30,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : true,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 12,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 20,
+      "ply" : 31,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 0,
+      "mana" : 1,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 9,
+      "ply" : 32,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 10,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 17,
+      "ply" : 33,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 3,
+      "mana" : 2,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 34,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 4,
+      "mana" : 2,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 35,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 3,
+      "mana" : 3,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 36,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 2,
+      "mana" : 3,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 6,
+      "ply" : 37,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-m-w",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 259,
+      "mana" : 4,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 265,
+      "ply" : 38,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 47,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 51,
+      "ply" : 1,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 46,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 50,
+      "ply" : 2,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 44,
+      "legalSkillsBounded" : 1,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 45,
+      "ply" : 3,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 42,
+      "legalSkillsBounded" : 0,
+      "mana" : 2,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 42,
+      "ply" : 4,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 40,
+      "legalSkillsBounded" : 2,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 42,
+      "ply" : 5,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 38,
+      "legalSkillsBounded" : 2,
+      "mana" : 3,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 40,
+      "ply" : 6,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 36,
+      "legalSkillsBounded" : 3,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 39,
+      "ply" : 7,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 35,
+      "legalSkillsBounded" : 6,
+      "mana" : 4,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 41,
+      "ply" : 8,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 33,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 37,
+      "ply" : 9,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 31,
+      "legalSkillsBounded" : 4,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 35,
+      "ply" : 10,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 29,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 33,
+      "ply" : 11,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 27,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 31,
+      "ply" : 12,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 30,
+      "ply" : 13,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 30,
+      "ply" : 14,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 22,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 15,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 23,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 27,
+      "ply" : 16,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 19,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 22,
+      "ply" : 17,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 20,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 28,
+      "ply" : 18,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 17,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 20,
+      "ply" : 19,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 18,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 26,
+      "ply" : 20,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 15,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 18,
+      "ply" : 21,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 15,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 23,
+      "ply" : 22,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 14,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 17,
+      "ply" : 23,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 14,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 22,
+      "ply" : 24,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 13,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 16,
+      "ply" : 25,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 9,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 17,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 23,
+      "ply" : 26,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 13,
+      "legalSkillsBounded" : 0,
+      "mana" : 3,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 27,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 15,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 21,
+      "ply" : 28,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 11,
+      "legalSkillsBounded" : 2,
+      "mana" : 4,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 29,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 18,
+      "ply" : 30,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 4,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 31,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 18,
+      "ply" : 32,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 11,
+      "ply" : 33,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 34,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 35,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 9,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 15,
+      "ply" : 36,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 37,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 11,
+      "ply" : 38,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 39,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 11,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 40,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : false,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 3,
+      "mana" : 5,
+      "myCommanderLiberties" : 10,
+      "otherLegalWhenPassed" : 13,
+      "ply" : 41,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 3,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 42,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 8,
+      "otherLegalWhenPassed" : 11,
+      "ply" : 43,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 9,
+      "fullMana" : true,
+      "game" : "7-r-p",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 4,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 44,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 47,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 51,
+      "ply" : 1,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 46,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 50,
+      "ply" : 2,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 44,
+      "legalSkillsBounded" : 0,
+      "mana" : 2,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 44,
+      "ply" : 3,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 42,
+      "legalSkillsBounded" : 2,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 44,
+      "ply" : 4,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 40,
+      "legalSkillsBounded" : 1,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 41,
+      "ply" : 5,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 38,
+      "legalSkillsBounded" : 3,
+      "mana" : 4,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 41,
+      "ply" : 6,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 36,
+      "legalSkillsBounded" : 4,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 40,
+      "ply" : 7,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 35,
+      "legalSkillsBounded" : 2,
+      "mana" : 5,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 37,
+      "ply" : 8,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 31,
+      "legalSkillsBounded" : 4,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 35,
+      "ply" : 9,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 32,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 37,
+      "ply" : 10,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 29,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 37,
+      "ply" : 11,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 30,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 35,
+      "ply" : 12,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 16,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 42,
+      "ply" : 13,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 26,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 31,
+      "ply" : 14,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 23,
+      "legalSkillsBounded" : 16,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 39,
+      "ply" : 15,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 23,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 28,
+      "ply" : 16,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 22,
+      "legalSkillsBounded" : 16,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 38,
+      "ply" : 17,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 20,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 25,
+      "ply" : 18,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 20,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 28,
+      "ply" : 19,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 14,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 8,
+      "otherLegalWhenPassed" : 19,
+      "ply" : 20,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 19,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 27,
+      "ply" : 21,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 12,
+      "legalSkillsBounded" : 2,
+      "mana" : 5,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 14,
+      "ply" : 22,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 15,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 20,
+      "ply" : 23,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 8,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 24,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 6,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 16,
+      "ply" : 25,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 6,
+      "ply" : 26,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 10,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 15,
+      "ply" : 27,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 5,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 7,
+      "ply" : 28,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 29,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 30,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 5,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 11,
+      "ply" : 31,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 5,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 11,
+      "ply" : 32,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 8,
+      "mana" : 5,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 14,
+      "ply" : 33,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 2,
+      "mana" : 4,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 34,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 35,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 2,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 36,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 37,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 2,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 38,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 8,
+      "mana" : 6,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 12,
+      "ply" : 39,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 3,
+      "mana" : 5,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 40,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 8,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 4,
+      "legalSkillsBounded" : 6,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 10,
+      "ply" : 41,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 3,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 7,
+      "legalSkillsBounded" : 1,
+      "mana" : 2,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 8,
+      "ply" : 42,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "7-p-r",
+      "hero" : "Priest",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 2,
+      "legalSkillsBounded" : 3,
+      "mana" : 6,
+      "myCommanderLiberties" : 2,
+      "otherLegalWhenPassed" : 5,
+      "ply" : 43,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 2,
+      "fullMana" : false,
+      "game" : "7-p-r",
+      "hero" : "Rogue",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 6,
+      "legalSkillsBounded" : 0,
+      "mana" : 3,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 6,
+      "ply" : 44,
+      "purePass" : true,
+      "selectedKinds" : [
+        "pass"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 4,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 79,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 83,
+      "ply" : 1,
+      "purePass" : false,
+      "selectedKinds" : [
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : false,
+      "legalOrdinaryPlacements" : 78,
+      "legalSkillsBounded" : 0,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 82,
+      "ply" : 2,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "summon"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 76,
+      "legalSkillsBounded" : 10,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 86,
+      "ply" : 3,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 74,
+      "legalSkillsBounded" : 0,
+      "mana" : 2,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 74,
+      "ply" : 4,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 72,
+      "legalSkillsBounded" : 6,
+      "mana" : 4,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 78,
+      "ply" : 5,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "skill"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 69,
+      "legalSkillsBounded" : 5,
+      "mana" : 3,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 74,
+      "ply" : 6,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 67,
+      "legalSkillsBounded" : 6,
+      "mana" : 3,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 73,
+      "ply" : 7,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 65,
+      "legalSkillsBounded" : 48,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 113,
+      "ply" : 8,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 64,
+      "legalSkillsBounded" : 9,
+      "mana" : 4,
+      "myCommanderLiberties" : 3,
+      "otherLegalWhenPassed" : 73,
+      "ply" : 9,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 5,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 61,
+      "legalSkillsBounded" : 48,
+      "mana" : 5,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 109,
+      "ply" : 10,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 62,
+      "legalSkillsBounded" : 18,
+      "mana" : 5,
+      "myCommanderLiberties" : 4,
+      "otherLegalWhenPassed" : 80,
+      "ply" : 11,
+      "purePass" : false,
+      "selectedKinds" : [
+        "skill",
+        "place"
+      ],
+      "skillAndPlace" : true,
+      "skillUsed" : true
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 57,
+      "legalSkillsBounded" : 57,
+      "mana" : 6,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 114,
+      "ply" : 12,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 58,
+      "legalSkillsBounded" : 266,
+      "mana" : 4,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 324,
+      "ply" : 13,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 6,
+      "fullMana" : true,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 53,
+      "legalSkillsBounded" : 86,
+      "mana" : 6,
+      "myCommanderLiberties" : 5,
+      "otherLegalWhenPassed" : 139,
+      "ply" : 14,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 0,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : false,
+      "game" : "9-w-m",
+      "hero" : "Warrior",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 57,
+      "legalSkillsBounded" : 271,
+      "mana" : 5,
+      "myCommanderLiberties" : 6,
+      "otherLegalWhenPassed" : 328,
+      "ply" : 15,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    },
+    {
+      "actor" : 1,
+      "enemyCommanderLiberties" : 7,
+      "fullMana" : true,
+      "game" : "9-w-m",
+      "hero" : "Mage",
+      "heroPresent" : true,
+      "legalOrdinaryPlacements" : 51,
+      "legalSkillsBounded" : 76,
+      "mana" : 6,
+      "myCommanderLiberties" : 7,
+      "otherLegalWhenPassed" : 127,
+      "ply" : 16,
+      "purePass" : false,
+      "selectedKinds" : [
+        "place",
+        "place"
+      ],
+      "skillAndPlace" : false,
+      "skillUsed" : false
+    }
+  ]
+}

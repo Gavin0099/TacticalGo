@@ -1,0 +1,1457 @@
+{
+  "actions" : [
+    {
+      "kind" : "summon",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "summon",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 7
+        },
+        {
+          "x" : 5,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 6
+        },
+        {
+          "x" : 4,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "doublePull",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 4
+        },
+        {
+          "x" : 4,
+          "y" : 5
+        },
+        {
+          "x" : 5,
+          "y" : 2
+        },
+        {
+          "x" : 6,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 4
+        },
+        {
+          "x" : 5,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 4
+        },
+        {
+          "x" : 2,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "doublePull",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 2
+        },
+        {
+          "x" : 1,
+          "y" : 2
+        },
+        {
+          "x" : 5,
+          "y" : 3
+        },
+        {
+          "x" : 6,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 4
+        },
+        {
+          "x" : 7,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "doublePull",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 2
+        },
+        {
+          "x" : 3,
+          "y" : 1
+        },
+        {
+          "x" : 5,
+          "y" : 1
+        },
+        {
+          "x" : 6,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 6,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 1
+        },
+        {
+          "x" : 7,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "redeploy",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 2
+        },
+        {
+          "x" : 0,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 5,
+          "y" : 0
+        },
+        {
+          "x" : 1,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "doublePull",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 3
+        },
+        {
+          "x" : 3,
+          "y" : 2
+        },
+        {
+          "x" : 4,
+          "y" : 0
+        },
+        {
+          "x" : 3,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 0
+        },
+        {
+          "x" : 3,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "bastion",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 4
+        },
+        {
+          "x" : 6,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 0,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 6
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 7,
+          "y" : 4
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 5
+        }
+      ]
+    },
+    {
+      "kind" : "redeploy",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        },
+        {
+          "x" : 3,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 3
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 1,
+          "y" : 8
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 8,
+          "y" : 2
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "redeploy",
+      "points" : [
+        {
+          "x" : 3,
+          "y" : 1
+        },
+        {
+          "x" : 0,
+          "y" : 0
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 2,
+          "y" : 7
+        }
+      ]
+    },
+    {
+      "kind" : "end",
+      "points" : [
+
+      ]
+    },
+    {
+      "kind" : "redeploy",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 0
+        },
+        {
+          "x" : 1,
+          "y" : 1
+        }
+      ]
+    },
+    {
+      "kind" : "soldier",
+      "points" : [
+        {
+          "x" : 4,
+          "y" : 0
+        }
+      ]
+    }
+  ],
+  "advancedMana" : 4,
+  "baseSkills" : "redeployment",
+  "classOne" : "Warrior",
+  "classTwo" : "Mage",
+  "difficulty" : "standard",
+  "expected" : {
+    "ap" : 0,
+    "board" : "oooooxxxx\nooo.Oxxxx\nooooQxxxx\nxxoxooxxx\nxxxxxoxxx\nxxxxxxxxx\nxxxxH.xx.\nxxxxXxxxx\n.xx.xxxxx",
+    "current" : 1,
+    "freeHunt" : false,
+    "loot" : [
+      [
+
+      ],
+      [
+
+      ]
+    ],
+    "mana" : [
+      6,
+      4
+    ],
+    "ply" : 100,
+    "seals" : [
+
+    ],
+    "skillUsed" : true,
+    "status" : "Drawn",
+    "summoned" : [
+      true,
+      true
+    ]
+  },
+  "monsters" : [
+
+  ],
+  "rules" : "tacticalgo-1.1-expansion-08-monsters-05",
+  "size" : 9,
+  "version" : 1
+}
