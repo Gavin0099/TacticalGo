@@ -5,7 +5,7 @@ import TacticalGoRecords
 import P0Metrics
 
 /// P1R: focused, research-only continuation from P1 V2.
-//// Scope: one pinned natural 9x9 Rogue root, no product/Bot/rule changes.
+/// Scope: one pinned natural 9x9 Rogue root, no product/Bot/rule changes.
 /// All opponent replies originate from actual Core states with their full superko histories.
 private struct RogueReply {
     let actions: [GameAction]
@@ -34,9 +34,16 @@ private func rogueLiberties(_ s:GameState, owner:Player, kind:PieceKind) -> Int 
 private func rogueAdvanced(_ s:GameState, owner:Player) -> Bool {
     guard s.status == .ongoing,s.current == owner,s.mana(of:owner) >= s.config.expansionSkillManaCost,
           s.board.find(owner,.hero) != nil,!s.skillUsedThisTurn else { return false }
-    return GameEngine.legalActions(s,expansionCandidateLimit:256)
-        .filter { P0Metrics.isInCurrentMode($0, config:s.config) }
-        .contains(where:P0Metrics.isAdvanced)
+    // Rogue's only advanced action is ChainSwap; check its complete adjacent geometry
+    // directly through Core instead of enumerating every unrelated ability per reply.
+    guard s.heroClass(of:owner) == .rogue,let hero=s.board.find(owner,.hero) else { return false }
+    let enemy=Piece(owner.opponent,.soldier)
+    for first in s.board.neighbors(of:hero) where s.board[first] == enemy {
+        for second in s.board.neighbors(of:first) where s.board[second] == enemy {
+            if GameEngine.validate(s,.castChainSwap(first:first,second:second)) == .none { return true }
+        }
+    }
+    return false
 }
 private func rogueApply(_ start:GameState,_ moves:[GameAction],
                         mover:Player) throws -> (GameState,Int) {
