@@ -39,6 +39,9 @@ python3 research/tg12-p1h/verify_fixture.py --negative-controls
 # 可選：本機有 Node.js 時同步檢查內嵌腳本語法
 python3 research/tg12-p1h/verify_fixture.py --check-js
 node research/tg12-p1h/smoke_dom.js  # 僅模擬頁面事件；不算真人驗收
+python3 research/tg12-p1h/summarize.py --self-test  # 只測聚合器，不是人類資料
+# 收齊真人匯出後再執行：
+python3 research/tg12-p1h/summarize.py /path/to/private-exports/*.json --output /path/to/private-aggregate.json
 ```
 
 資料保護：無 HTTP(S) 網路需求、無 `fetch`、`localStorage`、`sessionStorage` 或外部資產；匯出前資料只在記憶體。匿名回答仍可能由參與者自行輸入識別資訊，主持人應提醒不要輸入私人資料、避免上傳公開 GitHub。不採集 IP、精準位置或裝置指紋。
@@ -49,3 +52,5 @@ node research/tg12-p1h/smoke_dom.js  # 僅模擬頁面事件；不算真人驗�
 - 此方案只比較 #0、#5、#9（#9 是四種 P1 普通兩兵樣本之一），不證明技能 #5 優於全體合法走法。
 - 畫面呈現的是一條 Standard Bot 回應，儘管 #5 的 881 個合法單回合反擊已完成 Core 驗證，也無法推論所有延長戰術或真人體驗。
 - Web 離線 UI 不等於 iOS 真機操作／流暢度；不以這個 HTML 驗收遊戲正式美術或動畫。
+
+聚合器只輸出匿名分布與回答完成度，**不將玩家原話或個別代碼寫進公開統計**。不能把 `--self-test` 的虛擬三人當真人樣本；玩家匯出檔請留在私人目錄，不要提交到 GitHub。
