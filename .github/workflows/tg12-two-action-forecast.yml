@@ -1,0 +1,42 @@
+name: TG12 Two-Action Forecast Candidate
+
+# Product candidate compared with PR #34, not merged into main.
+# Linux checks Core-facing pure forecast; iOS native behavior still needs Xcode.
+on:
+  pull_request:
+    branches: ["codex/tg12-tactical-expedition"]
+    paths:
+      - "swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift"
+      - "ios/TacticalGo/TwoActionPlanningSheet.swift"
+      - "ios/TacticalGo/ExpansionGameView.swift"
+      - "ios/TacticalGo/ExpansionLabView.swift"
+      - "ios/TacticalGo.xcodeproj/project.pbxproj"
+      - "ios/TacticalGoUITests/ExpansionLabTests.swift"
+      - ".github/workflows/tg12-two-action-forecast.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Focused two-action Core-forecast tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          swift test --package-path swift/TacticalGoCore --filter TwoActionForecastTests
+      - name: Parse changed iOS source (not an Xcode build)
+        shell: bash
+        run: |
+          set -euo pipefail
+          swiftc -frontend -parse ios/TacticalGo/TwoActionPlanningSheet.swift
+          swiftc -frontend -parse ios/TacticalGo/ExpansionGameView.swift
+          swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
+          swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
+          grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
+          git diff --check HEAD^ HEAD
