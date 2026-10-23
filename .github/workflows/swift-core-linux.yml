@@ -57,7 +57,7 @@ jobs:
           positions = data["positions"]
           assert [p["hero"] for p in positions] == ["Warrior", "Mage", "Rogue", "Priest"]
           assert all(p["alternatives"] for p in positions)
-          assert all(p["sourceSelectionReason"].startswith("first-observed") for p in positions)
+          assert all(p["sourceSelectionReason"] == "first-advanced-legal-ordinary-two-soldiers" for p in positions)
           print("P1_FOUR_HERO_RESEARCH_BEGIN")
           for pos in positions:
               rows = pos["alternatives"]
