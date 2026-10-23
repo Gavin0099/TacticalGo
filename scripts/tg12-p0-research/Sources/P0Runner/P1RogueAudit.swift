@@ -31,6 +31,39 @@ private func rogueSoldiers(_ s:GameState) -> [GameAction] {
 private func rogueLiberties(_ s:GameState, owner:Player, kind:PieceKind) -> Int {
     s.board.find(owner,kind).map { s.board.liberties(at:$0).count } ?? 0
 }
+
+/// Verification traverses the uncapped Core action tree independently of the
+/// generator's soldier/skill partition. This proves only this pinned one-turn set.
+private func rogueCensus(_ start:GameState, soldiersOnly:Bool) throws -> Set<String> {
+    let mover=start.current
+    var keys=Set<String>(), visits=0
+    func visit(_ state:GameState,_ prefix:[GameAction]) throws {
+        if state.status != .ongoing || state.current != mover {
+            keys.insert(rogueActionsKey(prefix));return
+        }
+        guard prefix.count < 2 else { throw StudyError.invalid("P1R census exceeds pinned two AP") }
+        for action in GameEngine.legalActions(state) where P0Metrics.isInCurrentMode(action,config:state.config) {
+            if soldiersOnly {
+                if case .placeSoldier = action {} else if action != .endTurn { continue }
+            }
+            visits += 1
+            guard visits <= 10_000 else { throw StudyError.invalid("P1R verification census incomplete") }
+            let result=GameEngine.apply(state,action)
+            guard result.success else { throw StudyError.invalid("P1R census illegal action") }
+            try visit(result.state,prefix+[action])
+        }
+    }
+    try visit(start,[])
+    return keys
+}
+
+private func rogueFields(_ actual:[String:Any],_ expected:[String:Any],_ label:String) throws {
+    for (key,value) in expected {
+        guard let stored=actual[key], NSDictionary(dictionary:["v":stored]).isEqual(to:["v":value]) else {
+            throw StudyError.invalid("P1R \(label) field \(key)")
+        }
+    }
+}
 private func rogueAdvanced(_ s:GameState, owner:Player) -> Bool {
     guard s.status == .ongoing,s.current == owner,s.mana(of:owner) >= s.config.expansionSkillManaCost,
           s.board.find(owner,.hero) != nil,!s.skillUsedThisTurn else { return false }
@@ -343,18 +376,78 @@ extension P0Runner {
 
     /// Recheck published response receipts and independent two-cycle continuations.
     /// No snapshot-only reconstruction: always obtain the full official opening history.
-    static func rogueVerify(cohort:URL,output:URL) throws {
+    static func rogueVerify(cohort:URL,output:URL,negativeControls:Bool=false) throws {
         let data=try readObject(output)
+        let (root,row)=try stateAt(cohort.appendingPathComponent("b9-Priest-Rogue"),turn:59)
+        let checks=try rogueVerifyData(data,root:root,sourceActions:row["actions"]!)
+        log("PASS P1R replay verified \(checks) own/reply/continuation receipts; coverage and metrics verified")
+        if negativeControls {
+            // Mutate persisted evidence, not expected values derived from the producer.
+            let cases=["reply-count","next-skill","missing-reply","duplicate-branch",
+                       "suppressed-continuation","missing-continuations","duplicate-continuation",
+                       "missing-second-enemy","endpoint","root"]
+            for name in cases {
+                var bad=data
+                var branches=bad["branches"] as! [[String:Any]]
+                switch name {
+                case "reply-count": branches[1]["responsesEnumerated"]=0
+                case "next-skill": branches[1]["standardReplyAdvancedSkillActuallyLegalNextTurn"]=true
+                case "missing-reply":
+                    var replies=branches[1]["replies"] as! [[String:Any]]
+                    replies.removeLast();branches[1]["replies"]=replies
+                case "duplicate-branch": branches[1]=branches[0]
+                case "missing-continuations": branches[1]["twoCycleContinuations"]=[] as [[String:Any]]
+                case "duplicate-continuation":
+                    var continuations=branches[1]["twoCycleContinuations"] as! [[String:Any]]
+                    continuations.append(continuations[0]);branches[1]["twoCycleContinuations"]=continuations
+                case "missing-second-enemy":
+                    var continuations=branches[1]["twoCycleContinuations"] as! [[String:Any]]
+                    var sim=continuations[0]["simulation"] as! [String:Any]
+                    sim["nextEnemyActions"]=[] as [[String:Any]]
+                    continuations[0]["simulation"]=sim;branches[1]["twoCycleContinuations"]=continuations
+                case "suppressed-continuation", "endpoint":
+                    var continuations=branches[1]["twoCycleContinuations"] as! [[String:Any]]
+                    var sim=continuations[0]["simulation"] as! [String:Any]
+                    if name == "suppressed-continuation" { sim["applicable"]=false }
+                    else {
+                        var endpoint=sim["endpoint"] as! [String:Any]
+                        endpoint["ap"]=99;sim["endpoint"]=endpoint
+                    }
+                    continuations[0]["simulation"]=sim;branches[1]["twoCycleContinuations"]=continuations
+                default:
+                    var snapshot=bad["root"] as! [String:Any]
+                    snapshot["ap"]=99;bad["root"]=snapshot
+                }
+                bad["branches"]=branches
+                var rejected=false
+                do { _ = try rogueVerifyData(bad,root:root,sourceActions:row["actions"]!) }
+                catch { rejected=true }
+                guard rejected else { throw StudyError.invalid("P1R negative control accepted: \(name)") }
+                log("PASS P1R rejects \(name)")
+            }
+            log("P1R_CONTRACT_CHECKS=\(cases.count)")
+        }
+    }
+
+    private static func rogueVerifyData(_ data:[String:Any],root:GameState,sourceActions:Any) throws -> Int {
+        let indices=[0,5,8,9,10,11]
         guard data["study"] as? String == "TG12_P1_ROGUE_COUNTERPLAY_V1",
               let branches=data["branches"] as? [[String:Any]],
-              branches.count == 6 else { throw StudyError.invalid("P1R invalid report") }
-        let (root,_)=try stateAt(cohort.appendingPathComponent("b9-Priest-Rogue"),turn:59)
+              data["selectedIndices"] as? [Int] == indices,
+              branches.compactMap({$0["p1AlternativeIndex"] as? Int}) == indices
+        else { throw StudyError.invalid("P1R invalid report") }
         guard try ExpansionMatchRecord.Snapshot(root) == snapshot(data["root"]!) else {
             throw StudyError.invalid("P1R root mismatch")
         }
         var checks=0
         for branch in branches {
+            let id=branch["p1AlternativeIndex"] as! Int
             let plan=try rogueDomain(branch["ownActions"] as? [[String:Any]] ?? [])
+            if id == 0 {
+                guard try plan == rogueDomain(sourceActions as! [[String:Any]]) else {
+                    throw StudyError.invalid("P1R observed source actions differ")
+                }
+            }
             let (after,ours)=try rogueApply(root,plan,mover:.two)
             guard try ExpansionMatchRecord.Snapshot(after) == snapshot(branch["ownAfter"]!),
                   ours == branch["ourSoldiersTakenFromEnemy"] as? Int else {
@@ -363,6 +456,23 @@ extension P0Runner {
             checks += 1
             guard let replies=branch["replies"] as? [[String:Any]] else {
                 throw StudyError.invalid("P1R responses missing")
+            }
+            var keys=Set<String>(),soldierKeys=Set<String>(),families:[String:Int]=[:]
+            for reply in replies {
+                let moves=try rogueDomain(reply["actions"] as? [[String:Any]] ?? [])
+                guard keys.insert(rogueActionsKey(moves)).inserted,
+                      let sources=reply["sources"] as? [String],!sources.isEmpty,
+                      Set(sources).count == sources.count else { throw StudyError.invalid("P1R duplicate reply/source") }
+                for source in sources { families[source,default:0] += 1 }
+                if sources.contains("all_soldier_only_replies") { soldierKeys.insert(rogueActionsKey(moves)) }
+            }
+            guard try soldierKeys == rogueCensus(after,soldiersOnly:true) else {
+                throw StudyError.invalid("P1R soldier coverage differs")
+            }
+            if id == 5 {
+                guard try keys == rogueCensus(after,soldiersOnly:false) else {
+                    throw StudyError.invalid("P1R complete Priest coverage differs")
+                }
             }
             for reply in replies {
                 let moves=try rogueDomain(reply["actions"] as? [[String:Any]] ?? [])
@@ -373,9 +483,41 @@ extension P0Runner {
                       afterReply.mana(of:.two) == reply["ourManaAtHandover"] as? Int else {
                     throw StudyError.invalid("P1R opponent reply receipt")
                 }
+                let advanced=GameEngine.legalActions(afterReply).contains {
+                    if case .castChainSwap = $0 { return true };return false
+                }
+                try rogueFields(reply,[
+                    "ourCommanderLiberties":rogueLiberties(afterReply,owner:.two,kind:.commander),
+                    "ourHeroAlive":afterReply.board.find(.two,.hero) != nil,
+                    "opponentImmediateWin":afterReply.winner == .one,
+                    "advancedAffordableNextTurn":afterReply.mana(of:.two) >= afterReply.config.expansionSkillManaCost,
+                    "advancedActuallyLegalNextTurn":afterReply.status == .ongoing && afterReply.current == .two && advanced
+                ],"reply metrics")
                 checks += 1
             }
-            guard let continuations=branch["twoCycleContinuations"] as? [[String:Any]] else {
+            guard let standardIndex=branch["standardReplyIndex"] as? Int,replies.indices.contains(standardIndex),
+                  (replies[standardIndex]["sources"] as? [String])?.contains("p1_standard_reply") == true else {
+                throw StudyError.invalid("P1R Standard reply index")
+            }
+            let standard=replies[standardIndex]
+            let net=replies.map{$0["netSoldiersAfterReply"] as! Int}
+            try rogueFields(branch,[
+                "responsesEnumerated":replies.count,"responseFamilies":families,
+                "manaSpent":root.mana(of:.two)-after.mana(of:.two),
+                "allLegalPlacementOnlyReplyTurnsCovered":true,
+                "allOrderedPriestSkillReplyTurnsCovered":id == 5,
+                "observedNetMaterialRange":[net.min()!,net.max()!],
+                "minimumOurCommanderLibertiesAmongResponses":replies.map{$0["ourCommanderLiberties"] as! Int}.min()!,
+                "knownImmediateLossResponses":replies.filter{$0["opponentImmediateWin"] as? Bool == true}.count,
+                "knownHeroLostResponses":replies.filter{$0["ourHeroAlive"] as? Bool == false}.count,
+                "standardReplyNetSoldiers":standard["netSoldiersAfterReply"]!,
+                "standardReplyManaNextTurn":standard["ourManaAtHandover"]!,
+                "standardReplyAdvancedSkillActuallyLegalNextTurn":standard["advancedActuallyLegalNextTurn"]!
+            ],"branch summary")
+            guard let continuations=branch["twoCycleContinuations"] as? [[String:Any]],!continuations.isEmpty,
+                  continuations.compactMap({$0["replyIndex"] as? Int}).count == continuations.count,
+                  Set(continuations.compactMap({$0["replyIndex"] as? Int})).count == continuations.count,
+                  continuations.contains(where:{$0["replyIndex"] as? Int == standardIndex}) else {
                 throw StudyError.invalid("P1R continuations missing")
             }
             for continuation in continuations {
@@ -385,10 +527,14 @@ extension P0Runner {
                 }
                 let sampled=replies[idx]
                 let (start,taken)=try rogueApply(after,rogueDomain(sampled["actions"] as! [[String:Any]]),mover:.one)
+                try rogueFields(sim,["applicable":start.status == .ongoing && start.current == .two],"continuation")
                 if sim["applicable"] as? Bool == true {
                     let (afterOwn,more)=try rogueApply(start,rogueDomain(sim["nextOwnActions"] as! [[String:Any]]),mover:.two)
                     var result=afterOwn,secondEnemy=0
                     let opponentActions=try rogueDomain(sim["nextEnemyActions"] as! [[String:Any]])
+                    guard !opponentActions.isEmpty == (afterOwn.status == .ongoing && afterOwn.current == .one) else {
+                        throw StudyError.invalid("P1R missing or spurious second enemy turn")
+                    }
                     if !opponentActions.isEmpty {
                         (result,secondEnemy)=try rogueApply(result,opponentActions,mover:.one)
                     }
@@ -396,10 +542,23 @@ extension P0Runner {
                           ours+more-taken-secondEnemy == sim["captureCountAtTwoCycles"] as? Int else {
                         throw StudyError.invalid("P1R two-cycle mismatch")
                     }
+                    let advanced=GameEngine.legalActions(start).contains {
+                        if case .castChainSwap = $0 { return true };return false
+                    }
+                    try rogueFields(sim,[
+                        "initialManaOnNextOwnTurn":start.mana(of:.two),
+                        "advancedSkillAvailableAtNextOwnTurn":advanced,
+                        "newEnemySoldiersTakenByRogue":more,"newRogueSoldiersTakenByEnemy":secondEnemy,
+                        "ourCommanderAlive":result.board.find(.two,.commander) != nil,
+                        "ourHeroAlive":result.board.find(.two,.hero) != nil,
+                        "manaAtTwoCycleEndpoint":result.mana(of:.two),
+                        "ourCommanderLibertiesAtEndpoint":rogueLiberties(result,owner:.two,kind:.commander),
+                        "enemyCommanderLibertiesAtEndpoint":rogueLiberties(result,owner:.one,kind:.commander)
+                    ],"continuation metrics")
                     checks += 1
                 }
             }
         }
-        log("PASS P1R replay verified \(checks) own/reply/continuation receipts")
+        return checks
     }
 }

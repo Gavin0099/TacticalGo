@@ -1,0 +1,368 @@
+{
+  "study": "TG12_P1R_VERIFIED_SUMMARY_V1",
+  "rootSoldiers": {
+    "rogue": 28,
+    "priest": 32
+  },
+  "replyCount": 1634,
+  "continuationCount": 22,
+  "ownCount": 6,
+  "branches": [
+    {
+      "p1AlternativeIndex": 0,
+      "responseCount": 144,
+      "manaSpent": 2,
+      "netCapturesAfterReplyRange": [
+        0,
+        1
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        -1,
+        3
+      ],
+      "standard": {
+        "netCaptures": 0,
+        "boardSoldiers": {
+          "rogue": 28,
+          "priest": 33
+        },
+        "boardSoldierBalanceDelta": -1,
+        "nextMana": 5,
+        "nextAdvancedLegal": true
+      },
+      "responseFamilies": {
+        "all_soldier_only_replies": 111,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": false,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 1,
+          "boardSoldierBalanceDelta": 0,
+          "endMana": 6
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 1,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 6
+        },
+        {
+          "replyIndex": 42,
+          "selectedBecause": "priest_sanctum_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 6
+        },
+        {
+          "replyIndex": 52,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 6
+        }
+      ]
+    },
+    {
+      "p1AlternativeIndex": 5,
+      "responseCount": 881,
+      "manaSpent": 4,
+      "netCapturesAfterReplyRange": [
+        2,
+        2
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        1,
+        4
+      ],
+      "standard": {
+        "netCaptures": 2,
+        "boardSoldiers": {
+          "rogue": 29,
+          "priest": 32
+        },
+        "boardSoldierBalanceDelta": 1,
+        "nextMana": 3,
+        "nextAdvancedLegal": false
+      },
+      "responseFamilies": {
+        "all_priest_skills_ordered": 713,
+        "all_soldier_only_replies": 168,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": true,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 4,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 2
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "different_retained_bot_reply",
+          "netCaptures": 4,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 2
+        },
+        {
+          "replyIndex": 9,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 3,
+          "boardSoldierBalanceDelta": 4,
+          "endMana": 2
+        },
+        {
+          "replyIndex": 56,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 3,
+          "boardSoldierBalanceDelta": 4,
+          "endMana": 4
+        },
+        {
+          "replyIndex": 193,
+          "selectedBecause": "priest_sanctum_counterplay",
+          "netCaptures": 3,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 4
+        }
+      ]
+    },
+    {
+      "p1AlternativeIndex": 8,
+      "responseCount": 155,
+      "manaSpent": 0,
+      "netCapturesAfterReplyRange": [
+        0,
+        0
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        0,
+        3
+      ],
+      "standard": {
+        "netCaptures": 0,
+        "boardSoldiers": {
+          "rogue": 30,
+          "priest": 34
+        },
+        "boardSoldierBalanceDelta": 0,
+        "nextMana": 6,
+        "nextAdvancedLegal": true
+      },
+      "responseFamilies": {
+        "all_soldier_only_replies": 122,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": false,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 50,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 1,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 6
+        }
+      ]
+    },
+    {
+      "p1AlternativeIndex": 9,
+      "responseCount": 144,
+      "manaSpent": 0,
+      "netCapturesAfterReplyRange": [
+        0,
+        1
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        0,
+        4
+      ],
+      "standard": {
+        "netCaptures": 0,
+        "boardSoldiers": {
+          "rogue": 29,
+          "priest": 33
+        },
+        "boardSoldierBalanceDelta": 0,
+        "nextMana": 6,
+        "nextAdvancedLegal": true
+      },
+      "responseFamilies": {
+        "all_soldier_only_replies": 111,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": false,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 1,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 42,
+          "selectedBecause": "priest_sanctum_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 6
+        },
+        {
+          "replyIndex": 52,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 4,
+          "endMana": 6
+        }
+      ]
+    },
+    {
+      "p1AlternativeIndex": 10,
+      "responseCount": 155,
+      "manaSpent": 0,
+      "netCapturesAfterReplyRange": [
+        0,
+        0
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        0,
+        3
+      ],
+      "standard": {
+        "netCaptures": 0,
+        "boardSoldiers": {
+          "rogue": 30,
+          "priest": 34
+        },
+        "boardSoldierBalanceDelta": 0,
+        "nextMana": 6,
+        "nextAdvancedLegal": true
+      },
+      "responseFamilies": {
+        "all_soldier_only_replies": 122,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": false,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 50,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 1,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 6
+        }
+      ]
+    },
+    {
+      "p1AlternativeIndex": 11,
+      "responseCount": 155,
+      "manaSpent": 0,
+      "netCapturesAfterReplyRange": [
+        0,
+        0
+      ],
+      "boardSoldierBalanceDeltaAfterReplyRange": [
+        0,
+        3
+      ],
+      "standard": {
+        "netCaptures": 0,
+        "boardSoldiers": {
+          "rogue": 30,
+          "priest": 34
+        },
+        "boardSoldierBalanceDelta": 0,
+        "nextMana": 6,
+        "nextAdvancedLegal": true
+      },
+      "responseFamilies": {
+        "all_soldier_only_replies": 122,
+        "bounded_standard_retained": 57,
+        "easy_bot": 1,
+        "p1_standard_reply": 1
+      },
+      "allPlacementOnly": true,
+      "allPriestSkillOrders": false,
+      "selectedContinuations": [
+        {
+          "replyIndex": 0,
+          "selectedBecause": "standard",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 2,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 1,
+          "selectedBecause": "priest_offering_counterplay",
+          "netCaptures": 2,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 3
+        },
+        {
+          "replyIndex": 50,
+          "selectedBecause": "enemy_pass_resource_counterfactual",
+          "netCaptures": 1,
+          "boardSoldierBalanceDelta": 3,
+          "endMana": 6
+        }
+      ]
+    }
+  ],
+  "metricDefinition": "Net captures count captured enemy soldiers minus lost soldiers; excludes placements and self-sacrifice. Board balance delta separately includes all board changes.",
+  "scope": "One fixed root. Full first opponent turn only for candidate5; selected Standard continuations, no minimax or long-term dominance.",
+  "receiptCount": 1662
+}

@@ -122,8 +122,10 @@ func snapshot(_ value: Any) throws -> ExpansionMatchRecord.Snapshot {
             try rogueAudit(cohort:URL(fileURLWithPath:a[2]),p1:URL(fileURLWithPath:a[3]),
                            output:URL(fileURLWithPath:a[4]))
         case "rogue-verify":
-            guard a.count == 4 else { throw StudyError.invalid("rogue-verify complete-games-dir rogue-results.json") }
-            try rogueVerify(cohort:URL(fileURLWithPath:a[2]),output:URL(fileURLWithPath:a[3]))
+            guard a.count == 4 || (a.count == 5 && a[4] == "--negative-controls") else {
+                throw StudyError.invalid("rogue-verify complete-games-dir rogue-results.json [--negative-controls]")
+            }
+            try rogueVerify(cohort:URL(fileURLWithPath:a[2]),output:URL(fileURLWithPath:a[3]),negativeControls:a.count == 5)
         default: throw StudyError.invalid("command")
         }
     }

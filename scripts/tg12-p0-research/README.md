@@ -103,3 +103,16 @@ separate evenly spaced reply sample finds none. Neither surviving Standard Bot
 nor a negative bounded probe proves safety. Capture/liberty/resource metrics
 remain separate; no scalar "best move", exhaustive dominance, balance or human
 fun is claimed. See `docs/v12/P1_GAMEPLAY_RESEARCH.md` for the actual results.
+
+## P1R pinned Rogue continuation
+
+`rogue <complete-games> <P1-V2-results> <output>` expands the six pinned
+Rogue ply60 plans. `rogue-verify <complete-games> <output> --negative-controls`
+replays receipts, independently traverses the Core action tree to confirm the
+claimed reply coverage, and checks derived metrics with ten rejection controls.
+Full skill coverage applies only to candidate #5 at this fixed root. Selected
+second-round continuations do not prove long-term dominance. The legacy V1
+field `observedNetMaterialRange` counts net captures, not board material;
+placements and Priest sacrifice are reported separately in the committed summary.
+See `docs/v12/P1_ROGUE_COUNTERPLAY_RESEARCH.md` and
+`artifacts/tg12/gameplay-p1r-20261023/` for source pins and evidence.

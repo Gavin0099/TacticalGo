@@ -76,7 +76,7 @@ jobs:
             tg12-p1r-ci.json 2>&1 | tee tg12-p1r-ci.log
           swift run -c release --package-path scripts/tg12-p0-research P0Runner rogue-verify \
             artifacts/tg12/gameplay-p0-20261023/complete-games \
-            tg12-p1r-ci.json 2>&1 | tee tg12-p1r-verify.log
+            tg12-p1r-ci.json --negative-controls 2>&1 | tee tg12-p1r-verify.log
           test -s tg12-p1r-ci.json
           grep -q TG12_P1_ROGUE_COUNTERPLAY_V1 tg12-p1r-ci.json
           echo TG12_P1R_JSON_BEGIN
