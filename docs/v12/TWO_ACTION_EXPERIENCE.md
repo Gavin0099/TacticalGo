@@ -22,10 +22,10 @@
 |---|---|---|
 | 兩手完整合法結算 | Swift `TwoActionForecastTests`：正常／邊界／無效／更換第一手／技能與費用 | 新增 7 項，Linux 有已通過結果；須以 PR #40 最新頭的 CI 為準 |
 | 不碰正式狀態 | 對照 GameState、AP/Mana；Core 框架有無 `GameSession` 寫入 | Swift 純模型測試已涵蓋；正式 iOS 路徑仍需真機驗 |
-| UI 實際手勢與存局 | `ExpansionLabTests.testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm` | 已新增，**未在 Xcode 原生執行** |
-| 正式回饋只根據收據 | 有提子／無提子／純落兵／盜賊換位不同級別，減少動態下仍可理解 | 程式接線待 Xcode 與真機視覺／聽感驗收 |
-| 畫面節奏、可見性與位置 | iPhone 小尺寸／一般 iPhone／iPad；portrait／landscape，44 pt 點擊區 | 未執行原生驗收 |
-| 背景與取消 | 選兩手→改第一手使第二手失效；關閉→資源無變；回背景→原 GameSession 未改；正式第一手後取消第二手 | Core 失效與取消邊界已測；iOS 背景操作待驗 |
+| UI 實際手勢與存局 | `ExpansionLabTests.testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm` | Debug、獨立乾淨 Beta 小手機已通過；包含逐手確認與重新啟動續局，見原生紀錄 |
+| 正式回饋只根據收據 | 有提子／無提子／純落兵／盜賊換位不同級別，減少動態下仍可理解 | Debug 有／無提子、普通落兵／技能對照通過；Beta 三職無提子及減少動態操作通過；真機視覺／聽感未驗 |
+| 畫面節奏、可見性與位置 | iPhone 小尺寸／一般 iPhone／iPad；portrait／landscape，44 pt 點擊區 | 已在小手機、一般 iPhone、iPad 直轉橫執行放大文字與減少動態操作並保留截圖；節奏與真機品質未驗 |
+| 背景與取消 | 選兩手→改第一手使第二手失效；關閉→資源無變；回背景→原 GameSession 未改；正式第一手後取消第二手 | Debug／Beta 原生操作已通過；不能據此取代真機驗收 |
 | C# parity | 與正式 C# 參考 Core 相同規則來源、無規則修改 | 本輪未重新執行；不能聲稱跨語言驗收 |
 
 ### 真正的前／後影像比較（Owner 的 macOS / Xcode）
@@ -45,3 +45,11 @@
 - **不能宣稱**：未有真人使用前不能聲稱更好玩；未有真機影片前不能聲稱視覺品質已改善；未進行效能量測前不能聲稱無 UI 卡頓。
 
 **注意：** 現階段只替 1.1 擴充自由對局接入這個可選入口；原版非擴充 UI 尚未加入口，但正式原版流程沒有被取代。這是功能覆蓋邊界，不應稱已完成全模式共用。
+
+## 原生檢查發現的修正（2026-10-24）
+
+空的試算預覽原先會透過 `planning?.preview ?? store.preview`，借用正式對局尚未確認的預覽。因此在正式棋局選 A1、再打開空試算時，會出現不屬於試算的落兵影像。現在先判斷是否正在試算；試算中的空預覽保持為空。未修版的原生回歸確實失敗，修正後通過；關閉仍保留原本單手選點，沒有偷偷提交或消耗資源。
+
+另外補齊試算棋盤與摘要的輔助使用群組，讓格點／摘要能被原生測試與輔助技術辨識；終局顯示「已終局」，不誤稱交棒；只完成一手時不宣稱兩手已完成。這些都只改呈現，不改 Core、存局或 Bot。
+
+完整指令、各裝置最新結果、早期失敗、截圖與未驗範圍見 [TWO_ACTION_NATIVE_VALIDATION.md](TWO_ACTION_NATIVE_VALIDATION.md)。
