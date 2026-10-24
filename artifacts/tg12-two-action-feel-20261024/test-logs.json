@@ -1,0 +1,74 @@
+[
+  {
+    "name": "package",
+    "raw_local": "ios/Build/tg12-feel-20261024/package.log",
+    "raw_sha256": "8f22379876192c6635c353b9319a0f0450a8b85a28cef95931a8483e6ecdfb2d",
+    "summary": "package-summary.log"
+  },
+  {
+    "name": "rogue-focused",
+    "raw_local": "ios/Build/tg12-feel-20261024/rogue-focused.log",
+    "raw_sha256": "279fccbc9f92cb52d49859e86c43a15d27c6f6bff44f75c708bf1d768e50ef25",
+    "summary": "rogue-focused-summary.log"
+  },
+  {
+    "name": "opening-mutation-red",
+    "raw_local": "ios/Build/tg12-feel-20261024/opening-mutation-red.log",
+    "raw_sha256": "812fa817360e6b23d5559af5725edd6b02a8b337608f693640f34b64efca5ea4",
+    "summary": "opening-mutation-red-summary.log"
+  },
+  {
+    "name": "opening-restored-green",
+    "raw_local": "ios/Build/tg12-feel-20261024/opening-restored-green.log",
+    "raw_sha256": "1535973a59ddb2931a9d817bb1022be82525be856bda936eb90ca993cc08127a",
+    "summary": "opening-restored-green-summary.log"
+  },
+  {
+    "name": "layout-initial",
+    "raw_local": "ios/Build/tg12-feel-20261024/layout-initial.log",
+    "raw_sha256": "ed8ad4e28f567a5af75c4d695f2c4adb9af70ec15e0d0099463897d442c746d4",
+    "summary": "layout-initial-summary.log"
+  },
+  {
+    "name": "debug-flow",
+    "raw_local": "ios/Build/tg12-feel-20261024/debug-flow.log",
+    "raw_sha256": "127c85f8ae7de20a8e87c445c50a5416c18769028d1f627d839626b7d57cdc60",
+    "summary": "debug-flow-summary.log"
+  },
+  {
+    "name": "debug-refined",
+    "raw_local": "ios/Build/tg12-feel-20261024/debug-refined.log",
+    "raw_sha256": "0f96c4c4385f908e12e949b015ce6a7703c3d44d82b7bb6fa2372c9feaba5d39",
+    "summary": "debug-refined-summary.log"
+  },
+  {
+    "name": "beta-flow",
+    "raw_local": "ios/Build/tg12-feel-20261024/beta-flow.log",
+    "raw_sha256": "79c79a6b017222eca43a104f47e343af435b98b488cafae339da36640c4e009f",
+    "summary": "beta-flow-summary.log"
+  },
+  {
+    "name": "beta-refined",
+    "raw_local": "ios/Build/tg12-feel-20261024/beta-refined.log",
+    "raw_sha256": "b35fadbcaf3726eb5c181fabbf1e539812c331f2f7fa1e2aafd55926336a91e0",
+    "summary": "beta-refined-summary.log"
+  },
+  {
+    "name": "ipad-final",
+    "raw_local": "ios/Build/tg12-feel-20261024/ipad-final.log",
+    "raw_sha256": "940b2b4fb1796839a960f6fb2a5a79b6c30017f8766ee60f32dc38b8514c1cee",
+    "summary": "ipad-final-summary.log"
+  },
+  {
+    "name": "baseline-capture",
+    "raw_local": "ios/Build/tg12-feel-20261024/baseline-capture.log",
+    "raw_sha256": "9aab20a18ecf90d01d326177ed936aeeea2b46dce4107e2ef476968ecbea1063",
+    "summary": "baseline-capture-summary.log"
+  },
+  {
+    "name": "candidate-capture",
+    "raw_local": "ios/Build/tg12-feel-20261024/candidate-capture.log",
+    "raw_sha256": "15e5e93d79ee3835da5022b2b844b338c44a5b36edf128467724d816495a0899",
+    "summary": "candidate-capture-summary.log"
+  }
+]

@@ -81,6 +81,7 @@ import TacticalGoVisuals
     var reviewTime: Double?
     var reviewWidth: CGFloat?
     var reviewFixture = false
+    private(set) var isRogueChainPractice = false
     private(set) var session: GameSession?
     private(set) var receipt: ExpansionPresentation?
     private var reviewReceipt: ExpansionPresentation?
@@ -197,6 +198,7 @@ import TacticalGoVisuals
     func cancelSelection() { selected = []; pending = nil; lastConfirmedFeedback = nil }
     /// `keepIdentity` lets the caller restart the board of a match whose identity was already admitted.
     func restart(keepIdentity: Bool = false) {
+        isRogueChainPractice = false
         if !keepIdentity { matchID = UUID() }
         terminalReported = false
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; instruction = nil; mode = .soldier; legacySkillsOnResume = false
@@ -278,6 +280,23 @@ import TacticalGoVisuals
         return true
     }
     #endif
+    /// Public, legal-history rehearsal. Memory only: the existing no-write guard
+    /// protects the player's saved slot and never creates a paid-match identity.
+    @discardableResult func rogueChainPractice() -> Bool {
+        do {
+            let replay = try RogueChainPractice.session()
+            stop();cancelSelection();reviewTime=nil;reviewWidth=nil;reviewFixture=true
+            isRogueChainPractice=true;challenge=false;showHint=false;legacySkillsOnResume=false
+            session=replay;voiceCadence.reset();size=9;monsters = .none
+            one = .priest;two = .rogue;computer=nil;mode = .soldier
+            instruction=RogueChainPractice.instruction
+            message="合法棋譜練習：先落兵 F3，再試 D3、C3 連鎖換位；不會覆蓋存局。"
+            return true
+        } catch {
+            message="連鎖練習無法載入，目前棋局保持不變。"
+            return false
+        }
+    }
     func practice(_ fixture: ExpansionPractice) {
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; legacySkillsOnResume = false
         do {

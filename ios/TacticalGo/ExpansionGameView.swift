@@ -615,6 +615,12 @@ struct ExpansionGameView: View {
                     Menu {
                         ForEach(PracticeLesson.allCases) { value in Button(value.rawValue) { startPractice(value) } }
                         #if DEBUG || TACTICALGO_V11
+                        Button(RogueChainPractice.title) {
+                            if store.rogueChainPractice() {
+                                boardSize=9;one = .priest;two = .rogue
+                                lesson=nil;inMatch=true;store.setMatchAudioActive(true)
+                            }
+                        }.accessibilityIdentifier("rogueChainPractice")
                         ForEach(ExpansionPractice.allCases,id:\.self) { value in
                             Button(value.hero.title + " · 擴充技能") {
                                 store.expansionPractice(value); boardSize = store.size; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two)
@@ -687,6 +693,16 @@ struct ExpansionGameView: View {
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
 
     }
+    private var matchSubtitle: String {
+        #if DEBUG || TACTICALGO_V11
+        if store.expansion?.isRogueChainPractice == true {
+            return store.state.current == .two && store.state.ply == 60
+                ? (store.state.apRemaining == 2 ? "連鎖練習 · 先落 F3，再換位 D3→C3" : "連鎖練習 · 第二手換位 D3→C3")
+                : "連鎖練習 · 本回合已結束，可自由比較走法"
+        }
+        #endif
+        return lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")"
+    }
     private var matchHeader: some View {
             HStack {
                 Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 38, height: 36) }.accessibilityLabel("返回選角")
@@ -694,7 +710,7 @@ struct ExpansionGameView: View {
                     Text(turnTitle).font(.system(size: 20, weight: .heavy, design: .serif))
                         .foregroundStyle(displayedPlayer == .one ? uiAccent:uiInk)
                         .lineLimit(1).minimumScaleFactor(0.80).accessibilityIdentifier("currentTurn")
-                    Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
+                    Text(matchSubtitle)
                         .font(.system(size: 11)).foregroundStyle(uiSecondary)
                 }
                 Spacer()
@@ -708,12 +724,16 @@ struct ExpansionGameView: View {
                     Button("格點清單") { showGrid = true }
                     Button("遊戲規則") { showRules = true }
                     Button("重新開始") {
+                        #if DEBUG || TACTICALGO_V11
+                        if store.expansion?.isRogueChainPractice == true { _ = store.rogueChainPractice();return }
+                        #endif
                         if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules) }
                         else if let lesson { startPractice(lesson) } else { startMatch() }
                     }
                     #if DEBUG || TACTICALGO_V11
                     if let match = store.expansion {
-                        Button("保存對局") { match.saveCandidate() }.accessibilityIdentifier("saveExpansion")
+                        Button(match.isRogueChainPractice ? "練習不覆寫存局" : "保存對局") { match.saveCandidate() }
+                            .disabled(match.isRogueChainPractice).accessibilityIdentifier("saveExpansion")
                     } else {
                         Button("存局與棋譜") { store.cancelBotWork(); store.refreshRecords(); showRecords = true }.accessibilityIdentifier("matchRecords")
                     }

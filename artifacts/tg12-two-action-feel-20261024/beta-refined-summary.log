@@ -1,0 +1,6 @@
+Test Case '-[TacticalGoUITests.ExpansionLabTests testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation]' passed (98.543 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted]' passed (55.166 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm]' passed (49.866 seconds).
+Test Suite 'TacticalGoUITests.xctest' passed at 2026-10-24 15:36:36.925.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 203.575 (203.581) seconds
+** TEST SUCCEEDED **

@@ -209,131 +209,223 @@ struct TwoActionPlanningSheet: View {
     let match: ExpansionLabStore
     let onUseFirst: (TwoActionForecast) -> Bool
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.accessibilityReduceMotion) private var systemReducedMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @State private var showDetails = false
+    @State private var showGrid = false
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 12) {
-                    Text("先想好兩手，再決定是否真的落子。所有變化只來自目前的合法棋局；這裡不預測對方下一回合。")
-                        .font(.footnote).foregroundStyle(.secondary)
+            GeometryReader { geometry in
+                VStack(spacing:8) {
+                    stages
+                    GeometryReader { board in
+                        let edge = max(0,min(420,board.size.width,board.size.height))
+                        if let assets=match.assets {
+                            ExpansionBoard(store:match,assets:assets,time:2,reduced:true,
+                                           identityPrefix:"forecast-cell",planning:planner)
+                                .frame(width:edge,height:edge)
+                                .position(x:board.size.width/2,y:board.size.height/2)
+                                .accessibilityElement(children:.contain)
+                                .accessibilityIdentifier("forecastBoard")
+                        } else {
+                            Text("棋盤素材尚未載入，正式對局保持不變。").foregroundStyle(.red)
+                        }
+                    }
+                    Text(resources)
+                        .font(.caption).foregroundStyle(GameChrome.cream)
                         .frame(maxWidth:.infinity,alignment:.leading)
-                    HStack(spacing: 6) {
-                        ForEach(TwoActionPlanningController.Stage.allCases) { stage in
-                            Button(stage.title) { planner.show(stage) }
-                                .font(.system(size:12,weight:.semibold))
-                                .frame(maxWidth:.infinity,minHeight:44)
-                                .background(planner.stage == stage ? Color.orange.opacity(0.3) : Color.gray.opacity(0.15),
-                                            in:RoundedRectangle(cornerRadius:8))
-                                .disabled(stage == .second && planner.forecast.secondBase == nil ||
-                                          stage == .result && planner.forecast.firstStep == nil)
-                                .accessibilityIdentifier("forecastStage\(stage.rawValue)")
-                        }
-                    }
-                    if let assets=match.assets {
-                        ExpansionBoard(store:match,assets:assets,time:2,reduced:true,
-                                       identityPrefix:"forecast-cell",planning:planner)
-                            .aspectRatio(1,contentMode:.fit).frame(maxWidth:420)
-                            .accessibilityElement(children:.contain)
-                            .accessibilityIdentifier("forecastBoard")
-                    } else {
-                        Text("棋盤素材尚未載入，正式對局保持不變。").foregroundStyle(.red)
-                    }
-                    Text("檢視：\(planner.stage.title) · \(planner.stageState.status != .ongoing ? "已終局" : planner.stageState.current == planner.origin.current ? "\(planner.stageState.apRemaining) AP" : "己方已交棒") · 己方能量 \(planner.stageState.mana(of:planner.origin.current))")
-                        .font(.caption).foregroundStyle(.secondary)
                         .accessibilityIdentifier("forecastResources")
-                    if planner.canEdit {
-                        ScrollView(.horizontal,showsIndicators:false) {
-                            HStack(spacing:7) {
-                                ForEach(planner.modes) { mode in
-                                    Button(mode.rawValue) { planner.changeMode(mode) }
-                                        .font(.system(size:13,weight:.semibold))
-                                        .frame(minWidth:58,minHeight:44)
-                                        .background(planner.mode == mode ? Color.orange.opacity(0.3) : Color.gray.opacity(0.15),
-                                                    in:RoundedRectangle(cornerRadius:8))
-                                        .accessibilityIdentifier("forecastMode\(mode.id)")
-                                }
-                                if planner.mode == .loot {
-                                    Button(planner.ability == .stickyBounce ? "黏彈" : "影步") {
-                                        planner.ability = planner.ability == .stickyBounce ? .shadowStep : .stickyBounce
-                                        planner.clearSelection()
-                                    }.frame(minHeight:44)
-                                }
-                            }
-                        }
-                        if planner.needsDirection {
-                            HStack {
-                                ForEach(PushDirection.allCases,id:\.self) { direction in
-                                    Button(direction.rawValue) { planner.push(direction) }
-                                        .frame(maxWidth:.infinity,minHeight:44)
-                                        .accessibilityIdentifier("forecastDirection\(direction.rawValue)")
-                                }
-                            }
-                        }
-                        HStack {
-                            Text(planner.pending.map(TwoActionPlanningController.title) ?? "點選棋盤綠圈，再加入這一步")
-                                .font(.subheadline).lineLimit(2)
-                            Spacer()
-                            Button("取消選點") { planner.clearSelection() }
-                                .font(.caption).frame(minHeight:44)
-                        }
-                        if let preview=planner.preview {
-                            Text(preview.success ? "合法試算 · 尚未提交" : "目前不合法：\(preview.reason.rawValue)")
-                                .font(.caption).foregroundStyle(preview.success ? Color.green : Color.orange)
-                                .accessibilityIdentifier("forecastLegal")
-                        }
-                        Button("加入\(planner.stage == .first ? "第一手" : "第二手")試算") { planner.addPending() }
-                            .frame(maxWidth:.infinity,minHeight:44)
-                            .buttonStyle(.borderedProminent)
-                            .disabled(planner.preview?.success != true)
-                            .accessibilityIdentifier("forecastAddStep")
-                    }
-                    if let a=planner.forecast.firstStep { summary(a,number:1) }
-                    if let b=planner.forecast.secondStep { summary(b,number:2) }
-                    Text(planner.message).font(.caption).foregroundStyle(.secondary)
-                    if planner.forecast.first != nil {
-                        HStack {
-                            if planner.stage != .result {
-                                Button("清除此手") { planner.clearCurrent() }.frame(minHeight:44)
-                            }
-                            Spacer()
-                            Button("帶入第一手，仍需按確認") {
-                                if onUseFirst(planner.forecast) { dismiss() }
-                                else { planner.message = "正式對局已變化或正在演出；本次試算未套用，請關閉後重新開啟。" }
-                            }
-                            .buttonStyle(.borderedProminent).frame(minHeight:44)
-                            .disabled(!planner.forecast.matches(match.state) || match.controlsLocked)
-                            .accessibilityIdentifier("forecastLoadFirst")
-                        }
-                    }
-                    Text("帶入只會選好第一手；不會扣資源、不會自動執行第二手。第一手確認後若局面合法，對局會提示可再帶入第二手。")
-                        .font(.caption2).foregroundStyle(.secondary)
-                }.padding(16)
+                    controls
+                        .frame(height:min(typeSize.isAccessibilitySize ? 308 : 236,
+                                          max(208,geometry.size.height*0.56)),alignment:.top)
+                }
+                .padding(.horizontal,12).padding(.vertical,8)
             }
-            .accessibilityIdentifier("forecastScroll")
+            .background(GameBackdrop())
+            .foregroundStyle(GameChrome.cream)
             .navigationTitle("兩手試算")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement:.confirmationAction) {
-                Button("關閉（不落子）") { dismiss() }.accessibilityIdentifier("forecastClose")
-            }}
+            .toolbar {
+                ToolbarItem(placement:.topBarLeading) {
+                    HStack(spacing:0) { Button { showDetails = true } label: {
+                        Label("詳細",systemImage:"info.circle").frame(minWidth:44,minHeight:44)
+                    }.accessibilityIdentifier("forecastDetails")
+                        Button { showGrid = true } label: {
+                            Image(systemName:"square.grid.3x3").frame(width:44,height:44)
+                        }.disabled(!planner.canEdit).accessibilityLabel("以大按鍵選擇試算格點")
+                            .accessibilityIdentifier("forecastGrid")
+                    }
+                }
+                ToolbarItem(placement:.confirmationAction) {
+                    Button("關閉") { dismiss() }.frame(minWidth:44,minHeight:44)
+                        .accessibilityLabel("關閉（不落子）").accessibilityIdentifier("forecastClose")
+                }
+            }
+            .sheet(isPresented:$showDetails) { details }
+            .sheet(isPresented:$showGrid) { grid }
             .preferredColorScheme(.dark)
         }
     }
-
-    private func summary(_ step:TwoActionForecast.Step,number:Int) -> some View {
-        VStack(alignment:.leading,spacing:4) {
-            Text("第 \(number) 手 · \(TwoActionPlanningController.title(step.action))")
-                .font(.subheadline).bold()
-            Text("AP \(step.apBefore) → \(step.after.status != .ongoing ? "已終局" : step.apAfter.map(String.init) ?? "交給對手") · 能量 \(step.manaBefore) → \(step.manaAfter)")
-            Text("提敵兵 \(step.enemySoldiersCaptured) · 犧牲己兵 \(step.ownSoldiersSacrificed) · 己主帥氣 \(step.myCommanderLibertiesBefore) → \(step.myCommanderLibertiesAfter) · 敵主帥氣 \(step.enemyCommanderLibertiesBefore) → \(step.enemyCommanderLibertiesAfter)")
-            Text("這些是本回合的確定結果；氣數增加不保證下回合安全。").foregroundStyle(.secondary)
+    private var resources: String {
+        let state=planner.stageState
+        let ap = state.status != .ongoing ? "已終局" : state.current == planner.origin.current ? "\(state.apRemaining) AP" : "己方已交棒"
+        return "\(ap) · 己方能量 \(state.mana(of:planner.origin.current))"
+    }
+    private var stages: some View {
+        HStack(spacing:6) {
+            ForEach(TwoActionPlanningController.Stage.allCases) { stage in
+                Button { planner.show(stage) } label: {
+                    Text(stage.title).font(.system(size:13,weight:.semibold))
+                        .frame(maxWidth:.infinity,minHeight:44)
+                }
+                .background(planner.stage == stage ? GameChrome.gold.opacity(0.28) : Color.white.opacity(0.07),in:RoundedRectangle(cornerRadius:10))
+                .overlay(RoundedRectangle(cornerRadius:10).stroke(planner.stage == stage ? GameChrome.gold : Color.clear,lineWidth:1))
+                .disabled(stage == .second && planner.forecast.secondBase == nil || stage == .result && planner.forecast.firstStep == nil)
+                .accessibilityIdentifier("forecastStage\(stage.rawValue)")
+            }
         }
-        .font(.caption)
-        .padding(11)
-        .frame(maxWidth:.infinity,alignment:.leading)
-        .background(Color.white.opacity(0.08),in:RoundedRectangle(cornerRadius:10))
-        .accessibilityElement(children:.combine)
-        .accessibilityIdentifier("forecastSummary\(number)")
+    }
+    private var controls: some View {
+        VStack(spacing:6) {
+            if planner.canEdit {
+                modes
+                if planner.needsDirection {
+                    HStack(spacing:4) {
+                        ForEach(PushDirection.allCases,id:\.self) { direction in
+                            Button(direction.rawValue) { planner.push(direction) }
+                                .frame(maxWidth:.infinity,minHeight:44)
+                                .accessibilityIdentifier("forecastDirection\(direction.rawValue)")
+                        }
+                    }.frame(minHeight:44)
+                } else { HStack(spacing:6) {
+                    Text(planner.pending.map(TwoActionPlanningController.title) ??
+                         (planner.selected.isEmpty ? "選擇棋盤目標，只加入試算" : "已選 \(planner.selected.count) 點，繼續選目標"))
+                        .font(.caption).lineLimit(2).frame(maxWidth:.infinity,alignment:.leading)
+                    Button { planner.clearSelection() } label: {
+                        Image(systemName:"xmark").frame(width:44,height:44)
+                    }.accessibilityLabel("取消選點").accessibilityIdentifier("forecastCancelSelection")
+                }.frame(minHeight:44) }
+            } else {
+                Text("試算完成 · 正式棋局尚未改動")
+                    .font(.subheadline.bold()).frame(maxWidth:.infinity,alignment:.leading)
+            }
+            HStack(spacing:6) {
+                if let step=planner.forecast.firstStep { compact(step,number:1) }
+                if let step=planner.forecast.secondStep { compact(step,number:2) }
+                if planner.forecast.firstStep == nil {
+                    Text("可試不同走法；這裡不預測敵方反擊。")
+                        .font(.caption).foregroundStyle(.secondary).frame(maxWidth:.infinity,alignment:.leading)
+                }
+            }.frame(height:typeSize.isAccessibilitySize ? 72 : 46)
+            if planner.canEdit {
+                HStack(spacing:6) {
+                    Button { planner.addPending() } label: {
+                        Text(planner.stage == .first ? "加入第一手試算" : "加入第二手試算")
+                            .font(.callout.bold()).frame(maxWidth:.infinity,minHeight:44)
+                    }
+                        .buttonStyle(GameButtonStyle(kind:.primary))
+                        .disabled(planner.preview?.success != true)
+                        .accessibilityIdentifier("forecastAddStep")
+                    if planner.forecast.first != nil {
+                        Button { loadFirst() } label: {
+                            Image(systemName:"arrow.uturn.backward.circle").frame(width:44,height:44)
+                        }.buttonStyle(GameButtonStyle())
+                            .accessibilityLabel("先帶入第一手，仍需按確認")
+                            .disabled(!canLoad).accessibilityIdentifier("forecastLoadFirst")
+                    }
+                }
+                Text(planner.preview.map { $0.success ? "合法試算 · 尚未提交" : "目前不合法：\($0.reason.rawValue)" } ?? "加入試算不會扣正式資源")
+                        .font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                        .accessibilityIdentifier("forecastLegal")
+            } else {
+                Spacer(minLength:0)
+                Button { loadFirst() } label: {
+                    Text("帶入第一手").font(.callout.bold()).frame(maxWidth:.infinity,minHeight:44)
+                }.buttonStyle(GameButtonStyle(kind:.primary))
+                    .accessibilityLabel("帶入第一手，仍需按確認")
+                    .disabled(!canLoad).accessibilityIdentifier("forecastLoadFirst")
+                Text("回到對局後，兩手仍各自按確認。")
+                    .font(.caption).foregroundStyle(.secondary).lineLimit(2)
+            }
+        }
+        .padding(10)
+        .background(Color(red:0.10,green:0.16,blue:0.17),in:RoundedRectangle(cornerRadius:14))
+        .overlay(RoundedRectangle(cornerRadius:14).stroke(GameChrome.gold.opacity(0.4),lineWidth:1))
+    }
+    private var canLoad: Bool { planner.forecast.matches(match.state) && !match.controlsLocked }
+    private func loadFirst() {
+        if onUseFirst(planner.forecast) { dismiss() }
+        else { planner.message="正式棋局已變化，請關閉後重新試算。";showDetails=true }
+    }
+    private var modes: some View {
+        ScrollView(.horizontal,showsIndicators:false) {
+            HStack(spacing:6) {
+                ForEach(planner.modes) { mode in
+                    Button(mode.rawValue) { planner.changeMode(mode) }
+                        .font(.system(size:13,weight:.semibold)).frame(minWidth:58,minHeight:44)
+                        .background(planner.mode == mode ? GameChrome.gold.opacity(0.28) : Color.white.opacity(0.07),in:RoundedRectangle(cornerRadius:8))
+                        .accessibilityIdentifier("forecastMode\(mode.id)")
+                }
+                if planner.mode == .loot {
+                    Button(planner.ability == .stickyBounce ? "黏彈" : "影步") {
+                        planner.ability = planner.ability == .stickyBounce ? .shadowStep : .stickyBounce;planner.clearSelection()
+                    }.frame(minHeight:44)
+                }
+            }
+        }.frame(height:44)
+    }
+    private func fullSummary(_ step:TwoActionForecast.Step,number:Int) -> String {
+        let ap=step.after.status != .ongoing ? "已終局" : step.apAfter.map(String.init) ?? "交給對手"
+        return "第 \(number) 手 · \(TwoActionPlanningController.title(step.action))。AP \(step.apBefore) → \(ap) · 能量 \(step.manaBefore) → \(step.manaAfter)。提敵兵 \(step.enemySoldiersCaptured) · 犧牲己兵 \(step.ownSoldiersSacrificed) · 己主帥氣 \(step.myCommanderLibertiesBefore) → \(step.myCommanderLibertiesAfter) · 敵主帥氣 \(step.enemyCommanderLibertiesBefore) → \(step.enemyCommanderLibertiesAfter)"
+    }
+    private func compact(_ step:TwoActionForecast.Step,number:Int) -> some View {
+        VStack(alignment:.leading,spacing:2) {
+            Text("\(number). \(TwoActionPlanningController.title(step.action))").font(.caption.bold()).lineLimit(1)
+            Text("提敵兵 \(step.enemySoldiersCaptured) · 能量 \(step.manaBefore)→\(step.manaAfter)").font(.caption2).lineLimit(1)
+        }.frame(maxWidth:.infinity,alignment:.leading)
+            .accessibilityElement(children:.ignore).accessibilityLabel(fullSummary(step,number:number))
+            .accessibilityIdentifier("forecastSummary\(number)")
+    }
+    private var details: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment:.leading,spacing:16) {
+                    Text("正式棋局與資源尚未改動。預覽、加入試算、正式確認是不同步驟。")
+                    if let first=planner.forecast.firstStep { Text(fullSummary(first,number:1)) }
+                    if let second=planner.forecast.secondStep { Text(fullSummary(second,number:2)) }
+                    Text(planner.message)
+                    Text("這些是本回合的確定結果；氣數增加不保證下回合安全，也不預測敵方下一手。")
+                    Text("帶入只會選好第一手，不會扣資源或自動執行第二手；兩手仍須回對局逐手確認。")
+                    if planner.canEdit {
+                        Button("清除此手試算") { planner.clearCurrent();showDetails=false }.frame(minHeight:44)
+                    }
+                }.padding()
+            }.background(GameBackdrop()).navigationTitle("試算詳細")
+                .toolbar { ToolbarItem(placement:.confirmationAction) {
+                    Button("完成") { showDetails=false }.frame(minWidth:44,minHeight:44).accessibilityIdentifier("forecastDetailsDone")
+                }}
+        }.preferredColorScheme(.dark)
+    }
+    private var grid: some View {
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns:Array(repeating:GridItem(.flexible()),count:3),spacing:8) {
+                    ForEach(planner.legalTargets.sorted { $0.y == $1.y ? $0.x < $1.x : $0.y < $1.y },id:\.self) { point in
+                        Button {
+                            planner.select(point)
+                            if planner.pending != nil || planner.needsDirection { showGrid=false }
+                        } label: {
+                            Text(TwoActionPlanningController.coordinate(point)).frame(maxWidth:.infinity,minHeight:44)
+                        }.buttonStyle(.bordered)
+                            .accessibilityIdentifier("forecast-grid-\(point.x)-\(point.y)")
+                    }
+                }.padding()
+            }.navigationTitle("試算格點")
+                .toolbar { ToolbarItem(placement:.confirmationAction) {
+                    Button("完成") { showGrid=false }.frame(minWidth:44,minHeight:44)
+                        .accessibilityIdentifier("forecastGridDone")
+                }}
+        }.preferredColorScheme(.dark)
     }
 }
 #endif

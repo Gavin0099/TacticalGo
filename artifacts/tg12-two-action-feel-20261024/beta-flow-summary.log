@@ -1,0 +1,7 @@
+$REPO/ios/TacticalGoUITests/ExpansionLabTests.swift:300: error: -[TacticalGoUITests.ExpansionLabTests testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation] : XCTAssertTrue failed - 能量 6/6 · 0 AP · 11 氣
+Test Case '-[TacticalGoUITests.ExpansionLabTests testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation]' failed (37.220 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted]' passed (52.660 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm]' passed (53.309 seconds).
+Test Suite 'TacticalGoUITests.xctest' failed at 2026-10-24 15:29:32.428.
+	 Executed 3 tests, with 1 failure (0 unexpected) in 143.190 (143.197) seconds
+** TEST FAILED **

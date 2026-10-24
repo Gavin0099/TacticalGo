@@ -64,6 +64,14 @@ import TacticalGoContent
         leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.practice(value)
         expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
     }
+    @discardableResult func rogueChainPractice() -> Bool {
+        let match=ExpansionLabStore()
+        guard match.rogueChainPractice() else { recordErrorMessage=match.message;return false }
+        match.muted=audio.muted
+        leaveMatch();expansion=match;size=9;computer=nil
+        bindExpansionAudio(match);match.scene(audioSceneActive)
+        return true
+    }
     func sanctumPractice(_ practice: PriestSanctumPractice) {
         leaveMatch(); let match = ExpansionLabStore(); match.muted = audio.muted; match.sanctumPractice(practice)
         expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)

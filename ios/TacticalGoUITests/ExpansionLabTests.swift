@@ -239,6 +239,10 @@ import UIKit
             XCTAssertGreaterThanOrEqual(button.frame.width,44-0.001,id)
         }
         screen("forecast-large-text-first-stage")
+        tap(app,"forecastGrid")
+        tap(app,"forecast-grid-0-0")
+        XCTAssertTrue(app.buttons["forecastAddStep"].isEnabled)
+        tap(app,"forecastCancelSelection")
         tap(app,"forecast-cell-0-0");tap(app,"forecastAddStep")
         // Only iPad supports landscape in this product. Rotation must preserve
         // the memory-only draft without advancing the authoritative match.
@@ -265,6 +269,101 @@ import UIKit
         XCTAssertEqual(resources(app),before)
         screen("forecast-large-text-reduced-cancelled")
         app.terminate()
+    }
+
+    /// Same legal source and input sequence for old/new native layout recordings.
+    /// Capture evidence only; correctness/isolation assertions live in the test below.
+    func testArchivedRogueChainPresentationComparison() {
+        continueAfterFailure=false
+        let app=integrated()
+        tap(app,"玩法練習");tap(app,"rogueChainPractice");ready(app)
+        tap(app,"forecastOpen")
+        shot(app,"feel-comparison-first-stage")
+        tap(app,"forecast-cell-5-2");tap(app,"forecastAddStep")
+        tap(app,"forecastMode第二技能")
+        tap(app,"forecast-cell-3-2");tap(app,"forecast-cell-2-2");tap(app,"forecastAddStep")
+        shot(app,"feel-comparison-two-action-result")
+        tap(app,"forecastLoadFirst");tap(app,"playConfirm");ready(app)
+        tap(app,"forecastLoadSecond");tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.staticTexts["playMessage"].label.contains("提敵兵 ×2"))
+        shot(app,"feel-comparison-confirmed-two-capture")
+    }
+
+    func testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation() {
+        continueAfterFailure=false
+        let app=integrated()
+        func balances() -> String {
+            let white=app.descendants(matching:.any)["redResources"].firstMatch
+            return resources(app)+" | "+(white.value as? String ?? white.label)
+        }
+        tap(app,"startMatch");ready(app)
+        tap(app,"play-cell-0-0");tap(app,"playConfirm");ready(app)
+        let savedResources=balances()
+        tap(app,"返回選角")
+        let exit=app.alerts.buttons["exitMatchConfirmed"].firstMatch
+        XCTAssertTrue(exit.waitForExistence(timeout:5));exit.tap()
+        tap(app,"玩法練習");tap(app,"rogueChainPractice");ready(app)
+        XCTAssertTrue(app.staticTexts["currentTurn"].label.contains("白方盜賊"))
+        let before=balances()
+        XCTAssertTrue(before.contains("6/6") && before.contains("2 AP"),before)
+        tap(app,"forecastOpen")
+        let board=app.descendants(matching:.any)["forecastBoard"].firstMatch
+        XCTAssertTrue(board.waitForExistence(timeout:5))
+        let frame=board.frame
+        func visibleTap(_ id:String) {
+            let button=app.buttons[id]
+            XCTAssertTrue(button.waitForExistence(timeout:5),id)
+            XCTAssertTrue(button.isHittable,id)
+            XCTAssertGreaterThanOrEqual(button.frame.minY,app.windows.firstMatch.frame.minY,id)
+            XCTAssertLessThanOrEqual(button.frame.maxY,app.windows.firstMatch.frame.maxY,id)
+            button.tap() // No vertical scrolling or reveal helper in this path.
+        }
+        func fixedForecast() {
+            XCTAssertEqual(board.frame.minX,frame.minX,accuracy:1)
+            XCTAssertEqual(board.frame.minY,frame.minY,accuracy:1)
+            XCTAssertEqual(board.frame.width,frame.width,accuracy:1)
+            XCTAssertEqual(board.frame.height,frame.height,accuracy:1)
+        }
+        visibleTap("forecast-cell-5-2");visibleTap("forecastAddStep");fixedForecast()
+        visibleTap("forecastMode第二技能")
+        visibleTap("forecast-cell-3-2");visibleTap("forecast-cell-2-2")
+        visibleTap("forecastAddStep");fixedForecast()
+        let second=app.descendants(matching:.any)["forecastSummary2"].firstMatch
+        XCTAssertTrue(second.label.contains("提敵兵 2") && second.label.contains("能量 6 → 2"),second.label)
+        shot(app,"feel-rogue-fixed-two-action-result")
+        visibleTap("forecastDetails")
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format:"label CONTAINS %@","主帥氣")).firstMatch.waitForExistence(timeout:5))
+        tap(app,"forecastDetailsDone");fixedForecast()
+        visibleTap("forecastLoadFirst")
+        XCTAssertEqual(balances(),before)
+        XCTAssertTrue(app.buttons["play-cell-5-2"].label.contains("空點"))
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-5-2"].label.contains("白方士兵"))
+        tap(app,"forecastLoadSecond")
+        XCTAssertTrue(app.buttons["play-cell-4-2"].label.contains("白方盜賊"))
+        tap(app,"playConfirm");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-2-2"].label.contains("白方盜賊"))
+        XCTAssertTrue(app.buttons["play-cell-3-2"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["play-cell-4-2"].label.contains("空點"))
+        let feedback=app.staticTexts["playMessage"].label
+        XCTAssertTrue(feedback.contains("提敵兵 ×2") && feedback.contains("能量 6→2"),feedback)
+        shot(app,"feel-rogue-confirmed-two-capture")
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertTrue(app.buttons["play-cell-4-2"].label.contains("白方盜賊"))
+        tap(app,"undoOrCancel");ready(app)
+        XCTAssertEqual(balances(),before)
+        XCTAssertTrue(app.buttons["play-cell-5-2"].label.contains("空點"))
+        // The rehearsal advertises its no-save boundary; confirmed actions and
+        // Undo above must also leave the real persisted slot unchanged.
+        openMatchMenu(app,"saveExpansion")
+        XCTAssertFalse(app.buttons["saveExpansion"].isEnabled)
+        app.terminate();app.launch()
+        tap(app,"resumeExpansion");ready(app)
+        XCTAssertEqual(balances(),savedResources)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("黑方士兵"))
+        XCTAssertTrue(app.buttons["play-cell-5-2"].label.contains("空點"))
+        XCTAssertTrue(app.staticTexts["currentTurn"].label.contains("法師"))
+        shot(app,"feel-practice-keeps-original-save")
     }
 
     func testConfirmedCaptureFeedbackUsesSkillAndOrdinarySoldierEvents() throws {

@@ -7,9 +7,13 @@ on:
     paths:
       - "swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift"
       - "swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift"
+      - "swift/TacticalGoCore/Sources/TacticalGoContent/RogueChainPractice.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoContentTests/RogueChainPracticeTests.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoMotionTests/ExpansionPresentationTests.swift"
       - "ios/TacticalGo/TwoActionPlanningSheet.swift"
       - "ios/TacticalGo/ExpansionGameView.swift"
       - "ios/TacticalGo/ExpansionLabView.swift"
+      - "ios/TacticalGo/GameStore.swift"
       - "ios/TacticalGo.xcodeproj/project.pbxproj"
       - "ios/TacticalGoUITests/ExpansionLabTests.swift"
       - ".github/workflows/tg12-two-action-forecast.yml"
@@ -24,11 +28,11 @@ jobs:
     container: swift:6.0
     steps:
       - uses: actions/checkout@v4
-      - name: Focused two-action Core-forecast tests
+      - name: Forecast, archived opening and confirmed-receipt tests
         shell: bash
         run: |
           set -euo pipefail
-          swift test --package-path swift/TacticalGoCore --filter TwoActionForecastTests
+          swift test --package-path swift/TacticalGoCore --filter 'TwoActionForecastTests|RogueChainPracticeTests|ExpansionPresentationTests'
       - name: Parse changed iOS source (not an Xcode build)
         shell: bash
         run: |
@@ -36,6 +40,7 @@ jobs:
           swiftc -frontend -parse ios/TacticalGo/TwoActionPlanningSheet.swift
           swiftc -frontend -parse ios/TacticalGo/ExpansionGameView.swift
           swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
+          swiftc -frontend -parse ios/TacticalGo/GameStore.swift
           swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
           grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
           # Protect newly introduced sources; pre-existing assets have whitespace.
