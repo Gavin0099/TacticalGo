@@ -1,0 +1,19 @@
+Test Suite 'TacticalGoVisualsTests.xctest' passed at 2026-10-24 15:19:06.840.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoRecordsTests.xctest' passed at 2026-10-24 15:19:06.987.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoOnboardingTests.xctest' passed at 2026-10-24 15:19:07.087.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Case '-[TacticalGoMotionTests.ExpansionPresentationTests testArchivedRogueChainPresentationRequiresConfirmedTwoCaptureReceipt]' passed (0.095 seconds).
+Test Suite 'TacticalGoMotionTests.xctest' passed at 2026-10-24 15:19:07.281.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.095 (0.095) seconds
+Test Suite 'TacticalGoCoreTests.xctest' passed at 2026-10-24 15:19:07.386.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Case '-[TacticalGoContentTests.RogueChainPracticeTests testArchivedOpeningTwoActionsAndUndoRetainFullHistory]' passed (0.091 seconds).
+Test Case '-[TacticalGoContentTests.RogueChainPracticeTests testTrialCannotOverwriteArchiveOrAcceptOccupiedFirstMove]' passed (0.110 seconds).
+Test Suite 'TacticalGoContentTests.xctest' passed at 2026-10-24 15:19:07.698.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.201 (0.201) seconds
+Test Suite 'TacticalGoBotTests.xctest' passed at 2026-10-24 15:19:07.830.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoAccessTests.xctest' passed at 2026-10-24 15:19:07.996.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds

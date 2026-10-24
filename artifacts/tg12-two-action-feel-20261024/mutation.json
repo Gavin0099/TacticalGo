@@ -1,0 +1,8 @@
+{
+  "mutation": "first archived summon E7 -> A1",
+  "mutated_exit": 1,
+  "restored_exit": 0,
+  "source_restored_sha256": "c8d27f89faf02c368b419147cdbbb829bc32a754bef6d0c9cfbe8b53d37a7be2",
+  "red_log": "ios/Build/tg12-feel-20261024/opening-mutation-red.log",
+  "green_log": "ios/Build/tg12-feel-20261024/opening-restored-green.log"
+}

@@ -1,0 +1,405 @@
+{
+  "scope": "PR #40 optional two-action forecast; separate from PR #41 release repair",
+  "recorded_at": "2026-10-24T12:24:04.349778+08:00",
+  "product_logic_revision": "058ba0e14cecc7ac7d4567f85eef043badccb767",
+  "latest_source_revision": "7bf45173a4c03aecc932051d1b5813909ce9a94f",
+  "revision_note": "7bf4517 adds scroll accessibility identity and test-only capture, geometry, scrolling, visibility and numeric tolerance; previous passed batches are retained, not claimed rerun on this revision.",
+  "sources_sha256": {
+    "ios/TacticalGo/ExpansionLabView.swift": "9925b1df068fe4df4783bd954b00047a1a3dd274b11c60497fe693eba105285e",
+    "ios/TacticalGo/TwoActionPlanningSheet.swift": "b7b14ec81c3ccde6f4143f0505fc6b2ae7f39aa104fe92fd4ce0cbc7db72bbf9",
+    "ios/TacticalGo/ExpansionGameView.swift": "59177808aa249935a402a7fdafdc707e602d7845fdee904170d835437f16cb0c",
+    "ios/TacticalGoUITests/ExpansionLabTests.swift": "dc7d30adacf2befc1094bf7debc52d9cd826a5508c4f3b3a3ee8fff69a513fef",
+    "swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift": "d8088b30deae0a17070ef0015692b432208bbd46158aa88383cae77c270a45fb"
+  },
+  "native_latest": {
+    "debug_se": {
+      "log": "ios/Build/tg12-pr40-20261024/debug-green.log",
+      "sha256": "8c61031ceea87d6197e5afb08f316d0d3c7962d1f3fb2c22ddee74fce91e8b73",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=5B0938B6-738B-482B-86D8-CFDA12451290\" -derivedDataPath ios/Build/tg12-pr40-20261024/debug ARCHS=arm64 CODE_SIGNING_ALLOWED=NO -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/debug-green.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastDoesNotBorrowLivePreviewOrCommitOnBackground\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testConfirmedCaptureFeedbackUsesSkillAndOrdinarySoldierEvents\" test",
+      "cases": [
+        {
+          "test": "testConfirmedCaptureFeedbackUsesSkillAndOrdinarySoldierEvents",
+          "outcome": "passed",
+          "seconds": 26.675
+        },
+        {
+          "test": "testForecastDoesNotBorrowLivePreviewOrCommitOnBackground",
+          "outcome": "passed",
+          "seconds": 17.583
+        },
+        {
+          "test": "testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm",
+          "outcome": "passed",
+          "seconds": 55.317
+        },
+        {
+          "test": "testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst",
+          "outcome": "passed",
+          "seconds": 30.993
+        },
+        {
+          "test": "testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm",
+          "outcome": "passed",
+          "seconds": 28.167
+        }
+      ],
+      "passed": 5,
+      "failed": 0,
+      "diagnostics": []
+    },
+    "beta_se": {
+      "log": "ios/Build/tg12-pr40-20261024/beta-se-green.log",
+      "sha256": "e4d79105271fb77bf978b9649c7e246a12470137db933f95496b7c931170fce8",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=81885D76-CCF8-408E-BC20-E4037FAD73D0\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-se-green.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastDoesNotBorrowLivePreviewOrCommitOnBackground\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \"CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511\" test",
+      "cases": [
+        {
+          "test": "testForecastDoesNotBorrowLivePreviewOrCommitOnBackground",
+          "outcome": "passed",
+          "seconds": 28.37
+        },
+        {
+          "test": "testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm",
+          "outcome": "passed",
+          "seconds": 76.849
+        },
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "passed",
+          "seconds": 35.306
+        },
+        {
+          "test": "testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst",
+          "outcome": "passed",
+          "seconds": 32.898
+        },
+        {
+          "test": "testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm",
+          "outcome": "passed",
+          "seconds": 29.584
+        }
+      ],
+      "passed": 5,
+      "failed": 0,
+      "diagnostics": []
+    },
+    "beta_ipad": {
+      "log": "ios/Build/tg12-pr40-20261024/beta-ipad-clean.log",
+      "sha256": "9b412fa2feaf022ddc1c7f416bf024cacee06bb495b3059900ec02a2df5eaf31",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=784F0370-4885-4378-803F-84F958E2F2DC\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-ipad-clean.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \"CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511\" test",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "passed",
+          "seconds": 69.602
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "diagnostics": []
+    },
+    "beta_iphone": {
+      "log": "ios/Build/tg12-pr40-20261024/beta-iphone-clean.log",
+      "sha256": "f1006f40700803ea7481c6e08c6784397fa6e24bc3343fc62d7de400bf2722c3",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=C4B58AB3-3A9B-4386-AA00-D3422C15D9FA\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-iphone-clean.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO test-without-building",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "passed",
+          "seconds": 84.806
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "diagnostics": []
+    }
+  },
+  "native_configuration_test_pairs": 12,
+  "early_runs_preserved": [
+    {
+      "log": "ios/Build/tg12-pr40-20261024/initial-ui.log",
+      "sha256": "944defdbaf3a4e25cc943e289ecd181bd30e661b36fa9fa482a27cfaaac10993",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=5B0938B6-738B-482B-86D8-CFDA12451290\" -derivedDataPath ios/Build/tg12-pr40-20261024/debug CODE_SIGNING_ALLOWED=NO -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/initial-ui.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm\" test-without-building",
+      "cases": [
+        {
+          "test": "testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm",
+          "outcome": "failed",
+          "seconds": 22.119
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:873: error: -[TacticalGoUITests.ExpansionLabTests testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm] : Failed to get matching snapshot: No matches found for Elements matching predicate '\"forecast-cell-0-0\" IN identifiers' from input {("
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/isolation-red.log",
+      "sha256": "9fe03cd0442aa297fb40bd94745c5b683c88daff3015be65f2b976ee83edead7",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Debug -destination \"platform=iOS Simulator,id=5B0938B6-738B-482B-86D8-CFDA12451290\" -derivedDataPath ios/Build/tg12-pr40-20261024/debug ARCHS=arm64 CODE_SIGNING_ALLOWED=NO -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/isolation-red.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastDoesNotBorrowLivePreviewOrCommitOnBackground\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm\" test",
+      "cases": [
+        {
+          "test": "testForecastDoesNotBorrowLivePreviewOrCommitOnBackground",
+          "outcome": "failed",
+          "seconds": 23.045
+        },
+        {
+          "test": "testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm",
+          "outcome": "passed",
+          "seconds": 28.362
+        }
+      ],
+      "passed": 1,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:124: error: -[TacticalGoUITests.ExpansionLabTests testForecastDoesNotBorrowLivePreviewOrCommitOnBackground] : XCTAssertFalse failed - Empty draft must not display the live pending action"
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-se.log",
+      "sha256": "5e7375fa5c04eb481a148ef5adfbd8b8a2447df8ed0b79fe8f741c4ce621b7ed",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=81885D76-CCF8-408E-BC20-E4037FAD73D0\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -resultBundlePath ios/Build/tg12-pr40-20261024/beta-se.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastDoesNotBorrowLivePreviewOrCommitOnBackground\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst\" \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm\" CODE_SIGNING_ALLOWED=NO test",
+      "cases": [
+        {
+          "test": "testForecastDoesNotBorrowLivePreviewOrCommitOnBackground",
+          "outcome": "failed",
+          "seconds": 14.729
+        },
+        {
+          "test": "testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm",
+          "outcome": "failed",
+          "seconds": 24.117
+        },
+        {
+          "test": "testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst",
+          "outcome": "failed",
+          "seconds": 6.757
+        },
+        {
+          "test": "testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm",
+          "outcome": "failed",
+          "seconds": 5.53
+        }
+      ],
+      "passed": 0,
+      "failed": 4,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1036: error: -[TacticalGoUITests.ExpansionLabTests testForecastDoesNotBorrowLivePreviewOrCommitOnBackground] : Failed to get matching snapshot: Application com.tacticalgo.prototype.herobody is not running",
+        "<unknown>:0: error: -[TacticalGoUITests.ExpansionLabTests testForecastDoesNotBorrowLivePreviewOrCommitOnBackground] : com.tacticalgo.prototype.herobody crashed in GADApplicationVerifyPublisherInitializedCorrectly",
+        "<unknown>:0: error: -[TacticalGoUITests.ExpansionLabTests testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm] : com.tacticalgo.prototype.herobody crashed in GADApplicationVerifyPublisherInitializedCorrectly",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:19: error: -[TacticalGoUITests.ExpansionLabTests testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm] : XCTAssertTrue failed",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:20: error: -[TacticalGoUITests.ExpansionLabTests testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm] : Failed to application com.tacticalgo.prototype.herobody is not running",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1036: error: -[TacticalGoUITests.ExpansionLabTests testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst] : Failed to get matching snapshot: Application com.tacticalgo.prototype.herobody is not running",
+        "<unknown>:0: error: -[TacticalGoUITests.ExpansionLabTests testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst] : com.tacticalgo.prototype.herobody crashed in GADApplicationVerifyPublisherInitializedCorrectly",
+        "<unknown>:0: error: -[TacticalGoUITests.ExpansionLabTests testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm] : com.tacticalgo.prototype.herobody crashed in GADApplicationVerifyPublisherInitializedCorrectly",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1036: error: -[TacticalGoUITests.ExpansionLabTests testTwoActionForecastBeforeFirstCommitDoesNotSpendOrSkipConfirm] : Failed to get matching snapshot: Application com.tacticalgo.prototype.herobody is not running"
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-iphone.log",
+      "sha256": "c9fb914bcb9f881ae700d5a5633e156cae378f4f39d4799eb33469bc1a73ad9e",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=C4B58AB3-3A9B-4386-AA00-D3422C15D9FA\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-iphone.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO test-without-building",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "failed",
+          "seconds": 71.674
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:221: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertGreaterThanOrEqual failed: (\"43.99999999999997\") is less than (\"44.0\") - forecastStage0",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:221: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertGreaterThanOrEqual failed: (\"43.99999999999997\") is less than (\"44.0\") - forecastStage1",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:221: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertGreaterThanOrEqual failed: (\"43.99999999999997\") is less than (\"44.0\") - forecastStage2"
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-ipad.log",
+      "sha256": "f46bab6e884f8054c52e18b4dd146d97088d730fc8e99ab1766465c682f9b496",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=8132B4D7-14C1-4916-BE45-81C1CF8B0F16\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-ipad.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO test-without-building",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "passed",
+          "seconds": 69.42
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "diagnostics": []
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-ipad-display.log",
+      "sha256": "d635ad62ebe47d7bfec0f5540137b0df724ecc5ba03072c6133ac4bd4373b27f",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=784F0370-4885-4378-803F-84F958E2F2DC\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-ipad-display.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \"CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511\" test",
+      "cases": [],
+      "passed": 0,
+      "failed": 0,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:206:70: error: value of type 'XCUIDevice' has no member 'screenshot'",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:207:53: error: cannot infer contextual base in reference to member 'keepAlways'"
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-ipad-display-green.log",
+      "sha256": "d874b7e639e4fca006c223ad9e62a6801f48ff2d360cca88eb556719deb7ad6f",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=784F0370-4885-4378-803F-84F958E2F2DC\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-ipad-display-green.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \"CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511\" test",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "failed",
+          "seconds": 72.598
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1049: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : Failed to get matching snapshot: No matches found for Elements matching predicate '\"forecast-cell-1-0\" IN identifiers' from input {("
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-iphone-green.log",
+      "sha256": "cf1da5fdf3d86a7dc30dc6159b33a7f0a4e02573bf73a423d38ef03d6505095a",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=C4B58AB3-3A9B-4386-AA00-D3422C15D9FA\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-iphone-green.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO test-without-building",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "failed",
+          "seconds": 58.882
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:222: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertEqual failed: (\"Optional(\"0\")\") is not equal to (\"Optional(\"1\")\")"
+      ]
+    },
+    {
+      "log": "ios/Build/tg12-pr40-20261024/beta-ipad-final.log",
+      "sha256": "9061a05bed50cb1c0dc069c0b10f029b7cef34e7853e60a7467a2fdf02900d98",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo -configuration Beta -destination \"platform=iOS Simulator,id=784F0370-4885-4378-803F-84F958E2F2DC\" -derivedDataPath ios/Build/tg12-pr40-20261024/beta -clonedSourcePackagesDirPath ios/Build/tg12-pr40-20261024/debug/SourcePackages -disableAutomaticPackageResolution -jobs 2 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath ios/Build/tg12-pr40-20261024/beta-ipad-final.xcresult \"-only-testing:TacticalGoUITests/ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted\" ARCHS=arm64 CODE_SIGNING_ALLOWED=NO \"CROWN_ADMOB_APP_ID=ca-app-pub-3940256099942544~1458002511\" test",
+      "cases": [
+        {
+          "test": "testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted",
+          "outcome": "failed",
+          "seconds": 37.69
+        }
+      ],
+      "passed": 0,
+      "failed": 1,
+      "diagnostics": [
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:7: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1056: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : failed - Missing button: playEndTurn",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:7: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertEqual failed: (\"XCTWaiterResult(rawValue: 2)\") is not equal to (\"XCTWaiterResult(rawValue: 1)\")",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1036: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : XCTAssertTrue failed",
+        "ios/TacticalGoUITests/ExpansionLabTests.swift:1038: error: -[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted] : Failed to tap \"對戰選單\" Button: No matches found for Elements matching predicate '\"對戰選單\" IN identifiers' from input {("
+      ]
+    }
+  ],
+  "package": {
+    "log": "ios/Build/tg12-pr40-20261024/package.log",
+    "sha256": "6b69f88d2b8197c744204dcd0bbf52aad265fb9c33e713bf3c5a287c1289e63a",
+    "test_bundle_counts": [
+      11,
+      52,
+      13,
+      121,
+      104,
+      83,
+      53,
+      34
+    ],
+    "tests": 471,
+    "unexpected_failures": 0,
+    "known_expected_failure": "PriestSanctumBotTests.testBotRescuesTheCommanderAndUsesSanctumOnlyWhereItIsNeeded",
+    "rerun_after_ios_only_changes": false
+  },
+  "ci": {
+    "source_revision": "7bf45173a4c03aecc932051d1b5813909ce9a94f",
+    "url": "https://github.com/Gavin0099/TacticalGo/actions/runs/40061985252",
+    "conclusion": "success",
+    "scope": "7 focused model tests; iOS parse, not native Xcode"
+  },
+  "screenshots": [
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/beta-ipad-display-forecast-large-text-reduced-result.png",
+      "sha256": "066a9a1d05a9114a3792d5308972ab4c5024af7cc9008721d66b5783ca526882"
+    },
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/beta-iphone-forecast-large-text-reduced-result.png",
+      "sha256": "3d798255121d8d39aa6211b8916d737cc5577f20ea5005777f3df7c9a65852fa"
+    },
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/beta-se-forecast-large-text-first-stage.png",
+      "sha256": "10a838985f899b5456f29ac9076bf5061a141e84ace7e09229a5e8e36447235e"
+    },
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/debug-all-forecast-confirmed-soldier-capture.png",
+      "sha256": "79b780674fa198229f25a931b36a7ddcb997f409304b5ee24c5c0ea77d425d0e"
+    },
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/debug-all-forecast-empty-draft-isolated.png",
+      "sha256": "8a3ee471c5a1df2f0c90cf7fa3551aed893bfac46e1607e2f5fe9bf16a0e8a0a"
+    },
+    {
+      "path": "artifacts/tg12-two-action-native-20261024/screens/debug-all-forecast-rogue-two-action-result.png",
+      "sha256": "544a006a7274af1a4e66ed0558768bfcf55e1636ceb456b6af38f2bb47b8f8b1"
+    }
+  ],
+  "simulators": {
+    "81885D76-CCF8-408E-BC20-E4037FAD73D0": "deleted",
+    "8132B4D7-14C1-4916-BE45-81C1CF8B0F16": "deleted",
+    "784F0370-4885-4378-803F-84F958E2F2DC": "deleted",
+    "C4B58AB3-3A9B-4386-AA00-D3422C15D9FA": "deleted"
+  },
+  "not_verified": [
+    "iPhone physical device visual/audio acceptance for this slice",
+    "same-device PR34 vs PR40 video comparison",
+    "human comprehension or fun",
+    "audio listening and performance measurement",
+    "manual VoiceOver",
+    "C# replay / parity"
+  ],
+  "not_performed": [
+    "main merge",
+    "TestFlight upload",
+    "App Review submission for this slice",
+    "release",
+    "Owner device data erasure"
+  ],
+  "other_screenshot_hashes_retained_locally": [
+    {
+      "exported_copy_name": "beta-ipad-display-forecast-after-tablet-rotation.png",
+      "sha256": "a89b9098d663ffe38dfb2a4842dbcc587e0658956731936fc48efe1c13caf562"
+    },
+    {
+      "exported_copy_name": "debug-all-forecast-confirmed-skill-capture.png",
+      "sha256": "b3fac45e45fdfc14c4bd6798e50059922dfcb696c039480d90e10d1bb18479e1"
+    },
+    {
+      "exported_copy_name": "beta-ipad-app-capture-forecast-large-text-first-stage.png",
+      "sha256": "1a26f4f3aef96b035045bbdca3d31d559216027b3a631eb16480114ea0d7fd66"
+    },
+    {
+      "exported_copy_name": "beta-ipad-system-result.png",
+      "sha256": "6ad42fcc205e169aa81fb1a3972272bcaaf5a7e6f0c5c18def0ec76272835b5b"
+    },
+    {
+      "exported_copy_name": "beta-ipad-app-capture-forecast-large-text-reduced-result.png",
+      "sha256": "5b219fcc2651a52911cb811ca20b67f1f35b06d8b88319dff62e3cec95bf0cfd"
+    },
+    {
+      "exported_copy_name": "beta-iphone-forecast-large-text-first-stage.png",
+      "sha256": "b7d92d0024bb524962ec6e31e24228faf67c081fe9642bfc263ea637fb305b46"
+    },
+    {
+      "exported_copy_name": "beta-se-forecast-large-text-reduced-result.png",
+      "sha256": "08b958fe376afea877a6ab7d5d4b9605b12585c5c4c03cb90a4d399be63d5f11"
+    },
+    {
+      "exported_copy_name": "beta-ipad-display-forecast-large-text-first-stage.png",
+      "sha256": "252cc5317b7e503023f83d3a4cfd97d59b67dab2e5fbd52796e0f361b04116bc"
+    }
+  ],
+  "local_raw_export_directory": "ios/Build/tg12-pr40-20261024/screens-* (ignored, retained locally; includes early app-cropped images and full captures)"
+}

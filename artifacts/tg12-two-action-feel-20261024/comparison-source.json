@@ -1,0 +1,12 @@
+{
+  "baseline_layout_revision": "b878236",
+  "baseline_layout_sha256": "b7b14ec81c3ccde6f4143f0505fc6b2ae7f39aa104fe92fd4ce0cbc7db72bbf9",
+  "candidate_layout_sha256": "39ef96a0912d36aead48626d86ca300b19a9155e36a3a5afc7dd38907c293087",
+  "shared_fixture": "New public RogueChainPractice legal 117-action archive in BOTH builds",
+  "changed_for_baseline_build": [
+    "ios/TacticalGo/TwoActionPlanningSheet.swift"
+  ],
+  "restored": true,
+  "baseline_build_exit": 0,
+  "note": "Controlled UI-only comparison; the old shipped/candidate branch did not contain this new public practice loader."
+}

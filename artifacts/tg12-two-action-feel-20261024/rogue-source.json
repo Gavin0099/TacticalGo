@@ -1,0 +1,86 @@
+{
+  "source_commit": "2399cbc9bb03278c0811e6dc47167e2443b98751",
+  "source_files_sha256": {
+    "gameplay-p0-20261023/complete-games/b9-Priest-Rogue/record.json": "63fd2298da5d4dd511bb3d65506ee256c0383c70a5bbc0373909f8034834914d",
+    "gameplay-p0-20261023/complete-games/b9-Priest-Rogue/trace.json": "eaa5263d2da9410c3db656c37b08885d6c0acb1fd06498fa05791064da0bc4ff",
+    "gameplay-p1r-20261023/results-linux-c37e720.json": "14abb2a3ef51e21c0d06969bb6af8700dd077a776e3595e08eefc7850adddda9"
+  },
+  "opening_action_count": 117,
+  "source_turn_index": 59,
+  "source_candidate": 5,
+  "origin": {
+    "ap": 2,
+    "board": "oo.oooooo\no.ooOooo.\nooxxQ.o.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx",
+    "current": 1,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      6,
+      6
+    ],
+    "ply": 60,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Ongoing",
+    "summoned": [
+      true,
+      true
+    ]
+  },
+  "actions": [
+    {
+      "kind": "soldier",
+      "points": [
+        {
+          "x": 5,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "chainSwap",
+      "points": [
+        {
+          "x": 3,
+          "y": 2
+        },
+        {
+          "x": 2,
+          "y": 2
+        }
+      ]
+    }
+  ],
+  "after": {
+    "ap": 2,
+    "board": "oo.oooooo\no.ooOooo.\nooQ..oo.o\nxoxooooo.\nxxxxxoxoo\nxx.xxx.xo\nx.x.H.x.x\n.x.xXx.x.\nx.xxxxxxx",
+    "current": 0,
+    "freeHunt": false,
+    "loot": [
+      [],
+      []
+    ],
+    "mana": [
+      6,
+      2
+    ],
+    "ply": 61,
+    "seals": [],
+    "skillUsed": false,
+    "status": "Ongoing",
+    "summoned": [
+      true,
+      true
+    ]
+  },
+  "current_turn_mana_spent": 4,
+  "enemy_soldiers_captured": 2,
+  "not_claimed": [
+    "future opponent action",
+    "current-turn 2 mana equals next-own-turn 3 mana",
+    "balance or fun acceptance"
+  ]
+}

@@ -1,0 +1,10 @@
+$REPO/ios/TacticalGoUITests/ExpansionLabTests.swift:1150: error: -[TacticalGoUITests.ExpansionLabTests testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation] : Failed to get matching snapshot: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x106707570>.
+Test Case '-[TacticalGoUITests.ExpansionLabTests testArchivedRogueChainFixedForecastDetailsConfirmUndoAndSaveIsolation]' failed (24.468 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testConfirmedCaptureFeedbackUsesSkillAndOrdinarySoldierEvents]' passed (42.234 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastDoesNotBorrowLivePreviewOrCommitOnBackground]' passed (29.843 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm]' passed (98.354 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted]' passed (43.922 seconds).
+Test Case '-[TacticalGoUITests.ExpansionLabTests testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst]' passed (59.450 seconds).
+Test Suite 'TacticalGoUITests.xctest' failed at 2026-10-24 15:24:22.944.
+	 Executed 6 tests, with 1 failure (0 unexpected) in 298.271 (298.286) seconds
+** TEST FAILED **

@@ -1,0 +1,22 @@
+[
+  {
+    "variant": "baseline",
+    "raw": "ios/Build/tg12-feel-20261024/baseline-raw.mp4",
+    "path": "artifacts/tg12-two-action-feel-20261024/baseline-silent-original-speed.mp4",
+    "trim_start_seconds": 45.03462314605713,
+    "trim_duration_seconds": 30.143,
+    "original_speed": true,
+    "audio": "none; simctl video only, no postmixed sound",
+    "alignment": "file birth time + native test log; 1.5-second margins, not a latency measurement"
+  },
+  {
+    "variant": "candidate",
+    "raw": "ios/Build/tg12-feel-20261024/candidate-raw.mp4",
+    "path": "artifacts/tg12-two-action-feel-20261024/candidate-silent-original-speed.mp4",
+    "trim_start_seconds": 47.41520404815674,
+    "trim_duration_seconds": 25.179999999999996,
+    "original_speed": true,
+    "audio": "none; simctl video only, no postmixed sound",
+    "alignment": "file birth time + native test log; 1.5-second margins, not a latency measurement"
+  }
+]

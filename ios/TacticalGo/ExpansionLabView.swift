@@ -50,6 +50,8 @@ import TacticalGoVisuals
     }
     var pending: GameAction?
     var message = "選擇格點，再確認行動。"
+    /// Factual, committed-event feedback only. Previews and cancelled plans never set it.
+    var lastConfirmedFeedback: String?
     var instruction: String?
     var voice: Bool {
         didSet { if persistSoundPreferences { soundDefaults.set(voice,forKey:"combatAudio.castVoiceEnabled") }; updateSoundMix() }
@@ -79,6 +81,7 @@ import TacticalGoVisuals
     var reviewTime: Double?
     var reviewWidth: CGFloat?
     var reviewFixture = false
+    private(set) var isRogueChainPractice = false
     private(set) var session: GameSession?
     private(set) var receipt: ExpansionPresentation?
     private var reviewReceipt: ExpansionPresentation?
@@ -192,9 +195,10 @@ import TacticalGoVisuals
         generation += 1; task?.cancel(); task = nil; samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
         playing = false; receipt = nil
     }
-    func cancelSelection() { selected = []; pending = nil }
+    func cancelSelection() { selected = []; pending = nil; lastConfirmedFeedback = nil }
     /// `keepIdentity` lets the caller restart the board of a match whose identity was already admitted.
     func restart(keepIdentity: Bool = false) {
+        isRogueChainPractice = false
         if !keepIdentity { matchID = UUID() }
         terminalReported = false
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; instruction = nil; mode = .soldier; legacySkillsOnResume = false
@@ -276,6 +280,23 @@ import TacticalGoVisuals
         return true
     }
     #endif
+    /// Public, legal-history rehearsal. Memory only: the existing no-write guard
+    /// protects the player's saved slot and never creates a paid-match identity.
+    @discardableResult func rogueChainPractice() -> Bool {
+        do {
+            let replay = try RogueChainPractice.session()
+            stop();cancelSelection();reviewTime=nil;reviewWidth=nil;reviewFixture=true
+            isRogueChainPractice=true;challenge=false;showHint=false;legacySkillsOnResume=false
+            session=replay;voiceCadence.reset();size=9;monsters = .none
+            one = .priest;two = .rogue;computer=nil;mode = .soldier
+            instruction=RogueChainPractice.instruction
+            message="合法棋譜練習：先落兵 F3，再試 D3、C3 連鎖換位；不會覆蓋存局。"
+            return true
+        } catch {
+            message="連鎖練習無法載入，目前棋局保持不變。"
+            return false
+        }
+    }
     func practice(_ fixture: ExpansionPractice) {
         stop(); cancelSelection(); reviewTime = nil; reviewWidth = nil; reviewFixture = false; challenge = false; showHint = false; legacySkillsOnResume = false
         do {
@@ -316,6 +337,7 @@ import TacticalGoVisuals
     }
     func select(_ p: Point) {
         guard !controlsLocked,state.status == .ongoing else { return }
+        lastConfirmedFeedback = nil
         if ArtV2.sfx, active, !interrupted, !muted, legalTargets.contains(p) {
             samples.schedule("selection", after: 0, volume: 0.35)
         }
@@ -378,6 +400,29 @@ import TacticalGoVisuals
         let keepVoice = previousVisualEnded && state.status == .ongoing && !muted && voice && voiceVolume > 0
         stop(keepingCompletedVoice:keepVoice); cancelSelection()
         receipt = plan
+        // Reporting is authorized by the committed Core receipt, never by a preview
+        // or a heuristic. More liberties does not imply safety; just show the count.
+        let actor = before.current
+        let capturedSoldiers = outcome.events.reduce(0) { count,event in
+            guard case .piecesCaptured(let owner,let pieces) = event,owner == actor else { return count }
+            return count + pieces.filter { $0.piece == Piece(actor.opponent,.soldier) }.count
+        }
+        let priorLiberties = before.board.find(actor,.commander).map { before.board.liberties(at:$0).count } ?? 0
+        let newLiberties = state.board.find(actor,.commander).map { state.board.liberties(at:$0).count } ?? 0
+        let manaText = "能量 \(before.mana(of:actor))→\(state.mana(of:actor))"
+        if capturedSoldiers > 0 {
+            lastConfirmedFeedback = "提敵兵 ×\(capturedSoldiers) · 主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else if outcome.events.contains(where: { event in
+            if case .piecesSwapped = event { return true }
+            if case .piecePushed = event { return true }
+            return false
+        }) {
+            lastConfirmedFeedback = "棋子已移位 · 主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else if priorLiberties != newLiberties {
+            lastConfirmedFeedback = "主帥氣 \(priorLiberties)→\(newLiberties) · " + manaText
+        } else {
+            lastConfirmedFeedback = manaText + " · 已依規則完成行動"
+        }
         if before.current != state.current { mode = .soldier }
         started = ProcessInfo.processInfo.systemUptime; playing = (receipt?.duration ?? 0) > 0
         message = challenge && PriestSanctuaryChallenge.solved(state) ? "挑戰完成：犧牲一兵，牧師棋群形成兩個真眼。" : "已確認：\(before.current == .one ? "黑" : "白")方行動。"
@@ -871,18 +916,26 @@ struct ExpansionBoard: View {
     let time: Double
     let reduced: Bool
     var identityPrefix = "exp-cell"
+    /// Optional read-only forecast board/input. When present, all taps remain in
+    /// memory and the live ExpansionLabStore session/receipts are never touched.
+    var planning: TwoActionPlanningController? = nil
     var focusedNine = false
     var focusedPhone = false
     var body: some View {
         GeometryReader { geo in
-            let fit = Anim01Geometry(width:geo.size.width,height:geo.size.height,boardSize:store.state.board.size,focusedNine:focusedNine,focusedPhone:focusedPhone)
+            let displayState = planning?.stageState ?? store.state
+            let fit = Anim01Geometry(width:geo.size.width,height:geo.size.height,boardSize:displayState.board.size,focusedNine:focusedNine,focusedPhone:focusedPhone)
             let size = CGSize(width:fit.width,height:fit.height), pitch = CGFloat(fit.pitch)
-            let p = store.frameReceipt
-            let board = p?.board(at:time,reduced:reduced) ?? store.state.board
+            let p = planning == nil ? store.frameReceipt : nil
+            let board = p?.board(at:time,reduced:reduced) ?? displayState.board
             let moving = p != nil && !reduced && time < p!.arrival
             let sources = Set(moving ? p!.transfers.map(\.from) : [])
-            let targets = store.legalTargets
-            let presentation = BoardPresentation(state:store.state,selected:store.selected,legal:targets,preview:store.preview)
+            let targets = planning?.legalTargets ?? store.legalTargets
+            // An empty draft preview is intentional. Never fall back to the
+            // live match's pending action while rendering a planning board.
+            let displayedPreview = planning == nil ? store.preview : planning?.preview
+            let presentation = BoardPresentation(state:displayState,selected:planning?.selected ?? store.selected,
+                                                 legal:targets,preview:displayedPreview)
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
@@ -917,7 +970,7 @@ struct ExpansionBoard: View {
                     if let piece = board[point],!sources.contains(point) {
                         posedToken(piece,pitch:pitch,plan:p,point:point).position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
                     }
-                    if board.monsters.contains(point),let kind = store.state.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
+                    if board.monsters.contains(point),let kind = displayState.config.monsterBattlefield?.kind(at:point),let image = store.monsterArt[kind] {
                         ZStack { Ellipse().fill(P02Cozy.card).overlay(Ellipse().stroke(P02Cozy.sage,lineWidth:1.5)).frame(width:pitch*0.76,height:pitch*0.40)
                             let pose = monsterPose(kind,point:point,plan:p)
                             Image(uiImage:image).resizable().scaledToFit().frame(width:pitch*0.70,height:pitch*0.70)
@@ -925,11 +978,13 @@ struct ExpansionBoard: View {
                                 .offset(y:-pitch*0.20+pitch*pose.lift)
                         }.position(presentation.center(point,size)).zIndex(Double(point.y)*10+10)
                     }
-                    Button { store.select(point) } label: { Color.clear.frame(width:pitch,height:pitch).contentShape(Rectangle()) }
+                    Button { if let planning { planning.select(point) } else { store.select(point) } } label: { Color.clear.frame(width:pitch,height:pitch).contentShape(Rectangle()) }
                         .buttonStyle(.plain).position(presentation.center(point,size)).zIndex(300)
                         .accessibilityIdentifier("\(identityPrefix)-\(point.x)-\(point.y)")
                         .accessibilityLabel("\(String(UnicodeScalar(65+point.x)!))\(point.y+1)，\(cellName(point))")
-                        .accessibilityValue(targets.contains(point) ? "可選下一點" : "")
+                        .accessibilityValue(displayedPreview?.success == true && displayedPreview!.events.contains(where: {
+                            if case .piecePlaced(_,let at,_) = $0 { return at == point }; return false
+                        }) ? "預覽落兵，尚未確認" : targets.contains(point) ? "可選下一點" : "")
                 }
                 if let p,moving {
                     ForEach(p.transfers.indices,id:\.self) { i in
@@ -951,7 +1006,7 @@ struct ExpansionBoard: View {
                             .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
                     }
                 }
-                if ArtV2.enabled,let preview = store.preview,preview.success {
+                if ArtV2.enabled,let preview = displayedPreview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePlaced(let owner,let at,let kind) = preview.events[i],board.isEmpty(at) {
                             ZStack {
@@ -964,7 +1019,25 @@ struct ExpansionBoard: View {
                 if ArtV2.enabled,let p,store.effects,!reduced {
                     ArtImpact(receipt:p,time:time,pitch:pitch,size:size,center:{ presentation.center($0,size) }).zIndex(200)
                 }
-                if let preview = store.preview,preview.success {
+                // An actual Core capture deserves a readable beat regardless of
+                // whether it came from a normal soldier or a hero skill. No
+                // celebration is emitted for a merely legal/no-gain cast.
+                if let receipt = p,time >= receipt.captureStart,time < receipt.duration+0.10 {
+                    let taken = receipt.captures.filter {
+                        $0.piece.owner == receipt.caster.opponent && $0.piece.kind == .soldier
+                    }.count
+                    if taken > 0 {
+                        Text("提子 ×\(taken)")
+                            .font(.system(size:max(12,pitch*0.32),weight:.heavy,design:.rounded))
+                            .foregroundStyle(P02Cozy.card)
+                            .padding(.horizontal,10).padding(.vertical,5)
+                            .background(P02Cozy.ink.opacity(0.93),in:Capsule())
+                            .overlay(Capsule().stroke(P02Cozy.gold,lineWidth:1.2))
+                            .position(x:size.width/2,y:max(20,pitch*0.62))
+                            .zIndex(247).allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
+                if let preview = displayedPreview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
                             Path { path in path.move(to:presentation.center(from,size)); path.addLine(to:presentation.center(to,size)) }
@@ -973,8 +1046,8 @@ struct ExpansionBoard: View {
                         }
                     }
                 }
-                ForEach(store.selected.indices,id:\.self) { i in
-                    let point = store.selected[i]
+                ForEach((planning?.selected ?? store.selected).indices,id:\.self) { i in
+                    let point = (planning?.selected ?? store.selected)[i]
                     Circle().stroke(ArtV2.enabled ? Color(red:1,green:0.86,blue:0.46) : P02Cozy.deepMage,lineWidth:2.5).frame(width:pitch*0.80)
                         .shadow(color:ArtV2.enabled ? Color(red:1,green:0.78,blue:0.30).opacity(0.7) : .clear,radius:3)
                         .position(presentation.center(point,size)).zIndex(230)
@@ -986,7 +1059,7 @@ struct ExpansionBoard: View {
                     }
                 }
             }.frame(width:size.width,height:size.height).offset(x:fit.x,y:fit.y)
-                .allowsHitTesting(!store.playing && store.reviewTime == nil)
+                .allowsHitTesting(planning != nil ? planning!.canEdit : (!store.playing && store.reviewTime == nil))
         }
     }
     private func posedToken(_ piece: Piece,pitch: CGFloat,plan: ExpansionPresentation?,point: Point,moving: Bool = false) -> some View {
@@ -999,7 +1072,7 @@ struct ExpansionBoard: View {
         let hero = store.state.heroClass(of:piece.owner)
         let performing = plan?.caster == piece.owner && plan?.isHeroSkill == true
         if ArtV2.enabled,piece.kind == .commander {
-            ArtKing(black:piece.owner == .one,pitch:pitch,active:store.state.current == piece.owner && store.state.status == .ongoing,reduced:reduced)
+            ArtKing(black:piece.owner == .one,pitch:pitch,active:(planning?.stageState ?? store.state).current == piece.owner && (planning?.stageState ?? store.state).status == .ongoing,reduced:reduced)
         } else if piece.kind == .hero,hero == .warrior,let image = assets.heroes[.warrior],let plate = store.warriorPlate {
             ZStack {
                 P02SellUnitBase(black:piece.owner == .one,commander:false,width:pitch*0.74).offset(y:pitch*0.03)
@@ -1052,8 +1125,9 @@ struct ExpansionBoard: View {
         }.frame(width:max(3.5,pitch*0.1),height:max(3.5,pitch*0.1)).offset(x:-pitch*0.20,y:pitch*0.225)
     }
     private func cellName(_ p: Point) -> String {
-        let board = store.state.board
-        if board.monsters.contains(p) { return store.state.config.monsterBattlefield?.kind(at:p) == .slime ? "史萊姆" : "暗影狼" }
+        let displayState = planning?.stageState ?? store.state
+        let board = displayState.board
+        if board.monsters.contains(p) { return displayState.config.monsterBattlefield?.kind(at:p) == .slime ? "史萊姆" : "暗影狼" }
         guard let piece = board[p] else { return "空點" }
         return "\(piece.owner == .one ? "黑" : "白")方\(piece.kind == .hero ? store.state.heroClass(of:piece.owner).title : piece.kind == .commander ? "主將" : "士兵")"
     }

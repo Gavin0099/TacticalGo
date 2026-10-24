@@ -1,0 +1,42 @@
+[
+  {
+    "file": "before-result.png",
+    "sha256": "303558f401e40c3e1300bb25b2e30d0c54fa252e6e050f41e7bc38cf4b5de42b",
+    "source": "ios/Build/tg12-feel-20261024/screens-baseline/668AA84E-DB88-4AF5-A200-41659994DF7D.png",
+    "test": "ExpansionLabTests/testArchivedRogueChainPresentationComparison()",
+    "device": "TG12 Feel Debug SE 20261024",
+    "edited": false
+  },
+  {
+    "file": "after-result.png",
+    "sha256": "6ec180745227c191ae12dfa81ac8000f4c609d7e95be1e41d0532b3b4f259b20",
+    "source": "ios/Build/tg12-feel-20261024/screens-candidate/ED08AC02-0143-4098-986E-EB6CEB5BB22A.png",
+    "test": "ExpansionLabTests/testArchivedRogueChainPresentationComparison()",
+    "device": "TG12 Feel Debug SE 20261024",
+    "edited": false
+  },
+  {
+    "file": "after-confirmed-capture.png",
+    "sha256": "6bf3c3aad0a2f2d962bb28f070310552145bd517ddf9e9b7dac07e1907200be5",
+    "source": "ios/Build/tg12-feel-20261024/screens-candidate/91F47C1D-02BA-457F-B9E9-22850183B2AA.png",
+    "test": "ExpansionLabTests/testArchivedRogueChainPresentationComparison()",
+    "device": "TG12 Feel Debug SE 20261024",
+    "edited": false
+  },
+  {
+    "file": "small-phone-large-text.png",
+    "sha256": "1a7d55f36ca60b311adcac4b95c15c7f09819d141c748c5e051a4318c1ad1db0",
+    "source": "ios/Build/tg12-feel-20261024/screens-debug-refined/EC6B91FC-DFDD-41FC-9C34-2ED49DB5908F.png",
+    "test": "ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted()",
+    "device": "TG12 Feel Debug SE 20261024",
+    "edited": false
+  },
+  {
+    "file": "ipad-landscape.png",
+    "sha256": "3f08e0fde73b3257557a398d6ca458803b222e670f9a2828b03a7bf05345c179",
+    "source": "ios/Build/tg12-feel-20261024/screens-ipad/3AB5D14C-021A-4BD2-9C2D-27A20173D951.png",
+    "test": "ExpansionLabTests/testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted()",
+    "device": "TG12 Feel iPad 20261024",
+    "edited": false
+  }
+]

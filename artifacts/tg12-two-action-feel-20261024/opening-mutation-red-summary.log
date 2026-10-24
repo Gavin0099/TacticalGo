@@ -1,0 +1,20 @@
+Test Suite 'TacticalGoVisualsTests.xctest' passed at 2026-10-24 15:20:24.843.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoRecordsTests.xctest' passed at 2026-10-24 15:20:24.948.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoOnboardingTests.xctest' passed at 2026-10-24 15:20:25.049.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoMotionTests.xctest' passed at 2026-10-24 15:20:25.143.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoCoreTests.xctest' passed at 2026-10-24 15:20:25.233.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+$REPO/swift/TacticalGoCore/Sources/TacticalGoContent/RogueChainPractice.swift:16: error: -[TacticalGoContentTests.RogueChainPracticeTests testArchivedOpeningTwoActionsAndUndoRetainFullHistory] : failed: caught error: "illegalOpening"
+Test Case '-[TacticalGoContentTests.RogueChainPracticeTests testArchivedOpeningTwoActionsAndUndoRetainFullHistory]' failed (0.134 seconds).
+$REPO/swift/TacticalGoCore/Sources/TacticalGoContent/RogueChainPractice.swift:16: error: -[TacticalGoContentTests.RogueChainPracticeTests testTrialCannotOverwriteArchiveOrAcceptOccupiedFirstMove] : failed: caught error: "illegalOpening"
+Test Case '-[TacticalGoContentTests.RogueChainPracticeTests testTrialCannotOverwriteArchiveOrAcceptOccupiedFirstMove]' failed (0.000 seconds).
+Test Suite 'TacticalGoContentTests.xctest' failed at 2026-10-24 15:20:25.442.
+	 Executed 2 tests, with 2 failures (2 unexpected) in 0.134 (0.134) seconds
+Test Suite 'TacticalGoBotTests.xctest' passed at 2026-10-24 15:20:25.534.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'TacticalGoAccessTests.xctest' passed at 2026-10-24 15:20:25.632.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds

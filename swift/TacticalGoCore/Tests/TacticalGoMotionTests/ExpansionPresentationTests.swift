@@ -4,6 +4,27 @@ import TacticalGoContent
 import TacticalGoMotion
 
 final class ExpansionPresentationTests: XCTestCase {
+    func testArchivedRogueChainPresentationRequiresConfirmedTwoCaptureReceipt() throws {
+        var session=try RogueChainPractice.session()
+        XCTAssertTrue(session.apply(RogueChainPractice.firstAction).success)
+        let before=session.state
+        let outcome=session.apply(RogueChainPractice.secondAction)
+        let plan=try XCTUnwrap(ExpansionPresentation.make(before:before,action:RogueChainPractice.secondAction,outcome:outcome,current:session.state))
+        XCTAssertEqual(plan.captures.count,2)
+        // One hero travels E3 -> C3 through D3; drawing one actor per leg
+        // would duplicate the same hero. Two enemy soldiers complete the rotation.
+        let heroes=plan.transfers.filter { $0.piece == Piece(.two,.hero) }
+        XCTAssertEqual(heroes.count,1)
+        XCTAssertEqual(heroes.first?.from,Point(4,2))
+        XCTAssertEqual(heroes.first?.to,Point(2,2))
+        XCTAssertEqual(plan.transfers.count,3)
+        XCTAssertEqual(plan.board(at:0),before.board)
+        XCTAssertEqual(plan.board(at:plan.duration),session.state.board)
+        XCTAssertEqual(plan.board(at:0,reduced:true),session.state.board)
+        XCTAssertGreaterThan(plan.captureStart,plan.arrival)
+        XCTAssertTrue(session.undo())
+        XCTAssertNil(ExpansionPresentation.make(before:before,action:RogueChainPractice.secondAction,outcome:outcome,current:session.state))
+    }
     func testFourConfirmedFixturesUseSingleClockImmutableFinalBoardAndReducedMotion() throws {
         for f in ExpansionPractice.allCases {
             var s = try f.session(); let before = s.state; let o = s.apply(f.action)

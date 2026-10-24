@@ -39,6 +39,12 @@ struct ExpansionGameView: View {
     @State private var humanSide: Player = .one
     @State private var showBotLog = false
     @State private var showSoundSettings = false
+    #if DEBUG || TACTICALGO_V11
+    /// View-only forecast; discarded on close, never written to the match/save.
+    @State private var tacticalForecast: TwoActionPlanningController?
+    @State private var stagedSecondAction: GameAction?
+    @State private var stagedSecondBase: GameState?
+    #endif
     @State private var showTacticalHelp = false
     @State private var showLootAbilities = false
     @State private var showRecords = false
@@ -130,6 +136,13 @@ struct ExpansionGameView: View {
         .buttonStyle(GameButtonStyle(padded: true))
         .sheet(isPresented: $showRules) { rules }
         .sheet(isPresented: $showTacticalHelp) { tacticalHelp }
+        #if DEBUG || TACTICALGO_V11
+        .sheet(item: $tacticalForecast) { draft in
+            if let match = store.expansion {
+                TwoActionPlanningSheet(planner:draft,match:match,onUseFirst:useForecastFirst)
+            }
+        }
+        #endif
         .sheet(item: $unlockRequest, onDismiss: { RewardedAdService.shared.cancelPendingRequest() }) { request in
             if let access {
                 let fromBar = request == .store
@@ -161,7 +174,14 @@ struct ExpansionGameView: View {
             Button("留在對戰", role: .cancel) {}
         }
         .onDisappear { store.cancelBotWork(); store.setMatchAudioActive(false) }
-        .onChange(of: inMatch) { _, playing in if !playing { returnToLatestRules() } }
+        .onChange(of: inMatch) { _, playing in
+            if !playing {
+                #if DEBUG || TACTICALGO_V11
+                tacticalForecast = nil; stagedSecondAction = nil; stagedSecondBase = nil
+                #endif
+                returnToLatestRules()
+            }
+        }
         .onChange(of: inMatch) { _, active in store.setMatchAudioActive(active) }
         .onChange(of: scenePhase) { _, phase in
             store.setSceneAudioActive(phase == .active)
@@ -595,6 +615,12 @@ struct ExpansionGameView: View {
                     Menu {
                         ForEach(PracticeLesson.allCases) { value in Button(value.rawValue) { startPractice(value) } }
                         #if DEBUG || TACTICALGO_V11
+                        Button(RogueChainPractice.title) {
+                            if store.rogueChainPractice() {
+                                boardSize=9;one = .priest;two = .rogue
+                                lesson=nil;inMatch=true;store.setMatchAudioActive(true)
+                            }
+                        }.accessibilityIdentifier("rogueChainPractice")
                         ForEach(ExpansionPractice.allCases,id:\.self) { value in
                             Button(value.hero.title + " · 擴充技能") {
                                 store.expansionPractice(value); boardSize = store.size; one = store.state.heroClass(of:.one); two = store.state.heroClass(of:.two)
@@ -667,6 +693,16 @@ struct ExpansionGameView: View {
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
 
     }
+    private var matchSubtitle: String {
+        #if DEBUG || TACTICALGO_V11
+        if store.expansion?.isRogueChainPractice == true {
+            return store.state.current == .two && store.state.ply == 60
+                ? (store.state.apRemaining == 2 ? "連鎖練習 · 先落 F3，再換位 D3→C3" : "連鎖練習 · 第二手換位 D3→C3")
+                : "連鎖練習 · 本回合已結束，可自由比較走法"
+        }
+        #endif
+        return lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")"
+    }
     private var matchHeader: some View {
             HStack {
                 Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 38, height: 36) }.accessibilityLabel("返回選角")
@@ -674,7 +710,7 @@ struct ExpansionGameView: View {
                     Text(turnTitle).font(.system(size: 20, weight: .heavy, design: .serif))
                         .foregroundStyle(displayedPlayer == .one ? uiAccent:uiInk)
                         .lineLimit(1).minimumScaleFactor(0.80).accessibilityIdentifier("currentTurn")
-                    Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
+                    Text(matchSubtitle)
                         .font(.system(size: 11)).foregroundStyle(uiSecondary)
                 }
                 Spacer()
@@ -688,12 +724,16 @@ struct ExpansionGameView: View {
                     Button("格點清單") { showGrid = true }
                     Button("遊戲規則") { showRules = true }
                     Button("重新開始") {
+                        #if DEBUG || TACTICALGO_V11
+                        if store.expansion?.isRogueChainPractice == true { _ = store.rogueChainPractice();return }
+                        #endif
                         if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules) }
                         else if let lesson { startPractice(lesson) } else { startMatch() }
                     }
                     #if DEBUG || TACTICALGO_V11
                     if let match = store.expansion {
-                        Button("保存對局") { match.saveCandidate() }.accessibilityIdentifier("saveExpansion")
+                        Button(match.isRogueChainPractice ? "練習不覆寫存局" : "保存對局") { match.saveCandidate() }
+                            .disabled(match.isRogueChainPractice).accessibilityIdentifier("saveExpansion")
                     } else {
                         Button("存局與棋譜") { store.cancelBotWork(); store.refreshRecords(); showRecords = true }.accessibilityIdentifier("matchRecords")
                     }
@@ -769,6 +809,13 @@ struct ExpansionGameView: View {
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("r2Banner") }
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
     }
+    private var confirmedOrTacticalMessage: String {
+        #if DEBUG || TACTICALGO_V11
+        return store.expansion?.lastConfirmedFeedback ?? tacticalMessage
+        #else
+        return tacticalMessage
+        #endif
+    }
     // The same 200pt dock is used on phones and tablets; state never changes its height.
     private var gameActionDock: some View {
         VStack(spacing: 4) {
@@ -777,7 +824,7 @@ struct ExpansionGameView: View {
             } else {
                 dockHeading.frame(height: 44)
                 gameAbilityRail.frame(height: 64)
-                Text(tacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
+                Text(confirmedOrTacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
                     .font(.system(size: 11, weight: .medium)).foregroundStyle(uiSecondary)
                     .lineLimit(1).truncationMode(.tail)
                     .frame(maxWidth: .infinity, minHeight: 16, maxHeight: 16, alignment: .leading)
@@ -956,6 +1003,20 @@ struct ExpansionGameView: View {
                 }.frame(width: 48, height: 44)
             }.buttonStyle(GameButtonStyle()).disabled(store.selected.isEmpty && !store.canUndoHumanDecision)
                 .accessibilityIdentifier("undoOrCancel")
+            #if DEBUG || TACTICALGO_V11
+            if forecastCanUseSecond {
+                Button { loadForecastSecond() } label: {
+                    Image(systemName:"arrow.right.circle.fill").font(.system(size:19)).frame(width:44,height:44)
+                }.buttonStyle(GameButtonStyle()).accessibilityLabel("帶入試算第二手").accessibilityIdentifier("forecastLoadSecond")
+                    .disabled(store.inputLocked)
+            } else if store.expansion != nil && store.state.apRemaining >= 2 &&
+                        store.state.status == .ongoing && store.computer != store.state.current {
+                Button { tacticalForecast = TwoActionPlanningController(origin:store.state) } label: {
+                    Image(systemName:"square.stack.3d.up.fill").font(.system(size:17)).frame(width:44,height:44)
+                }.buttonStyle(GameButtonStyle()).accessibilityLabel("兩手試算，正式落子前預覽").accessibilityIdentifier("forecastOpen")
+                    .disabled(store.inputLocked)
+            }
+            #endif
             Button(action: store.confirm) {
                 Label("確認", systemImage: "checkmark.seal.fill").font(.system(size: 15, weight: .heavy))
                     .frame(maxWidth: .infinity).frame(height: 44)
@@ -968,6 +1029,40 @@ struct ExpansionGameView: View {
                 .disabled(store.inputLocked || store.state.status != .ongoing || lesson != nil).accessibilityIdentifier("playEndTurn")
         }
     }
+    #if DEBUG || TACTICALGO_V11
+    /// A reviewed trial may only preselect one original action: no GameSession.apply,
+    /// no access ledger, no sound, no save. Existing Confirm remains authoritative.
+    private func useForecastFirst(_ trial:TwoActionForecast) -> Bool {
+        guard let match = store.expansion, !store.inputLocked,match.reviewTime == nil,
+              match.state == trial.origin,let first=trial.first,
+              GameEngine.apply(match.state,first).success,
+              let input=TwoActionPlanningController.liveInput(first) else { return false }
+        match.cancelSelection()
+        match.mode=input.mode
+        match.selected=input.points
+        match.pending=first
+        match.message="已帶入第一手；仍需按確認，才會真正扣資源並存局。"
+        stagedSecondAction=trial.second
+        stagedSecondBase=trial.secondBase
+        return true
+    }
+    private var forecastCanUseSecond: Bool {
+        guard let match=store.expansion,let action=stagedSecondAction,
+              let expected=stagedSecondBase,match.state == expected,
+              match.state.status == .ongoing, !store.isComputerTurn,
+              GameEngine.apply(match.state,action).success else { return false }
+        return TwoActionPlanningController.liveInput(action) != nil
+    }
+    private func loadForecastSecond() {
+        guard forecastCanUseSecond,let action=stagedSecondAction,
+              let input=TwoActionPlanningController.liveInput(action),let match=store.expansion else { return }
+        match.cancelSelection()
+        match.mode=input.mode;match.selected=input.points;match.pending=action
+        match.message="第二手仍合法；按原本「確認」才會真正施放。"
+        stagedSecondAction=nil;stagedSecondBase=nil
+    }
+    #endif
+
     private var gameResultDock: some View {
         VStack(spacing: 8) {
             Image(systemName: complete ? "checkmark.seal.fill" : "crown.fill")

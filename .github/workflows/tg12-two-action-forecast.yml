@@ -1,0 +1,53 @@
+name: TG12 Two-Action Forecast Candidate
+
+# Pure forecast tests and iOS parse only. Native Xcode/device QA remains separate.
+on:
+  pull_request:
+    branches: ["codex/tg12-tactical-expedition"]
+    paths:
+      - "swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift"
+      - "swift/TacticalGoCore/Sources/TacticalGoContent/RogueChainPractice.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoContentTests/RogueChainPracticeTests.swift"
+      - "swift/TacticalGoCore/Tests/TacticalGoMotionTests/ExpansionPresentationTests.swift"
+      - "ios/TacticalGo/TwoActionPlanningSheet.swift"
+      - "ios/TacticalGo/ExpansionGameView.swift"
+      - "ios/TacticalGo/ExpansionLabView.swift"
+      - "ios/TacticalGo/GameStore.swift"
+      - "ios/TacticalGo.xcodeproj/project.pbxproj"
+      - "ios/TacticalGoUITests/ExpansionLabTests.swift"
+      - ".github/workflows/tg12-two-action-forecast.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forecast, archived opening and confirmed-receipt tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          swift test --package-path swift/TacticalGoCore --filter 'TwoActionForecastTests|RogueChainPracticeTests|ExpansionPresentationTests'
+      - name: Parse changed iOS source (not an Xcode build)
+        shell: bash
+        run: |
+          set -euo pipefail
+          swiftc -frontend -parse ios/TacticalGo/TwoActionPlanningSheet.swift
+          swiftc -frontend -parse ios/TacticalGo/ExpansionGameView.swift
+          swiftc -frontend -parse ios/TacticalGo/ExpansionLabView.swift
+          swiftc -frontend -parse ios/TacticalGo/GameStore.swift
+          swiftc -frontend -parse ios/TacticalGoUITests/ExpansionLabTests.swift
+          grep -q 'path = TwoActionPlanningSheet.swift' ios/TacticalGo.xcodeproj/project.pbxproj
+          # Protect newly introduced sources; pre-existing assets have whitespace.
+          if grep -nE '[[:blank:]]+$' \
+            swift/TacticalGoCore/Sources/TacticalGoContent/TwoActionForecast.swift \
+            swift/TacticalGoCore/Tests/TacticalGoContentTests/TwoActionForecastTests.swift \
+            ios/TacticalGo/TwoActionPlanningSheet.swift; then
+            echo "New Swift source contains trailing whitespace" >&2
+            exit 1
+          fi
