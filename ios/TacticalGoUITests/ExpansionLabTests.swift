@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 @MainActor final class ExpansionLabTests: XCTestCase {
     private func ready(_ app: XCUIApplication) {
@@ -109,6 +110,168 @@ import XCTest
         tap(app,"playConfirm");ready(app)
         XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("士兵"))
         shot(app,"tg12-two-action-forecast-committed")
+    }
+
+    func testForecastDoesNotBorrowLivePreviewOrCommitOnBackground() {
+        let app = integrated()
+        tap(app,"startMatch");ready(app)
+        tap(app,"playEndTurn");ready(app)
+        let before = resources(app)
+        tap(app,"play-cell-0-0")
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        tap(app,"forecastOpen")
+        let a1 = app.buttons["forecast-cell-0-0"]
+        XCTAssertTrue(a1.waitForExistence(timeout:5))
+        XCTAssertFalse((a1.value as? String ?? "").contains("預覽落兵"), "Empty draft must not display the live pending action")
+        shot(app,"forecast-empty-draft-isolated")
+        tap(app,"forecast-cell-1-0")
+        XCTAssertTrue((app.buttons["forecast-cell-1-0"].value as? String ?? "").contains("預覽落兵"))
+        tap(app,"forecastAddStep")
+        XCUIDevice.shared.press(.home)
+        XCTAssertTrue(app.wait(for:.runningBackground,timeout:5))
+        app.activate()
+        tap(app,"forecastClose");ready(app)
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled,"Closing the draft preserves the existing single-action selection")
+        tap(app,"undoOrCancel")
+        XCTAssertEqual(resources(app),before)
+    }
+
+    func testForecastReplacingFirstInvalidatesSecondAndCancelKeepsConfirmedFirst() {
+        let app = integrated()
+        tap(app,"startMatch");ready(app)
+        tap(app,"playEndTurn");ready(app)
+        tap(app,"forecastOpen")
+        tap(app,"forecast-cell-0-0");tap(app,"forecastAddStep")
+        tap(app,"forecast-cell-1-0");tap(app,"forecastAddStep")
+        tap(app,"forecastStage0")
+        tap(app,"forecast-cell-1-0");tap(app,"forecastAddStep")
+        XCTAssertFalse(app.descendants(matching:.any)["forecastSummary2"].firstMatch.exists)
+        tap(app,"forecast-cell-2-0");tap(app,"forecastAddStep")
+        tap(app,"forecastLoadFirst")
+        tap(app,"playConfirm");ready(app)
+        let afterFirst = resources(app)
+        tap(app,"forecastLoadSecond")
+        tap(app,"undoOrCancel")
+        XCTAssertEqual(resources(app),afterFirst)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("士兵"))
+        XCTAssertTrue(app.buttons["play-cell-2-0"].label.contains("空點"))
+        shot(app,"forecast-cancel-keeps-confirmed-first")
+        app.terminate();app.launch();tap(app,"resumeExpansion");ready(app)
+        XCTAssertEqual(resources(app),afterFirst)
+        XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("士兵"))
+        XCTAssertTrue(app.buttons["play-cell-2-0"].label.contains("空點"))
+    }
+
+    func testForecastHeroComparisonsUseExistingSkillsAndIndependentConfirm() {
+        // Existing legal-opening practice witnesses, not new rules or balance claims.
+        for (hero,points,destination) in [
+            ("rogue",[(5,4),(5,3)],(5,3)),
+            ("warrior",[(4,6),(5,5),(5,6),(6,6)],(6,6)),
+            ("mage",[(4,5),(5,5),(4,3),(3,3)],(5,5))
+        ] {
+            let app = integrated(hero);ready(app)
+            let before = resources(app)
+            XCTAssertTrue(before.contains("4/6") && before.contains("2 AP"),before)
+            tap(app,"forecastOpen");tap(app,"forecastMode第二技能")
+            for (x,y) in points { tap(app,"forecast-cell-\(x)-\(y)") }
+            tap(app,"forecastAddStep")
+            let summary = app.descendants(matching:.any)["forecastSummary1"].firstMatch
+            XCTAssertTrue(summary.label.contains("能量 4 → 0"),summary.label)
+            XCTAssertTrue(summary.label.contains("提敵兵 0"),summary.label)
+            tap(app,"forecast-cell-8-8");tap(app,"forecastAddStep")
+            shot(app,"forecast-\(hero)-two-action-result")
+            tap(app,"forecastLoadFirst")
+            XCTAssertEqual(resources(app),before)
+            tap(app,"playConfirm");ready(app)
+            XCTAssertTrue(resources(app).contains("0/6") && resources(app).contains("1 AP"))
+            XCTAssertTrue(app.buttons["play-cell-\(destination.0)-\(destination.1)"].label.contains(hero == "rogue" ? "盜賊" : "士兵"))
+            XCTAssertFalse(app.staticTexts["playMessage"].label.contains("提敵兵"),"No-capture skills must not claim captures")
+            XCTAssertTrue(app.buttons["play-cell-8-8"].label.contains("空點"),"Second action never auto-commits")
+            shot(app,"forecast-\(hero)-first-confirmed")
+            tap(app,"forecastLoadSecond");tap(app,"playConfirm");ready(app)
+            XCTAssertTrue(app.buttons["play-cell-8-8"].label.contains("士兵"))
+            app.terminate()
+        }
+    }
+
+    func testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted() {
+        let app = XCUIApplication()
+        app.expansionShellArguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityM"]
+        XCUIDevice.shared.orientation = .portrait
+        defer { XCUIDevice.shared.orientation = .portrait }
+        app.launch()
+        tap(app,"startMatch");ready(app)
+        tap(app,"playEndTurn");ready(app)
+        openMatchMenu(app,"audioSettings");tap(app,"audioSettings")
+        let motion = app.switches["reduceCombatMotion"]
+        if motion.value as? String != "1" {
+            motion.coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
+        }
+        XCTAssertEqual(motion.value as? String,"1")
+        closeSettingsSheet(app)
+        let before = resources(app)
+        tap(app,"forecastOpen")
+        for id in ["forecastStage0","forecastStage1","forecastStage2"] {
+            let button = app.buttons[id]
+            XCTAssertTrue(button.waitForExistence(timeout:5))
+            XCTAssertGreaterThanOrEqual(button.frame.height,44,id)
+            XCTAssertGreaterThanOrEqual(button.frame.width,44,id)
+        }
+        shot(app,"forecast-large-text-first-stage")
+        tap(app,"forecast-cell-0-0");tap(app,"forecastAddStep")
+        // Only iPad supports landscape in this product. Rotation must preserve
+        // the memory-only draft without advancing the authoritative match.
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
+        tap(app,"forecast-cell-1-0");tap(app,"forecastAddStep")
+        let second = app.descendants(matching:.any)["forecastSummary2"].firstMatch
+        XCTAssertTrue(second.exists)
+        XCTAssertTrue(second.label.contains("交給對手"),second.label)
+        shot(app,"forecast-large-text-reduced-result")
+        tap(app,"forecastLoadFirst")
+        ready(app)
+        XCTAssertEqual(resources(app),before)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["play-cell-1-0"].label.contains("空點"))
+        XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
+        tap(app,"undoOrCancel")
+        XCTAssertEqual(resources(app),before)
+        shot(app,"forecast-large-text-reduced-cancelled")
+        app.terminate()
+    }
+
+    func testConfirmedCaptureFeedbackUsesSkillAndOrdinarySoldierEvents() throws {
+        #if DEBUG
+        for skill in [true,false] {
+            let app = XCUIApplication()
+            app.expansionShellArguments = ["--undo-fixture","capture","--bot-step-review"]
+            app.launch();ready(app)
+            let before = resources(app)
+            tap(app,skill ? "mode-skill" : "mode-soldier")
+            tap(app,"play-cell-6-3")
+            if skill { tap(app,"play-cell-6-5") }
+            XCTAssertFalse(app.staticTexts["playMessage"].label.contains("提敵兵 ×1"))
+            XCTAssertEqual(resources(app),before)
+            tap(app,"playConfirm");ready(app)
+            if !skill {
+                XCTAssertFalse(app.staticTexts["playMessage"].label.contains("提敵兵 ×1"))
+                tap(app,"play-cell-6-5");tap(app,"playConfirm")
+            }
+            let message = app.staticTexts["playMessage"]
+            let captured = XCTNSPredicateExpectation(predicate:NSPredicate(format:"label CONTAINS %@","提敵兵 ×1"),object:message)
+            XCTAssertEqual(XCTWaiter.wait(for:[captured],timeout:5),.completed)
+            XCTAssertTrue(app.buttons["play-cell-6-4"].label.contains("空點"))
+            shot(app,skill ? "forecast-confirmed-skill-capture" : "forecast-confirmed-soldier-capture")
+            app.terminate()
+        }
+        #else
+        throw XCTSkip("Hand-authored capture fixture is DEBUG-only")
+        #endif
     }
 
     func testMatchMenuOpensOnOneTapAndRogueSkillSurvivesSettings() {

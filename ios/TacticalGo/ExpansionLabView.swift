@@ -912,8 +912,11 @@ struct ExpansionBoard: View {
             let moving = p != nil && !reduced && time < p!.arrival
             let sources = Set(moving ? p!.transfers.map(\.from) : [])
             let targets = planning?.legalTargets ?? store.legalTargets
+            // An empty draft preview is intentional. Never fall back to the
+            // live match's pending action while rendering a planning board.
+            let displayedPreview = planning == nil ? store.preview : planning?.preview
             let presentation = BoardPresentation(state:displayState,selected:planning?.selected ?? store.selected,
-                                                 legal:targets,preview:planning?.preview ?? store.preview)
+                                                 legal:targets,preview:displayedPreview)
             ZStack {
                 Image(uiImage:assets.shadow).resizable().frame(width:size.width,height:size.height)
                 Image(uiImage:assets.board).resizable().frame(width:size.width,height:size.height)
@@ -960,7 +963,9 @@ struct ExpansionBoard: View {
                         .buttonStyle(.plain).position(presentation.center(point,size)).zIndex(300)
                         .accessibilityIdentifier("\(identityPrefix)-\(point.x)-\(point.y)")
                         .accessibilityLabel("\(String(UnicodeScalar(65+point.x)!))\(point.y+1)，\(cellName(point))")
-                        .accessibilityValue(targets.contains(point) ? "可選下一點" : "")
+                        .accessibilityValue(displayedPreview?.success == true && displayedPreview!.events.contains(where: {
+                            if case .piecePlaced(_,let at,_) = $0 { return at == point }; return false
+                        }) ? "預覽落兵，尚未確認" : targets.contains(point) ? "可選下一點" : "")
                 }
                 if let p,moving {
                     ForEach(p.transfers.indices,id:\.self) { i in
@@ -982,7 +987,7 @@ struct ExpansionBoard: View {
                             .opacity(f.opacity).offset(y:pitch*CGFloat(f.lift)).position(presentation.center(captured.at,size)).zIndex(190)
                     }
                 }
-                if ArtV2.enabled,let preview = planning?.preview ?? store.preview,preview.success {
+                if ArtV2.enabled,let preview = displayedPreview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePlaced(let owner,let at,let kind) = preview.events[i],board.isEmpty(at) {
                             ZStack {
@@ -1013,7 +1018,7 @@ struct ExpansionBoard: View {
                             .zIndex(247).allowsHitTesting(false).accessibilityHidden(true)
                     }
                 }
-                if let preview = planning?.preview ?? store.preview,preview.success {
+                if let preview = displayedPreview,preview.success {
                     ForEach(preview.events.indices,id:\.self) { i in
                         if case .piecePushed(_,let from,let to,_) = preview.events[i] {
                             Path { path in path.move(to:presentation.center(from,size)); path.addLine(to:presentation.center(to,size)) }

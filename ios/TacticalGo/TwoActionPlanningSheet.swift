@@ -153,14 +153,14 @@ import TacticalGoContent
     func addPending() {
         guard canEdit,let pending,preview?.success == true else { return }
         let accepted = stage == .first ? forecast.chooseFirst(pending) : forecast.chooseSecond(pending)
-        guard accepted else { message="Core 已拒絕這一步；請重新選擇。";return }
+        guard accepted else { message="這一步目前無法執行；請重新選擇。";return }
         selected=[];self.pending=nil;mode = .soldier
         if stage == .first && forecast.secondBase != nil {
             stage = .second
             message = "第一手只是試算；請繼續選第二手。"
         } else {
             stage = .result
-            message = "兩手試算已完成。沒有寫入存局，也沒有扣正式資源。"
+            message = "\(forecast.hasTwoActions ? "兩手" : "這一手")試算已完成，正式棋局與資源尚未改動。"
         }
     }
     static func coordinate(_ p:Point) -> String { "\(String(UnicodeScalar(65+p.x)!))\(p.y+1)" }
@@ -234,11 +234,12 @@ struct TwoActionPlanningSheet: View {
                         ExpansionBoard(store:match,assets:assets,time:2,reduced:true,
                                        identityPrefix:"forecast-cell",planning:planner)
                             .aspectRatio(1,contentMode:.fit).frame(maxWidth:420)
+                            .accessibilityElement(children:.contain)
                             .accessibilityIdentifier("forecastBoard")
                     } else {
                         Text("棋盤素材尚未載入，正式對局保持不變。").foregroundStyle(.red)
                     }
-                    Text("檢視：\(planner.stage.title) · \(planner.stageState.current == planner.origin.current && planner.stageState.status == .ongoing ? "\(planner.stageState.apRemaining) AP" : "己方已交棒") · 己方能量 \(planner.stageState.mana(of:planner.origin.current))")
+                    Text("檢視：\(planner.stage.title) · \(planner.stageState.status != .ongoing ? "已終局" : planner.stageState.current == planner.origin.current ? "\(planner.stageState.apRemaining) AP" : "己方已交棒") · 己方能量 \(planner.stageState.mana(of:planner.origin.current))")
                         .font(.caption).foregroundStyle(.secondary)
                         .accessibilityIdentifier("forecastResources")
                     if planner.canEdit {
@@ -322,14 +323,15 @@ struct TwoActionPlanningSheet: View {
         VStack(alignment:.leading,spacing:4) {
             Text("第 \(number) 手 · \(TwoActionPlanningController.title(step.action))")
                 .font(.subheadline).bold()
-            Text("AP \(step.apBefore) → \(step.apAfter.map(String.init) ?? "交給對手") · 能量 \(step.manaBefore) → \(step.manaAfter)")
+            Text("AP \(step.apBefore) → \(step.after.status != .ongoing ? "已終局" : step.apAfter.map(String.init) ?? "交給對手") · 能量 \(step.manaBefore) → \(step.manaAfter)")
             Text("提敵兵 \(step.enemySoldiersCaptured) · 犧牲己兵 \(step.ownSoldiersSacrificed) · 己主帥氣 \(step.myCommanderLibertiesBefore) → \(step.myCommanderLibertiesAfter) · 敵主帥氣 \(step.enemyCommanderLibertiesBefore) → \(step.enemyCommanderLibertiesAfter)")
-            Text("這些是 Core 確定的當下結果；氣數增加不保證下回合安全。").foregroundStyle(.secondary)
+            Text("這些是本回合的確定結果；氣數增加不保證下回合安全。").foregroundStyle(.secondary)
         }
         .font(.caption)
         .padding(11)
         .frame(maxWidth:.infinity,alignment:.leading)
         .background(Color.white.opacity(0.08),in:RoundedRectangle(cornerRadius:10))
+        .accessibilityElement(children:.combine)
         .accessibilityIdentifier("forecastSummary\(number)")
     }
 }
