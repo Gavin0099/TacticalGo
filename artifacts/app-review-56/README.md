@@ -8,6 +8,9 @@ Local engineering verification on 2026-10-24. This folder contains no signing as
 | Repaired 1121 simulator check | Pass, no reviewed markers/resources | `surface-green.json` |
 | Repaired 1121 unsigned iOS archive check | Pass, no reviewed markers/resources | `device-surface.json` |
 | Device package metadata/resources | iPhone + iPad, privacy manifests present; unsigned | `device-package.json` |
+| Local App Store IPA signing | Apple Distribution signature/profile/entitlements pass | `signed-distribution-check.json` |
+| Signed package engineering surface | No reviewed markers/resources | `signed-surface.json` |
+| Signing/export content equivalence | 49 file-backed sections and listed assets unchanged | `signing-content-equivalence.json` |
 | Release iPhone portrait | 3 / 3 native flow tests pass | `verification.json`, `iphone-*.png` |
 | Release iPad landscape | 3 / 3 native flow tests pass | `verification.json`, `ipad-*.png` |
 | Debug fixture/save and R2 exchange/undo | 2 distinct tests pass on final applicable runs | `verification.json` |
@@ -51,4 +54,17 @@ xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
   CODE_SIGNING_ALLOWED=NO -jobs 2 archive
 ```
 
-That command creates an **unsigned** device archive; it is not an upload procedure. Distribution signing/profile/entitlements, physical-device validation, production transactions/ad delivery and Apple's unspecified rejection cause remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for the owner actions and unsent review drafts.
+That command creates an **unsigned** device archive; it is not an upload procedure. After the owner's explicit signing authorization, Xcode exported it locally with `-exportArchive -allowProvisioningUpdates` and these export options:
+
+```text
+method = app-store-connect
+destination = export
+signingStyle = automatic
+teamID = existing reviewed team
+manageAppVersionAndBuildNumber = false
+uploadSymbols = false
+```
+
+The resulting local IPA's signature, embedded App Store profile and entitlements pass the checks in `signed-distribution-check.json`. Certificate extraction for the profile/signer comparison uses `codesign -d --extract-certificates=TEMPORARY_PREFIX`; only public certificate bytes are compared in a temporary directory, then removed. No private key is extracted. The original archive remains unsigned.
+
+App Store Connect server validation/processing, physical-device validation, production transactions/ad delivery and Apple's unspecified rejection cause remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for the remaining owner actions and unsent review drafts.

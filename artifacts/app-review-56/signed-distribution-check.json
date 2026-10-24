@@ -1,0 +1,26 @@
+{
+  "schema": "tacticalgo-local-distribution-signing-v1",
+  "checkedAt": "2026-10-24T02:15:51.431454+00:00",
+  "version": "1.1",
+  "build": "1121",
+  "sourceCommit": "57131f99a41b336d9cdb66870e672b5c8d51aa04",
+  "ipaSHA256": "973171de415885e4fe571f6b5a8b39a2c17857f16a6aee551c872abf0bb95051",
+  "checks": {
+    "distributionSignatureIntegrity": true,
+    "bundleVersion": true,
+    "bundleID": true,
+    "iPhoneAndIPad": true,
+    "matchingApplicationIdentifier": true,
+    "matchingTeam": true,
+    "debugEntitlementDisabled": true,
+    "appStoreProfile": true,
+    "profileNotExpired": true,
+    "profileContainsActualSigningCertificate": true,
+    "appPrivacyManifestUnchanged": true,
+    "commercialAndPolicyInfoUnchanged": true,
+    "appleDistributionAuthority": true
+  },
+  "passed": true,
+  "profileExpiresAt": "2027-08-14T07:07:49+00:00",
+  "claimBoundary": "Local Apple Distribution signature, profile and package verification only. No upload or review submission; App Store Connect server validation/processing and Apple approval are not verified."
+}

@@ -51,13 +51,24 @@ Canonical checks, test receipts, source hashes and selected screenshots are in [
 3. The old R2 test used the public setup screen and then expected obsolete standalone banner/AP labels. Its current route is the Debug engineering shell, with the selected variant checked through its fixture message and AP through the actual resource display. Failure receipts remain in the evidence inventory.
 4. iPad app-cropped screenshots used a stale portrait capture rectangle even though the tests operated in landscape. A separate `simctl` full-screen capture confirmed the actual layout. The screenshot helper now uses `XCUIScreen.main`; only the affected evidence flows are rerun.
 
+## Distribution signing completed locally
+
+On 2026-10-24 the owner explicitly authorized Xcode to create/download the necessary distribution signing assets, excluding certificate revocation, upload and submission. Xcode successfully exported the existing unsigned archive with `method=app-store-connect`, `destination=export`, `signingStyle=automatic`, `manageAppVersionAndBuildNumber=false`, `uploadSymbols=false` and `-allowProvisioningUpdates`.
+
+The resulting **Apple Distribution-signed IPA** is retained locally at `ios/Build/review56/AppStore-1121-local/TacticalGo.ipa`. The original archive remains unsigned at `ios/Build/review56/CrownTactics-1.1-1121-unsigned.xcarchive`; do not label it a newly signed archive.
+
+- `codesign --verify --deep --strict` passes. The signing authority is Apple Distribution and matches the app's original team.
+- Embedded App Store profile and signed entitlements match the bundle/team, disable `get-task-allow`, and contain the actual signing certificate. The profile is unexpired; no device-specific/ad-hoc or enterprise profile is used.
+- Version/build remain 1.1 (1121), with iPhone and iPad support. The public commercial/policy values, asset catalog and app privacy manifest are unchanged.
+- All **49 file-backed Mach-O sections** match the tested unsigned candidate. The signed executable still passes the engineering-surface check. These checks avoid treating a signing/export change as a new untested gameplay build.
+- Canonical evidence: [signed-distribution-check.json](../../artifacts/app-review-56/signed-distribution-check.json), [signing-content-equivalence.json](../../artifacts/app-review-56/signing-content-equivalence.json) and [signed-surface.json](../../artifacts/app-review-56/signed-surface.json). The IPA, embedded profile, private keys and account logs are not committed.
+
+This completes local distribution signing. App Store Connect server validation/processing and review acceptance remain separate. The repository's older `archive-release.sh` / `check-release-readiness.py` are explicitly locked to 1.0; their results are not represented as a passed 1.1 release gate.
+
 ## Remaining distribution steps
 
-This is a local engineering candidate, **not yet an upload-ready signed build**. The current Mac has no usable Apple Distribution signing identity and no locally installed matching App Store provisioning profile. The unsigned archive is retained locally at `ios/Build/review56/CrownTactics-1.1-1121-unsigned.xcarchive`.
-
-1. Obtain the owner's approval to create/download the required signing assets in Xcode, or use the Mac that uploaded 1120. Do not revoke existing certificates or export private keys as part of this repair. [Apple's certificate management instructions](https://help.apple.com/xcode/mac/current/en.lproj/dev154b28f09.html).
-2. Produce/validate the signed 1121 distribution archive, then verify signature, matching profile and distribution entitlements. The repository's older `archive-release.sh` / `check-release-readiness.py` are explicitly locked to 1.0; their results must not be represented as a passed 1.1 release gate. Use Xcode's reviewed 1.1 archive/distribution workflow and retain its validation receipt.
-3. Review the local [review notes](APP_REVIEW_NOTES_1.1.md) and [response draft](APP_REVIEW_REPLY_5.6.md). Apple has not identified the allegedly hidden feature; request its reproduction steps before claiming that this candidate resolves the actual rejection.
-4. Upload, replace Review Notes, send the response and resubmit only with the owner's explicit authorization. No such external action has been performed here.
+1. Review the local [review notes](APP_REVIEW_NOTES_1.1.md) and [response draft](APP_REVIEW_REPLY_5.6.md). Apple has not identified the allegedly hidden feature; request its reproduction steps before claiming that this candidate resolves the actual rejection.
+2. Upload the signed 1121 IPA and verify App Store Connect validation/processing only with explicit owner authorization.
+3. Replace Review Notes, send the response and resubmit only with the owner's explicit authorization. No such external action has been performed here.
 
 No Core, Bot, skill costs, saved-game schema, allowance rules or purchase policy changed. C# replay/parity, real-device acceptance, production purchase/restore/ad delivery and Apple approval are not claimed by this repair.
