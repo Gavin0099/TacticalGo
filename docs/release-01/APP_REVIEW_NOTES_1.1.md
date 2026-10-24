@@ -1,6 +1,6 @@
 # App Review Notes — 1.1 repair candidate
 
-Local draft for 1.1 (1121); not saved to App Store Connect. The submitted 1120 notes already disclosed the major features. This replacement adds exact navigation and access conditions, rather than claiming that the earlier notes omitted them. Confirm the attached build number before submitting.
+Reference notes for 1.1 (1121). The exact [3,751-character plain-text payload](APP_REVIEW_NOTES_1.1_SUBMITTED.txt) was saved to App Store Connect and submitted on 2026-10-24 at 11:47 Asia/Taipei. Its saved contents, selected build 1121 and manual-release setting were read back after submission. See the [submission receipt](../../artifacts/app-review-56/submission-receipt.json). The submitted 1120 notes already disclosed the major features; this replacement adds exact navigation and access conditions.
 
 ## Reviewer-facing text
 

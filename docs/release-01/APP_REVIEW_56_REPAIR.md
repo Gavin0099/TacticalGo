@@ -78,10 +78,12 @@ The fully rebuilt app is **not byte-identical** to the earlier unsigned build: 4
 
 Xcode's retry completed successfully at **2026-10-24 11:27:58 Asia/Taipei**, reporting that Apple received the package and began processing it. App Store Connect first displayed 1.1 (1121) as **處理中**, then **準備提交**, confirming processing completion and availability in its build list. Current status and the two attempts are in [upload-receipt.json](../../artifacts/app-review-56/upload-receipt.json). This packaging failure was encountered during this upload; it does not establish the cause of the original 1120 Guideline 5.6 decision. Upload acceptance and processing completion are separate from App Review approval.
 
-## Remaining distribution steps
+## Authorized resubmission completed
 
-1. Review the local [review notes](APP_REVIEW_NOTES_1.1.md) and [response draft](APP_REVIEW_REPLY_5.6.md). Apple has not identified the allegedly hidden feature; request its reproduction steps before claiming that this candidate resolves the actual rejection.
-2. Owner may now authorize selecting processed build 1121 for the next review submission.
-3. Replace Review Notes, send the response and resubmit only with the owner's explicit authorization. The upload authorization does not include these actions; none has been performed here.
+The owner explicitly instructed **好 送審** for the prepared 1121 candidate. On 2026-10-24 the version's old 1120 association was replaced with processed build 1121. The [exact 3,751-character Review Notes](APP_REVIEW_NOTES_1.1_SUBMITTED.txt), including the normal three-game route to the ad-choice screen, were saved and read back. The existing **manual release** setting was already selected and was preserved.
+
+At **11:47 Asia/Taipei**, the existing submission was resubmitted with two items: **iOS App 1.1 (1121)** and **皇冠戰略完整解鎖** (the existing non-consumable purchase). Both now show **等待審查** (Waiting for Review). A fresh read of the version page confirms build 1121, the exact note payload, manual release and Waiting for Review. The [submission receipt](../../artifacts/app-review-56/submission-receipt.json) records the submission ID and readback hashes without account contact information.
+
+No separate App Review message was sent; the [response draft](APP_REVIEW_REPLY_5.6.md) remains local and unsent. Main was not merged and no publication action was performed. Approval and resolution of the original 5.6 concern remain pending Apple's review. When approved, release remains a separate manual owner action.
 
 No Core, Bot, skill costs, saved-game schema, allowance rules or purchase policy changed. C# replay/parity, real-device acceptance, production purchase/restore/ad delivery and Apple approval are not claimed by this repair.

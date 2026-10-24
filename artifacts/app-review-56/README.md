@@ -16,6 +16,7 @@ Local engineering verification on 2026-10-24. This folder contains no signing as
 | Exact retry transport package | All three requirements pass; engineering surface passes | `signatures-upload-corrected.json`, `surface-upload-corrected.json` |
 | Full rebuild comparison | 47/49 sections match; full equality fails; main text/source unchanged | `corrected-content-check.json` |
 | Apple upload and processing | Retry accepted, observed processing status in receipt | `upload-receipt.json` |
+| Authorized App Review resubmission | 1121 + existing unlock both Waiting for Review; manual release preserved | `submission-receipt.json` |
 | Release iPhone portrait | 3 / 3 native flow tests pass | `verification.json`, `iphone-*.png` |
 | Release iPad landscape | 3 / 3 native flow tests pass | `verification.json`, `ipad-*.png` |
 | Debug fixture/save and R2 exchange/undo | 2 distinct tests pass on final applicable runs | `verification.json` |
@@ -75,4 +76,8 @@ uploadSymbols = false
 
 The first unsigned-archive export path and its receipts are retained only as failure evidence. Do not use its IPA for distribution. The corrected local IPA is `ios/Build/review56/AppStore-1121-corrected/TacticalGo.ipa`; the preserved exact retry package is `ios/Build/review56/TacticalGo-1121-upload-corrected-package.ipa`. Signing assets and IPA files are not committed. No private key is extracted.
 
-The owner later explicitly authorized upload. Only that retry changed the export destination to `upload`; version management stayed disabled, retaining 1121. The first validation rejection, retry success and observed App Store Connect status are in `upload-receipt.json`. Physical-device acceptance, production transactions/ad delivery and resolution of Apple's original unspecified 5.6 concern remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for the remaining owner actions and unsent review drafts.
+The owner later explicitly authorized upload. Only that retry changed the export destination to `upload`; version management stayed disabled, retaining 1121. The first validation rejection, retry success and observed App Store Connect status are in `upload-receipt.json`.
+
+After the owner's explicit resubmission instruction, build 1121 and the exact [plain-text Review Notes](../../docs/release-01/APP_REVIEW_NOTES_1.1_SUBMITTED.txt) were saved, then the app and existing non-consumable unlock were resubmitted at 2026-10-24 11:47 Asia/Taipei. Both items show Waiting for Review. A fresh page read confirms notes/build/manual release; `submission-receipt.json` contains that evidence. Earlier receipts describe their own stages and remain unchanged. No separate review reply or publication was performed.
+
+Physical-device acceptance, production transactions/ad delivery and resolution of Apple's original unspecified 5.6 concern remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for pending review acceptance and the unsent reply draft.
