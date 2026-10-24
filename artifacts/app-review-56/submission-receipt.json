@@ -1,0 +1,34 @@
+{
+  "schema": "tacticalgo-app-review-resubmission-v1",
+  "observedAt": "2026-10-24T03:48:12.113617+00:00",
+  "authorization": "Owner explicitly instructed 好 送審 for the prepared 1121 candidate.",
+  "version": "1.1",
+  "build": "1121",
+  "submissionID": "5ed25dcc-71c3-4544-9a42-5759722cac44",
+  "url": "https://appstoreconnect.apple.com/apps/6821588889/distribution/reviewsubmissions/details/5ed25dcc-71c3-4544-9a42-5759722cac44",
+  "status": "等待審查",
+  "items": [
+    "iOS App 1.1\n\n1.1 (1121)\n\n\t\nApp 版本\n\t\n等待審查\n\t\n\t",
+    "皇冠戰略完整解鎖\n\n\t\nApp 內購買項目\n\t\n等待審查\n\t\n\t"
+  ],
+  "submittedAtDisplayed": "2026年10月24日 上午11:47",
+  "reviewNotes": {
+    "path": "docs/release-01/APP_REVIEW_NOTES_1.1_SUBMITTED.txt",
+    "characters": 3751,
+    "sha256": "b6459d50fe1f2960957b778d14e51f868b9633ee54772e362e430080d153da23",
+    "savedReadbackMatches": true
+  },
+  "releaseTypeBeforeSubmit": "MANUAL",
+  "separateReviewMessageSent": false,
+  "mainMerged": false,
+  "claimBoundary": "Submission accepted into Waiting for Review only; not Apple approval or resolution of the earlier 5.6 concern.",
+  "versionReadbackAfterSubmit": {
+    "notesMatchSubmittedPayload": true,
+    "notesCharacters": 3751,
+    "notesSHA256": "b6459d50fe1f2960957b778d14e51f868b9633ee54772e362e430080d153da23",
+    "selectedBuild": "1121",
+    "releaseType": "MANUAL",
+    "waitingForReview": true
+  },
+  "publicationPerformed": false
+}

@@ -148,7 +148,9 @@ struct PlayableGameView: View {
     @State private var lobbyShowsHeroes = false
     @State private var showRecords = false
     @State private var showOnboarding = false
+    #if DEBUG
     @State private var showR2 = false
+    #endif
     @State private var challengeRoute: ChallengeRoute?
     #if DEBUG
     @State private var audioAuditStatus = "RUNNING"
@@ -245,11 +247,13 @@ struct PlayableGameView: View {
             if phase == .active && inMatch && challengeRoute == nil { store.scheduleComputerTurn() }
             else { store.cancelBotWork() }
         }
+        #if DEBUG
         .sheet(isPresented: $showR2) {
             R2LabView { fixture, rules in
                 if store.startR2(fixture,rules:rules) { lesson = nil; inMatch = true; store.setMatchAudioActive(true) }
             }
         }
+        #endif
         .sheet(isPresented: $showRecords, onDismiss: { if inMatch { store.scheduleComputerTurn() } }) {
             RecordLibraryView(store: store, resume: resumeRecord)
         }
@@ -1159,8 +1163,10 @@ struct PlayableGameView: View {
                     Button("格點清單") { showGrid = true }
                     Button("遊戲規則") { showRules = true }
                     Button("重新開始") {
-                        if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules) }
-                        else if let lesson { startPractice(lesson) } else { startMatch(rules: store.recordRules) }
+                        #if DEBUG
+                        if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules); return }
+                        #endif
+                        if let lesson { startPractice(lesson) } else { startMatch(rules: store.recordRules) }
                     }
                     Button("存局與棋譜") { store.cancelBotWork(); store.refreshRecords(); showRecords = true }.accessibilityIdentifier("matchRecords")
                     Button("聲音設定") { showSoundSettings = true }.accessibilityIdentifier("audioSettings")
@@ -1207,7 +1213,9 @@ struct PlayableGameView: View {
                 Text("新版技能 · 沿棋群築壘／法師調度己兵")
                     .font(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted).accessibilityIdentifier("matchRulesSummary")
             }
+            #if DEBUG
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted).accessibilityIdentifier("r2Banner") }
+            #endif
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
             if !sellLook, let title = presentedResult {
                 HStack { Image(systemName: "crown.fill"); Text(title).font(.system(size: 16, weight: .bold)); Spacer(); Button("再玩一局", action: startMatch) }

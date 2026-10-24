@@ -1800,19 +1800,22 @@ import XCTest
     }
 
     func testR2MageExchangePreviewAndUndo() {
-        let app = app()
+        // R2 belongs to the Debug engineering shell, not the public hero setup.
+        let app = app(["--integrated-lobby"], openSetup:false)
+        XCTAssertTrue(app.buttons["r2Lab"].waitForExistence(timeout:10))
         for _ in 0..<4 { if app.buttons["r2Lab"].isHittable { break }; app.swipeUp() }
         app.buttons["r2Lab"].tap(); app.buttons["r2Mage"].tap()
         app.segmentedControls["r2Variant"].buttons["C"].tap(); app.buttons["startR2"].tap()
-        XCTAssertTrue(app.staticTexts["r2Banner"].label.contains("R2 C"))
+        XCTAssertTrue(app.staticTexts["playMessage"].label.hasPrefix("R2 C："))
         tap(app,3,2); XCTAssertTrue(app.buttons["push-Left"].isEnabled)
         app.buttons["push-Left"].tap()
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
         XCTAssertEqual(app.otherElements["playArena"].value as? String,"D3")
         app.buttons["playConfirm"].tap()
-        XCTAssertTrue(app.staticTexts["1 AP"].exists)
+        XCTAssertTrue((app.staticTexts["blueResources"].value as? String)?.contains("1 AP") == true)
         shot(app,"r2-mage-dense-exchange")
-        app.buttons["undoOrCancel"].tap(); XCTAssertTrue(app.staticTexts["2 AP"].exists)
+        app.buttons["undoOrCancel"].tap()
+        XCTAssertTrue((app.staticTexts["blueResources"].value as? String)?.contains("2 AP") == true)
     }
     func testR2WarriorOriginalAndConnectedScopeRemainSeparate() {
         let app = app()

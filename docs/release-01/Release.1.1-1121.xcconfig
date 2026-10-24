@@ -1,0 +1,15 @@
+// App Review 5.6 repair candidate. Same public game and account settings as 1120.
+// 1120 was the highest build shown in App Store Connect on 2026-10-24. No upload implied.
+MARKETING_VERSION = 1.1
+CURRENT_PROJECT_VERSION = 1121
+PRODUCT_BUNDLE_IDENTIFIER = com.tacticalgo.prototype.herobody
+DEVELOPMENT_TEAM = P358EB3X9H
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = Apple Distribution
+PROVISIONING_PROFILE_SPECIFIER = Crown Strategy App Store 20261011
+
+CROWN_UNLOCK_PRODUCT_ID = com.tacticalgo.crowntactics.unlock
+CROWN_ADMOB_APP_ID = ca-app-pub-4399068253512867~8970810838
+CROWN_REWARDED_AD_UNIT_ID = ca-app-pub-4399068253512867/2224519212
+CROWN_PRIVACY_URL = https:/$()/crown-strategy-support.gavin0099.chatgpt.site/privacy
+CROWN_SUPPORT_URL = https:/$()/crown-strategy-support.gavin0099.chatgpt.site/

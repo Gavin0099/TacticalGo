@@ -1,0 +1,10 @@
+{
+  "schema": "tacticalgo-release-engineering-surface-v1",
+  "version": "1.1",
+  "build": "1121",
+  "executableSHA256": "6cc952b3d5eeea49e84c4480268ab7294649e6ca45b3f66c1323fbd29094bc2b",
+  "engineeringMarkersFound": [],
+  "excludedResourcesFound": [],
+  "passed": true,
+  "claimBoundary": "Reviewed executable markers and resources only; not proof of runtime equivalence, uploaded-archive identity or Apple approval."
+}

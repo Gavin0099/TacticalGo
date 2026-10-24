@@ -804,6 +804,7 @@ struct ModelPreview: UIViewRepresentable {
         view.cancelPlayback(); view.renderLease = nil
     }
 }
+#if DEBUG
 struct ModelGallery: View {
     let view: TabletopView
     let done: () -> Void
@@ -969,3 +970,4 @@ struct ModelGallery: View {
         }
     }
 }
+#endif

@@ -4,6 +4,119 @@ import XCTest
 /// ledger. These tests drive the real app on a simulator with an isolated record/ledger directory.
 /// They do not claim anything about purchases, advertising or play quality.
 @MainActor final class IntegrationUITests: XCTestCase {
+    /// Release tests use the real default root, on a newly created simulator.
+    /// No launch fixture, artificial allowance or reviewer-only path is used.
+    private func reviewSurfaceApp() -> XCUIApplication {
+        continueAfterFailure = false
+        XCUIDevice.shared.orientation = UIDevice.current.userInterfaceIdiom == .pad ? .landscapeLeft : .portrait
+        let app = XCUIApplication()
+        #if DEBUG
+        app.launchArguments = ["--full-game", "--record-isolation", UUID().uuidString]
+        #else
+        app.launchArguments = []
+        #endif
+        app.launch()
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:20))
+        return app
+    }
+    private func reviewTap(_ app: XCUIApplication, _ id: String) {
+        // iOS 27 alerts expose nested accessibility nodes for one visible button.
+        let button = app.buttons[id].firstMatch
+        XCTAssertTrue(button.waitForExistence(timeout:5),id)
+        for _ in 0..<8 where !button.isHittable {
+            if button.frame.minY < app.windows.firstMatch.frame.minY + 30 { app.swipeDown() }
+            else { app.swipeUp() }
+        }
+        XCTAssertTrue(button.isHittable,id)
+        button.tap()
+    }
+    private func reviewScreenshot(_ app: XCUIApplication, _ name: String) {
+        // The app-cropped API uses a stale portrait rectangle on iPadOS 27.
+        // Capture the entire display so landscape evidence is not clipped.
+        let attachment = XCTAttachment(screenshot:XCUIScreen.main.screenshot())
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+    func testReviewPublicEntriesAndDisclosureWithoutEngineeringArguments() {
+        let app = reviewSurfaceApp()
+        XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 3／3")
+        for hero in ["warrior","mage","rogue","priest"] { XCTAssertTrue(app.buttons["choose-"+hero].exists) }
+        XCTAssertTrue(app.descendants(matching:.any)["matchMonsters"].firstMatch.exists)
+        XCTAssertFalse(app.buttons["r2Lab"].exists)
+        reviewScreenshot(app,"review56-public-lobby")
+        reviewTap(app,"purchaseSettings")
+        let disclosure = app.staticTexts["accessOptionsDisclosure"]
+        XCTAssertTrue(disclosure.waitForExistence(timeout:5))
+        XCTAssertTrue(disclosure.label.contains("獎勵廣告") && disclosure.label.contains("永久解鎖"))
+        XCTAssertTrue(app.buttons["unlockPurchase"].exists)
+        XCTAssertTrue(app.buttons["restorePurchases"].exists)
+        XCTAssertFalse(app.buttons["watchRewardedAd"].exists,"Disclosure does not change the existing allowance policy")
+        reviewScreenshot(app,"review56-early-ad-disclosure")
+        reviewTap(app,"unlockDismiss")
+        XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 3／3")
+        reviewTap(app,"privacySupport")
+        XCTAssertTrue(app.navigationBars["隱私與支援"].waitForExistence(timeout:5))
+        reviewTap(app,"完成")
+        reviewTap(app,"lobbyChallenges")
+        reviewTap(app,"英雄技能入門 · 六關")
+        XCTAssertTrue(app.staticTexts["challengeCatalog"].waitForExistence(timeout:5))
+        reviewScreenshot(app,"review56-public-challenges")
+        reviewTap(app,"challengeBack")
+        XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:5))
+        app.terminate()
+    }
+    func testReviewPublicPracticeAndMonsterEntryWithoutEngineeringArguments() {
+        for hero in ["戰士","法師","盜賊","牧師"] {
+            let app = reviewSurfaceApp()
+            reviewTap(app,"玩法練習");reviewTap(app,hero+" · 擴充技能")
+            XCTAssertTrue(app.buttons["mode-advanced"].waitForExistence(timeout:8))
+            XCTAssertTrue(app.buttons["mode-skill"].exists)
+            XCTAssertTrue(app.buttons["play-cell-8-8"].exists)
+            reviewScreenshot(app,"review56-practice-"+hero)
+            app.terminate()
+        }
+        let app = reviewSurfaceApp()
+        XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 3／3","Practice does not consume the free allowance")
+        reviewTap(app,"matchMonsters");reviewTap(app,"雙怪")
+        reviewTap(app,"choose-priest");reviewTap(app,"startMatch")
+        XCTAssertTrue(app.buttons["play-cell-8-8"].waitForExistence(timeout:8))
+        XCTAssertTrue(app.buttons["mode-advanced"].label.contains("聖所"))
+        XCTAssertTrue(app.buttons["mode-skill"].label.contains("奉獻"))
+        reviewScreenshot(app,"review56-public-monsters-and-priest")
+        app.terminate()
+    }
+
+    func testReviewRewardedChoiceAfterThreeCompletedMatches() {
+        let app = reviewSurfaceApp()
+        // Hand-authored surround of White's D2 commander on the default 7x7
+        // board: Black D3, C2, E2 and D1 remove its four liberties.
+        func ready() {
+            let wait = XCTNSPredicateExpectation(predicate:NSPredicate(format:"enabled == true"),object:app.buttons["mode-soldier"])
+            XCTAssertEqual(XCTWaiter.wait(for:[wait],timeout:8),.completed)
+        }
+        func place(_ x: Int,_ y: Int) {
+            reviewTap(app,"play-cell-\(x)-\(y)");reviewTap(app,"playConfirm")
+        }
+        for completed in 0..<3 {
+            XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 \(3-completed)／3")
+            reviewTap(app,"startMatch");ready()
+            place(3,2);ready();reviewTap(app,"playEndTurn");ready()
+            place(2,1);ready();place(4,1);ready();reviewTap(app,"playEndTurn");ready()
+            place(3,0)
+            XCTAssertTrue(app.descendants(matching:.any)["matchResult"].firstMatch.waitForExistence(timeout:8))
+            reviewTap(app,"返回選角");reviewTap(app,"exitMatchConfirmed")
+            XCTAssertTrue(app.buttons["startMatch"].waitForExistence(timeout:5))
+        }
+        XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 0／3")
+        reviewTap(app,"startMatch")
+        XCTAssertTrue(app.buttons["watchRewardedAd"].waitForExistence(timeout:8))
+        XCTAssertTrue(app.buttons["unlockPurchase"].exists)
+        XCTAssertTrue(app.buttons["restorePurchases"].exists)
+        reviewScreenshot(app,"review56-after-three-completed-matches")
+        reviewTap(app,"unlockDismiss")
+        XCTAssertEqual(app.staticTexts["accessStatus"].label,"免費完整對局剩餘 0／3")
+        app.terminate()
+    }
+
     private func launch(extra: [String] = []) -> XCUIApplication {
         continueAfterFailure = false
         XCUIDevice.shared.orientation = .portrait

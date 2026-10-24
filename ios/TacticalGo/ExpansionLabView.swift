@@ -137,7 +137,10 @@ import TacticalGoVisuals
         sfxVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.expansionSFXVolume") as? Double ?? 0.80)
         voiceVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.castVoiceVolume") as? Double ?? 0.85)
         updateSoundMix()
-        restart(); loadReview()
+        restart()
+        #if DEBUG
+        loadReview()
+        #endif
         observer = NotificationCenter.default.addObserver(forName:AVAudioSession.interruptionNotification,object:nil,queue:.main) { [weak self] note in
             let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
             let options = note.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0
@@ -161,7 +164,6 @@ import TacticalGoVisuals
         defer { persistSoundPreferences = true }
         muted = false; voice = voiceEnabled; sfxVolume = 0.80; voiceVolume = 0.85
     }
-    #endif
     private func loadReview() {
         let args = ProcessInfo.processInfo.arguments
         func value(_ key: String) -> String? { guard let i = args.firstIndex(of:key),i+1 < args.count else { return nil }; return args[i+1] }
@@ -182,6 +184,7 @@ import TacticalGoVisuals
             }
         } catch { message = "工程棋形未載入：\(error)" }
     }
+    #endif
     deinit { task?.cancel(); if let observer { NotificationCenter.default.removeObserver(observer) } }
     func scene(_ isActive: Bool) {
         if isActive && !active { interrupted = false }
@@ -391,9 +394,11 @@ import TacticalGoVisuals
                 message = "\(commander.piece.owner == .one ? "黑" : "白")方主將已被提，\(winner == .one ? "黑" : "白")方獲勝。"
             }
         }
+        #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("--exp-autoplay") {
             FileHandle.standardOutput.write(Data(("EXPANSION_RECEIPT id=\(generation) class=\(before.heroClass(of:before.current).rawValue) ap=\(before.apRemaining)->\(state.apRemaining) mana=\(before.mana(of:before.current))->\(state.mana(of:before.current)) before=\(before.board.diagram.replacingOccurrences(of:"\n",with:"/")) after=\(state.board.diagram.replacingOccurrences(of:"\n",with:"/"))"+"\n").utf8))
         }
+        #endif
         saveCandidate(announce:false); schedule(systemReduced:systemReduced); return true
     }
     func endTurn() {
@@ -717,6 +722,7 @@ import TacticalGoVisuals
     }
 }
 
+#if DEBUG
 struct V11HomeView: View {
     var onClose: (() -> Void)? = nil
     var body: some View {
@@ -857,6 +863,8 @@ struct ExpansionLabView: View {
         }.presentationDetents([.large])
     }
 }
+
+#endif
 
 struct ExpansionBoard: View {
     private var weightedWarrior: Bool {

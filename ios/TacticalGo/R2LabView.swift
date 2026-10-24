@@ -2,6 +2,7 @@ import SwiftUI
 import TacticalGoCore
 import TacticalGoRecords
 
+#if DEBUG
 struct R2PracticeFixture: Decodable, Identifiable {
     let id: String
     let heroClass: HeroClass
@@ -25,8 +26,13 @@ struct R2PracticeFixture: Decodable, Identifiable {
         return (try? JSONDecoder().decode([Self].self,from:data)) ?? []
     }
 }
+#endif
+
+// Historical record labels remain available in every build. Only the research
+// fixture loader, editor and description are engineering-only.
 extension RecordRules {
     var variant: String { switch self { case .original:"A"; case .warrior:"B"; case .mage:"C"; case .both:"D"; case .redeployment:"E" } }
+    #if DEBUG
     var labDescription: String {
         switch self {
         case .original: "A 原版：英雄相鄰築壘／只推入空點"
@@ -36,7 +42,9 @@ extension RecordRules {
         case .redeployment: "沿棋群築壘＋調度己兵"
         }
     }
+    #endif
 }
+#if DEBUG
 struct R2LabView: View {
     let start: (R2PracticeFixture, RecordRules) -> Void
     private let fixtures = R2PracticeFixture.fixtures
@@ -78,3 +86,4 @@ struct R2LabView: View {
         }
     }
 }
+#endif

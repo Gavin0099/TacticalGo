@@ -1,0 +1,9 @@
+// Build a fully signed Release archive before App Store distribution export.
+// Xcode uses the existing development identity for archiving, then automatic
+// export signs the app and embedded frameworks with Apple Distribution.
+// Do not export an archive built with CODE_SIGNING_ALLOWED=NO for upload.
+#include "Release.1.1-1121.xcconfig"
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = Apple Development
+PROVISIONING_PROFILE_SPECIFIER =
+CROWN_ARCHIVE_PROFILE =

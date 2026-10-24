@@ -5,9 +5,6 @@ import TacticalGoRecords
 import TacticalGoContent
 import TacticalGoVisuals
 
-/// The 1.1 expansion shell (priest, second skills, monsters, solo expansion, practice). The 1.0 shell keeps its own
-/// look and is the product entry; this view is opened from the 1.0 lobby through an explicit entry and shares the
-/// 1.0 PlayAccess gate so expansion matches are metered like any other full match.
 /// Challenge campaigns offered by the product-mode lobby (same content as the original shell's challenge entry).
 private enum ProductChallengeRoute: String, Identifiable {
     case introduction, advanced
@@ -41,7 +38,9 @@ struct ExpansionGameView: View {
     @State private var showLootAbilities = false
     @State private var showRecords = false
     @State private var showOnboarding = false
+    #if DEBUG
     @State private var showR2 = false
+    #endif
     @State private var selectedRules: RecordRules = .original
     #if DEBUG || TACTICALGO_V11
     @State private var audioAuditStatus = "RUNNING"
@@ -171,11 +170,13 @@ struct ExpansionGameView: View {
             store.expansion?.stop()
             #endif
         }
+        #if DEBUG
         .sheet(isPresented: $showR2) {
             R2LabView { fixture, rules in
                 if store.startR2(fixture,rules:rules) { lesson = nil; inMatch = true; store.setMatchAudioActive(true) }
             }
         }
+        #endif
         .sheet(isPresented: $showRecords, onDismiss: { if inMatch { store.scheduleComputerTurn() } }) {
             RecordLibraryView(store: store, resume: resumeRecord)
         }
@@ -614,7 +615,9 @@ struct ExpansionGameView: View {
                     } label: { Label("玩法練習", systemImage: "graduationcap") }
                     Spacer()
                     // The skill lab is an engineering tool; the product lobby (Owner request 2026-10-16) does not offer it.
+                    #if DEBUG
                     if !productMode { Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab") }
+                    #endif
                     Button("遊戲規則") { showRules = true }
                 }.font(.system(size: 14)).frame(minHeight: 44)
         }
@@ -685,8 +688,10 @@ struct ExpansionGameView: View {
                     Button("格點清單") { showGrid = true }
                     Button("遊戲規則") { showRules = true }
                     Button("重新開始") {
-                        if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules) }
-                        else if let lesson { startPractice(lesson) } else { startMatch() }
+                        #if DEBUG
+                        if let fixture = store.r2Fixture { _ = store.startR2(fixture,rules:store.r2Rules); return }
+                        #endif
+                        if let lesson { startPractice(lesson) } else { startMatch() }
                     }
                     #if DEBUG || TACTICALGO_V11
                     if let match = store.expansion {
@@ -763,7 +768,9 @@ struct ExpansionGameView: View {
                 Text("新版技能 · 戰士沿棋群築壘／法師調度己兵")
                     .font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("candidateRulesBanner")
             }
+            #if DEBUG
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(uiAccent).accessibilityIdentifier("r2Banner") }
+            #endif
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
     }
     // The same 200pt dock is used on phones and tablets; state never changes its height.
@@ -1335,7 +1342,7 @@ private enum UnlockRequest: String, Identifiable {
 }
 
 #if DEBUG || TACTICALGO_V11
-/// Root of the Beta/TestFlight product: owns the shared access gate and presents the 1.1 shell as the whole game.
+/// Root of Beta and Release: the same public game and shared access gate.
 struct FullGameRoot: View {
     @State private var access = PlayAccess()
     var body: some View {

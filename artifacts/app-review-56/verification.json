@@ -1,0 +1,206 @@
+{
+  "schema": "tacticalgo-review56-verification-v1",
+  "date": "2026-10-24",
+  "baseCommit": "31ac5413d4b20b6f4cb95048dc8e73a0ea55e325",
+  "candidateVersion": "1.1",
+  "candidateBuild": "1121",
+  "releaseDistinctDeviceTestCombinationsPassed": 6,
+  "debugDistinctTestsPassed": 2,
+  "runs": [
+    {
+      "log": "ios/Build/review56/iphone-test.log",
+      "sha256": "d44519009327c0775fa5399eb726afe58d3dd04601e2a72b6d2af79edbf3a9b5",
+      "cases": [
+        {
+          "test": "IntegrationUITests/testReviewPublicEntriesAndDisclosureWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 32.238
+        },
+        {
+          "test": "IntegrationUITests/testReviewPublicPracticeAndMonsterEntryWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 90.081
+        },
+        {
+          "test": "IntegrationUITests/testReviewRewardedChoiceAfterThreeCompletedMatches",
+          "result": "failed",
+          "seconds": 85.172
+        }
+      ],
+      "succeeded": false
+    },
+    {
+      "log": "ios/Build/review56/iphone-1121.log",
+      "sha256": "e2cca6625e94979469a71e632289d88866528c5565408692a4e678d68744ab48",
+      "cases": [
+        {
+          "test": "IntegrationUITests/testReviewPublicEntriesAndDisclosureWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 37.646
+        },
+        {
+          "test": "IntegrationUITests/testReviewPublicPracticeAndMonsterEntryWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 89.56
+        },
+        {
+          "test": "IntegrationUITests/testReviewRewardedChoiceAfterThreeCompletedMatches",
+          "result": "passed",
+          "seconds": 147.347
+        }
+      ],
+      "succeeded": true
+    },
+    {
+      "log": "ios/Build/review56/ipad-1121.log",
+      "sha256": "50a0d949a55c573c5ad9a54015b454619b944b4f5b0560b83ef949136f37824f",
+      "cases": [
+        {
+          "test": "IntegrationUITests/testReviewPublicEntriesAndDisclosureWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 38.66
+        },
+        {
+          "test": "IntegrationUITests/testReviewPublicPracticeAndMonsterEntryWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 88.805
+        },
+        {
+          "test": "IntegrationUITests/testReviewRewardedChoiceAfterThreeCompletedMatches",
+          "result": "passed",
+          "seconds": 123.407
+        }
+      ],
+      "succeeded": true
+    },
+    {
+      "log": "ios/Build/review56/debug-regression.log",
+      "sha256": "e602be3fd32ea4ce35844db022d2c72cae3f37173cb709bb308532418461dac6",
+      "cases": [
+        {
+          "test": "ExpansionLabTests/testSavedMatchResumesFromFrozenReviewAndRemainsPlayableAndSaveable",
+          "result": "passed",
+          "seconds": 30.164
+        },
+        {
+          "test": "PlayableGameTests/testR2MageExchangePreviewAndUndo",
+          "result": "failed",
+          "seconds": 22.814
+        }
+      ],
+      "succeeded": false
+    },
+    {
+      "log": "ios/Build/review56/debug-r2-fixed.log",
+      "sha256": "3fd24493c808633fefb7588c0f35947b50d9e90002fc2d571913c29e0a7d59be",
+      "cases": [
+        {
+          "test": "PlayableGameTests/testR2MageExchangePreviewAndUndo",
+          "result": "failed",
+          "seconds": 16.031
+        }
+      ],
+      "succeeded": false
+    },
+    {
+      "log": "ios/Build/review56/debug-r2-current-ui.log",
+      "sha256": "72b539a2590207ca61289abc2d8e5637fc577eb63bb59835d4d98fe9505cc8f2",
+      "cases": [
+        {
+          "test": "PlayableGameTests/testR2MageExchangePreviewAndUndo",
+          "result": "passed",
+          "seconds": 21.192
+        }
+      ],
+      "succeeded": true
+    },
+    {
+      "log": "ios/Build/review56/ipad-screens-fixed.log",
+      "sha256": "28b580295db159de4e6e84160cd8387e7796836bd9e9af282e10e70b617a5fa6",
+      "cases": [
+        {
+          "test": "IntegrationUITests/testReviewPublicEntriesAndDisclosureWithoutEngineeringArguments",
+          "result": "passed",
+          "seconds": 45.203
+        },
+        {
+          "test": "IntegrationUITests/testReviewRewardedChoiceAfterThreeCompletedMatches",
+          "result": "passed",
+          "seconds": 139.341
+        }
+      ],
+      "succeeded": true,
+      "reason": "Full-screen screenshot API repair; no product change"
+    }
+  ],
+  "sourceSHA256": {
+    "ios/TacticalGo/ContentView.swift": "0ff9a2d676a9b93ccc97b5a237c7a14c5f03d2cfa32e47294bab37b1c881a212",
+    "ios/TacticalGo/ExpansionGameView.swift": "a1cdc6eed06091b3456a3898b4c8a1d11c26bc5a3db98413614aae3353325bd9",
+    "ios/TacticalGo/ExpansionLabView.swift": "4d0683801e5900c8357f9a985ab4aa4db52ab7214a0b0b6fdcd9d4c0a25b8b1f",
+    "ios/TacticalGo/GameStore.swift": "7486d865e7416f4ca7c18da83bbdeea25e0c199ff3a511dc5a1930c2763bc2a8",
+    "ios/TacticalGo/ModelBoard.swift": "9d76dafbef8d78035b16cc21872047a6b21d6867cb4c6fbcecef4ecb28066a03",
+    "ios/TacticalGo/PlayableGameView.swift": "a74107c78c85656c9b5eda7ee2493042431d4846421954a5d5f94979080a8f1e",
+    "ios/TacticalGo/PresentationLabView.swift": "340975e4922d4ead7cb0b222997bd814fb094806844a4aa1a02f0360570780d7",
+    "ios/TacticalGo/R2LabView.swift": "a47081d926f008e2e70cdd5fddfba8b56c43fc774efda51ef4936bfeac6b7cb1",
+    "ios/TacticalGo/TacticalGoApp.swift": "09272be8c9da37bd0e7423e1b75c47b729ee332a3103243efed069247b280f32",
+    "ios/TacticalGo/UnlockView.swift": "06a71cccf336634753108ae4d3baca78a180df59d6c0c4c8885efa1da8d41c21",
+    "ios/TacticalGo/WarriorPresentationLab.swift": "b677cfaf6a67f6363079afb34f379e07a51bc6503324f33af5cf31734891129a",
+    "ios/TacticalGoUITests/IntegrationUITests.swift": "5c7278c17a887d0236ee90a1aae16dab635c0918291e6ebfcefb6a44a643c2e6",
+    "ios/TacticalGoUITests/PlayableGameTests.swift": "e3cca793a56d7733cf6c7ff3b4d25787a135274e2fae81431236644a728d38de",
+    "scripts/package-release-assets.sh": "13a5befcfba32d7444a7de827177520636edfe341662076c492a759ff75f6efe",
+    "scripts/check-release-engineering-surface.py": "dcb32e6bcf119d8285001a517416143b92c830e7044a9c1fa6e31dd39d2238cf",
+    "docs/release-01/Release.1.1-1121.xcconfig": "83edae0ca7915256a549e1c7a29939419d530b6d4b7c06bb6ddd7c6bce567547"
+  },
+  "unverified": [
+    "original uploaded 1120 archive identity",
+    "distribution signature/profile/entitlements",
+    "production purchase/restore and delivered ads",
+    "physical device acceptance",
+    "Apple rejection root cause and approval"
+  ],
+  "externalActions": {
+    "upload": false,
+    "reviewReply": false,
+    "resubmit": false,
+    "metadataWrite": false,
+    "publish": false
+  },
+  "buildLogs": {
+    "baseline-build.log": {
+      "sha256": "d9cd6d72257cc8aa0fb3586b8d3d58df7716eb98f520cdacfb13e70b7eb95f05",
+      "result": "PASS"
+    },
+    "candidate-build.log": {
+      "sha256": "0b1c8ee10d03ed016334069f6e6f8a0af8e9d3ff2d2b97f4ead9f40b63ac25a3",
+      "result": "FAIL"
+    },
+    "candidate-build-fixed.log": {
+      "sha256": "d4bc253b80b734c3459ecc31b4c2cf454725ae8a7ada6539781c9fd744b66570",
+      "result": "PASS"
+    },
+    "device-archive.log": {
+      "sha256": "9d9aee0f849a7a0ae466214a3a689eb0c68a75851c66e474916ef80bad3f317f",
+      "result": "PASS"
+    },
+    "debug-build.log": {
+      "sha256": "1ff1b0673144209239f650819bd040ef75289b5fccc78fd59c951a5333a67a2e",
+      "result": "PASS"
+    }
+  },
+  "screenshotSHA256": {
+    "iphone-review56-public-lobby.png": "090292a7d622b01018073f2fc42945eeb9d03b7287658803687c22bd88db194a",
+    "ipad-review56-public-lobby.png": "acdf2c0d9b54cd27a1cc3709e63260a678c0b1025f6164bbd3634b52796298cb",
+    "iphone-review56-early-ad-disclosure.png": "12196b7751e11c83a1b708cd7bf157236c40a969a4ac3a268eee730a442ce596",
+    "iphone-review56-after-three-completed-matches.png": "eada4af00de9d4ef8bb5838a5ab40f3dd01fca26b2ca38094969e13169dd703b",
+    "ipad-review56-after-three-completed-matches.png": "ab690c655565a4222a5efdc242b30753463d5e251c2ff5cddea22b3cace805b0",
+    "ipad-review56-early-ad-disclosure.png": "8f6b713680f2bfa14fce11c1fdcd764e19f1f56600da53c7e97ede24ed154e0d"
+  },
+  "simulatorCleanup": {
+    "createdDeviceIDs": [
+      "7AE6F0AE-72B8-4CBA-8764-C29B8BCCE8D4",
+      "FFA101AE-615B-4DE0-9675-433E8A015B31"
+    ],
+    "deleted": true,
+    "otherDevicesOrRuntimesDeleted": false
+  }
+}

@@ -19,24 +19,25 @@ import TacticalGoContent
         defaults.set(token, forKey: "debug.soundPreferencesResetToken")
     }
     #endif
+    #if DEBUG
     @State private var ready = false
     @State private var failed = false
     private var legacyReview: Bool {
-        #if DEBUG
         ProcessInfo.processInfo.arguments.contains("--review-controls")
-        #else
-        false
-        #endif
     }
+    #endif
     @ViewBuilder private var normalRoot: some View {
+        #if DEBUG
         if !legacyReview { productRoot }
         else if ready { ContentView() }
         else if failed { Text("棋盤載入失敗。請重新開啟遊戲。").padding() }
         else { ProgressView("準備棋盤…") }
+        #else
+        productRoot
+        #endif
     }
-    /// Owner decision 2026-10-15: the TestFlight/Beta product runs the 1.1 shell for everything (the original rules are an
-    /// option inside it). Release keeps the original shell. Debug keeps it by default so the 1.0 UI suites keep their
-    /// subject; `--full-game` selects the new root there.
+    /// Beta and Release use the same public 1.1 shell. Debug retains the original
+    /// shell for its existing UI suites; `--full-game` selects the product there.
     @ViewBuilder private var productRoot: some View {
         #if TACTICALGO_V11 && !DEBUG
         FullGameRoot()
@@ -65,11 +66,14 @@ import TacticalGoContent
                 #else
                 normalRoot
                 #endif
-            }.task {
+            }
+            #if DEBUG
+            .task {
                 guard legacyReview, !ready, !failed else { return }
                 do { try await ModelLibrary.load(); ready = true }
                 catch { failed = true; print("Model resource load failed:", error) }
             }
+            #endif
         }
     }
 }

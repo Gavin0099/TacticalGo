@@ -78,6 +78,7 @@ import TacticalGoVisuals
     var playingVoices: Int { players.filter { ($0.key.contains("voice") || $0.key.hasPrefix("mage-cast-")) && $0.value.isPlaying }.count }
 }
 
+#if DEBUG
 @MainActor @Observable final class PresentationLabStore {
     var variant: MagePresentationVariant = .arcaneHand
     var size = 7
@@ -549,4 +550,5 @@ private struct PresentationBoard: View {
         }.position(point(p,pitch))
     }
 }
+#endif
 #endif
