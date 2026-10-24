@@ -112,6 +112,36 @@ import UIKit
         shot(app,"tg12-two-action-forecast-committed")
     }
 
+    /// Regression: the board and both primary action positions must remain
+    /// directly tappable without scrolling the entire planning sheet.
+    func testForecastCompactBoardAndPrimaryCommandsRemainVisible() {
+        let app = integrated()
+        tap(app, "startMatch"); ready(app)
+        tap(app, "playEndTurn"); ready(app)
+        tap(app, "forecastOpen")
+        let boardCell = app.buttons["forecast-cell-0-0"]
+        let add = app.buttons["forecastAddStep"]
+        XCTAssertTrue(boardCell.isHittable, "The board should be visible before a scroll")
+        XCTAssertTrue(add.isHittable, "The draft action must remain visible")
+        boardCell.tap()
+        XCTAssertTrue(add.isEnabled)
+        add.tap()
+        let second = app.buttons["forecast-cell-1-0"]
+        XCTAssertTrue(second.isHittable, "The next action board should stay visible")
+        XCTAssertTrue(add.isHittable, "The action dock should not scroll away")
+        second.tap(); add.tap()
+        XCTAssertTrue(app.buttons["forecastLoadFirst"].isHittable)
+
+        let details = app.buttons["forecastDetailsToggle"]
+        tap(app, "forecastDetailsToggle")
+        XCTAssertEqual(details.label, "收合詳細數字")
+        XCTAssertTrue(app.buttons["forecastLoadFirst"].isHittable,
+                      "Optional metrics may scroll; commit control must not")
+        tap(app, "forecastClose"); ready(app)
+        XCTAssertTrue(app.buttons["play-cell-0-0"].label.contains("空點"),
+                      "Opening and closing the compact draft must not commit")
+    }
+
     func testForecastDoesNotBorrowLivePreviewOrCommitOnBackground() {
         let app = integrated()
         tap(app,"startMatch");ready(app)
