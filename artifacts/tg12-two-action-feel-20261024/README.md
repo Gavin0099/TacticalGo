@@ -60,4 +60,4 @@
 
 本輪自建 iPhone SE、Beta iPhone 17、iPad mini 三台模擬器已 shutdown / delete，見 `simulator-cleanup.json`；其他任務裝置與 runtime 保留。
 
-C# replay / parity 未驗（無 .NET SDK）。沒有重新驗證完整購買／廣告／付費流程、真實 1.0 存檔或全模式整合；本輪沒有改這些路徑。沒有真機影像、聽感、玩家趣味或美術接受證據。iPhone 開發版安裝結果另見 `device-install.json`；安裝成功不能替代真人驗收。未合併、未 TestFlight 上傳、未發布。
+C# replay / parity 未驗（無 .NET SDK）。沒有重新驗證完整購買／廣告／付費流程、真實 1.0 存檔或全模式整合；本輪沒有改這些路徑。沒有真機影像、聽感、玩家趣味或美術接受證據。iPhone 開發版安裝已成功；自動啟動被 iOS 以裝置鎖定拒絕，需要解鎖後自行開啟「皇冠戰略 TG12 驗收」。結果見 `device-install.json`；安裝成功不能替代真人驗收。未合併、未 TestFlight 上傳、未發布。

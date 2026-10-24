@@ -10,5 +10,6 @@
   "signature_verification": "codesign --verify --deep --strict passed; get-task-allow true; profile includes target device",
   "executable_sha256": "84f6a705318430288840f8a3d850e4bbb1033c0e902e8ed97d39ccd52aab16b8",
   "source_root": "current PR #40 working tree based on b878236; source-manifest.json",
-  "human_visual_audio_acceptance": "not performed"
+  "human_visual_audio_acceptance": "not performed",
+  "launch_reason": "device locked; installation succeeded; user can unlock and open app manually"
 }
