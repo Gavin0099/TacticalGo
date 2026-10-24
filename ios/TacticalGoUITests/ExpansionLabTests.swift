@@ -199,7 +199,16 @@ import UIKit
     }
 
     func testForecastLargeTextReducedMotionAndTabletRotationKeepDraftUncommitted() {
+        continueAfterFailure = false
         let app = XCUIApplication()
+        func screen(_ name:String) {
+            // App-only screenshots on a rotated iPad can retain portrait crop
+            // bounds. Capture the device display, including the complete sheet.
+            let capture = XCTAttachment(screenshot:XCUIScreen.main.screenshot())
+            capture.name = name;capture.lifetime = .keepAlways;add(capture)
+            let geometry = XCTAttachment(string:"app=\(app.frame); window=\(app.windows.firstMatch.frame); orientation=\(XCUIDevice.shared.orientation.rawValue)")
+            geometry.name = name+"-geometry";geometry.lifetime = .keepAlways;add(geometry)
+        }
         app.expansionShellArguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityM"]
         XCUIDevice.shared.orientation = .portrait
         defer { XCUIDevice.shared.orientation = .portrait }
@@ -208,31 +217,44 @@ import UIKit
         tap(app,"playEndTurn");ready(app)
         openMatchMenu(app,"audioSettings");tap(app,"audioSettings")
         let motion = app.switches["reduceCombatMotion"]
+        for _ in 0..<6 {
+            if motion.isHittable { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(motion.isHittable)
         if motion.value as? String != "1" {
             motion.coordinate(withNormalizedOffset:CGVector(dx:0.9,dy:0.5)).tap()
         }
-        XCTAssertEqual(motion.value as? String,"1")
+        let reduced = XCTNSPredicateExpectation(predicate:NSPredicate(format:"value == %@","1"),object:motion)
+        XCTAssertEqual(XCTWaiter.wait(for:[reduced],timeout:5),.completed)
         closeSettingsSheet(app)
         let before = resources(app)
         tap(app,"forecastOpen")
         for id in ["forecastStage0","forecastStage1","forecastStage2"] {
             let button = app.buttons[id]
             XCTAssertTrue(button.waitForExistence(timeout:5))
-            XCTAssertGreaterThanOrEqual(button.frame.height,44,id)
-            XCTAssertGreaterThanOrEqual(button.frame.width,44,id)
+            // AX can report 44 pt as 43.99999999999997 on 3x displays.
+            // A 0.001 pt numeric tolerance still rejects a genuinely small hit area.
+            XCTAssertGreaterThanOrEqual(button.frame.height,44-0.001,id)
+            XCTAssertGreaterThanOrEqual(button.frame.width,44-0.001,id)
         }
-        shot(app,"forecast-large-text-first-stage")
+        screen("forecast-large-text-first-stage")
         tap(app,"forecast-cell-0-0");tap(app,"forecastAddStep")
         // Only iPad supports landscape in this product. Rotation must preserve
         // the memory-only draft without advancing the authoritative match.
         if UIDevice.current.userInterfaceIdiom == .pad {
             XCUIDevice.shared.orientation = .landscapeLeft
+            XCTAssertTrue(app.buttons["forecastClose"].waitForExistence(timeout:5))
+            screen("forecast-after-tablet-rotation")
         }
         tap(app,"forecast-cell-1-0");tap(app,"forecastAddStep")
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            XCTAssertGreaterThan(app.windows.firstMatch.frame.width,app.windows.firstMatch.frame.height)
+        }
         let second = app.descendants(matching:.any)["forecastSummary2"].firstMatch
         XCTAssertTrue(second.exists)
         XCTAssertTrue(second.label.contains("交給對手"),second.label)
-        shot(app,"forecast-large-text-reduced-result")
+        screen("forecast-large-text-reduced-result")
         tap(app,"forecastLoadFirst")
         ready(app)
         XCTAssertEqual(resources(app),before)
@@ -241,7 +263,7 @@ import UIKit
         XCTAssertTrue(app.buttons["playConfirm"].isEnabled)
         tap(app,"undoOrCancel")
         XCTAssertEqual(resources(app),before)
-        shot(app,"forecast-large-text-reduced-cancelled")
+        screen("forecast-large-text-reduced-cancelled")
         app.terminate()
     }
 
@@ -1032,8 +1054,13 @@ import UIKit
             return
         }
         for _ in 0..<8 {
+            guard b.waitForExistence(timeout:5) else { XCTFail("Missing button: \(id)");return }
             if b.isHittable { break }
-            if b.frame.minY < app.windows.firstMatch.frame.minY+30 { app.swipeDown() } else { app.swipeUp() }
+            // Scroll inside the presented draft. Swiping the entire iPad app
+            // can grab the sheet's dismissal gesture after a rotation.
+            let draftScroll = app.scrollViews["forecastScroll"]
+            let surface = id.hasPrefix("forecast") && draftScroll.exists ? draftScroll : app
+            if b.frame.minY < surface.frame.minY+30 { surface.swipeDown() } else { surface.swipeUp() }
         }
         XCTAssertTrue(b.isHittable,id); if b.isHittable { b.tap() }
         if id.hasPrefix("mode-") { XCTAssertTrue(b.isSelected, "The tapped card must select its own mode: \(id)") }

@@ -310,6 +310,7 @@ struct TwoActionPlanningSheet: View {
                         .font(.caption2).foregroundStyle(.secondary)
                 }.padding(16)
             }
+            .accessibilityIdentifier("forecastScroll")
             .navigationTitle("兩手試算")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement:.confirmationAction) {
