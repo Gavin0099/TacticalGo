@@ -1,0 +1,51 @@
+{
+  "schema": "tacticalgo-release-signature-check-v1",
+  "bundles": [
+    {
+      "bundle": ".",
+      "bundleID": "com.tacticalgo.prototype.herobody",
+      "signatureIdentifier": "com.tacticalgo.prototype.herobody",
+      "team": "P358EB3X9H",
+      "requirementSHA256": "c494bf5859ac0e5743705559a9c85c68136367d9232192a819d04b9798f905cf",
+      "checks": {
+        "metadataReadable": true,
+        "identifierMatchesInfo": true,
+        "appleDistributionAuthority": true,
+        "teamPresent": true,
+        "designatedRequirementSatisfied": true
+      }
+    },
+    {
+      "bundle": "Frameworks/GoogleMobileAds.framework",
+      "bundleID": "com.google.GoogleMobileAds",
+      "signatureIdentifier": "com.google.GoogleMobileAds",
+      "team": "P358EB3X9H",
+      "requirementSHA256": "9a76ec4b41978120de568773c1104c7b16eebb85af0d16c601d8b0e97539178d",
+      "checks": {
+        "metadataReadable": true,
+        "identifierMatchesInfo": true,
+        "appleDistributionAuthority": true,
+        "teamPresent": true,
+        "designatedRequirementSatisfied": false
+      }
+    },
+    {
+      "bundle": "Frameworks/UserMessagingPlatform.framework",
+      "bundleID": "com.google.UserMessagingPlatform",
+      "signatureIdentifier": "com.google.UserMessagingPlatform",
+      "team": "P358EB3X9H",
+      "requirementSHA256": "38d5da6b0c22b3c2fba8c2772efc9f1c75137d80047370aff3d70b53c6fef6d1",
+      "checks": {
+        "metadataReadable": true,
+        "identifierMatchesInfo": true,
+        "appleDistributionAuthority": true,
+        "teamPresent": true,
+        "designatedRequirementSatisfied": false
+      }
+    }
+  ],
+  "embeddedTeamsMatchApp": true,
+  "deepIntegrity": true,
+  "passed": false,
+  "claimBoundary": "Local app/framework signing requirements only; not App Store Connect processing or Apple review approval."
+}

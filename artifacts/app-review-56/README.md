@@ -8,9 +8,14 @@ Local engineering verification on 2026-10-24. This folder contains no signing as
 | Repaired 1121 simulator check | Pass, no reviewed markers/resources | `surface-green.json` |
 | Repaired 1121 unsigned iOS archive check | Pass, no reviewed markers/resources | `device-surface.json` |
 | Device package metadata/resources | iPhone + iPad, privacy manifests present; unsigned | `device-package.json` |
-| Local App Store IPA signing | Apple Distribution signature/profile/entitlements pass | `signed-distribution-check.json` |
+| Initial local IPA checks | Limited checks pass; subsequent server validation rejects SDK requirements | `signed-distribution-check.json` |
 | Signed package engineering surface | No reviewed markers/resources | `signed-surface.json` |
 | Signing/export content equivalence | 49 file-backed sections and listed assets unchanged | `signing-content-equivalence.json` |
+| Rejected upload signature requirements | Negative control: app passes, both SDKs fail | `signatures-rejected.json` |
+| Fully signed archive export | All three app/framework requirements pass | `signatures-corrected.json` |
+| Exact retry transport package | All three requirements pass; engineering surface passes | `signatures-upload-corrected.json`, `surface-upload-corrected.json` |
+| Full rebuild comparison | 47/49 sections match; full equality fails; main text/source unchanged | `corrected-content-check.json` |
+| Apple upload and processing | Retry accepted, observed processing status in receipt | `upload-receipt.json` |
 | Release iPhone portrait | 3 / 3 native flow tests pass | `verification.json`, `iphone-*.png` |
 | Release iPad landscape | 3 / 3 native flow tests pass | `verification.json`, `ipad-*.png` |
 | Debug fixture/save and R2 exchange/undo | 2 distinct tests pass on final applicable runs | `verification.json` |
@@ -25,11 +30,14 @@ Use a newly created iOS simulator with no existing app data. Do not erase an own
 
 ```sh
 python3 scripts/check-release-engineering-surface.py PATH_TO_BUILT_APP
+python3 scripts/check-release-signatures.py PATH_TO_DISTRIBUTION_APP
 bash -n scripts/package-release-assets.sh
 git diff --check
 ```
 
 The marker checker must return 1 for the reconstructed baseline, and 0 for both repaired packages. Its explicit marker/resource list is a bounded regression check, not a complete security audit or proof of Apple approval.
+
+The signature checker must return 1 for the first rejected transport package (two SDK requirement failures) and 0 for the corrected export and actual retry package (three bundles pass). Earlier `codesign --verify --deep --strict` and main-app/profile checks did not detect this failure. The checker additionally evaluates each bundle's own designated requirement using a literal `-R '=REQUIREMENT_SOURCE'`, following [Apple TN3127](https://developer.apple.com/documentation/technotes/tn3127-inside-code-signing-requirements).
 
 ```sh
 xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
@@ -48,13 +56,13 @@ The actual run reused the already-resolved Google SDK package cache via `-cloned
 ```sh
 xcodebuild -project ios/TacticalGo.xcodeproj -scheme TacticalGo \
   -configuration Release -destination 'generic/platform=iOS' \
-  -xcconfig docs/release-01/Release.1.1-1121.xcconfig \
+  -xcconfig docs/release-01/Archive.1.1-1121.xcconfig \
   -derivedDataPath ios/Build/review56/device \
-  -archivePath ios/Build/review56/CrownTactics-1.1-1121-unsigned.xcarchive \
-  CODE_SIGNING_ALLOWED=NO -jobs 2 archive
+  -archivePath ios/Build/review56/CrownTactics-1.1-1121-signed.xcarchive \
+  CODE_SIGNING_ALLOWED=YES -allowProvisioningUpdates -jobs 2 archive
 ```
 
-That command creates an **unsigned** device archive; it is not an upload procedure. After the owner's explicit signing authorization, Xcode exported it locally with `-exportArchive -allowProvisioningUpdates` and these export options:
+That command creates a fully signed Release device archive. Its public config resolves to the same settings used for the successful build (recorded in `upload-receipt.json`). Xcode signs the archive with the existing development identity, then signs the exported App Store package with Apple Distribution. Export locally with `-exportArchive -allowProvisioningUpdates`, the signed archive path and these options:
 
 ```text
 method = app-store-connect
@@ -65,6 +73,6 @@ manageAppVersionAndBuildNumber = false
 uploadSymbols = false
 ```
 
-The resulting local IPA's signature, embedded App Store profile and entitlements pass the checks in `signed-distribution-check.json`. Certificate extraction for the profile/signer comparison uses `codesign -d --extract-certificates=TEMPORARY_PREFIX`; only public certificate bytes are compared in a temporary directory, then removed. No private key is extracted. The original archive remains unsigned.
+The first unsigned-archive export path and its receipts are retained only as failure evidence. Do not use its IPA for distribution. The corrected local IPA is `ios/Build/review56/AppStore-1121-corrected/TacticalGo.ipa`; the preserved exact retry package is `ios/Build/review56/TacticalGo-1121-upload-corrected-package.ipa`. Signing assets and IPA files are not committed. No private key is extracted.
 
-App Store Connect server validation/processing, physical-device validation, production transactions/ad delivery and Apple's unspecified rejection cause remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for the remaining owner actions and unsent review drafts.
+The owner later explicitly authorized upload. Only that retry changed the export destination to `upload`; version management stayed disabled, retaining 1121. The first validation rejection, retry success and observed App Store Connect status are in `upload-receipt.json`. Physical-device acceptance, production transactions/ad delivery and resolution of Apple's original unspecified 5.6 concern remain unverified. See the [repair report](../../docs/release-01/APP_REVIEW_56_REPAIR.md) for the remaining owner actions and unsent review drafts.

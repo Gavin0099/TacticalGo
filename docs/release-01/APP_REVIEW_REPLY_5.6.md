@@ -1,6 +1,6 @@
 # Guideline 5.6 response — local draft, not sent
 
-Use after reviewing the repair evidence. This text does not claim that Apple identified the same source issue, that a new build has already been uploaded, or that approval is guaranteed.
+Use after reviewing the repair evidence. This local draft has not been sent. It does not claim that Apple identified the same source issue or that approval is guaranteed.
 
 Hello App Review Team,
 
@@ -10,6 +10,6 @@ We checked the submitted description and Review Notes. They disclose the four he
 
 During our source audit and Release reconstruction, we found that internal fixture-loading and presentation/research tooling was still included in the Release compilation path, even though the normal product did not expose those engineering screens. We have prepared a repair that limits those tools to Debug compilation. The public game features remain available through normal navigation. We have also made the existing rewarded-ad access conditions explicit on the purchase screen from the first visit, without changing the three-match policy or purchase benefits.
 
-We have prepared build 1121 locally and a detailed feature walkthrough. Release UI tests on iPhone and iPad simulators reach the public feature entries and the ad-choice screen by completing three normal local games, without special app launch arguments. The new build has not yet been uploaded. We do not want to assume that these findings are the specific behavior you observed. Could you please identify the feature or screen considered hidden, the steps used to reach it, and the device/iOS version? A screenshot or recording would help us confirm that our repair addresses your concern completely before we resubmit.
+We have uploaded build 1121 and prepared a detailed feature walkthrough. Release UI tests on iPhone and iPad simulators reach the public feature entries and the ad-choice screen by completing three normal local games, without special app launch arguments. We have not resubmitted the app for review. We do not want to assume that these findings are the specific behavior you observed. Could you please identify the feature or screen considered hidden, the steps used to reach it, and the device/iOS version? A screenshot or recording would help us confirm that our repair addresses your concern completely before we resubmit.
 
 Thank you.

@@ -40,7 +40,7 @@ The release candidate is based on main `31ac541`, separately from PR #40 and the
 - Repaired 1121 Release simulator and unsigned arm64 iOS archive: build succeeds; the same check finds none of the reviewed engineering markers or excluded research resources.
 - Release iPhone 16 Pro portrait / iPad Pro 11-inch (M4) landscape, iOS 27.0: three public-flow tests pass on each device, with **no app launch arguments**. They cover public heroes/skill controls, all four practice entries, monsters, challenges, purchase/restore controls, privacy/support entry, first-visit ad disclosure, and the continuation choices after three genuinely completed local matches. They do not perform a purchase or watch an ad.
 - Debug: the frozen-fixture save/resume test and the R2 mage exchange/undo test both pass on the final applicable runs. These are two distinct checks of retained engineering tools, separate from the six Release device/test combinations.
-- The device package retains iPhone/iPad support, the app privacy manifest and the Google Mobile Ads / UMP privacy manifests. No `.storekit`, `.usdz` or `.scn` files are packaged. The app archive is unsigned; distribution entitlements are not verified.
+- The device package retains iPhone/iPad support, the app privacy manifest and the Google Mobile Ads / UMP privacy manifests. No `.storekit`, `.usdz` or `.scn` files are packaged. The first archive was unsigned; subsequent signing and upload results are recorded below.
 
 Canonical checks, test receipts, source hashes and selected screenshots are in [artifacts/app-review-56](../../artifacts/app-review-56/README.md). Raw build logs and xcresults stay local under `ios/Build/review56/`; the authenticated account-page snapshot and signing information are not published.
 
@@ -50,8 +50,9 @@ Canonical checks, test receipts, source hashes and selected screenshots are in [
 2. The first native Release run passed 2 tests and failed 1 because iOS 27 exposes nested accessibility nodes for the same alert button. The test now selects the first matching visible action; the three-completed-match assertions are unchanged. The final iPhone batch passed all 3.
 3. The old R2 test used the public setup screen and then expected obsolete standalone banner/AP labels. Its current route is the Debug engineering shell, with the selected variant checked through its fixture message and AP through the actual resource display. Failure receipts remain in the evidence inventory.
 4. iPad app-cropped screenshots used a stale portrait capture rectangle even though the tests operated in landscape. A separate `simctl` full-screen capture confirmed the actual layout. The screenshot helper now uses `XCUIScreen.main`; only the affected evidence flows are rerun.
+5. The first authorized upload failed Apple's validation for GoogleMobileAds and UserMessagingPlatform. A general integrity check and the main app's distribution/profile checks had passed, but explicitly evaluating each framework's designated requirement failed. Those failures are reproducible in `signatures-rejected.json`. A fully signed Release archive fixes the framework requirements; both local export and the actual retry package pass the expanded check.
 
-## Distribution signing completed locally
+## Initial local signing — superseded after server validation
 
 On 2026-10-24 the owner explicitly authorized Xcode to create/download the necessary distribution signing assets, excluding certificate revocation, upload and submission. Xcode successfully exported the existing unsigned archive with `method=app-store-connect`, `destination=export`, `signingStyle=automatic`, `manageAppVersionAndBuildNumber=false`, `uploadSymbols=false` and `-allowProvisioningUpdates`.
 
@@ -63,12 +64,24 @@ The resulting **Apple Distribution-signed IPA** is retained locally at `ios/Buil
 - All **49 file-backed Mach-O sections** match the tested unsigned candidate. The signed executable still passes the engineering-surface check. These checks avoid treating a signing/export change as a new untested gameplay build.
 - Canonical evidence: [signed-distribution-check.json](../../artifacts/app-review-56/signed-distribution-check.json), [signing-content-equivalence.json](../../artifacts/app-review-56/signing-content-equivalence.json) and [signed-surface.json](../../artifacts/app-review-56/signed-surface.json). The IPA, embedded profile, private keys and account logs are not committed.
 
-This completes local distribution signing. App Store Connect server validation/processing and review acceptance remain separate. The repository's older `archive-release.sh` / `check-release-readiness.py` are explicitly locked to 1.0; their results are not represented as a passed 1.1 release gate.
+These were limited local checks, not sufficient evidence of upload readiness: Apple subsequently rejected this unsigned-archive export path for the two embedded SDK requirements. Preserve these reports as earlier-stage evidence; use the corrected package below. The repository's older `archive-release.sh` / `check-release-readiness.py` are explicitly locked to 1.0 and are not claimed as a passed 1.1 gate.
+
+## Corrected signed archive and authorized upload
+
+The owner separately authorized uploading 1121 on 2026-10-24. After the first validation rejection, the repair uses a normal, fully signed Release archive (`CODE_SIGNING_ALLOWED=YES`). [Archive.1.1-1121.xcconfig](Archive.1.1-1121.xcconfig) preserves the 1121 product values, uses the existing development identity for archiving, and lets Xcode automatic distribution export sign the app and embedded frameworks. Its resolved app build settings match the settings used for the successful archive.
+
+The archive is retained at `ios/Build/review56/CrownTactics-1.1-1121-signed.xcarchive`. The corrected local distribution IPA is `ios/Build/review56/AppStore-1121-corrected/TacticalGo.ipa`; a preserved copy of the exact retry transport package is `ios/Build/review56/TacticalGo-1121-upload-corrected-package.ipa`.
+
+The new [signature checker](../../scripts/check-release-signatures.py) explicitly evaluates the designated requirement of the app and each embedded framework, checks signature/Info.plist identifiers and common distribution team, and retains the broad integrity check. It rejects the first transport package (main app passes; both SDK requirements fail) and accepts the corrected export and the actual retry package (all three bundles pass). This follows Apple's [TN3127 requirement evaluation](https://developer.apple.com/documentation/technotes/tn3127-inside-code-signing-requirements); it does not change third-party code or bypass validation.
+
+The fully rebuilt app is **not byte-identical** to the earlier unsigned build: 47 of 49 file-backed sections match; only `__TEXT/__stubs` and `__TEXT/__objc_stubs` differ. Product source files and the main `__TEXT/__text` section are unchanged. The failed full-section comparison is retained in `corrected-content-check.json`; do not apply the earlier 49/49 equivalence claim to this rebuild. The corrected package still passes the engineering-marker/resource check.
+
+Xcode's retry completed successfully at **2026-10-24 11:27:58 Asia/Taipei**, reporting that Apple received the package and began processing it. App Store Connect first displayed 1.1 (1121) as **處理中**, then **準備提交**, confirming processing completion and availability in its build list. Current status and the two attempts are in [upload-receipt.json](../../artifacts/app-review-56/upload-receipt.json). This packaging failure was encountered during this upload; it does not establish the cause of the original 1120 Guideline 5.6 decision. Upload acceptance and processing completion are separate from App Review approval.
 
 ## Remaining distribution steps
 
 1. Review the local [review notes](APP_REVIEW_NOTES_1.1.md) and [response draft](APP_REVIEW_REPLY_5.6.md). Apple has not identified the allegedly hidden feature; request its reproduction steps before claiming that this candidate resolves the actual rejection.
-2. Upload the signed 1121 IPA and verify App Store Connect validation/processing only with explicit owner authorization.
-3. Replace Review Notes, send the response and resubmit only with the owner's explicit authorization. No such external action has been performed here.
+2. Owner may now authorize selecting processed build 1121 for the next review submission.
+3. Replace Review Notes, send the response and resubmit only with the owner's explicit authorization. The upload authorization does not include these actions; none has been performed here.
 
 No Core, Bot, skill costs, saved-game schema, allowance rules or purchase policy changed. C# replay/parity, real-device acceptance, production purchase/restore/ad delivery and Apple approval are not claimed by this repair.

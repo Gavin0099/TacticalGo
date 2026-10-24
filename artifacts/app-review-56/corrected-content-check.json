@@ -1,0 +1,17 @@
+{
+  "schema": "tacticalgo-corrected-package-content-v1",
+  "sectionCount": 49,
+  "sectionsMatchTestedCandidate": false,
+  "version": "1.1",
+  "build": "1121",
+  "ipaSHA256": "2b82152072790effb3f0cf5dc707cebef32e223d50559c0cbc2f42f83b95611f",
+  "passed": false,
+  "changedSections": [
+    "__TEXT/__objc_stubs",
+    "__TEXT/__stubs"
+  ],
+  "equalSectionCount": 47,
+  "mainTextUnchanged": true,
+  "productSourceUnchanged": true,
+  "claimBoundary": "Full-section byte equality fails after a complete rebuild; preserve that failure. Main executable text and product sources match. No claim of bit-identical rebuild."
+}

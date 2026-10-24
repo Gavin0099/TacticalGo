@@ -1,0 +1,70 @@
+{
+  "schema": "tacticalgo-1121-upload-v1",
+  "checkedAt": "2026-10-24T03:32:19.141230+00:00",
+  "version": "1.1",
+  "build": "1121",
+  "authorization": "Owner explicitly authorized uploading 1121; no review submission or publication.",
+  "productSourceCommit": "2e0ad1c4020e91d1943f88af017907e977a1ce47",
+  "productSourceUnchanged": true,
+  "archiveSettings": {
+    "MARKETING_VERSION": "1.1",
+    "CURRENT_PROJECT_VERSION": "1121",
+    "PRODUCT_BUNDLE_IDENTIFIER": "com.tacticalgo.prototype.herobody",
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "TACTICALGO_V11",
+    "CODE_SIGN_STYLE": "Automatic",
+    "CODE_SIGN_IDENTITY": "Apple Development",
+    "PROVISIONING_PROFILE_SPECIFIER": ""
+  },
+  "attempts": [
+    {
+      "result": "validation_rejected",
+      "xcodeExit": 70,
+      "reason": "Invalid Signature: embedded frameworks fail their own designated requirements",
+      "frameworks": [
+        "GoogleMobileAds.framework",
+        "UserMessagingPlatform.framework"
+      ],
+      "logSHA256": "137f1c0ce8398e968a9c0619a6db9ec2f7a0ef69975da5da60ff6a2e163a402e"
+    },
+    {
+      "result": "upload_succeeded",
+      "xcodeExit": 0,
+      "uploadedAt": "2026-10-24T11:27:58+08:00",
+      "transportPackageSHA256": "e88458641e800741551f261d7fc04e6b0f12fdbce38ec3463032493509e34e6e",
+      "logSHA256": "41196e96e62937aa1749b41b2c697cc720e3b003bd9d92ca9e20f20e569f82d5"
+    }
+  ],
+  "appStoreConnect": {
+    "observedStatus": "準備提交",
+    "url": "https://appstoreconnect.apple.com/apps/6821588889/testflight/ios",
+    "processingComplete": true,
+    "observedBuild": "1121",
+    "observedSections": [
+      [
+        "",
+        "建置版本",
+        "1121",
+        "\t",
+        "準備提交",
+        "90 天後到期",
+        "\t",
+        "\t",
+        "",
+        "–",
+        "",
+        "\t",
+        "",
+        "–",
+        "",
+        "\t",
+        "",
+        "–"
+      ]
+    ]
+  },
+  "reviewSubmissionPerformed": false,
+  "reviewMessageSent": false,
+  "reviewNotesChanged": false,
+  "publicationPerformed": false,
+  "claimBoundary": "Upload and observed build-processing status only; not App Review acceptance or 5.6 resolution."
+}
