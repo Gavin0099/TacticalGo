@@ -211,129 +211,201 @@ struct TwoActionPlanningSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var systemReducedMotion
 
+    @State private var showsDetails = false
+
+    /// The board and essential controls are outside the scroll region.
+    /// Only explanations and optional detail rows scroll on smaller devices.
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 12) {
-                    Text("先想好兩手，再決定是否真的落子。所有變化只來自目前的合法棋局；這裡不預測對方下一回合。")
-                        .font(.footnote).foregroundStyle(.secondary)
-                        .frame(maxWidth:.infinity,alignment:.leading)
+            GeometryReader { screen in
+                VStack(spacing: 8) {
                     HStack(spacing: 6) {
                         ForEach(TwoActionPlanningController.Stage.allCases) { stage in
                             Button(stage.title) { planner.show(stage) }
-                                .font(.system(size:12,weight:.semibold))
-                                .frame(maxWidth:.infinity,minHeight:44)
+                                .font(.system(size: 12, weight: .semibold))
+                                .frame(maxWidth: .infinity, minHeight: 44)
                                 .background(planner.stage == stage ? Color.orange.opacity(0.3) : Color.gray.opacity(0.15),
-                                            in:RoundedRectangle(cornerRadius:8))
+                                            in: RoundedRectangle(cornerRadius: 8))
                                 .disabled(stage == .second && planner.forecast.secondBase == nil ||
                                           stage == .result && planner.forecast.firstStep == nil)
                                 .accessibilityIdentifier("forecastStage\(stage.rawValue)")
                         }
                     }
-                    if let assets=match.assets {
-                        ExpansionBoard(store:match,assets:assets,time:2,reduced:true,
-                                       identityPrefix:"forecast-cell",planning:planner)
-                            .aspectRatio(1,contentMode:.fit).frame(maxWidth:420)
-                            .accessibilityElement(children:.contain)
+
+                    if let assets = match.assets {
+                        ExpansionBoard(store: match, assets: assets, time: 2, reduced: true,
+                                       identityPrefix: "forecast-cell", planning: planner)
+                            .aspectRatio(1, contentMode: .fit)
+                            .frame(width: min(screen.size.width - 24, min(screen.size.height * 0.42, 420)))
+                            .accessibilityElement(children: .contain)
                             .accessibilityIdentifier("forecastBoard")
                     } else {
                         Text("棋盤素材尚未載入，正式對局保持不變。").foregroundStyle(.red)
                     }
-                    Text("檢視：\(planner.stage.title) · \(planner.stageState.status != .ongoing ? "已終局" : planner.stageState.current == planner.origin.current ? "\(planner.stageState.apRemaining) AP" : "己方已交棒") · 己方能量 \(planner.stageState.mana(of:planner.origin.current))")
+
+                    Text(forecastStatus)
                         .font(.caption).foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .accessibilityIdentifier("forecastResources")
-                    if planner.canEdit {
-                        ScrollView(.horizontal,showsIndicators:false) {
-                            HStack(spacing:7) {
-                                ForEach(planner.modes) { mode in
-                                    Button(mode.rawValue) { planner.changeMode(mode) }
-                                        .font(.system(size:13,weight:.semibold))
-                                        .frame(minWidth:58,minHeight:44)
-                                        .background(planner.mode == mode ? Color.orange.opacity(0.3) : Color.gray.opacity(0.15),
-                                                    in:RoundedRectangle(cornerRadius:8))
-                                        .accessibilityIdentifier("forecastMode\(mode.id)")
+
+                    if planner.canEdit { modeBar }
+
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 8) {
+                            if planner.forecast.firstStep == nil {
+                                Text("試算不會落子或扣資源，也不預測對手。")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                            if let a = planner.forecast.firstStep { summary(a, number: 1) }
+                            if let b = planner.forecast.secondStep { summary(b, number: 2) }
+                            if planner.forecast.firstStep != nil {
+                                Button(showsDetails ? "收合詳細數字" : "查看詳細數字") {
+                                    showsDetails.toggle()
                                 }
-                                if planner.mode == .loot {
-                                    Button(planner.ability == .stickyBounce ? "黏彈" : "影步") {
-                                        planner.ability = planner.ability == .stickyBounce ? .shadowStep : .stickyBounce
-                                        planner.clearSelection()
-                                    }.frame(minHeight:44)
-                                }
+                                .font(.caption).frame(minHeight: 44)
+                                .accessibilityIdentifier("forecastDetailsToggle")
+                            }
+                            Text(planner.message).font(.caption).foregroundStyle(.secondary)
+                            if planner.forecast.first != nil {
+                                Text("帶入只會選好第一手；每手仍須在正式對局按「確認」。")
+                                    .font(.caption2).foregroundStyle(.secondary)
                             }
                         }
-                        if planner.needsDirection {
-                            HStack {
-                                ForEach(PushDirection.allCases,id:\.self) { direction in
-                                    Button(direction.rawValue) { planner.push(direction) }
-                                        .frame(maxWidth:.infinity,minHeight:44)
-                                        .accessibilityIdentifier("forecastDirection\(direction.rawValue)")
-                                }
-                            }
-                        }
-                        HStack {
-                            Text(planner.pending.map(TwoActionPlanningController.title) ?? "點選棋盤綠圈，再加入這一步")
-                                .font(.subheadline).lineLimit(2)
-                            Spacer()
-                            Button("取消選點") { planner.clearSelection() }
-                                .font(.caption).frame(minHeight:44)
-                        }
-                        if let preview=planner.preview {
-                            Text(preview.success ? "合法試算 · 尚未提交" : "目前不合法：\(preview.reason.rawValue)")
-                                .font(.caption).foregroundStyle(preview.success ? Color.green : Color.orange)
-                                .accessibilityIdentifier("forecastLegal")
-                        }
-                        Button("加入\(planner.stage == .first ? "第一手" : "第二手")試算") { planner.addPending() }
-                            .frame(maxWidth:.infinity,minHeight:44)
-                            .buttonStyle(.borderedProminent)
-                            .disabled(planner.preview?.success != true)
-                            .accessibilityIdentifier("forecastAddStep")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 4)
                     }
-                    if let a=planner.forecast.firstStep { summary(a,number:1) }
-                    if let b=planner.forecast.secondStep { summary(b,number:2) }
-                    Text(planner.message).font(.caption).foregroundStyle(.secondary)
-                    if planner.forecast.first != nil {
-                        HStack {
-                            if planner.stage != .result {
-                                Button("清除此手") { planner.clearCurrent() }.frame(minHeight:44)
-                            }
-                            Spacer()
-                            Button("帶入第一手，仍需按確認") {
-                                if onUseFirst(planner.forecast) { dismiss() }
-                                else { planner.message = "正式對局已變化或正在演出；本次試算未套用，請關閉後重新開啟。" }
-                            }
-                            .buttonStyle(.borderedProminent).frame(minHeight:44)
-                            .disabled(!planner.forecast.matches(match.state) || match.controlsLocked)
-                            .accessibilityIdentifier("forecastLoadFirst")
-                        }
-                    }
-                    Text("帶入只會選好第一手；不會扣資源、不會自動執行第二手。第一手確認後若局面合法，對局會提示可再帶入第二手。")
-                        .font(.caption2).foregroundStyle(.secondary)
-                }.padding(16)
+                    .accessibilityIdentifier("forecastScroll")
+
+                    commandDock
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .padding(.horizontal, 12)
+                .padding(.bottom, 8)
             }
-            .accessibilityIdentifier("forecastScroll")
             .navigationTitle("兩手試算")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement:.confirmationAction) {
-                Button("關閉（不落子）") { dismiss() }.accessibilityIdentifier("forecastClose")
-            }}
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("關閉（不落子）") { dismiss() }
+                        .accessibilityIdentifier("forecastClose")
+                }
+            }
             .preferredColorScheme(.dark)
         }
     }
 
-    private func summary(_ step:TwoActionForecast.Step,number:Int) -> some View {
-        VStack(alignment:.leading,spacing:4) {
+    private var forecastStatus: String {
+        let state = planner.stageState
+        let turn: String
+        if state.status != .ongoing {
+            turn = "已終局"
+        } else if state.current == planner.origin.current {
+            turn = "\(state.apRemaining) AP"
+        } else {
+            turn = "己方已交棒"
+        }
+        return "檢視：\(planner.stage.title) · \(turn) · 己方能量 \(state.mana(of: planner.origin.current))"
+    }
+
+    private var modeBar: some View {
+        VStack(spacing: 4) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 7) {
+                    ForEach(planner.modes) { mode in
+                        Button(mode.rawValue) { planner.changeMode(mode) }
+                            .font(.system(size: 13, weight: .semibold))
+                            .frame(minWidth: 58, minHeight: 44)
+                            .background(planner.mode == mode ? Color.orange.opacity(0.3) : Color.gray.opacity(0.15),
+                                        in: RoundedRectangle(cornerRadius: 8))
+                            .accessibilityIdentifier("forecastMode\(mode.id)")
+                    }
+                    if planner.mode == .loot {
+                        Button(planner.ability == .stickyBounce ? "黏彈" : "影步") {
+                            planner.ability = planner.ability == .stickyBounce ? .shadowStep : .stickyBounce
+                            planner.clearSelection()
+                        }
+                        .frame(minHeight: 44)
+                    }
+                }
+            }
+            if planner.needsDirection {
+                HStack {
+                    ForEach(PushDirection.allCases, id: \.self) { direction in
+                        Button(direction.rawValue) { planner.push(direction) }
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .accessibilityIdentifier("forecastDirection\(direction.rawValue)")
+                    }
+                }
+            }
+        }
+    }
+
+    private var commandDock: some View {
+        VStack(spacing: 6) {
+            if planner.canEdit {
+                HStack(spacing: 6) {
+                    Text(planner.pending.map(TwoActionPlanningController.title) ?? "選擇棋盤綠圈")
+                        .font(.caption).lineLimit(2)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Button("取消選點") { planner.clearSelection() }
+                        .font(.caption).frame(minHeight: 44)
+                }
+                if let preview = planner.preview {
+                    Text(preview.success ? "合法試算 · 尚未提交" : "目前不合法：\(preview.reason.rawValue)")
+                        .font(.caption).foregroundStyle(preview.success ? Color.green : Color.orange)
+                        .accessibilityIdentifier("forecastLegal")
+                }
+                Button("加入\(planner.stage == .first ? "第一手" : "第二手")試算") {
+                    planner.addPending()
+                }
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .buttonStyle(.borderedProminent)
+                .disabled(planner.preview?.success != true)
+                .accessibilityIdentifier("forecastAddStep")
+            }
+            if planner.forecast.first != nil {
+                HStack(spacing: 8) {
+                    if planner.stage != .result {
+                        Button("清除此手") { planner.clearCurrent() }
+                            .font(.caption).frame(minHeight: 44)
+                    }
+                    Button("帶入第一手，仍需按確認") {
+                        if onUseFirst(planner.forecast) {
+                            dismiss()
+                        } else {
+                            planner.message = "正式對局已變化或正在演出；本次試算未套用，請關閉後重新開啟。"
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .disabled(!planner.forecast.matches(match.state) || match.controlsLocked)
+                    .accessibilityIdentifier("forecastLoadFirst")
+                }
+            }
+        }
+        .padding(8)
+        .background(Color.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+        .accessibilityIdentifier("forecastCommandDock")
+    }
+
+    private func summary(_ step: TwoActionForecast.Step, number: Int) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
             Text("第 \(number) 手 · \(TwoActionPlanningController.title(step.action))")
                 .font(.subheadline).bold()
-            Text("AP \(step.apBefore) → \(step.after.status != .ongoing ? "已終局" : step.apAfter.map(String.init) ?? "交給對手") · 能量 \(step.manaBefore) → \(step.manaAfter)")
-            Text("提敵兵 \(step.enemySoldiersCaptured) · 犧牲己兵 \(step.ownSoldiersSacrificed) · 己主帥氣 \(step.myCommanderLibertiesBefore) → \(step.myCommanderLibertiesAfter) · 敵主帥氣 \(step.enemyCommanderLibertiesBefore) → \(step.enemyCommanderLibertiesAfter)")
-            Text("這些是本回合的確定結果；氣數增加不保證下回合安全。").foregroundStyle(.secondary)
+            Text("提敵兵 \(step.enemySoldiersCaptured) · 能量 \(step.manaBefore) → \(step.manaAfter) · AP \(step.apBefore) → \(step.after.status != .ongoing ? "已終局" : step.apAfter.map(String.init) ?? "交給對手")")
+            if showsDetails {
+                Text("犧牲己兵 \(step.ownSoldiersSacrificed) · 己主帥氣 \(step.myCommanderLibertiesBefore) → \(step.myCommanderLibertiesAfter) · 敵主帥氣 \(step.enemyCommanderLibertiesBefore) → \(step.enemyCommanderLibertiesAfter)")
+                Text("以上是本回合試算，不保證對方下一手或下回合的安全。")
+                    .foregroundStyle(.secondary)
+            }
         }
         .font(.caption)
         .padding(11)
-        .frame(maxWidth:.infinity,alignment:.leading)
-        .background(Color.white.opacity(0.08),in:RoundedRectangle(cornerRadius:10))
-        .accessibilityElement(children:.combine)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+        .accessibilityElement(children: .combine)
         .accessibilityIdentifier("forecastSummary\(number)")
     }
+
 }
 #endif
