@@ -84,6 +84,9 @@ public enum MotionCurves {
     }
     public static func clamp(_ value: Double) -> Double { min(1, max(0, value)) }
     public static func ease(_ t: Double) -> Double { let x = clamp(t); return x * x * (3 - 2 * x) }
+    /// Fastest at the start and settled at the end. Used to leave a contact hold
+    /// without the zero slope that smoothstep has at both ends.
+    public static func easeOut(_ t: Double) -> Double { let x = clamp(t); let u = 1 - x; return 1 - u * u }
     public static func dropHeight(_ t: Double) -> Double {
         let x = clamp(t)
         if x >= 1 { return 0 }

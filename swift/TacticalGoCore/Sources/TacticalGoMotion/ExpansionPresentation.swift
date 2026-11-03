@@ -78,9 +78,14 @@ public struct ExpansionPresentation: Equatable, Sendable {
         if isChainSwap {
             let contact = (moveStart+arrival)/2
             let resume = contact+min(0.03,(arrival-contact)*0.3)
-            if time < contact { return 0.5*MotionCurves.ease((time-moveStart)/max(0.001,contact-moveStart)) }
+            // The 30ms hold is the only stop. Smoothstep reaches zero speed before
+            // contact and again while leaving, so the piece looks parked across
+            // the 0.30 power beat. Travel in at uniform speed, hold, then ease out
+            // into the second landing. The body clock is not paused.
+            if time < contact { return 0.5*MotionCurves.clamp((time-moveStart)/max(0.001,contact-moveStart)) }
             if time <= resume { return 0.5 }
-            return 0.5+0.5*MotionCurves.ease((time-resume)/max(0.001,arrival-resume))
+            let u = MotionCurves.clamp((time-resume)/max(0.001,arrival-resume))
+            return 0.5+0.5*MotionCurves.easeOut(u)
         }
         return MotionCurves.ease((time-moveStart)/max(0.001,arrival-moveStart))
     }

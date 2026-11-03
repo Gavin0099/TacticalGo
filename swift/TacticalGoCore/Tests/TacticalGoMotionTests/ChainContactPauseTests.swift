@@ -57,4 +57,34 @@ final class ChainContactPauseTests: XCTestCase {
         XCTAssertGreaterThan(normal.progress(at:0.29),0.5)
         XCTAssertEqual(ExpansionHeroPose.rogue(at:0.29,reduced:true,chained:true),.rest)
     }
+    func testFirstContactHoldIsHardWhileBodyAndClothKeepMoving() throws {
+        let p = try receipt()
+        // Authored chain window: move 0.16, first contact 0.26, resume 0.29, second contact 0.36.
+        // A 10ms sample must cover at least that leg's uniform share, or the stop has bled outside 0.26–0.29.
+        let approach = p.progress(at:0.26)-p.progress(at:0.25)
+        let departure = p.progress(at:0.30)-p.progress(at:0.29)
+        XCTAssertGreaterThanOrEqual(approach, 0.5*0.01/(0.26-0.16) - 1e-9)
+        XCTAssertGreaterThanOrEqual(departure, 0.5*0.01/(0.36-0.29) - 1e-9)
+        XCTAssertEqual(p.progress(at:0.26), p.progress(at:0.29))
+        let contact = ExpansionHeroPose.rogue(at:0.26,chained:true)
+        let held = ExpansionHeroPose.rogue(at:0.275,chained:true)
+        let windup = ExpansionHeroPose.rogue(at:0.29,chained:true)
+        XCTAssertNotEqual(contact, held, "The positional hold must not freeze the contact pose")
+        XCTAssertNotEqual(held, windup)
+        XCTAssertNotEqual(contact.cloth, windup.cloth, "Cloth follows through while the board position holds")
+        XCTAssertLessThan(ExpansionHeroPose.rogue(at:0.28,chained:true).hand, 0)
+        XCTAssertGreaterThan(ExpansionHeroPose.rogue(at:0.30,chained:true).hand, 0)
+        XCTAssertEqual(p.duration, 0.70)
+        XCTAssertEqual(p.contactBeats.map(\.start), [0.26,0.26,0.36,0.36])
+    }
+    func testReducedMotionSkipsTheFirstContactHoldAndAddsNoContactEffect() throws {
+        let p = try receipt()
+        for t in [0.26,0.275,0.29] {
+            XCTAssertEqual(p.progress(at:t, reduced:true), 1)
+            XCTAssertEqual(p.board(at:t, reduced:true), p.after.board)
+            XCTAssertEqual(ExpansionHeroPose.rogue(at:t, reduced:true, chained:true), .rest)
+            XCTAssertEqual(ExpansionContactFrame.sample(at:t, start:0.26, end:p.duration, reduced:true), .quiet)
+            XCTAssertGreaterThan(ExpansionContactFrame.sample(at:t, start:0.26, end:p.duration).opacity, 0)
+        }
+    }
 }
