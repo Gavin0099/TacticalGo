@@ -50,15 +50,33 @@ extension ExpansionPresentation {
                          lift: moving ? -0.16*sin(.pi*progress(at:time)) : 0)
         case .castSwap, .castChainSwap:
             var t = progress(at:time)
-            if case .castChainSwap(let first,_) = action,let move = transfers.first(where: { $0.to == point }) {
+            var impact = 0.0
+            if case .castChainSwap(let first,let second) = action,let move = transfers.first(where: { $0.to == point }) {
                 t = move.piece.kind == .hero ? (t < 0.5 ? t*2 : (t-0.5)*2) : move.from == first ? min(1,t*2) : max(0,(t-0.5)*2)
+                impact = chainContactSquash(at:time,move:move,first:first,second:second)
             }
             let lean = moving ? sin(.pi*t) : 0
-            return .init(scaleX: 1+0.06*lean, scaleY: 1-0.05*lean, tilt: -7*lean)
+            let height = 1-0.18*impact
+            return .init(scaleX:(1+0.06*lean)/pow(max(height,0.5),0.6),scaleY:(1-0.05*lean)*height,tilt:-7*lean)
         case .summonHero, .placeSoldier:
             return .init(scaleX: 1+0.10*pulse, scaleY: 1-0.12*pulse)
         default: return .rest
         }
+    }
+    /// Contact squash held across the 30 ms station, then released. The body keeps moving.
+    private func chainContactSquash(at time: Double, move: CombatTransfer, first: Point, second: Point) -> Double {
+        func pulse(_ center: Double) -> Double {
+            let d = abs(time-center)
+            if d <= 0.02 { return 1 }
+            let u = (d-0.02)/0.04
+            guard u < 1 else { return 0 }
+            return 1-MotionCurves.ease(u)
+        }
+        let opening = pulse((moveStart+arrival)/2), landing = pulse(arrival)
+        if move.piece.kind == .hero { return max(opening,landing) }
+        if move.from == first { return opening }
+        if move.from == second { return landing }
+        return 0
     }
 }
 

@@ -80,7 +80,7 @@ public struct ExpansionPresentation: Equatable, Sendable {
             let resume = contact+min(0.03,(arrival-contact)*0.3)
             if time < contact { return 0.5*MotionCurves.ease((time-moveStart)/max(0.001,contact-moveStart)) }
             if time <= resume { return 0.5 }
-            return 0.5+0.5*MotionCurves.ease((time-resume)/max(0.001,arrival-resume))
+            return 0.5+0.5*MotionCurves.easeOut((time-resume)/max(0.001,arrival-resume))
         }
         return MotionCurves.ease((time-moveStart)/max(0.001,arrival-moveStart))
     }
