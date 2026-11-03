@@ -84,6 +84,12 @@ public enum MotionCurves {
     }
     public static func clamp(_ value: Double) -> Double { min(1, max(0, value)) }
     public static func ease(_ t: Double) -> Double { let x = clamp(t); return x * x * (3 - 2 * x) }
+    /// Short departure: already moving on the first frame, settled at the end.
+    /// f(x) = x + x² − x³ has slope 1 at 0 and slope 0 at 1.
+    public static func easeOut(_ t: Double) -> Double {
+        let x = clamp(t)
+        return x + x * x * (1 - x)
+    }
     public static func dropHeight(_ t: Double) -> Double {
         let x = clamp(t)
         if x >= 1 { return 0 }
