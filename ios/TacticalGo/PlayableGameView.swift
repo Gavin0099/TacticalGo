@@ -1449,6 +1449,7 @@ private struct CombatSoundSettings: View {
                     Text("\(Int(audio.voiceVolume * 100))% · VO-01 原型，正式聲線待驗收")
                 }
                 #endif
+                Section("觸覺") { HapticSettingsToggle() }
                 Section("音樂音量") {
                     Toggle("背景音樂", isOn: $audio.musicEnabled).disabled(!audio.musicIntegrationAllowed).accessibilityIdentifier("musicEnabled")
                     if !audio.musicIntegrationAllowed { Text("目前為靜音動作檢視；一般對戰可播放背景音樂。").font(.caption) }

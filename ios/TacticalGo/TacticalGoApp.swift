@@ -15,7 +15,9 @@ import TacticalGoContent
         guard let i = args.firstIndex(of: "--sound-preferences-reset"), args.indices.contains(i + 1) else { return }
         let token = args[i + 1]
         guard defaults.string(forKey: "debug.soundPreferencesResetToken") != token else { return }
-        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix("combatAudio.") { defaults.removeObject(forKey: key) }
+        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix("combatAudio.") || key.hasPrefix("combatHaptics.") {
+            defaults.removeObject(forKey: key)
+        }
         defaults.set(token, forKey: "debug.soundPreferencesResetToken")
     }
     #endif

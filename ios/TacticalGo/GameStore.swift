@@ -171,6 +171,7 @@ import TacticalGoContent
         #endif
         audioGeneration &+= 1; audioTask?.cancel(); audioTask = nil
         audio.cancelEffects(preserveVoice: preserveVoice)
+        GameHaptics.shared.cancel()
         #if DEBUG || TACTICALGO_V11
         if let match = expansion, match.state.status != .ongoing { audio.finishBattleSilently() }
         #endif
@@ -212,6 +213,9 @@ import TacticalGoContent
         guard !plan.cues.isEmpty else { return }
         cancelAudioFeedback(preserveVoice: true)
         guard outcome.success, audioMatchActive, audioSceneActive else { return }
+        let humanLost = computer != nil && outcome.state.winner == computer
+        GameHaptics.shared.schedule(HapticCuePlan.impulses(legacyCues: plan.cues, action: action, defeat: humanLost,
+            reduceMotion: presentationReducedMotion || UIAccessibility.isReduceMotionEnabled))
         audio.updateState(outcome.state)
         let skill: Bool
         switch action {
