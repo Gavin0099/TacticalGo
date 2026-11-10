@@ -181,10 +181,10 @@ struct ExpansionGameView: View {
         }
         .sheet(isPresented: $showSoundSettings) {
             #if DEBUG || TACTICALGO_V11
-            if let match = store.expansion { IntegratedExpansionSoundSettings(store:match,background:store.audio,close: { showSoundSettings = false }) }
-            else { CombatSoundSettings(audio: store.audio) }
+            if let match = store.expansion { IntegratedExpansionSoundSettings(store:match,background:store.audio,haptics:store.haptics,close: { showSoundSettings = false }) }
+            else { CombatSoundSettings(audio: store.audio, haptics: store.haptics) }
             #else
-            CombatSoundSettings(audio: store.audio)
+            CombatSoundSettings(audio: store.audio, haptics: store.haptics)
             #endif
         }
         .sheet(isPresented: $showBotLog) {
@@ -1263,11 +1263,13 @@ struct ExpansionGameView: View {
 private struct IntegratedExpansionSoundSettings: View {
     @Bindable var store: ExpansionLabStore
     @Bindable var background: CombatAudio
+    @Bindable var haptics: HapticsService
     let close: () -> Void
     var body: some View {
         NavigationStack {
             Form {
                 Toggle("靜音",isOn:$store.muted).accessibilityIdentifier("audioMute").onChange(of:store.muted) { background.muted = store.muted; store.stop() }
+                HapticSettingsToggle(haptics: haptics)
                 Section("音效") {
                     HStack {
                         Slider(value:$store.sfxVolume,in:0...1).accessibilityLabel("音效音量").accessibilityIdentifier("sfxVolume")
@@ -1306,11 +1308,13 @@ private struct IntegratedExpansionSoundSettings: View {
 
 private struct CombatSoundSettings: View {
     @Bindable var audio: CombatAudio
+    @Bindable var haptics: HapticsService
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             Form {
                 Toggle("靜音", isOn: $audio.muted).accessibilityIdentifier("audioMute")
+                HapticSettingsToggle(haptics: haptics)
                 Section("音效音量") {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
                     Text("\(Int(audio.sfxVolume * 100))%")

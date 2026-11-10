@@ -1,5 +1,6 @@
 import SwiftUI
 import TacticalGoContent
+import TacticalGoMotion
 @main struct TacticalGoApp: App {
     init() {
         #if DEBUG
@@ -16,6 +17,7 @@ import TacticalGoContent
         let token = args[i + 1]
         guard defaults.string(forKey: "debug.soundPreferencesResetToken") != token else { return }
         for key in defaults.dictionaryRepresentation().keys where key.hasPrefix("combatAudio.") { defaults.removeObject(forKey: key) }
+        defaults.removeObject(forKey: HapticPreference.defaultsKey)
         defaults.set(token, forKey: "debug.soundPreferencesResetToken")
     }
     #endif
