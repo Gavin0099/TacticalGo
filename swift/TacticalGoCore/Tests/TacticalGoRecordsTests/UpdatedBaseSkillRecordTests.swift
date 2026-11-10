@@ -1,32 +1,71 @@
-import XCTest
+import Foundation
+import Testing
 import TacticalGoCore
 import TacticalGoContent
 @testable import TacticalGoRecords
 
-final class UpdatedBaseSkillRecordTests: XCTestCase {
-    func testNewMageProfileActionRoundtripUndoAndRejectTampering() throws {
-        var s = try ExpansionPractice.mage.session(updatedBaseSkills:true)
-        let before = s.state
-        XCTAssertTrue(s.apply(.castFriendlyRedeploy(Point(4,5),Point(5,5))).success)
-        let data = try ExpansionMatchRecord(session:s,computer:.two,difficulty:"standard").data()
-        let record = try ExpansionMatchRecord.read(data)
-        XCTAssertEqual(record.baseSkills,"redeployment")
-        var rebuilt = try record.rebuild();XCTAssertEqual(rebuilt.state,s.state)
-        XCTAssertTrue(rebuilt.undo());XCTAssertEqual(rebuilt.state,before)
-        let original = try XCTUnwrap(JSONSerialization.jsonObject(with:data) as? [String:Any])
-        for value in ["unknown","original"] {
-            var changed = original;changed["baseSkills"] = value
-            XCTAssertThrowsError(try ExpansionMatchRecord.read(JSONSerialization.data(withJSONObject:changed)))
+enum RejectedBaseSkills: Sendable, CustomTestStringConvertible {
+    case unknown
+    case original
+    case missingKey
+
+    var testDescription: String {
+        switch self {
+        case .unknown: "unknown"
+        case .original: "original"
+        case .missingKey: "missing baseSkills"
         }
-        var missing = original;missing.removeValue(forKey:"baseSkills")
-        XCTAssertThrowsError(try ExpansionMatchRecord.read(JSONSerialization.data(withJSONObject:missing)))
     }
-    func testAbsentProfileRetainsOriginalRulesAndPushReplay() throws {
-        var s = try ExpansionPractice.mage.session()
-        XCTAssertTrue(s.apply(.castMagicHand(Point(4,5),.right)).success)
-        let data = try ExpansionMatchRecord(session:s).data()
+
+    func apply(to object: inout [String: Any]) {
+        switch self {
+        case .unknown: object["baseSkills"] = "unknown"
+        case .original: object["baseSkills"] = "original"
+        case .missingKey: object.removeValue(forKey: "baseSkills")
+        }
+    }
+}
+
+@Suite("Updated base-skill records", .tags(.records, .expansion))
+struct UpdatedBaseSkillRecordTests {
+    @Test("A new mage profile round-trips, undoes, and keeps the redeployment marker")
+    func newMageProfileActionRoundtripAndUndo() throws {
+        var session = try ExpansionPractice.mage.session(updatedBaseSkills: true)
+        let before = session.state
+        #expect(session.apply(.castFriendlyRedeploy(Point(4, 5), Point(5, 5))).success)
+        let data = try ExpansionMatchRecord(session: session, computer: .two, difficulty: "standard").data()
         let record = try ExpansionMatchRecord.read(data)
-        XCTAssertNil(record.baseSkills);XCTAssertFalse(try record.config().experimentalFriendlyRedeploy)
-        XCTAssertEqual(try record.rebuild().state,s.state)
+        #expect(record.baseSkills == "redeployment")
+        var rebuilt = try record.rebuild()
+        #expect(rebuilt.state == session.state)
+        let undone = rebuilt.undo()
+        #expect(undone)
+        #expect(rebuilt.state == before)
+    }
+
+    @Test("Unknown, original, and missing base-skill profiles are rejected", arguments: [
+        RejectedBaseSkills.unknown, .original, .missingKey
+    ])
+    func tamperedBaseSkillsProfileIsRejected(_ rejection: RejectedBaseSkills) throws {
+        var session = try ExpansionPractice.mage.session(updatedBaseSkills: true)
+        #expect(session.apply(.castFriendlyRedeploy(Point(4, 5), Point(5, 5))).success)
+        let data = try ExpansionMatchRecord(session: session, computer: .two, difficulty: "standard").data()
+        var changed = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        rejection.apply(to: &changed)
+        let payload = try JSONSerialization.data(withJSONObject: changed)
+        #expect(throws: (any Error).self) {
+            try ExpansionMatchRecord.read(payload)
+        }
+    }
+
+    @Test("An absent profile keeps original rules and replays a push")
+    func absentProfileRetainsOriginalRulesAndPushReplay() throws {
+        var session = try ExpansionPractice.mage.session()
+        #expect(session.apply(.castMagicHand(Point(4, 5), .right)).success)
+        let data = try ExpansionMatchRecord(session: session).data()
+        let record = try ExpansionMatchRecord.read(data)
+        #expect(record.baseSkills == nil)
+        #expect(try record.config().experimentalFriendlyRedeploy == false)
+        #expect(try record.rebuild().state == session.state)
     }
 }
