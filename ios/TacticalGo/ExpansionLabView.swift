@@ -190,6 +190,7 @@ import TacticalGoVisuals
     }
     func stop(keepingCompletedVoice: Bool = false) {
         generation += 1; task?.cancel(); task = nil; samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
+        GameHaptics.shared.cancel()
         playing = false; receipt = nil
     }
     func cancelSelection() { selected = []; pending = nil }
@@ -557,6 +558,7 @@ import TacticalGoVisuals
         }
         let ending = p.terminalCue(computer: computer)
         let routedEnding = ending != nil && onTerminalCue != nil
+        GameHaptics.shared.schedule(p.hapticImpulses(computer: computer, reduceMotion: systemReduced || reduced || UIAccessibility.isReduceMotionEnabled))
         for (key,delay,volume) in sound { if samples.schedule(key,after:delay,volume:volume) { cues += 1 } }
         // Voice was scheduled once before choosing the matching SFX mix.
         // Include it in the shared lifetime/audit timeline without playing it again.

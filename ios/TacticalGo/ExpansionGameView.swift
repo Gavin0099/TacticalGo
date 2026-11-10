@@ -1282,6 +1282,7 @@ private struct IntegratedExpansionSoundSettings: View {
                     }
                 }
                 Toggle("減少動態",isOn:$store.reduced).accessibilityIdentifier("reduceCombatMotion").onChange(of:store.reduced) { store.stop() }
+                Section("觸覺") { HapticSettingsToggle() }
                 Section("背景音樂") {
                     HStack {
                         Slider(value:$background.musicVolume,in:0...1).accessibilityLabel("配樂音量").accessibilityIdentifier("musicVolume")
@@ -1315,6 +1316,7 @@ private struct CombatSoundSettings: View {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
                     Text("\(Int(audio.sfxVolume * 100))%")
                 }
+                Section("觸覺") { HapticSettingsToggle() }
                 Section("音樂音量") {
                     Text("對戰曲：Hearthside Council").font(.caption)
                     Slider(value: $audio.musicVolume, in: 0...1).accessibilityIdentifier("musicVolume")
