@@ -75,6 +75,7 @@ import TacticalGoContent
         expansion = match; size = match.size; bindExpansionAudio(match); match.scene(audioSceneActive)
     }
     private func bindExpansionAudio(_ match: ExpansionLabStore) {
+        match.haptics = haptics
         match.onTerminalCue = { [weak self, weak match] key in
             guard let self, let match, self.expansion === match, self.audioMatchActive, self.audioSceneActive else { return }
             self.audio.play(key)
@@ -153,6 +154,7 @@ import TacticalGoContent
     #else
     let audio = CombatAudio()
     #endif
+    let haptics = HapticsService()
     var isPresenting = false
     var presentationReducedMotion = false
     var mageTempo: MageTempo = .full
@@ -200,6 +202,7 @@ import TacticalGoContent
         audioSceneActive = active
         if !active { cancelPresentation() }
         audio.setSceneActive(active)
+        haptics.setSceneActive(active)
     }
     func presentAudio(before: GameState, action: GameAction, outcome: ActionOutcome, receipt: BoardPlayback? = nil) {
         let start = receipt?.startedUptime ?? ProcessInfo.processInfo.systemUptime
@@ -226,11 +229,7 @@ import TacticalGoContent
         // Start the successful action's immediate cue before yielding to the
         // first full SwiftUI render. Later cues keep the shared receipt clock.
         for cue in plan.cues where cue.start == 0 {
-            let key = cue.key == "victory" && computer != nil && outcome.state.winner == computer ? "defeat" : cue.key
-            #if DEBUG
-            audioCueHistory.append(key)
-            #endif
-            audio.play(key)
+            playCue(cue.key, action: action, outcome: outcome)
         }
         let generation = audioGeneration
         if let voice = HeroVoiceCue.make(before: before, action: action, outcome: outcome) { audio.playVoice(voice) }
@@ -238,12 +237,18 @@ import TacticalGoContent
             for cue in plan.cues where cue.start > 0 {
                 do { try await Task.sleep(for: .seconds(max(0, start + cue.start - ProcessInfo.processInfo.systemUptime))) } catch { return }
                 guard let self, self.audioGeneration == generation, !Task.isCancelled else { return }
-                let key = cue.key == "victory" && self.computer != nil && outcome.state.winner == self.computer ? "defeat" : cue.key
-                #if DEBUG
-                self.audioCueHistory.append(key)
-                #endif
-                self.audio.play(key)
+                self.playCue(cue.key, action: action, outcome: outcome)
             }
+        }
+    }
+    private func playCue(_ key: String, action: GameAction, outcome: ActionOutcome) {
+        let resolved = LegacyHapticPlan.playbackKey(key, winnerIsComputer: computer != nil && outcome.state.winner == computer)
+        #if DEBUG
+        audioCueHistory.append(resolved)
+        #endif
+        audio.play(resolved)
+        if let event = LegacyHapticPlan.event(forCue: resolved, action: action) {
+            haptics.fire(event, reduceMotion: presentationReducedMotion)
         }
     }
     var review: Review = .normal

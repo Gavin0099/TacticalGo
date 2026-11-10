@@ -125,6 +125,8 @@ import TacticalGoVisuals
     func setVoiceCadenceForAudit(_ profile: CharacterVoiceCadence.Profile) { voiceCadence = CharacterVoiceCadence(profile:profile) }
     #endif
     @ObservationIgnored private let soundDefaults: UserDefaults
+    var haptics: HapticsService
+    @ObservationIgnored private var hapticTask: Task<Void, Never>?
     @ObservationIgnored private var persistSoundPreferences = true
     @ObservationIgnored private let audio = CombatAudio(defaults:UserDefaults(suiteName:"TacticalGo.expansionLab")!)
     @ObservationIgnored private var task: Task<Void,Never>?
@@ -133,6 +135,7 @@ import TacticalGoVisuals
     @ObservationIgnored nonisolated(unsafe) private var observer: (any NSObjectProtocol)?
     init(soundDefaults: UserDefaults = .standard) {
         self.soundDefaults = soundDefaults
+        haptics = HapticsService(defaults: soundDefaults)
         voice = soundDefaults.object(forKey:"combatAudio.castVoiceEnabled") as? Bool ?? true
         sfxVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.expansionSFXVolume") as? Double ?? 0.80)
         voiceVolume = Self.soundLevel(soundDefaults.object(forKey:"combatAudio.castVoiceVolume") as? Double ?? 0.85)
@@ -182,14 +185,16 @@ import TacticalGoVisuals
             }
         } catch { message = "工程棋形未載入：\(error)" }
     }
-    deinit { task?.cancel(); if let observer { NotificationCenter.default.removeObserver(observer) } }
+    deinit { task?.cancel(); hapticTask?.cancel(); if let observer { NotificationCenter.default.removeObserver(observer) } }
     func scene(_ isActive: Bool) {
         if isActive && !active { interrupted = false }
         active = isActive; if !isActive { stop() }
+        haptics.setSceneActive(isActive)
         audio.musicVolume = 0; audio.setMatchActive(isActive); audio.setSceneActive(isActive)
     }
     func stop(keepingCompletedVoice: Bool = false) {
-        generation += 1; task?.cancel(); task = nil; samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
+        generation += 1; task?.cancel(); task = nil; hapticTask?.cancel(); hapticTask = nil
+        samples.cancel(keepingVoice:keepingCompletedVoice); audio.cancelEffects()
         playing = false; receipt = nil
     }
     func cancelSelection() { selected = []; pending = nil }
@@ -558,6 +563,16 @@ import TacticalGoVisuals
         let ending = p.terminalCue(computer: computer)
         let routedEnding = ending != nil && onTerminalCue != nil
         for (key,delay,volume) in sound { if samples.schedule(key,after:delay,volume:volume) { cues += 1 } }
+        let hapticMoments = ExpansionHapticPlan.moments(p, computer: computer)
+        hapticTask = Task { @MainActor [weak self] in
+            for moment in hapticMoments {
+                if moment.at > 0 {
+                    do { try await Task.sleep(for: .seconds(moment.at)) } catch { return }
+                }
+                guard let self, self.generation == marker, !Task.isCancelled else { return }
+                self.haptics.fire(moment.event, reduceMotion: self.reduced || systemReduced)
+            }
+        }
         // Voice was scheduled once before choosing the matching SFX mix.
         // Include it in the shared lifetime/audit timeline without playing it again.
         if let acceptedVoice { sound.append(acceptedVoice) }

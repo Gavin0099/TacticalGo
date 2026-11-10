@@ -253,7 +253,7 @@ struct PlayableGameView: View {
         .sheet(isPresented: $showRecords, onDismiss: { if inMatch { store.scheduleComputerTurn() } }) {
             RecordLibraryView(store: store, resume: resumeRecord)
         }
-        .sheet(isPresented: $showSoundSettings) { CombatSoundSettings(audio: store.audio) }
+        .sheet(isPresented: $showSoundSettings) { CombatSoundSettings(audio: store.audio, haptics: store.haptics) }
         .sheet(isPresented: $showMatchOptions) { lobbySettingsSheet }
         .sheet(isPresented: $showBotLog) {
             NavigationStack {
@@ -1433,11 +1433,13 @@ struct PlayableGameView: View {
 
 private struct CombatSoundSettings: View {
     @Bindable var audio: CombatAudio
+    @Bindable var haptics: HapticsService
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             Form {
                 Toggle("靜音", isOn: $audio.muted).accessibilityIdentifier("audioMute")
+                HapticSettingsToggle(haptics: haptics)
                 Section("音效音量") {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
                     Text("\(Int(audio.sfxVolume * 100))%")
