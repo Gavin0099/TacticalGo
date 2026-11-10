@@ -158,6 +158,8 @@ struct PlayableGameView: View {
     @State private var lesson: PracticeLesson?
     @State private var showActionHelp = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    private var gameType: GameTypeEnvironment { GameTypeEnvironment(dynamicTypeSize) }
+    @ScaledMetric(relativeTo: .body) private var toolbarSlot: CGFloat = 44
     @ScaledMetric(relativeTo: .subheadline) private var compactSummaryHeight: CGFloat = 38
     @ScaledMetric(relativeTo: .subheadline) private var compactActionHeight: CGFloat = 44
     @State private var showRules = false
@@ -454,10 +456,11 @@ struct PlayableGameView: View {
                 VStack(spacing: compact ? 12 : 20) {
                     HStack { Spacer(); lobbyTools }
                     VStack(spacing: 6) {
-                        Image(systemName: "crown.fill").font(.system(size: compact ? 34 : 44, weight: .bold))
+                        Image(systemName: "crown.fill").gameFont(.title, emphasis: .display)
                             .foregroundStyle(Cozy.confirm).accessibilityHidden(true)
-                        Text("皇冠戰略").font(.system(size: compact ? 32 : 36, weight: .black, design: .rounded))
-                        Text("CROWN TACTICS").font(.system(size: 12, weight: .bold)).tracking(2)
+                        Text("皇冠戰略").gameFont(.title, emphasis: .display, design: .rounded)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text("CROWN TACTICS").gameFont(.caption, emphasis: .strong).tracking(2)
                     }.foregroundStyle(SellTheme.paper).shadow(color: .black.opacity(0.55), radius: 3, y: 2)
                     lobbyHeroEnsemble(height: tablet ? 235 : compact ? 135 : 185)
                     Text("選擇你的英雄，贏下這一盤。")
@@ -538,7 +541,7 @@ struct PlayableGameView: View {
             Button("技能試驗", systemImage: "flask") { showR2 = true }
             #endif
         } label: {
-            Image(systemName: "gearshape").font(.system(size: 20)).frame(width: 44, height: 44)
+            Image(systemName: "gearshape").gameFont(.body, emphasis: .strong).frame(width: toolbarSlot, height: toolbarSlot)
                 .foregroundStyle(SellTheme.paper).background(SellTheme.teal.opacity(0.7), in: Circle())
         }.accessibilityLabel("設定與工具").accessibilityIdentifier("lobbyTools")
     }
@@ -810,29 +813,33 @@ struct PlayableGameView: View {
         let state = store.state, active = presentedResult == nil && displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let row = gameType.stacksVertically
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: 4))
         return VStack(alignment: .leading, spacing: compact ? 3 : 5) {
-            HStack(spacing: 4) {
+            row {
                 if sellLook {
-                    Text(player == .one ? "● 黑方" : "○ 白方").font(.subheadline.weight(.heavy))
-                    Text(state.heroClass(of:player).title).font(.caption.weight(.semibold))
+                    Text(player == .one ? "● 黑方" : "○ 白方").gameFont(.body, emphasis: .strong)
+                    Text(state.heroClass(of:player).title).gameFont(.caption, emphasis: .strong)
                 } else {
-                    Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of:player).title).font(.subheadline.weight(.bold))
+                    Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of:player).title).gameFont(.body, emphasis: .strong)
                 }
-                Spacer(minLength: 0)
+                if !gameType.stacksVertically { Spacer(minLength: 0) }
                 if active {
                     Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP")
-                        .font(.subheadline.weight(.heavy)).monospacedDigit()
+                        .gameFont(.numeric, emphasis: .strong)
                         .padding(.horizontal,sellLook ? 7 : 0).padding(.vertical,sellLook ? 3 : 0)
                         .foregroundStyle(sellLook ? SellTheme.ink : Cozy.ink)
                         .background { if sellLook { SellPlaque().fill(Cozy.confirm) } }
                 }
             }
-            HStack(spacing: 3) {
-                if sellLook { Image(systemName:"diamond.fill").font(.system(size:10)).foregroundStyle(Cozy.color(0x9ADADD)).accessibilityHidden(true) }
+            row {
+                if sellLook { Image(systemName:"diamond.fill").gameFont(.caption).foregroundStyle(Cozy.color(0x9ADADD)).accessibilityHidden(true) }
                 Text("能量 \(state.mana(of:player))/\(state.config.manaCap) · " + (presentedResult != nil && commander == nil ? "主將已被提" : "\(liberties) 氣"))
-                    .font(.caption).foregroundStyle(liberties <= 1 && presentedResult == nil ? (sellLook ? Cozy.color(0xFFBEA0) : Cozy.danger) : sellLook ? SellTheme.lightMuted : Cozy.muted)
-                Spacer(minLength:0)
-                if store.computer != nil { Text(player == store.computer ? "電腦" : "你").font(.caption.weight(.bold)) }
+                    .gameFont(.numeric).foregroundStyle(liberties <= 1 && presentedResult == nil ? (sellLook ? Cozy.color(0xFFBEA0) : Cozy.danger) : sellLook ? SellTheme.lightMuted : Cozy.muted)
+                    .fixedSize(horizontal: false, vertical: true)
+                if !gameType.stacksVertically { Spacer(minLength:0) }
+                if store.computer != nil { Text(player == store.computer ? "電腦" : "你").gameFont(.caption, emphasis: .strong) }
             }
             Rectangle().fill(active ? (sellLook ? Cozy.gold : Cozy.ink) : (sellLook ? SellTheme.paper.opacity(0.2) : Cozy.ink.opacity(0.12)))
                 .frame(height:active ? 3 : 1).accessibilityHidden(true)
@@ -1113,40 +1120,44 @@ struct PlayableGameView: View {
                     .frame(maxWidth: .infinity)
                 actionPanel(tablet: tablet && !compactTablet, sidebar: false)
             }
-        }.font(.system(size: tablet ? 16 : 14))
+        }.gameFont(.body)
             .padding(.horizontal, tablet ? 24 : 4).padding(.vertical, tablet ? 16 : 6)
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
         }.defaultScrollAnchor(.top)
     }
     private func matchHeader(compact:Bool = false, battleFocus:Bool = false) -> some View {
-            HStack {
-                Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 44, height: 44) }.accessibilityLabel("返回選角")
+            gameRow(vertical: gameType.stacksVertically, spacing: 4) {
+                Button { confirmExit = true } label: { Image(systemName: "chevron.left").gameFont(.body, emphasis: .strong).frame(width: toolbarSlot, height: toolbarSlot) }.accessibilityLabel("返回選角")
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(battleFocus && store.state.status == .ongoing ? "\(side)回合 · \(store.state.ply)" : sellLook && store.state.status == .ongoing ? "輪到" + side : turnTitle).font(compact ? .headline.weight(.heavy) : .title2.weight(.heavy))
+                    Text(battleFocus && store.state.status == .ongoing ? "\(side)回合 · \(store.state.ply)" : sellLook && store.state.status == .ongoing ? "輪到" + side : turnTitle)
+                        .gameFont(compact ? .body : .title, emphasis: compact ? .display : .strong)
                         .foregroundStyle(sellLook ? SellTheme.paper : Cozy.ink)
+                        .fixedSize(horizontal: false, vertical: gameType.needsReflow)
+                        .layoutPriority(1)
                         .accessibilityLabel(turnTitle)
                         .accessibilityValue(store.recordRules == .redeployment ? "新版技能" : "舊版規則")
                         .accessibilityIdentifier("currentTurn")
                     if !battleFocus || lesson != nil { Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
-                        .font(.system(size:11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.ink.opacity(0.65))
+                        .gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.ink.opacity(0.65))
+                        .fixedSize(horizontal: false, vertical: true)
                     }
                     if battleFocus && (store.isBotThinking || store.isBotActing) {
-                        HStack(spacing: 3) {
+                        gameRow(vertical: gameType.stacksVertically, spacing: 3) {
                             Text(store.isBotThinking ? "電腦思考中" : "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)")
                             if store.isBotActing {
                                 Text(store.botMotionStartedAt == nil ? "準備" : "落定")
                                     .accessibilityIdentifier("botActionStatus")
                                     .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
                             }
-                        }.font(.system(size: 11)).foregroundStyle(SellTheme.lightMuted)
+                        }.gameFont(.caption).foregroundStyle(SellTheme.lightMuted)
                             .accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                             .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
                     }
                 }
-                Spacer()
+                if !gameType.stacksVertically { Spacer() }
                 if battleFocus && presentedResult == nil {
                     Button { showActionHelp = true } label: {
-                        Image(systemName: "info.circle").font(.system(size: 20)).frame(width: 44, height: 44)
+                        Image(systemName: "info.circle").gameFont(.body, emphasis: .strong).frame(width: toolbarSlot, height: toolbarSlot)
                     }.accessibilityLabel("操作與技能說明").accessibilityIdentifier("actionHelp")
                 }
                 Menu {
@@ -1181,24 +1192,25 @@ struct PlayableGameView: View {
                     #if DEBUG
                     if store.computer != nil { Button("電腦決策紀錄") { showBotLog = true } }
                     #endif
-                } label: { Image(systemName: "ellipsis.circle").font(.system(size: 20)).frame(width: 44, height: 44) }.accessibilityLabel("對戰選單")
+                } label: { Image(systemName: "ellipsis.circle").gameFont(.body, emphasis: .strong).frame(width: toolbarSlot, height: toolbarSlot) }.accessibilityLabel("對戰選單")
             }
     }
     @ViewBuilder private var botStatus: some View {
             if store.computer != nil && presentedResult == nil {
-                HStack(spacing: 6) {
+                gameRow(vertical: gameType.stacksVertically, spacing: 6) {
                     if store.isBotThinking { ProgressView().controlSize(.small) }
                     Text(store.isBotThinking ? "電腦思考中" : store.isBotActing ? "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)" : isResolvingTerminalPlayback ? "行動演出中" : store.state.status == .ongoing ? "你的回合 · \(store.humanPlayer == .one ? "黑方" : "白方")" : "對戰完成")
-                        .font(.system(size: 12, weight: .semibold))
+                        .gameFont(.caption, emphasis: .strong)
+                        .fixedSize(horizontal: false, vertical: true)
                     if store.isBotActing {
                         Text(store.botMotionStartedAt == nil ? "準備" : "落定")
-                            .font(.system(size: 11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                            .gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
                             .accessibilityIdentifier("botActionStatus")
                             .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
                     }
-                    Spacer()
-                    Text(store.botDifficulty == .easy ? "簡單" : store.botPolicy == .materialThreatContinuation ? "標準 · 續攻候選" : "標準").font(.system(size: 11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
-                }.frame(height: 22).accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
+                    if !gameType.stacksVertically { Spacer() }
+                    Text(store.botDifficulty == .easy ? "簡單" : store.botPolicy == .materialThreatContinuation ? "標準 · 續攻候選" : "標準").gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                }.frame(minHeight: 22).accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                     .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
             }
     }
@@ -1210,12 +1222,12 @@ struct PlayableGameView: View {
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted).accessibilityIdentifier("r2Banner") }
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
             if !sellLook, let title = presentedResult {
-                HStack { Image(systemName: "crown.fill"); Text(title).font(.system(size: 16, weight: .bold)); Spacer(); Button("再玩一局", action: startMatch) }
+                gameRow(vertical: gameType.stacksVertically, spacing: 8) { Image(systemName: "crown.fill").gameFont(.title); Text(title).gameFont(.title); if !gameType.stacksVertically { Spacer() }; Button("再玩一局", action: startMatch).gameFont(.body, emphasis: .strong) }
                     .padding(9).background(Color.gold.opacity(0.18), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("matchResult")
             }
             if complete {
                 HStack { Image(systemName: "checkmark.circle.fill"); Text("練習完成").bold(); Spacer(); Button("回到選角") { inMatch = false; lesson = nil } }
-                    .font(.system(size: 14)).padding(8).background(Color.green.opacity(0.25), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("practiceComplete")
+                    .gameFont(.body).padding(8).background(Color.green.opacity(0.25), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("practiceComplete")
             }
     }
     private func actionPanel(tablet: Bool, sidebar: Bool) -> some View {
@@ -1224,14 +1236,15 @@ struct PlayableGameView: View {
                 HStack(spacing: 9) {
                     Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: tablet ? 72 : 48, height: tablet ? 72 : 48)
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(hero.title + " · " + (store.mode == .skill ? hero.skillTitle : store.mode.rawValue)).font(.system(size: tablet ? 18 : 14, weight: .bold)).lineLimit(1)
-                        Text(modeHelp).font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
+                        Text(hero.title + " · " + (store.mode == .skill ? hero.skillTitle : store.mode.rawValue)).gameFont(.title).lineLimit(nil).fixedSize(horizontal: false, vertical: true)
+                        Text(modeHelp).gameFont(.body).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 0)
                 }.frame(minHeight: 50).padding(8).background(Cozy.card, in: RoundedRectangle(cornerRadius: 12)).shadow(color: Cozy.ink.opacity(0.10), radius: 1, y: 2)
             }
             Text(complete ? "已完成目標；可以復原重試或回到選角。" : presentedMessage)
-                .font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.muted).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading)
+                .gameFont(.caption).foregroundStyle(Cozy.muted).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading)
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("playMessage")
                 .accessibilityValue(store.isBotActing ? "\(store.botActionIndex)/\(store.botActionCount) \(store.botMotionStartedAt == nil ? "準備" : "落定")" : "")
             if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy {
@@ -1252,7 +1265,7 @@ struct PlayableGameView: View {
                 HStack(spacing: 6) {
                     ForEach(GameStore.Mode.originalCases, id: \.self) { mode in
                         Button { store.changeMode(mode) } label: {
-                            Text(mode == .skill ? hero.skillTitle : mode.rawValue).font(.system(size: tablet ? 16 : 13, weight: .bold)).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
+                            Text(mode == .skill ? hero.skillTitle : mode.rawValue).gameFont(.body, emphasis: .strong).lineLimit(nil).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
                         }.buttonStyle(CozyButton(selected: store.mode == mode))
                             .disabled(store.state.status != .ongoing || store.isComputerTurn).accessibilityIdentifier("mode-" + String(describing: mode))
                     }
@@ -1287,24 +1300,29 @@ struct PlayableGameView: View {
         let state = store.state, active = displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let row = gameType.stacksVertically
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: 4))
         return VStack(alignment: .leading, spacing: 3) {
-            HStack(spacing: 4) {
-                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).fontWeight(.bold)
-                Spacer(minLength: 0)
+            row {
+                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).gameFont(.body, emphasis: .strong)
+                    .fixedSize(horizontal: false, vertical: true)
+                if !gameType.stacksVertically { Spacer(minLength: 0) }
                 Text(state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束")
-                    .font(.system(size: 10, weight: .bold)).foregroundStyle(active ? Cozy.ink : Cozy.muted)
+                    .gameFont(.caption, emphasis: .strong).foregroundStyle(active ? Cozy.ink : Cozy.muted)
             }
-            HStack(spacing: 4) {
+            row {
                 if store.computer != nil {
                     Text(player == store.computer ? "電腦" : "你")
-                        .font(.system(size: 9, weight: .bold)).foregroundStyle(Cozy.muted)
+                        .gameFont(.caption, emphasis: .strong).foregroundStyle(Cozy.muted)
                 }
                 Text("能量 \(state.mana(of: player))/\(state.config.manaCap) · \(liberties) 氣")
-                    .font(.system(size: 11)).foregroundStyle(liberties <= 1 ? Color.redTeam : Cozy.ink.opacity(0.65))
-                Spacer(minLength: 0)
-                if active { Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP").font(.system(size: 11, weight: .bold)) }
+                    .gameFont(.numeric).foregroundStyle(liberties <= 1 ? Color.redTeam : Cozy.ink.opacity(0.65))
+                    .fixedSize(horizontal: false, vertical: true)
+                if !gameType.stacksVertically { Spacer(minLength: 0) }
+                if active { Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP").gameFont(.numeric, emphasis: .strong) }
             }
-        }.font(.system(size: 12)).padding(8)
+        }.padding(8)
             .background(active ? Cozy.ink.opacity(0.10) : Cozy.ink.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(active ? Cozy.ink : Cozy.muted.opacity(0.2), lineWidth: active ? 1.5 : 0.5))
             .accessibilityIdentifier(player == .one ? "blueResources" : "redResources")
@@ -1346,7 +1364,7 @@ struct PlayableGameView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .accessibilityIdentifier("visualPackStatus").allowsHitTesting(false)
             }
-            Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").font(.system(size: 16)).padding(10) }
+            Button { showGrid = true } label: { Image(systemName: "square.grid.3x3").gameFont(.body).padding(10) }
                 .accessibilityLabel("以格點清單操作棋盤")
         }
     }
