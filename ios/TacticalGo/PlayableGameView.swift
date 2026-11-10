@@ -257,7 +257,7 @@ struct PlayableGameView: View {
         .sheet(isPresented: $showMatchOptions) { lobbySettingsSheet }
         .sheet(isPresented: $showBotLog) {
             NavigationStack {
-                ScrollView { Text(store.botLastDecision.isEmpty ? "尚未完成電腦回合。" : store.botLastDecision).padding().accessibilityIdentifier("botDecisionLog") }
+                ScrollView { Text(store.botLastDecision.isEmpty ? "尚未完成電腦回合。" : store.botLastDecision).gameFont(.body).fixedSize(horizontal: false, vertical: true).padding().accessibilityIdentifier("botDecisionLog") }
                     .navigationTitle("電腦決策紀錄")
                     .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showBotLog = false } } }
             }
@@ -490,7 +490,7 @@ struct PlayableGameView: View {
                         .frame(maxWidth: .infinity, minHeight: 54)
                 }.buttonStyle(SellButton(confirm: store.resumableRecord == nil)).accessibilityIdentifier("lobbyNewGame")
                 #endif
-                let links = dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 16))
+                let links = dynamicTypeSize > .large ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 16))
                 links {
                     Button { showOnboarding = true } label: {
                         Label("新手入門", systemImage: "hand.tap").frame(maxWidth: .infinity, minHeight: 44)
@@ -649,7 +649,7 @@ struct PlayableGameView: View {
         }
     }
     private func heroChoices(portraitHeight: CGFloat) -> some View {
-        let layout = dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+        let layout = dynamicTypeSize > .large ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
         return layout {
             ForEach(heroes, id: \.self) { h in
                 let selected = (choosing == .one ? one : two) == h
@@ -726,16 +726,16 @@ struct PlayableGameView: View {
 
     /// Presentation only: all input continues through the existing GameStore and CozyBoard.
     private func tabletopMatch(size: CGSize) -> some View {
-        let wide = size.width >= 900 && size.width > size.height && !dynamicTypeSize.isAccessibilitySize
+        let wide = size.width >= 900 && size.width > size.height && dynamicTypeSize <= .large
         let tablet = size.width >= 600
         let margin: CGFloat = tablet ? 24 : 8
-        let compact = sellLook && !tablet && size.height < 720 && !dynamicTypeSize.isAccessibilitySize
-        let reserved: CGFloat = dynamicTypeSize.isAccessibilitySize ? 440 : tablet ? 360 : compact ? 330 : 310
-        let boardWidth = dynamicTypeSize.isAccessibilitySize
+        let compact = sellLook && !tablet && size.height < 720 && dynamicTypeSize <= .large
+        let reserved: CGFloat = dynamicTypeSize > .large ? 440 : tablet ? 360 : compact ? 330 : 310
+        let boardWidth = dynamicTypeSize > .large
             ? min(size.width - margin * 2, tablet ? 700 : 420)
             : min(size.width - margin * 2, max(200, (size.height - reserved) / 1.125))
         return Group {
-        if sellLook && !tablet && !dynamicTypeSize.isAccessibilitySize {
+        if sellLook && !tablet && dynamicTypeSize <= .large {
             phoneTabletopMatch
         } else { ScrollView {
             VStack(spacing: 10) {
@@ -752,7 +752,7 @@ struct PlayableGameView: View {
                         }.frame(width: 300)
                     }
                 } else {
-                    let layout = dynamicTypeSize.isAccessibilitySize
+                    let layout = dynamicTypeSize > .large
                         ? AnyLayout(VStackLayout(alignment: .leading, spacing: 14))
                         : AnyLayout(HStackLayout(alignment: .top, spacing: 14))
                     layout { tabletopPlayer(.one); tabletopPlayer(.two) }
@@ -810,29 +810,32 @@ struct PlayableGameView: View {
         let state = store.state, active = presentedResult == nil && displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let nameRow = dynamicTypeSize > .large ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 4))
+        let statRow = dynamicTypeSize > .large ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 3))
         return VStack(alignment: .leading, spacing: compact ? 3 : 5) {
-            HStack(spacing: 4) {
+            nameRow {
                 if sellLook {
-                    Text(player == .one ? "● 黑方" : "○ 白方").font(.subheadline.weight(.heavy))
-                    Text(state.heroClass(of:player).title).font(.caption.weight(.semibold))
+                    Text(player == .one ? "● 黑方" : "○ 白方").gameFont(.body, weight: .heavy)
+                    Text(state.heroClass(of:player).title).gameFont(.caption, weight: .semibold)
                 } else {
-                    Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of:player).title).font(.subheadline.weight(.bold))
+                    Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of:player).title).gameFont(.body, weight: .bold).fixedSize(horizontal: false, vertical: dynamicTypeSize > .large)
                 }
-                Spacer(minLength: 0)
+                if dynamicTypeSize <= .large { Spacer(minLength: 0) }
                 if active {
                     Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP")
-                        .font(.subheadline.weight(.heavy)).monospacedDigit()
+                        .gameFont(.numeric)
                         .padding(.horizontal,sellLook ? 7 : 0).padding(.vertical,sellLook ? 3 : 0)
                         .foregroundStyle(sellLook ? SellTheme.ink : Cozy.ink)
                         .background { if sellLook { SellPlaque().fill(Cozy.confirm) } }
                 }
             }
-            HStack(spacing: 3) {
+            statRow {
                 if sellLook { Image(systemName:"diamond.fill").font(.system(size:10)).foregroundStyle(Cozy.color(0x9ADADD)).accessibilityHidden(true) }
                 Text("能量 \(state.mana(of:player))/\(state.config.manaCap) · " + (presentedResult != nil && commander == nil ? "主將已被提" : "\(liberties) 氣"))
-                    .font(.caption).foregroundStyle(liberties <= 1 && presentedResult == nil ? (sellLook ? Cozy.color(0xFFBEA0) : Cozy.danger) : sellLook ? SellTheme.lightMuted : Cozy.muted)
-                Spacer(minLength:0)
-                if store.computer != nil { Text(player == store.computer ? "電腦" : "你").font(.caption.weight(.bold)) }
+                    .gameFont(.numeric).foregroundStyle(liberties <= 1 && presentedResult == nil ? (sellLook ? Cozy.color(0xFFBEA0) : Cozy.danger) : sellLook ? SellTheme.lightMuted : Cozy.muted)
+                    .fixedSize(horizontal: false, vertical: dynamicTypeSize > .large)
+                if dynamicTypeSize <= .large { Spacer(minLength:0) }
+                if store.computer != nil { Text(player == store.computer ? "電腦" : "你").gameFont(.caption, weight: .bold) }
             }
             Rectangle().fill(active ? (sellLook ? Cozy.gold : Cozy.ink) : (sellLook ? SellTheme.paper.opacity(0.2) : Cozy.ink.opacity(0.12)))
                 .frame(height:active ? 3 : 1).accessibilityHidden(true)
@@ -852,7 +855,7 @@ struct PlayableGameView: View {
     }
 
     private var tabletopActionLayout: AnyLayout {
-        dynamicTypeSize.isAccessibilitySize
+        dynamicTypeSize > .large
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
             : AnyLayout(HStackLayout(spacing: 8))
     }
@@ -1113,7 +1116,7 @@ struct PlayableGameView: View {
                     .frame(maxWidth: .infinity)
                 actionPanel(tablet: tablet && !compactTablet, sidebar: false)
             }
-        }.font(.system(size: tablet ? 16 : 14))
+        }.gameFont(.body)
             .padding(.horizontal, tablet ? 24 : 4).padding(.vertical, tablet ? 16 : 6)
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
         }.defaultScrollAnchor(.top)
@@ -1128,7 +1131,7 @@ struct PlayableGameView: View {
                         .accessibilityValue(store.recordRules == .redeployment ? "新版技能" : "舊版規則")
                         .accessibilityIdentifier("currentTurn")
                     if !battleFocus || lesson != nil { Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
-                        .font(.system(size:11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.ink.opacity(0.65))
+                        .gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.ink.opacity(0.65)).fixedSize(horizontal: false, vertical: dynamicTypeSize > .large)
                     }
                     if battleFocus && (store.isBotThinking || store.isBotActing) {
                         HStack(spacing: 3) {
@@ -1138,7 +1141,7 @@ struct PlayableGameView: View {
                                     .accessibilityIdentifier("botActionStatus")
                                     .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
                             }
-                        }.font(.system(size: 11)).foregroundStyle(SellTheme.lightMuted)
+                        }.gameFont(.caption).foregroundStyle(SellTheme.lightMuted)
                             .accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                             .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
                     }
@@ -1186,19 +1189,37 @@ struct PlayableGameView: View {
     }
     @ViewBuilder private var botStatus: some View {
             if store.computer != nil && presentedResult == nil {
-                HStack(spacing: 6) {
-                    if store.isBotThinking { ProgressView().controlSize(.small) }
-                    Text(store.isBotThinking ? "電腦思考中" : store.isBotActing ? "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)" : isResolvingTerminalPlayback ? "行動演出中" : store.state.status == .ongoing ? "你的回合 · \(store.humanPlayer == .one ? "黑方" : "白方")" : "對戰完成")
-                        .font(.system(size: 12, weight: .semibold))
-                    if store.isBotActing {
-                        Text(store.botMotionStartedAt == nil ? "準備" : "落定")
-                            .font(.system(size: 11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
-                            .accessibilityIdentifier("botActionStatus")
-                            .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                let thinking = store.isBotThinking ? "電腦思考中" : store.isBotActing ? "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)" : isResolvingTerminalPlayback ? "行動演出中" : store.state.status == .ongoing ? "你的回合 · \(store.humanPlayer == .one ? "黑方" : "白方")" : "對戰完成"
+                let phase = store.botMotionStartedAt == nil ? "準備" : "落定"
+                let difficulty = store.botDifficulty == .easy ? "簡單" : store.botPolicy == .materialThreatContinuation ? "標準 · 續攻候選" : "標準"
+                Group {
+                    if dynamicTypeSize > .large {
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 6) {
+                                if store.isBotThinking { ProgressView().controlSize(.small) }
+                                Text(thinking).gameFont(.caption, weight: .semibold).fixedSize(horizontal: false, vertical: true)
+                            }
+                            if store.isBotActing {
+                                Text(phase).gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                                    .accessibilityIdentifier("botActionStatus")
+                                    .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                            }
+                            Text(difficulty).gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                        }
+                    } else {
+                        HStack(spacing: 6) {
+                            if store.isBotThinking { ProgressView().controlSize(.small) }
+                            Text(thinking).gameFont(.caption, weight: .semibold)
+                            if store.isBotActing {
+                                Text(phase).gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                                    .accessibilityIdentifier("botActionStatus")
+                                    .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                            }
+                            Spacer()
+                            Text(difficulty).gameFont(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
+                        }.frame(height: 22)
                     }
-                    Spacer()
-                    Text(store.botDifficulty == .easy ? "簡單" : store.botPolicy == .materialThreatContinuation ? "標準 · 續攻候選" : "標準").font(.system(size: 11)).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted)
-                }.frame(height: 22).accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
+                }.accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                     .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
             }
     }
@@ -1210,12 +1231,12 @@ struct PlayableGameView: View {
             if store.r2Fixture != nil { Text("R2 \(store.r2Rules.variant) 試驗 · \(store.r2Rules.labDescription)").font(.caption).foregroundStyle(sellLook ? SellTheme.lightMuted : Cozy.muted).accessibilityIdentifier("r2Banner") }
             if let error = store.recordErrorMessage { Text(error).font(.caption).foregroundStyle(.orange) }
             if !sellLook, let title = presentedResult {
-                HStack { Image(systemName: "crown.fill"); Text(title).font(.system(size: 16, weight: .bold)); Spacer(); Button("再玩一局", action: startMatch) }
+                HStack { Image(systemName: "crown.fill"); Text(title).gameFont(.title); Spacer(); Button("再玩一局", action: startMatch).gameFont(.body, weight: .bold) }
                     .padding(9).background(Color.gold.opacity(0.18), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("matchResult")
             }
             if complete {
                 HStack { Image(systemName: "checkmark.circle.fill"); Text("練習完成").bold(); Spacer(); Button("回到選角") { inMatch = false; lesson = nil } }
-                    .font(.system(size: 14)).padding(8).background(Color.green.opacity(0.25), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("practiceComplete")
+                    .gameFont(.body, weight: .bold).padding(8).background(Color.green.opacity(0.25), in: RoundedRectangle(cornerRadius: 10)).accessibilityIdentifier("practiceComplete")
             }
     }
     private func actionPanel(tablet: Bool, sidebar: Bool) -> some View {
@@ -1224,14 +1245,14 @@ struct PlayableGameView: View {
                 HStack(spacing: 9) {
                     Image(uiImage: visuals.portrait(hero.art)).resizable().scaledToFit().frame(width: tablet ? 72 : 48, height: tablet ? 72 : 48)
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(hero.title + " · " + (store.mode == .skill ? hero.skillTitle : store.mode.rawValue)).font(.system(size: tablet ? 18 : 14, weight: .bold)).lineLimit(1)
-                        Text(modeHelp).font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
+                        Text(hero.title + " · " + (store.mode == .skill ? hero.skillTitle : store.mode.rawValue)).gameFont(.body, weight: .bold).fixedSize(horizontal: false, vertical: true)
+                        Text(modeHelp).gameFont(.caption).foregroundStyle(Cozy.ink.opacity(0.75)).fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 0)
                 }.frame(minHeight: 50).padding(8).background(Cozy.card, in: RoundedRectangle(cornerRadius: 12)).shadow(color: Cozy.ink.opacity(0.10), radius: 1, y: 2)
             }
             Text(complete ? "已完成目標；可以復原重試或回到選角。" : presentedMessage)
-                .font(.system(size: tablet ? 15 : 12)).foregroundStyle(Cozy.muted).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading)
+                .gameFont(.caption).foregroundStyle(Cozy.muted).frame(maxWidth: .infinity, minHeight: 28, alignment: .leading).fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("playMessage")
                 .accessibilityValue(store.isBotActing ? "\(store.botActionIndex)/\(store.botActionCount) \(store.botMotionStartedAt == nil ? "準備" : "落定")" : "")
             if store.mode == .skill && hero == .mage && store.state.config.experimentalFriendlyRedeploy {
@@ -1252,7 +1273,7 @@ struct PlayableGameView: View {
                 HStack(spacing: 6) {
                     ForEach(GameStore.Mode.originalCases, id: \.self) { mode in
                         Button { store.changeMode(mode) } label: {
-                            Text(mode == .skill ? hero.skillTitle : mode.rawValue).font(.system(size: tablet ? 16 : 13, weight: .bold)).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38)
+                            Text(mode == .skill ? hero.skillTitle : mode.rawValue).gameFont(.body, weight: .bold).frame(maxWidth: .infinity).frame(minHeight: tablet ? 48 : 38).fixedSize(horizontal: false, vertical: dynamicTypeSize > .large)
                         }.buttonStyle(CozyButton(selected: store.mode == mode))
                             .disabled(store.state.status != .ongoing || store.isComputerTurn).accessibilityIdentifier("mode-" + String(describing: mode))
                     }
@@ -1287,24 +1308,26 @@ struct PlayableGameView: View {
         let state = store.state, active = displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let nameRow = dynamicTypeSize > .large ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 4))
+        let statRow = dynamicTypeSize > .large ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 4))
         return VStack(alignment: .leading, spacing: 3) {
-            HStack(spacing: 4) {
-                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).fontWeight(.bold)
-                Spacer(minLength: 0)
+            nameRow {
+                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).gameFont(.caption, weight: .bold).fixedSize(horizontal: false, vertical: dynamicTypeSize > .large)
+                if dynamicTypeSize <= .large { Spacer(minLength: 0) }
                 Text(state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束")
-                    .font(.system(size: 10, weight: .bold)).foregroundStyle(active ? Cozy.ink : Cozy.muted)
+                    .gameFont(.caption, weight: .bold).foregroundStyle(active ? Cozy.ink : Cozy.muted)
             }
-            HStack(spacing: 4) {
+            statRow {
                 if store.computer != nil {
                     Text(player == store.computer ? "電腦" : "你")
-                        .font(.system(size: 9, weight: .bold)).foregroundStyle(Cozy.muted)
+                        .gameFont(.caption, weight: .bold).foregroundStyle(Cozy.muted)
                 }
                 Text("能量 \(state.mana(of: player))/\(state.config.manaCap) · \(liberties) 氣")
-                    .font(.system(size: 11)).foregroundStyle(liberties <= 1 ? Color.redTeam : Cozy.ink.opacity(0.65))
-                Spacer(minLength: 0)
-                if active { Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP").font(.system(size: 11, weight: .bold)) }
+                    .gameFont(.numeric).foregroundStyle(liberties <= 1 ? Color.redTeam : Cozy.ink.opacity(0.65))
+                if dynamicTypeSize <= .large { Spacer(minLength: 0) }
+                if active { Text("\(store.isBotActing && state.current != player ? 0 : state.apRemaining) AP").gameFont(.numeric) }
             }
-        }.font(.system(size: 12)).padding(8)
+        }.padding(8)
             .background(active ? Cozy.ink.opacity(0.10) : Cozy.ink.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(active ? Cozy.ink : Cozy.muted.opacity(0.2), lineWidth: active ? 1.5 : 0.5))
             .accessibilityIdentifier(player == .one ? "blueResources" : "redResources")
@@ -1440,24 +1463,24 @@ private struct CombatSoundSettings: View {
                 Toggle("靜音", isOn: $audio.muted).accessibilityIdentifier("audioMute")
                 Section("音效音量") {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
-                    Text("\(Int(audio.sfxVolume * 100))%")
+                    Text("\(Int(audio.sfxVolume * 100))%").gameFont(.numeric)
                 }
                 #if DEBUG
                 Section("英雄語音") {
                     Toggle("英文英雄語音", isOn: $audio.voiceEnabled).accessibilityIdentifier("voiceEnabled")
                     Slider(value: $audio.voiceVolume, in: 0...1).accessibilityIdentifier("voiceVolume")
-                    Text("\(Int(audio.voiceVolume * 100))% · VO-01 原型，正式聲線待驗收")
+                    Text("\(Int(audio.voiceVolume * 100))% · VO-01 原型，正式聲線待驗收").gameFont(.caption).fixedSize(horizontal: false, vertical: true)
                 }
                 #endif
                 Section("音樂音量") {
                     Toggle("背景音樂", isOn: $audio.musicEnabled).disabled(!audio.musicIntegrationAllowed).accessibilityIdentifier("musicEnabled")
                     if !audio.musicIntegrationAllowed { Text("目前為靜音動作檢視；一般對戰可播放背景音樂。").font(.caption) }
-                    Text("對戰曲：Hearthside Council").font(.caption)
+                    Text("對戰曲：Hearthside Council").gameFont(.caption)
                     Slider(value: $audio.musicVolume, in: 0...1).accessibilityIdentifier("musicVolume")
-                    Text("\(Int(audio.musicVolume * 100))%")
+                    Text("\(Int(audio.musicVolume * 100))%").gameFont(.numeric)
                 }
                 Section {
-                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂與音效可分別調整。")
+                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂與音效可分別調整。").gameFont(.body).fixedSize(horizontal: false, vertical: true)
                 }
             }.navigationTitle("聲音設定")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() }.accessibilityIdentifier("audioSettingsDone") } }

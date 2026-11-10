@@ -52,6 +52,7 @@ struct ExpansionGameView: View {
     #endif
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var lesson: PracticeLesson?
     @State private var showRules = false
     @State private var showGrid = false
@@ -112,6 +113,8 @@ struct ExpansionGameView: View {
     private var uiSecondary: Color { GameChrome.muted }
     private var uiAccent: Color { GameChrome.gold }
     private var phoneInterface: Bool { warmInterface && UIDevice.current.userInterfaceIdiom == .phone }
+    /// Above the default Large size, chrome scrolls and text wraps. The board frame stays on the same geometry.
+    private var growsWithType: Bool { dynamicTypeSize > .large }
     private var displayedPlayer: Player { store.isBotActing ? (store.computer ?? store.state.current) : store.state.current }
     private var side: String { displayedPlayer == .one ? "黑方" : "白方" }
     private var turnTitle: String { store.state.status == .ongoing || store.isBotActing ? "輪到" + side + hero.title : "對戰結束" }
@@ -189,7 +192,7 @@ struct ExpansionGameView: View {
         }
         .sheet(isPresented: $showBotLog) {
             NavigationStack {
-                ScrollView { Text(store.botLastDecision.isEmpty ? "尚未完成電腦回合。" : store.botLastDecision).padding().accessibilityIdentifier("botDecisionLog") }
+                ScrollView { Text(store.botLastDecision.isEmpty ? "尚未完成電腦回合。" : store.botLastDecision).gameFont(.body).fixedSize(horizontal: false, vertical: true).padding().accessibilityIdentifier("botDecisionLog") }
                     .navigationTitle("電腦決策紀錄")
                     .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { showBotLog = false } } }
             }
@@ -431,7 +434,8 @@ struct ExpansionGameView: View {
             VStack(spacing: 8) {
                 Text(access.purchase.isUnlocked ? "已永久解鎖" : "免費完整對局剩餘 \(access.remainingTrialMatches)／3")
                     .font(.caption).foregroundStyle(uiSecondary).accessibilityIdentifier("accessStatus")
-                HStack(spacing: 8) {
+                let row = growsWithType ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+                row {
                     Menu {
                         Button("英雄技能入門 · 六關") { openProductChallenges(.introduction) }
                         Button("邊境攻防 · 三關") { openProductChallenges(.advanced) }
@@ -443,7 +447,7 @@ struct ExpansionGameView: View {
                     Button { showPrivacy = true } label: {
                         Label("隱私與支援", systemImage: "hand.raised").frame(maxWidth: .infinity, minHeight: 44)
                     }.accessibilityIdentifier("privacySupport")
-                }.font(.system(size: 13, weight: .semibold)).buttonStyle(GameButtonStyle())
+                }.gameFont(.body, weight: .semibold).buttonStyle(GameButtonStyle())
             }
         }
     }
@@ -466,7 +470,7 @@ struct ExpansionGameView: View {
                         .shadow(color: ArtV2.enabled ? .black.opacity(0.65) : .clear, radius: 2, y: 2)
                     if productMode { Text("CROWN TACTICS").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(uiSecondary) }
                     if ArtV2.enabled { ArtDivider() }
-                    Text("選擇英雄 · 包圍主將 · 一局決勝").font(.system(size: 14)).foregroundStyle(uiSecondary)
+                    Text("選擇英雄 · 包圍主將 · 一局決勝").gameFont(.body).foregroundStyle(uiSecondary)
                 }.padding(.top, 14)
     }
     private var lobbySettings: some View {
@@ -484,7 +488,7 @@ struct ExpansionGameView: View {
                         .onChange(of:monsters) { _, value in if value != .none { boardSize = 9 } }
                     if monsters != .none {
                         Text(SkillGuide.lobbyMonsters(monsters == .slime ? [.slime] : monsters == .wolf ? [.shadowWolf] : [.slime, .shadowWolf]))
-                            .font(.system(size: 12)).foregroundStyle(uiSecondary).multilineTextAlignment(.leading)
+                            .gameFont(.caption).foregroundStyle(uiSecondary).multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading).accessibilityIdentifier("monsterGuide")
                     }
                 }
@@ -499,7 +503,7 @@ struct ExpansionGameView: View {
                         Text("標準").tag(BotDifficulty.standard)
                     }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("botDifficulty")
                     Text(store.botDifficulty == .easy ? "適合先熟悉\(heroes.count == 4 ? "四" : "三")職技能與主將攻守。" : "會預判你的反擊，適合挑戰。")
-                        .font(.system(size: 12)).foregroundStyle(uiSecondary)
+                        .gameFont(.caption).foregroundStyle(uiSecondary)
                 }
                 if !useExpansion {
                 Picker("技能規則", selection: $selectedRules) {
@@ -516,7 +520,8 @@ struct ExpansionGameView: View {
         }
     }
     private func heroChoices(portraitHeight: CGFloat) -> some View {
-                HStack(spacing: 8) {
+                let columns = growsWithType ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+                return columns {
                     ForEach(heroes, id: \.self) { h in
                         let selected = (choosing == .one ? one : two) == h
                         Button {
@@ -536,11 +541,11 @@ struct ExpansionGameView: View {
     private func heroChoiceFace(_ h:HeroClass,selected:Bool,portraitHeight:CGFloat) -> some View {
         VStack(spacing:7) {
             Image(uiImage:portrait(h)).resizable().scaledToFit().frame(height:portraitHeight)
-            Text(h.title).font(.system(size:17,weight:.bold))
-            Text(lobbySkillTitle(h)).font(.system(size:12,weight:.semibold)).lineLimit(1)
+            Text(h.title).gameFont(.title)
+            Text(lobbySkillTitle(h)).gameFont(.caption, weight: .semibold).lineLimit(growsWithType ? nil : 1).fixedSize(horizontal: false, vertical: growsWithType)
             if useExpansion {
                 // Every hero shows its second skill, so the four cards keep the same height.
-                Text(advancedSkillTitle(h)).font(.system(size:11,weight:.semibold)).foregroundStyle(uiSecondary).lineLimit(1)
+                Text(advancedSkillTitle(h)).gameFont(.caption, weight: .semibold).foregroundStyle(uiSecondary).lineLimit(growsWithType ? nil : 1).fixedSize(horizontal: false, vertical: growsWithType)
             }
         }.frame(maxWidth:.infinity).padding(.vertical,12)
             .background(GamePanel(active:selected,kind:.hero))
@@ -561,12 +566,14 @@ struct ExpansionGameView: View {
     @ViewBuilder private var chosenSkill: some View {
                 let choice = choosing == .one ? one : two
                 VStack(spacing: 6) {
-                    Text(useExpansion ? SkillGuide.basic(choice) : updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).font(.system(size: 14))
+                    Text(useExpansion ? SkillGuide.basic(choice) : updatedLobbySkills && choice == .warrior ? "在英雄相連棋群旁放兩兵；先選兩個不同空點。" : updatedLobbySkills && choice == .mage ? "調度法師2格內的相連己兵，移到原棋群旁空點。" : choice.skillHelp).gameFont(.body)
+                        .fixedSize(horizontal: false, vertical: true)
                         .accessibilityIdentifier("lobbySkillHelp")
-                    Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").font(.system(size: 11)).foregroundStyle(uiAccent)
+                    Text("召喚 \(choice.summonCost) 能量 · 技能 1 AP＋2 能量 · 每回合一次").gameFont(.caption).foregroundStyle(uiAccent)
+                        .fixedSize(horizontal: false, vertical: true)
                     if useExpansion {
                         Text("第二技能 · \(advancedSkillTitle(choice))（1 AP＋\(TacticalHints.updatedConfig(size:boardSize).expansionSkillManaCost) 能量，與技能共用每回合一次）：" + SkillGuide.second(choice))
-                            .font(.system(size:12)).foregroundStyle(uiSecondary).accessibilityIdentifier("lobbyAdvancedSkill")
+                            .gameFont(.caption).foregroundStyle(uiSecondary).fixedSize(horizontal: false, vertical: true).accessibilityIdentifier("lobbyAdvancedSkill")
                     }
                 }.frame(minHeight: 45)
     }
@@ -575,7 +582,7 @@ struct ExpansionGameView: View {
                     Text("黑方 · \(one.title)").foregroundStyle(uiAccent)
                     Spacer(); Text("VS").font(.caption.bold()).foregroundStyle(.secondary); Spacer()
                     Text("白方 · \(two.title)").foregroundStyle(uiInk)
-                }.font(.system(size: 14, weight: .bold)).accessibilityIdentifier("matchClasses")
+                }.gameFont(.body, weight: .bold).accessibilityIdentifier("matchClasses")
     }
     private var boardSizePicker: some View {
                 Picker("棋盤", selection: $boardSize) { Text("7 × 7").tag(7); Text("9 × 9").tag(9) }.pickerStyle(.segmented).padding(4).background(GamePanel()).accessibilityIdentifier("playBoardSize")
@@ -583,7 +590,7 @@ struct ExpansionGameView: View {
     private var startControls: some View {
         VStack(spacing: 18) {
                 Button(action: startMatch) { Label(singlePlayer ? "開始電腦對戰" : "開始本機雙人對戰", systemImage: "play.fill").frame(maxWidth: .infinity).frame(minHeight: 46) }
-                    .buttonStyle(GameButtonStyle(kind: .primary)).tint(Color.gold).foregroundStyle(Color.ink).font(.system(size: 16, weight: .bold)).accessibilityIdentifier("startMatch")
+                    .buttonStyle(GameButtonStyle(kind: .primary)).tint(Color.gold).foregroundStyle(Color.ink).gameFont(.body, weight: .bold).accessibilityIdentifier("startMatch")
                 Button { showOnboarding = true } label: {
                     Label("新手教學 · 不需要懂圍棋", systemImage: "hand.tap")
                         .frame(maxWidth: .infinity, minHeight: 44)
@@ -616,14 +623,41 @@ struct ExpansionGameView: View {
                     // The skill lab is an engineering tool; the product lobby (Owner request 2026-10-16) does not offer it.
                     if !productMode { Button("技能試驗") { showR2 = true }.accessibilityIdentifier("r2Lab") }
                     Button("遊戲規則") { showRules = true }
-                }.font(.system(size: 14)).frame(minHeight: 44)
+                }.gameFont(.body).frame(minHeight: 44)
         }
     }
     private var lobbyFooter: some View {
                 Text(singlePlayer ? "單人 \(boardSize)×\(boardSize)：你執\(humanSide == .one ? "黑" : "白")方，電腦執\(humanSide == .one ? "白" : "黑")方。\n黑方首回合 1 AP，之後每回合 2 AP。" : "兩人共用這台裝置，黑方先手。\n首回合 1 AP，之後每回合 2 AP。")
-                    .multilineTextAlignment(.center).font(.system(size:12)).foregroundStyle(uiSecondary)
+                    .multilineTextAlignment(.center).gameFont(.caption).foregroundStyle(uiSecondary).fixedSize(horizontal: false, vertical: true)
     }
-    private func match(size: CGSize) -> some View {
+    @ViewBuilder private func match(size: CGSize) -> some View {
+        if growsWithType { flexibleMatch(size: size) }
+        else { pinnedMatch(size: size) }
+    }
+    private func flexibleMatch(size: CGSize) -> some View {
+        let tablet = size.width >= 600
+        let phoneNine = UIDevice.current.userInterfaceIdiom == .phone && store.size == 9 && store.state.config.expansionSkills
+        let width = min(size.width - (tablet ? 48 : phoneNine ? 12 : 24), tablet ? 736 : 626)
+        let phoneLayout = PhoneMatchLayout(width: Double(size.width), height: Double(size.height))
+        let boardWidth = phoneInterface ? CGFloat(phoneLayout.width) : min(width, max(170, size.height - (tablet ? 518 : 410)))
+        let boardHeight = phoneInterface ? CGFloat(phoneLayout.boardHeight) : min(tablet ? boardWidth * 0.90 : size.width * 0.92, max(170, size.height - (tablet ? 518 : 410)))
+        return ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                matchHeader
+                playerStrip(.one)
+                playerStrip(.two)
+                phoneStateBar
+                matchBanners
+                board.frame(width: boardWidth, height: boardHeight).frame(maxWidth: .infinity)
+                gameActionDock
+            }
+            .gameFont(.body)
+            .padding(.horizontal, tablet ? 24 : 12)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
+        }
+    }
+    private func pinnedMatch(size: CGSize) -> some View {
         let tablet = size.width >= 600
         let wide = size.width >= 900 && size.width > size.height
         let phoneNine = UIDevice.current.userInterfaceIdiom == .phone && store.size == 9 && store.state.config.expansionSkills
@@ -659,7 +693,7 @@ struct ExpansionGameView: View {
                 board.frame(width:tablet ? min(width,height/0.90):width,height:height).frame(maxWidth:.infinity)
                 gameActionDock
             }
-        }.font(.system(size: tablet ? 16 : 14))
+        }.gameFont(.body)
             .padding(.horizontal,tablet ? 24:phoneInterface ? 6:12).padding(.vertical,phoneInterface ? 4:tablet ? 16:6)
             .frame(maxWidth: wide ? 1268 : tablet ? 784 : 650)
 
@@ -668,11 +702,11 @@ struct ExpansionGameView: View {
             HStack {
                 Button { confirmExit = true } label: { Image(systemName: "chevron.left").font(.system(size: 20, weight: .bold)).frame(width: 38, height: 36) }.accessibilityLabel("返回選角")
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(turnTitle).font(.system(size: 20, weight: .heavy, design: .serif))
+                    Text(turnTitle).gameFont(.title, design: .serif)
                         .foregroundStyle(displayedPlayer == .one ? uiAccent:uiInk)
-                        .lineLimit(1).minimumScaleFactor(0.80).accessibilityIdentifier("currentTurn")
+                        .lineLimit(growsWithType ? nil : 1).minimumScaleFactor(growsWithType ? 1 : 0.80).fixedSize(horizontal: false, vertical: growsWithType).accessibilityIdentifier("currentTurn")
                     Text(lesson?.rawValue ?? "第 \(store.state.ply) 回合 · \(store.computer == nil ? "本機雙人" : "單人・你執\(store.humanPlayer == .one ? "黑" : "白")")")
-                        .font(.system(size: 11)).foregroundStyle(uiSecondary)
+                        .gameFont(.caption).foregroundStyle(uiSecondary).fixedSize(horizontal: false, vertical: growsWithType)
                 }
                 Spacer()
                 Menu {
@@ -712,34 +746,51 @@ struct ExpansionGameView: View {
     }
     @ViewBuilder private var botStatus: some View {
             if store.computer != nil {
-                HStack(spacing: 6) {
-                    if store.isBotThinking { ProgressView().controlSize(.small) }
-                    Text(store.isBotThinking ? "電腦思考中" : store.isBotActing ? "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)" : store.state.status == .ongoing ? "你的回合 · \(store.humanPlayer == .one ? "黑方" : "白方")" : "對戰完成")
-                        .font(.system(size: 12, weight: .semibold))
-                    if store.isBotActing {
-                        Text(store.botMotionStartedAt == nil ? "準備" : "落定")
-                            .font(.system(size: 11)).foregroundStyle(uiAccent)
-                            .accessibilityIdentifier("botActionStatus")
-                            .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                let thinking = store.isBotThinking ? "電腦思考中" : store.isBotActing ? "電腦下棋中 · \(store.botActionIndex)/\(store.botActionCount)" : store.state.status == .ongoing ? "你的回合 · \(store.humanPlayer == .one ? "黑方" : "白方")" : "對戰完成"
+                let phase = store.botMotionStartedAt == nil ? "準備" : "落定"
+                let difficulty = store.botDifficulty == .easy ? "簡單" : "標準"
+                Group {
+                    if growsWithType {
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 6) {
+                                if store.isBotThinking { ProgressView().controlSize(.small) }
+                                Text(thinking).gameFont(.caption, weight: .semibold).fixedSize(horizontal: false, vertical: true)
+                            }
+                            if store.isBotActing {
+                                Text(phase).gameFont(.caption).foregroundStyle(uiAccent)
+                                    .accessibilityIdentifier("botActionStatus")
+                                    .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                            }
+                            Text(difficulty).gameFont(.caption).foregroundStyle(uiAccent)
+                        }
+                    } else {
+                        HStack(spacing: 6) {
+                            if store.isBotThinking { ProgressView().controlSize(.small) }
+                            Text(thinking).gameFont(.caption, weight: .semibold)
+                            if store.isBotActing {
+                                Text(phase).gameFont(.caption).foregroundStyle(uiAccent)
+                                    .accessibilityIdentifier("botActionStatus")
+                                    .accessibilityValue("\(store.botActionIndex)/\(store.botActionCount) \(store.botActionLabel)")
+                            }
+                            Spacer()
+                            Text(difficulty).gameFont(.caption).foregroundStyle(uiAccent)
+                        }.frame(height: 22)
                     }
-                    Spacer()
-                    Text(store.botDifficulty == .easy ? "簡單" : "標準").font(.system(size: 11)).foregroundStyle(uiAccent)
-                }.frame(height: 22).accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
+                }.accessibilityElement(children: .combine).accessibilityIdentifier("botStatus")
                     .accessibilityValue("已完成\(store.botTurnsCompleted)電腦回合")
             }
     }
     @ViewBuilder private var phoneStateBar: some View {
         if legacySkillWarning && !store.isBotActing {
-            Text("舊技能存局 · 新開對局使用新版設定").font(.system(size:11)).foregroundStyle(uiAccent)
+            Text("舊技能存局 · 新開對局使用新版設定").gameFont(.caption).foregroundStyle(uiAccent).fixedSize(horizontal: false, vertical: true)
         } else if presentedResult != nil {
-            HStack { Image(systemName:"crown.fill");Text("本局結算").bold();Spacer() }
-                .font(.system(size:12))
+            HStack { Image(systemName:"crown.fill");Text("本局結算").gameFont(.caption, weight: .bold);Spacer() }
         } else if complete {
-            Text("挑戰達成").font(.system(size:12)).frame(maxWidth:.infinity,alignment:.leading)
+            Text("挑戰達成").gameFont(.caption).frame(maxWidth:.infinity,alignment:.leading)
         } else if store.computer != nil { botStatus }
         else {
             Text(store.recordErrorMessage ?? localActionStatus)
-                .font(.system(size:12)).foregroundStyle(uiSecondary)
+                .gameFont(.caption).foregroundStyle(uiSecondary)
                 .frame(maxWidth:.infinity,alignment:.leading)
                 .accessibilityIdentifier("localActionStatus")
         }
@@ -772,29 +823,32 @@ struct ExpansionGameView: View {
             if presentedResult != nil || complete {
                 gameResultDock
             } else {
-                dockHeading.frame(height: 44)
-                gameAbilityRail.frame(height: 64)
+                dockHeading.frame(height: growsWithType ? nil : 44)
+                gameAbilityRail.frame(height: growsWithType ? nil : 64)
                 Text(tacticalMessage.replacingOccurrences(of: "確認前不扣資源、不播聲音。", with: ""))
-                    .font(.system(size: 11, weight: .medium)).foregroundStyle(uiSecondary)
-                    .lineLimit(1).truncationMode(.tail)
-                    .frame(maxWidth: .infinity, minHeight: 16, maxHeight: 16, alignment: .leading)
+                    .gameFont(.caption, weight: .medium).foregroundStyle(uiSecondary)
+                    .lineLimit(growsWithType ? nil : 1).truncationMode(.tail)
+                    .fixedSize(horizontal: false, vertical: growsWithType)
+                    .frame(maxWidth: .infinity, minHeight: growsWithType ? 0 : 16, maxHeight: growsWithType ? nil : 16, alignment: .leading)
                     .accessibilityIdentifier("playMessage")
                     .accessibilityValue(store.isBotActing ? "\(store.botActionIndex)/\(store.botActionCount) \(store.botMotionStartedAt == nil ? "準備" : "落定")" : "")
-                gameCommandRow.frame(height: 44)
+                gameCommandRow.frame(height: growsWithType ? nil : 44)
             }
-        }.padding(10).frame(height: 200, alignment: .top)
+        }.padding(10).frame(minHeight: growsWithType ? 0 : 200, alignment: .top)
+            .frame(height: growsWithType ? nil : 200, alignment: .top)
             .background(GamePanel(active: true, kind: .tray))
             .accessibilityElement(children: .contain).accessibilityIdentifier("gameActionDock")
     }
     private var dockHeading: some View {
-        HStack(spacing: 8) {
+        let row = growsWithType ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+        return row {
             Image(uiImage: dockPortrait).resizable().scaledToFit().padding(2).frame(width: 44, height: 44)
                 .background(Circle().fill(GameChrome.ink))
                 .overlay(Circle().stroke(LinearGradient(colors: [GameChrome.cream, GameChrome.gold, GameChrome.bronze], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2))
                 .shadow(color: .black.opacity(0.50), radius: 2, y: 2)
             VStack(alignment: .leading, spacing: 1) {
-                Text(dockTitle).font(.system(size: 14, weight: .heavy, design: .serif)).foregroundStyle(GameChrome.accent(hero)).accessibilityIdentifier("tacticalActionTitle")
-                Text(stepPrompt).font(.system(size: 11,weight:.semibold)).lineLimit(2).foregroundStyle(uiSecondary)
+                Text(dockTitle).gameFont(.body, weight: .heavy, design: .serif).foregroundStyle(GameChrome.accent(hero)).accessibilityIdentifier("tacticalActionTitle")
+                Text(stepPrompt).gameFont(.caption, weight: .semibold).lineLimit(growsWithType ? nil : 2).fixedSize(horizontal: false, vertical: growsWithType).foregroundStyle(uiSecondary)
                     .accessibilityIdentifier("skillStepPrompt")
             }
             Spacer(minLength: 0)
@@ -807,13 +861,13 @@ struct ExpansionGameView: View {
                         }.accessibilityIdentifier("hunt-\(point.x)-\(point.y)")
                     }
                 } label: {
-                    Text("討伐").font(.system(size:11,weight:.bold)).frame(width:44,height:44)
+                    Text("討伐").gameFont(.caption, weight: .bold).frame(minWidth: 44, minHeight: 44).fixedSize(horizontal: false, vertical: growsWithType)
                 }.foregroundStyle(uiAccent).accessibilityLabel("討伐魔物").accessibilityIdentifier("huntMenu")
                     .disabled(store.inputLocked || store.state.status != .ongoing)
             }
             if !store.state.lootInventory(of: store.state.current).isEmpty {
                 Button { showLootAbilities.toggle() } label: {
-                    Label("戰利", systemImage: "shippingbox.fill").font(.system(size: 11, weight: .bold)).frame(minWidth: 52, minHeight: 44)
+                    Label("戰利", systemImage: "shippingbox.fill").gameFont(.caption, weight: .bold).frame(minWidth: 52, minHeight: 44)
                         .contentShape(Rectangle())
                 }.buttonStyle(.plain).foregroundStyle(uiAccent)
                     .accessibilityLabel(showLootAbilities ? "查看職業技能" : "查看戰利能力").accessibilityIdentifier("showLootAbilities")
@@ -887,7 +941,54 @@ struct ExpansionGameView: View {
         }
         return TacticalReadiness.restriction(store.state,mode:kind,ability:ability)?.message
     }
-    private var gameAbilityRail: some View {
+    @ViewBuilder private var gameAbilityRail: some View {
+        if growsWithType { flexibleAbilityRail } else { compactAbilityRail }
+    }
+    private var flexibleAbilityRail: some View {
+        VStack(spacing: 8) {
+            if store.mode == .skill && hero == .mage && store.selected.first != nil && store.mageOperation == .push {
+                ForEach(PushDirection.allCases, id: \.self) { direction in
+                    Button { store.chooseDirection(direction) } label: {
+                        Label(direction.title, systemImage: direction.symbol)
+                            .gameFont(.body, weight: .bold)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.pushDirection == direction))
+                        .disabled(store.inputLocked || !store.availableDirections.contains(direction))
+                        .accessibilityIdentifier("push-" + direction.rawValue)
+                }
+            } else {
+                ForEach(availableModes.filter { $0 != .loot }, id: \.self) { mode in
+                    Button { store.changeMode(mode) } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(modeTitle(mode)).gameFont(.body, weight: .bold).fixedSize(horizontal: false, vertical: true)
+                            Text(modeCost(mode) == 0 ? "1 AP" : "1 AP · \(modeCost(mode)) 能量").gameFont(.numeric)
+                            if let restriction = modeRestriction(mode) {
+                                Text(restriction).gameFont(.caption).fixedSize(horizontal: false, vertical: true)
+                            }
+                        }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == mode, restricted: modeRestriction(mode) != nil))
+                        .disabled(store.inputLocked || store.state.status != .ongoing)
+                        .accessibilityIdentifier("mode-" + String(describing: mode))
+                        .accessibilityValue(modeRestriction(mode) ?? "可選目標，仍須合法預覽")
+                }
+                #if DEBUG || TACTICALGO_V11
+                if let match = store.expansion {
+                    ForEach(store.state.lootInventory(of: store.state.current), id: \.ability) { loot in
+                        Button { store.changeMode(.loot); match.ability = loot.ability } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(loot.ability == .stickyBounce ? "黏彈" : "影步").gameFont(.body, weight: .bold)
+                                Text("1 AP · 0 能量").gameFont(.numeric)
+                            }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.mode == .loot && match.ability == loot.ability, restricted: modeRestriction(.loot, ability: loot.ability) != nil))
+                            .disabled(store.inputLocked || store.state.ply < loot.unlockPly || store.state.status != .ongoing)
+                            .accessibilityIdentifier("loot-" + loot.ability.rawValue)
+                    }
+                }
+                #endif
+            }
+        }
+    }
+    private var compactAbilityRail: some View {
         GeometryReader { geo in
             let count = availableModes.filter { $0 != .loot }.count
             let width = max(64, (geo.size.width - 2 - CGFloat(max(0, count-1)) * 6) / CGFloat(max(1, count)))
@@ -897,7 +998,7 @@ struct ExpansionGameView: View {
                         Button { store.chooseDirection(direction) } label: {
                             VStack(spacing: 5) {
                                 Image(systemName: direction.symbol).font(.system(size: 22, weight: .heavy))
-                                Text(direction.title).font(.system(size: 12, weight: .bold))
+                                Text(direction.title).gameFont(.caption, weight: .bold)
                             }.frame(maxWidth: .infinity).frame(height: 64)
                         }.buttonStyle(GameButtonStyle(kind: .ability, selected: store.pushDirection == direction))
                             .disabled(store.inputLocked || !store.availableDirections.contains(direction))
@@ -945,57 +1046,65 @@ struct ExpansionGameView: View {
         }
     }
     private var gameCommandRow: some View {
-        HStack(spacing: 8) {
+        let row = growsWithType ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+        return row {
             Button { if store.selected.isEmpty { store.undo() } else { store.cancelSelection() } } label: {
                 VStack(spacing: 1) {
                     Image(systemName: store.selected.isEmpty ? "arrow.uturn.backward" : "xmark").font(.system(size: 12, weight: .bold))
-                    Text(store.selected.isEmpty ? "復原" : "取消").font(.system(size: 10, weight: .semibold))
-                }.frame(width: 48, height: 44)
+                    Text(store.selected.isEmpty ? "復原" : "取消").gameFont(.caption, weight: .semibold).fixedSize(horizontal: false, vertical: growsWithType)
+                }.frame(minWidth: 48, minHeight: 44).frame(width: growsWithType ? nil : 48, height: growsWithType ? nil : 44)
             }.buttonStyle(GameButtonStyle()).disabled(store.selected.isEmpty && !store.canUndoHumanDecision)
                 .accessibilityIdentifier("undoOrCancel")
             Button(action: store.confirm) {
-                Label("確認", systemImage: "checkmark.seal.fill").font(.system(size: 15, weight: .heavy))
-                    .frame(maxWidth: .infinity).frame(height: 44)
+                Label("確認", systemImage: "checkmark.seal.fill").gameFont(.body, weight: .heavy)
+                    .frame(maxWidth: .infinity, minHeight: 44)
             }.buttonStyle(GameButtonStyle(kind: .primary))
                 .disabled(store.inputLocked || store.preview?.success != true).accessibilityIdentifier("playConfirm")
             Button(action: store.endTurn) {
                 HStack(spacing: 4) { Text("結束回合"); Image(systemName: "chevron.right.2") }
-                    .font(.system(size: 12, weight: .bold)).frame(width: 105, height: 44)
+                    .gameFont(.caption, weight: .bold)
+                    .frame(maxWidth: growsWithType ? .infinity : nil)
+                    .frame(width: growsWithType ? nil : 105, height: growsWithType ? nil : 44)
+                    .frame(minHeight: 44)
+                    .fixedSize(horizontal: false, vertical: growsWithType)
             }.buttonStyle(GameButtonStyle(kind: .turn))
                 .disabled(store.inputLocked || store.state.status != .ongoing || lesson != nil).accessibilityIdentifier("playEndTurn")
         }
     }
     private var gameResultDock: some View {
-        VStack(spacing: 8) {
+        let actions = growsWithType ? AnyLayout(VStackLayout(spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
+        return VStack(spacing: 8) {
             Image(systemName: complete ? "checkmark.seal.fill" : "crown.fill")
-                .font(.system(size: 28, weight: .bold)).foregroundStyle(uiAccent)
+                .gameFont(.title).foregroundStyle(uiAccent)
             Text(complete ? "練習完成" : (presentedResult ?? "對戰結束"))
-                .font(.system(size: 23, weight: .heavy, design: .serif)).foregroundStyle(GameChrome.cream)
+                .gameFont(.title, design: .serif).foregroundStyle(GameChrome.cream)
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier(complete ? "practiceComplete" : "matchResult")
-            Text(store.message).font(.system(size: 11)).foregroundStyle(uiSecondary).lineLimit(2)
+            Text(store.message).gameFont(.caption).foregroundStyle(uiSecondary)
+                .lineLimit(growsWithType ? nil : 2).fixedSize(horizontal: false, vertical: growsWithType)
                 .accessibilityIdentifier("playMessage")
-            HStack(spacing: 8) {
-                Button { store.undo() } label: { Text("復原重試").frame(maxWidth: .infinity, minHeight: 44) }
+            actions {
+                Button { store.undo() } label: { Text("復原重試").gameFont(.body, weight: .bold).frame(maxWidth: .infinity, minHeight: 44) }
                     .buttonStyle(GameButtonStyle()).disabled(!store.canUndoHumanDecision).accessibilityIdentifier("undoOrCancel")
                 Button { if complete { store.leaveMatch(); inMatch = false; lesson = nil } else { returnToLatestRules(); startMatch() } } label: {
-                    Text(complete ? "返回選角" : "再玩一局").bold().frame(maxWidth: .infinity, minHeight: 44)
+                    Text(complete ? "返回選角" : "再玩一局").gameFont(.body, weight: .bold).frame(maxWidth: .infinity, minHeight: 44)
                 }.buttonStyle(GameButtonStyle(kind: .primary)).accessibilityIdentifier("resultReplay")
             }
-        }.frame(maxWidth: .infinity).frame(height: 180)
+        }.frame(maxWidth: .infinity).frame(minHeight: growsWithType ? 0 : 180).frame(height: growsWithType ? nil : 180)
     }
     private var tacticalHelp: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment:.leading,spacing:16) {
-                    Text(store.message).font(.headline)
-                    Text(modeHelp)
+                    Text(store.message).gameFont(.title)
+                    Text(modeHelp).gameFont(.body).fixedSize(horizontal: false, vertical: true)
                     #if DEBUG || TACTICALGO_V11
                     if let match = store.expansion {
                         if let instruction = match.instruction { Text(instruction) }
                         if match.challenge && match.showHint { Text(PriestSanctuaryChallenge.hint) }
                     }
                     #endif
-                    Text("先選擇棋盤上的目標，查看合法預覽，再按確認。取消不扣資源，復原可以還原上一個行動。")
+                    Text("先選擇棋盤上的目標，查看合法預覽，再按確認。取消不扣資源，復原可以還原上一個行動。").gameFont(.body).fixedSize(horizontal: false, vertical: true)
                 }.padding()
             }.background(GameBackdrop()).foregroundStyle(GameChrome.cream).navigationTitle("技能說明")
                 .toolbar { ToolbarItem(placement:.confirmationAction) { Button("完成") { showTacticalHelp = false }.accessibilityIdentifier("tacticalHelpDone") } }
@@ -1046,34 +1155,36 @@ struct ExpansionGameView: View {
         let state = store.state, active = displayedPlayer == player
         let commander = state.board.find(player, .commander)
         let liberties = commander.map { state.board.liberties(at: $0).count } ?? 0
+        let nameRow = growsWithType ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 4))
+        let statRow = growsWithType ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2)) : AnyLayout(HStackLayout(spacing: 4))
         return VStack(alignment: .leading, spacing: 3) {
-            HStack(spacing: 4) {
-                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).fontWeight(.bold)
-                Spacer(minLength: 0)
+            nameRow {
+                Text((player == .one ? "● 黑方 " : "○ 白方 ") + state.heroClass(of: player).title).gameFont(.caption, weight: .bold).fixedSize(horizontal: false, vertical: growsWithType)
+                if !growsWithType { Spacer(minLength: 0) }
                 Text(state.status == .ongoing || store.isBotActing ? (active ? "行動中" : "等待") : "已結束")
-                    .font(.system(size: 10, weight: .bold)).foregroundStyle(active ? uiAccent:uiSecondary)
+                    .gameFont(.caption, weight: .bold).foregroundStyle(active ? uiAccent:uiSecondary)
             }
-            HStack(spacing: 4) {
+            statRow {
                 if store.computer != nil {
                     Text(player == store.computer ? "電腦" : "你")
-                        .font(.system(size: 9, weight: .bold)).foregroundStyle(uiAccent)
+                        .gameFont(.caption, weight: .bold).foregroundStyle(uiAccent)
                 }
                 GameManaGem(value: state.mana(of: player), compact: true).accessibilityHidden(true)
                 Text("\(state.mana(of: player))/\(state.config.manaCap) · \(liberties) 氣")
-                    .font(.system(size: 11)).foregroundStyle(liberties <= 1 ? Color.redTeam:uiSecondary)
-                Spacer(minLength: 0)
+                    .gameFont(.numeric).foregroundStyle(liberties <= 1 ? Color.redTeam:uiSecondary)
+                if !growsWithType { Spacer(minLength: 0) }
                 if active {
                     let ap = store.isBotActing && state.current != player ? 0 : state.apRemaining
                     HStack(spacing: 3) {
                         ForEach(0..<min(2, max(0, ap)), id: \.self) { _ in Circle().fill(GameChrome.gold).frame(width: 4, height: 4).accessibilityHidden(true) }
-                        Text("\(ap) AP").font(.system(size: 11, weight: .bold))
+                        Text("\(ap) AP").gameFont(.numeric)
                     }
                 }
             }
-            if !phoneInterface && !state.lootInventory(of:player).isEmpty {
-                Text(state.lootInventory(of:player).map { ($0.ability == .stickyBounce ? "黏彈":"影步") + (state.ply < $0.unlockPly ? "待解鎖":"×1") }.joined(separator:" · ")).font(.system(size:10)).foregroundStyle(uiAccent)
+            if (!phoneInterface || growsWithType) && !state.lootInventory(of:player).isEmpty {
+                Text(state.lootInventory(of:player).map { ($0.ability == .stickyBounce ? "黏彈":"影步") + (state.ply < $0.unlockPly ? "待解鎖":"×1") }.joined(separator:" · ")).gameFont(.caption).foregroundStyle(uiAccent).fixedSize(horizontal: false, vertical: true)
             }
-        }.font(.system(size:12)).padding(phoneInterface ? 6:8)
+        }.padding(phoneInterface && !growsWithType ? 6:8)
             .frame(maxWidth:.infinity)
             .background(GamePanel(active: active))
             .accessibilityElement(children:.combine)
@@ -1271,27 +1382,27 @@ private struct IntegratedExpansionSoundSettings: View {
                 Section("音效") {
                     HStack {
                         Slider(value:$store.sfxVolume,in:0...1).accessibilityLabel("音效音量").accessibilityIdentifier("sfxVolume")
-                        Text("\(Int(store.sfxVolume * 100))%").monospacedDigit().frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("sfxVolumeValue")
+                        Text("\(Int(store.sfxVolume * 100))%").gameFont(.numeric).frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("sfxVolumeValue")
                     }
                 }
                 Section("英文施法語音") {
                     Toggle("播放角色台詞",isOn:$store.voice).accessibilityIdentifier("castVoice")
                     HStack {
                         Slider(value:$store.voiceVolume,in:0...1).accessibilityLabel("施法語音音量").accessibilityIdentifier("voiceVolume")
-                        Text(store.voice ? "\(Int(store.voiceVolume * 100))%" : "語音已關閉").font(.caption).monospacedDigit().frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("voiceVolumeValue")
+                        Text(store.voice ? "\(Int(store.voiceVolume * 100))%" : "語音已關閉").gameFont(.numeric).frame(minWidth:48,alignment:.trailing).accessibilityIdentifier("voiceVolumeValue")
                     }
                 }
                 Toggle("減少動態",isOn:$store.reduced).accessibilityIdentifier("reduceCombatMotion").onChange(of:store.reduced) { store.stop() }
                 Section("背景音樂") {
                     HStack {
                         Slider(value:$background.musicVolume,in:0...1).accessibilityLabel("配樂音量").accessibilityIdentifier("musicVolume")
-                        Text("\(Int(background.musicVolume * 100))%").monospacedDigit().frame(minWidth:48,alignment:.trailing)
+                        Text("\(Int(background.musicVolume * 100))%").gameFont(.numeric).frame(minWidth:48,alignment:.trailing)
                     }
                 }
-                Section { Text("設定會保留。音效、英文台詞與配樂可分別調整；靜音會關閉全部聲音。").font(.footnote) }
+                Section { Text("設定會保留。音效、英文台詞與配樂可分別調整；靜音會關閉全部聲音。").gameFont(.body).fixedSize(horizontal: false, vertical: true) }
             }.gameSheetSurface().navigationTitle("聲音與動畫").navigationBarTitleDisplayMode(.inline).toolbar {
                 ToolbarItem(placement:.principal) {
-                    Text("聲音與動畫").font(.headline).foregroundStyle(GameChrome.cream).accessibilityIdentifier("soundSettingsTitle")
+                    Text("聲音與動畫").gameFont(.title).foregroundStyle(GameChrome.cream).accessibilityIdentifier("soundSettingsTitle")
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: close) { Text("完成").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle()) }
@@ -1313,15 +1424,15 @@ private struct CombatSoundSettings: View {
                 Toggle("靜音", isOn: $audio.muted).accessibilityIdentifier("audioMute")
                 Section("音效音量") {
                     Slider(value: $audio.sfxVolume, in: 0...1).accessibilityIdentifier("sfxVolume")
-                    Text("\(Int(audio.sfxVolume * 100))%")
+                    Text("\(Int(audio.sfxVolume * 100))%").gameFont(.numeric)
                 }
                 Section("音樂音量") {
-                    Text("對戰曲：Hearthside Council").font(.caption)
+                    Text("對戰曲：Hearthside Council").gameFont(.caption)
                     Slider(value: $audio.musicVolume, in: 0...1).accessibilityIdentifier("musicVolume")
-                    Text("\(Int(audio.musicVolume * 100))%")
+                    Text("\(Int(audio.musicVolume * 100))%").gameFont(.numeric)
                 }
                 Section {
-                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂與音效可分別調整。")
+                    Text("聲音設定會保留。聲音尊重系統靜音模式；音樂與音效可分別調整。").gameFont(.body).fixedSize(horizontal: false, vertical: true)
                 }
             }.gameSheetSurface().navigationTitle("聲音設定")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() }.accessibilityIdentifier("audioSettingsDone") } }
